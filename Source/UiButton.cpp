@@ -93,8 +93,8 @@
         m_BelowButtonEntity.SetOwnerName(GetName());
         m_BelowButtonEntity.Init();
 
-        m_NavigationAction .SetOwnerName(GetName());
-        m_NavigationAction .Init();
+        m_VerticalNavigationAction .SetOwnerName(GetName());
+        m_VerticalNavigationAction .Init();
         m_PressAction      .SetOwnerName(GetName());
         m_PressAction      .Init();
 
@@ -113,7 +113,7 @@
         m_UpButtonEntity   .Exit();
         m_BelowButtonEntity.Exit();
 
-        m_NavigationAction .Exit();
+        m_VerticalNavigationAction .Exit();
         m_PressAction      .Exit();
 
         if (s_currentlyTargetedButton == this && Behaviors< UiButton >()->GetComponents().empty() == false)
@@ -148,7 +148,7 @@
             updateWhenDown();
         }
 
-        if (m_NavigationAction == nullptr)
+        if (m_VerticalNavigationAction == nullptr)
         {
             return;
         }
@@ -157,12 +157,12 @@
 
         if (isTargeted() && s_currentlyDownButton == nullptr && m_NavigationTimer <= 0.0f)
         {
-            if (m_NavigationAction->GetAxis() > 0)
+            if (m_VerticalNavigationAction->GetAxis() > 0)
             {
                 s_currentlyTargetedButton = m_UpButtonComponent;
                 m_UpButtonComponent->m_NavigationTimer = m_NavigationDelay;
             }
-            else if (m_NavigationAction->GetAxis() < 0)
+            else if (m_VerticalNavigationAction->GetAxis() < 0)
             {
                 s_currentlyTargetedButton = m_BelowButtonComponent;
                 m_BelowButtonComponent->m_NavigationTimer = m_NavigationDelay;
@@ -346,7 +346,7 @@
         m_UpButtonEntity   .Inspect("Button Above This One");
         m_BelowButtonEntity.Inspect("Button Below This One");
 
-        m_NavigationAction .Inspect("Action for Navigating The Menu");
+        m_VerticalNavigationAction .Inspect("Action for Navigating The Menu");
         m_PressAction      .Inspect("Action for Controller Button Pressing");
     }
 
@@ -422,7 +422,7 @@
     /// @param data The JSON data to read from.
     void UiButton::readNavigationAction(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_NavigationAction, data);
+        Stream::Read(m_VerticalNavigationAction, data);
     }
 
     /// @brief Read in the action from a JSON file.
@@ -481,7 +481,7 @@
         json [ "ReleaseSound"          ] = Stream::Write( m_ReleaseSound          );
         json [ "UpButton"              ] = m_UpButtonEntity.Write(                );
         json [ "BelowButton"           ] = m_BelowButtonEntity.Write(             );
-        json [ "NavigationAction"      ] = m_NavigationAction.Write(              );
+        json [ "NavigationAction"      ] = m_VerticalNavigationAction.Write(              );
         json [ "PressAction"           ] = m_PressAction.Write(                   );
         json [ "NavigationDelay"       ] = Stream::Write( m_NavigationDelay       );
 
@@ -518,7 +518,7 @@
         m_ReleaseSound         ( other.m_ReleaseSound                                 ),
         m_UpButtonEntity       ( other.m_UpButtonEntity, {&m_UpButtonComponent}       ),
         m_BelowButtonEntity    ( other.m_BelowButtonEntity, {&m_BelowButtonComponent} ),
-        m_NavigationAction     ( other.m_NavigationAction                             ),
+        m_VerticalNavigationAction     ( other.m_VerticalNavigationAction                             ),
         m_PressAction          ( other.m_PressAction                                  ),
         m_NavigationDelay      ( other.m_NavigationDelay                              )  
     {}

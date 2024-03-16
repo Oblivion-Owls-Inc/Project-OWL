@@ -127,14 +127,29 @@ private: // configurable members
     /// @brief The UiButton component of the button below this one.
     ComponentReference <UiButton> m_BelowButtonComponent;
 
+    /// @brief The UiButton component of the button next to this one.
+    ComponentReference <UiButton> m_NextButtonComponent;
+
+    /// @brief The UiButton component of the button before this one.
+    ComponentReference <UiButton> m_PreviousButtonComponent;
+
     /// @brief The button above this one
-    EntityReference m_UpButtonEntity = EntityReference({&m_UpButtonComponent});
+    EntityReference m_UpButtonEntity = EntityReference({ &m_UpButtonComponent });
 
     /// @brief The button below this one.
-    EntityReference m_BelowButtonEntity = EntityReference({&m_BelowButtonComponent});
+    EntityReference m_BelowButtonEntity = EntityReference({ &m_BelowButtonComponent });
 
-    /// @brief Used for joystick operation in the menus.
-    ActionReference m_NavigationAction;
+    /// @brief The button above this one
+    EntityReference m_NextButtonEntity = EntityReference({ &m_NextButtonComponent });
+
+    /// @brief The button below this one.
+    EntityReference m_PreviousButtonEntity = EntityReference({ &m_PreviousButtonComponent });
+
+    /// @brief Used for vertical navigation in the menus.
+    ActionReference m_VerticalNavigationAction;
+
+    /// @brief Used for horizontal navigation in the menus.
+    ActionReference m_HorizontalNavigationAction;
 
     /// @brief Used for game controller confirmation of buttons
     ActionReference m_PressAction;
