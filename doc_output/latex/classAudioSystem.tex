@@ -26,6 +26,16 @@ FMOD\+::\+System $\ast$ \mbox{\hyperlink{classAudioSystem_a1c110f51e7b41650b96e9
 \begin{DoxyCompactList}\small\item\em gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classAudioSystem_a1f842c8d424813e250f485f78c16e7dd}{Set\+Active\+Listener}} (\mbox{\hyperlink{classAudioListener}{Audio\+Listener}} $\ast$listener)
 \begin{DoxyCompactList}\small\item\em gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} \end{DoxyCompactList}\item 
+FMOD\+::\+Channel\+Group $\ast$ \mbox{\hyperlink{classAudioSystem_ab17664bf7588b92fa13f6a6b20d198b0}{Get\+Channel\+Group}} (std\+::string const \&name)
+\begin{DoxyCompactList}\small\item\em gets the channel group with the specified name \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAudioSystem_adb6bc62af6d5df4ced11b30e709bd9e3}{Get\+Volume}} () const
+\begin{DoxyCompactList}\small\item\em gets the volume of the master channel \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioSystem_ada9baa3f77ac8c755e9df708263918ad}{Set\+Volume}} (float volume)
+\begin{DoxyCompactList}\small\item\em sets the volume of the master channel \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAudioSystem_ab58854ba62e758970c787dd29c3eb63e}{Get\+Volume}} (std\+::string const \&name) const
+\begin{DoxyCompactList}\small\item\em gets the volume of the specified channel \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioSystem_a1bc6736cdc6f0dd1d403461bf4158553}{Set\+Volume}} (std\+::string const \&name, float volume)
+\begin{DoxyCompactList}\small\item\em sets the volume of the specified channel \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classAudioSystem_aa0f478c9589e3aa4e01cd054dc39bbab}\label{classAudioSystem_aa0f478c9589e3aa4e01cd054dc39bbab}} 
 virtual void \mbox{\hyperlink{classAudioSystem_aa0f478c9589e3aa4e01cd054dc39bbab}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em Gets called once when this \mbox{\hyperlink{classSystem}{System}} is added to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
@@ -34,6 +44,11 @@ virtual void \mbox{\hyperlink{classAudioSystem_a290ecab401e40ca7851a5a4a2c72e984
 \begin{DoxyCompactList}\small\item\em Gets called once before the \mbox{\hyperlink{classEngine}{Engine}} closes. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classAudioSystem_af538b729a94bb39f0a9a88f4c21a1d96}{On\+Update}} (float dt) override
 \begin{DoxyCompactList}\small\item\em Gets called once every graphics frame. Do not use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAudioSystem_a32522a57580820d4d89f7973cda036b0}{Inspect\+Channel\+Group}} (char const $\ast$label, std\+::string $\ast$group\+Name, FMOD\+::\+Channel\+Group $\ast$$\ast$channel\+Group)
+\begin{DoxyCompactList}\small\item\em inspects a reference to a channel group \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAudioSystem_ae29f3a6366da9393744adf0b2e02eab1}\label{classAudioSystem_ae29f3a6366da9393744adf0b2e02eab1}} 
+virtual void \mbox{\hyperlink{classAudioSystem_ae29f3a6366da9393744adf0b2e02eab1}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em shows this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s Debug\+Window \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classAudioSystem_a07346304ecfea616e50ef5dea5cc8ca4}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classAudioSystem_aec39910904b71f2f33f43ff2d7043093}{Write}} () const override
@@ -62,6 +77,24 @@ gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}}
 
 \begin{DoxyReturn}{Returns}
 the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioSystem_ab17664bf7588b92fa13f6a6b20d198b0}\label{classAudioSystem_ab17664bf7588b92fa13f6a6b20d198b0}} 
+\index{AudioSystem@{AudioSystem}!GetChannelGroup@{GetChannelGroup}}
+\index{GetChannelGroup@{GetChannelGroup}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{GetChannelGroup()}{GetChannelGroup()}}
+{\footnotesize\ttfamily FMOD\+::\+Channel\+Group $\ast$ Audio\+System\+::\+Get\+Channel\+Group (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption})}
+
+
+
+gets the channel group with the specified name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the channel group to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the FMOD\+::\+Channel\+Group with the specified name 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classAudioSystem_a1c110f51e7b41650b96e92f0a18a34dc}\label{classAudioSystem_a1c110f51e7b41650b96e92f0a18a34dc}} 
 \index{AudioSystem@{AudioSystem}!GetFMOD@{GetFMOD}}
@@ -106,6 +139,59 @@ this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
+\mbox{\Hypertarget{classAudioSystem_adb6bc62af6d5df4ced11b30e709bd9e3}\label{classAudioSystem_adb6bc62af6d5df4ced11b30e709bd9e3}} 
+\index{AudioSystem@{AudioSystem}!GetVolume@{GetVolume}}
+\index{GetVolume@{GetVolume}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{GetVolume()}{GetVolume()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float Audio\+System\+::\+Get\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the volume of the master channel 
+
+\begin{DoxyReturn}{Returns}
+the volume of the master channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioSystem_ab58854ba62e758970c787dd29c3eb63e}\label{classAudioSystem_ab58854ba62e758970c787dd29c3eb63e}} 
+\index{AudioSystem@{AudioSystem}!GetVolume@{GetVolume}}
+\index{GetVolume@{GetVolume}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{GetVolume()}{GetVolume()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily float Audio\+System\+::\+Get\+Volume (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption}) const}
+
+
+
+gets the volume of the specified channel 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the channel to get the volume of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the volume of the channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioSystem_a32522a57580820d4d89f7973cda036b0}\label{classAudioSystem_a32522a57580820d4d89f7973cda036b0}} 
+\index{AudioSystem@{AudioSystem}!InspectChannelGroup@{InspectChannelGroup}}
+\index{InspectChannelGroup@{InspectChannelGroup}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{InspectChannelGroup()}{InspectChannelGroup()}}
+{\footnotesize\ttfamily bool Audio\+System\+::\+Inspect\+Channel\+Group (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::string $\ast$}]{group\+Name,  }\item[{FMOD\+::\+Channel\+Group $\ast$$\ast$}]{channel\+Group }\end{DoxyParamCaption})}
+
+
+
+inspects a reference to a channel group 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the channel group \\
+\hline
+{\em group\+Name} & the name of the channel group reference being inspected \\
+\hline
+{\em channel\+Group} & the channel group reference being inspeced \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the reference to the channel group was changed 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classAudioSystem_af538b729a94bb39f0a9a88f4c21a1d96}\label{classAudioSystem_af538b729a94bb39f0a9a88f4c21a1d96}} 
 \index{AudioSystem@{AudioSystem}!OnUpdate@{OnUpdate}}
 \index{OnUpdate@{OnUpdate}!AudioSystem@{AudioSystem}}
@@ -138,6 +224,38 @@ gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}}
 
 \begin{DoxyParams}{Parameters}
 {\em listener} & the \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} to make active \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioSystem_ada9baa3f77ac8c755e9df708263918ad}\label{classAudioSystem_ada9baa3f77ac8c755e9df708263918ad}} 
+\index{AudioSystem@{AudioSystem}!SetVolume@{SetVolume}}
+\index{SetVolume@{SetVolume}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{SetVolume()}{SetVolume()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Audio\+System\+::\+Set\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume }\end{DoxyParamCaption})}
+
+
+
+sets the volume of the master channel 
+
+
+\begin{DoxyParams}{Parameters}
+{\em volume} & the volume to set the master channel to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioSystem_a1bc6736cdc6f0dd1d403461bf4158553}\label{classAudioSystem_a1bc6736cdc6f0dd1d403461bf4158553}} 
+\index{AudioSystem@{AudioSystem}!SetVolume@{SetVolume}}
+\index{SetVolume@{SetVolume}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{SetVolume()}{SetVolume()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Audio\+System\+::\+Set\+Volume (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name,  }\item[{float}]{volume }\end{DoxyParamCaption})}
+
+
+
+sets the volume of the specified channel 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the channel to set the volume of \\
+\hline
+{\em volume} & the volume to set the channel to \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classAudioSystem_aec39910904b71f2f33f43ff2d7043093}\label{classAudioSystem_aec39910904b71f2f33f43ff2d7043093}} 

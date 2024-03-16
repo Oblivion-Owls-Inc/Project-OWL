@@ -279,7 +279,24 @@
             ]
         },
         "AudioSystem": {
-            "MaxChannels": 1024
+            "MaxChannels": 1024,
+            "Groups": [
+                {
+                    "Name": "Music",
+                    "Volume": 1.0,
+                    "Mute": false
+                },
+                {
+                    "Name": "Effects",
+                    "Volume": 1.0,
+                    "Mute": false
+                },
+                {
+                    "Name": "Background",
+                    "Volume": 1.0,
+                    "Mute": false
+                }
+            ]
         },
         "CheatSystem": {},
         "DebugSystem": {

@@ -80,10 +80,10 @@ digraph "Source/Component.h"
   Node88 -> Node78 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node88 -> Node79 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node88 -> Node83 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node88 -> Node116 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node116 [label="Source/EntityReference.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$EntityReference_8cpp.html",tooltip="a reference to an Entity in the scene"];
+  Node88 -> Node117 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node117 [label="Source/EntityReference.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$EntityReference_8cpp.html",tooltip="a reference to an Entity in the scene"];
   Node88 -> Node48 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 -> Node116 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node117 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node124 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node124 [label="Source/ExampleComponent.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ExampleComponent_8h.html",tooltip="DESCRIPTION HERE."];
   Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
