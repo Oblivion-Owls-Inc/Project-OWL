@@ -116,15 +116,9 @@
             ImGui::Text("One Shot One Kill");
 
             // The kill all enemies button.
-            if (ImGui::Button("Kill all enemies"))
+            if (ImGui::Button(m_ToggleKillAllEnemies ? "Turn Off Kill all enemies" : "Turn On Kill All Enemies"))
             {
-                for (auto i : Entities()->GetEntities())
-                {
-                    if (i->GetName() == "Enemy")
-                    {
-                        i->Destroy();
-                    }
-                }
+                KillAllEnemies();
             }
             ImGui::SameLine();
             ImGui::Text("Kill All Enemies");
@@ -195,6 +189,18 @@
                 if (health != nullptr)
                 {
                     health->SetHealth(9999);
+                }
+            }
+        }
+
+        // While the cheat is active constantly kill enemies.
+        if (m_ToggleKillAllEnemies)
+        {
+            for (auto i : Entities()->GetEntities())
+            {
+                if (i->GetName() == "Enemy")
+                {
+                    i->Destroy();
                 }
             }
         }
@@ -278,6 +284,24 @@
         }
     }
 
+    /// @brief Kills all enemies.
+    void CheatSystem::KillAllEnemies()
+    {
+        if (m_ToggleKillAllEnemies == false)
+        {
+            for (auto i : Entities()->GetEntities())
+            {
+                if (i->GetName() == "Enemy")
+                {
+                    i->Destroy();
+                }
+            }
+            m_ToggleKillAllEnemies = true;
+        }
+    }
+
+
+
     /// @brief Turns off player collisions
     void CheatSystem::NoClip()
     {
@@ -331,6 +355,15 @@
         m_ToggleInfiniteResource = cheatIsOn;
         return cheatIsOn;
     }
+
+    /// @brief Instantly wins the game
+    void CheatSystem::InstantWin() { Scenes()->SetNextScene(m_WinSceneName); }
+
+    /// @brief Instantly loses the game
+    void CheatSystem::InstantLose() { Scenes()->SetNextScene(m_LoseSceneName); }
+
+    /// @brief Restarts the game.
+    void CheatSystem::ResetGame() { Scenes()->SetNextScene(m_RestartSceneName); }
 
 //--------------------------------------------------------------------------------
 // private: read
@@ -398,6 +431,7 @@
         m_ToggleBaseGodMode(false),
         m_ToggleInfiniteResource(false),
         m_ToggleNoClip(false),
+        m_ToggleKillAllEnemies(false),
         m_PlayerCircleCollider(nullptr),
         m_ToggleOneShotOneKill(false),
         m_TogglePlayerInfiniteHealth(false),

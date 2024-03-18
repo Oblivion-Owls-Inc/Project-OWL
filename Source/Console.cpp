@@ -229,6 +229,10 @@
         m_ConsoleCommandsMap.emplace("OneShotOneKill", std::bind(&CheatSystem::OneShotOneKill, Cheats()));
         m_ConsoleCommandsMap.emplace("NoClip", std::bind(&CheatSystem::NoClip, Cheats()));
         m_ConsoleCommandsMap.emplace("InfiniteResources", std::bind(&CheatSystem::ToggleInfinteResources, Cheats()));
+        m_ConsoleCommandsMap.emplace("KillAllEnemies", std::bind(&CheatSystem::KillAllEnemies, Cheats()));
+        m_ConsoleCommandsMap.emplace("InstantWin", std::bind(&CheatSystem::InstantWin, Cheats()));
+        m_ConsoleCommandsMap.emplace("InstantLose", std::bind(&CheatSystem::InstantLose, Cheats()));
+        m_ConsoleCommandsMap.emplace("ResetGame", std::bind(&CheatSystem::ResetGame, Cheats()));
     }
 
     /// @brief Clears the console log

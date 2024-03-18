@@ -59,12 +59,24 @@ public: // methods
     /// @brief Kills enemy with one hit from the laser.
     void OneShotOneKill();
 
+    /// @brief Kills All Enemies.
+    void KillAllEnemies();
+
     /// @brief Turns off player collisions.
     void NoClip();
 
     /// @brief  Toggles the infinite resources cheat
     /// @return The current state of whether there are infinite resources
     bool ToggleInfinteResources();
+
+    /// @brief Instantly wins the game
+    void InstantWin();
+
+    /// @brief Instantly loses the game
+    void InstantLose();
+
+    /// @brief Resets the speicified scene
+    void ResetGame();
 
 //--------------------------------------------------------------------------------
 private: // members
@@ -82,6 +94,8 @@ private: // members
     bool m_ToggleOneShotOneKill;
     /// @brief Toggles player no clipping
     bool m_ToggleNoClip;
+    /// @brief Toggles killing all enemies.
+    bool m_ToggleKillAllEnemies;
     /// @brief Store the previous value of the player's health
     int m_PreviousPlayerHealth;
     /// @brief Store the previous value of the base's health.
