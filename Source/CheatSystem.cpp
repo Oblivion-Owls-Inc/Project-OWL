@@ -127,7 +127,6 @@
             if (ImGui::Button(m_ToggleNoClip ? "Turn Off No Clip" : "Turn On No Clip"))
             {
                 NoClip();
-
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
@@ -135,7 +134,7 @@
             // The instant win button
             if (ImGui::Button("Instant Win"))
             {
-                Scenes()->SetNextScene(m_WinSceneName);
+                InstantWin();
             }
             ImGui::SameLine();
             ImGui::Text("Instantly wins the game");
@@ -143,7 +142,7 @@
             // The instant lose button
             if (ImGui::Button("Instant Lose"))
             {
-                Scenes()->SetNextScene(m_LoseSceneName);
+                InstantLose();
             }
             ImGui::SameLine();
             ImGui::Text("Instantly loses the game");
@@ -151,11 +150,10 @@
             // Resets the game scene.
             if (ImGui::Button("Reset Game"))
             {
-                Scenes()->SetNextScene(m_RestartSceneName);
+                ResetGame();
             }
             ImGui::SameLine();
             ImGui::Text("Resets the game");
-
         }
 
         ImGui::End();
