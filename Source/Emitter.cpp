@@ -187,17 +187,15 @@ void Emitter::Inspector()
     ImGui::Checkbox("Continuous", &m_Continuous);
     if (!m_Continuous)
     {
-        static int amt = 5;
-
-        ImGui::SliderInt("Amount", &amt, 1, m_BufferSize);
+        ImGui::DragFloat("Amount / PPS", &m_PPS, 0.1f, 0.0f, (float)m_BufferSize);
 
         if (ImGui::Button("Emit"))
-            m_ParticleCount = (float)amt;
+            m_ParticleCount = m_PPS;
     }
     else
     {
         ImGui::Text("Particles per sec");
-        ImGui::SliderFloat("###PPS", &m_PPS, 1.0f, 2000.0f);
+        ImGui::DragFloat("###PPS", &m_PPS, 0.1f, 0.0f, (float)m_BufferSize);
         ImGui::SliderFloat("Delay", &m_Delay, 0.0f, 2.0f);
     }
     ImGui::Spacing();
@@ -239,9 +237,6 @@ void Emitter::Inspector()
         resizeBuffers();
         initChanged = true;
     }
-    ImGui::TextWrapped("Note: if it starts acting up when adjusting this number, "\
-                        "just readjust again until it's ok. (This only happens " \
-                        "during real-time adjustments)");
 
     if (initChanged)
         Particles()->SetEmitDataDirty();
@@ -275,9 +270,9 @@ void Emitter::resizeBuffers()
 
     // transform matrices buffer
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * 
-                    m_BufferSize, NULL, GL_STREAM_DRAW);
-    // allow it to be read by vertex shader
+    std::vector<char> emptiness(sizeof(glm::mat4) * m_BufferSize);  // FFS, NULL DOES NOT ZERO-INIT!!! 
+    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) *      // Thanks for the headache, chatgpt...
+                    m_BufferSize, &emptiness[0], GL_STREAM_DRAW);
 
     m_Zinit = true;
 }
