@@ -1,0 +1,167 @@
+\hypertarget{classBulletAoePulse}{}\doxysection{Bullet\+Aoe\+Pulse Class Reference}
+\label{classBulletAoePulse}\index{BulletAoePulse@{BulletAoePulse}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that destroys itself and deals aoe damage on contact.  
+
+
+
+
+{\ttfamily \#include $<$Bullet\+Aoe\+Pulse.\+h$>$}
+
+
+
+Inheritance diagram for Bullet\+Aoe\+Pulse\+:
+% FIG 0
+
+
+Collaboration diagram for Bullet\+Aoe\+Pulse\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBulletAoePulse_ad0e56600e9b9e475839cd722903e8071}\label{classBulletAoePulse_ad0e56600e9b9e475839cd722903e8071}} 
+\mbox{\hyperlink{classBulletAoePulse_ad0e56600e9b9e475839cd722903e8071}{Bullet\+Aoe\+Pulse}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBulletAoePulse_a5776c9cc3742cdada108226f28fd1920}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classBulletAoePulse}{Bullet\+Aoe\+Pulse}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBulletAoePulse_a080c3a151e92a60bda1eeb565bc6ec4d}{Set\+Damage}} (int damage)
+\begin{DoxyCompactList}\small\item\em Set the damage the bullet will do. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBulletAoePulse_a0a1b6c5e5826e71a4bf44f9b8ca6c908}{Get\+Damage}} ()
+\begin{DoxyCompactList}\small\item\em get the damage the bullet will do \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBulletAoePulse_a68f2ad587aa90f9348881b57b4bf2144}{Set\+Radius}} (float radius)
+\begin{DoxyCompactList}\small\item\em Set the radius of the bullet pulse. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBulletAoePulse_ad02939f2db5abf7cdd03789e67f267ca}\label{classBulletAoePulse_ad02939f2db5abf7cdd03789e67f267ca}} 
+float \mbox{\hyperlink{classBulletAoePulse_ad02939f2db5abf7cdd03789e67f267ca}{Get\+Radius}} ()
+\begin{DoxyCompactList}\small\item\em Get the radius of the bullet pulse. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBulletAoePulse_a50325889a9c7ae2854820856f20cfb92}\label{classBulletAoePulse_a50325889a9c7ae2854820856f20cfb92}} 
+virtual void \mbox{\hyperlink{classBulletAoePulse_a50325889a9c7ae2854820856f20cfb92}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classBulletAoePulse_afa2fdb308954bf7c493341ae7a47ce7b}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classBulletAoePulse_a5a15527fc65fa610fda1934adfbca3dd}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classBulletAoePulse}{Bullet\+Aoe\+Pulse}} to json \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classBulletAoePulse}{Bullet\+Aoe\+Pulse}} $\ast$ \mbox{\hyperlink{classBulletAoePulse_a99917b09ebbf2f2d73ae19bf024682e1}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that destroys itself and deals aoe damage on contact. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBulletAoePulse_a99917b09ebbf2f2d73ae19bf024682e1}\label{classBulletAoePulse_a99917b09ebbf2f2d73ae19bf024682e1}} 
+\index{BulletAoePulse@{BulletAoePulse}!Clone@{Clone}}
+\index{Clone@{Clone}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBulletAoePulse}{Bullet\+Aoe\+Pulse}} $\ast$ Bullet\+Aoe\+Pulse\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classBullet_abbdc2a132a643708d11f6342642874a1}{Bullet}}.
+
+\mbox{\Hypertarget{classBulletAoePulse_a0a1b6c5e5826e71a4bf44f9b8ca6c908}\label{classBulletAoePulse_a0a1b6c5e5826e71a4bf44f9b8ca6c908}} 
+\index{BulletAoePulse@{BulletAoePulse}!GetDamage@{GetDamage}}
+\index{GetDamage@{GetDamage}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{GetDamage()}{GetDamage()}}
+{\footnotesize\ttfamily int Bullet\+Aoe\+Pulse\+::\+Get\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the damage the bullet will do 
+
+Set the damage the bullet will do. \mbox{\Hypertarget{classBulletAoePulse_afa2fdb308954bf7c493341ae7a47ce7b}\label{classBulletAoePulse_afa2fdb308954bf7c493341ae7a47ce7b}} 
+\index{BulletAoePulse@{BulletAoePulse}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Bullet\+Aoe\+Pulse\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classBulletAoePulse_a5776c9cc3742cdada108226f28fd1920}\label{classBulletAoePulse_a5776c9cc3742cdada108226f28fd1920}} 
+\index{BulletAoePulse@{BulletAoePulse}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Bullet\+Aoe\+Pulse\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Default constructor for the \mbox{\hyperlink{classBulletAoePulse}{Bullet\+Aoe\+Pulse}} class. 
+
+Get the position of the turret
+
+Get the position of the entity
+
+Calculate the direction from the turret to the entity
+
+Reimplemented from \mbox{\hyperlink{classBullet_afaafef6e6a4229eb447179ea6a268305}{Bullet}}.
+
+\mbox{\Hypertarget{classBulletAoePulse_a080c3a151e92a60bda1eeb565bc6ec4d}\label{classBulletAoePulse_a080c3a151e92a60bda1eeb565bc6ec4d}} 
+\index{BulletAoePulse@{BulletAoePulse}!SetDamage@{SetDamage}}
+\index{SetDamage@{SetDamage}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{SetDamage()}{SetDamage()}}
+{\footnotesize\ttfamily void Bullet\+Aoe\+Pulse\+::\+Set\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
+
+
+
+Set the damage the bullet will do. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em damage} & -\/ the damage the bullet will do \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBulletAoePulse_a68f2ad587aa90f9348881b57b4bf2144}\label{classBulletAoePulse_a68f2ad587aa90f9348881b57b4bf2144}} 
+\index{BulletAoePulse@{BulletAoePulse}!SetRadius@{SetRadius}}
+\index{SetRadius@{SetRadius}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{SetRadius()}{SetRadius()}}
+{\footnotesize\ttfamily void Bullet\+Aoe\+Pulse\+::\+Set\+Radius (\begin{DoxyParamCaption}\item[{float}]{radius }\end{DoxyParamCaption})}
+
+
+
+Set the radius of the bullet pulse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radius} & -\/ the radius of the bullet pulse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBulletAoePulse_a5a15527fc65fa610fda1934adfbca3dd}\label{classBulletAoePulse_a5a15527fc65fa610fda1934adfbca3dd}} 
+\index{BulletAoePulse@{BulletAoePulse}!Write@{Write}}
+\index{Write@{Write}!BulletAoePulse@{BulletAoePulse}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Bullet\+Aoe\+Pulse\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classBulletAoePulse}{Bullet\+Aoe\+Pulse}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Bullet\+Aoe\+Pulse.\+h\item 
+Source/Bullet\+Aoe\+Pulse.\+cpp\end{DoxyCompactItemize}

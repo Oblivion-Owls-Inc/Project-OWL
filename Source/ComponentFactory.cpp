@@ -23,6 +23,8 @@
 #include "AudioPlayer.h"
 #include "AudioListener.h"
 #include "Bullet.h"
+#include "BulletAoe.h"
+#include "BulletAoePulse.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
@@ -68,6 +70,7 @@
 #include "orbitbehavior.h"
 #include "DestructibleTilemap.h"
 #include "ControlPrompt.h"
+#include "DigEffect.h"
 
 
 //-----------------------------------------------------------------------------
@@ -172,6 +175,8 @@
         { "PlayerController"       , ComponentInfo< PlayerController        >() },
 		{ "EnemyBehavior"          , ComponentInfo< EnemyBehavior           >() },
 		{ "Bullet"                 , ComponentInfo< Bullet                  >() },
+        { "BulletAoe"              , ComponentInfo< BulletAoe               >() },
+        { "BulletAoePulse"         , ComponentInfo< BulletAoePulse          >() },
         { "TurretBehavior"         , ComponentInfo< TurretBehavior          >() },
         { "EffectAnimator"         , ComponentInfo< EffectAnimator          >() },
         { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
@@ -217,7 +222,8 @@
         { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
-        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() }
+        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
+        { "DigEffect"              , ComponentInfo< DigEffect               >() }
     };
 
 //-----------------------------------------------------------------------------

@@ -26,6 +26,9 @@ public: // constructor / destructors
     /// @brief  constructor
     Bullet();
 
+    /// @brief  derived constructor
+    Bullet(std::type_index m_Type);
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -35,6 +38,9 @@ public: // accessors
     /// @brief Set the damage the bullet will do
     /// @param damage - the damage the bullet will do
     void SetDamage( int damage );
+
+    /// @brief Get the damage the bullet will do
+    int GetDamage() const;
 
 
 //-----------------------------------------------------------------------------
@@ -69,7 +75,7 @@ private: // methods
 
     /// @brief  called whenever this Entity's Collider enters a collision
     /// @param  other   the collider that was collided with
-    void onCollisionEnter( Collider* other );
+    virtual void onCollisionEnter( Collider* other );
 
 
 //-----------------------------------------------------------------------------
@@ -79,30 +85,6 @@ public: // inspection
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
-
-
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  reads this Bullet's damage
-    /// @param  data    the json data to read from
-    void readDamage( nlohmann::ordered_json const& data );
-
-
-//-----------------------------------------------------------------------------
-public: // reading / writing
-//-----------------------------------------------------------------------------
-
-
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
-
-    /// @brief  writes this Bullet to json
-    /// @return the written json data
-    virtual nlohmann::ordered_json Write() const override;
 
     
 //-----------------------------------------------------------------------------

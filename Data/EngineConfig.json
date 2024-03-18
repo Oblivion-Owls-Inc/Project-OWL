@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1039,
-                686
+                1679,
+                1071
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -164,12 +164,77 @@
                     "ControllerAxis": [
                         3
                     ]
+                },
+                {
+                    "Name": "Build Turret 2",
+                    "KeyboardButtons": [
+                        50
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 3",
+                    "KeyboardButtons": [
+                        51
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 4",
+                    "KeyboardButtons": [
+                        52
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 5",
+                    "KeyboardButtons": [
+                        53
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 6",
+                    "KeyboardButtons": [
+                        54
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "SplashScreen",
+            "NextSceneName": "AlphaScene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -215,7 +280,24 @@
             ]
         },
         "AudioSystem": {
-            "MaxChannels": 1024
+            "MaxChannels": 1024,
+            "Groups": [
+                {
+                    "Name": "Music",
+                    "Volume": 1.0,
+                    "Mute": false
+                },
+                {
+                    "Name": "Effects",
+                    "Volume": 1.0,
+                    "Mute": false
+                },
+                {
+                    "Name": "Background",
+                    "Volume": 1.0,
+                    "Mute": false
+                }
+            ]
         },
         "CheatSystem": {
             "LoseSceneName": "GameOver",
