@@ -12,6 +12,8 @@
 
 #include "pch.h" 
 #include "Console.h"
+#include "InputSystem.h"
+#include "CheatSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -68,31 +70,6 @@
         }
 
 
-#define TEST
-    #ifdef TEST
-        if (ImGui::SmallButton("Add Debug Warning")) 
-        { 
-            AddLog("Warning: Don't Do that\n");
-        }
-
-        ImGui::SameLine();
-
-        if (ImGui::SmallButton("Add Debug Error")) 
-        { 
-            AddLog("Error: something went wrong\n"); 
-        }
-
-        ImGui::SameLine();
-
-        if (ImGui::SmallButton("Add Debug Message")) 
-	    { 
-		    AddLog("Debug: This is a debug message\n"); 
-	    }
-
-        ImGui::SameLine();
-    #endif // TEST
-
-
         if (ImGui::SmallButton("Clear")) 
         { 
             ClearLog(); 
@@ -101,7 +78,7 @@
 
         bool copy_to_clipboard = ImGui::SmallButton("Copy");
 
-        ImGui::Separator();
+        ImGui::SameLine();
 
         // Options menu
         if (ImGui::BeginPopup("Options"))
@@ -144,29 +121,34 @@
                 ImGui::LogToClipboard();
             }
 
-            for (const std::string& item : m_Items) {
+            for (const std::string& item : m_Items) 
+            {
                 // If you don't have a filter, remove this conditional
                 if (!m_Filter.PassFilter(item.c_str()))
                     continue;
 
                 ImVec4 color;
                 bool has_color = false;
+
                 if (item.find("Warning:") != std::string::npos || item.find("WARNING:") != std::string::npos)
                 {
                     /// Make the text yellow
                     color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
                     has_color = true;
                 }
+
 			    if (item.find("Error:") != std::string::npos) 
 			    {
 				    color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f);
 				    has_color = true;
 			    }
+
                 if (item.rfind("# ", 0) == 0) 
                 { // Efficient check for prefix
                     color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f);
                     has_color = true;
                 }
+
                 if(item.rfind("OpenGL Error:", 0) == 0)
 				{
                     continue;
@@ -202,6 +184,28 @@
         }
 
         ImGui::EndChild();
+
+        //bool openCheatsConsole = Input()->GetKeyReleased(GLFW_KEY_F1);
+
+        //if (openCheatsConsole)
+        {
+
+            ImGui::Separator();
+            // Command-line
+            std::string inputBuffer;
+            ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory;
+            bool input = ImGui::InputText("Input", &inputBuffer, input_text_flags);
+
+            if (input)
+            {
+                CallCommand(inputBuffer);
+                inputBuffer.clear();
+            }
+
+            // Auto-focus on window apparition
+            ImGui::SetItemDefaultFocus();
+        }
+
         ImGui::End();
     }
 
@@ -220,11 +224,15 @@
     void DebugConsole::addCommands()
     {
         // Add commands
-	    m_Commands.push_back("HELP");
-	    m_Commands.push_back("HISTORY");
-	    m_Commands.push_back("CLEAR");
-	    m_Commands.push_back("CLASS");
-	    m_Commands.push_back("EXIT");
+        m_ConsoleCommandsMap.emplace("InfinitePlayerHealth", std::bind(&CheatSystem::InfinitePlayerHealth, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteBaseHealth", std::bind(&CheatSystem::InfiniteBaseHealth, Cheats()));
+        m_ConsoleCommandsMap.emplace("OneShotOneKill", std::bind(&CheatSystem::OneShotOneKill, Cheats()));
+        m_ConsoleCommandsMap.emplace("NoClip", std::bind(&CheatSystem::NoClip, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteResources", std::bind(&CheatSystem::ToggleInfinteResources, Cheats()));
+        m_ConsoleCommandsMap.emplace("KillAllEnemies", std::bind(&CheatSystem::KillAllEnemies, Cheats()));
+        m_ConsoleCommandsMap.emplace("InstantWin", std::bind(&CheatSystem::InstantWin, Cheats()));
+        m_ConsoleCommandsMap.emplace("InstantLose", std::bind(&CheatSystem::InstantLose, Cheats()));
+        m_ConsoleCommandsMap.emplace("ResetGame", std::bind(&CheatSystem::ResetGame, Cheats()));
     }
 
     /// @brief Clears the console log
@@ -237,24 +245,26 @@
     /// @param command - The command to call
     void DebugConsole::CallCommand(std::string const& command)
     {
-        if (command.empty())
-	    {
-		    return;
-	    }
+        auto it = m_ConsoleCommandsMap.find(command);
+        if (it == m_ConsoleCommandsMap.end())
+        {
+            Debug() << "Warning: Command not found: " << command << std::endl;
+            return;
+        }
+
+        it->second();
     }
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
 
-
-
-
     /// @brief  gets this System's read methods
-        /// @return this System's read methods
+    /// @return this System's read methods
     ReadMethodMap< ISerializable > const& DebugConsole::GetReadMethods() const
     {
         static ReadMethodMap< DebugConsole > const readMethods = {};
+
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
 
@@ -263,8 +273,8 @@
     /// @return the JSON data of this DebugConsole
     nlohmann::ordered_json DebugConsole::Write() const
     {
-        nlohmann::ordered_json json;
-        return json;
+        nlohmann::ordered_json data;
+        return data;
     }
 
 
@@ -272,9 +282,8 @@
 // public: singleton stuff
 //-----------------------------------------------------------------------------
 
-
-        /// @brief  gets the instance of DebugConsole
-        /// @return the instance of the DebugConsole
+    /// @brief  gets the instance of DebugConsole
+    /// @return the instance of the DebugConsole
     DebugConsole* DebugConsole::GetInstance()
     {
         static std::unique_ptr < DebugConsole > s_Instance = nullptr;
@@ -290,8 +299,7 @@
 // private: singleton stuff
 //-----------------------------------------------------------------------------
 
-
-        /// @brief  Constructs the DebugConsole
+    /// @brief  Constructs the DebugConsole
     DebugConsole::DebugConsole()
     {
         addCommands();

@@ -47,6 +47,7 @@
 #include "EditorCameraController.h"
 
 #include "ItemComponent.h"
+#include "HomeBase.h"
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
@@ -106,7 +107,7 @@
             if (ImGui::Button("Save Engine Config"))
             {
                 /// Save the engine config to the filepath
-                Stream::WriteToFile(buffer, Engine::GetInstance()->Write());
+                Stream::WriteToFile(buffer, GameEngine()->Write());
                 ImGui::End();
                 return false; //close window
             }
@@ -373,14 +374,22 @@
         { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
         { "BehaviorSystem<PauseComponent>"        , &addSystem< BehaviorSystem< PauseComponent         > > },
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
+        { "BehaviorSystem<PlayerController>"      , &addSystem< BehaviorSystem< PlayerController       > > },
 
-        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
         { "AssetLibrary<Texture>"                 , &addSystem< AssetLibrarySystem< Texture            > > },
         { "AssetLibrary<TransformAnimation>"      , &addSystem< AssetLibrarySystem< TransformAnimation > > },
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
+                                                                                                          
+        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase > >              },
+                                                  
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
+        { "LightingSystem"                        , &addSystem< LightingSystem >                           },
+        { "PathfindSystem"                        , &addSystem< PathfindSystem >                           }
 
     };
 

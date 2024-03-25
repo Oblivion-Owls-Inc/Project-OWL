@@ -351,7 +351,7 @@
     void PlatformSystem::glfwWindowCloseCallback( GLFWwindow* window )
     {
         Debug() << "Window Close Callback" << std::endl;
-        Engine::GetInstance()->Close();
+        GameEngine()->Close();
     }
 
 

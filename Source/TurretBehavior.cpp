@@ -74,7 +74,7 @@
         checkActive();
         if ( m_IsActive )
         {
-            float dt = Engine::GetInstance()->GetFixedFrameDuration();
+            float dt = GameEngine()->GetFixedFrameDuration();
 
 
             if (m_FireCooldown > 0.0f)
