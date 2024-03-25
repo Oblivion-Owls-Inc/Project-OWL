@@ -63,7 +63,7 @@ void EmitterSprite::OnExit()
 /// @brief     Draws particles using gpu instancing.
 void EmitterSprite::Draw()
 {
-    if (!m_IsTextured || !m_VAO)
+    if ( !m_VAO )
     {
         if (!m_VAO)
             initInstancingStuff();
