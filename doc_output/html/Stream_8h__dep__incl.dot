@@ -16,6 +16,7 @@ digraph "Source/Stream.h"
   Node6 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentFactory_8cpp.html",tooltip="Definitions for the component factory class."];
   Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 [label="Source/PlayerController.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$PlayerController_8h.html",tooltip="PlayerController Behaviour Class."];
+  Node7 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node10 [label="Source/TurretBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretBehavior_8cpp.html",tooltip="Behavior Compenent for Basic Turret"];
@@ -92,7 +93,8 @@ digraph "Source/Stream.h"
   Node131 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node131 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 -> Node132 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node132 [label="Source/HomeBase.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$HomeBase_8h_source.html",tooltip=" "];
+  Node132 [label="Source/HomeBase.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$HomeBase_8h_source.html",tooltip=" "];
+  Node132 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node132 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 -> Node133 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node133 [label="Source/Inventory.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Inventory_8h.html",tooltip="Inventory component that stores items."];

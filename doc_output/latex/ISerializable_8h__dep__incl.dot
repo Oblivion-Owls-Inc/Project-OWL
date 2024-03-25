@@ -22,6 +22,7 @@ digraph "Source/ISerializable.h"
   Node15 [label="Source/pause.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$pause_8h.html",tooltip="component that pauses the game"];
   Node2 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node17 [label="Source/PlayerController.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$PlayerController_8h.html",tooltip="PlayerController Behaviour Class."];
+  Node17 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node18 [label="Source/PlayerController.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8cpp.html",tooltip="PlayerController Behaviour Class."];
   Node2 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];

@@ -12,6 +12,7 @@ digraph "Source/CircleCollider.h"
   Node4 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentFactory_8cpp.html",tooltip="Definitions for the component factory class."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node5 [label="Source/PlayerController.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8h.html",tooltip="PlayerController Behaviour Class."];
+  Node5 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node6 [label="Source/Engine.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Engine_8cpp.html",tooltip="Engine class."];
