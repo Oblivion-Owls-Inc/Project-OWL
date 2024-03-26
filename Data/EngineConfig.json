@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1679,
-                1071
+                888,
+                556
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -93,9 +93,9 @@
                     "ControllerAxis": []
                 },
                 {
-                    "Name": "Cancel Place",
+                    "Name": "OpenBuildMenu",
                     "KeyboardButtons": [
-                        81
+                        32
                     ],
                     "MouseButtons": [],
                     "ControllerButtons": [
@@ -281,6 +281,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
+            "Volume": 1.0,
             "Groups": [
                 {
                     "Name": "Music",

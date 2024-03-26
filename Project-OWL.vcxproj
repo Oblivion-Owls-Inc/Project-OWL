@@ -289,6 +289,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\BuildingSelectionButton.cpp" />
     <ClCompile Include="Source\BulletAoe.cpp" />
     <ClCompile Include="Source\BulletAoePulse.cpp" />
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
@@ -464,6 +465,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BuildingSelectionButton.h" />
     <ClInclude Include="Source\ControlPrompt.h" />
     <ClInclude Include="Source\ControlPromptSystem.h" />
     <ClInclude Include="Source\InputAction.h" />

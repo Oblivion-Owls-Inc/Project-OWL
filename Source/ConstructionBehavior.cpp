@@ -22,6 +22,7 @@
 #include "TurretBehavior.h"
 #include "ResourcesUiManager.h"
 #include "UiElement.h"
+#include "Popup.h"
 
 
 #include "AssetLibrarySystem.h"
@@ -203,10 +204,42 @@
     }
 
     /// @brief  sets the building index
-    /// @param  range   the building index
-    void ConstructionBehavior::SetBuildingIndex( int range )
+    /// @param  buildingIndex   the building index
+    void ConstructionBehavior::SetBuildingIndex( int buildingIndex )
     {
-        m_BuildingIndex = range;
+        m_BuildingIndex = buildingIndex;
+        if ( buildingIndex == -1 )
+        {
+            return;
+        }
+
+        // update preview sprite
+        if ( m_BuildingInfos[ m_BuildingIndex ].M_Archetype == nullptr )
+        {
+            Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
+            return;
+        }
+
+        setupCostUi();
+
+        if ( m_Sprite == nullptr || m_Transform == nullptr )
+        {
+            return;
+        }
+
+        m_Sprite->SetTexture( m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
+        m_Transform->SetScale( m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< Transform >()->GetScale() );
+        if (m_RadiusTransform != nullptr)
+        {
+            if ( m_BuildingInfos[ m_BuildingIndex ].M_Archetype == nullptr )
+            {
+                m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
+                return;
+            }
+            TurretBehavior const* turretBehavior = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< TurretBehavior >();
+            float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
+            m_RadiusTransform->SetScale( glm::vec2( scale ) );
+        }
     }
 
 
@@ -245,11 +278,10 @@
         m_Sprite              .Init( GetEntity() );
         m_TurretPlacementSound.Init( GetEntity() );
         m_CostInventory       .Init( GetEntity() );
+        m_Popup               .Init( GetEntity() );
 
         m_PlaceAction    .SetOwnerName( GetName() );
-        m_CancelPlacement.SetOwnerName( GetName() );
         m_PlaceAction    .Init();
-        m_CancelPlacement.Init();
 
         if (GetEntity()->GetChildren().size() != 0)
         {
@@ -281,12 +313,12 @@
         m_Sprite              .Exit();
         m_TurretPlacementSound.Exit();
         m_CostInventory       .Exit();
+        m_Popup               .Exit();
 
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
 
         m_PlaceAction.Exit();
-        m_CancelPlacement.Exit();
 
         for (BuildingInfo& buildingInfo : m_BuildingInfos)
         {
@@ -356,12 +388,6 @@
     /// @brief  updates which building is currently selected
     void ConstructionBehavior::updateSelectedBuilding()
     {
-        if ( m_CancelPlacement != nullptr && m_CancelPlacement->GetReleased() )
-        {
-            m_BuildingIndex = -1;
-            return;
-        }
-
         for ( int i = 0; i < m_BuildingInfos.size(); ++i )
         {
             if (
@@ -372,42 +398,19 @@
                 continue;
             }
 
-            if ( m_BuildingIndex == i )
+            if ( m_Popup != nullptr )
             {
-                m_BuildingIndex = -1;
-                return;
+                m_Popup->SetOpen( true );
             }
 
-            m_BuildingIndex = i;
+            SetBuildingIndex( i );
 
-            // update preview sprite
-            if ( m_BuildingInfos[ i ].M_Archetype == nullptr )
-            {
-                Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
-                return;
-            }
-
-            setupCostUi();
-
-            if ( m_Sprite == nullptr || m_Transform == nullptr )
-            {
-                return;
-            }
-
-            m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
-            m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-            if (m_RadiusTransform != nullptr)
-            {
-                if ( m_BuildingInfos[i].M_Archetype == nullptr )
-                {
-                    m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
-                    return;
-                }
-                TurretBehavior const* turretBehavior = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >();
-                float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
-                m_RadiusTransform->SetScale( glm::vec2( scale ) );
-            }
             return;
+        }
+
+        if ( m_Popup != nullptr && m_Popup->GetOpen() == false )
+        {
+            m_BuildingIndex = -1;
         }
     }
 
@@ -667,8 +670,6 @@
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
 
         m_PlaceAction.Inspect("Place Action");
-
-        m_CancelPlacement.Inspect("Cancel Placement Action");
     }
 
     /// @brief  inspects the references to other entities
@@ -766,13 +767,6 @@
         Stream::Read( m_CostUiEntity, data );
     }
 
-    /// @brief  the control Action to cancel placement
-    /// @param  data    the JSON data to read from
-    void ConstructionBehavior::readCancelPlacement(nlohmann::ordered_json const& data)
-    {
-        Stream::Read(m_CancelPlacement, data);
-    }
-
     /// @brief  the control Action to place a building
     /// @param  data    the JSON data to read from
     void ConstructionBehavior::readPlaceAction(nlohmann::ordered_json const& data)
@@ -800,7 +794,6 @@
             { "TilemapEntity"           , &ConstructionBehavior::readTilemapEntity            },
             { "PlayerEntity"            , &ConstructionBehavior::readPlayerEntity             },
             { "CostUiEntity"            , &ConstructionBehavior::readCostUiEntity             },
-            { "CancelPlacement"         , &ConstructionBehavior::readCancelPlacement          },
             { "PlaceAction"             , &ConstructionBehavior::readPlaceAction              },
         };
 
@@ -833,7 +826,6 @@
         json[ "TilemapEntity"            ] = Stream::Write( m_TilemapEntity            );
         json[ "PlayerEntity"             ] = Stream::Write( m_PlayerEntity             );
         json[ "CostUiEntity"             ] = Stream::Write( m_CostUiEntity             );
-        json[ "CancelPlacement"          ] = Stream::Write( m_CancelPlacement          );
         json[ "PlaceAction"              ] = Stream::Write( m_PlaceAction              );
 
         return json;
