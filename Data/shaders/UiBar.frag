@@ -59,7 +59,7 @@ bool isBorderPixel( vec2 uv )
 /// @return the bar position of the pixel
 vec2 pixelPosToBarPos( vec2 pixelPos )
 {
-    vec2  barOrigin = vec2( borderPositions.x, rotationPosition * size.y );
+    vec2  barOrigin = vec2( borderPositions.x * size.x, rotationPosition * size.y );
     
     float barLength = size.x * (borderPositions.y - borderPositions.x);
 
@@ -85,11 +85,11 @@ void main()
     pixel_color = texture( TextureSlot, v_UV );
     pixel_color.w *= opacity;
 
-    // if the pixel is part of the border, sample the texture
-    if ( isBorderPixel( v_UV ) )
-    {
-        return;
-    }
+    // // if the pixel is part of the border, sample the texture
+    // if ( isBorderPixel( v_UV ) )
+    // {
+    //     return;
+    // }
 
     // use the color of the first section the pixel is a part of
     pos = pixelPosToBarPos( pos );

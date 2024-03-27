@@ -1,0 +1,147 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "UiBar": {
+                "Filepath": "Data/Textures/healthBar.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "UiBox": {
+            "Name": "UiBox",
+            "Components": {
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.6000000238418579,
+                        0.6000000238418579
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToWidth"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Slider",
+                    "Components": {
+                        "UiBarSprite": {
+                            "Sections": [
+                                {
+                                    "Color": [
+                                        0.15584421157836914,
+                                        1.0,
+                                        0.0,
+                                        1.0
+                                    ],
+                                    "Value": 0.44999998807907104,
+                                    "Slope": 0.0
+                                },
+                                {
+                                    "Color": [
+                                        0.37662339210510254,
+                                        0.3668409585952759,
+                                        0.3668409585952759,
+                                        1.0
+                                    ],
+                                    "Value": 1.0,
+                                    "Slope": 0.0
+                                }
+                            ],
+                            "Texture": {
+                                "AssetName": "UiBar"
+                            },
+                            "Layer": 2,
+                            "Opacity": 1.0,
+                            "BorderPositions": [
+                                0.10000000149011612,
+                                1.0
+                            ],
+                            "RotationPosition": 0.5
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                0.5,
+                                0.10000000149011612
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToWidth"
+                            ]
+                        },
+                        "UiSlider": {
+                            "Value": 0.0,
+                            "DragSliderAction": {
+                                "ActionName": "DragSlider"
+                            }
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        }
+    },
+    "PreparsedScenes": [
+        "Settings",
+        "Tutorial"
+    ]
+}

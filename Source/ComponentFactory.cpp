@@ -71,6 +71,7 @@
 #include "DestructibleTilemap.h"
 #include "ControlPrompt.h"
 #include "DigEffect.h"
+#include "UiSlider.h"
 
 
 //-----------------------------------------------------------------------------
@@ -223,7 +224,8 @@
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
-        { "DigEffect"              , ComponentInfo< DigEffect               >() }
+        { "DigEffect"              , ComponentInfo< DigEffect               >() },
+        { "UiSlider"               , ComponentInfo< UiSlider                >() }
     };
 
 //-----------------------------------------------------------------------------
