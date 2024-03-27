@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                970,
-                618
+                888,
+                556
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -93,9 +93,9 @@
                     "ControllerAxis": []
                 },
                 {
-                    "Name": "Cancel Place",
+                    "Name": "OpenBuildMenu",
                     "KeyboardButtons": [
-                        81
+                        32
                     ],
                     "MouseButtons": [],
                     "ControllerButtons": [

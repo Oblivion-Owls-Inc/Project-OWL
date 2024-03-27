@@ -211,8 +211,20 @@
             return;
         }
 
-        // otherwise, set its resources
         ResourceCounterUi* resourceCounter = it->second;
+
+        // if it's empty and should be removed, remove it
+        if ( itemStack.M_Count == 0 )
+        {
+            resourceCounter->GetEntity()->Destroy();
+            m_ResourceCounters.erase( it );
+
+            updateTransforms();
+
+            return;
+        }
+
+        // otherwise, set its resources
         resourceCounter->SetResources( itemStack );
     }
 
@@ -313,7 +325,9 @@
 
         ImGui::DragFloat( "opacity", &m_Opacity, 0.01f, 0.0f, 1.0f );
 
-        if ( ImGui::Checkbox( "hide when empty", &m_HideWhenEmpty ) )
+        ImGui::Checkbox( "remove empty resource counters", &m_RemoveEmptyResourceCounters );
+
+        if ( ImGui::Checkbox( "hide box when empty", &m_HideWhenEmpty ) )
         {
             if ( m_Sprite != nullptr )
             {
@@ -340,6 +354,13 @@
     void ResourcesUiManager::readHideWhenEmpty( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_HideWhenEmpty, data );
+    }
+
+    /// @brief  reads whether to remove resource counters when they hit 0
+    /// @param  data    the JSON data to read from
+    void ResourcesUiManager::readRemoveEmptyResourceCounters( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_RemoveEmptyResourceCounters, data );
     }
 
     /// @brief  reads the amount of space between the top and bottom of the box and the resource counters
@@ -388,12 +409,13 @@
     ReadMethodMap< ISerializable > const& ResourcesUiManager::GetReadMethods() const
     {
         static ReadMethodMap< ResourcesUiManager > const readMethods = {
-            { "HideWhenEmpty"        , &ResourcesUiManager::readHideWhenEmpty         },
-            { "Padding"              , &ResourcesUiManager::readPadding               },
-            { "Spacing"              , &ResourcesUiManager::readSpacing               },
-            { "Opacity"              , &ResourcesUiManager::readOpacity               },
-            { "InventoryEntity"      , &ResourcesUiManager::readInventoryEntity       },
-            { "ResourceCounterPrefab", &ResourcesUiManager::readResourceCounterPrefab } 
+            { "HideWhenEmpty"              , &ResourcesUiManager::readHideWhenEmpty               },
+            { "RemoveEmptyResourceCounters", &ResourcesUiManager::readRemoveEmptyResourceCounters },
+            { "Padding"                    , &ResourcesUiManager::readPadding                     },
+            { "Spacing"                    , &ResourcesUiManager::readSpacing                     },
+            { "Opacity"                    , &ResourcesUiManager::readOpacity                     },
+            { "InventoryEntity"            , &ResourcesUiManager::readInventoryEntity             },
+            { "ResourceCounterPrefab"      , &ResourcesUiManager::readResourceCounterPrefab       }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -406,12 +428,13 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "HideWhenEmpty"         ] = Stream::Write( m_HideWhenEmpty         );
-        json[ "Padding"               ] = Stream::Write( m_Padding               );
-        json[ "Spacing"               ] = Stream::Write( m_Spacing               );
-        json[ "Opacity"               ] = Stream::Write( m_Opacity               );
-        json[ "InventoryEntity"       ] = Stream::Write( m_InventoryEntity       );            
-        json[ "ResourceCounterPrefab" ] = Stream::Write( m_ResourceCounterPrefab );
+        json[ "HideWhenEmpty"               ] = Stream::Write( m_HideWhenEmpty               );
+        json[ "RemoveEmptyResourceCounters" ] = Stream::Write( m_RemoveEmptyResourceCounters );
+        json[ "Padding"                     ] = Stream::Write( m_Padding                     );
+        json[ "Spacing"                     ] = Stream::Write( m_Spacing                     );
+        json[ "Opacity"                     ] = Stream::Write( m_Opacity                     );
+        json[ "InventoryEntity"             ] = Stream::Write( m_InventoryEntity             );            
+        json[ "ResourceCounterPrefab"       ] = Stream::Write( m_ResourceCounterPrefab       );
 
         return json;
     }
@@ -439,11 +462,12 @@
     /// @param  other   the other ResourcesUiManager to copy
     ResourcesUiManager::ResourcesUiManager( ResourcesUiManager const& other ) :
         Component( other ),
-        m_HideWhenEmpty        ( other.m_HideWhenEmpty         ),
-        m_Padding              ( other.m_Padding               ),
-        m_Spacing              ( other.m_Spacing               ),
-        m_Opacity              ( other.m_Opacity               ),
-        m_ResourceCounterPrefab( other.m_ResourceCounterPrefab ),
+        m_HideWhenEmpty              ( other.m_HideWhenEmpty               ),
+        m_RemoveEmptyResourceCounters( other.m_RemoveEmptyResourceCounters ),
+        m_Padding                    ( other.m_Padding                     ),
+        m_Spacing                    ( other.m_Spacing                     ),
+        m_Opacity                    ( other.m_Opacity                     ),
+        m_ResourceCounterPrefab      ( other.m_ResourceCounterPrefab       ),
 
         m_InventoryEntity( other.m_InventoryEntity, { &m_Inventory } )
     {}

@@ -70,6 +70,7 @@
 #include "orbitbehavior.h"
 #include "DestructibleTilemap.h"
 #include "ControlPrompt.h"
+#include "BuildingSelectionButton.h"
 #include "DigEffect.h"
 #include "UiSlider.h"
 
@@ -224,6 +225,7 @@
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
+        { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
         { "DigEffect"              , ComponentInfo< DigEffect               >() },
         { "UiSlider"               , ComponentInfo< UiSlider                >() }
     };

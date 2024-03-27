@@ -28,6 +28,16 @@ public: // constructor / Destructor
 public: // methods
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  gets whether the popup is open
+    /// @return whether the popup is open
+    bool GetOpen() const;
+
+
+    /// @brief  sets whether the popup is open
+    /// @param  open    whether the popup is open
+    void SetOpen( bool open );
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -46,7 +56,8 @@ public: // virtual override methods
     virtual void OnExit() override;
 
     /// @brief  called once per frame
-    virtual void OnFixedUpdate();
+    virtual void OnFixedUpdate() override;
+
 
 //-----------------------------------------------------------------------------
 private: // members
@@ -73,7 +84,7 @@ private: // methods
 
 
     /// @brief  Creates/Destroys the popup
-    void TogglePopup();
+    void togglePopup();
 
 
 //-----------------------------------------------------------------------------

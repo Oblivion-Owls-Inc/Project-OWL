@@ -23,12 +23,16 @@ Collaboration diagram for Popup\+:
 \mbox{\Hypertarget{classPopup_a670d35e480ac48024204994fedc9b056}\label{classPopup_a670d35e480ac48024204994fedc9b056}} 
 \mbox{\hyperlink{classPopup_a670d35e480ac48024204994fedc9b056}{Popup}} ()
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPopup_a4740c7d5fc2f23aaf10bc78b13a8262a}{Get\+Open}} () const
+\begin{DoxyCompactList}\small\item\em gets whether the popup is open \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPopup_a1628518b3530f50439de23ef4cc13cc4}{Set\+Open}} (bool open)
+\begin{DoxyCompactList}\small\item\em sets whether the popup is open \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classPopup_a3f0ef4bdfc99a5af62e5153813070ad5}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPopup_a8536a678b4c4b82e05721e83b072d123}\label{classPopup_a8536a678b4c4b82e05721e83b072d123}} 
 virtual void \mbox{\hyperlink{classPopup_a8536a678b4c4b82e05721e83b072d123}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classPopup_a7edeb66c35b0426bdaa00ac8ef956def}{On\+Fixed\+Update}} ()
+virtual void \mbox{\hyperlink{classPopup_a306566fae2adf7281d10fe857fe2a589}{On\+Fixed\+Update}} () override
 \begin{DoxyCompactList}\small\item\em called once per frame \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPopup_a27aa8271529ee3d88567cb3f427876b7}\label{classPopup_a27aa8271529ee3d88567cb3f427876b7}} 
 virtual void \mbox{\hyperlink{classPopup_a27aa8271529ee3d88567cb3f427876b7}{Inspector}} () override
@@ -63,6 +67,19 @@ the newly created clone of this \mbox{\hyperlink{classPopup}{Popup}}
 
 Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
 
+\mbox{\Hypertarget{classPopup_a4740c7d5fc2f23aaf10bc78b13a8262a}\label{classPopup_a4740c7d5fc2f23aaf10bc78b13a8262a}} 
+\index{Popup@{Popup}!GetOpen@{GetOpen}}
+\index{GetOpen@{GetOpen}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{GetOpen()}{GetOpen()}}
+{\footnotesize\ttfamily bool Popup\+::\+Get\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether the popup is open 
+
+\begin{DoxyReturn}{Returns}
+whether the popup is open 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classPopup_ad3ab11d13005c9d7d9e8d35cfbc27d4e}\label{classPopup_ad3ab11d13005c9d7d9e8d35cfbc27d4e}} 
 \index{Popup@{Popup}!GetReadMethods@{GetReadMethods}}
 \index{GetReadMethods@{GetReadMethods}!Popup@{Popup}}
@@ -80,11 +97,11 @@ the map of read methods for this \mbox{\hyperlink{classPopup}{Popup}}
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
-\mbox{\Hypertarget{classPopup_a7edeb66c35b0426bdaa00ac8ef956def}\label{classPopup_a7edeb66c35b0426bdaa00ac8ef956def}} 
+\mbox{\Hypertarget{classPopup_a306566fae2adf7281d10fe857fe2a589}\label{classPopup_a306566fae2adf7281d10fe857fe2a589}} 
 \index{Popup@{Popup}!OnFixedUpdate@{OnFixedUpdate}}
 \index{OnFixedUpdate@{OnFixedUpdate}!Popup@{Popup}}
 \doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
-{\footnotesize\ttfamily void Popup\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Popup\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -110,6 +127,21 @@ Set the Callback function for the listener
 
 Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
 
+\mbox{\Hypertarget{classPopup_a1628518b3530f50439de23ef4cc13cc4}\label{classPopup_a1628518b3530f50439de23ef4cc13cc4}} 
+\index{Popup@{Popup}!SetOpen@{SetOpen}}
+\index{SetOpen@{SetOpen}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{SetOpen()}{SetOpen()}}
+{\footnotesize\ttfamily void Popup\+::\+Set\+Open (\begin{DoxyParamCaption}\item[{bool}]{open }\end{DoxyParamCaption})}
+
+
+
+sets whether the popup is open 
+
+
+\begin{DoxyParams}{Parameters}
+{\em open} & whether the popup is open \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPopup_a6a03f7a622fcbab59abe7762b64d6fd0}\label{classPopup_a6a03f7a622fcbab59abe7762b64d6fd0}} 
 \index{Popup@{Popup}!Write@{Write}}
 \index{Write@{Write}!Popup@{Popup}}
