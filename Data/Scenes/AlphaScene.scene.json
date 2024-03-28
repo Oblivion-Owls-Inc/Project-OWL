@@ -751,15 +751,15 @@
                 },
                 "Children": [
                     {
-                        "Name": "Building1Selector",
+                        "Name": "Building0Selector",
                         "Components": {
                             "BuildingSelectionButton": {
                                 "BuildingIndex": 0,
                                 "UnselectedTexture": {
-                                    "AssetName": "ButtonTexture"
+                                    "AssetName": "Turret"
                                 },
                                 "SelectedTexture": {
-                                    "AssetName": "Turret"
+                                    "AssetName": "ButtonTexture"
                                 },
                                 "ConstructionEntity": {
                                     "EntityName": "ConstructionManager"
@@ -776,7 +776,7 @@
                                 "Opacity": 1.0,
                                 "FrameIndex": 0,
                                 "Texture": {
-                                    "AssetName": "ButtonTexture"
+                                    "AssetName": "Turret"
                                 }
                             },
                             "UiButton": {
@@ -794,7 +794,342 @@
                             },
                             "UiElement": {
                                 "Anchor": [
-                                    -0.875,
+                                    -0.8330000042915344,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "Building1Selector",
+                        "Components": {
+                            "BuildingSelectionButton": {
+                                "BuildingIndex": 1,
+                                "UnselectedTexture": {
+                                    "AssetName": "Turret"
+                                },
+                                "SelectedTexture": {
+                                    "AssetName": "ButtonTexture"
+                                },
+                                "ConstructionEntity": {
+                                    "EntityName": "ConstructionManager"
+                                }
+                            },
+                            "Sprite": {
+                                "Layer": 8,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "Turret"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": ""
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    -0.5,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "Building2Selector",
+                        "Components": {
+                            "BuildingSelectionButton": {
+                                "BuildingIndex": 2,
+                                "UnselectedTexture": {
+                                    "AssetName": "Turret"
+                                },
+                                "SelectedTexture": {
+                                    "AssetName": "ButtonTexture"
+                                },
+                                "ConstructionEntity": {
+                                    "EntityName": "ConstructionManager"
+                                }
+                            },
+                            "Sprite": {
+                                "Layer": 8,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "Turret"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": ""
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    -0.16699999570846558,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "Building3Selector",
+                        "Components": {
+                            "BuildingSelectionButton": {
+                                "BuildingIndex": 3,
+                                "UnselectedTexture": {
+                                    "AssetName": "Turret"
+                                },
+                                "SelectedTexture": {
+                                    "AssetName": "ButtonTexture"
+                                },
+                                "ConstructionEntity": {
+                                    "EntityName": "ConstructionManager"
+                                }
+                            },
+                            "Sprite": {
+                                "Layer": 8,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "Turret"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": ""
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.16699999570846558,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "Building4Selector",
+                        "Components": {
+                            "BuildingSelectionButton": {
+                                "BuildingIndex": 4,
+                                "UnselectedTexture": {
+                                    "AssetName": "Turret"
+                                },
+                                "SelectedTexture": {
+                                    "AssetName": "ButtonTexture"
+                                },
+                                "ConstructionEntity": {
+                                    "EntityName": "ConstructionManager"
+                                }
+                            },
+                            "Sprite": {
+                                "Layer": 8,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "Turret"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": ""
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.5,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "Building5Selector",
+                        "Components": {
+                            "BuildingSelectionButton": {
+                                "BuildingIndex": 5,
+                                "UnselectedTexture": {
+                                    "AssetName": "Turret"
+                                },
+                                "SelectedTexture": {
+                                    "AssetName": "ButtonTexture"
+                                },
+                                "ConstructionEntity": {
+                                    "EntityName": "ConstructionManager"
+                                }
+                            },
+                            "Sprite": {
+                                "Layer": 8,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "Turret"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": ""
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.8330000042915344,
                                     0.0
                                 ],
                                 "Pivot": [
@@ -91396,6 +91731,7 @@
                 },
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
+                    "RemoveEmptyResourceCounters": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
                     "Opacity": 1.0,
@@ -109046,6 +109382,7 @@
             "Components": {
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
+                    "RemoveEmptyResourceCounters": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
                     "Opacity": 0.0,
