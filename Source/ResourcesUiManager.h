@@ -85,6 +85,9 @@ private: // members
     /// @brief  whether to hide the box sprite when empty
     bool m_HideWhenEmpty = false;
 
+    /// @brief  whether to remove resource counters when they hit 0
+    bool m_RemoveEmptyResourceCounters = false;
+
 
     /// @brief  the amount of space between the top and bottom of the box and the resource counters
     float m_Padding = 0.5f;
@@ -166,6 +169,10 @@ private: // reading
     /// @brief  reads whether to hide the box sprite when empty
     /// @param  data    the JSON data to read from
     void readHideWhenEmpty( nlohmann::ordered_json const& data );
+
+    /// @brief  reads whether to remove resource counters when they hit 0
+    /// @param  data    the JSON data to read from
+    void readRemoveEmptyResourceCounters( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the amount of space between the top and bottom of the box and the resource counters

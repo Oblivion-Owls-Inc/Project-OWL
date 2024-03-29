@@ -13,6 +13,8 @@
 
 #include "basics.h"
 #include "DebugSystem.h"
+#include <string>
+#include <map>
 
 
 /// @brief The DebugConsole class is a singleton that provides a console for debugging
@@ -39,6 +41,13 @@ public: // virtual override methods
 
 
 //-----------------------------------------------------------------------------
+private: // types
+//-----------------------------------------------------------------------------
+
+    /// @brief Functor for the cheats
+    using CheatFunction = std::function< void() >;
+
+//-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
@@ -51,8 +60,8 @@ private: // members
     /// @brief The list of items in the console
     std::vector<std::string> m_Items;
 
-    /// @brief commands history, filter
-    std::vector<std::string> m_Commands;
+    /// @brief A map of cheat codes.
+    std::unordered_map<std::string, CheatFunction> m_ConsoleCommandsMap;
 
     /// @brief Chached user input text
     std::vector<std::string> m_History;

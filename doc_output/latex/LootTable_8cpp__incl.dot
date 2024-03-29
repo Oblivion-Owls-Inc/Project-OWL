@@ -127,5 +127,7 @@ digraph "Source/LootTable.cpp"
   Node50 [label="Console.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Console_8h_source.html",tooltip=" "];
   Node50 -> Node42 [color="midnightblue",fontsize="10",style="solid"];
   Node50 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
   Node39 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
 }

@@ -207,15 +207,17 @@ private: // members
     bool m_IsSpatial = false;
 
 
+    /// @brief  the name of the channelGroup to play sounds in
+    std::string m_ChannelGroupName = "";
+    /// @brief  The channelGroup to play sounds in
+    FMOD::ChannelGroup* m_ChannelGroup = nullptr;
+
+
     /// @brief  the Transform attached to this AudioPlayer
     ComponentReference< Transform, false > m_Transform;
 
     /// @brief  the RigidBody attached to this AudioPlayer
     ComponentReference< RigidBody, false > m_RigidBody;
-
-
-    /// @brief  The channelGroup to play sounds in
-    FMOD::ChannelGroup* m_ChannelGroup = nullptr;
 
 
     /// @brief  The channel currently being used by this AudioPlayer
@@ -298,6 +300,11 @@ private: // reading
     /// @brief  read AllowMultipleSounds of this component from json
     /// @param  data    the json data
     void readAllowMultipleSounds( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads the name of the channelGroup to play sounds in
+    /// @param  data    the JSON data to read from
+    void readChannelGroupName( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

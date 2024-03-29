@@ -63,7 +63,15 @@ void Health::RemoveOnHealthChangedCallback(unsigned ownerID)
 /// @brief Set the health of the attached entity.
 /// @param amount - The new health value.
 ///--------------------------------------------------------------------------//
-void Health::SetHealth(int amount) { m_health.SetCurrent(amount); }
+void Health::SetHealth(int amount) 
+{ 
+    m_health.SetCurrent(amount);
+
+    for ( auto& [ id, callback ] : m_OnHealthChangedCallbacks )
+    {
+        callback();
+    }
+}
 
 ///--------------------------------------------------------------------------//
 /// @brief  Get the health of the attached entity.

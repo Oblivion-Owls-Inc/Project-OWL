@@ -17,6 +17,8 @@
 
 #include "Inspection.h"
 
+#include "AudioSystem.h"
+
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
 //-----------------------------------------------------------------------------
@@ -337,6 +339,8 @@
         m_Transform.Init( GetEntity() );
         m_RigidBody.Init( GetEntity() );
 
+        m_ChannelGroup = Audio()->GetChannelGroup( m_ChannelGroupName );
+
         if ( m_PlayOnInit )
         {
             Play();
@@ -490,6 +494,10 @@
             ImGui::EndTooltip();
         }
 
+
+        Audio()->InspectChannelGroup( "channel group", &m_ChannelGroupName, &m_ChannelGroup );
+        
+
         if ( ImGui::Button( "Play" ) )
         {
             Play();
@@ -572,6 +580,13 @@
     }
 
 
+    /// @brief  reads the name of the channelGroup to play sounds in
+    /// @param  data    the JSON data to read from
+    void AudioPlayer::readChannelGroupName( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_ChannelGroupName, data );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -591,7 +606,8 @@
             { "DefaultLoopCount"   , &AudioPlayer::readDefaultLoopCount    },
             { "PlayOnInit"         , &AudioPlayer::readPlayOnInit          },
             { "IsSpatial"          , &AudioPlayer::readIsSpatial           },
-            { "AllowMultipleSounds", &AudioPlayer::readAllowMultipleSounds }
+            { "AllowMultipleSounds", &AudioPlayer::readAllowMultipleSounds },
+            { "ChannelGroupName"   , &AudioPlayer::readChannelGroupName    }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -613,6 +629,7 @@
         data[ "PlayOnInit"          ] = Stream::Write( m_PlayOnInit          );
         data[ "IsSpatial"           ] = Stream::Write( m_IsSpatial           );
         data[ "AllowMultipleSounds" ] = Stream::Write( m_AllowMultipleSounds );
+        data[ "ChannelGroupName"    ] = Stream::Write( m_ChannelGroupName    );
 
         return data;
     }
@@ -640,13 +657,14 @@
     /// @param  other   the other AudioPlayer to copy
     AudioPlayer::AudioPlayer( AudioPlayer const& other ) :
         Behavior( other ),
-        m_ChannelGroup  ( other.m_ChannelGroup   ),
-        m_Volume        ( other.m_Volume         ),
-        m_Pitch         ( other.m_Pitch          ),
-        m_VolumeVariance( other.m_VolumeVariance ),
-        m_PitchVariance ( other.m_PitchVariance  ),
-        m_IsSpatial     ( other.m_IsSpatial      ),
-        m_Sound         ( other.m_Sound          )
+        m_Volume          ( other.m_Volume           ),
+        m_Pitch           ( other.m_Pitch            ),
+        m_VolumeVariance  ( other.m_VolumeVariance   ),
+        m_PitchVariance   ( other.m_PitchVariance    ),
+        m_IsSpatial       ( other.m_IsSpatial        ),
+        m_Sound           ( other.m_Sound            ),
+        m_ChannelGroup    ( other.m_ChannelGroup     ),
+        m_ChannelGroupName( other.m_ChannelGroupName )
     {}
 
 

@@ -22,6 +22,13 @@ public: // constructor / destructors
     /// @brief  constructor
     HomeBase();
 
+ //-----------------------------------------------------------------------------
+public: // accessors
+ //-----------------------------------------------------------------------------
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* GetHealth();
 
 //-----------------------------------------------------------------------------
 public: // public method

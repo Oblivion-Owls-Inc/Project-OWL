@@ -11,12 +11,15 @@
 #pragma once
 #include "System.h"
 #include "DebugSystem.h"
+#include <string>
+
 
 //------------------------------------------------------------------------------
 // Forward References:
 //------------------------------------------------------------------------------
 
 class CircleCollider;
+class Health;
 
 class CheatSystem :public System
 {
@@ -39,36 +42,106 @@ public: // virtual override methods
     virtual void DebugWindow() override;
 
 //--------------------------------------------------------------------------------
-private: // methods
+public: // methods
 //--------------------------------------------------------------------------------
 
-    /// @brief Opens the console.
-    /// @return Whether or not the key to open the console was pressed
-    void OpenCheatMenu();
+    /// @brief The actual cheat menu
+    void CheatMenu();
 
     /// @brief Run the cheats.
     void RunCheats();
 
-    /// @brief Turns off player collisions.
-    void noClip();
+    /// @brief Infinite Player Health.
+    void InfinitePlayerHealth();
 
-    /// @brief  toggles the inifinite resources cheat
-    /// @return the current state of whether there are infinite resources
-    bool toggleInfinteResources();
+    void InfiniteBaseHealth();
+
+    /// @brief Kills enemy with one hit from the laser.
+    void OneShotOneKill();
+
+    /// @brief Kills All Enemies.
+    void KillAllEnemies();
+
+    /// @brief Turns off player collisions.
+    void NoClip();
+
+    /// @brief  Toggles the infinite resources cheat
+    /// @return The current state of whether there are infinite resources
+    bool ToggleInfinteResources();
+
+    /// @brief Instantly wins the game
+    void InstantWin();
+
+    /// @brief Instantly loses the game
+    void InstantLose();
+
+    /// @brief Resets the speicified scene
+    void ResetGame();
 
 //--------------------------------------------------------------------------------
 private: // members
 //--------------------------------------------------------------------------------
 
-    // Whether or not the console is open.
+    /// @brief Is the cheat menu open
     bool m_CheatMenuIsOpen;
-    // The different cheats
-    bool m_ResourceSwitch;
-    bool m_BaseGodMode;
-    bool m_NoClip;
-    bool m_Pause;
-    // The player's collider.
-    CircleCollider* m_CircleCollider;
+    /// @brief Toggles infinite resources
+    bool m_ToggleInfiniteResource;
+    /// @brief Toggles base infinite health
+    bool m_ToggleBaseGodMode;
+    /// @brief Toggles player infinite health
+    bool m_TogglePlayerInfiniteHealth;
+    /// @brief Mining Laser one shot one kill.
+    bool m_ToggleOneShotOneKill;
+    /// @brief Toggles player no clipping
+    bool m_ToggleNoClip;
+    /// @brief Toggles killing all enemies.
+    bool m_ToggleKillAllEnemies;
+    /// @brief Store the previous value of the player's health
+    int m_PreviousPlayerHealth;
+    /// @brief Store the previous value of the base's health.
+    int m_PreviousBaseHealth;
+    /// @brief Store the previous value of the laser's damage.
+    float m_PreviousLaserDamage;
+    /// @brief The name of the lose scene.
+    std::string m_LoseSceneName;
+    /// @brief The name of the scene to reset too.
+    std::string m_RestartSceneName;
+    /// @brief The name of the win scene.
+    std::string m_WinSceneName;
+
+    /// @brief The player's circle collider.
+    CircleCollider* m_PlayerCircleCollider;
+
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief Read in the name of the lose scene from JSON.
+    /// @param data The JSON file to read from.
+    void readLoseSceneName(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the name of the restart scene from JSON.
+    /// @param data The JSON file to read from.
+    void readRestartSceneName(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the name of the win scene from JSON.
+    /// @param data The JSON file to read from.
+    void readWinSceneName(nlohmann::ordered_json const& data);
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  Gets this System's read methods
+    /// @return This System's read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+    /// @brief  Writes this CheatSystem to JSON
+    /// @return The JSON data of this CheatSystem
+    virtual nlohmann::ordered_json Write() const override;
 
 //--------------------------------------------------------------------------------
 private: // singleton 

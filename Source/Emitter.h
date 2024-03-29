@@ -44,7 +44,7 @@ public:
     __inline void SetDelay(float delay) { m_Delay = delay; }
 
     /// @brief   Sets the emit data
-    __inline void SetEmitData(ParticleSystem::EmitData const& data) { m_Init = data; }
+    __inline void SetEmitData(ParticleSystem::EmitData const& data) { m_Init = data; Particles()->SetEmitDataDirty(); }
 
     /// @return  Size of the particle buffer(s), which is also maximum particle count 
     __inline int GetBufferSize() const { return m_BufferSize; }
@@ -57,6 +57,9 @@ public:
 
     /// @return  Emit data (particle system needs it)
     __inline ParticleSystem::EmitData const& GetEmitData() const { return m_Init; }
+
+    /// @brief   Emits current PPS amount (for when not continuous)
+    __inline void Emit() { m_ParticleCount = m_PPS; }
 
     /// @brief          Called by particle system after loading emit data. Accepts
     ///                 some locations of uniforms on compute shader, dispatches

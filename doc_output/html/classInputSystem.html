@@ -62,7 +62,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
@@ -87,21 +86,24 @@ Collaboration diagram for InputSystem:</div>
 <div class="center"><img src="classInputSystem__coll__graph.png" border="0" usemap="#aInputSystem_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem_1_1Action.html">Action</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">action class, used to track an action with dynamic input  <a href="classInputSystem_1_1Action.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a54ce226da68c48fc59a9074f54938f87"><td class="memItemLeft" align="right" valign="top"><a id="a54ce226da68c48fc59a9074f54938f87"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a54ce226da68c48fc59a9074f54938f87">DebugWindow</a> () override</td></tr>
 <tr class="memdesc:a54ce226da68c48fc59a9074f54938f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
 <tr class="separator:a54ce226da68c48fc59a9074f54938f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a7e3c9e3db7f53b846a922e1e2caae92e">GetDebugKeyName</a> (int key) const</td></tr>
-<tr class="memdesc:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">displays a text version of a key to imgui (65 becomes "A", etc)  <a href="classInputSystem.html#a7e3c9e3db7f53b846a922e1e2caae92e">More...</a><br /></td></tr>
-<tr class="separator:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa2da9d2e6b0f1ae5008f5c86a13474a"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aaa2da9d2e6b0f1ae5008f5c86a13474a">GetKeyboardButtonName</a> (int glfwId) const</td></tr>
+<tr class="memdesc:aaa2da9d2e6b0f1ae5008f5c86a13474a"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the name of a GLFW keyboard button  <a href="classInputSystem.html#aaa2da9d2e6b0f1ae5008f5c86a13474a">More...</a><br /></td></tr>
+<tr class="separator:aaa2da9d2e6b0f1ae5008f5c86a13474a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4feb1d24c11132a4526044fca4ded7d"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#ab4feb1d24c11132a4526044fca4ded7d">GetMouseButtonName</a> (int glfwId) const</td></tr>
+<tr class="memdesc:ab4feb1d24c11132a4526044fca4ded7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the name of a GLFW mouse button  <a href="classInputSystem.html#ab4feb1d24c11132a4526044fca4ded7d">More...</a><br /></td></tr>
+<tr class="separator:ab4feb1d24c11132a4526044fca4ded7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be1e7fff18161177dbf2dcf5f7be4da"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a6be1e7fff18161177dbf2dcf5f7be4da">GetControllerButtonName</a> (int glfwId) const</td></tr>
+<tr class="memdesc:a6be1e7fff18161177dbf2dcf5f7be4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the name of a GLFW controller button  <a href="classInputSystem.html#a6be1e7fff18161177dbf2dcf5f7be4da">More...</a><br /></td></tr>
+<tr class="separator:a6be1e7fff18161177dbf2dcf5f7be4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec6ce6cc5712208bd058e49bcb83b9f"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a9ec6ce6cc5712208bd058e49bcb83b9f">GetControllerAxisName</a> (int glfwId) const</td></tr>
+<tr class="memdesc:a9ec6ce6cc5712208bd058e49bcb83b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the name of a GLFW controller axis  <a href="classInputSystem.html#a9ec6ce6cc5712208bd058e49bcb83b9f">More...</a><br /></td></tr>
+<tr class="separator:a9ec6ce6cc5712208bd058e49bcb83b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace02d6c7346f7ba0562bf580ca31debc"><td class="memItemLeft" align="right" valign="top"><a id="ace02d6c7346f7ba0562bf580ca31debc"></a>
 GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>GetHandle</b> ()</td></tr>
 <tr class="separator:ace02d6c7346f7ba0562bf580ca31debc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,12 +161,30 @@ GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>GetHandle</b>
 <tr class="memitem:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3f09ca7da9888ea5d3ef513ee49a029c">GetMouseDeltaScroll</a> ()</td></tr>
 <tr class="memdesc:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets how much the mouse has scrolled since last frame  <a href="classInputSystem.html#a3f09ca7da9888ea5d3ef513ee49a029c">More...</a><br /></td></tr>
 <tr class="separator:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98f6ef4dc798c419b99a5d8994a38922"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInputSystem_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a98f6ef4dc798c419b99a5d8994a38922">GetActionByName</a> (std::string const &amp;name)</td></tr>
-<tr class="memdesc:a98f6ef4dc798c419b99a5d8994a38922"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets an action by its name  <a href="classInputSystem.html#a98f6ef4dc798c419b99a5d8994a38922">More...</a><br /></td></tr>
-<tr class="separator:a98f6ef4dc798c419b99a5d8994a38922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa635de5491dcd343eef28a620cf63e91"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classInputSystem_1_1Action.html">Action</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">GetActions</a> () const</td></tr>
-<tr class="memdesc:aa635de5491dcd343eef28a620cf63e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the vector of Actions in the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">More...</a><br /></td></tr>
-<tr class="separator:aa635de5491dcd343eef28a620cf63e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28f78a766e21c2332e62b31dc3c056e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAction.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a28f78a766e21c2332e62b31dc3c056e3">GetActionByName</a> (std::string const &amp;name)</td></tr>
+<tr class="memdesc:a28f78a766e21c2332e62b31dc3c056e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets an action by its name  <a href="classInputSystem.html#a28f78a766e21c2332e62b31dc3c056e3">More...</a><br /></td></tr>
+<tr class="separator:a28f78a766e21c2332e62b31dc3c056e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78c6dc07330528f96bc8d66a32ee063d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classAction.html">Action</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a78c6dc07330528f96bc8d66a32ee063d">GetActions</a> () const</td></tr>
+<tr class="memdesc:a78c6dc07330528f96bc8d66a32ee063d"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the vector of Actions in the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#a78c6dc07330528f96bc8d66a32ee063d">More...</a><br /></td></tr>
+<tr class="separator:a78c6dc07330528f96bc8d66a32ee063d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8aad9062cda1a0eccad48c4029e82e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#af8aad9062cda1a0eccad48c4029e82e2">GetCurrentKeyboardButton</a> () const</td></tr>
+<tr class="memdesc:af8aad9062cda1a0eccad48c4029e82e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the currently down keyboard button  <a href="classInputSystem.html#af8aad9062cda1a0eccad48c4029e82e2">More...</a><br /></td></tr>
+<tr class="separator:af8aad9062cda1a0eccad48c4029e82e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c814ce74a92b244a512312caae0827e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a6c814ce74a92b244a512312caae0827e">GetCurrentMouseButton</a> () const</td></tr>
+<tr class="memdesc:a6c814ce74a92b244a512312caae0827e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the currently down mouse button  <a href="classInputSystem.html#a6c814ce74a92b244a512312caae0827e">More...</a><br /></td></tr>
+<tr class="separator:a6c814ce74a92b244a512312caae0827e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad90fc3b913df72b842b991829201c688"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#ad90fc3b913df72b842b991829201c688">GetCurrentControllerButton</a> () const</td></tr>
+<tr class="memdesc:ad90fc3b913df72b842b991829201c688"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the currently down controller button  <a href="classInputSystem.html#ad90fc3b913df72b842b991829201c688">More...</a><br /></td></tr>
+<tr class="separator:ad90fc3b913df72b842b991829201c688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3535e38ac04bdbd6791607cc1a2b8cd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3535e38ac04bdbd6791607cc1a2b8cd8">GetCurrentControllerAxis</a> () const</td></tr>
+<tr class="memdesc:a3535e38ac04bdbd6791607cc1a2b8cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the currently down controller axis  <a href="classInputSystem.html#a3535e38ac04bdbd6791607cc1a2b8cd8">More...</a><br /></td></tr>
+<tr class="separator:a3535e38ac04bdbd6791607cc1a2b8cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a00672ae2b016462e0a04089735a86"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a86a00672ae2b016462e0a04089735a86">IsControllerMostRecentInput</a> () const</td></tr>
+<tr class="memdesc:a86a00672ae2b016462e0a04089735a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether the most recent input was from a controller and a controller is plugged in  <a href="classInputSystem.html#a86a00672ae2b016462e0a04089735a86">More...</a><br /></td></tr>
+<tr class="separator:a86a00672ae2b016462e0a04089735a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d29a7b214d01c873565f57e93f7cbc5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a2d29a7b214d01c873565f57e93f7cbc5">ControllerIsPlaystation</a> () const</td></tr>
+<tr class="memdesc:a2d29a7b214d01c873565f57e93f7cbc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether there is a playstation controller plugged in  <a href="classInputSystem.html#a2d29a7b214d01c873565f57e93f7cbc5">More...</a><br /></td></tr>
+<tr class="separator:a2d29a7b214d01c873565f57e93f7cbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1290a766827532c8312b872d78806e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a0e1290a766827532c8312b872d78806e">AddActionReference</a> (<a class="el" href="classActionReference.html">ActionReference</a> *actionReference)</td></tr>
 <tr class="memdesc:a0e1290a766827532c8312b872d78806e"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds an <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> to the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#a0e1290a766827532c8312b872d78806e">More...</a><br /></td></tr>
 <tr class="separator:a0e1290a766827532c8312b872d78806e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -267,14 +287,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a98f6ef4dc798c419b99a5d8994a38922"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98f6ef4dc798c419b99a5d8994a38922">&#9670;&nbsp;</a></span>GetActionByName()</h2>
+<a id="a2d29a7b214d01c873565f57e93f7cbc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d29a7b214d01c873565f57e93f7cbc5">&#9670;&nbsp;</a></span>ControllerIsPlaystation()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classInputSystem_1_1Action.html">InputSystem::Action</a> * InputSystem::GetActionByName </td>
+          <td class="memname">bool InputSystem::ControllerIsPlaystation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets whether there is a playstation controller plugged in </p>
+<dl class="section return"><dt>Returns</dt><dd>whether there is a playstation controller plugged in </dd></dl>
+
+</div>
+</div>
+<a id="a28f78a766e21c2332e62b31dc3c056e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28f78a766e21c2332e62b31dc3c056e3">&#9670;&nbsp;</a></span>GetActionByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAction.html">Action</a> * InputSystem::GetActionByName </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
@@ -300,14 +340,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa635de5491dcd343eef28a620cf63e91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa635de5491dcd343eef28a620cf63e91">&#9670;&nbsp;</a></span>GetActions()</h2>
+<a id="a78c6dc07330528f96bc8d66a32ee063d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78c6dc07330528f96bc8d66a32ee063d">&#9670;&nbsp;</a></span>GetActions()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classInputSystem_1_1Action.html">InputSystem::Action</a> &gt; const  &amp; InputSystem::GetActions </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classAction.html">Action</a> &gt; const  &amp; InputSystem::GetActions </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -320,29 +360,137 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a7e3c9e3db7f53b846a922e1e2caae92e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e3c9e3db7f53b846a922e1e2caae92e">&#9670;&nbsp;</a></span>GetDebugKeyName()</h2>
+<a id="a9ec6ce6cc5712208bd058e49bcb83b9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ec6ce6cc5712208bd058e49bcb83b9f">&#9670;&nbsp;</a></span>GetControllerAxisName()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char * InputSystem::GetDebugKeyName </td>
+          <td class="memname">char const  * InputSystem::GetControllerAxisName </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramname"><em>glfwId</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>displays a text version of a key to imgui (65 becomes "A", etc) </p>
+<p>gets the name of a GLFW controller axis </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>to convert </td></tr>
+    <tr><td class="paramname">glfwId</td><td>the ID of the controller axis to get the name of </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the controller axis </dd></dl>
+
+</div>
+</div>
+<a id="a6be1e7fff18161177dbf2dcf5f7be4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6be1e7fff18161177dbf2dcf5f7be4da">&#9670;&nbsp;</a></span>GetControllerButtonName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const  * InputSystem::GetControllerButtonName </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfwId</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the name of a GLFW controller button </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfwId</td><td>the ID of the controller button to get the name of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the controller button </dd></dl>
+
+</div>
+</div>
+<a id="a3535e38ac04bdbd6791607cc1a2b8cd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3535e38ac04bdbd6791607cc1a2b8cd8">&#9670;&nbsp;</a></span>GetCurrentControllerAxis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InputSystem::GetCurrentControllerAxis </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the currently down controller axis </p>
+<dl class="section return"><dt>Returns</dt><dd>the GLFW id of the currently down controller axis (-1 if no axis active) </dd></dl>
+
+</div>
+</div>
+<a id="ad90fc3b913df72b842b991829201c688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad90fc3b913df72b842b991829201c688">&#9670;&nbsp;</a></span>GetCurrentControllerButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InputSystem::GetCurrentControllerButton </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the currently down controller button </p>
+<dl class="section return"><dt>Returns</dt><dd>the GLFW id of the currently down controller button (-1 if no button down) </dd></dl>
+
+</div>
+</div>
+<a id="af8aad9062cda1a0eccad48c4029e82e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8aad9062cda1a0eccad48c4029e82e2">&#9670;&nbsp;</a></span>GetCurrentKeyboardButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InputSystem::GetCurrentKeyboardButton </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the currently down keyboard button </p>
+<dl class="section return"><dt>Returns</dt><dd>the GLFW id of the currently down keyboard button (-1 if no button down) </dd></dl>
+
+</div>
+</div>
+<a id="a6c814ce74a92b244a512312caae0827e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c814ce74a92b244a512312caae0827e">&#9670;&nbsp;</a></span>GetCurrentMouseButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InputSystem::GetCurrentMouseButton </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the currently down mouse button </p>
+<dl class="section return"><dt>Returns</dt><dd>the GLFW id of the currently down mouse button (-1 if no button down) </dd></dl>
 
 </div>
 </div>
@@ -544,6 +692,33 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aaa2da9d2e6b0f1ae5008f5c86a13474a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa2da9d2e6b0f1ae5008f5c86a13474a">&#9670;&nbsp;</a></span>GetKeyboardButtonName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * InputSystem::GetKeyboardButtonName </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfwId</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the name of a GLFW keyboard button </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfwId</td><td>the ID of the keyboard button to get the name of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the keyboard button </dd></dl>
+
+</div>
+</div>
 <a id="aaf1000882f8617d5b87dfee51e0374cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf1000882f8617d5b87dfee51e0374cf">&#9670;&nbsp;</a></span>GetKeyDown()</h2>
 
@@ -689,6 +864,33 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns if key is up </dd></dl>
+
+</div>
+</div>
+<a id="ab4feb1d24c11132a4526044fca4ded7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4feb1d24c11132a4526044fca4ded7d">&#9670;&nbsp;</a></span>GetMouseButtonName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const  * InputSystem::GetMouseButtonName </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfwId</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the name of a GLFW mouse button </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfwId</td><td>the ID of the mouse button to get the name of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the mouse button </dd></dl>
 
 </div>
 </div>
@@ -935,6 +1137,27 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int, pass this back to check window </dd></dl>
+
+</div>
+</div>
+<a id="a86a00672ae2b016462e0a04089735a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a00672ae2b016462e0a04089735a86">&#9670;&nbsp;</a></span>IsControllerMostRecentInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputSystem::IsControllerMostRecentInput </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets whether the most recent input was from a controller and a controller is plugged in </p>
+<p>was the most recent input from a controller</p>
+<dl class="section return"><dt>Returns</dt><dd>whether the most recent input was from a controller </dd></dl>
 
 </div>
 </div>
