@@ -2,6 +2,18 @@
     "Assets": {
         "Sounds": null,
         "Textures": {
+            "SliderHandle": {
+                "Filepath": "Data/Textures/Debug/Circle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "UiBar": {
                 "Filepath": "Data/Textures/healthBar.png",
                 "SheetDimensions": [
@@ -81,7 +93,7 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "Value": 0.44999998807907104,
+                                    "Value": 0.5,
                                     "Slope": 0.0
                                 },
                                 {
@@ -102,7 +114,7 @@
                             "Opacity": 1.0,
                             "BorderPositions": [
                                 0.10000000149011612,
-                                1.0
+                                0.8999999761581421
                             ],
                             "RotationPosition": 0.5
                         },
@@ -129,13 +141,56 @@
                             ]
                         },
                         "UiSlider": {
-                            "Value": 0.0,
+                            "Value": 0.5,
                             "DragSliderAction": {
                                 "ActionName": "DragSlider"
                             }
                         }
                     },
-                    "Children": null
+                    "Children": [
+                        {
+                            "Name": "SliderHandle",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 2,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "SliderHandle"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        -5.960464477539063e-08,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        1.25,
+                                        1.25
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        }
+                    ]
                 }
             ]
         }
