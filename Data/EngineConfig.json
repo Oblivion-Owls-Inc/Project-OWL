@@ -229,12 +229,25 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "DragSlider",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "AlphaScene",
+            "NextSceneName": "Autosaved_Scene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -247,6 +260,7 @@
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<PauseComponent>": {},
         "BehaviorSystem<UiButton>": {},
+        "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
         "BehaviorSystem<PlayerController>": {},
         "ComponentSystem<ItemComponent>": {},
@@ -312,7 +326,7 @@
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
+                "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -326,9 +340,10 @@
                 "BehaviorSystem<Popup>": false,
                 "BehaviorSystem<RigidBody>": false,
                 "BehaviorSystem<UiButton>": false,
+                "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": false,
-                "CheatSystem": true,
+                "CheatSystem": false,
                 "CollisionSystem": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,

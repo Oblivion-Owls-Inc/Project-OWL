@@ -72,6 +72,7 @@
 #include "ControlPrompt.h"
 #include "BuildingSelectionButton.h"
 #include "DigEffect.h"
+#include "UiSlider.h"
 
 
 //-----------------------------------------------------------------------------
@@ -225,7 +226,8 @@
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
         { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
-        { "DigEffect"              , ComponentInfo< DigEffect               >() }
+        { "DigEffect"              , ComponentInfo< DigEffect               >() },
+        { "UiSlider"               , ComponentInfo< UiSlider                >() }
     };
 
 //-----------------------------------------------------------------------------

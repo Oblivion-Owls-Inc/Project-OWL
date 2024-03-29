@@ -120,6 +120,13 @@
         return m_Sections;
     }
 
+    /// @brief  gets the border positions of this UiBarSprite
+    /// @return the border positions of this UiBarSprite (min, max)
+    glm::vec2 const& UiBarSprite::GetBorderPositions() const
+    {
+        return m_BorderPositions;
+    }
+
 
 //-----------------------------------------------------------------------------
 // public:  methods

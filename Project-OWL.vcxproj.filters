@@ -369,6 +369,9 @@
     <Filter Include="Engine\Systems\InputSystem\InputAction">
       <UniqueIdentifier>{a319788b-2f2e-4063-887f-345ee52fdfd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\UiSlider">
+      <UniqueIdentifier>{fa5b86b1-3b84-434a-b190-91a0f07f1352}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -782,6 +785,12 @@
     <ClCompile Include="Source\BulletAoePulse.cpp">
       <Filter>Game\Components\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DigEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UiSlider.cpp">
+      <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1191,6 +1200,12 @@
     </ClInclude>
     <ClInclude Include="Source\BulletAoePulse.h">
       <Filter>Game\Components\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DigEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UiSlider.h">
+      <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

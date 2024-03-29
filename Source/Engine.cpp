@@ -45,6 +45,7 @@
 #include "Tilemap.h"
 #include "Generator.h"
 #include "EditorCameraController.h"
+#include "UiSlider.h"
 
 #include "ItemComponent.h"
 #include "HomeBase.h"
@@ -375,6 +376,7 @@
         { "BehaviorSystem<PauseComponent>"        , &addSystem< BehaviorSystem< PauseComponent         > > },
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
         { "BehaviorSystem<PlayerController>"      , &addSystem< BehaviorSystem< PlayerController       > > },
+        { "BehaviorSystem<UiSlider>"              , &addSystem< BehaviorSystem< UiSlider               > > },
 
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 
