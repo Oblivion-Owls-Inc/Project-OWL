@@ -93,7 +93,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": false
             },
             "SliderFill": {
                 "Filepath": "Data/Textures/SliderFill.png",
@@ -105,7 +105,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": false
             },
             "SliderPull": {
                 "Filepath": "Data/Textures/SliderPull.png",
@@ -675,19 +675,39 @@
         "MasterSlider": {
             "Name": "MasterSlider",
             "Components": {
-                "Sprite": {
-                    "Layer": 4,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
+                "UiBarSprite": {
+                    "Sections": [
+                        {
+                            "Color": [
+                                1.0,
+                                1.0,
+                                0.0,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        },
+                        {
+                            "Color": [
+                                0.5411255359649658,
+                                0.5411255359649658,
+                                0.5411255359649658,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        }
                     ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "SliderBase"
-                    }
+                        "AssetName": "SliderFill"
+                    },
+                    "Layer": 2,
+                    "Opacity": 1.0,
+                    "BorderPositions": [
+                        0.02500000037252903,
+                        0.9750000238418579
+                    ],
+                    "RotationPosition": 0.5
                 },
                 "UiElement": {
                     "Anchor": [
@@ -703,58 +723,22 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.029999999329447746,
-                        0.05000000074505806
+                        0.5,
+                        0.029999999329447746
                     ],
                     "SizeTypes": [
                         "RelativeToWidth",
-                        "RelativeToHeight"
+                        "RelativeToWidth"
                     ]
+                },
+                "UiSlider": {
+                    "Value": 1.0,
+                    "DragSliderAction": {
+                        "ActionName": "DragSlider"
+                    }
                 }
             },
             "Children": [
-                {
-                    "Name": "MasterFill",
-                    "Components": {
-                        "Sprite": {
-                            "Layer": 5,
-                            "Color": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Opacity": 1.0,
-                            "FrameIndex": 0,
-                            "Texture": {
-                                "AssetName": "SliderFill"
-                            }
-                        },
-                        "UiElement": {
-                            "Anchor": [
-                                0.0,
-                                0.0
-                            ],
-                            "Pivot": [
-                                0.0,
-                                0.0
-                            ],
-                            "Offset": [
-                                0.0,
-                                0.0
-                            ],
-                            "FrameSize": [
-                                1.0,
-                                1.0
-                            ],
-                            "SizeTypes": [
-                                "RelativeToWidth",
-                                "RelativeToHeight"
-                            ]
-                        }
-                    },
-                    "Children": null
-                },
                 {
                     "Name": "MasterPull",
                     "Components": {
@@ -774,7 +758,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                15.0,
+                                0.9500000476837158,
                                 0.0
                             ],
                             "Pivot": [
@@ -790,7 +774,7 @@
                                 1.25
                             ],
                             "SizeTypes": [
-                                "RelativeToWidth",
+                                "RelativeToHeight",
                                 "RelativeToHeight"
                             ]
                         }
@@ -799,27 +783,47 @@
                 }
             ]
         },
-        "SFXSlider": {
-            "Name": "SFXSlider",
+        "SfxSlider": {
+            "Name": "SfxSlider",
             "Components": {
-                "Sprite": {
-                    "Layer": 4,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
+                "UiBarSprite": {
+                    "Sections": [
+                        {
+                            "Color": [
+                                1.0,
+                                1.0,
+                                0.0,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        },
+                        {
+                            "Color": [
+                                0.5411255359649658,
+                                0.5411255359649658,
+                                0.5411255359649658,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        }
                     ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "SliderBase"
-                    }
+                        "AssetName": "SliderFill"
+                    },
+                    "Layer": 2,
+                    "Opacity": 1.0,
+                    "BorderPositions": [
+                        0.02500000037252903,
+                        0.9750000238418579
+                    ],
+                    "RotationPosition": 0.5
                 },
                 "UiElement": {
                     "Anchor": [
                         0.2750000059604645,
-                        -0.012500000186264515
+                        -0.014999999664723873
                     ],
                     "Pivot": [
                         0.0,
@@ -830,60 +834,24 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.029999999329447746,
-                        0.05000000074505806
+                        0.5,
+                        0.029999999329447746
                     ],
                     "SizeTypes": [
                         "RelativeToWidth",
-                        "RelativeToHeight"
+                        "RelativeToWidth"
                     ]
+                },
+                "UiSlider": {
+                    "Value": 1.0,
+                    "DragSliderAction": {
+                        "ActionName": "DragSlider"
+                    }
                 }
             },
             "Children": [
                 {
-                    "Name": "SFXFill",
-                    "Components": {
-                        "Sprite": {
-                            "Layer": 5,
-                            "Color": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Opacity": 1.0,
-                            "FrameIndex": 0,
-                            "Texture": {
-                                "AssetName": "SliderFill"
-                            }
-                        },
-                        "UiElement": {
-                            "Anchor": [
-                                0.0,
-                                0.0
-                            ],
-                            "Pivot": [
-                                0.0,
-                                0.0
-                            ],
-                            "Offset": [
-                                0.0,
-                                0.0
-                            ],
-                            "FrameSize": [
-                                1.0,
-                                1.0
-                            ],
-                            "SizeTypes": [
-                                "RelativeToWidth",
-                                "RelativeToHeight"
-                            ]
-                        }
-                    },
-                    "Children": null
-                },
-                {
-                    "Name": "SFXPull",
+                    "Name": "MasterPull",
                     "Components": {
                         "Sprite": {
                             "Layer": 6,
@@ -901,7 +869,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                15.0,
+                                0.9500000476837158,
                                 0.0
                             ],
                             "Pivot": [
@@ -917,7 +885,7 @@
                                 1.25
                             ],
                             "SizeTypes": [
-                                "RelativeToWidth",
+                                "RelativeToHeight",
                                 "RelativeToHeight"
                             ]
                         }
@@ -929,24 +897,44 @@
         "MusicSlider": {
             "Name": "MusicSlider",
             "Components": {
-                "Sprite": {
-                    "Layer": 4,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
+                "UiBarSprite": {
+                    "Sections": [
+                        {
+                            "Color": [
+                                1.0,
+                                1.0,
+                                0.0,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        },
+                        {
+                            "Color": [
+                                0.5411255359649658,
+                                0.5411255359649658,
+                                0.5411255359649658,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        }
                     ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "SliderBase"
-                    }
+                        "AssetName": "SliderFill"
+                    },
+                    "Layer": 2,
+                    "Opacity": 1.0,
+                    "BorderPositions": [
+                        0.02500000037252903,
+                        0.9750000238418579
+                    ],
+                    "RotationPosition": 0.5
                 },
                 "UiElement": {
                     "Anchor": [
                         0.2750000059604645,
-                        -0.26124998927116394
+                        -0.2750000059604645
                     ],
                     "Pivot": [
                         0.0,
@@ -957,60 +945,24 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.029999999329447746,
-                        0.05000000074505806
+                        0.5,
+                        0.029999999329447746
                     ],
                     "SizeTypes": [
                         "RelativeToWidth",
-                        "RelativeToHeight"
+                        "RelativeToWidth"
                     ]
+                },
+                "UiSlider": {
+                    "Value": 1.0,
+                    "DragSliderAction": {
+                        "ActionName": "DragSlider"
+                    }
                 }
             },
             "Children": [
                 {
-                    "Name": "MusicFill",
-                    "Components": {
-                        "Sprite": {
-                            "Layer": 5,
-                            "Color": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Opacity": 1.0,
-                            "FrameIndex": 0,
-                            "Texture": {
-                                "AssetName": "SliderFill"
-                            }
-                        },
-                        "UiElement": {
-                            "Anchor": [
-                                0.0,
-                                0.0
-                            ],
-                            "Pivot": [
-                                0.0,
-                                0.0
-                            ],
-                            "Offset": [
-                                0.0,
-                                0.0
-                            ],
-                            "FrameSize": [
-                                1.0,
-                                1.0
-                            ],
-                            "SizeTypes": [
-                                "RelativeToWidth",
-                                "RelativeToHeight"
-                            ]
-                        }
-                    },
-                    "Children": null
-                },
-                {
-                    "Name": "MusicPull",
+                    "Name": "MasterPull",
                     "Components": {
                         "Sprite": {
                             "Layer": 6,
@@ -1028,7 +980,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                15.0,
+                                0.9500000476837158,
                                 0.0
                             ],
                             "Pivot": [
@@ -1044,7 +996,7 @@
                                 1.25
                             ],
                             "SizeTypes": [
-                                "RelativeToWidth",
+                                "RelativeToHeight",
                                 "RelativeToHeight"
                             ]
                         }
