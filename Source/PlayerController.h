@@ -54,11 +54,11 @@ public: // accessors
 
     /// @brief  gets the Health Component attached to this Entity
     /// @return the Health Component attached to this Entity
-    Health* GetHealth();
+    Health* GetHealth() { return m_Health;  }
 
     /// @brief  Gets the MiningLaser component attached to this Entity.
     /// @return The MiningLaser component attached to this Entity.
-    MiningLaser* GetMiningLaser();
+    MiningLaser* GetMiningLaser() {  return m_MiningLaser;  }
 
 
 //-----------------------------------------------------------------------------
