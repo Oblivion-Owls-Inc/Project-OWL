@@ -1,13 +1,33 @@
 {
     "Assets": {
         "Sounds": {
+            "AOEShot": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/AOESound.wav"
+            },
             "BaseDamageSound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
             },
+            "CrystalNoise": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/CrystalNoise.wav"
+            },
             "EnemySound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
+            },
+            "ForceShot": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/ForceShot.wav"
+            },
+            "JetpackRuntime": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/JetpackRuntime.wav"
+            },
+            "MiningLaserRuntime": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/MiningLaserRuntime.wav"
             },
             "Music": {
                 "IsLoopable": true,
@@ -15,11 +35,15 @@
             },
             "PlayerDigging": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Player/digging.ogg"
+                "Filepath": "Data/Sounds/Effects/FinalSounds/RockBreak.wav"
             },
             "PlayerFootSteps": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Player/Human-Ground-FootSteps.ogg"
+            },
+            "RockBreak": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/RockBreak.wav"
             },
             "TurretPlacement": {
                 "IsLoopable": true,
@@ -28,6 +52,10 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
+            },
+            "VehicleRuntime": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/FinalSounds/Deuc_1Runtime.wav"
             }
         },
         "Textures": {
@@ -89341,7 +89369,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 77.5733871459961,
+                            "Width": 38.78669738769531,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -89359,8 +89387,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -12.842811584472656,
-                                133.66046142578125
+                                -17.454965591430664,
+                                118.2186508178711
                             ],
                             "Rotation": 0.0,
                             "Scale": [
