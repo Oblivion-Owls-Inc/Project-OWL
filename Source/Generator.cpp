@@ -88,6 +88,9 @@ void Generator::OnInit()
     m_Emitter         .Init( GetEntity() );
     m_PathfinderTarget.Init( GetEntity() );
 
+    m_WavePrefab.SetOwnerName(GetName());
+    m_WavePrefab.Init();
+
     m_ChangeActive = m_IsActive;
 }
 
@@ -202,6 +205,13 @@ Generator* Generator::GetLowestGenerator()
 /// @brief activate the generator
 void Generator::Activate() 
 { 
+    if (m_WavePrefab != nullptr && m_CanSpawnWave)
+    {
+        Entity* wave = m_WavePrefab->Clone();
+        wave->AddToScene();
+        m_CanSpawnWave = false;
+    }
+
     m_IsActive = true;
     m_ChangeActive = true;
     m_ActivateRing = true;
@@ -218,6 +228,7 @@ void Generator::Deactivate()
     m_IsActive = false;
     m_ChangeActive = false;
     m_DeactivateRing = true;
+    m_CanSpawnWave = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -274,6 +285,7 @@ void Generator::Inspector()
     ImGui::InputFloat("Activate Radius", &m_ActivationRadius, 0.5f, 1.0f);
     ImGui::InputFloat("Growth Speed", &m_RadiusSpeed);
     ImGui::InputInt("Depth", &m_Depth, 1, 5);
+    m_WavePrefab.Inspect("Wave to Spawn");
     ImGui::Checkbox("Active", &m_ChangeActive);
 }
 
@@ -284,11 +296,12 @@ void Generator::Inspector()
 /// @brief read method map
 ReadMethodMap<Generator> const Generator::s_ReadMethods =
 {
-    { "Radius"        , &readRadius  },
-    { "ActivateRadius", &readARadius },
-    { "Depth"         , &readDepth   },
-    { "Active"        , &readActive  },
-    { "GrowthSpeed"   , &readSpeed   },
+    { "Radius"        , &readRadius    },
+    { "ActivateRadius", &readARadius   },
+    { "Depth"         , &readDepth     },
+    { "Active"        , &readActive    },
+    { "GrowthSpeed"   , &readSpeed     },
+    { "WavePrefab"    , &readWavePrefab },
 };
 
 /// @brief	read the raidus from json
@@ -321,6 +334,12 @@ void Generator::readSpeed(nlohmann::ordered_json const& json)
     m_RadiusSpeed = Stream::Read<float>(json);
 }
 
+/// @brief	read the attached wave prefab to spawn
+void Generator::readWavePrefab(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_WavePrefab, json);
+}
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -335,6 +354,7 @@ nlohmann::ordered_json Generator::Write() const
     data["Depth"] = m_Depth;
     data["Active"] = m_IsActive;
     data["GrowthSpeed"] = m_RadiusSpeed;
+    data["WavePrefab"] = Stream::Write(m_WavePrefab);
 
 
     return data;

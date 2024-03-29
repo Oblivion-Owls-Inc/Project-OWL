@@ -3093,6 +3093,85 @@
                 },
                 "Children": null
             },
+            "Wave": {
+                "Name": "Wave",
+                "Components": {
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "WavesBehavior": {
+                        "Spawners": [
+                            [
+                                -30.5,
+                                77.5
+                            ]
+                        ],
+                        "Waves": [
+                            {
+                                "WaveNextTime": 0.0,
+                                "EnemyGroups": [
+                                    {
+                                        "Enemy": {
+                                            "AssetName": "Enemy"
+                                        },
+                                        "Amount": 0,
+                                        "SpawnInterval": 2.0,
+                                        "InitialOffset": 5.0,
+                                        "Spawner": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "WaveNextTime": 0.0,
+                                "EnemyGroups": [
+                                    {
+                                        "Enemy": {
+                                            "AssetName": "Enemy"
+                                        },
+                                        "Amount": 0,
+                                        "SpawnInterval": 2.0,
+                                        "InitialOffset": 5.0,
+                                        "Spawner": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "WaveNextTime": 938.05908203125,
+                                "EnemyGroups": [
+                                    {
+                                        "Enemy": {
+                                            "AssetName": "Enemy"
+                                        },
+                                        "Amount": 978,
+                                        "SpawnInterval": 2.0,
+                                        "InitialOffset": 5.0,
+                                        "Spawner": 0
+                                    },
+                                    {
+                                        "Enemy": {
+                                            "AssetName": "Enemy"
+                                        },
+                                        "Amount": 995,
+                                        "SpawnInterval": 10.0,
+                                        "InitialOffset": 10.0,
+                                        "Spawner": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "Children": null
+            },
             "break": {
                 "Name": "break",
                 "Components": {
@@ -3187,85 +3266,6 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false,
                     "ChannelGroupName": "Music"
-                }
-            },
-            "Children": null
-        },
-        "Wave": {
-            "Name": "Wave",
-            "Components": {
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                },
-                "WavesBehavior": {
-                    "Spawners": [
-                        [
-                            -30.5,
-                            77.5
-                        ]
-                    ],
-                    "Waves": [
-                        {
-                            "WaveNextTime": 0.0,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        },
-                        {
-                            "WaveNextTime": 0.0,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        },
-                        {
-                            "WaveNextTime": 938.05908203125,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 978,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                },
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 995,
-                                    "SpawnInterval": 10.0,
-                                    "InitialOffset": 10.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        }
-                    ]
                 }
             },
             "Children": null
@@ -109363,7 +109363,10 @@
                     "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": true,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -109484,7 +109487,10 @@
                     "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": false,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": "Wave"
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -109602,7 +109608,10 @@
                     "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": false,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": "Wave"
+                    }
                 },
                 "Health": {
                     "Health": {
