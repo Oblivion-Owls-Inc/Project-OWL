@@ -148,7 +148,6 @@
             return;
         }
 
-
         if ( m_Interact != nullptr && m_Interact->GetDown() )
         {
             for (auto& generator : Behaviors<Generator>()->GetComponents())
@@ -186,13 +185,19 @@
                 m_Animation->SetAsset( m_Animations[ 1 ] );
                 NormalizedDirection.x *= m_HorizontalMoveforce[1];
             }
-            
 
             if (NormalizedDirection.y > 0 )
             {
                 // 2 is up
                 m_Animation->SetAsset( m_Animations[ 2 ] );
                 NormalizedDirection.y *= m_VerticalMoveforce[0];
+
+
+                Debug() << m_RigidBody->GetVelocity().y << std::endl;
+                if (m_RigidBody->GetVelocity().y <= 0.0f )
+                {
+                    m_RigidBody->ApplyForce( { 0, m_JumpForce } );
+                }
 
             }
             else
@@ -315,6 +320,8 @@
         m_MoveHorizontal.Inspect( "Horizontal Control Action" );
         m_FireLaser.Inspect( "Fire Laser Control Action" );
         m_Interact.Inspect( "Interact Control Action" );
+
+        ImGui::DragFloat( "Jump Force", &m_JumpForce, 0.05f );
     }
 
 
@@ -417,6 +424,11 @@
         Stream::Read( m_Interact, data );
     }
 
+    void PlayerController::readJumpForce(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_JumpForce, data);
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading writing
 //-----------------------------------------------------------------------------
@@ -435,7 +447,8 @@
             { "MoveVertical"       , &PlayerController::readMoveVertical        },
             { "MoveHorizontal"     , &PlayerController::readMoveHorizontal      },
             { "FireLaser"          , &PlayerController::readFireLaser           },
-            { "Interact"           , &PlayerController::readInteract            }
+            { "Interact"           , &PlayerController::readInteract            },
+            { "JumpForce"          , &PlayerController::readJumpForce           }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -463,6 +476,7 @@
         data[ "Interact"            ] = Stream::Write( m_Interact              );
         data[ "VerticalMoveforce"   ] = Stream::Write( m_VerticalMoveforce     );
         data[ "HorizontalMoveforce" ] = Stream::Write( m_HorizontalMoveforce   );
+        data[ "JumpForce"           ] = Stream::Write( m_JumpForce             );
 
         return data;
     }
@@ -496,7 +510,8 @@
         m_FireLaser            ( other.m_FireLaser             ),
         m_Interact             ( other.m_Interact              ),
         m_VerticalMoveforce    ( other.m_VerticalMoveforce     ),
-        m_HorizontalMoveforce  ( other.m_HorizontalMoveforce   )
+        m_HorizontalMoveforce  ( other.m_HorizontalMoveforce   ),
+        m_JumpForce            ( other.m_JumpForce             )
     {
         // Copy the animations
         for (int i = 0; i < NUM_ANIMATIONS; i++)

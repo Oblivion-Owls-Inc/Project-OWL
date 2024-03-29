@@ -91,6 +91,9 @@ private: // member variables
     /// @brief  Player respawn location
     glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
 
+    /// @brief Jump force
+    float m_JumpForce = 1.0f;
+
     /// @brief  player directional movement animations
     AssetReference< AnimationAsset > m_Animations[ 4 ] = {};
 
@@ -228,6 +231,9 @@ private: // reading
     /// @brief  reads the control action for vertical aim
     /// @param  data    the JSON data to read from
     void readAimVertical( nlohmann::ordered_json const& data );
+
+    /// @brief  Reads the Jump force from the JSON file.
+    void readJumpForce( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
