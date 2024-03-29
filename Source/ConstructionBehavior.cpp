@@ -22,6 +22,7 @@
 #include "TurretBehavior.h"
 #include "ResourcesUiManager.h"
 #include "UiElement.h"
+#include "Generator.h"
 #include "Popup.h"
 
 
@@ -475,7 +476,19 @@
             return false;
         }
 
-        return true;
+        for (Generator* generator : Behaviors< Generator >()->GetComponents())
+        {
+            float distance = glm::distance(
+                generator->GetTransform()->GetTranslation(),
+                m_TargetPos
+            );
+            if (distance <= generator->GetPowerRadius())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// @brief  palces the currently selected building
