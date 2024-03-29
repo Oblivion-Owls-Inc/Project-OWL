@@ -9,6 +9,11 @@
 
 #include "pch.h"
 #include "SettingsManager.h"
+#include "ComponentReference.t.h"
+
+#include "UiSlider.h"
+#include "UiElement.h"
+#include "UiBarSprite.h"
 
 
 //-----------------------------------------------------------------------------
@@ -133,6 +138,8 @@
     /// @param other Reference to another instance of SettingsManager
     SettingsManager::SettingsManager(const SettingsManager& other)
         : Component(other)
+        , m_SFXChannelName(other.m_SFXChannelName)
+        , m_MusicChannelName(other.m_MusicChannelName)
     {}
 
 

@@ -505,10 +505,13 @@
 
         for ( AudioGroup& group : m_Groups )
         {
-            if ( ImGui::Selectable( group.M_Name.c_str(), group.M_Group == *channelGroup ) )
+            if ( ImGui::Selectable( group.M_Name.c_str(), channelGroup != nullptr && group.M_Group == *channelGroup ) )
             {
                 *groupName = group.M_Name;
-                *channelGroup = group.M_Group;
+                if (channelGroup != nullptr)
+                {
+                    *channelGroup = group.M_Group;
+                }
                 ImGui::EndCombo();
                 return true;
             }

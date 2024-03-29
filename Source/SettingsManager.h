@@ -19,6 +19,9 @@
 // Forward References
 //-----------------------------------------------------------------------------
     class UiSlider;
+    class UiElement;
+    class UiBarSprite;
+
 
 /// @brief  Settings Manager Class
 class SettingsManager : public Component
@@ -75,6 +78,12 @@ private: // members
 
     /// @brief The entity for the music slider
     EntityReference m_MusicEntity = EntityReference({ &m_MusicVolumeSlider });
+
+    /// @brief Name of the SFX audio channel
+    std::string m_SFXChannelName = "";
+
+    /// @brief Name of the music audio channel
+    std::string m_MusicChannelName = "";
 
 
 //-----------------------------------------------------------------------------
