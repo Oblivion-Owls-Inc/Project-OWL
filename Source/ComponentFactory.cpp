@@ -23,6 +23,8 @@
 #include "AudioPlayer.h"
 #include "AudioListener.h"
 #include "Bullet.h"
+#include "BulletAoe.h"
+#include "BulletAoePulse.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
@@ -67,6 +69,10 @@
 #include "pause.h"
 #include "orbitbehavior.h"
 #include "DestructibleTilemap.h"
+#include "ControlPrompt.h"
+#include "BuildingSelectionButton.h"
+#include "DigEffect.h"
+#include "UiSlider.h"
 
 
 //-----------------------------------------------------------------------------
@@ -171,6 +177,8 @@
         { "PlayerController"       , ComponentInfo< PlayerController        >() },
 		{ "EnemyBehavior"          , ComponentInfo< EnemyBehavior           >() },
 		{ "Bullet"                 , ComponentInfo< Bullet                  >() },
+        { "BulletAoe"              , ComponentInfo< BulletAoe               >() },
+        { "BulletAoePulse"         , ComponentInfo< BulletAoePulse          >() },
         { "TurretBehavior"         , ComponentInfo< TurretBehavior          >() },
         { "EffectAnimator"         , ComponentInfo< EffectAnimator          >() },
         { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
@@ -215,7 +223,11 @@
         { "Popup"                  , ComponentInfo< Popup                   >() },
         { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
-        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() }
+        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
+        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
+        { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
+        { "DigEffect"              , ComponentInfo< DigEffect               >() },
+        { "UiSlider"               , ComponentInfo< UiSlider                >() }
     };
 
 //-----------------------------------------------------------------------------

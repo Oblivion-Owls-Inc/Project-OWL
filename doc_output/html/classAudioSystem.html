@@ -62,6 +62,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classAudioSystem-members.html">List of all members</a>  </div>
@@ -96,6 +97,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f842c8d424813e250f485f78c16e7dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#a1f842c8d424813e250f485f78c16e7dd">SetActiveListener</a> (<a class="el" href="classAudioListener.html">AudioListener</a> *listener)</td></tr>
 <tr class="memdesc:a1f842c8d424813e250f485f78c16e7dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the currently active <a class="el" href="classAudioListener.html" title="component that picks up spatial audio">AudioListener</a>  <a href="classAudioSystem.html#a1f842c8d424813e250f485f78c16e7dd">More...</a><br /></td></tr>
 <tr class="separator:a1f842c8d424813e250f485f78c16e7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17664bf7588b92fa13f6a6b20d198b0"><td class="memItemLeft" align="right" valign="top">FMOD::ChannelGroup *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#ab17664bf7588b92fa13f6a6b20d198b0">GetChannelGroup</a> (std::string const &amp;name)</td></tr>
+<tr class="memdesc:ab17664bf7588b92fa13f6a6b20d198b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the channel group with the specified name  <a href="classAudioSystem.html#ab17664bf7588b92fa13f6a6b20d198b0">More...</a><br /></td></tr>
+<tr class="separator:ab17664bf7588b92fa13f6a6b20d198b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb6bc62af6d5df4ced11b30e709bd9e3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#adb6bc62af6d5df4ced11b30e709bd9e3">GetVolume</a> () const</td></tr>
+<tr class="memdesc:adb6bc62af6d5df4ced11b30e709bd9e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the volume of the master channel  <a href="classAudioSystem.html#adb6bc62af6d5df4ced11b30e709bd9e3">More...</a><br /></td></tr>
+<tr class="separator:adb6bc62af6d5df4ced11b30e709bd9e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada9baa3f77ac8c755e9df708263918ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#ada9baa3f77ac8c755e9df708263918ad">SetVolume</a> (float volume)</td></tr>
+<tr class="memdesc:ada9baa3f77ac8c755e9df708263918ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the volume of the master channel  <a href="classAudioSystem.html#ada9baa3f77ac8c755e9df708263918ad">More...</a><br /></td></tr>
+<tr class="separator:ada9baa3f77ac8c755e9df708263918ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab58854ba62e758970c787dd29c3eb63e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#ab58854ba62e758970c787dd29c3eb63e">GetVolume</a> (std::string const &amp;name) const</td></tr>
+<tr class="memdesc:ab58854ba62e758970c787dd29c3eb63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the volume of the specified channel  <a href="classAudioSystem.html#ab58854ba62e758970c787dd29c3eb63e">More...</a><br /></td></tr>
+<tr class="separator:ab58854ba62e758970c787dd29c3eb63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bc6736cdc6f0dd1d403461bf4158553"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#a1bc6736cdc6f0dd1d403461bf4158553">SetVolume</a> (std::string const &amp;name, float volume)</td></tr>
+<tr class="memdesc:a1bc6736cdc6f0dd1d403461bf4158553"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the volume of the specified channel  <a href="classAudioSystem.html#a1bc6736cdc6f0dd1d403461bf4158553">More...</a><br /></td></tr>
+<tr class="separator:a1bc6736cdc6f0dd1d403461bf4158553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0f478c9589e3aa4e01cd054dc39bbab"><td class="memItemLeft" align="right" valign="top"><a id="aa0f478c9589e3aa4e01cd054dc39bbab"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#aa0f478c9589e3aa4e01cd054dc39bbab">OnInit</a> () override</td></tr>
 <tr class="memdesc:aa0f478c9589e3aa4e01cd054dc39bbab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
@@ -107,6 +123,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:af538b729a94bb39f0a9a88f4c21a1d96"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#af538b729a94bb39f0a9a88f4c21a1d96">OnUpdate</a> (float dt) override</td></tr>
 <tr class="memdesc:af538b729a94bb39f0a9a88f4c21a1d96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classAudioSystem.html#af538b729a94bb39f0a9a88f4c21a1d96">More...</a><br /></td></tr>
 <tr class="separator:af538b729a94bb39f0a9a88f4c21a1d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32522a57580820d4d89f7973cda036b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#a32522a57580820d4d89f7973cda036b0">InspectChannelGroup</a> (char const *label, std::string *groupName, FMOD::ChannelGroup **channelGroup)</td></tr>
+<tr class="memdesc:a32522a57580820d4d89f7973cda036b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects a reference to a channel group  <a href="classAudioSystem.html#a32522a57580820d4d89f7973cda036b0">More...</a><br /></td></tr>
+<tr class="separator:a32522a57580820d4d89f7973cda036b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29f3a6366da9393744adf0b2e02eab1"><td class="memItemLeft" align="right" valign="top"><a id="ae29f3a6366da9393744adf0b2e02eab1"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#ae29f3a6366da9393744adf0b2e02eab1">DebugWindow</a> () override</td></tr>
+<tr class="memdesc:ae29f3a6366da9393744adf0b2e02eab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">shows this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s DebugWindow <br /></td></tr>
+<tr class="separator:ae29f3a6366da9393744adf0b2e02eab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07346304ecfea616e50ef5dea5cc8ca4"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioSystem.html#a07346304ecfea616e50ef5dea5cc8ca4">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:a07346304ecfea616e50ef5dea5cc8ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classAudioSystem.html#a07346304ecfea616e50ef5dea5cc8ca4">More...</a><br /></td></tr>
 <tr class="separator:a07346304ecfea616e50ef5dea5cc8ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,10 +149,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
 <tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
 <tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ac37b07a2ad20e2d2fe1f77766902af5d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">DebugWindow</a> ()</td></tr>
-<tr class="memdesc:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
-<tr class="separator:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a804bac94c6ffee7f7369c6c3928a5574"></a>
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
@@ -195,6 +214,33 @@ Additional Inherited Members</h2></td></tr>
 
 <p>gets the currently active <a class="el" href="classAudioListener.html" title="component that picks up spatial audio">AudioListener</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>the currently active <a class="el" href="classAudioListener.html" title="component that picks up spatial audio">AudioListener</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab17664bf7588b92fa13f6a6b20d198b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17664bf7588b92fa13f6a6b20d198b0">&#9670;&nbsp;</a></span>GetChannelGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FMOD::ChannelGroup * AudioSystem::GetChannelGroup </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the channel group with the specified name </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name of the channel group to get </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the FMOD::ChannelGroup with the specified name </dd></dl>
 
 </div>
 </div>
@@ -276,6 +322,98 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="adb6bc62af6d5df4ced11b30e709bd9e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb6bc62af6d5df4ced11b30e709bd9e3">&#9670;&nbsp;</a></span>GetVolume() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AudioSystem::GetVolume </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the volume of the master channel </p>
+<dl class="section return"><dt>Returns</dt><dd>the volume of the master channel </dd></dl>
+
+</div>
+</div>
+<a id="ab58854ba62e758970c787dd29c3eb63e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab58854ba62e758970c787dd29c3eb63e">&#9670;&nbsp;</a></span>GetVolume() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AudioSystem::GetVolume </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the volume of the specified channel </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name of the channel to get the volume of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the volume of the channel </dd></dl>
+
+</div>
+</div>
+<a id="a32522a57580820d4d89f7973cda036b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32522a57580820d4d89f7973cda036b0">&#9670;&nbsp;</a></span>InspectChannelGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AudioSystem::InspectChannelGroup </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>label</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string *&#160;</td>
+          <td class="paramname"><em>groupName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FMOD::ChannelGroup **&#160;</td>
+          <td class="paramname"><em>channelGroup</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>inspects a reference to a channel group </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">label</td><td>the label of the channel group </td></tr>
+    <tr><td class="paramname">groupName</td><td>the name of the channel group reference being inspected </td></tr>
+    <tr><td class="paramname">channelGroup</td><td>the channel group reference being inspeced </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the reference to the channel group was changed </dd></dl>
+
+</div>
+</div>
 <a id="af538b729a94bb39f0a9a88f4c21a1d96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af538b729a94bb39f0a9a88f4c21a1d96">&#9670;&nbsp;</a></span>OnUpdate()</h2>
 
@@ -332,6 +470,69 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">listener</td><td>the <a class="el" href="classAudioListener.html" title="component that picks up spatial audio">AudioListener</a> to make active </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ada9baa3f77ac8c755e9df708263918ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada9baa3f77ac8c755e9df708263918ad">&#9670;&nbsp;</a></span>SetVolume() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AudioSystem::SetVolume </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>volume</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the volume of the master channel </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">volume</td><td>the volume to set the master channel to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1bc6736cdc6f0dd1d403461bf4158553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bc6736cdc6f0dd1d403461bf4158553">&#9670;&nbsp;</a></span>SetVolume() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AudioSystem::SetVolume </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>volume</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the volume of the specified channel </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name of the channel to set the volume of </td></tr>
+    <tr><td class="paramname">volume</td><td>the volume to set the channel to </td></tr>
   </table>
   </dd>
 </dl>

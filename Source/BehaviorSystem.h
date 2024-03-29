@@ -41,6 +41,17 @@ private: // virtual override methods
         }
     }
 
+    
+//-----------------------------------------------------------------------------
+protected: // constructor
+//-----------------------------------------------------------------------------
+    
+
+    /// @brief  deriveable constructor
+    BehaviorSystem( std::string const& name ) :
+        ComponentSystem< BehaviorType >( name )
+    {}
+
 
 //-----------------------------------------------------------------------------
 private: // singleton stuff

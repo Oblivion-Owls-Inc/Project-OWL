@@ -52,6 +52,17 @@ public: // constructor
     /// @brief  constructor
     UiElement();
 
+    
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  converts a UI position to a local anchor position
+    /// @param  uiPos   the ui position to convert
+    /// @return the converted local anchor position
+    glm::vec2 UiPosToLocalAnchor( glm::vec2 const& uiPos ) const;
+
 
 //-----------------------------------------------------------------------------
 public: // accessors

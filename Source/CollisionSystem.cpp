@@ -915,7 +915,7 @@
                 if ( enabledEdges & s_EdgeLeft )
                 {
                     float depth = (circlePos.x + circleRadius) - aabbMin.x;
-                    if ( (collisionData->depth == -INFINITY || depth < collisionData->depth) && depth < (aabbMax.x - aabbMin.x) * 0.5f )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.x - aabbMin.x) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
@@ -925,7 +925,7 @@
                 if ( enabledEdges & s_EdgeRight )
                 {
                     float depth = aabbMax.x - (circlePos.x - circleRadius);
-                    if ( (collisionData->depth == -INFINITY || depth < collisionData->depth) && depth < (aabbMax.x - aabbMin.x) * 0.5f )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.x - aabbMin.x) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
@@ -935,7 +935,7 @@
                 if ( enabledEdges & s_EdgeDown )
                 {
                     float depth = (circlePos.y + circleRadius) - aabbMin.y;
-                    if ( (collisionData->depth == -INFINITY || depth < collisionData->depth) && depth < (aabbMax.y - aabbMin.y) * 0.5f )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.y - aabbMin.y) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( 0, circleRadius );
@@ -945,7 +945,7 @@
                 if ( enabledEdges & s_EdgeUp )
                 {
                     float depth = aabbMax.y - (circlePos.y - circleRadius);
-                    if ( (collisionData->depth == -INFINITY || depth < collisionData->depth) && depth < (aabbMax.y - aabbMin.y) * 0.5f )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.y - aabbMin.y) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( 0, circleRadius );

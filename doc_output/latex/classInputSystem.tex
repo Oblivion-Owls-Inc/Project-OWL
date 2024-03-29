@@ -17,19 +17,20 @@ Inheritance diagram for Input\+System\+:
 
 Collaboration diagram for Input\+System\+:
 % FIG 1
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classInputSystem_1_1Action}{Action}}
-\begin{DoxyCompactList}\small\item\em action class, used to track an action with dynamic input \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classInputSystem_a54ce226da68c48fc59a9074f54938f87}\label{classInputSystem_a54ce226da68c48fc59a9074f54938f87}} 
 virtual void \mbox{\hyperlink{classInputSystem_a54ce226da68c48fc59a9074f54938f87}{Debug\+Window}} () override
 \begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
-const char $\ast$ \mbox{\hyperlink{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}{Get\+Debug\+Key\+Name}} (int key) const
-\begin{DoxyCompactList}\small\item\em displays a text version of a key to imgui (65 becomes \char`\"{}\+A\char`\"{}, etc) \end{DoxyCompactList}\item 
+char const  $\ast$ \mbox{\hyperlink{classInputSystem_aaa2da9d2e6b0f1ae5008f5c86a13474a}{Get\+Keyboard\+Button\+Name}} (int glfw\+Id) const
+\begin{DoxyCompactList}\small\item\em gets the name of a GLFW keyboard button \end{DoxyCompactList}\item 
+char const  $\ast$ \mbox{\hyperlink{classInputSystem_ab4feb1d24c11132a4526044fca4ded7d}{Get\+Mouse\+Button\+Name}} (int glfw\+Id) const
+\begin{DoxyCompactList}\small\item\em gets the name of a GLFW mouse button \end{DoxyCompactList}\item 
+char const  $\ast$ \mbox{\hyperlink{classInputSystem_a6be1e7fff18161177dbf2dcf5f7be4da}{Get\+Controller\+Button\+Name}} (int glfw\+Id) const
+\begin{DoxyCompactList}\small\item\em gets the name of a GLFW controller button \end{DoxyCompactList}\item 
+char const  $\ast$ \mbox{\hyperlink{classInputSystem_a9ec6ce6cc5712208bd058e49bcb83b9f}{Get\+Controller\+Axis\+Name}} (int glfw\+Id) const
+\begin{DoxyCompactList}\small\item\em gets the name of a GLFW controller axis \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classInputSystem_ace02d6c7346f7ba0562bf580ca31debc}\label{classInputSystem_ace02d6c7346f7ba0562bf580ca31debc}} 
 GLFWwindow $\ast$ {\bfseries Get\+Handle} ()
 \item 
@@ -69,10 +70,22 @@ glm\+::vec2 \mbox{\hyperlink{classInputSystem_a1a4c9201d7299d4ff7100a35fc030118}
 \begin{DoxyCompactList}\small\item\em gets mouse pos in world space \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}{Get\+Mouse\+Delta\+Scroll}} ()
 \begin{DoxyCompactList}\small\item\em gets how much the mouse has scrolled since last frame \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $\ast$ \mbox{\hyperlink{classInputSystem_a98f6ef4dc798c419b99a5d8994a38922}{Get\+Action\+By\+Name}} (std\+::string const \&name)
+\mbox{\hyperlink{classAction}{Action}} $\ast$ \mbox{\hyperlink{classInputSystem_a28f78a766e21c2332e62b31dc3c056e3}{Get\+Action\+By\+Name}} (std\+::string const \&name)
 \begin{DoxyCompactList}\small\item\em gets an action by its name \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $>$ const  \& \mbox{\hyperlink{classInputSystem_aa635de5491dcd343eef28a620cf63e91}{Get\+Actions}} () const
+std\+::vector$<$ \mbox{\hyperlink{classAction}{Action}} $>$ const  \& \mbox{\hyperlink{classInputSystem_a78c6dc07330528f96bc8d66a32ee063d}{Get\+Actions}} () const
 \begin{DoxyCompactList}\small\item\em gets the vector of Actions in the \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInputSystem_af8aad9062cda1a0eccad48c4029e82e2}{Get\+Current\+Keyboard\+Button}} () const
+\begin{DoxyCompactList}\small\item\em gets the currently down keyboard button \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInputSystem_a6c814ce74a92b244a512312caae0827e}{Get\+Current\+Mouse\+Button}} () const
+\begin{DoxyCompactList}\small\item\em gets the currently down mouse button \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInputSystem_ad90fc3b913df72b842b991829201c688}{Get\+Current\+Controller\+Button}} () const
+\begin{DoxyCompactList}\small\item\em gets the currently down controller button \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInputSystem_a3535e38ac04bdbd6791607cc1a2b8cd8}{Get\+Current\+Controller\+Axis}} () const
+\begin{DoxyCompactList}\small\item\em gets the currently down controller axis \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_a86a00672ae2b016462e0a04089735a86}{Is\+Controller\+Most\+Recent\+Input}} () const
+\begin{DoxyCompactList}\small\item\em gets whether the most recent input was from a controller and a controller is plugged in \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_a2d29a7b214d01c873565f57e93f7cbc5}{Controller\+Is\+Playstation}} () const
+\begin{DoxyCompactList}\small\item\em gets whether there is a playstation controller plugged in \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classInputSystem_a0e1290a766827532c8312b872d78806e}{Add\+Action\+Reference}} (\mbox{\hyperlink{classActionReference}{Action\+Reference}} $\ast$action\+Reference)
 \begin{DoxyCompactList}\small\item\em adds an \mbox{\hyperlink{classActionReference}{Action\+Reference}} to the \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classInputSystem_a6c21637471f97e9dc8fdcd44247e348e}{Remove\+Action\+Reference}} (\mbox{\hyperlink{classActionReference}{Action\+Reference}} $\ast$action\+Reference)
@@ -114,11 +127,24 @@ adds an \mbox{\hyperlink{classActionReference}{Action\+Reference}} to the \mbox{
 {\em action\+Reference} & the \mbox{\hyperlink{classActionReference}{Action\+Reference}} to add \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classInputSystem_a98f6ef4dc798c419b99a5d8994a38922}\label{classInputSystem_a98f6ef4dc798c419b99a5d8994a38922}} 
+\mbox{\Hypertarget{classInputSystem_a2d29a7b214d01c873565f57e93f7cbc5}\label{classInputSystem_a2d29a7b214d01c873565f57e93f7cbc5}} 
+\index{InputSystem@{InputSystem}!ControllerIsPlaystation@{ControllerIsPlaystation}}
+\index{ControllerIsPlaystation@{ControllerIsPlaystation}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{ControllerIsPlaystation()}{ControllerIsPlaystation()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Controller\+Is\+Playstation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether there is a playstation controller plugged in 
+
+\begin{DoxyReturn}{Returns}
+whether there is a playstation controller plugged in 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a28f78a766e21c2332e62b31dc3c056e3}\label{classInputSystem_a28f78a766e21c2332e62b31dc3c056e3}} 
 \index{InputSystem@{InputSystem}!GetActionByName@{GetActionByName}}
 \index{GetActionByName@{GetActionByName}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetActionByName()}{GetActionByName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $\ast$ Input\+System\+::\+Get\+Action\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAction}{Action}} $\ast$ Input\+System\+::\+Get\+Action\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption})}
 
 
 
@@ -137,11 +163,11 @@ pointer to the action
 {\em name} & name of the action @retun pointer to the action \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classInputSystem_aa635de5491dcd343eef28a620cf63e91}\label{classInputSystem_aa635de5491dcd343eef28a620cf63e91}} 
+\mbox{\Hypertarget{classInputSystem_a78c6dc07330528f96bc8d66a32ee063d}\label{classInputSystem_a78c6dc07330528f96bc8d66a32ee063d}} 
 \index{InputSystem@{InputSystem}!GetActions@{GetActions}}
 \index{GetActions@{GetActions}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetActions()}{GetActions()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $>$ const  \& Input\+System\+::\+Get\+Actions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classAction}{Action}} $>$ const  \& Input\+System\+::\+Get\+Actions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -150,21 +176,94 @@ gets the vector of Actions in the \mbox{\hyperlink{classInputSystem}{Input\+Syst
 \begin{DoxyReturn}{Returns}
 the vector of Actions 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}\label{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}} 
-\index{InputSystem@{InputSystem}!GetDebugKeyName@{GetDebugKeyName}}
-\index{GetDebugKeyName@{GetDebugKeyName}!InputSystem@{InputSystem}}
-\doxysubsubsection{\texorpdfstring{GetDebugKeyName()}{GetDebugKeyName()}}
-{\footnotesize\ttfamily const char $\ast$ Input\+System\+::\+Get\+Debug\+Key\+Name (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classInputSystem_a9ec6ce6cc5712208bd058e49bcb83b9f}\label{classInputSystem_a9ec6ce6cc5712208bd058e49bcb83b9f}} 
+\index{InputSystem@{InputSystem}!GetControllerAxisName@{GetControllerAxisName}}
+\index{GetControllerAxisName@{GetControllerAxisName}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetControllerAxisName()}{GetControllerAxisName()}}
+{\footnotesize\ttfamily char const  $\ast$ Input\+System\+::\+Get\+Controller\+Axis\+Name (\begin{DoxyParamCaption}\item[{int}]{glfw\+Id }\end{DoxyParamCaption}) const}
 
 
 
-displays a text version of a key to imgui (65 becomes \char`\"{}\+A\char`\"{}, etc) 
+gets the name of a GLFW controller axis 
 
 
 \begin{DoxyParams}{Parameters}
-{\em key} & to convert \\
+{\em glfw\+Id} & the ID of the controller axis to get the name of \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the name of the controller axis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a6be1e7fff18161177dbf2dcf5f7be4da}\label{classInputSystem_a6be1e7fff18161177dbf2dcf5f7be4da}} 
+\index{InputSystem@{InputSystem}!GetControllerButtonName@{GetControllerButtonName}}
+\index{GetControllerButtonName@{GetControllerButtonName}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetControllerButtonName()}{GetControllerButtonName()}}
+{\footnotesize\ttfamily char const  $\ast$ Input\+System\+::\+Get\+Controller\+Button\+Name (\begin{DoxyParamCaption}\item[{int}]{glfw\+Id }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of a GLFW controller button 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+Id} & the ID of the controller button to get the name of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the name of the controller button 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a3535e38ac04bdbd6791607cc1a2b8cd8}\label{classInputSystem_a3535e38ac04bdbd6791607cc1a2b8cd8}} 
+\index{InputSystem@{InputSystem}!GetCurrentControllerAxis@{GetCurrentControllerAxis}}
+\index{GetCurrentControllerAxis@{GetCurrentControllerAxis}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetCurrentControllerAxis()}{GetCurrentControllerAxis()}}
+{\footnotesize\ttfamily int Input\+System\+::\+Get\+Current\+Controller\+Axis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the currently down controller axis 
+
+\begin{DoxyReturn}{Returns}
+the GLFW id of the currently down controller axis (-\/1 if no axis active) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_ad90fc3b913df72b842b991829201c688}\label{classInputSystem_ad90fc3b913df72b842b991829201c688}} 
+\index{InputSystem@{InputSystem}!GetCurrentControllerButton@{GetCurrentControllerButton}}
+\index{GetCurrentControllerButton@{GetCurrentControllerButton}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetCurrentControllerButton()}{GetCurrentControllerButton()}}
+{\footnotesize\ttfamily int Input\+System\+::\+Get\+Current\+Controller\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the currently down controller button 
+
+\begin{DoxyReturn}{Returns}
+the GLFW id of the currently down controller button (-\/1 if no button down) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_af8aad9062cda1a0eccad48c4029e82e2}\label{classInputSystem_af8aad9062cda1a0eccad48c4029e82e2}} 
+\index{InputSystem@{InputSystem}!GetCurrentKeyboardButton@{GetCurrentKeyboardButton}}
+\index{GetCurrentKeyboardButton@{GetCurrentKeyboardButton}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetCurrentKeyboardButton()}{GetCurrentKeyboardButton()}}
+{\footnotesize\ttfamily int Input\+System\+::\+Get\+Current\+Keyboard\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the currently down keyboard button 
+
+\begin{DoxyReturn}{Returns}
+the GLFW id of the currently down keyboard button (-\/1 if no button down) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a6c814ce74a92b244a512312caae0827e}\label{classInputSystem_a6c814ce74a92b244a512312caae0827e}} 
+\index{InputSystem@{InputSystem}!GetCurrentMouseButton@{GetCurrentMouseButton}}
+\index{GetCurrentMouseButton@{GetCurrentMouseButton}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetCurrentMouseButton()}{GetCurrentMouseButton()}}
+{\footnotesize\ttfamily int Input\+System\+::\+Get\+Current\+Mouse\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the currently down mouse button 
+
+\begin{DoxyReturn}{Returns}
+the GLFW id of the currently down mouse button (-\/1 if no button down) 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}\label{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}} 
 \index{InputSystem@{InputSystem}!GetGamepadAxisState@{GetGamepadAxisState}}
 \index{GetGamepadAxisState@{GetGamepadAxisState}!InputSystem@{InputSystem}}
@@ -300,6 +399,24 @@ gets the instance of \mbox{\hyperlink{classInputSystem}{Input\+System}}
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classInputSystem}{Input\+System}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_aaa2da9d2e6b0f1ae5008f5c86a13474a}\label{classInputSystem_aaa2da9d2e6b0f1ae5008f5c86a13474a}} 
+\index{InputSystem@{InputSystem}!GetKeyboardButtonName@{GetKeyboardButtonName}}
+\index{GetKeyboardButtonName@{GetKeyboardButtonName}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetKeyboardButtonName()}{GetKeyboardButtonName()}}
+{\footnotesize\ttfamily const char $\ast$ Input\+System\+::\+Get\+Keyboard\+Button\+Name (\begin{DoxyParamCaption}\item[{int}]{glfw\+Id }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of a GLFW keyboard button 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+Id} & the ID of the keyboard button to get the name of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the name of the keyboard button 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_aaf1000882f8617d5b87dfee51e0374cf}\label{classInputSystem_aaf1000882f8617d5b87dfee51e0374cf}} 
 \index{InputSystem@{InputSystem}!GetKeyDown@{GetKeyDown}}
 \index{GetKeyDown@{GetKeyDown}!InputSystem@{InputSystem}}
@@ -371,6 +488,24 @@ checks if a given key is up
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 returns if key is up 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_ab4feb1d24c11132a4526044fca4ded7d}\label{classInputSystem_ab4feb1d24c11132a4526044fca4ded7d}} 
+\index{InputSystem@{InputSystem}!GetMouseButtonName@{GetMouseButtonName}}
+\index{GetMouseButtonName@{GetMouseButtonName}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetMouseButtonName()}{GetMouseButtonName()}}
+{\footnotesize\ttfamily char const  $\ast$ Input\+System\+::\+Get\+Mouse\+Button\+Name (\begin{DoxyParamCaption}\item[{int}]{glfw\+Id }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of a GLFW mouse button 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+Id} & the ID of the mouse button to get the name of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the name of the mouse button 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}\label{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}} 
 \index{InputSystem@{InputSystem}!GetMouseDeltaScroll@{GetMouseDeltaScroll}}
@@ -532,6 +667,21 @@ sets a new window m\+\_\+\+Handle
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int, pass this back to check window 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a86a00672ae2b016462e0a04089735a86}\label{classInputSystem_a86a00672ae2b016462e0a04089735a86}} 
+\index{InputSystem@{InputSystem}!IsControllerMostRecentInput@{IsControllerMostRecentInput}}
+\index{IsControllerMostRecentInput@{IsControllerMostRecentInput}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{IsControllerMostRecentInput()}{IsControllerMostRecentInput()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Is\+Controller\+Most\+Recent\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether the most recent input was from a controller and a controller is plugged in 
+
+was the most recent input from a controller
+
+\begin{DoxyReturn}{Returns}
+whether the most recent input was from a controller 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_a6c21637471f97e9dc8fdcd44247e348e}\label{classInputSystem_a6c21637471f97e9dc8fdcd44247e348e}} 
 \index{InputSystem@{InputSystem}!RemoveActionReference@{RemoveActionReference}}

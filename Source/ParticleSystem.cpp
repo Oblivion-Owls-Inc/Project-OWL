@@ -45,7 +45,7 @@ void ParticleSystem::OnInit()
 ///         consistent buffer sync.
 void ParticleSystem::OnUpdate(float dt)
 {
-    if (m_Emitters.empty() || !Cameras()->GetActiveCamera())
+    if (m_Emitters.empty())
         return;
 
     Renderer()->SetActiveShader("pCompute");

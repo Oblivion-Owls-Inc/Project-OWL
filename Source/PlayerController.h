@@ -46,6 +46,20 @@ public: // constructor / destructor
     /// @brief Destructor for the PlayerController class.
     ~PlayerController() = default;
 
+    
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* GetHealth();
+
+    /// @brief  Gets the MiningLaser component attached to this Entity.
+    /// @return The MiningLaser component attached to this Entity.
+    MiningLaser* GetMiningLaser();
+
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods
@@ -114,6 +128,12 @@ private: // member variables
 
     /// @brief  the control Action to interact with something
     ActionReference m_Interact;
+
+    /// @brief  the control action for horizontal aim
+    ActionReference m_AimHorizontal;
+
+    /// @brief  the control action for vertical aim
+    ActionReference m_AimVertical;
 
 
 //-----------------------------------------------------------------------------
@@ -192,6 +212,14 @@ private: // reading
     /// @brief  reads the control Action to interact with something
     /// @param  data    the JSON data to read from
     void readInteract( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control action for horizontal aim
+    /// @param  data    the JSON data to read from
+    void readAimHorizontal( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control action for vertical aim
+    /// @param  data    the JSON data to read from
+    void readAimVertical( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

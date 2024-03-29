@@ -94,4 +94,8 @@ digraph "Source/InputSystem.h"
   Node41 [label="Stream.t.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Stream_8t_8cpp.html",tooltip="JSON File reading/writing."];
   Node41 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node41 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 [label="InputAction.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$InputAction_8h.html",tooltip="action class, used to track an action with dynamic input"];
+  Node42 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
