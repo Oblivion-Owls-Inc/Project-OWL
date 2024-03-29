@@ -458,6 +458,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\UiBarSprite.cpp" />
     <ClCompile Include="Source\UiButton.cpp" />
     <ClCompile Include="Source\UiElement.cpp" />
+    <ClCompile Include="Source\UiSlider.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\WavesInspector.cpp" />
@@ -588,6 +589,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\CircleCollider.h" />
     <ClInclude Include="Source\UiButton.h" />
     <ClInclude Include="Source\UiElement.h" />
+    <ClInclude Include="Source\UiSlider.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
     <ClInclude Include="Source\WinState.h" />
   </ItemGroup>

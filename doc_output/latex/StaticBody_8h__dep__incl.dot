@@ -48,7 +48,9 @@ digraph "Source/StaticBody.h"
   Node21 [label="Source/TilemapTextureConnector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapTextureConnector_8cpp.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
   Node5 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node22 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
-  Node1 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node23 [label="Source/StaticBody.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$StaticBody_8cpp.html",tooltip="pysics body which can be collided with and does not move"];
+  Node5 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="Source/UiSlider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiSlider_8cpp.html",tooltip="Ui Slider component."];
+  Node1 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="Source/StaticBody.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$StaticBody_8cpp.html",tooltip="pysics body which can be collided with and does not move"];
   Node1 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
 }
