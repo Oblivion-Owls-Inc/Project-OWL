@@ -258,6 +258,25 @@
         m_IgnoreCosts = ignoreCosts;
     }
 
+    
+//-----------------------------------------------------------------------------
+// public: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  checks whether the player can afford the specified building
+    /// @param  buildingIndex   the index of the building to check whether can be afforded
+    /// @return whether the building can be afforded
+    bool ConstructionBehavior::CanAffordBuilding( int buildingIndex ) const
+    {
+        if ( m_PlayerInventory == nullptr || buildingIndex < 0 || buildingIndex >= m_BuildingInfos.size() )
+        {
+            return false;
+        }
+
+        return m_IgnoreCosts || m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ buildingIndex ].M_Cost );
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
@@ -447,7 +466,7 @@
         }
 
         // not enough funds
-        if ( m_PlayerInventory == nullptr || (m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false) )
+        if ( CanAffordBuilding( m_BuildingIndex ) == false )
         {
             return false;
         }

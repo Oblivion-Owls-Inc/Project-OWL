@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                556
+                1163,
+                681
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Autosaved_Scene",
+            "NextSceneName": "MainMenu",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
