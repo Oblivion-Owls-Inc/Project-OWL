@@ -769,7 +769,7 @@
                                     "BuildingSelectionButton": {
                                         "BuildingIndex": 0,
                                         "UnselectedTexture": {
-                                            "AssetName": "Turret1Unselected"
+                                            "AssetName": "Turret0Unselected"
                                         },
                                         "SelectedTexture": {
                                             "AssetName": "Turret0Selected"
@@ -2891,8 +2891,8 @@
                             0.0
                         ],
                         "FrameSize": [
-                            0.20000000298023224,
-                            0.20000000298023224
+                            0.30000001192092896,
+                            0.30000001192092896
                         ],
                         "SizeTypes": [
                             "RelativeToWidth",
@@ -2961,7 +2961,7 @@
                                     1.0
                                 ],
                                 "SizeTypes": [
-                                    "RelativeToWidth",
+                                    "RelativeToHeight",
                                     "RelativeToHeight"
                                 ]
                             }
@@ -91154,7 +91154,7 @@
                         "Transform": {
                             "Translation": [
                                 -2.8303146362304688,
-                                112.81169891357422
+                                112.81172943115234
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91438,7 +91438,7 @@
                                 "AssetName": "Force Turret"
                             },
                             "Build Action": {
-                                "ActionName": "Build Turret 6"
+                                "ActionName": "Build Turret 4"
                             }
                         }
                     ],
@@ -91581,8 +91581,8 @@
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
                     "RemoveEmptyResourceCounters": false,
-                    "Padding": 0.02500000037252903,
-                    "Spacing": -0.02500000037252903,
+                    "Padding": 0.05000000074505806,
+                    "Spacing": -0.05000000074505806,
                     "Opacity": 1.0,
                     "InventoryEntity": {
                         "EntityName": "Player"
@@ -91605,7 +91605,7 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.20000000298023224,
+                        0.15000000596046448,
                         0.10000000149011612
                     ],
                     "SizeTypes": [
