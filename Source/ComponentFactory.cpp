@@ -73,6 +73,7 @@
 #include "BuildingSelectionButton.h"
 #include "DigEffect.h"
 #include "UiSlider.h"
+#include "SettingsManager.h"
 
 
 //-----------------------------------------------------------------------------
@@ -227,7 +228,8 @@
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
         { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
         { "DigEffect"              , ComponentInfo< DigEffect               >() },
-        { "UiSlider"               , ComponentInfo< UiSlider                >() }
+        { "UiSlider"               , ComponentInfo< UiSlider                >() },
+        { "SettingsManager"        , ComponentInfo< SettingsManager         >() }
     };
 
 //-----------------------------------------------------------------------------

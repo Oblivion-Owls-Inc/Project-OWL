@@ -62,7 +62,7 @@ private: // members
 //-----------------------------------------------------------------------------
 
     /// @brief The slider responsible for the volume of the game
-    ComponentReference<UiSlider> m_MasterVolumeslider;
+    ComponentReference<UiSlider> m_MasterVolumeSlider;
 
     /// @brief The slider responsible for the volume of special effects
     ComponentReference<UiSlider> m_SFXVolumeSlider;
@@ -71,7 +71,7 @@ private: // members
     ComponentReference<UiSlider> m_MusicVolumeSlider;
 
     /// @brief The entity for the master volume slider
-    EntityReference m_MasterVolumeEntity = EntityReference({ &m_MasterVolumeslider });
+    EntityReference m_MasterVolumeEntity = EntityReference({ &m_MasterVolumeSlider });
 
     /// @brief The entity for the sfx slider.
     EntityReference m_SFXEntity = EntityReference({ &m_SFXVolumeSlider });
@@ -84,7 +84,6 @@ private: // members
 
     /// @brief Name of the music audio channel
     std::string m_MusicChannelName = "";
-
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -115,6 +114,14 @@ private: // reading
     /// @brief Reads the music slider
     /// @param data The JSON file to read from
     void readMusicSlider(nlohmann::ordered_json const& data);
+
+    /// @brief Reads in the name of SFX channel
+    /// @param data The JSON file to read from
+    void readSFXChannelName(nlohmann::ordered_json const& data);
+
+    /// @brief Reads in the name of the music channel
+    /// @param data The JSON file to reda from
+    void readMusicChannelName(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

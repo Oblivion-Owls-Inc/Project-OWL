@@ -14,6 +14,7 @@
 #include "UiSlider.h"
 #include "UiElement.h"
 #include "UiBarSprite.h"
+#include "AudioSystem.h"
 
 
 //-----------------------------------------------------------------------------
@@ -33,6 +34,48 @@
     /// @brief Called once entering the scene
     void SettingsManager::OnInit()
     {
+        // Change the master volume with the master volume slider
+        m_MasterVolumeSlider.SetOnConnectCallback([this]() 
+        {
+            m_MasterVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
+            {
+                Audio()->SetVolume(newValue);
+            });
+        });
+
+        m_MasterVolumeSlider.SetOnDisconnectCallback([this]()
+        {
+            m_MasterVolumeSlider->RemoveOnSliderValueChangedCallback(GetId());
+        });
+
+        // Change the sfx volume with the sfx volume slider
+        m_SFXVolumeSlider.SetOnConnectCallback([this]()
+        {
+            m_SFXVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
+            {
+                Audio()->SetVolume(m_SFXChannelName, newValue);
+            });
+        });
+
+        m_SFXVolumeSlider.SetOnDisconnectCallback([this]()
+        {
+            m_SFXVolumeSlider->RemoveOnSliderValueChangedCallback(GetId());
+        });
+
+        // Change the music volume with the music volume slider
+        m_MusicVolumeSlider.SetOnConnectCallback([this]()
+        {
+            m_SFXVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
+            {
+                Audio()->SetVolume(m_MusicChannelName, newValue);
+            });
+        });
+
+        m_MusicVolumeSlider.SetOnDisconnectCallback([this]()
+        {
+            m_MusicVolumeSlider->RemoveOnSliderValueChangedCallback(GetId());
+        });
+
         m_MasterVolumeEntity.SetOwnerName(GetName());
         m_MasterVolumeEntity.Init();
 
@@ -62,6 +105,10 @@
         m_MasterVolumeEntity.Inspect("Master Volume Slider");
         m_SFXEntity         .Inspect("SFX Volume Slider");
         m_MusicEntity       .Inspect("Msuic Volume Slider");
+
+        // The actual audio channels
+        Audio()->InspectChannelGroup("SFX Group", &m_SFXChannelName, nullptr);
+        Audio()->InspectChannelGroup("Music Group", &m_MusicChannelName, nullptr);
     }
 
 //-----------------------------------------------------------------------------
@@ -89,6 +136,20 @@
         Stream::Read(m_MusicEntity, data);
     }
 
+    /// @brief Reads in the name of SFX channel
+    /// @param data The JSON file to read from
+    void SettingsManager::readSFXChannelName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_SFXChannelName, data);
+    }
+
+    /// @brief Reads in the name of the music channel
+    /// @param data The JSON file to reda from
+    void SettingsManager::readMusicChannelName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_SFXChannelName, data);
+    }
+
 //-----------------------------------------------------------------------------
 // reading / writing
 //-----------------------------------------------------------------------------
@@ -100,7 +161,9 @@
         static ReadMethodMap< SettingsManager > const readMethods = {
             { "MasterVolumeSlider" , &SettingsManager::readMasterVolumeSlider },
             { "SFXVolumeSlider"    , &SettingsManager::readSFXSlider          },
-            { "MusicVolumeSlider"  , &SettingsManager::readMusicSlider        }
+            { "MusicVolumeSlider"  , &SettingsManager::readMusicSlider        },
+            { "SFXChannelName"     , &SettingsManager::readSFXChannelName     },
+            { "MusicChannelName"   , &SettingsManager::readMusicChannelName   }
         };
 
         return (ReadMethodMap<ISerializable> const&) readMethods;
@@ -115,6 +178,8 @@
         data["MasterVolumeSlider"] = Stream::Write(m_MasterVolumeEntity);
         data["SFXVolumeSlider"] = Stream::Write(m_SFXEntity);
         data["MusicVolumeSlider"] = Stream::Write(m_MusicEntity);
+        data["SFXChannelName"] = Stream::Write(m_SFXChannelName);
+        data["MusicChannelName"] = Stream::Write(m_MusicChannelName);
 
         return data;
     }

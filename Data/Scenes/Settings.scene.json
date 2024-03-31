@@ -542,9 +542,11 @@
                         0.5
                     ],
                     "TileData": [
-                        51,
-                        38,
-                        56,
+                        45,
+                        85,
+                        83,
+                        73,
+                        67,
                         0,
                         54,
                         79,
@@ -556,7 +558,7 @@
                     ]
                 },
                 "Text": {
-                    "Text": "SFX Volume:"
+                    "Text": "Music Volume:"
                 },
                 "TilemapSprite": {
                     "Layer": 4,
