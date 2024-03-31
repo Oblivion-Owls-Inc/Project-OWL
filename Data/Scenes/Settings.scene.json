@@ -269,6 +269,10 @@
                 {
                     "Name": "SaveButton",
                     "Components": {
+                        "SceneChangeButton": {
+                            "SceneName": "MainMenu",
+                            "EventName": "MainMenu"
+                        },
                         "Sprite": {
                             "Layer": 3,
                             "Color": [
@@ -284,7 +288,7 @@
                             }
                         },
                         "UiButton": {
-                            "ClickEventName": "",
+                            "ClickEventName": "MainMenu",
                             "ShouldActivateOnPress": false,
                             "IdleFrame": 0,
                             "HoveredFrame": 1,
@@ -1110,6 +1114,37 @@
                         "RelativeToWidth",
                         "RelativeToHeight"
                     ]
+                }
+            },
+            "Children": null
+        },
+        "Settings Manager": {
+            "Name": "Settings Manager",
+            "Components": {
+                "SettingsManager": {
+                    "MasterVolumeSlider": {
+                        "EntityName": "MasterSlider"
+                    },
+                    "SFXVolumeSlider": {
+                        "EntityName": "SfxSlider"
+                    },
+                    "MusicVolumeSlider": {
+                        "EntityName": "MusicSlider"
+                    },
+                    "SFXChannelName": "Music",
+                    "MusicChannelName": ""
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
                 }
             },
             "Children": null
