@@ -264,6 +264,7 @@
         "BehaviorSystem<Generator>": {},
         "BehaviorSystem<PlayerController>": {},
         "ComponentSystem<ItemComponent>": {},
+        "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
