@@ -32,9 +32,23 @@ public: // methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  tries to interact with the currently targeted Interactable
+    void TryInteract();
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the Transform Component attached to this Interactor
+    /// @return the Transform Component attached to this Interactor
+    Transform const* GetTransform() const;
+
+
+    /// @brief  gets the Interactable Component currently being targeted by this Interactor
+    /// @return the Interactable Component currently being targeted by this Interactor
+    Interactable* GetTargetedInteractable();
 
 
 //-----------------------------------------------------------------------------
@@ -49,6 +63,10 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  called every simulation frame
+    virtual void OnFixedUpdate() override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
@@ -57,8 +75,9 @@ private: // members
     /// @brief  the Transform Component attached to this Interactor
     ComponentReference< Transform > m_Transform;
 
+
     /// @brief  the Interactable Component currently being targeted by this Interactor
-    Interactable* m_TargetedInteractable;
+    ComponentReference< Interactable > m_TargetedInteractable;
 
 
 //-----------------------------------------------------------------------------
@@ -66,7 +85,7 @@ private: // methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  updates which Interactable Component is currently being targeted
+    /// @brief  targets the nearest Interactable within range
     void updateTargetedInteractable();
 
 
@@ -75,8 +94,8 @@ public: // inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for Interactor
-    virtual void Inspector() override;
+    // /// @brief  shows the inspector for Interactor
+    // virtual void Inspector() override;
 
 
 //-----------------------------------------------------------------------------
@@ -89,14 +108,14 @@ public: // reading / writing
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the map of read methods for this Interactor
-    /// @return the map of read methods for this Interactor
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
-
-
-    /// @brief  writes this Interactor to JSON
-    /// @return the JSON data of this Interactor
-    virtual nlohmann::ordered_json Write() const override;
+    // /// @brief  gets the map of read methods for this Interactor
+    // /// @return the map of read methods for this Interactor
+    // virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+    // 
+    // 
+    // /// @brief  writes this Interactor to JSON
+    // /// @return the JSON data of this Interactor
+    // virtual nlohmann::ordered_json Write() const override;
 
     
 //-----------------------------------------------------------------------------

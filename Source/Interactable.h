@@ -15,6 +15,7 @@
 #include "ComponentReference.h"
 class Transform;
 class Sprite;
+class Interactor;
 
 
 /// @brief  Component which can be interacted with by pressing a button when nearby
@@ -35,13 +36,14 @@ public: // methods
 
     
     /// @brief  interacts with this Interactable
-    void Interact();
+    /// @param  interactor  the Interactor Component that interacted with this Interactable
+    void Interact( Interactor* interactor );
 
 
     /// @brief  adds a callback to be called when this Interactable Component is interacted with
     /// @param  ownerId     the ID of the owner of the callback
     /// @param  callback    the callback to add
-    void AddOnInteractCallback( unsigned ownerId, std::function< void () > callback );
+    void AddOnInteractCallback( unsigned ownerId, std::function< void ( Interactor* interactor ) > callback );
 
     /// @brief  removes an OnInteractCallback from this Interactable Component
     /// @param  ownerId     the ownerId of the callback to remove
@@ -51,6 +53,15 @@ public: // methods
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets whether the Interactable can be interacted with
+    /// @return whether the Interactable can be interacted with
+    bool GetEnabled() const;
+
+    /// @brief  sets whether the Interactable can be interacted with
+    /// @param  enabled whether the Interactable can be interacted with
+    void SetEnabled( bool enabled );
 
 
     /// @brief  gets the radius at which this Interactable can be interacted with
@@ -91,6 +102,9 @@ public: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  whether the Interactable can be interacted with
+    bool m_Enabled = true;
 
     /// @brief  the radius at which this Interactable can be interacted with
     float m_InteractionRadius = 1.0f;
@@ -111,7 +125,12 @@ private: // members
 
 
     /// @brief  the callbacks to call whenever this Interactable is interacted with
-    std::vector< std::pair< unsigned, std::function< void () > > > m_OnInteractCallbacks = {};
+    std::vector<
+        std::pair<
+            unsigned,
+            std::function< void ( Interactor* interactor ) >
+        >
+    > m_OnInteractCallbacks = {};
 
 
 
@@ -133,6 +152,10 @@ public: // inspection
 private: // reading
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  reads whether the Interactable can be interacted with
+    /// @param  data    the JSON data to read from
+    void readEnabled( nlohmann::ordered_json const& data );
 
     /// @brief  reads the radius at which this Interactable can be interacted with
     /// @param  data    the JSON data to read from

@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "pch.h"
+
 #include "Interactable.h"
 
 #include "ComponentSystem.h"
@@ -34,11 +36,11 @@
 
     
     /// @brief  interacts with this Interactable
-    void Interactable::Interact()
+    void Interactable::Interact( Interactor* interactor )
     {
         for ( auto& [ ownerId, callback ] : m_OnInteractCallbacks )
         {
-            callback();
+            callback( interactor );
         }
     }
 
@@ -46,7 +48,7 @@
     /// @brief  adds a callback to be called when this Interactable Component is interacted with
     /// @param  ownerId     the ID of the owner of the callback
     /// @param  callback    the callback to add
-    void Interactable::AddOnInteractCallback( unsigned ownerId, std::function< void() > callback )
+    void Interactable::AddOnInteractCallback( unsigned ownerId, std::function< void ( Interactor* interactor ) > callback )
     {
         m_OnInteractCallbacks.emplace_back( ownerId, callback );
     }
@@ -57,14 +59,14 @@
     {
         auto it = std::find_if(
             m_OnInteractCallbacks.begin(), m_OnInteractCallbacks.end(),
-            [ ownerId ]( std::pair< unsigned, std::function< void () > > const& callbackPair ) -> bool
+            [ ownerId ]( std::pair< unsigned, std::function< void ( Interactor* interactor ) > > const& callbackPair ) -> bool
             {
                 return callbackPair.first == ownerId;
             }
         );
         if ( it == m_OnInteractCallbacks.end() )
         {
-            Debug() << "ERROR: could not find OnInteractCallbacks with ownerId " << ownerId << " to remove (" << GetName << ")" << std::endl;
+            Debug() << "ERROR: could not find OnInteractCallback to remove with ownerId " << ownerId << " (" << GetName() << ")" << std::endl;
             return;
         }
 
@@ -75,6 +77,21 @@
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets whether the Interactable can be interacted with
+    /// @return whether the Interactable can be interacted with
+    bool Interactable::GetEnabled() const
+    {
+        return m_Enabled;
+    }
+
+    /// @brief  sets whether the Interactable can be interacted with
+    /// @param  enabled whether the Interactable can be interacted with
+    void Interactable::SetEnabled( bool enabled )
+    {
+        m_Enabled = enabled;
+    }
 
 
     /// @brief  gets the radius at which this Interactable can be interacted with
@@ -172,6 +189,13 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  reads whether the Interactable can be interacted with
+    /// @param  data    the JSON data to read from
+    void Interactable::readEnabled( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Enabled, data );
+    }
+
     /// @brief  reads the radius at which this Interactable can be interacted with
     /// @param  data    the JSON data to read from
     void Interactable::readInteractionRadius( nlohmann::ordered_json const& data )
@@ -204,6 +228,7 @@
     ReadMethodMap< ISerializable > const& Interactable::GetReadMethods() const
     {
         static ReadMethodMap< Interactable > const readMethods = {
+            { "Enabled"          , &Interactable::readEnabled           },
             { "InteractionRadius", &Interactable::readInteractionRadius },
             { "InteractAction"   , &Interactable::readInteractAction    },
             { "PromptEntity"     , &Interactable::readPromptEntity      }
@@ -219,6 +244,7 @@
     {
         nlohmann::ordered_json json = nlohmann::ordered_json::object();
 
+        json[ "Enabled"           ] = Stream::Write( m_Enabled           );
         json[ "InteractionRadius" ] = Stream::Write( m_InteractionRadius );
         json[ "InteractAction"    ] = Stream::Write( m_InteractAction    );
         json[ "PromptEntity"      ] = Stream::Write( m_PromptEntity      );
@@ -249,6 +275,7 @@
     /// @param  other   the other Interactable to copy
     Interactable::Interactable( Interactable const& other ) :
         Component( other ),
+        m_Enabled          ( other.m_Enabled           ),
         m_InteractionRadius( other.m_InteractionRadius ),
         m_InteractAction   ( other.m_InteractAction    ),
         m_PromptEntity     ( other.m_PromptEntity, { &m_PromptSprite } )

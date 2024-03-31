@@ -803,6 +803,9 @@
     <ClCompile Include="Source\Interactable.cpp">
       <Filter>Game\Components\Interactable</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Interactor.cpp">
+      <Filter>Game\Components\Interactable\Interactor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">

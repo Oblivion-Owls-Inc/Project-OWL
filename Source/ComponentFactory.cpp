@@ -73,6 +73,8 @@
 #include "BuildingSelectionButton.h"
 #include "DigEffect.h"
 #include "UiSlider.h"
+#include "Interactable.h"
+#include "Interactor.h"
 
 
 //-----------------------------------------------------------------------------
@@ -227,7 +229,9 @@
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
         { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
         { "DigEffect"              , ComponentInfo< DigEffect               >() },
-        { "UiSlider"               , ComponentInfo< UiSlider                >() }
+        { "UiSlider"               , ComponentInfo< UiSlider                >() },
+        { "Interactable"           , ComponentInfo< Interactable            >() },
+        { "Interactor"             , ComponentInfo< Interactor              >() }
     };
 
 //-----------------------------------------------------------------------------

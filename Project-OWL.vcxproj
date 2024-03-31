@@ -342,6 +342,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
     <ClCompile Include="Source\Interactable.cpp" />
+    <ClCompile Include="Source\Interactor.cpp" />
     <ClCompile Include="Source\Inventory.cpp" />
     <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
