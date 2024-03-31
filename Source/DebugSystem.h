@@ -137,7 +137,12 @@ private: // Members
     bool m_ShowSceneSaveWindow = false;
 
     /// @brief If the Editor is Running
-    bool m_EditorRunning = false;
+    bool m_EditorRunning =
+    #ifdef NDEBUG
+        true;
+    #else
+        false;
+    #endif
 
     /// @brief Flag to show the Save Engine Window
     bool m_ShowEngineSaveWindow = false;
