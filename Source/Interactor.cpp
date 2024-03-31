@@ -120,7 +120,7 @@
             return;
         }
 
-        if ( action->GetReleased() )
+        if ( action->GetTriggered() )
         {
             m_TargetedInteractable->Interact( this );
         }
