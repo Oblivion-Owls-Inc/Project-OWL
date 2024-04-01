@@ -234,7 +234,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "AlphaScene",
+            "NextSceneName": "boost_and_smoke",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
