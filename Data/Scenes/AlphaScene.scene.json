@@ -352,9 +352,9 @@
                 "UseAspectRatio": false
             },
             "Turret": {
-                "Filepath": "Data/Textures/Turret.png",
+                "Filepath": "Data/Textures/Turrets/Type1Turret-Sheet.png",
                 "SheetDimensions": [
-                    19,
+                    7,
                     1
                 ],
                 "Pivot": [
@@ -411,6 +411,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Turret2": {
+                "Filepath": "Data/Textures/Turrets/Type4Turret-Sheet.png",
+                "SheetDimensions": [
+                    8,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Turret2Selected": {
                 "Filepath": "Data/Textures/InventorySlot3_Active.png",
                 "SheetDimensions": [
@@ -435,6 +447,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Turret3": {
+                "Filepath": "Data/Textures/Turrets/Type2Turret-Sheet.png",
+                "SheetDimensions": [
+                    6,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Turret3Selected": {
                 "Filepath": "Data/Textures/InventorySlot4_Active.png",
                 "SheetDimensions": [
@@ -451,6 +475,18 @@
                 "Filepath": "Data/Textures/InventorySlot4_Inactive.png",
                 "SheetDimensions": [
                     1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret4": {
+                "Filepath": "Data/Textures/Turrets/Type6Turret-Sheet.png",
+                "SheetDimensions": [
+                    7,
                     1
                 ],
                 "Pivot": [
@@ -650,7 +686,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret"
+                            "AssetName": "Turret2"
                         }
                     },
                     "Transform": {
@@ -660,8 +696,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -1323,8 +1359,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -1433,7 +1469,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret"
+                            "AssetName": "Turret4"
                         }
                     },
                     "Transform": {
@@ -1443,8 +1479,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -2292,7 +2328,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret"
+                            "AssetName": "Turret3"
                         }
                     },
                     "Transform": {
@@ -2302,8 +2338,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -2832,8 +2868,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -3085,8 +3121,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -91137,7 +91173,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 19.393325805664063,
+                            "Width": 54.85261535644531,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91155,8 +91191,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -13.313934326171875,
-                                120.33723449707031
+                                -0.9346427917480469,
+                                114.48819732666016
                             ],
                             "Rotation": 0.0,
                             "Scale": [
