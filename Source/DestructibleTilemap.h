@@ -38,16 +38,27 @@ public: // methods
     float DamageTile( glm::ivec2 const& tilePos, float damage );
 
 
-    /// @brief  gets the health proportion of the specified tile pos
+    /// @brief  gets the health of the tile at the specified position
     /// @param  tilePos the position of the tile to get the health of
-    /// @return the health of the tile from 1 to 0
-    float GetTileHealthProportion( glm::ivec2 const& tilePos ) const;
+    /// @return the health of the tile
+    float GetTileHealth( glm::ivec2 const& tilePos ) const;
+
+    /// @brief  gets the max health of the tile at the specified position
+    /// @param  tilePos the position of the tile to get the max health of
+    /// @return the max health of the tile
+    float GetMaxHealth( glm::ivec2 const& tilePos ) const;
 
 
     /// @brief  gets the maximum health of tile type
     /// @param  tileId  the ID of the tile type to get the max heath of
     /// @return the max health of the specified tile type
     float GetMaxHealth( int tileId ) const;
+
+
+    /// @brief  gets the health proportion of the specified tile pos
+    /// @param  tilePos the position of the tile to get the health of
+    /// @return the health of the tile from 1 to 0
+    float GetTileHealthProportion( glm::ivec2 const& tilePos ) const;
 
 
 //-----------------------------------------------------------------------------

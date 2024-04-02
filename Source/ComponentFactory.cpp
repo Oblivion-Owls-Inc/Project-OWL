@@ -75,6 +75,7 @@
 #include "UiSlider.h"
 #include "Interactable.h"
 #include "Interactor.h"
+#include "LaserUpgrade.h"
 
 
 //-----------------------------------------------------------------------------
@@ -231,7 +232,8 @@
         { "DigEffect"              , ComponentInfo< DigEffect               >() },
         { "UiSlider"               , ComponentInfo< UiSlider                >() },
         { "Interactable"           , ComponentInfo< Interactable            >() },
-        { "Interactor"             , ComponentInfo< Interactor              >() }
+        { "Interactor"             , ComponentInfo< Interactor              >() },
+        { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() }
     };
 
 //-----------------------------------------------------------------------------
