@@ -109912,6 +109912,92 @@
                     "Children": null
                 }
             ]
+        },
+        "TurretUnlock": {
+            "Name": "TurretUnlock",
+            "Components": {
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.0,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "TurretUnlockPrompt"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fireball"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -3.3489999771118164,
+                        121.79637908935547
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                },
+                "TurretUnlockUpgrade": {
+                    "UnlockBuildingIndex": 1,
+                    "ConstructionEntity": {
+                        "EntityName": "ConstructionManager"
+                    }
+                }
+            },
+            "Children": [
+                {
+                    "Name": "TurretUnlockPrompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -3.3489999771118164,
+                                122.7959976196289
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         }
     },
     "PreparsedScenes": [
