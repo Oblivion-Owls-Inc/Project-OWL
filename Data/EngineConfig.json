@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1163,
-                681
+                888,
+                447
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "GravityTesting",
+            "NextSceneName": "AlphaScene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -321,7 +321,45 @@
         },
         "DebugSystem": {
             "ShowFpsWindow": false,
-            "ShowDebugWindow": true
+            "ShowDebugWindow": true,
+            "OpenSystemWindows": {
+                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<Entity>": true,
+                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Texture>": true,
+                "AssetLibrary<TransformAnimation>": false,
+                "AudioSystem": false,
+                "BehaviorSystem<Animation>": false,
+                "BehaviorSystem<Behavior>": false,
+                "BehaviorSystem<EditorCameraController>": false,
+                "BehaviorSystem<EffectAnimator>": false,
+                "BehaviorSystem<EnemyBehavior>": false,
+                "BehaviorSystem<Generator>": false,
+                "BehaviorSystem<PauseComponent>": false,
+                "BehaviorSystem<PlayerController>": false,
+                "BehaviorSystem<Popup>": false,
+                "BehaviorSystem<RigidBody>": false,
+                "BehaviorSystem<UiButton>": false,
+                "BehaviorSystem<UiSlider>": false,
+                "BehaviorSystem<WavesBehavior>": false,
+                "CameraSystem": false,
+                "CheatSystem": false,
+                "CollisionSystem": false,
+                "ComponentSystem<ItemComponent>": false,
+                "ControlPromptSystem": false,
+                "DebugSystem": true,
+                "EntitySystem": false,
+                "EventSystem": false,
+                "InputSystem": true,
+                "LightingSystem": false,
+                "ParticleSystem": false,
+                "PathfindSystem": false,
+                "PauseSystem": false,
+                "PlatformSystem": false,
+                "RenderSystem": false,
+                "SceneSystem": false,
+                "TileInfoSystem": false
+            }
         },
         "ControlPromptSystem": {
             "PromptMappingFilepath": "Data/ButtonPromptMappings/ButtonPrompts.json"

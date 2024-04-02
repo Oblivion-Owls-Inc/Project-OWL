@@ -159,6 +159,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Generator": {
+                "Filepath": "Data/Textures/GeneratorOn-Sheet.png",
+                "SheetDimensions": [
+                    2,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "HealthBar": {
                 "Filepath": "Data/Textures/healthBar.png",
                 "SheetDimensions": [
@@ -496,10 +508,10 @@
                 "UseAspectRatio": false
             },
             "Van": {
-                "Filepath": "Data/Textures/van_large.png",
+                "Filepath": "Data/Textures/BaseTruck160x128.png",
                 "SheetDimensions": [
                     8,
-                    2
+                    1
                 ],
                 "Pivot": [
                     0.5,
@@ -91173,7 +91185,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 54.85261535644531,
+                            "Width": 10.899808883666992,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91191,8 +91203,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -0.9346427917480469,
-                                114.48819732666016
+                                -14.272671699523926,
+                                122.52861022949219
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -109416,13 +109428,13 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -13.0,
-                        121.5
+                        -13.064029693603516,
+                        121.57707977294922
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.0,
-                        1.0
+                        1.5,
+                        1.5
                     ],
                     "IsDiegetic": true
                 }
@@ -109532,18 +109544,18 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Van"
+                        "AssetName": "Generator"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        12.0,
-                        114.5
+                        12.089897155761719,
+                        114.74604034423828
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.0,
-                        1.0
+                        1.5,
+                        1.5
                     ],
                     "IsDiegetic": true
                 }
@@ -109653,18 +109665,18 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Van"
+                        "AssetName": "Generator"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        5.0,
-                        94.5
+                        4.8210225105285645,
+                        94.7430191040039
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.0,
-                        1.0
+                        1.5,
+                        1.5
                     ],
                     "IsDiegetic": true
                 }
