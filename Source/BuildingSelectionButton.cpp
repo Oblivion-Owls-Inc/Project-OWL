@@ -54,27 +54,17 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
-        m_UiButton.SetOnConnectCallback(
-            [ this ]()
-            {
-                m_UiButton->AddOnClickedCallback(
-                    GetId(),
-                    [ this ]()
-                    {
-                        if ( m_ConstructionBehavior != nullptr )
-                        {
-                            m_ConstructionBehavior->SetBuildingIndex( m_BuildingIndex );
-                        }
-                    }
-                );
-            }
-        );
-        m_UiButton.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_UiButton->RemoveOnOnClickedCallback( GetId() );
-            }
-        );
+        m_UiButton.SetOnConnectCallback( [ this ]() {
+            m_UiButton->AddOnClickedCallback( GetId(), [ this ]() {
+                if ( m_ConstructionBehavior != nullptr && m_ConstructionBehavior->BuildingIsUnlocked( m_BuildingIndex ) )
+                {
+                    m_ConstructionBehavior->SetBuildingIndex( m_BuildingIndex );
+                }
+            } );
+        } );
+        m_UiButton.SetOnDisconnectCallback( [ this ]() {
+            m_UiButton->RemoveOnOnClickedCallback( GetId() );
+        } );
 
         m_UiButton.Init( GetEntity() );
         m_Sprite  .Init( GetEntity() );
@@ -108,7 +98,11 @@
             return;
         }
 
-        if ( m_ConstructionBehavior->GetBuildingIndex() == m_BuildingIndex )
+        if ( m_ConstructionBehavior->BuildingIsUnlocked( m_BuildingIndex ) == false )
+        {
+            m_Sprite->SetTexture( m_LockedTexture );
+        }
+        else if ( m_ConstructionBehavior->GetBuildingIndex() == m_BuildingIndex )
         {
             m_Sprite->SetTexture( m_SelectedTexture );
         }
@@ -134,8 +128,13 @@
     {
         ImGui::DragInt( "building index", &m_BuildingIndex, 0.05f, 0, INT_MAX );
 
+        ImGui::NewLine();
+
         m_UnselectedTexture.Inspect( "unselected texture" );
         m_SelectedTexture  .Inspect( "selected texture"   );
+        m_LockedTexture    .Inspect( "locked texture"     );
+
+        ImGui::NewLine();
 
         m_ConstructionEntity.Inspect( "Construction Entity" );
     }
@@ -168,6 +167,13 @@
         Stream::Read( m_SelectedTexture, data );
     }
 
+    /// @brief  reads the texture to display when this button is locked
+    /// @param  data    the JSON data to read from
+    void BuildingSelectionButton::readLockedTexture( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_LockedTexture, data );
+    }
+
 
     /// @brief  reads the ConstructionManager Entity
     /// @param  data    the JSON data to read from
@@ -190,6 +196,7 @@
             { "BuildingIndex"     , &BuildingSelectionButton::readBuildingIndex      },
             { "UnselectedTexture" , &BuildingSelectionButton::readUnselectedTexture  },
             { "SelectedTexture"   , &BuildingSelectionButton::readSelectedTexture    },
+            { "LockedTexture"     , &BuildingSelectionButton::readLockedTexture      },
             { "ConstructionEntity", &BuildingSelectionButton::readConstructionEntity }
         };
 
@@ -206,6 +213,7 @@
         json[ "BuildingIndex"      ] = Stream::Write( m_BuildingIndex      );
         json[ "UnselectedTexture"  ] = Stream::Write( m_UnselectedTexture  );
         json[ "SelectedTexture"    ] = Stream::Write( m_SelectedTexture    );
+        json[ "LockedTexture"      ] = Stream::Write( m_LockedTexture      );
         json[ "ConstructionEntity" ] = Stream::Write( m_ConstructionEntity );
 
         return json;
@@ -237,6 +245,7 @@
         m_BuildingIndex     ( other.m_BuildingIndex      ),
         m_UnselectedTexture ( other.m_UnselectedTexture  ),
         m_SelectedTexture   ( other.m_SelectedTexture    ),
+        m_LockedTexture     ( other.m_LockedTexture      ),
         m_ConstructionEntity( other.m_ConstructionEntity, { &m_ConstructionBehavior } )
     {}
 

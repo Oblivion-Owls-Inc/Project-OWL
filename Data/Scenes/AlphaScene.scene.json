@@ -363,6 +363,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Turret0Locked": {
+                "Filepath": "Data/Textures/InventorySlot1_Disabled.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Turret0Selected": {
                 "Filepath": "Data/Textures/InventorySlot1_Active.png",
                 "SheetDimensions": [
@@ -377,6 +389,18 @@
             },
             "Turret0Unselected": {
                 "Filepath": "Data/Textures/InventorySlot1_Inactive.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret1Locked": {
+                "Filepath": "Data/Textures/InventorySlot2_Disabled.png",
                 "SheetDimensions": [
                     1,
                     1
@@ -411,6 +435,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Turret2Locked": {
+                "Filepath": "Data/Textures/InventorySlot3_Disabled.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Turret2Selected": {
                 "Filepath": "Data/Textures/InventorySlot3_Active.png",
                 "SheetDimensions": [
@@ -425,6 +461,18 @@
             },
             "Turret2Unselected": {
                 "Filepath": "Data/Textures/InventorySlot3_Inactive.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret3Locked": {
+                "Filepath": "Data/Textures/InventorySlot4_Disabled.png",
                 "SheetDimensions": [
                     1,
                     1
@@ -774,6 +822,9 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret0Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret0Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
@@ -840,6 +891,9 @@
                                         },
                                         "SelectedTexture": {
                                             "AssetName": "Turret1Selected"
+                                        },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret1Locked"
                                         },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
@@ -908,6 +962,9 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret2Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret2Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
@@ -974,6 +1031,9 @@
                                         },
                                         "SelectedTexture": {
                                             "AssetName": "Turret3Selected"
+                                        },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret3Locked"
                                         },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
@@ -91377,20 +91437,24 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
+                            "Archetype": {
+                                "AssetName": "Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 3
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 1"
-                            }
+                            },
+                            "Unlocked": true
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Auto Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91401,28 +91465,30 @@
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Auto Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 2"
-                            }
+                            },
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Pulsar Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Pulsar Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 3"
-                            }
+                            },
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Force Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91433,12 +91499,10 @@
                                     "Count": 4
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Force Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 4"
-                            }
+                            },
+                            "Unlocked": false
                         }
                     ],
                     "BuildingIndex": -1,
