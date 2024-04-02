@@ -142,7 +142,7 @@ $(function() {
 : <a class="el" href="classAudioSystem.html#ab17664bf7588b92fa13f6a6b20d198b0">AudioSystem</a>
 </li>
 <li>GetChildren()
-: <a class="el" href="classEntity.html#a972b8bdc5f29ccf637a047db8b544e88">Entity</a>
+: <a class="el" href="classEntity.html#a7bce3c13551ec4d5ba5b29304b6dd284">Entity</a>
 </li>
 <li>GetClipToWorld()
 : <a class="el" href="classCamera.html#a378750c10b47d23ad5f62cb0637c813c">Camera</a>
@@ -249,7 +249,8 @@ $(function() {
 : <a class="el" href="classEmitter.html#ac91158ccd4ef308a1f860fb9cb6f62ca">Emitter</a>
 </li>
 <li>GetEnabled()
-: <a class="el" href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">System</a>
+: <a class="el" href="classInteractable.html#a8057642dc15e7ac9bb7d547dc836e230">Interactable</a>
+, <a class="el" href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">System</a>
 </li>
 <li>GetEnd()
 : <a class="el" href="classAnimationAsset.html#a7e273dfc1efe36f57e249b1a66f3da0c">AnimationAsset</a>
@@ -371,6 +372,12 @@ $(function() {
 , <a class="el" href="classSceneSystem.html#a5cf3edda7223b86b7d2d4fe151feecf4">SceneSystem</a>
 , <a class="el" href="classTileInfoSystem.html#a23b6c18022a498054113f564f8175272">TileInfoSystem</a>
 </li>
+<li>GetInteractAction()
+: <a class="el" href="classInteractable.html#a515232da99da8ada5ce6dff1c9b8638c">Interactable</a>
+</li>
+<li>GetInteractionRadius()
+: <a class="el" href="classInteractable.html#a7e6a78791cbfca2523cf4378a67c54df">Interactable</a>
+</li>
 <li>GetInterpolationType()
 : <a class="el" href="classCurve.html#a7d730236a249d3246b6c2dacdf235a10">Curve&lt; dimensionality &gt;</a>
 </li>
@@ -468,7 +475,7 @@ $(function() {
 : <a class="el" href="classEmitter.html#a330622fd7fb2aa119330fc45a7d969be">Emitter</a>
 </li>
 <li>GetMaxHealth()
-: <a class="el" href="classDestructibleTilemap.html#a359dc6a90a8cd3314fbd7aa0a3fd938b">DestructibleTilemap</a>
+: <a class="el" href="classDestructibleTilemap.html#a61625498b05206481c1000f212863da2">DestructibleTilemap</a>
 </li>
 <li>GetMaximum()
 : <a class="el" href="classPool.html#a3a96a39f1d46f5b891bffa08e01d7c8f">Pool&lt; Value &gt;</a>
@@ -478,6 +485,9 @@ $(function() {
 </li>
 <li>GetMaxRolls()
 : <a class="el" href="classLootTable.html#a3587970f50acd28471236264a853ddfb">LootTable</a>
+</li>
+<li>GetMaxToughness()
+: <a class="el" href="classMiningLaser.html#a322bf96d7f9c02d5d2ed84108f342564">MiningLaser</a>
 </li>
 <li>GetMesh()
 : <a class="el" href="classTexture.html#a735680df526bd8809aef3162f48024ca">Texture</a>
@@ -556,7 +566,7 @@ $(function() {
 : <a class="el" href="classActionReference.html#ad8c3bae76a1b650684b711cf11c9b1c1">ActionReference</a>
 </li>
 <li>GetParent()
-: <a class="el" href="classEntity.html#a33f9bbd4d813c25b7ed87b639d05ec64">Entity</a>
+: <a class="el" href="classEntity.html#abaf877d014a69e798de80ddec51a7634">Entity</a>
 </li>
 <li>GetParentElement()
 : <a class="el" href="classUiElement.html#a76db7a6309955f9610d0e75e063da295">UiElement</a>
@@ -590,6 +600,9 @@ $(function() {
 </li>
 <li>GetPromptFrameIndex()
 : <a class="el" href="classControlPromptSystem.html#a663d20ec1ee5c7922a098ae2372629f2">ControlPromptSystem</a>
+</li>
+<li>GetPromptSprite()
+: <a class="el" href="classInteractable.html#a13be5b5fbdc9ca626c6ea97afc02ccbc">Interactable</a>
 </li>
 <li>GetPromptTexture()
 : <a class="el" href="classControlPromptSystem.html#a13cb0a6bbb6309f921cfeeacbd05f1c1">ControlPromptSystem</a>
@@ -644,16 +657,18 @@ $(function() {
 , <a class="el" href="classHideableForeground.html#a7b4317904a09fa217e30684549166af6">HideableForeground</a>
 , <a class="el" href="classHomeBase.html#aad78de7e5484bf1cb387b7ecebb52549">HomeBase</a>
 , <a class="el" href="classInputSystem.html#a70a0d3ad29912ecc7e41f05b0620cf66">InputSystem</a>
+, <a class="el" href="classInteractable.html#a10ae96f22d2c677b20c308e8b325db99">Interactable</a>
 , <a class="el" href="classInventory.html#aef2cc344b615069e6abb9acbb878fbc5">Inventory</a>
 , <a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable</a>
 , <a class="el" href="classItemCollector.html#a23ad5aceff7a2e577c28972612c3f4b7">ItemCollector</a>
 , <a class="el" href="classItemComponent.html#ad87bfb05f9752018973a4021008eec83">ItemComponent</a>
 , <a class="el" href="structItemStack.html#af07d43403e48c077d404ff4ad791b736">ItemStack</a>
+, <a class="el" href="classLaserUpgrade.html#aa2790fceadbdd7e578f5261f45cacb58">LaserUpgrade</a>
 , <a class="el" href="classLifetime.html#a079827e458decb7061ef019cd5788d21">Lifetime</a>
 , <a class="el" href="classLight.html#a1708a618bd7f421929d5ed34df61c2a0">Light</a>
 , <a class="el" href="classLightingSystem.html#a0399c28c9f37af59f4f301204c3cb0d2">LightingSystem</a>
 , <a class="el" href="classLootTable.html#ae08e9e7095041e96e39763b74c7185d5">LootTable</a>
-, <a class="el" href="classMiningLaser.html#a68ea8a114340a0b06f4eac1da4c6ed74">MiningLaser</a>
+, <a class="el" href="classMiningLaser.html#a9547bb0f7758754b0c87b20b2f8dcf33">MiningLaser</a>
 , <a class="el" href="classNineslice.html#a570c91d00a122cd4eac36ecc88f50a19">Nineslice</a>
 , <a class="el" href="classOrbitBehavior.html#af3386a82a4d3fb9a97ff73df9540b959">OrbitBehavior</a>
 , <a class="el" href="classPathfinderSource.html#a2e14fd67ed31b3c96932aa58d6db3f0c">PathfinderSource</a>
@@ -767,6 +782,9 @@ $(function() {
 <li>GetSystems()
 : <a class="el" href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">Engine</a>
 </li>
+<li>GetTargetedInteractable()
+: <a class="el" href="classInteractor.html#ae413f7dbbd7deb3319301bdbb4c545f7">Interactor</a>
+</li>
 <li>GetText()
 : <a class="el" href="classResourceCounterUi.html#a2383b5878e0904c6f22f203baa66df29">ResourceCounterUi</a>
 , <a class="el" href="classText.html#acd9dd322e18214aafe707357b2704365">Text</a>
@@ -779,6 +797,9 @@ $(function() {
 </li>
 <li>GetTile()
 : <a class="el" href="classTilemap.html#af9a9459864a2aeacbda8ae88381817d3">Tilemap&lt; TileType &gt;</a>
+</li>
+<li>GetTileHealth()
+: <a class="el" href="classDestructibleTilemap.html#a50464eae93173ff27ef1472d8e2fab35">DestructibleTilemap</a>
 </li>
 <li>GetTileHealthProportion()
 : <a class="el" href="classDestructibleTilemap.html#a82b59b6390c87fd5fc53b37c19f9ab7e">DestructibleTilemap</a>
@@ -813,6 +834,8 @@ $(function() {
 : <a class="el" href="classCollider.html#a89895eccb2c5e34866d7cfc1395ae153">Collider</a>
 , <a class="el" href="classEnemyBehavior.html#a2c63f129124e57fce06f83a86eb27068">EnemyBehavior</a>
 , <a class="el" href="classGenerator.html#a5880f547205cf442fdb944e0291780f0">Generator</a>
+, <a class="el" href="classInteractable.html#aedbdc13f6f438f624a3a2619194e7889">Interactable</a>
+, <a class="el" href="classInteractor.html#a2c607f1705624c5571e01bd2c816b7b3">Interactor</a>
 , <a class="el" href="classItemCollector.html#a795a7e0148b746d0c8e157743be315c5">ItemCollector</a>
 , <a class="el" href="classItemComponent.html#a0207e8fe87748c7579598365632b17f8">ItemComponent</a>
 , <a class="el" href="classMiningLaser.html#a52a2c754e8bbdaae44f4b4b276d94ed0">MiningLaser</a>
@@ -866,7 +889,7 @@ $(function() {
 </li>
 <li>GetVolume()
 : <a class="el" href="classAudioPlayer.html#a03b81a84de841f2e77fc8e9790827724">AudioPlayer</a>
-, <a class="el" href="classAudioSystem.html#adb6bc62af6d5df4ced11b30e709bd9e3">AudioSystem</a>
+, <a class="el" href="classAudioSystem.html#ab58854ba62e758970c787dd29c3eb63e">AudioSystem</a>
 </li>
 <li>GetVolumeVariance()
 : <a class="el" href="classAudioPlayer.html#a152eb2c11aca2d3bcf30993ebdcab919">AudioPlayer</a>
