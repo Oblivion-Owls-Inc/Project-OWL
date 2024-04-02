@@ -1,0 +1,266 @@
+\hypertarget{classInteractable}{}\doxysection{Interactable Class Reference}
+\label{classInteractable}\index{Interactable@{Interactable}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} which can be interacted with by pressing a button when nearby.  
+
+
+
+
+{\ttfamily \#include $<$Interactable.\+h$>$}
+
+
+
+Inheritance diagram for Interactable\+:
+% FIG 0
+
+
+Collaboration diagram for Interactable\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classInteractable_ac43f7ec3e1bddb6d39715f523b8da964}\label{classInteractable_ac43f7ec3e1bddb6d39715f523b8da964}} 
+\mbox{\hyperlink{classInteractable_ac43f7ec3e1bddb6d39715f523b8da964}{Interactable}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInteractable_ad4cff264f54afd601c58139a64317a16}{Interact}} (\mbox{\hyperlink{classInteractor}{Interactor}} $\ast$interactor)
+\begin{DoxyCompactList}\small\item\em interacts with this \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInteractable_a520bfc0bff11b1a1ce5396bc38424133}{Add\+On\+Interact\+Callback}} (unsigned owner\+Id, std\+::function$<$ void(\mbox{\hyperlink{classInteractor}{Interactor}} $\ast$interactor) $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds a callback to be called when this \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} is interacted with \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInteractable_accfbf854c4ae10afc2c9b8c1cc1a831a}{Remove\+On\+Interact\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes an On\+Interact\+Callback from this \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInteractable_a8057642dc15e7ac9bb7d547dc836e230}{Get\+Enabled}} () const
+\begin{DoxyCompactList}\small\item\em gets whether the \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInteractable_a3bc7052ca07dc9693828926ed7975a24}{Set\+Enabled}} (bool enabled)
+\begin{DoxyCompactList}\small\item\em sets whether the \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInteractable_a7e6a78791cbfca2523cf4378a67c54df}{Get\+Interaction\+Radius}} () const
+\begin{DoxyCompactList}\small\item\em gets the radius at which this \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInteractable_af8d0122e4b455a90abdffe4db8fff66c}{Set\+Interaction\+Radius}} (float radius)
+\begin{DoxyCompactList}\small\item\em sets the radius at which this \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ \mbox{\hyperlink{classInteractable_aedbdc13f6f438f624a3a2619194e7889}{Get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSprite}{Sprite}} $\ast$ \mbox{\hyperlink{classInteractable_a13be5b5fbdc9ca626c6ea97afc02ccbc}{Get\+Prompt\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classSprite}{Sprite}} used to display the interact control prompt \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAction}{Action}} const  $\ast$ \mbox{\hyperlink{classInteractable_a515232da99da8ada5ce6dff1c9b8638c}{Get\+Interact\+Action}} () const
+\begin{DoxyCompactList}\small\item\em gets the Interact \mbox{\hyperlink{classAction}{Action}} used to interact with this \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractable_a5cdd46ebcd57912d137460995bdabac2}\label{classInteractable_a5cdd46ebcd57912d137460995bdabac2}} 
+virtual void \mbox{\hyperlink{classInteractable_a5cdd46ebcd57912d137460995bdabac2}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractable_ae1b751ace24dc083db58dec1b034c511}\label{classInteractable_ae1b751ace24dc083db58dec1b034c511}} 
+virtual void \mbox{\hyperlink{classInteractable_ae1b751ace24dc083db58dec1b034c511}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractable_ae9fb94360cf35b956cd1cca5b9f94cf9}\label{classInteractable_ae9fb94360cf35b956cd1cca5b9f94cf9}} 
+virtual void \mbox{\hyperlink{classInteractable_ae9fb94360cf35b956cd1cca5b9f94cf9}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classInteractable_a10ae96f22d2c677b20c308e8b325db99}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classInteractable_a2e86875be825223132b85e67a3d2644d}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classInteractable}{Interactable}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classInteractable}{Interactable}} $\ast$ \mbox{\hyperlink{classInteractable_a7a7247713796a10b794535ad6781f500}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} which can be interacted with by pressing a button when nearby. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInteractable_a520bfc0bff11b1a1ce5396bc38424133}\label{classInteractable_a520bfc0bff11b1a1ce5396bc38424133}} 
+\index{Interactable@{Interactable}!AddOnInteractCallback@{AddOnInteractCallback}}
+\index{AddOnInteractCallback@{AddOnInteractCallback}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{AddOnInteractCallback()}{AddOnInteractCallback()}}
+{\footnotesize\ttfamily void Interactable\+::\+Add\+On\+Interact\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void(\mbox{\hyperlink{classInteractor}{Interactor}} $\ast$interactor) $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback to be called when this \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} is interacted with 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+{\em callback} & the callback to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInteractable_a7a7247713796a10b794535ad6781f500}\label{classInteractable_a7a7247713796a10b794535ad6781f500}} 
+\index{Interactable@{Interactable}!Clone@{Clone}}
+\index{Clone@{Clone}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInteractable}{Interactable}} $\ast$ Interactable\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classInteractable}{Interactable}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classInteractable}{Interactable}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classInteractable_a8057642dc15e7ac9bb7d547dc836e230}\label{classInteractable_a8057642dc15e7ac9bb7d547dc836e230}} 
+\index{Interactable@{Interactable}!GetEnabled@{GetEnabled}}
+\index{GetEnabled@{GetEnabled}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{GetEnabled()}{GetEnabled()}}
+{\footnotesize\ttfamily bool Interactable\+::\+Get\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether the \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with 
+
+\begin{DoxyReturn}{Returns}
+whether the \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteractable_a515232da99da8ada5ce6dff1c9b8638c}\label{classInteractable_a515232da99da8ada5ce6dff1c9b8638c}} 
+\index{Interactable@{Interactable}!GetInteractAction@{GetInteractAction}}
+\index{GetInteractAction@{GetInteractAction}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{GetInteractAction()}{GetInteractAction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAction}{Action}} const  $\ast$ Interactable\+::\+Get\+Interact\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the Interact \mbox{\hyperlink{classAction}{Action}} used to interact with this \mbox{\hyperlink{classInteractable}{Interactable}} 
+
+\begin{DoxyReturn}{Returns}
+the Interact \mbox{\hyperlink{classAction}{Action}} used to interact with this \mbox{\hyperlink{classInteractable}{Interactable}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteractable_a7e6a78791cbfca2523cf4378a67c54df}\label{classInteractable_a7e6a78791cbfca2523cf4378a67c54df}} 
+\index{Interactable@{Interactable}!GetInteractionRadius@{GetInteractionRadius}}
+\index{GetInteractionRadius@{GetInteractionRadius}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{GetInteractionRadius()}{GetInteractionRadius()}}
+{\footnotesize\ttfamily float Interactable\+::\+Get\+Interaction\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the radius at which this \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with 
+
+\begin{DoxyReturn}{Returns}
+the radius at which this \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteractable_a13be5b5fbdc9ca626c6ea97afc02ccbc}\label{classInteractable_a13be5b5fbdc9ca626c6ea97afc02ccbc}} 
+\index{Interactable@{Interactable}!GetPromptSprite@{GetPromptSprite}}
+\index{GetPromptSprite@{GetPromptSprite}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{GetPromptSprite()}{GetPromptSprite()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSprite}{Sprite}} $\ast$ Interactable\+::\+Get\+Prompt\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classSprite}{Sprite}} used to display the interact control prompt 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classSprite}{Sprite}} used to display the interact control prompt 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteractable_a10ae96f22d2c677b20c308e8b325db99}\label{classInteractable_a10ae96f22d2c677b20c308e8b325db99}} 
+\index{Interactable@{Interactable}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Interactable\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classInteractable}{Interactable}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classInteractable}{Interactable}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classInteractable_aedbdc13f6f438f624a3a2619194e7889}\label{classInteractable_aedbdc13f6f438f624a3a2619194e7889}} 
+\index{Interactable@{Interactable}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ Interactable\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classInteractable}{Interactable}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classInteractable}{Interactable}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteractable_ad4cff264f54afd601c58139a64317a16}\label{classInteractable_ad4cff264f54afd601c58139a64317a16}} 
+\index{Interactable@{Interactable}!Interact@{Interact}}
+\index{Interact@{Interact}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{Interact()}{Interact()}}
+{\footnotesize\ttfamily void Interactable\+::\+Interact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classInteractor}{Interactor}} $\ast$}]{interactor }\end{DoxyParamCaption})}
+
+
+
+interacts with this \mbox{\hyperlink{classInteractable}{Interactable}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interactor} & the \mbox{\hyperlink{classInteractor}{Interactor}} \mbox{\hyperlink{classComponent}{Component}} that interacted with this \mbox{\hyperlink{classInteractable}{Interactable}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInteractable_accfbf854c4ae10afc2c9b8c1cc1a831a}\label{classInteractable_accfbf854c4ae10afc2c9b8c1cc1a831a}} 
+\index{Interactable@{Interactable}!RemoveOnInteractCallback@{RemoveOnInteractCallback}}
+\index{RemoveOnInteractCallback@{RemoveOnInteractCallback}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{RemoveOnInteractCallback()}{RemoveOnInteractCallback()}}
+{\footnotesize\ttfamily void Interactable\+::\+Remove\+On\+Interact\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes an On\+Interact\+Callback from this \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the owner\+Id of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInteractable_a3bc7052ca07dc9693828926ed7975a24}\label{classInteractable_a3bc7052ca07dc9693828926ed7975a24}} 
+\index{Interactable@{Interactable}!SetEnabled@{SetEnabled}}
+\index{SetEnabled@{SetEnabled}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{SetEnabled()}{SetEnabled()}}
+{\footnotesize\ttfamily void Interactable\+::\+Set\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+sets whether the \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enabled} & whether the \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInteractable_af8d0122e4b455a90abdffe4db8fff66c}\label{classInteractable_af8d0122e4b455a90abdffe4db8fff66c}} 
+\index{Interactable@{Interactable}!SetInteractionRadius@{SetInteractionRadius}}
+\index{SetInteractionRadius@{SetInteractionRadius}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{SetInteractionRadius()}{SetInteractionRadius()}}
+{\footnotesize\ttfamily void Interactable\+::\+Set\+Interaction\+Radius (\begin{DoxyParamCaption}\item[{float}]{radius }\end{DoxyParamCaption})}
+
+
+
+sets the radius at which this \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with 
+
+
+\begin{DoxyParams}{Parameters}
+{\em radius} & the radius at which this \mbox{\hyperlink{classInteractable}{Interactable}} can be interacted with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInteractable_a2e86875be825223132b85e67a3d2644d}\label{classInteractable_a2e86875be825223132b85e67a3d2644d}} 
+\index{Interactable@{Interactable}!Write@{Write}}
+\index{Write@{Write}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Interactable\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classInteractable}{Interactable}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classInteractable}{Interactable}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Interactable_8h}{Interactable.\+h}}\item 
+Source/\mbox{\hyperlink{Interactable_8cpp}{Interactable.\+cpp}}\end{DoxyCompactItemize}
