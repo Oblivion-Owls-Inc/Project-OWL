@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "MainMenu",
+            "NextSceneName": "Autosaved_Scene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -264,6 +264,7 @@
         "BehaviorSystem<Generator>": {},
         "BehaviorSystem<PlayerController>": {},
         "ComponentSystem<ItemComponent>": {},
+        "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {

@@ -685,7 +685,7 @@
                 "Name": "BuildingSelectionUi",
                 "Components": {
                     "Sprite": {
-                        "Layer": 3,
+                        "Layer": 4,
                         "Color": [
                             0.0,
                             0.0,
@@ -726,7 +726,7 @@
                         "Name": "BuildingSelectionUiFrame",
                         "Components": {
                             "Sprite": {
-                                "Layer": 4,
+                                "Layer": 5,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -779,7 +779,7 @@
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -846,7 +846,7 @@
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -913,7 +913,7 @@
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -980,7 +980,7 @@
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -2864,7 +2864,7 @@
                         "Opacity": 1.0
                     },
                     "Sprite": {
-                        "Layer": 2,
+                        "Layer": 5,
                         "Color": [
                             0.0,
                             0.0,
@@ -2930,7 +2930,7 @@
                                 "Text": ""
                             },
                             "TilemapSprite": {
-                                "Layer": 2,
+                                "Layer": 5,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -91026,6 +91026,7 @@
                         "CurrentValue": 100
                     }
                 },
+                "Interactor": {},
                 "Inventory": {
                     "Items": null
                 },
@@ -91077,9 +91078,6 @@
                     },
                     "FireLaser": {
                         "ActionName": "FireLaser"
-                    },
-                    "Interact": {
-                        "ActionName": "Interact"
                     },
                     "AimVertical": {
                         "ActionName": "AimVertical"
@@ -91153,8 +91151,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -2.8303146362304688,
-                                112.81172943115234
+                                -8.781373977661133,
+                                119.73275756835938
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91324,6 +91322,7 @@
                             },
                             "Range": 4.0,
                             "MiningSpeed": 4.0,
+                            "MaxToughness": 0.0,
                             "BeamColor": [
                                 1.0,
                                 0.0,
@@ -91576,7 +91575,7 @@
                         0.0,
                         0.0
                     ],
-                    "Layer": 2
+                    "Layer": 4
                 },
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
@@ -109256,7 +109255,7 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.10000000149011612,
+                        0.06700000166893005,
                         0.05000000074505806
                     ],
                     "SizeTypes": [
@@ -109479,6 +109478,16 @@
                         "CurrentValue": 5
                     }
                 },
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.5,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "Generator1Prompt"
+                    }
+                },
                 "PathfinderTarget": {
                     "Priority": 1,
                     "Active": false
@@ -109510,7 +109519,45 @@
                     "IsDiegetic": true
                 }
             },
-            "Children": null
+            "Children": [
+                {
+                    "Name": "Generator1Prompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                12.0,
+                                115.5
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         },
         "Generator2": {
             "Name": "Generator2",
@@ -109600,6 +109647,16 @@
                         "CurrentValue": 5
                     }
                 },
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.5,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "Generator2Prompt"
+                    }
+                },
                 "PathfinderTarget": {
                     "Priority": 1,
                     "Active": false
@@ -109631,7 +109688,45 @@
                     "IsDiegetic": true
                 }
             },
-            "Children": null
+            "Children": [
+                {
+                    "Name": "Generator2Prompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                5.0,
+                                95.5
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         },
         "Pause": {
             "Name": "Pause",
@@ -109665,6 +109760,94 @@
                 }
             },
             "Children": null
+        },
+        "LaserUpgrade": {
+            "Name": "LaserUpgrade",
+            "Components": {
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.0,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "LaserUpgradePrompt"
+                    }
+                },
+                "LaserUpgrade": {
+                    "SpeedMultiplier": 1.0,
+                    "DamageMultiplier": 1.0,
+                    "MaxToughnessIncrease": 2.0,
+                    "MiningLaserEntity": {
+                        "EntityName": "MiningLaser"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Ball1"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -6.899168014526367,
+                        121.79637908935547
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "LaserUpgradePrompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -6.899168014526367,
+                                122.7959976196289
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         }
     },
     "PreparsedScenes": [

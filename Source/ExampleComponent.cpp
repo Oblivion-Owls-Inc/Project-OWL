@@ -87,12 +87,12 @@
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
 
-
-    /// @brief  Writes all ExampleComponent data to a JSON file.
-    /// @return The JSON file containing the data.
+    
+    /// @brief  writes this ExampleComponent to JSON
+    /// @return the JSON data of this ExampleComponent
     nlohmann::ordered_json ExampleComponent::Write() const
     {
-        nlohmann::ordered_json json;
+        nlohmann::ordered_json json = nlohmann::ordered_json::object();
 
         return json;
     }

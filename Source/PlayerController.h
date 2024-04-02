@@ -126,9 +126,6 @@ private: // member variables
     /// @brief  the control Action to fire the laser
     ActionReference m_FireLaser;
 
-    /// @brief  the control Action to interact with something
-    ActionReference m_Interact;
-
     /// @brief  the control action for horizontal aim
     ActionReference m_AimHorizontal;
 
@@ -208,10 +205,6 @@ private: // reading
     /// @brief  reads the control Action to fire the laser
     /// @param  data    the JSON data to read from
     void readFireLaser( nlohmann::ordered_json const& data );
-
-    /// @brief  reads the control Action to interact with something
-    /// @param  data    the JSON data to read from
-    void readInteract( nlohmann::ordered_json const& data );
 
     /// @brief  reads the control action for horizontal aim
     /// @param  data    the JSON data to read from
