@@ -60,7 +60,9 @@ digraph "Behavior"
   Node1 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node28 [label="UiButton",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classUiButton.html",tooltip="Ui Button that sends an event when clicked."];
   Node1 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node29 [label="WavesBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWavesBehavior.html",tooltip=" "];
+  Node29 [label="UiSlider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classUiSlider.html",tooltip="Ui Slider component."];
   Node1 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node30 [label="WinState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWinState.html",tooltip=" "];
+  Node30 [label="WavesBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWavesBehavior.html",tooltip=" "];
+  Node1 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="WinState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWinState.html",tooltip=" "];
 }

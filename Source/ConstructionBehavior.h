@@ -146,6 +146,17 @@ public: // accessors
     /// @param  ignoreCosts whether buildings should be able to be constructed for free
     void SetIgnoreCosts( bool ignoreCosts );
 
+    
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  checks whether the player can afford the specified building
+    /// @param  buildingIndex   the index of the building to check whether can be afforded
+    /// @return whether the building can be afforded
+    bool CanAffordBuilding( int buildingIndex ) const;
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods

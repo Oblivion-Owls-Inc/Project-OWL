@@ -26,6 +26,8 @@ typedef glm\+::vec$<$ 2, \mbox{\hyperlink{classUiElement_a7ec81b3507bd2677cae66b
 \mbox{\Hypertarget{classUiElement_a40ea5d2dc2339f44d1ddc7117129ac6f}\label{classUiElement_a40ea5d2dc2339f44d1ddc7117129ac6f}} 
 \mbox{\hyperlink{classUiElement_a40ea5d2dc2339f44d1ddc7117129ac6f}{Ui\+Element}} ()
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classUiElement_adeda0d016be1121872dbd542710f26ce}{Ui\+Pos\+To\+Local\+Anchor}} (glm\+::vec2 const \&ui\+Pos) const
+\begin{DoxyCompactList}\small\item\em converts a UI position to a local anchor position \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ \mbox{\hyperlink{classUiElement_a76db7a6309955f9610d0e75e063da295}{Get\+Parent\+Element}} () const
 \begin{DoxyCompactList}\small\item\em gets the parent \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
 glm\+::vec2 const  \& \mbox{\hyperlink{classUiElement_a9cf5a326edb4ea0f3e339f02d1dfa8da}{Get\+Anchor}} () const
@@ -257,6 +259,24 @@ sets the size types of this \mbox{\hyperlink{classUiElement}{Ui\+Element}}
 {\em size\+Types} & the size types \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_adeda0d016be1121872dbd542710f26ce}\label{classUiElement_adeda0d016be1121872dbd542710f26ce}} 
+\index{UiElement@{UiElement}!UiPosToLocalAnchor@{UiPosToLocalAnchor}}
+\index{UiPosToLocalAnchor@{UiPosToLocalAnchor}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{UiPosToLocalAnchor()}{UiPosToLocalAnchor()}}
+{\footnotesize\ttfamily glm\+::vec2 Ui\+Element\+::\+Ui\+Pos\+To\+Local\+Anchor (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{ui\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+converts a UI position to a local anchor position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ui\+Pos} & the ui position to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the converted local anchor position 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classUiElement_aa4523b7509db41f8be442d77a411a9a7}\label{classUiElement_aa4523b7509db41f8be442d77a411a9a7}} 
 \index{UiElement@{UiElement}!Write@{Write}}
 \index{Write@{Write}!UiElement@{UiElement}}

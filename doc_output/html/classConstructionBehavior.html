@@ -105,6 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d89a57f9136bbb75078a37f5f4ed3f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a9d89a57f9136bbb75078a37f5f4ed3f3">SetIgnoreCosts</a> (bool ignoreCosts)</td></tr>
 <tr class="memdesc:a9d89a57f9136bbb75078a37f5f4ed3f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether buildings should be able to be constructed for free  <a href="classConstructionBehavior.html#a9d89a57f9136bbb75078a37f5f4ed3f3">More...</a><br /></td></tr>
 <tr class="separator:a9d89a57f9136bbb75078a37f5f4ed3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91d141f803b60f7391198e84a0dc2eed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a91d141f803b60f7391198e84a0dc2eed">CanAffordBuilding</a> (int buildingIndex) const</td></tr>
+<tr class="memdesc:a91d141f803b60f7391198e84a0dc2eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks whether the player can afford the specified building  <a href="classConstructionBehavior.html#a91d141f803b60f7391198e84a0dc2eed">More...</a><br /></td></tr>
+<tr class="separator:a91d141f803b60f7391198e84a0dc2eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7007eba3beb52b4b1a683062d2f3559e"><td class="memItemLeft" align="right" valign="top"><a id="a7007eba3beb52b4b1a683062d2f3559e"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a7007eba3beb52b4b1a683062d2f3559e">Inspector</a> () override</td></tr>
 <tr class="memdesc:a7007eba3beb52b4b1a683062d2f3559e"><td class="mdescLeft">&#160;</td><td class="mdescRight">displays this <a class="el" href="classConstructionBehavior.html" title="Component that handles the construction of towers and modification of terrain.">ConstructionBehavior</a> in the Inspector <br /></td></tr>
@@ -175,6 +178,33 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classComponent.html">Component</a> that handles the construction of towers and modification of terrain. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a91d141f803b60f7391198e84a0dc2eed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91d141f803b60f7391198e84a0dc2eed">&#9670;&nbsp;</a></span>CanAffordBuilding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConstructionBehavior::CanAffordBuilding </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>buildingIndex</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>checks whether the player can afford the specified building </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buildingIndex</td><td>the index of the building to check whether can be afforded </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the building can be afforded </dd></dl>
+
+</div>
+</div>
 <a id="adf86235ac69f5bfed5ccd0a0e817df1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf86235ac69f5bfed5ccd0a0e817df1e">&#9670;&nbsp;</a></span>Clone()</h2>
 

@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                913,
-                465
+                1163,
+                681
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -229,6 +229,19 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "DragSlider",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
@@ -247,6 +260,7 @@
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<PauseComponent>": {},
         "BehaviorSystem<UiButton>": {},
+        "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
         "BehaviorSystem<PlayerController>": {},
         "ComponentSystem<ItemComponent>": {},
