@@ -11,7 +11,7 @@
 #include "BuildingSelectionButton.h"
 
 #include "ComponentReference.t.h"
-#include "UiButton.h";
+#include "UiButton.h"
 #include "Sprite.h"
 
 #include "ConstructionBehavior.h"
