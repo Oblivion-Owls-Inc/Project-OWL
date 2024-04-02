@@ -71,8 +71,10 @@
 
         m_UnselectedTexture.SetOwnerName( GetName() );
         m_SelectedTexture  .SetOwnerName( GetName() );
+        m_LockedTexture    .SetOwnerName( GetName() );
         m_UnselectedTexture.Init();
         m_SelectedTexture  .Init();
+        m_LockedTexture    .Init();
 
         m_ConstructionEntity.SetOwnerName( GetName() );
         m_ConstructionEntity.Init();
