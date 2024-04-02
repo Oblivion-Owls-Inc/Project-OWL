@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "MainMenu",
+            "NextSceneName": "Autosaved_Scene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},

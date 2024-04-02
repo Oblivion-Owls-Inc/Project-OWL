@@ -91133,7 +91133,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 77.57330322265625,
+                            "Width": 46.125370025634766,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91151,8 +91151,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -8.40934944152832,
-                                110.95174407958984
+                                -8.781373977661133,
+                                119.73275756835938
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91322,6 +91322,7 @@
                             },
                             "Range": 4.0,
                             "MiningSpeed": 4.0,
+                            "MaxToughness": 0.0,
                             "BeamColor": [
                                 1.0,
                                 0.0,
@@ -109759,6 +109760,94 @@
                 }
             },
             "Children": null
+        },
+        "LaserUpgrade": {
+            "Name": "LaserUpgrade",
+            "Components": {
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.0,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "LaserUpgradePrompt"
+                    }
+                },
+                "LaserUpgrade": {
+                    "SpeedMultiplier": 1.0,
+                    "DamageMultiplier": 1.0,
+                    "MaxToughnessIncrease": 2.0,
+                    "MiningLaserEntity": {
+                        "EntityName": "MiningLaser"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Ball1"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -6.899168014526367,
+                        121.79637908935547
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "LaserUpgradePrompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -6.899168014526367,
+                                122.7959976196289
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         }
     },
     "PreparsedScenes": [
