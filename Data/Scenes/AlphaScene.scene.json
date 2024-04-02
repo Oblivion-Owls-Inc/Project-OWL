@@ -91061,7 +91061,6 @@
                             "AssetName": "PlayerMoveDown"
                         }
                     ],
-                    "MaxSpeed": 1.0,
                     "MiningLaserEntity": {
                         "EntityName": "MiningLaser"
                     },
@@ -91081,12 +91080,15 @@
                     "Interact": {
                         "ActionName": "Interact"
                     },
-                    "AimVertical": {
-                        "ActionName": "AimVertical"
-                    },
-                    "AimHorizontal": {
-                        "ActionName": "AimHorizontal"
-                    }
+                    "VerticalMoveforce": [
+                        30.0,
+                        15.0
+                    ],
+                    "HorizontalMoveforce": [
+                        20.0,
+                        20.0
+                    ],
+                    "JumpForce": 100.0
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -91095,13 +91097,13 @@
                     ],
                     "Acceleration": [
                         0.0,
-                        0.0
+                        -18.0
                     ],
                     "RotationalVelocity": 0.0,
                     "Mass": 1.0,
                     "Restitution": 0.0,
-                    "Friction": 0.0,
-                    "Drag": 12.0
+                    "Friction": 50.0,
+                    "Drag": 2.0
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -91135,7 +91137,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 46.125370025634766,
+                            "Width": 19.393325805664063,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91153,8 +91155,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -2.8303146362304688,
-                                112.81172943115234
+                                -13.313934326171875,
+                                120.33723449707031
                             ],
                             "Rotation": 0.0,
                             "Scale": [

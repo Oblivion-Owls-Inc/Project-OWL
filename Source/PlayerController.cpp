@@ -164,47 +164,53 @@
 
         // The normalised direction vector.
         glm::vec2 direction = { 0.0f, 0.0f };
-        glm::vec2 NormalizedDirection = { 0.0f, 0.0f };
 
         direction.x = m_MoveHorizontal != nullptr ? m_MoveHorizontal->GetAxis() : 0.0f;
         direction.y = m_MoveVertical != nullptr ? m_MoveVertical->GetAxis() : 0.0f;
 
         if ( direction != glm::vec2( 0 ) )
         {
-            NormalizedDirection = glm::normalize( direction );
 
-            if (NormalizedDirection.x > 0 )
+            direction = glm::normalize(direction);
+
+            /// If the player is moving diagonally, adjust the speed
+            if (direction.x != 0.0f && direction.y != 0.0f)
+            {
+                direction *= glm::sqrt(1.5f); /// Compensate for normalization.
+            }
+
+            if (direction.x > 0 )
             {
                 // 0 is right
                 m_Animation->SetAsset( m_Animations[ 0 ] );
-                NormalizedDirection.x *= m_HorizontalMoveforce[0];
+
+                direction.x *= m_HorizontalMoveforce[0];
             }
             else
             {
                 // 1 is left
                 m_Animation->SetAsset( m_Animations[ 1 ] );
-                NormalizedDirection.x *= m_HorizontalMoveforce[1];
+                direction.x *= m_HorizontalMoveforce[1];
             }
 
-            if (NormalizedDirection.y > 0 )
+            if (direction.y > 0 )
             {
                 // 2 is up
                 m_Animation->SetAsset( m_Animations[ 2 ] );
-                NormalizedDirection.y *= m_VerticalMoveforce[0];
+                direction.y *= m_VerticalMoveforce[0];
 
-
-                Debug() << m_RigidBody->GetVelocity().y << std::endl;
-                if (m_RigidBody->GetVelocity().y <= 0.0f )
+                if (std::abs(m_RigidBody->GetVelocity().y) <= 0.1f)
                 {
-                    m_RigidBody->ApplyForce( { 0, m_JumpForce } );
+                    m_RigidBody->ApplyForce(glm::vec2(0, m_JumpForce));
                 }
 
             }
             else
             {
                 // 3 is down
+
                 m_Animation->SetAsset( m_Animations[ 3 ] );
-                NormalizedDirection.y *= m_VerticalMoveforce[1];
+                direction.y *= m_VerticalMoveforce[1];
             }
 
             m_AudioPlayer->Play();
@@ -219,7 +225,7 @@
 
 
        
-        m_RigidBody->ApplyAcceleration( NormalizedDirection );
+        m_RigidBody->ApplyAcceleration( direction );
 
         updateMiningLaser();
     }

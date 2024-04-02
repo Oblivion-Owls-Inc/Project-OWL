@@ -460,9 +460,7 @@
             "Bullet": {
                 "Name": "Bullet",
                 "Components": {
-                    "Bullet": {
-                        "Damage": 1
-                    },
+                    "Bullet": {},
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
@@ -534,7 +532,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": true,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -911,7 +910,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": true
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -979,7 +979,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": true
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -1047,7 +1048,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": true
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Credits",
@@ -1119,7 +1121,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": true
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Settings",
@@ -1354,7 +1357,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -1415,7 +1419,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": ""
                 }
             },
             "Children": null
@@ -89138,7 +89143,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": ""
                 },
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
@@ -89214,7 +89220,8 @@
                     "HorizontalMoveforce": [
                         20.0,
                         20.0
-                    ]
+                    ],
+                    "JumpForce": 80.0
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -89263,7 +89270,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 77.5733871459961,
+                            "Width": 56.95121383666992,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -89281,8 +89288,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -12.842811584472656,
-                                133.66046142578125
+                                -14.096855163574219,
+                                132.74322509765625
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -89395,7 +89402,8 @@
                             "DefaultLoopCount": 0,
                             "PlayOnInit": false,
                             "IsSpatial": false,
-                            "AllowMultipleSounds": false
+                            "AllowMultipleSounds": false,
+                            "ChannelGroupName": ""
                         },
                         "Emitter": {
                             "PPS": 200.0,
@@ -89499,7 +89507,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": ""
                 },
                 "ConstructionBehavior": {
                     "Buildings": [
@@ -89542,9 +89551,6 @@
                     },
                     "CostUiEntity": {
                         "EntityName": "CostUi"
-                    },
-                    "CancelPlacement": {
-                        "ActionName": "Cancel Place"
                     },
                     "PlaceAction": {
                         "ActionName": "Place"
@@ -89650,6 +89656,7 @@
                 },
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
+                    "RemoveEmptyResourceCounters": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
                     "Opacity": 1.0,
@@ -107300,6 +107307,7 @@
             "Components": {
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
+                    "RemoveEmptyResourceCounters": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
                     "Opacity": 1.0,
@@ -107349,7 +107357,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": ""
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -107411,7 +107420,10 @@
                     "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": true,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -107469,7 +107481,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": ""
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -107531,7 +107544,10 @@
                     "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": false,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -107586,7 +107602,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": ""
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -107648,7 +107665,10 @@
                     "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": false,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    }
                 },
                 "Health": {
                     "Health": {
