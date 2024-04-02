@@ -768,8 +768,7 @@ void DebugSystem::WritetoConsole(const std::string& message)
     /// @brief map containing read methods
     ReadMethodMap< DebugSystem > const DebugSystem::s_ReadMethods = {
         { "ShowFpsWindow"    , &readShowFpsWindow     },
-        { "ShowDebugWindow"  , &readShowDebugWindow   },
-        { "OpenSystemWindows", &readOpenSystemWindows }
+        { "ShowDebugWindow"  , &readShowDebugWindow   }
 
     };
 
