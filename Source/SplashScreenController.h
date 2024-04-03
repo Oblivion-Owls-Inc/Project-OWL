@@ -23,6 +23,7 @@
 class Sprite;
 class Transform;
 class Texture;
+class SceneTransition;
 
 
 class SplashScreenController : public Behavior
@@ -136,6 +137,14 @@ private: // member variables
     /// @brief  A cached instance of the parent's Transform.
     ComponentReference<Transform> m_Transform;
 
+
+    /// @brief  the SceneTransition Component responsible for changing scenes
+    ComponentReference< SceneTransition > m_SceneTransition;
+
+    /// @brief  the Entity the SceneTransition Component is attached to
+    EntityReference m_SceneTransitionEntity = EntityReference( { &m_SceneTransition } );
+
+
 //-----------------------------------------------------------------------------
 public: // Inspection
 //-----------------------------------------------------------------------------
@@ -154,6 +163,11 @@ private: // Reading
     /// @brief Read in the logo data for each logo
     /// @param data the JSON fie to read from.
     void readLogos(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the Entity the SceneTransition Component is attached to
+    /// @param  data    the JSON data to read from
+    void readSceneTransitionEntity( nlohmann::ordered_json const& data );
+
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

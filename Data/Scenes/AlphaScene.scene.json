@@ -315,6 +315,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "SettingsButton": {
                 "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
                 "SheetDimensions": [
@@ -363,6 +375,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Turret0Locked": {
+                "Filepath": "Data/Textures/InventorySlot1_Disabled.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Turret0Selected": {
                 "Filepath": "Data/Textures/InventorySlot1_Active.png",
                 "SheetDimensions": [
@@ -377,6 +401,18 @@
             },
             "Turret0Unselected": {
                 "Filepath": "Data/Textures/InventorySlot1_Inactive.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret1Locked": {
+                "Filepath": "Data/Textures/InventorySlot2_Disabled.png",
                 "SheetDimensions": [
                     1,
                     1
@@ -411,6 +447,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Turret2Locked": {
+                "Filepath": "Data/Textures/InventorySlot3_Disabled.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Turret2Selected": {
                 "Filepath": "Data/Textures/InventorySlot3_Active.png",
                 "SheetDimensions": [
@@ -425,6 +473,18 @@
             },
             "Turret2Unselected": {
                 "Filepath": "Data/Textures/InventorySlot3_Inactive.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret3Locked": {
+                "Filepath": "Data/Textures/InventorySlot4_Disabled.png",
                 "SheetDimensions": [
                     1,
                     1
@@ -1955,7 +2015,10 @@
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Credits",
-                                        "EventName": "Credits"
+                                        "EventName": "Credits",
+                                        "SceneTransitionEntity": {
+                                            "EntityName": "SceneTransitionEntity"
+                                        }
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -2096,7 +2159,10 @@
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Settings",
-                                        "EventName": "Settings"
+                                        "EventName": "Settings",
+                                        "SceneTransitionEntity": {
+                                            "EntityName": "SceneTransitionEntity"
+                                        }
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -2472,7 +2538,10 @@
                             },
                             "SceneChangeButton": {
                                 "SceneName": "MainMenu",
-                                "EventName": "QuitConfirmation"
+                                "EventName": "QuitConfirmation",
+                                "SceneTransitionEntity": {
+                                    "EntityName": "SceneTransitionEntity"
+                                }
                             },
                             "Sprite": {
                                 "Layer": 40,
@@ -91133,7 +91202,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 46.125370025634766,
+                            "Width": 54.85261535644531,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91151,8 +91220,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -8.781373977661133,
-                                119.73275756835938
+                                -1.7386102676391602,
+                                121.25630950927734
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91170,7 +91239,10 @@
                         "WinState": {
                             "ItemID": 0,
                             "ItemCount": 10,
-                            "WinScene": "GameWin"
+                            "WinScene": "GameWin",
+                            "SceneTransitionEntity": {
+                                "EntityName": "SceneTransitionEntity"
+                            }
                         }
                     },
                     "Children": null
@@ -109355,7 +109427,10 @@
                     }
                 },
                 "HomeBase": {
-                    "GameOverScene": "Gameover"
+                    "GameOverScene": "Gameover",
+                    "SceneTransitionEntity": {
+                        "EntityName": "SceneTransitionEntity"
+                    }
                 },
                 "PathfinderTarget": {
                     "Priority": 0,
@@ -109835,7 +109910,7 @@
                         "Transform": {
                             "Translation": [
                                 -6.899168014526367,
-                                122.7959976196289
+                                122.79637908935547
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -109848,9 +109923,138 @@
                     "Children": null
                 }
             ]
+        },
+        "TurretUnlock": {
+            "Name": "TurretUnlock",
+            "Components": {
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.0,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "TurretUnlockPrompt"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fireball"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -3.3489999771118164,
+                        121.79637908935547
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "TurretUnlockPrompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -3.3489999771118164,
+                                122.79637908935547
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "SceneTransitionEntity": {
+            "Name": "SceneTransitionEntity",
+            "Components": {
+                "SceneTransition": {
+                    "TransitionDuration": 1.0,
+                    "NextSceneName": ""
+                },
+                "Sprite": {
+                    "Layer": 1000,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 0.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Rectangle"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
         }
     },
     "PreparsedScenes": [
+        "GameWin",
+        "Gameover",
+        "MainMenu",
         "Settings",
         "Tutorial"
     ]
