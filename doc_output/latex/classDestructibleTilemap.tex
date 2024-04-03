@@ -25,10 +25,14 @@ Collaboration diagram for Destructible\+Tilemap\+:
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classDestructibleTilemap_a4ee6df97d96d12f0893d64e555668e13}{Damage\+Tile}} (glm\+::ivec2 const \&tile\+Pos, float damage)
 \begin{DoxyCompactList}\small\item\em damages a tile in the tilemap \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}{Get\+Tile\+Health\+Proportion}} (glm\+::ivec2 const \&tile\+Pos) const
-\begin{DoxyCompactList}\small\item\em gets the health proportion of the specified tile pos \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classDestructibleTilemap_a50464eae93173ff27ef1472d8e2fab35}{Get\+Tile\+Health}} (glm\+::ivec2 const \&tile\+Pos) const
+\begin{DoxyCompactList}\small\item\em gets the health of the tile at the specified position \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classDestructibleTilemap_a61625498b05206481c1000f212863da2}{Get\+Max\+Health}} (glm\+::ivec2 const \&tile\+Pos) const
+\begin{DoxyCompactList}\small\item\em gets the max health of the tile at the specified position \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classDestructibleTilemap_a359dc6a90a8cd3314fbd7aa0a3fd938b}{Get\+Max\+Health}} (int tile\+Id) const
 \begin{DoxyCompactList}\small\item\em gets the maximum health of tile type \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}{Get\+Tile\+Health\+Proportion}} (glm\+::ivec2 const \&tile\+Pos) const
+\begin{DoxyCompactList}\small\item\em gets the health proportion of the specified tile pos \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$ const  $\ast$ \mbox{\hyperlink{classDestructibleTilemap_ae36108f223e2f640e5aa0c8e7b47f830}{Get\+Tilemap}} () const
 \begin{DoxyCompactList}\small\item\em gets the source \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ float $>$ const  $\ast$ \mbox{\hyperlink{classDestructibleTilemap_a1d4a936d8363bf40a5dfd9a00249279e}{Get\+Health\+Tilemap}} () const
@@ -105,10 +109,28 @@ gets the health \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{
 \begin{DoxyReturn}{Returns}
 the health \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classDestructibleTilemap_a61625498b05206481c1000f212863da2}\label{classDestructibleTilemap_a61625498b05206481c1000f212863da2}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetMaxHealth@{GetMaxHealth}}
+\index{GetMaxHealth@{GetMaxHealth}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float Destructible\+Tilemap\+::\+Get\+Max\+Health (\begin{DoxyParamCaption}\item[{glm\+::ivec2 const \&}]{tile\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+gets the max health of the tile at the specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Pos} & the position of the tile to get the max health of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the max health of the tile 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classDestructibleTilemap_a359dc6a90a8cd3314fbd7aa0a3fd938b}\label{classDestructibleTilemap_a359dc6a90a8cd3314fbd7aa0a3fd938b}} 
 \index{DestructibleTilemap@{DestructibleTilemap}!GetMaxHealth@{GetMaxHealth}}
 \index{GetMaxHealth@{GetMaxHealth}!DestructibleTilemap@{DestructibleTilemap}}
-\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}}
+\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily float Destructible\+Tilemap\+::\+Get\+Max\+Health (\begin{DoxyParamCaption}\item[{int}]{tile\+Id }\end{DoxyParamCaption}) const}
 
 
@@ -140,6 +162,24 @@ the map of read methods for this \mbox{\hyperlink{classDestructibleTilemap}{Dest
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
+\mbox{\Hypertarget{classDestructibleTilemap_a50464eae93173ff27ef1472d8e2fab35}\label{classDestructibleTilemap_a50464eae93173ff27ef1472d8e2fab35}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetTileHealth@{GetTileHealth}}
+\index{GetTileHealth@{GetTileHealth}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetTileHealth()}{GetTileHealth()}}
+{\footnotesize\ttfamily float Destructible\+Tilemap\+::\+Get\+Tile\+Health (\begin{DoxyParamCaption}\item[{glm\+::ivec2 const \&}]{tile\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+gets the health of the tile at the specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Pos} & the position of the tile to get the health of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the health of the tile 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}\label{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}} 
 \index{DestructibleTilemap@{DestructibleTilemap}!GetTileHealthProportion@{GetTileHealthProportion}}
 \index{GetTileHealthProportion@{GetTileHealthProportion}!DestructibleTilemap@{DestructibleTilemap}}

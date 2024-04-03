@@ -365,10 +365,13 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\InputInspector.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
+    <ClCompile Include="Source\Interactable.cpp" />
+    <ClCompile Include="Source\Interactor.cpp" />
     <ClCompile Include="Source\Inventory.cpp" />
     <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
     <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\LaserUpgrade.cpp" />
     <ClCompile Include="Source\Lifetime.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\LightingSystem.cpp" />
@@ -540,6 +543,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ControlPromptSystem.h" />
     <ClInclude Include="Source\InputAction.h" />
     <ClInclude Include="Source\BulletAoePulse.h" />
+    <ClInclude Include="Source\Interactable.h" />
+    <ClInclude Include="Source\Interactor.h" />
+    <ClInclude Include="Source\LaserUpgrade.h" />
     <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\pch.h" />

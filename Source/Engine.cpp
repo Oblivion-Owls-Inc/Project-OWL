@@ -46,6 +46,7 @@
 #include "Generator.h"
 #include "EditorCameraController.h"
 #include "UiSlider.h"
+#include "Interactable.h"
 
 #include "ItemComponent.h"
 #include "HomeBase.h"
@@ -368,7 +369,10 @@
         { "LightingSystem"                        , &addSystem< LightingSystem      >                      },
         { "PathfindSystem"                        , &addSystem< PathfindSystem      >                      },
         { "ControlPromptSystem"                   , &addSystem< ControlPromptSystem >                      },
-                                                  
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem      >                      },
+        { "LightingSystem"                        , &addSystem< LightingSystem      >                      },
+        { "PathfindSystem"                        , &addSystem< PathfindSystem      >                      },
+
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
         { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
@@ -382,22 +386,17 @@
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
         { "BehaviorSystem<PlayerController>"      , &addSystem< BehaviorSystem< PlayerController       > > },
         { "BehaviorSystem<UiSlider>"              , &addSystem< BehaviorSystem< UiSlider               > > },
-
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
+
+        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase      > >         },
+        { "ComponentSystem<Interactable>"         , &addSystem< ComponentSystem< Interactable  > >         },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
         { "AssetLibrary<Texture>"                 , &addSystem< AssetLibrarySystem< Texture            > > },
         { "AssetLibrary<TransformAnimation>"      , &addSystem< AssetLibrarySystem< TransformAnimation > > },
-        { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
-                                                                                                          
-        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
-        { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase > >              },
-                                                  
-        { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
-        { "LightingSystem"                        , &addSystem< LightingSystem >                           },
-        { "PathfindSystem"                        , &addSystem< PathfindSystem >                           }
-
+        { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > }
     };
 
     /// @brief  writes the Engine config to json

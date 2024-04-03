@@ -115,13 +115,11 @@
         m_MoveHorizontal.SetOwnerName( GetName() );
         m_MoveVertical  .SetOwnerName( GetName() );
         m_FireLaser     .SetOwnerName( GetName() );
-        m_Interact      .SetOwnerName( GetName() );
         m_AimHorizontal .SetOwnerName( GetName() );
         m_AimVertical   .SetOwnerName( GetName() );
         m_MoveHorizontal.Init();
         m_MoveVertical  .Init();
         m_FireLaser     .Init();
-        m_Interact      .Init();
         m_AimHorizontal .Init();
         m_AimVertical   .Init();
 
@@ -150,7 +148,6 @@
         m_MoveHorizontal.Exit();
         m_MoveVertical  .Exit();
         m_FireLaser     .Exit();
-        m_Interact      .Exit();
         m_AimHorizontal .Exit();
         m_AimVertical   .Exit();
     }
@@ -166,21 +163,6 @@
         )
         {
             return;
-        }
-
-
-        if ( m_Interact != nullptr && m_Interact->GetDown() )
-        {
-            for (auto& generator : Behaviors<Generator>()->GetComponents())
-            {
-                float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
-                    GetEntity()->GetComponent<Transform>()->GetTranslation());
-                if (generator->GetActivationRadius() > distance)
-                {
-                    generator->Activate();
-                    return;
-                }
-            }
         }
 
         // The normalised direction vector.
@@ -332,7 +314,6 @@
         m_MoveHorizontal.Inspect( "Horizontal Control Action" );
         m_MoveVertical  .Inspect( "Vertical Control Action"   );
         m_FireLaser     .Inspect( "Fire Laser Control Action" );
-        m_Interact      .Inspect( "Interact Control Action"   );
         m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
         m_AimVertical   .Inspect( "Vertical Aim Action"       );
     }
@@ -422,13 +403,6 @@
         Stream::Read( m_FireLaser, data );
     }
 
-    /// @brief  the control Action to interact with something
-    /// @param  data    the JSON data to read from
-    void PlayerController::readInteract( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_Interact, data );
-    }
-
     /// @brief  reads the control action for horizontal aim
     /// @param  data    the JSON data to read from
     void PlayerController::readAimHorizontal( nlohmann::ordered_json const& data )
@@ -461,7 +435,6 @@
             { "MoveVertical"     , &PlayerController::readMoveVertical      },
             { "MoveHorizontal"   , &PlayerController::readMoveHorizontal    },
             { "FireLaser"        , &PlayerController::readFireLaser         },
-            { "Interact"         , &PlayerController::readInteract          },
             { "AimVertical"      , &PlayerController::readAimVertical       },
             { "AimHorizontal"    , &PlayerController::readAimHorizontal     }
         };
@@ -489,7 +462,6 @@
         data[ "MoveVertical"      ] = Stream::Write( m_MoveVertical          );
         data[ "MoveHorizontal"    ] = Stream::Write( m_MoveHorizontal        );
         data[ "FireLaser"         ] = Stream::Write( m_FireLaser             );
-        data[ "Interact"          ] = Stream::Write( m_Interact              );
         data[ "AimVertical"       ] = Stream::Write( m_AimVertical           );
         data[ "AimHorizontal"     ] = Stream::Write( m_AimHorizontal         );
 
@@ -524,7 +496,6 @@
         m_MoveVertical         ( other.m_MoveVertical          ),
         m_MoveHorizontal       ( other.m_MoveHorizontal        ),
         m_FireLaser            ( other.m_FireLaser             ),
-        m_Interact             ( other.m_Interact              ),
         m_AimVertical          ( other.m_AimVertical           ),
         m_AimHorizontal        ( other.m_AimHorizontal         )
     {

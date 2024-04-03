@@ -372,6 +372,18 @@
     <Filter Include="Engine\Entity\Component\Behavior\UiSlider">
       <UniqueIdentifier>{fa5b86b1-3b84-434a-b190-91a0f07f1352}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Interactable">
+      <UniqueIdentifier>{8c85caa4-afc5-470d-9c4f-17aecee0a24e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Interactable\Interactor">
+      <UniqueIdentifier>{d8d69bff-7cf8-414a-b39d-d0c7c5d73f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Upgrades">
+      <UniqueIdentifier>{e69d8bdd-6a7f-450b-9c45-54faae0d6c5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Upgrades\LaserUpgrade">
+      <UniqueIdentifier>{a40d7ea3-41c8-438f-93fb-0d83a727cc7a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Components\SettingsManager">
       <UniqueIdentifier>{661f564d-2e4b-44f4-9b60-62e09a48e245}</UniqueIdentifier>
     </Filter>
@@ -797,6 +809,21 @@
     <ClCompile Include="Source\BuildingSelectionButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Interactable.cpp">
+      <Filter>Game\Components\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Interactor.cpp">
+      <Filter>Game\Components\Interactable\Interactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LaserUpgrade.cpp">
+      <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\SettingsManager.cpp">
       <Filter>Game\Components\SettingsManager</Filter>
     </ClCompile>
@@ -1215,6 +1242,21 @@
     </ClInclude>
     <ClInclude Include="Source\UiSlider.h">
       <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interactable.h">
+      <Filter>Game\Components\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interactor.h">
+      <Filter>Game\Components\Interactable\Interactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LaserUpgrade.h">
+      <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
     </ClInclude>
     <ClInclude Include="Source\BuildingSelectionButton.h">
       <Filter>Header Files</Filter>

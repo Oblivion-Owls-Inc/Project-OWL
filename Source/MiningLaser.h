@@ -34,22 +34,6 @@ public: // constructor / Destructor
     /// @brief  destructor
     ~MiningLaser() = default;
 
-    
-//-----------------------------------------------------------------------------
-private: // types
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  a tile currently in the process of being broken
-    struct InProgressTile
-    {
-        /// @brief  the position of the tile
-        glm::ivec2 M_TilePos;
-
-        /// @brief  how much time remains until the tile is broken
-        float remainingTime;
-    };
-
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -72,6 +56,15 @@ public: // accessors
     /// @brief  sets how quickly the laser breaks blocks
     /// @param  miningSpeed  how quickly the laser breaks blocks
     void SetMiningSpeed( float miningSpeed );
+
+
+    /// @brief  gets the threshold of tile toughness above which tiles cannot be damaged
+    /// @returnthe threshold of tile toughness above which tiles cannot be damaged
+    float GetMaxToughness() const;
+
+    /// @brief  sets the threshold of tile toughness above which tiles cannot be damaged
+    /// @param  maxToughness  the threshold of tile toughness above which tiles cannot be damaged
+    void SetMaxToughness( float maxToughness );
 
 
     /// @brief  gets the beam color
@@ -180,6 +173,9 @@ private: // members
     /// @brief  how quickly the laser breaks tiles
     float m_MiningSpeed = 1.0f;
 
+    /// @brief  the threshold of tile toughness above which tiles cannot be damaged
+    float m_MaxToughness = 2.0f;
+
 
     /// @brief  the color of the beam
     glm::vec4 m_BeamColor = { 1.0f, 0.0f, 0.0f, 1.0f };
@@ -260,6 +256,10 @@ private: // reading
     /// @param  data the json data to read from
     void readMiningSpeed( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the threshold of tile toughness above which tiles cannot be damaged
+    /// @param  data the json data to read from
+    void readMaxToughness( nlohmann::ordered_json const& data );
+
 
     /// @brief  reads the color of the beam
     /// @param  data the json data to read from
@@ -289,11 +289,6 @@ private: // reading
     void readIsFiring( nlohmann::ordered_json const& data );
 
 
-
-    /// @brief  map of the read methods for this Component
-    static ReadMethodMap< MiningLaser > s_ReadMethods;
-
-
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
@@ -301,10 +296,7 @@ public: // reading / writing
 
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
     /// @brief  Write all MiningLaser data to a JSON file.
