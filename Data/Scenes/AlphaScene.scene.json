@@ -522,6 +522,11 @@
         },
         "TransformAnimations": null,
         "Animations": {
+            "Base Truck": {
+                "Start": 0,
+                "End": 8,
+                "FrameDuration": 0.125
+            },
             "EnemyMove": {
                 "Start": 0,
                 "End": 12,
@@ -91136,7 +91141,10 @@
                         20.0,
                         20.0
                     ],
-                    "JumpSpeed": 1.0
+                    "JumpSpeed": 1.0,
+                    "IsJumping": false,
+                    "GroundCollisionThreshold": 0.8999999761581421,
+                    "CoyoteTime": 0.30000001192092896
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -109320,6 +109328,15 @@
         "Base": {
             "Name": "Base",
             "Components": {
+                "Animation": {
+                    "FrameIndex": 0,
+                    "FrameDelay": 0.0,
+                    "IsRunning": true,
+                    "LoopCount": -1,
+                    "Animation": {
+                        "AssetName": "Base Truck"
+                    }
+                },
                 "AudioPlayer": {
                     "Sound": {
                         "AssetName": "BaseDamageSound"
