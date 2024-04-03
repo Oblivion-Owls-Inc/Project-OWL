@@ -84,7 +84,7 @@
     /// @brief  called once when entering the scene
     void SceneTransition::OnInit()
     {
-        Behaviors< Behavior >()->AddComponent( this );
+        Behaviors< SceneTransition >()->AddComponent( this );
 
         m_Sprite.Init( GetEntity() );
 
@@ -103,7 +103,7 @@
     /// @brief  called once when exiting the scene
     void SceneTransition::OnExit()
     {
-        Behaviors< Behavior >()->RemoveComponent( this );
+        Behaviors< SceneTransition >()->RemoveComponent( this );
 
         m_Sprite.Exit();
     }

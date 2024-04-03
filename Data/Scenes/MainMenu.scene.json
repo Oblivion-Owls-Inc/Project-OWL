@@ -1334,7 +1334,7 @@
             "Name": "SceneChanger",
             "Components": {
                 "SceneTransition": {
-                    "TransitionDuration": 0.5,
+                    "TransitionDuration": 0.25,
                     "NextSceneName": ""
                 },
                 "Sprite": {

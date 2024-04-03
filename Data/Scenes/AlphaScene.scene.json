@@ -110008,7 +110008,7 @@
             "Name": "SceneTransitionEntity",
             "Components": {
                 "SceneTransition": {
-                    "TransitionDuration": 1.0,
+                    "TransitionDuration": 0.25,
                     "NextSceneName": ""
                 },
                 "Sprite": {
