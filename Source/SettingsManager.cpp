@@ -76,6 +76,8 @@
             m_MusicVolumeSlider->RemoveOnSliderValueChangedCallback(GetId());
         });
 
+        
+
         m_MasterVolumeEntity.SetOwnerName(GetName());
         m_MasterVolumeEntity.Init();
 
@@ -84,6 +86,11 @@
 
         m_MusicEntity.SetOwnerName(GetName());
         m_MusicEntity.Init();
+
+        // Set the slider values to the current values
+        m_MasterVolumeSlider->SetValue(Audio()->GetVolume());
+        m_SFXVolumeSlider->SetValue(Audio()->GetVolume(m_SFXChannelName));
+        m_MusicVolumeSlider->SetValue(Audio()->GetVolume(m_MusicChannelName));
     }
 
     /// @brief Called once exiting scene

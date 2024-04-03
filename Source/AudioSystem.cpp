@@ -117,6 +117,7 @@
         if ( it == m_Groups.end() )
         {
             Debug() << "WARNING: unable to find AudioGroup with name \"" << name << "\"" << std::endl;
+            return 0.0f;
         }
 
         return it->M_Volume;
@@ -137,6 +138,7 @@
         if ( it == m_Groups.end() )
         {
             Debug() << "WARNING: unable to find AudioGroup with name \"" << name << "\"" << std::endl;
+            return;
         }
 
         it->M_Volume = volume;
