@@ -86,6 +86,7 @@ void Generator::OnInit()
     m_Transform       .Init( GetEntity() );
     m_Health          .Init( GetEntity() );
     m_Emitter         .Init( GetEntity() );
+    m_Sprite.Init(GetEntity());
     m_PathfinderTarget.Init( GetEntity() );
 
     m_WavePrefab.SetOwnerName(GetName());
@@ -104,6 +105,7 @@ void Generator::OnExit()
     m_Transform       .Exit();
     m_Health          .Exit();
     m_Emitter         .Exit();
+    m_Sprite          .Exit();
     m_PathfinderTarget.Exit();
 }
 
@@ -216,6 +218,11 @@ void Generator::Activate()
     m_ChangeActive = true;
     m_ActivateRing = true;
 
+    if (m_Sprite != nullptr)
+    {
+        m_Sprite->SetFrameIndex(1);
+    }
+
     if ( m_PathfinderTarget != nullptr )
     {
         m_PathfinderTarget->SetActive( true );
@@ -229,6 +236,11 @@ void Generator::Deactivate()
     m_ChangeActive = false;
     m_DeactivateRing = true;
     m_CanSpawnWave = true;
+
+    if (m_Sprite != nullptr)
+    {
+        m_Sprite->SetFrameIndex(0);
+    }
 }
 
 //-----------------------------------------------------------------------------

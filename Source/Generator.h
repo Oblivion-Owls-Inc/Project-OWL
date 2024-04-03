@@ -15,6 +15,7 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "Health.h"
+#include "Sprite.h"
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"
@@ -134,6 +135,9 @@ private: // variables
 
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
+
+    /// @brief  the Sprite component attached to this Generator
+    ComponentReference< Sprite > m_Sprite;
 
     /// @brief  the PathfinderTarget Component attached to this Generator
     ComponentReference< PathfinderTarget > m_PathfinderTarget;
