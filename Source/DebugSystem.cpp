@@ -598,7 +598,7 @@ void DebugSystem::OnFixedUpdate()
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
-    Stream::WriteToFile( "Data/Config/DebugSystem.json", WriteSystemDebugWindowStates() );
+    Stream::WriteToFile( "Data/DebugSystem.json", WriteSystemDebugWindowStates() );
 
     //ImGui::End();
     ImGui::Render();
@@ -742,7 +742,7 @@ void DebugSystem::WritetoConsole(const std::string& message)
     {
         nlohmann::ordered_json data;
 
-        data = Stream::ParseFromFile("Data/Config/DebugSystem.json");
+        data = Stream::ParseFromFile("Data/DebugSystem.json");
 
         readOpenSystemWindows(data);
     }

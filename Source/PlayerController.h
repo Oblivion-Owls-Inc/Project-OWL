@@ -76,11 +76,9 @@ public: // virtual override methods
     /// @brief Update method called per frame.
     virtual void OnFixedUpdate() override;
 
-
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
-   
 
     /// @brief The amount of force to apply to the player when moving vertically
     glm::vec2 m_VerticalMoveforce = { 1.0f, 1.0f };
@@ -92,7 +90,20 @@ private: // member variables
     glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
 
     /// @brief Jump force
-    float m_JumpForce = 1.0f;
+    float m_JumpSpeed = 1.0f;
+
+    /// @brief  if the player is currently jumping
+    bool m_IsJumping = false;
+
+    /// @breif  How closely aligned the collision normal must be with the vertical axis
+    float m_GroundCollisionThreshold = 0.9f;
+
+    /// @brief Allowed time to jump after falling off a platform
+    float m_MaxCoyoteTime = 0.3f;
+
+    /// @brief  The current time the player has to jump after falling off a platform
+    float m_CurrentCoyoteTime = 0.0f;
+
 
     /// @brief  player directional movement animations
     AssetReference< AnimationAsset > m_Animations[ 4 ] = {};
@@ -158,7 +169,6 @@ private: // methods
     /// @brief  What to do when the player has been hit.
     /// @param  other   - the collider of the other entity.
     void onCollisionEnter( Collider* other );
-
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -232,9 +242,20 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readAimVertical( nlohmann::ordered_json const& data );
 
-    /// @brief  Reads the Jump force from the JSON file.
-    void readJumpForce( nlohmann::ordered_json const& data );
+    /// @brief  Reads the JumpSpeed from the JSON file.
+    void readJumpSpeed( nlohmann::ordered_json const& data );
 
+    /// @brief Read in the ground collision threshold.
+    /// @param data - the JSON file to read from.
+    void readGroundCollisionThreshold( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the max coyote time.
+    /// @param data - the JSON file to read from.
+    void readMaxCoyoteTime( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the is jumping state.
+    /// @param data - the JSON file to read from.
+    void readIsJumping( nlohmann::ordered_json const& data );
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

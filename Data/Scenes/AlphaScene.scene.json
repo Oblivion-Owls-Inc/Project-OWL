@@ -91136,7 +91136,7 @@
                         20.0,
                         20.0
                     ],
-                    "JumpForce": 100.0
+                    "JumpSpeed": 1.0
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -91170,7 +91170,7 @@
                 "Transform": {
                     "Translation": [
                         -14.5,
-                        121.5
+                        121.3010025024414
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -91185,7 +91185,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 10.899808883666992,
+                            "Width": 36.66243362426758,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91203,8 +91203,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -14.272671699523926,
-                                122.52861022949219
+                                -13.500850677490234,
+                                121.29113006591797
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91247,7 +91247,7 @@
                         "Transform": {
                             "Translation": [
                                 -14.5,
-                                122.5
+                                122.3010025024414
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91386,15 +91386,15 @@
                                 "Flags": 3
                             },
                             "Direction": [
-                                -0.8051182627677917,
-                                0.5931141972541809
+                                -0.9363964796066284,
+                                0.3509439527988434
                             ],
-                            "IsFiring": false
+                            "IsFiring": true
                         },
                         "Transform": {
                             "Translation": [
                                 -14.5,
-                                121.5
+                                121.3010025024414
                             ],
                             "Rotation": 0.0,
                             "Scale": [

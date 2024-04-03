@@ -13,6 +13,8 @@
 #include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
 
 #include "InputSystem.h"        // GetInstance, GetKeyDown
+#include "CollisionSystem.h"    // GetInstance, RayCast
+#include "Engine.h"             // GetInstance, GetFixedFrameDuration
 #include "AnimationAsset.h"
 #include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
@@ -85,7 +87,7 @@
                 m_Collider->RemoveOnCollisionEnterCallback( GetId() );
             }
         );
-    
+
         m_RigidBody  .Init( GetEntity() );
         m_Animation  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
@@ -107,6 +109,22 @@
         m_FireLaser     .Init();
         m_Interact      .Init();
 
+        m_Collider->AddOnCollisionCallback( GetId(),
+            [this](Collider* collider, CollisionData const& collisionData)
+            {
+                const glm::vec2 VerticleDirection(0.0f, 1.0f);
+
+                float dotProduct = glm::dot(collisionData.normal, VerticleDirection);
+
+                if (dotProduct > m_GroundCollisionThreshold) // If the player is colliding with the ground
+                {
+                    m_IsJumping = false;
+                    
+                    m_CurrentCoyoteTime = 0.0f;
+                }
+            }
+        );
+
         for ( AssetReference< AnimationAsset >& assetReference : m_Animations )
         {
             assetReference.SetOwnerName( GetName() );
@@ -119,6 +137,8 @@
     void PlayerController::OnExit()
     {
         Behaviors<Behavior>()->RemoveComponent(this);
+
+        m_Collider->RemoveOnCollisionCallback(GetId());
 
         m_RigidBody  .Exit();
         m_Animation  .Exit();
@@ -135,10 +155,13 @@
         m_Interact      .Exit();
     }
 
+   
 
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
+        float DeltaTime = GameEngine()->GetFixedFrameDuration();
+
         if (
             m_Animation == nullptr ||
             m_AudioPlayer == nullptr ||
@@ -199,9 +222,12 @@
                 m_Animation->SetAsset( m_Animations[ 2 ] );
                 direction.y *= m_VerticalMoveforce[0];
 
-                if (std::abs(m_RigidBody->GetVelocity().y) <= 0.1f)
+                if (m_IsJumping == false || m_CurrentCoyoteTime <= m_MaxCoyoteTime)
                 {
-                    m_RigidBody->ApplyForce(glm::vec2(0, m_JumpForce));
+                    m_RigidBody->ApplyVelocity(glm::vec2(0, m_JumpSpeed));
+                    m_IsJumping = true;
+                    m_CurrentCoyoteTime = m_MaxCoyoteTime + 1; // Make sure that the player can't jump again
+                                                               // until they hit the ground.
                 }
 
             }
@@ -327,7 +353,9 @@
         m_FireLaser.Inspect( "Fire Laser Control Action" );
         m_Interact.Inspect( "Interact Control Action" );
 
-        ImGui::DragFloat( "Jump Force", &m_JumpForce, 0.05f );
+        ImGui::DragFloat( "Jump Force", &m_JumpSpeed, 0.05f );
+        ImGui::DragFloat( "Ground Collision Threshold", &m_GroundCollisionThreshold, 0.05f );
+        ImGui::DragFloat( "Max Coyote Time", &m_MaxCoyoteTime, 0.05f );
     }
 
 
@@ -409,6 +437,27 @@
         Stream::Read( m_MoveVertical, data );
     }
 
+    /// @brief Read in the ground collision threshold.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readGroundCollisionThreshold(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_GroundCollisionThreshold, data);
+    }
+
+    /// @brief Read in the max coyote time.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readMaxCoyoteTime(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_MaxCoyoteTime, data);
+    }
+
+    /// @brief Read in the is jumping state.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readIsJumping(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_IsJumping, data);
+    }
+
     /// @brief  the control Action used for vertical movement
     /// @param  data    the JSON data to read from
     void PlayerController::readMoveHorizontal( nlohmann::ordered_json const& data )
@@ -430,9 +479,9 @@
         Stream::Read( m_Interact, data );
     }
 
-    void PlayerController::readJumpForce(nlohmann::ordered_json const& data)
+    void PlayerController::readJumpSpeed(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_JumpForce, data);
+        Stream::Read(m_JumpSpeed, data);
     }
 
 //-----------------------------------------------------------------------------
@@ -445,16 +494,19 @@
     ReadMethodMap< ISerializable > const& PlayerController::GetReadMethods() const
     {
         static ReadMethodMap< PlayerController > const readMethods = {
-            { "VerticalMoveforce"  , &PlayerController::readVerticalMoveForce   },
-            { "HorizontalMoveforce", &PlayerController::readHorizontalMoveForce },
-            { "RespawnLocation"    , &PlayerController::readRespawnLocation     },
-            { "Animations"         , &PlayerController::readAnimations          },
-            { "MiningLaserEntity"  , &PlayerController::readMiningLaserEntity   },
-            { "MoveVertical"       , &PlayerController::readMoveVertical        },
-            { "MoveHorizontal"     , &PlayerController::readMoveHorizontal      },
-            { "FireLaser"          , &PlayerController::readFireLaser           },
-            { "Interact"           , &PlayerController::readInteract            },
-            { "JumpForce"          , &PlayerController::readJumpForce           }
+            { "VerticalMoveforce"       , &PlayerController::readVerticalMoveForce        },
+            { "HorizontalMoveforce"     , &PlayerController::readHorizontalMoveForce      },
+            { "RespawnLocation"         , &PlayerController::readRespawnLocation          },
+            { "Animations"              , &PlayerController::readAnimations               },
+            { "MiningLaserEntity"       , &PlayerController::readMiningLaserEntity        },
+            { "MoveVertical"            , &PlayerController::readMoveVertical             },
+            { "MoveHorizontal"          , &PlayerController::readMoveHorizontal           },
+            { "FireLaser"               , &PlayerController::readFireLaser                },
+            { "Interact"                , &PlayerController::readInteract                 },
+            { "JumpSpeed"               , &PlayerController::readJumpSpeed                },
+            { "IsJumping"               , &PlayerController::readIsJumping                },
+            { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
+            { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -474,15 +526,18 @@
             animationNames.push_back( Stream::Write( animation ) );
         }
 
-        data[ "MiningLaserEntity"   ] = Stream::Write( m_MiningLaserEntity     );
-        data[ "RespawnLocation"     ] = Stream::Write( m_PlayerRespawnLocation );
-        data[ "MoveVertical"        ] = Stream::Write( m_MoveVertical          );
-        data[ "MoveHorizontal"      ] = Stream::Write( m_MoveHorizontal        );
-        data[ "FireLaser"           ] = Stream::Write( m_FireLaser             );
-        data[ "Interact"            ] = Stream::Write( m_Interact              );
-        data[ "VerticalMoveforce"   ] = Stream::Write( m_VerticalMoveforce     );
-        data[ "HorizontalMoveforce" ] = Stream::Write( m_HorizontalMoveforce   );
-        data[ "JumpForce"           ] = Stream::Write( m_JumpForce             );
+        data[ "MiningLaserEntity"   ]       = Stream::Write( m_MiningLaserEntity     );
+        data[ "RespawnLocation"     ]       = Stream::Write( m_PlayerRespawnLocation );
+        data[ "MoveVertical"        ]       = Stream::Write( m_MoveVertical          );
+        data[ "MoveHorizontal"      ]       = Stream::Write( m_MoveHorizontal        );
+        data[ "FireLaser"           ]       = Stream::Write( m_FireLaser             );
+        data[ "Interact"            ]       = Stream::Write( m_Interact              );
+        data[ "VerticalMoveforce"   ]       = Stream::Write( m_VerticalMoveforce     );
+        data[ "HorizontalMoveforce" ]       = Stream::Write( m_HorizontalMoveforce   );
+        data[ "JumpSpeed"           ]       = Stream::Write( m_JumpSpeed             );
+        data[ "IsJumping"           ]       = Stream::Write( m_IsJumping             );
+        data[ "GroundCollisionThreshold" ]  = Stream::Write( m_GroundCollisionThreshold );
+        data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
 
         return data;
     }
@@ -510,14 +565,17 @@
     /// @param other A PlayerController to copy.
     PlayerController::PlayerController(PlayerController const& other):
         Behavior( other ),
-        m_PlayerRespawnLocation( other.m_PlayerRespawnLocation ),
-        m_MoveVertical         ( other.m_MoveVertical          ),
-        m_MoveHorizontal       ( other.m_MoveHorizontal        ),
-        m_FireLaser            ( other.m_FireLaser             ),
-        m_Interact             ( other.m_Interact              ),
-        m_VerticalMoveforce    ( other.m_VerticalMoveforce     ),
-        m_HorizontalMoveforce  ( other.m_HorizontalMoveforce   ),
-        m_JumpForce            ( other.m_JumpForce             )
+        m_PlayerRespawnLocation   ( other.m_PlayerRespawnLocation ),
+        m_MoveVertical            ( other.m_MoveVertical          ),
+        m_MoveHorizontal          ( other.m_MoveHorizontal        ),
+        m_FireLaser               ( other.m_FireLaser             ),
+        m_Interact                ( other.m_Interact              ),
+        m_VerticalMoveforce       ( other.m_VerticalMoveforce     ),
+        m_HorizontalMoveforce     ( other.m_HorizontalMoveforce   ),
+        m_JumpSpeed               ( other.m_JumpSpeed             ),
+        m_IsJumping               ( other.m_IsJumping             ),
+        m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
+        m_MaxCoyoteTime           ( other.m_MaxCoyoteTime         )
     {
         // Copy the animations
         for (int i = 0; i < NUM_ANIMATIONS; i++)
