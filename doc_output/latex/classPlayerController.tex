@@ -16,6 +16,10 @@ Collaboration diagram for Player\+Controller\+:
 \mbox{\Hypertarget{classPlayerController_ab89c90498ca2285d7f0ef0b83a091966}\label{classPlayerController_ab89c90498ca2285d7f0ef0b83a091966}} 
 \mbox{\hyperlink{classPlayerController_ab89c90498ca2285d7f0ef0b83a091966}{$\sim$\+Player\+Controller}} ()=default
 \begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHealth}{Health}} $\ast$ \mbox{\hyperlink{classPlayerController_a9143b64c9940f068783f713dc2b6f354}{Get\+Health}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classHealth}{Health}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} $\ast$ \mbox{\hyperlink{classPlayerController_a566aced6020932acbc73f6e8f3ce11b6}{Get\+Mining\+Laser}} ()
+\begin{DoxyCompactList}\small\item\em Gets the \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classPlayerController_ab6709fd05481c13c8845ff9f4c865a84}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classPlayerController_aa9ec38dc404388d57ebabea4b8e6802c}{On\+Exit}} () override
@@ -48,6 +52,8 @@ Default constructor for the \mbox{\hyperlink{classPlayerController}{Player\+Cont
 Default Constructor.
 
 \DoxyHorRuler{0}
+ \hypertarget{classPlayerController_autotoc_md9}{}\doxysubsubsection{Static Variables}\label{classPlayerController_autotoc_md9}
+\DoxyHorRuler{0}
  \hypertarget{classPlayerController_autotoc_md10}{}\doxysubsubsection{Public\+: constructor / destructor}\label{classPlayerController_autotoc_md10}
 
 
@@ -73,6 +79,32 @@ A copy of the current \mbox{\hyperlink{classPlayerController}{Player\+Controller
 
 Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
 
+\mbox{\Hypertarget{classPlayerController_a9143b64c9940f068783f713dc2b6f354}\label{classPlayerController_a9143b64c9940f068783f713dc2b6f354}} 
+\index{PlayerController@{PlayerController}!GetHealth@{GetHealth}}
+\index{GetHealth@{GetHealth}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{GetHealth()}{GetHealth()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHealth}{Health}}$\ast$ Player\+Controller\+::\+Get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the \mbox{\hyperlink{classHealth}{Health}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classHealth}{Health}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlayerController_a566aced6020932acbc73f6e8f3ce11b6}\label{classPlayerController_a566aced6020932acbc73f6e8f3ce11b6}} 
+\index{PlayerController@{PlayerController}!GetMiningLaser@{GetMiningLaser}}
+\index{GetMiningLaser@{GetMiningLaser}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{GetMiningLaser()}{GetMiningLaser()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}}$\ast$ Player\+Controller\+::\+Get\+Mining\+Laser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. 
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classPlayerController_ae50b279dfe6216366181b093ec9cc705}\label{classPlayerController_ae50b279dfe6216366181b093ec9cc705}} 
 \index{PlayerController@{PlayerController}!GetReadMethods@{GetReadMethods}}
 \index{GetReadMethods@{GetReadMethods}!PlayerController@{PlayerController}}
@@ -114,7 +146,9 @@ Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149f
 
 Update method called per frame. 
 
-on fixed update check which input is being pressed. 
+on fixed update check which input is being pressed. If the player is moving diagonally, adjust the speed
+
+Compensate for normalization.
 
 Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
 

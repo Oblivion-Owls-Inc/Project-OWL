@@ -26,12 +26,18 @@ void \mbox{\hyperlink{classConstructionBehavior_a3af48cd3751611d4cb2dd02af951b9d
 \begin{DoxyCompactList}\small\item\em sets the placement range \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classConstructionBehavior_a89e30b981a67226c2364bd37b4964400}{Get\+Building\+Index}} () const
 \begin{DoxyCompactList}\small\item\em gets the building index \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classConstructionBehavior_abf1581c36cc3ac69566679b9d0fda6ae}{Set\+Building\+Index}} (int range)
+void \mbox{\hyperlink{classConstructionBehavior_a3da3993566bddba9b856713be17ce25b}{Set\+Building\+Index}} (int building\+Index)
 \begin{DoxyCompactList}\small\item\em sets the building index \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classConstructionBehavior_a8792aff5308ecb26326b7b50dfad5cbe}{Get\+Ignore\+Costs}} () const
 \begin{DoxyCompactList}\small\item\em gets whether buildings should be able to be constructed for free \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classConstructionBehavior_a9d89a57f9136bbb75078a37f5f4ed3f3}{Set\+Ignore\+Costs}} (bool ignore\+Costs)
 \begin{DoxyCompactList}\small\item\em sets whether buildings should be able to be constructed for free \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classConstructionBehavior_a91d141f803b60f7391198e84a0dc2eed}{Can\+Afford\+Building}} (int building\+Index) const
+\begin{DoxyCompactList}\small\item\em checks whether the player can afford the specified building \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classConstructionBehavior_a549a502df409d988b47ff6654066cc8b}{Building\+Is\+Unlocked}} (int building\+Index) const
+\begin{DoxyCompactList}\small\item\em gets whether the specified building is unlocked \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConstructionBehavior_a469f3b0fd2c31d5b1fbec282b9fc0452}{Set\+Building\+Unlocked}} (int building\+Index, bool unlocked)
+\begin{DoxyCompactList}\small\item\em sets whether the specified building is unlocked \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classConstructionBehavior_a7007eba3beb52b4b1a683062d2f3559e}\label{classConstructionBehavior_a7007eba3beb52b4b1a683062d2f3559e}} 
 virtual void \mbox{\hyperlink{classConstructionBehavior_a7007eba3beb52b4b1a683062d2f3559e}{Inspector}} () override
 \begin{DoxyCompactList}\small\item\em displays this \mbox{\hyperlink{classConstructionBehavior}{Construction\+Behavior}} in the Inspector \end{DoxyCompactList}\item 
@@ -51,6 +57,42 @@ virtual \mbox{\hyperlink{classConstructionBehavior}{Construction\+Behavior}} $\a
 \mbox{\hyperlink{classComponent}{Component}} that handles the construction of towers and modification of terrain. 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classConstructionBehavior_a549a502df409d988b47ff6654066cc8b}\label{classConstructionBehavior_a549a502df409d988b47ff6654066cc8b}} 
+\index{ConstructionBehavior@{ConstructionBehavior}!BuildingIsUnlocked@{BuildingIsUnlocked}}
+\index{BuildingIsUnlocked@{BuildingIsUnlocked}!ConstructionBehavior@{ConstructionBehavior}}
+\doxysubsubsection{\texorpdfstring{BuildingIsUnlocked()}{BuildingIsUnlocked()}}
+{\footnotesize\ttfamily bool Construction\+Behavior\+::\+Building\+Is\+Unlocked (\begin{DoxyParamCaption}\item[{int}]{building\+Index }\end{DoxyParamCaption}) const}
+
+
+
+gets whether the specified building is unlocked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em building\+Index} & the index of the building to check if is locked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the specified building is unlocked 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classConstructionBehavior_a91d141f803b60f7391198e84a0dc2eed}\label{classConstructionBehavior_a91d141f803b60f7391198e84a0dc2eed}} 
+\index{ConstructionBehavior@{ConstructionBehavior}!CanAffordBuilding@{CanAffordBuilding}}
+\index{CanAffordBuilding@{CanAffordBuilding}!ConstructionBehavior@{ConstructionBehavior}}
+\doxysubsubsection{\texorpdfstring{CanAffordBuilding()}{CanAffordBuilding()}}
+{\footnotesize\ttfamily bool Construction\+Behavior\+::\+Can\+Afford\+Building (\begin{DoxyParamCaption}\item[{int}]{building\+Index }\end{DoxyParamCaption}) const}
+
+
+
+checks whether the player can afford the specified building 
+
+
+\begin{DoxyParams}{Parameters}
+{\em building\+Index} & the index of the building to check whether can be afforded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building can be afforded 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classConstructionBehavior_adf86235ac69f5bfed5ccd0a0e817df1e}\label{classConstructionBehavior_adf86235ac69f5bfed5ccd0a0e817df1e}} 
 \index{ConstructionBehavior@{ConstructionBehavior}!Clone@{Clone}}
 \index{Clone@{Clone}!ConstructionBehavior@{ConstructionBehavior}}
@@ -124,11 +166,11 @@ the map of read methods for this \mbox{\hyperlink{classComponent}{Component}}
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
-\mbox{\Hypertarget{classConstructionBehavior_abf1581c36cc3ac69566679b9d0fda6ae}\label{classConstructionBehavior_abf1581c36cc3ac69566679b9d0fda6ae}} 
+\mbox{\Hypertarget{classConstructionBehavior_a3da3993566bddba9b856713be17ce25b}\label{classConstructionBehavior_a3da3993566bddba9b856713be17ce25b}} 
 \index{ConstructionBehavior@{ConstructionBehavior}!SetBuildingIndex@{SetBuildingIndex}}
 \index{SetBuildingIndex@{SetBuildingIndex}!ConstructionBehavior@{ConstructionBehavior}}
 \doxysubsubsection{\texorpdfstring{SetBuildingIndex()}{SetBuildingIndex()}}
-{\footnotesize\ttfamily void Construction\+Behavior\+::\+Set\+Building\+Index (\begin{DoxyParamCaption}\item[{int}]{range }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Construction\+Behavior\+::\+Set\+Building\+Index (\begin{DoxyParamCaption}\item[{int}]{building\+Index }\end{DoxyParamCaption})}
 
 
 
@@ -136,7 +178,24 @@ sets the building index
 
 
 \begin{DoxyParams}{Parameters}
-{\em range} & the building index \\
+{\em building\+Index} & the building index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConstructionBehavior_a469f3b0fd2c31d5b1fbec282b9fc0452}\label{classConstructionBehavior_a469f3b0fd2c31d5b1fbec282b9fc0452}} 
+\index{ConstructionBehavior@{ConstructionBehavior}!SetBuildingUnlocked@{SetBuildingUnlocked}}
+\index{SetBuildingUnlocked@{SetBuildingUnlocked}!ConstructionBehavior@{ConstructionBehavior}}
+\doxysubsubsection{\texorpdfstring{SetBuildingUnlocked()}{SetBuildingUnlocked()}}
+{\footnotesize\ttfamily void Construction\+Behavior\+::\+Set\+Building\+Unlocked (\begin{DoxyParamCaption}\item[{int}]{building\+Index,  }\item[{bool}]{unlocked }\end{DoxyParamCaption})}
+
+
+
+sets whether the specified building is unlocked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em building\+Index} & the index of the building to set whether is locked \\
+\hline
+{\em unlocked} & whether the building should be unlocked \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classConstructionBehavior_a9d89a57f9136bbb75078a37f5f4ed3f3}\label{classConstructionBehavior_a9d89a57f9136bbb75078a37f5f4ed3f3}} 

@@ -32,6 +32,8 @@ glm\+::mat4 const  \& \mbox{\hyperlink{classCameraSystem_a6d41b4a4aba7c47cf9093b
 \item 
 glm\+::mat4 \mbox{\hyperlink{classCameraSystem_abab996e132229851262679008a7ae1e0}{Get\+Mat\+\_\+\+Screen\+To\+World}} () const
 \item 
+std\+::pair$<$ glm\+::vec2, glm\+::vec2 $>$ \mbox{\hyperlink{classCameraSystem_a03cb772a2ff1f3a71493bdc7201268f7}{Get\+Camera\+World\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em gets the world bounds of the camera \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classCameraSystem_a3c4e85ac7aba1119c9af1fd60bd642c9}\label{classCameraSystem_a3c4e85ac7aba1119c9af1fd60bd642c9}} 
 {\bfseries Camera\+System} (\mbox{\hyperlink{classCameraSystem}{Camera\+System}} \&other)=delete
 \item 
@@ -62,6 +64,19 @@ sets the active \mbox{\hyperlink{classCamera}{Camera}}
 
 \begin{DoxyReturn}{Returns}
 the active camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCameraSystem_a03cb772a2ff1f3a71493bdc7201268f7}\label{classCameraSystem_a03cb772a2ff1f3a71493bdc7201268f7}} 
+\index{CameraSystem@{CameraSystem}!GetCameraWorldBounds@{GetCameraWorldBounds}}
+\index{GetCameraWorldBounds@{GetCameraWorldBounds}!CameraSystem@{CameraSystem}}
+\doxysubsubsection{\texorpdfstring{GetCameraWorldBounds()}{GetCameraWorldBounds()}}
+{\footnotesize\ttfamily std\+::pair$<$ glm\+::vec2, glm\+::vec2 $>$ Camera\+System\+::\+Get\+Camera\+World\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the world bounds of the camera 
+
+\begin{DoxyReturn}{Returns}
+the world bounds of the camera (min, max) 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classCameraSystem_a1ff86c1a7b7d25024efe58fbdfee6607}\label{classCameraSystem_a1ff86c1a7b7d25024efe58fbdfee6607}} 
 \index{CameraSystem@{CameraSystem}!GetInstance@{GetInstance}}

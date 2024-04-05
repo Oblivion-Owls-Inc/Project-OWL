@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                853,
-                556
+                888,
+                551
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -14,137 +14,259 @@
             "Actions": [
                 {
                     "Name": "MoveVertical",
-                    "Keys": [
+                    "KeyboardButtons": [
                         87
                     ],
-                    "Mouse": null,
-                    "Controller": null,
-                    "Key Axis": [
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [
                         83
                     ],
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        1
+                    ]
                 },
                 {
                     "Name": "MoveHorizontal",
-                    "Keys": [
+                    "KeyboardButtons": [
                         68
                     ],
-                    "Mouse": null,
-                    "Controller": null,
-                    "Key Axis": [
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [
                         65
                     ],
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        0
+                    ]
                 },
                 {
                     "Name": "FireLaser",
-                    "Keys": null,
-                    "Mouse": [
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
                         0
                     ],
-                    "Controller": null,
-                    "Key Axis": null,
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [
+                        4,
+                        5
+                    ],
+                    "ControllerAxis": []
                 },
                 {
                     "Name": "Interact",
-                    "Keys": [
+                    "KeyboardButtons": [
                         69
                     ],
-                    "Mouse": null,
-                    "Controller": null,
-                    "Key Axis": null,
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "MouseButtons": [],
+                    "ControllerButtons": [
+                        3
+                    ],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 },
                 {
                     "Name": "Place",
-                    "Keys": null,
-                    "Mouse": [
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
                         1
                     ],
-                    "Controller": [
-                        2
+                    "ControllerButtons": [
+                        0
                     ],
-                    "Key Axis": null,
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 },
                 {
-                    "Name": "Cancel Place",
-                    "Keys": [
-                        81
+                    "Name": "OpenBuildMenu",
+                    "KeyboardButtons": [
+                        32
                     ],
-                    "Mouse": null,
-                    "Controller": [
+                    "MouseButtons": [],
+                    "ControllerButtons": [
                         1
                     ],
-                    "Key Axis": null,
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 },
                 {
                     "Name": "Build Turret 1",
-                    "Keys": [
+                    "KeyboardButtons": [
                         49
                     ],
-                    "Mouse": null,
-                    "Controller": [
-                        3
+                    "MouseButtons": [],
+                    "ControllerButtons": [
+                        4,
+                        5
                     ],
-                    "Key Axis": null,
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 },
                 {
                     "Name": "Pause",
-                    "Keys": [
-                        258
+                    "KeyboardButtons": [
+                        256
                     ],
-                    "Mouse": null,
-                    "Controller": null,
-                    "Key Axis": null,
-                    "Mouse Axis": null,
-                    "Controller Axis": null,
-                    "Gamepad Axis Input": null,
-                    "Gamepad Axis": null
+                    "MouseButtons": [],
+                    "ControllerButtons": [
+                        7,
+                        6
+                    ],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "AimHorizontal",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        2
+                    ]
+                },
+                {
+                    "Name": "AimVertical",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        3
+                    ]
+                },
+                {
+                    "Name": "Build Turret 2",
+                    "KeyboardButtons": [
+                        50
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 3",
+                    "KeyboardButtons": [
+                        51
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 4",
+                    "KeyboardButtons": [
+                        52
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 5",
+                    "KeyboardButtons": [
+                        53
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "Build Turret 6",
+                    "KeyboardButtons": [
+                        54
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
+                },
+                {
+                    "Name": "DragSlider",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "SplashScreen",
+            "NextSceneName": "AlphaScene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
         "PauseSystem": {},
         "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<PauseComponent>": {},
         "BehaviorSystem<UiButton>": {},
+        "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
+        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
+        "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
@@ -157,7 +279,8 @@
                 "Enemies",
                 "Player",
                 "Base",
-                "Projectiles"
+                "Projectiles",
+                "Foreground"
             ],
             "CollisionSteps": 8,
             "GridSize": 0.25
@@ -174,12 +297,76 @@
             ]
         },
         "AudioSystem": {
-            "MaxChannels": 1024
+            "MaxChannels": 1024,
+            "Volume": 1.0,
+            "Groups": [
+                {
+                    "Name": "Music",
+                    "Volume": 1.0,
+                    "Mute": false
+                },
+                {
+                    "Name": "Effects",
+                    "Volume": 1.0,
+                    "Mute": false
+                },
+                {
+                    "Name": "Background",
+                    "Volume": 1.0,
+                    "Mute": false
+                }
+            ]
         },
-        "CheatSystem": {},
+        "CheatSystem": {
+            "LoseSceneName": "GameOver",
+            "RestartSceneName": "AlphaScene",
+            "WinSceneName": "GameWin"
+        },
         "DebugSystem": {
             "ShowFpsWindow": false,
-            "ShowDebugWindow": true
+            "ShowDebugWindow": true,
+            "OpenSystemWindows": {
+                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<Entity>": true,
+                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Texture>": true,
+                "AssetLibrary<TransformAnimation>": false,
+                "AudioSystem": false,
+                "BehaviorSystem<Animation>": false,
+                "BehaviorSystem<Behavior>": false,
+                "BehaviorSystem<EditorCameraController>": false,
+                "BehaviorSystem<EffectAnimator>": false,
+                "BehaviorSystem<EnemyBehavior>": false,
+                "BehaviorSystem<Generator>": false,
+                "BehaviorSystem<PauseComponent>": false,
+                "BehaviorSystem<PlayerController>": false,
+                "BehaviorSystem<Popup>": false,
+                "BehaviorSystem<RigidBody>": false,
+                "BehaviorSystem<UiButton>": false,
+                "BehaviorSystem<UiSlider>": false,
+                "BehaviorSystem<WavesBehavior>": false,
+                "CameraSystem": false,
+                "CheatSystem": false,
+                "CollisionSystem": false,
+                "ComponentSystem<Interactable>": false,
+                "ComponentSystem<ItemComponent>": false,
+                "ControlPromptSystem": false,
+                "DebugSystem": true,
+                "EntitySystem": false,
+                "EventSystem": false,
+                "InputSystem": true,
+                "LightingSystem": false,
+                "ParticleSystem": false,
+                "PathfindSystem": false,
+                "PauseSystem": false,
+                "PlatformSystem": false,
+                "RenderSystem": false,
+                "SceneSystem": false,
+                "TileInfoSystem": false
+            }
+        },
+        "ControlPromptSystem": {
+            "PromptMappingFilepath": "Data/ButtonPromptMappings/ButtonPrompts.json"
         },
         "AssetLibrary<Entity>": {},
         "AssetLibrary<Sound>": {},

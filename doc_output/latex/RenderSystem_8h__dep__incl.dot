@@ -33,17 +33,21 @@ digraph "Source/RenderSystem.h"
   Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node15 [label="Source/Texture.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Texture_8cpp.html",tooltip="Wrapper/manager for OpenGL texture."];
   Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node16 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
+  Node16 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
   Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node17 [label="Source/Transform.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Transform_8cpp.html",tooltip="Function definitions for the Transform class."];
+  Node17 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
   Node1 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node18 [label="Source/TurretBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretBehavior_8cpp.html",tooltip="Behavior Compenent for Basic Turret"];
+  Node18 [label="Source/Transform.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Transform_8cpp.html",tooltip="Function definitions for the Transform class."];
   Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node19 [label="Source/UiBarSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiBarSprite_8cpp.html",tooltip="sprite that renders a ui bar"];
+  Node19 [label="Source/TurretBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretBehavior_8cpp.html",tooltip="Behavior Compenent for Basic Turret"];
   Node1 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node20 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
+  Node20 [label="Source/UiBarSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiBarSprite_8cpp.html",tooltip="sprite that renders a ui bar"];
   Node1 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node21 [label="Source/WavesBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesBehavior_8cpp.html",tooltip="Definitions for wave and spawning behavior."];
+  Node21 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
   Node1 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node22 [label="Source/WavesInspector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesInspector_8cpp.html",tooltip="Definitions for wave and spawning editing in game."];
+  Node22 [label="Source/UiSlider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiSlider_8cpp.html",tooltip="Ui Slider component."];
+  Node1 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="Source/WavesBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesBehavior_8cpp.html",tooltip="Definitions for wave and spawning behavior."];
+  Node1 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="Source/WavesInspector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesInspector_8cpp.html",tooltip="Definitions for wave and spawning editing in game."];
 }

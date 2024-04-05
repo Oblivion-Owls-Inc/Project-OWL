@@ -17,14 +17,33 @@
 
 
     /// @brief  default constructor
-Popup::Popup() :
-    Behavior( typeid(Popup) )
-{}
+    Popup::Popup() :
+        Behavior( typeid(Popup) )
+    {}
 
 
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets whether the popup is open
+    /// @return whether the popup is open
+    bool Popup::GetOpen() const
+    {
+        return m_Popup != nullptr;
+    }
+
+
+    /// @brief  sets whether the popup is open
+    /// @param  open    whether the popup is open
+    void Popup::SetOpen( bool open )
+    {
+        if ( open != GetOpen() )
+        {
+            togglePopup();
+        }
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -52,7 +71,7 @@ void Popup::OnInit()
     /// Set the Callback function for the listener
     m_Listener.SetResponseFunction([&](std::string const& EventName)
     {
-        TogglePopup();
+        togglePopup();
     });
 
     m_Listener.Init();
@@ -72,7 +91,7 @@ void Popup::OnFixedUpdate()
 
     if (m_PopupButton->GetReleased())
     {
-        TogglePopup();
+        togglePopup();
     }
 }
 
@@ -88,7 +107,7 @@ void Popup::OnExit()
 //-----------------------------------------------------------------------------
 
 /// @brief  Creates/Destroys the popup
-void Popup::TogglePopup()
+void Popup::togglePopup()
 {
     if (m_Popup != nullptr)
     {

@@ -45,13 +45,18 @@
 #include "Tilemap.h"
 #include "Generator.h"
 #include "EditorCameraController.h"
+#include "UiSlider.h"
+#include "Interactable.h"
+#include "SceneTransition.h"
 
 #include "ItemComponent.h"
+#include "HomeBase.h"
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
 #include "LightingSystem.h"
 #include "PathfindSystem.h"
+#include "ControlPromptSystem.h"
 
 
 //-----------------------------------------------------------------------------
@@ -105,7 +110,7 @@
             if (ImGui::Button("Save Engine Config"))
             {
                 /// Save the engine config to the filepath
-                Stream::WriteToFile(buffer, Engine::GetInstance()->Write());
+                Stream::WriteToFile(buffer, GameEngine()->Write());
                 ImGui::End();
                 return false; //close window
             }
@@ -343,20 +348,27 @@
     /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
     std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
 
-        { "PlatformSystem"                        , &addSystem< PlatformSystem  >                          },
-	    { "CollisionSystem"                       , &addSystem< CollisionSystem >                          },
-        { "CameraSystem"                          , &addSystem< CameraSystem    >                          },  
-        { "InputSystem"                           , &addSystem< InputSystem     >                          },
-        { "SceneSystem"                           , &addSystem< SceneSystem     >                          },
-        { "RenderSystem"                          , &addSystem< RenderSystem    >                          },
-        { "DebugSystem"                           , &addSystem< DebugSystem     >                          },
-        { "AudioSystem"                           , &addSystem< AudioSystem     >                          },
-        { "EntitySystem"                          , &addSystem< EntitySystem    >                          },
-        { "ParticleSystem"                        , &addSystem< ParticleSystem  >                          },
-        { "CheatSystem"                           , &addSystem< CheatSystem     >                          },
-        { "EventSystem"                           , &addSystem< EventSystem     >                          },
-        { "PauseSystem"                           , &addSystem< PauseSystem     >                          },
-                                                  
+        { "PlatformSystem"                        , &addSystem< PlatformSystem      >                      },
+        { "CollisionSystem"                       , &addSystem< CollisionSystem     >                      },
+        { "CameraSystem"                          , &addSystem< CameraSystem        >                      },  
+        { "InputSystem"                           , &addSystem< InputSystem         >                      },
+        { "SceneSystem"                           , &addSystem< SceneSystem         >                      },
+        { "RenderSystem"                          , &addSystem< RenderSystem        >                      },
+        { "DebugSystem"                           , &addSystem< DebugSystem         >                      },
+        { "AudioSystem"                           , &addSystem< AudioSystem         >                      },
+        { "EntitySystem"                          , &addSystem< EntitySystem        >                      },
+        { "ParticleSystem"                        , &addSystem< ParticleSystem      >                      },
+        { "CheatSystem"                           , &addSystem< CheatSystem         >                      },
+        { "EventSystem"                           , &addSystem< EventSystem         >                      },
+        { "PauseSystem"                           , &addSystem< PauseSystem         >                      },
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem      >                      },
+        { "LightingSystem"                        , &addSystem< LightingSystem      >                      },
+        { "PathfindSystem"                        , &addSystem< PathfindSystem      >                      },
+        { "ControlPromptSystem"                   , &addSystem< ControlPromptSystem >                      },
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem      >                      },
+        { "LightingSystem"                        , &addSystem< LightingSystem      >                      },
+        { "PathfindSystem"                        , &addSystem< PathfindSystem      >                      },
+
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
         { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
@@ -364,24 +376,24 @@
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
-		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
+        { "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
         { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
         { "BehaviorSystem<PauseComponent>"        , &addSystem< BehaviorSystem< PauseComponent         > > },
-
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
+        { "BehaviorSystem<PlayerController>"      , &addSystem< BehaviorSystem< PlayerController       > > },
+        { "BehaviorSystem<UiSlider>"              , &addSystem< BehaviorSystem< UiSlider               > > },
+        { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
+        { "BehaviorSystem<SceneTransition>"       , &addSystem< BehaviorSystem< SceneTransition        > > },
+
+        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase      > >         },
+        { "ComponentSystem<Interactable>"         , &addSystem< ComponentSystem< Interactable  > >         },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
         { "AssetLibrary<Texture>"                 , &addSystem< AssetLibrarySystem< Texture            > > },
         { "AssetLibrary<TransformAnimation>"      , &addSystem< AssetLibrarySystem< TransformAnimation > > },
-        { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
-                                                                                                          
-        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
-                                                  
-        { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
-        { "LightingSystem"                        , &addSystem< LightingSystem >                           },
-        { "PathfindSystem"                        , &addSystem< PathfindSystem >                           }
-
+        { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > }
     };
 
     /// @brief  writes the Engine config to json

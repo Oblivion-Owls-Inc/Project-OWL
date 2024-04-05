@@ -113,7 +113,19 @@
         m_StaticBody.Exit();
     }
 
+
+    /// @brief  draws the collision shape of this collider for debug purposes
+    void CircleCollider::DebugDraw() const
+    {
+        if ( m_Transform == nullptr )
+        {
+            return;
+        }
+
+        Renderer()->DrawCircle( m_Transform->GetTranslation(), m_Radius );
+    }
     
+
 //-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
@@ -130,11 +142,6 @@
         if ( ImGui::DragFloat( "Radius", &m_Radius, 0.05f, 0.0f, INFINITY ) )
         {
             m_HasChanged = true;
-        }
-
-        if ( GetTransform() != nullptr )
-        {
-            Renderer()->DrawCircle( GetTransform()->GetTranslation(), m_Radius, glm::vec4(1.0f, 0.5f, 0.0f, 0.0f));
         }
 
         Collider::Inspector();

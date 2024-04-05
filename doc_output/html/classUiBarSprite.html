@@ -96,6 +96,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ac19caebfec63bbc09e99cbe5bdee9a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structUiBarSprite_1_1UiBarSection.html">UiBarSection</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUiBarSprite.html#a3ac19caebfec63bbc09e99cbe5bdee9a">GetSections</a> ()</td></tr>
 <tr class="memdesc:a3ac19caebfec63bbc09e99cbe5bdee9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the UiBarSections of this <a class="el" href="classUiBarSprite.html" title="sprite that renders a ui bar">UiBarSprite</a>  <a href="classUiBarSprite.html#a3ac19caebfec63bbc09e99cbe5bdee9a">More...</a><br /></td></tr>
 <tr class="separator:a3ac19caebfec63bbc09e99cbe5bdee9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893b989b90ee997b88235cf7803cac5f"><td class="memItemLeft" align="right" valign="top">glm::vec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUiBarSprite.html#a893b989b90ee997b88235cf7803cac5f">GetBorderPositions</a> () const</td></tr>
+<tr class="memdesc:a893b989b90ee997b88235cf7803cac5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the border positions of this <a class="el" href="classUiBarSprite.html" title="sprite that renders a ui bar">UiBarSprite</a>  <a href="classUiBarSprite.html#a893b989b90ee997b88235cf7803cac5f">More...</a><br /></td></tr>
+<tr class="separator:a893b989b90ee997b88235cf7803cac5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e36819664ab40b5f55a250eb725c756"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUiBarSprite.html#a7e36819664ab40b5f55a250eb725c756">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:a7e36819664ab40b5f55a250eb725c756"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of read methods for this <a class="el" href="classComponent.html">Component</a>  <a href="classUiBarSprite.html#a7e36819664ab40b5f55a250eb725c756">More...</a><br /></td></tr>
 <tr class="separator:a7e36819664ab40b5f55a250eb725c756"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -242,9 +245,6 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>m_Opacity</b></td></
 <tr class="memitem:aea47372d6263026a8be19b5c6e0d604d inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="aea47372d6263026a8be19b5c6e0d604d"></a>
 glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>m_Color</b></td></tr>
 <tr class="separator:aea47372d6263026a8be19b5c6e0d604d inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86eea754a83045cdb83e99212d1f90be inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="a86eea754a83045cdb83e99212d1f90be"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_IsTextured</b></td></tr>
-<tr class="separator:a86eea754a83045cdb83e99212d1f90be inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99975c0b3165033a566245e785c39127 inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="a99975c0b3165033a566245e785c39127"></a>
 <a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a99975c0b3165033a566245e785c39127">m_Texture</a></td></tr>
 <tr class="memdesc:a99975c0b3165033a566245e785c39127 inherit pro_attribs_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">the texture that this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> uses <br /></td></tr>
@@ -284,6 +284,26 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_IsTextured</b></td>
 <dl class="section return"><dt>Returns</dt><dd>the newly created clone of this <a class="el" href="classUiBarSprite.html" title="sprite that renders a ui bar">UiBarSprite</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classSprite.html#a8d3bdc61b2f5da93f5f6197fecb81604">Sprite</a>.</p>
+
+</div>
+</div>
+<a id="a893b989b90ee997b88235cf7803cac5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a893b989b90ee997b88235cf7803cac5f">&#9670;&nbsp;</a></span>GetBorderPositions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 const  &amp; UiBarSprite::GetBorderPositions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the border positions of this <a class="el" href="classUiBarSprite.html" title="sprite that renders a ui bar">UiBarSprite</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the border positions of this <a class="el" href="classUiBarSprite.html" title="sprite that renders a ui bar">UiBarSprite</a> (min, max) </dd></dl>
 
 </div>
 </div>

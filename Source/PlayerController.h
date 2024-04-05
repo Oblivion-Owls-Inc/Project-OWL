@@ -46,6 +46,20 @@ public: // constructor / destructor
     /// @brief Destructor for the PlayerController class.
     ~PlayerController() = default;
 
+    
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* GetHealth() { return m_Health;  }
+
+    /// @brief  Gets the MiningLaser component attached to this Entity.
+    /// @return The MiningLaser component attached to this Entity.
+    MiningLaser* GetMiningLaser() {  return m_MiningLaser;  }
+
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods
@@ -62,27 +76,37 @@ public: // virtual override methods
     /// @brief Update method called per frame.
     virtual void OnFixedUpdate() override;
 
-
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
-   
 
-    /// @brief  Define the maximum speed for smooth movement.
-    float m_MaxSpeed = 1.0f;
+    /// @brief The amount of force to apply to the player when moving vertically
+    glm::vec2 m_VerticalMoveforce = { 1.0f, 1.0f };
+
+    /// @brief The amount of force to apply to the player when moving horizontally
+    glm::vec2 m_HorizontalMoveforce = { 1.0f, 1.0f };
 
     /// @brief  Player respawn location
     glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
 
-    /// @brief  player directional movement animations
-    AssetReference< AnimationAsset > m_Animations[ 4 ] = {};
+    /// @brief Jump force
+    float m_JumpSpeed = 1.0f;
+
+    /// @brief  if the player is currently jumping
+    bool m_IsJumping = false;
+
+    /// @breif  How closely aligned the collision normal must be with the vertical axis
+    float m_GroundCollisionThreshold = 0.9f;
+
+    /// @brief Allowed time to jump after falling off a platform
+    float m_MaxCoyoteTime = 0.3f;
+
+    /// @brief  The current time the player has to jump after falling off a platform
+    float m_CurrentCoyoteTime = 0.0f;
 
 
     /// @brief  a cached instance of the parent's Rigidbody.
     ComponentReference< RigidBody > m_RigidBody;
-
-    /// @brief  a cached instance of the parent's animation.
-    ComponentReference< Animation > m_Animation;
 
     /// @brief  a cached instance of the parent's AudioPlayer.
     ComponentReference< AudioPlayer > m_AudioPlayer;
@@ -115,6 +139,12 @@ private: // member variables
     /// @brief  the control Action to interact with something
     ActionReference m_Interact;
 
+    /// @brief  the control action for horizontal aim
+    ActionReference m_AimHorizontal;
+
+    /// @brief  the control action for vertical aim
+    ActionReference m_AimVertical;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -132,7 +162,6 @@ private: // methods
     /// @brief  What to do when the player has been hit.
     /// @param  other   - the collider of the other entity.
     void onCollisionEnter( Collider* other );
-
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -160,17 +189,18 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief Read in the max speed for the player.
-    /// @param data The JSON file to read from.
-    void readMaxSpeed(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the amount of force to apply to the player when moving vertically.
+    /// @param data - the JSON file to read from.
+    void readVerticalMoveForce( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the amount of force to apply to the player when moving horizontally.
+    /// @param data - the JSON file to read from.
+    void readHorizontalMoveForce( nlohmann::ordered_json const& data );
 
     /// @brief Read in the respawn location for the player.
     /// @param data - the JSON file to read from.
     void readRespawnLocation(nlohmann::ordered_json const& data);
-
-    /// @brief Read in the animation names for the player.
-    /// @param data The JSON file to read from.
-    void readAnimations(nlohmann::ordered_json const& data);
 
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
@@ -193,6 +223,28 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readInteract( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the control action for horizontal aim
+    /// @param  data    the JSON data to read from
+    void readAimHorizontal( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control action for vertical aim
+    /// @param  data    the JSON data to read from
+    void readAimVertical( nlohmann::ordered_json const& data );
+
+    /// @brief  Reads the JumpSpeed from the JSON file.
+    void readJumpSpeed( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the ground collision threshold.
+    /// @param data - the JSON file to read from.
+    void readGroundCollisionThreshold( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the max coyote time.
+    /// @param data - the JSON file to read from.
+    void readMaxCoyoteTime( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the is jumping state.
+    /// @param data - the JSON file to read from.
+    void readIsJumping( nlohmann::ordered_json const& data );
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

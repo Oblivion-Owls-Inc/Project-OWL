@@ -13,6 +13,7 @@
 #include "BehaviorSystem.h"
 
 #include "Bullet.h"
+#include "BulletAoePulse.h"
 #include "CircleCollider.h"
 #include "RigidBody.h"
 
@@ -73,7 +74,7 @@
         checkActive();
         if ( m_IsActive )
         {
-            float dt = Engine::GetInstance()->GetFixedFrameDuration();
+            float dt = GameEngine()->GetFixedFrameDuration();
 
 
             if (m_FireCooldown > 0.0f)
@@ -108,24 +109,45 @@
     void TurretBehavior::fireBullet( glm::vec2 const& direction )
     {
         // Create a new bullet entity
-        Entity* bullet = m_BulletPrefab->Clone();
-
-        // Sets the data within the bullet
-        Transform* bulletTransform = bullet->GetComponent<Transform>();
-        bulletTransform->SetTranslation( m_Transform->GetTranslation() );
-        bulletTransform->SetScale( glm::vec2( m_BulletSize ) );
-
-        bullet->GetComponent< Bullet         >()->SetDamage( m_BulletDamage );
-        bullet->GetComponent< RigidBody      >()->SetVelocity( direction * m_BulletSpeed );
-        bullet->GetComponent< CircleCollider >()->SetRadius( 0.5f * m_BulletSize );
-
-        // Add the bullet to the entity system
-        bullet->AddToScene();
-
-        // Play turret shoot sound
-        if ( m_AudioPlayer != nullptr )
+        if (m_BulletPrefab)
         {
-            m_AudioPlayer->Play();
+            Entity* bullet = m_BulletPrefab->Clone();
+
+            // Sets the data within the bullet
+            Transform* bulletTransform = bullet->GetComponent<Transform>();
+            if (bulletTransform)
+            {
+                bulletTransform->SetTranslation(m_Transform->GetTranslation());
+                bulletTransform->SetScale(glm::vec2(m_BulletSize));
+            }
+            
+            bullet->GetComponent< RigidBody >()->SetVelocity(direction * m_BulletSpeed);
+            
+            if (bullet->GetComponent< Bullet >())
+            {
+                bullet->GetComponent< Bullet >()->SetDamage(m_BulletDamage);
+            }
+            if (bullet->GetComponent< CircleCollider >())
+            {
+                bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * m_BulletSize);
+            }
+            BulletAoePulse* pulse = bullet->GetComponent< BulletAoePulse >();
+            if (pulse)
+            {
+                pulse->SetDamage(m_BulletDamage);
+                pulse->SetRadius(m_BulletSize);
+            }
+            
+            // Add the bullet to the entity system
+            bullet->AddToScene();
+            
+            
+
+            // Play turret shoot sound
+            if (m_AudioPlayer != nullptr)
+            {
+                m_AudioPlayer->Play();
+            }
         }
 
         m_FireCooldown += 1.0f / m_FireRate;

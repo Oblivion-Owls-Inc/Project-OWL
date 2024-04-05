@@ -105,6 +105,8 @@ digraph "Source/PlayBar.cpp"
   Node44 [label="Console.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Console_8h_source.html",tooltip=" "];
   Node44 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node44 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node38 -> Node36 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node45 [label="SceneSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SceneSystem_8h.html",tooltip="handles the process of resetting and changing scenes"];
@@ -113,8 +115,6 @@ digraph "Source/PlayBar.cpp"
   Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node46 [label="AssetLibrarySystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AssetLibrarySystem_8h.html",tooltip="Asset System."];
   Node46 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node46 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node46 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node47 [label="Entity.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
   Node47 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

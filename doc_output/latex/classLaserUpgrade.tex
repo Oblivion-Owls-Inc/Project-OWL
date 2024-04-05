@@ -1,0 +1,104 @@
+\hypertarget{classLaserUpgrade}{}\doxysection{Laser\+Upgrade Class Reference}
+\label{classLaserUpgrade}\index{LaserUpgrade@{LaserUpgrade}}
+
+
+collectable upgrade to the player\textquotesingle{}s \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}}  
+
+
+
+
+{\ttfamily \#include $<$Laser\+Upgrade.\+h$>$}
+
+
+
+Inheritance diagram for Laser\+Upgrade\+:
+% FIG 0
+
+
+Collaboration diagram for Laser\+Upgrade\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLaserUpgrade_a16566f7973961df6d6831ac33fed16e5}\label{classLaserUpgrade_a16566f7973961df6d6831ac33fed16e5}} 
+\mbox{\hyperlink{classLaserUpgrade_a16566f7973961df6d6831ac33fed16e5}{Laser\+Upgrade}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLaserUpgrade_aa00327ce5a7841e6957c31425223eb34}\label{classLaserUpgrade_aa00327ce5a7841e6957c31425223eb34}} 
+virtual void \mbox{\hyperlink{classLaserUpgrade_aa00327ce5a7841e6957c31425223eb34}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLaserUpgrade_a47a5d31dc75fdcfe8c111081d42909d8}\label{classLaserUpgrade_a47a5d31dc75fdcfe8c111081d42909d8}} 
+virtual void \mbox{\hyperlink{classLaserUpgrade_a47a5d31dc75fdcfe8c111081d42909d8}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLaserUpgrade_a8b9bf1e67c63b8c653f2e24b3564d755}\label{classLaserUpgrade_a8b9bf1e67c63b8c653f2e24b3564d755}} 
+virtual void \mbox{\hyperlink{classLaserUpgrade_a8b9bf1e67c63b8c653f2e24b3564d755}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classLaserUpgrade_aa2790fceadbdd7e578f5261f45cacb58}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classLaserUpgrade_a2ed07499a30d981b2132eaa4f23bf787}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} $\ast$ \mbox{\hyperlink{classLaserUpgrade_ae286c91b4847cd98b4ce52f04d81f7a0}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+collectable upgrade to the player\textquotesingle{}s \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLaserUpgrade_ae286c91b4847cd98b4ce52f04d81f7a0}\label{classLaserUpgrade_ae286c91b4847cd98b4ce52f04d81f7a0}} 
+\index{LaserUpgrade@{LaserUpgrade}!Clone@{Clone}}
+\index{Clone@{Clone}!LaserUpgrade@{LaserUpgrade}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} $\ast$ Laser\+Upgrade\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classLaserUpgrade_aa2790fceadbdd7e578f5261f45cacb58}\label{classLaserUpgrade_aa2790fceadbdd7e578f5261f45cacb58}} 
+\index{LaserUpgrade@{LaserUpgrade}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!LaserUpgrade@{LaserUpgrade}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Laser\+Upgrade\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classLaserUpgrade_a2ed07499a30d981b2132eaa4f23bf787}\label{classLaserUpgrade_a2ed07499a30d981b2132eaa4f23bf787}} 
+\index{LaserUpgrade@{LaserUpgrade}!Write@{Write}}
+\index{Write@{Write}!LaserUpgrade@{LaserUpgrade}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Laser\+Upgrade\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classLaserUpgrade}{Laser\+Upgrade}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{LaserUpgrade_8h}{Laser\+Upgrade.\+h}}\item 
+Source/\mbox{\hyperlink{LaserUpgrade_8cpp}{Laser\+Upgrade.\+cpp}}\end{DoxyCompactItemize}

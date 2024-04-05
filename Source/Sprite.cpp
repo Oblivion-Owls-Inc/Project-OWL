@@ -27,7 +27,6 @@ Sprite::Sprite() :
     m_Color( { 0, 0, 0, 0 } ),
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
-    m_IsTextured( false ),
     m_FrameIndex( 0 )
 {}
 
@@ -40,7 +39,6 @@ Sprite::Sprite( AssetReference< Texture > const& texture, int layer, std::type_i
     m_Color( { 1, 1, 1, 1 } ),
     m_Opacity( 1.0f ),
     m_Layer( layer ),
-    m_IsTextured( true ),
     m_FrameIndex( 0 ),
 
     m_Texture( texture )
@@ -58,7 +56,6 @@ Sprite::Sprite( std::type_index type ) :
     m_Color( { 0, 0, 0, 0 } ),
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
-    m_IsTextured( false ),
     m_FrameIndex( 0 )
 {}
 
@@ -80,7 +77,6 @@ Sprite::Sprite(Sprite const& other) :
     m_Color      ( other.m_Color       ),
     m_Opacity    ( other.m_Opacity     ),
     m_Layer      ( other.m_Layer       ),
-    m_IsTextured ( other.m_IsTextured  ),
     m_FrameIndex ( other.m_FrameIndex  ),
 
     m_Texture( other.m_Texture )
@@ -304,22 +300,23 @@ Sprite::Sprite(Sprite const& other) :
             OnInit();
         }
 
-        if (!m_Texture)
+        if ( m_Texture == nullptr && m_Texture.GetName().empty() == false )
         {
-            m_IsTextured = false;
-            return;
+            m_Texture.Init();
         }
-        m_IsTextured = true;
 
-        if ( ImGui::DragInt(
-            "Frame Index", &m_FrameIndex, 0.05f, 0, 
-            m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y - 1
-        ) )
+        if ( m_Texture != nullptr )
         {
-			SetFrameIndex(m_FrameIndex);
-		}
+            if ( ImGui::DragInt(
+                "Frame Index", &m_FrameIndex, 0.05f, 0,
+                m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y - 1
+            ) )
+            {
+                SetFrameIndex(m_FrameIndex);
+            }
 
-        m_Texture->DisplayInInspector( m_FrameIndex );
+            m_Texture->DisplayInInspector(m_FrameIndex);
+        }
     }
 
 
@@ -344,7 +341,6 @@ Sprite::Sprite(Sprite const& other) :
 void Sprite::readTexture( nlohmann::ordered_json const& data )
 {
     Stream::Read( m_Texture, data );
-    m_IsTextured = true;
 }
 
 /// @brief  reads the frame index of this Sprite

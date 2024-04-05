@@ -22,6 +22,7 @@
 #include "Transform.h"      // SetScale
 #include "Sprite.h"         // SetTexture
 #include "ComponentReference.t.h"
+#include "SceneTransition.h"
 
 
 
@@ -125,6 +126,9 @@ SplashScreenController::SplashScreenController()
         m_Transform.Init(GetEntity());
         m_Sprite.Init(GetEntity());
 
+        m_SceneTransitionEntity.SetOwnerName( GetName() );
+        m_SceneTransitionEntity.Init();
+
         for (LogoData& data : m_Logos)
         {
             data.M_LogoTexture.SetOwnerName(GetName());
@@ -140,6 +144,8 @@ SplashScreenController::SplashScreenController()
 
         m_Transform.Exit();
         m_Sprite.Exit();
+
+        m_SceneTransitionEntity.Exit();
     }
 
     /// @brief Display the logo every frame
@@ -161,7 +167,10 @@ SplashScreenController::SplashScreenController()
         if (Input()->GetKeyTriggered(GLFW_KEY_SPACE) || 
             Input()->GetGamepadButtonDown(GLFW_GAMEPAD_BUTTON_START))
         {
-            SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
+            if ( m_SceneTransition != nullptr )
+            {
+                m_SceneTransition->StartTransition( m_NextSceneName );
+            }
         }
 
         m_Timer -= dt;
@@ -173,7 +182,10 @@ SplashScreenController::SplashScreenController()
             // Move to the next scene.
             if (m_Index >= static_cast<int>(m_Logos.size()))
             {
-                Scenes()->SetNextScene(m_NextSceneName);
+                if ( m_SceneTransition != nullptr )
+                {
+                    m_SceneTransition->StartTransition( m_NextSceneName );
+                }
                 return;
             }
             m_Transform->SetScale(glm::vec2(m_Logos[m_Index].M_LogoScale));
@@ -188,7 +200,7 @@ SplashScreenController::SplashScreenController()
     /// @brief Inspector for this class
     void SplashScreenController::Inspector()
     {
-        ImGui::InputText("Next Scene:", &m_NextSceneName);
+        Scenes()->InspectorSelectScene( "next scene", &m_NextSceneName );
 
         // Inspector for the logo data vector.
         Inspection::InspectArray< LogoData >(
@@ -198,6 +210,8 @@ SplashScreenController::SplashScreenController()
                 return logoData->Inspect();
             }
         );
+
+        m_SceneTransitionEntity.Inspect( "scene transition entity" );
     }
 
 //--------------------------------------------------------------------------------
@@ -216,30 +230,39 @@ SplashScreenController::SplashScreenController()
         Stream::Read< LogoData >( &m_Logos, data);
     }
 
+    /// @brief  reads the Entity the SceneTransition Component is attached to
+    /// @param  data    the JSON data to read from
+    void SplashScreenController::readSceneTransitionEntity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_SceneTransitionEntity, data );
+    }
+
+//--------------------------------------------------------------------------------
+// public: Reading/Writing
+//--------------------------------------------------------------------------------
+
     /// @brief A map of the read methods for this class
     /// @return The map of this class's read methods.
     ReadMethodMap<ISerializable> const& SplashScreenController::GetReadMethods() const
     {
         static ReadMethodMap<SplashScreenController> const readMethodsMap = {
-
-            { "NextSceneName" , &SplashScreenController::readSceneName },
-            { "Logos"         , &SplashScreenController::readLogos     }
+            { "NextSceneName"        , &SplashScreenController::readSceneName             },
+            { "Logos"                , &SplashScreenController::readLogos                 },
+            { "SceneTransitionEntity", &SplashScreenController::readSceneTransitionEntity }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethodsMap;
     }
 
-//-----------------------------------------------------------------------------
-// public: reading / writing
-//-----------------------------------------------------------------------------
     /// @brief  Writes all data in this class into a JSON file.
     /// @return The JSON object containing the data.
     nlohmann::ordered_json SplashScreenController::Write() const
     {
         nlohmann::ordered_json data;
 
-        data["NextSceneName"] = Stream::Write(m_NextSceneName);
-        data["Logos"] = Stream::WriteArray(m_Logos);
+        data[ "NextSceneName"         ] = Stream::Write( m_NextSceneName         );
+        data[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
+        data[ "Logos"                 ] = Stream::WriteArray( m_Logos );
 
         return data;
     }
@@ -261,9 +284,9 @@ SplashScreenController::SplashScreenController()
     /// @param other Reference to another splashscreen controller.
     SplashScreenController::SplashScreenController(SplashScreenController const& other)
         :Behavior(other)
-        ,m_NextSceneName(other.m_NextSceneName)
-        ,m_Index(0)
-        ,m_Timer(0.0f)
+        ,m_NextSceneName        ( other.m_NextSceneName )
+        ,m_Logos                ( other.m_Logos         )
+        ,m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } )
     {}
 
 

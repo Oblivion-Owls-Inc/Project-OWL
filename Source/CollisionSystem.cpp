@@ -209,12 +209,14 @@
     /// @brief  creates the debug window for the CollisionSystem
     void CollisionSystem::DebugWindow()
     {
-        static bool _open = true;
-        if ( ImGui::Begin( "Collision System", &_open ) == false )
+        bool windowShown = GetDebugEnabled();
+        if ( ImGui::Begin( "Collision System", &windowShown ) == false )
         {
+            SetDebugEnable( windowShown );
             ImGui::End();
             return;
         }
+        SetDebugEnable( windowShown );
 
         Inspection::InspectArray< std::string >(
             "Collision Layer Names",
@@ -233,12 +235,37 @@
         ImGui::DragInt( "collision steps", &m_CollisionSteps, 0.05f, 1, INT_MAX );
 
         ImGui::End();
+
+        debugDrawColliders();
     }
 
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  debug draw all of the colliders
+    void CollisionSystem::debugDrawColliders()
+    {
+        for ( TilemapCollider* tilemapCollider : m_TilemapColliders )
+        {
+            tilemapCollider->DebugDraw();
+        }
+
+        for ( CircleCollider* circleCollider : m_LargeCircleColliders )
+        {
+            circleCollider->DebugDraw();
+        }
+
+        for ( auto& [ cellPos, colliders ] : m_CircleCollidersGrid )
+        {
+            for ( CircleCollider* circleCollider : colliders )
+            {
+                circleCollider->DebugDraw();
+            }
+        }
+    }
 
 
     /// @brief Checks and handles all Collisions
@@ -501,11 +528,15 @@
             return;
         }
 
-        // check the collision
-        CollisionData collisionData;
-        bool touching = checkCollision( colliderA, colliderB, &collisionData );
+        CollisionData collisionData = CollisionData();
 
-        if ( touching == false || collisionData.depth == -INFINITY )
+        // check the collision
+        bool needCollisionData = (aCollidesB && colliderA->HasOnCollisionCallbacks()) || (bCollidesA && colliderB->HasOnCollisionCallbacks());
+
+        bool touching = checkCollision( colliderA, colliderB, needCollisionData ? &collisionData : nullptr );
+
+
+        if ( touching == false )
         {
             return;
         }
@@ -672,14 +703,21 @@
     /// @return whether or not the two colliders are colliding
     bool CollisionSystem::checkCollision( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData )
     {
-        if (collisionData)
-            *collisionData = CollisionData();
+        if ( tilemapCollider->GetTransform() == nullptr )
+        {
+            return false;
+        }
+
 
         Tilemap< int > const* tilemap = (tilemapCollider)->GetTilemap();
+        if ( tilemap == nullptr )
+        {
+            return false;
+        }
 
         glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
         glm::mat4 const& tileToWorld = tilemap->GetTilemapToWorldMatrix();
-        glm::vec2 const& tileSize = tilemap->GetTileScale();
+        glm::vec2 tileSize = tilemap->GetTileScale() * tilemapCollider->GetTransform()->GetScale();
 
         glm::vec2 pos = circleCollider->GetTransform()->GetTranslation();
         float radius = circleCollider->GetRadius() / tileSize.x;
@@ -690,13 +728,26 @@
             return false;
         }
 
-        // Renderer()->DrawRect( pos, glm::vec2( radius * 2.0f ) );
-
         pos = worldToTile * glm::vec4( pos, 0, 1 );
         glm::vec2 extents = glm::vec2( radius, radius );
-        glm::ivec2 minTile = pos - extents;
-        glm::ivec2 maxTile = pos + extents;
+        glm::ivec2 minTile = glm::ivec2( std::floor( pos.x - extents.x ), std::floor( pos.y - extents.y ) );
+        glm::ivec2 maxTile = glm::ivec2( std::floor( pos.x + extents.x ), std::floor( pos.y + extents.y ) );
 
+        minTile.x = std::max( minTile.x, 0 );
+        minTile.y = std::max( minTile.y, 0 );
+
+        glm::ivec2 const& dimensions = tilemap->GetDimensions();
+
+        maxTile.x = std::min( maxTile.x, dimensions.x - 1 );
+        maxTile.y = std::min( maxTile.y, dimensions.y - 1 );
+
+        if (
+            minTile.x >= dimensions.x || maxTile.x < 0 ||
+            minTile.y >= dimensions.y || maxTile.y < 0
+        )
+        {
+            return false;
+        }
 
 
         bool collision = false;
@@ -706,11 +757,6 @@
         {
             for ( tilePos.x = minTile.x; tilePos.x <= maxTile.x; ++tilePos.x )
             {
-                if ( tilemap->IsPositionWithinBounds( tilePos ) == false )
-                {
-                    continue;
-                }
-
                 if ( tilemap->GetTile( tilePos ) < 0 )
                 {
                     continue;
@@ -767,22 +813,17 @@
         int enabledEdges
     )
     {
-        if ( enabledEdges == 0 )
+        if ( circlePos.x >= aabbMax.x && (enabledEdges & s_EdgeRight || enabledEdges == 0) )
         {
-            return false;
-        }
-
-        if ( circlePos.x >= aabbMax.x && (enabledEdges & s_EdgeRight) )
-        {
-            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp || enabledEdges == 0) )
             { // top right corner
                 return checkCirclePoint( circlePos, circleRadius, aabbMax, collisionData );
             }
-            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown) )
+            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown || enabledEdges == 0) )
             { // bottom right corner
                 return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMax.x, aabbMin.y ), collisionData );
             }
-            else
+            else if ( enabledEdges != 0 )
             { // right edge
                 if ( collisionData == nullptr )
                 {
@@ -796,13 +837,13 @@
                     collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
                     collisionData->normal = glm::vec2( 1, 0 );
                 }
-
-                return true;
             }
+
+            return true;
         }
-        else if ( circlePos.x <= aabbMin.x && (enabledEdges & s_EdgeLeft) )
+        else if ( circlePos.x <= aabbMin.x && (enabledEdges & s_EdgeLeft || enabledEdges == 0) )
         {
-            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp || enabledEdges == 0) )
             { // top left corner
                 return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMin.x, aabbMax.y ), collisionData);
             }
@@ -874,7 +915,7 @@
                 if ( enabledEdges & s_EdgeLeft )
                 {
                     float depth = (circlePos.x + circleRadius) - aabbMin.x;
-                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.x - aabbMin.x) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
@@ -884,7 +925,7 @@
                 if ( enabledEdges & s_EdgeRight )
                 {
                     float depth = aabbMax.x - (circlePos.x - circleRadius);
-                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.x - aabbMin.x) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
@@ -894,7 +935,7 @@
                 if ( enabledEdges & s_EdgeDown )
                 {
                     float depth = (circlePos.y + circleRadius) - aabbMin.y;
-                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.y - aabbMin.y) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( 0, circleRadius );
@@ -904,7 +945,7 @@
                 if ( enabledEdges & s_EdgeUp )
                 {
                     float depth = aabbMax.y - (circlePos.y - circleRadius);
-                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
+                    if ( (collisionData->depth == 0.0f || depth < collisionData->depth) && depth < (aabbMax.y - aabbMin.y) * 0.5f )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( 0, circleRadius );

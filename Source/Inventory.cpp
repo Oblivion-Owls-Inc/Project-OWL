@@ -174,11 +174,13 @@
     /// @brief  clears all items from this Inventory
     void Inventory::Clear()
     {
-        for ( ItemStack const& itemStack : m_Items )
+        for ( ItemStack& itemStack : m_Items )
         {
+            ItemStack oldItemStack = itemStack;
+            itemStack.M_Count = 0;
             for ( auto& [ ownerId, callback ] : m_OnRemoveItemStackCallbacks )
             {
-                callback( itemStack );
+                callback( oldItemStack );
             }
         }
 

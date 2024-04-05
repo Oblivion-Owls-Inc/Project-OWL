@@ -144,6 +144,43 @@
     }
 
 
+    /// @brief  assignment operator
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    /// @param  component   the component to assign to this ComponentReference
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::operator =( ComponentType* component )
+    {
+        if ( component == m_Component )
+        {
+            return;
+        }
+
+        if ( m_Component != nullptr && m_OnDisconnectCallback )
+        {
+            m_OnDisconnectCallback();
+        }
+
+        if ( m_Entity != nullptr )
+        {
+            m_Entity->RemoveComponentReference( this );
+        }
+
+        m_Component = component;
+        m_Entity = component != nullptr ? component->GetEntity() : nullptr;
+
+        if ( m_Entity != nullptr )
+        {
+            m_Entity->AddComponentReference( this );
+        }
+
+        if ( m_Component != nullptr && m_OnConnectCallback )
+        {
+            m_OnConnectCallback();
+        }
+    }
+
+
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
     /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
@@ -202,28 +239,6 @@
     ComponentReference< ComponentType, required >::operator ComponentType*() const
     {
         return m_Component;
-    }
-
-
-    /// @brief  assignment operator
-    /// @tparam ComponentType   the type of Component this ComponentReference refers to
-    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
-    /// @param  component   the component to assign to this ComponentReference
-    template < class ComponentType, bool required >
-    void ComponentReference< ComponentType, required >::operator =( ComponentType* component )
-    {
-        if ( m_Component != nullptr && m_OnDisconnectCallback )
-        {
-            m_OnDisconnectCallback();
-        }
-
-        m_Component = component;
-        m_Entity = m_Component != nullptr ? m_Component->GetEntity() : nullptr;
-
-        if ( m_Component != nullptr && m_OnConnectCallback )
-        {
-            m_OnConnectCallback();
-        }
     }
 
 

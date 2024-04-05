@@ -55,6 +55,7 @@ private: // Members
         "BehaviorSystem<UiButton>",
         "BehaviorSystem<Popup>",
         "BehaviorSystem<PauseComponent>",
+        "BehaviorSystem<SceneTransition>",
         "SceneSystem",
         "EntitySystem",
         "CameraSystem",

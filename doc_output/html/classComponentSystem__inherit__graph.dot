@@ -8,4 +8,8 @@ digraph "ComponentSystem&lt; ComponentType &gt;"
   Node2 [label="System",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSystem.html",tooltip="Base class for all Systems."];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="ISerializable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classISerializable.html",tooltip="interface for all serializable objects"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="BehaviorSystem\< ControlPrompt \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBehaviorSystem.html",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ControlPromptSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classControlPromptSystem.html",tooltip="System that displays ControlPrompts from Actions."];
 }

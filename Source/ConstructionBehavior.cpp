@@ -22,6 +22,8 @@
 #include "TurretBehavior.h"
 #include "ResourcesUiManager.h"
 #include "UiElement.h"
+#include "Generator.h"
+#include "Popup.h"
 
 
 #include "AssetLibrarySystem.h"
@@ -53,13 +55,13 @@
         {
             M_Archetype.SetOwnerName( "ConstructionBehavior" );
             M_Archetype.Init();
-            M_BuildAction.Init();
+            M_SelectAction.Init();
         }
 
         /// @brief  exits this BuildingInfo
         void ConstructionBehavior::BuildingInfo::Exit()
         {
-            M_BuildAction.Exit();
+            M_SelectAction.Exit();
         }
 
 
@@ -77,15 +79,16 @@
             changed |= M_Archetype.Inspect( "building prefab" );
 
             changed |= Inspection::InspectArray< ItemStack >(
-                "building cost",
-                &M_Cost,
+                "building cost", &M_Cost,
                 []( ItemStack* itemStack ) -> bool
                 {
                     return itemStack->Inspect();
                 }
             );
 
-            M_BuildAction.Inspect("Build Input");
+            changed |= M_SelectAction.Inspect("Selection Action");
+
+            changed |= ImGui::Checkbox( "unlocked", &M_Unlocked );
 
             return changed;
         }
@@ -107,22 +110,23 @@
         /// @param  data    the json data to read from
         void ConstructionBehavior::BuildingInfo::readCost( nlohmann::ordered_json const& data )
         {
-            M_Cost.clear();
-
-            for ( auto const& costData : data )
-            {
-                ItemStack item;
-                Stream::Read( item, costData );
-                M_Cost.push_back( item );
-            }
+            Stream::Read< ItemStack >( &M_Cost, data );
         }
 
-        /// @brief  the control Action to build this building
+        /// @brief  the control Action to select this building
         /// @param  data    the JSON data to read from
-        void ConstructionBehavior::BuildingInfo::readBuildAction(nlohmann::ordered_json const& data)
+        void ConstructionBehavior::BuildingInfo::readSelectAction( nlohmann::ordered_json const& data )
         {
-            Stream::Read(M_BuildAction, data);
+            Stream::Read( M_SelectAction, data );
         }
+
+        /// @brief  reads whether this building is unlocked
+        /// @param  data    the JSON data to read from
+        void ConstructionBehavior::BuildingInfo::readUnlocked( nlohmann::ordered_json const& data )
+        {
+            Stream::Read( M_Unlocked, data );
+        }
+
 
     //-------------------------------------------------------------------------
     // public: reading / writing
@@ -134,9 +138,10 @@
         ReadMethodMap< ISerializable > const& ConstructionBehavior::BuildingInfo::GetReadMethods() const
         {
             static ReadMethodMap< BuildingInfo > const readMethods = {
-                { "Archetype"    , &BuildingInfo::readArchetype   },
-                { "Cost"         , &BuildingInfo::readCost        },
-                { "Build Action" , &BuildingInfo::readBuildAction }
+                { "Archetype"   , &BuildingInfo::readArchetype    },
+                { "Cost"        , &BuildingInfo::readCost         },
+                { "SelectAction", &BuildingInfo::readSelectAction },
+                { "Unlocked"    , &BuildingInfo::readUnlocked     }
             };
 
             return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -149,15 +154,10 @@
         {
             nlohmann::ordered_json json;
 
-            nlohmann::ordered_json& costData = json[ "Cost" ];
-            for ( ItemStack const& itemStack : M_Cost )
-            {
-                costData.push_back( Stream::Write( itemStack ) );
-            }
-
-            json[ "Archetype" ] = Stream::Write( M_Archetype );
-
-            json["Build Action"] = Stream::Write(M_BuildAction);
+            json[ "Archetype"    ] = Stream::Write( M_Archetype    );
+            json[ "Cost"         ] = Stream::WriteArray( M_Cost );
+            json[ "SelectAction" ] = Stream::Write( M_SelectAction );
+            json[ "Unlocked"     ] = Stream::Write( M_Unlocked     );
 
             return json;
         }
@@ -203,10 +203,42 @@
     }
 
     /// @brief  sets the building index
-    /// @param  range   the building index
-    void ConstructionBehavior::SetBuildingIndex( int range )
+    /// @param  buildingIndex   the building index
+    void ConstructionBehavior::SetBuildingIndex( int buildingIndex )
     {
-        m_BuildingIndex = range;
+        m_BuildingIndex = buildingIndex;
+        if ( buildingIndex == -1 )
+        {
+            return;
+        }
+
+        // update preview sprite
+        if ( m_BuildingInfos[ m_BuildingIndex ].M_Archetype == nullptr )
+        {
+            Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
+            return;
+        }
+
+        setupCostUi();
+
+        if ( m_Sprite == nullptr || m_Transform == nullptr )
+        {
+            return;
+        }
+
+        m_Sprite->SetTexture( m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
+        m_Transform->SetScale( m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< Transform >()->GetScale() );
+        if (m_RadiusTransform != nullptr)
+        {
+            if ( m_BuildingInfos[ m_BuildingIndex ].M_Archetype == nullptr )
+            {
+                m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
+                return;
+            }
+            TurretBehavior const* turretBehavior = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< TurretBehavior >();
+            float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
+            m_RadiusTransform->SetScale( glm::vec2( scale ) );
+        }
     }
 
 
@@ -222,6 +254,52 @@
     void ConstructionBehavior::SetIgnoreCosts( bool ignoreCosts )
     {
         m_IgnoreCosts = ignoreCosts;
+    }
+
+    
+//-----------------------------------------------------------------------------
+// public: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  checks whether the player can afford the specified building
+    /// @param  buildingIndex   the index of the building to check whether can be afforded
+    /// @return whether the building can be afforded
+    bool ConstructionBehavior::CanAffordBuilding( int buildingIndex ) const
+    {
+        if ( m_PlayerInventory == nullptr || buildingIndex < 0 || buildingIndex >= m_BuildingInfos.size() )
+        {
+            return false;
+        }
+
+        return m_IgnoreCosts || m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ buildingIndex ].M_Cost );
+    }
+
+
+    /// @brief  gets whether the specified building is unlocked
+    /// @param  buildingIndex   the index of the building to check if is locked
+    /// @return whether the specified building is unlocked
+    bool ConstructionBehavior::BuildingIsUnlocked( int buildingIndex ) const
+    {
+        if ( buildingIndex < 0 || buildingIndex >= m_BuildingInfos.size() )
+        {
+            return false;
+        }
+
+        return m_BuildingInfos[ buildingIndex ].M_Unlocked;
+    }
+
+    /// @brief  sets whether the specified building is unlocked
+    /// @param  buildingIndex   the index of the building to set whether is locked
+    /// @param  unlocked        whether the building should be unlocked
+    void ConstructionBehavior::SetBuildingUnlocked( int buildingIndex, bool unlocked )
+    {
+        if ( buildingIndex < 0 || buildingIndex >= m_BuildingInfos.size() )
+        {
+            return;
+        }
+
+        m_BuildingInfos[ buildingIndex ].M_Unlocked = unlocked;
     }
 
 
@@ -245,11 +323,10 @@
         m_Sprite              .Init( GetEntity() );
         m_TurretPlacementSound.Init( GetEntity() );
         m_CostInventory       .Init( GetEntity() );
+        m_Popup               .Init( GetEntity() );
 
         m_PlaceAction    .SetOwnerName( GetName() );
-        m_CancelPlacement.SetOwnerName( GetName() );
         m_PlaceAction    .Init();
-        m_CancelPlacement.Init();
 
         if (GetEntity()->GetChildren().size() != 0)
         {
@@ -263,7 +340,7 @@
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
-            buildingInfo.M_BuildAction.SetOwnerName(GetName());
+            buildingInfo.M_SelectAction.SetOwnerName(GetName());
             buildingInfo.Init();
         }
     }
@@ -281,12 +358,12 @@
         m_Sprite              .Exit();
         m_TurretPlacementSound.Exit();
         m_CostInventory       .Exit();
+        m_Popup               .Exit();
 
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
 
         m_PlaceAction.Exit();
-        m_CancelPlacement.Exit();
 
         for (BuildingInfo& buildingInfo : m_BuildingInfos)
         {
@@ -356,58 +433,30 @@
     /// @brief  updates which building is currently selected
     void ConstructionBehavior::updateSelectedBuilding()
     {
-        if ( m_CancelPlacement != nullptr && m_CancelPlacement->GetReleased() )
-        {
-            m_BuildingIndex = -1;
-            return;
-        }
-
         for ( int i = 0; i < m_BuildingInfos.size(); ++i )
         {
             if (
-                m_BuildingInfos[i].M_BuildAction == nullptr ||
-                m_BuildingInfos[i].M_BuildAction->GetReleased() == false
+                m_BuildingInfos[ i ].M_Unlocked == false ||
+                m_BuildingInfos[ i ].M_SelectAction == nullptr ||
+                m_BuildingInfos[ i ].M_SelectAction->GetReleased() == false
             )
             {
                 continue;
             }
 
-            if ( m_BuildingIndex == i )
+            if ( m_Popup != nullptr )
             {
-                m_BuildingIndex = -1;
-                return;
+                m_Popup->SetOpen( true );
             }
 
-            m_BuildingIndex = i;
+            SetBuildingIndex( i );
 
-            // update preview sprite
-            if ( m_BuildingInfos[ i ].M_Archetype == nullptr )
-            {
-                Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
-                return;
-            }
-
-            setupCostUi();
-
-            if ( m_Sprite == nullptr || m_Transform == nullptr )
-            {
-                return;
-            }
-
-            m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
-            m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-            if (m_RadiusTransform != nullptr)
-            {
-                if ( m_BuildingInfos[i].M_Archetype == nullptr )
-                {
-                    m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
-                    return;
-                }
-                TurretBehavior const* turretBehavior = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >();
-                float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
-                m_RadiusTransform->SetScale( glm::vec2( scale ) );
-            }
             return;
+        }
+
+        if ( m_Popup != nullptr && m_Popup->GetOpen() == false )
+        {
+            m_BuildingIndex = -1;
         }
     }
 
@@ -442,8 +491,14 @@
             return false;
         }
 
+        // building is locked
+        if ( BuildingIsUnlocked( m_BuildingIndex ) == false )
+        {
+            return false;
+        }
+
         // not enough funds
-        if ( m_PlayerInventory == nullptr || (m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false) )
+        if ( CanAffordBuilding( m_BuildingIndex ) == false )
         {
             return false;
         }
@@ -472,7 +527,19 @@
             return false;
         }
 
-        return true;
+        for (Generator* generator : Behaviors< Generator >()->GetComponents())
+        {
+            float distance = glm::distance(
+                generator->GetTransform()->GetTranslation(),
+                m_TargetPos
+            );
+            if (distance <= generator->GetPowerRadius())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// @brief  palces the currently selected building
@@ -666,8 +733,6 @@
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
 
         m_PlaceAction.Inspect("Place Action");
-
-        m_CancelPlacement.Inspect("Cancel Placement Action");
     }
 
     /// @brief  inspects the references to other entities
@@ -765,13 +830,6 @@
         Stream::Read( m_CostUiEntity, data );
     }
 
-    /// @brief  the control Action to cancel placement
-    /// @param  data    the JSON data to read from
-    void ConstructionBehavior::readCancelPlacement(nlohmann::ordered_json const& data)
-    {
-        Stream::Read(m_CancelPlacement, data);
-    }
-
     /// @brief  the control Action to place a building
     /// @param  data    the JSON data to read from
     void ConstructionBehavior::readPlaceAction(nlohmann::ordered_json const& data)
@@ -799,7 +857,6 @@
             { "TilemapEntity"           , &ConstructionBehavior::readTilemapEntity            },
             { "PlayerEntity"            , &ConstructionBehavior::readPlayerEntity             },
             { "CostUiEntity"            , &ConstructionBehavior::readCostUiEntity             },
-            { "CancelPlacement"         , &ConstructionBehavior::readCancelPlacement          },
             { "PlaceAction"             , &ConstructionBehavior::readPlaceAction              },
         };
 
@@ -832,7 +889,6 @@
         json[ "TilemapEntity"            ] = Stream::Write( m_TilemapEntity            );
         json[ "PlayerEntity"             ] = Stream::Write( m_PlayerEntity             );
         json[ "CostUiEntity"             ] = Stream::Write( m_CostUiEntity             );
-        json[ "CancelPlacement"          ] = Stream::Write( m_CancelPlacement          );
         json[ "PlaceAction"              ] = Stream::Write( m_PlaceAction              );
 
         return json;

@@ -360,6 +360,30 @@
     <Filter Include="Engine\Entity\Component\Behavior\Pause">
       <UniqueIdentifier>{5aad3456-40ef-47ce-b2b1-fe8bfc60134b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\InputSystem\ControlPromptSystem">
+      <UniqueIdentifier>{a9989eb4-f90d-4487-972b-31923ef03d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\ControlPrompt">
+      <UniqueIdentifier>{284bf7fa-011e-43d6-b295-0cdf9ca3ee08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\InputSystem\InputAction">
+      <UniqueIdentifier>{a319788b-2f2e-4063-887f-345ee52fdfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\UiSlider">
+      <UniqueIdentifier>{fa5b86b1-3b84-434a-b190-91a0f07f1352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Interactable">
+      <UniqueIdentifier>{8c85caa4-afc5-470d-9c4f-17aecee0a24e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Interactable\Interactor">
+      <UniqueIdentifier>{d8d69bff-7cf8-414a-b39d-d0c7c5d73f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Upgrades">
+      <UniqueIdentifier>{e69d8bdd-6a7f-450b-9c45-54faae0d6c5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Upgrades\LaserUpgrade">
+      <UniqueIdentifier>{a40d7ea3-41c8-438f-93fb-0d83a727cc7a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\Entity\Component\Building">
       <UniqueIdentifier>{79c556a0-4527-4bf3-bfbb-5463d4ee800a}</UniqueIdentifier>
     </Filter>
@@ -761,6 +785,42 @@
     <ClCompile Include="Source\DestructibleTilemap.cpp">
       <Filter>Game\Components\DestructibleTilemap</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ControlPromptSystem.cpp">
+      <Filter>Engine\Systems\InputSystem\ControlPromptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ControlPrompt.cpp">
+      <Filter>Engine\Entity\Component\ControlPrompt</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputAction.cpp">
+      <Filter>Engine\Systems\InputSystem\InputAction</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BulletAoe.cpp">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BulletAoePulse.cpp">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DigEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UiSlider.cpp">
+      <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Interactable.cpp">
+      <Filter>Game\Components\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Interactor.cpp">
+      <Filter>Game\Components\Interactable\Interactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LaserUpgrade.cpp">
+      <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Building.cpp">
       <Filter>Engine\Entity\Component\Building</Filter>
     </ClCompile>
@@ -1159,6 +1219,42 @@
     <ClInclude Include="Source\DestructibleTilemap.h">
       <Filter>Game\Components\DestructibleTilemap</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ControlPromptSystem.h">
+      <Filter>Engine\Systems\InputSystem\ControlPromptSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ControlPrompt.h">
+      <Filter>Engine\Entity\Component\ControlPrompt</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InputAction.h">
+      <Filter>Engine\Systems\InputSystem\InputAction</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletAoe.h">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletAoePulse.h">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DigEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UiSlider.h">
+      <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interactable.h">
+      <Filter>Game\Components\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interactor.h">
+      <Filter>Game\Components\Interactable\Interactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LaserUpgrade.h">
+      <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Building.h">
       <Filter>Engine\Entity\Component\Building</Filter>
     </ClInclude>
@@ -1240,5 +1336,11 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype v3.scene.json" />
+    <None Include="Data\ButtonPromptMappings\ButtonPrompts.json">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Scenes\AlphaScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

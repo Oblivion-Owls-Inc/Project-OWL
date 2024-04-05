@@ -73,81 +73,139 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="System_8h.html">System.h</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;DebugSystem.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// Forward References:</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="classCircleCollider.html">CircleCollider</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// Forward References:</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classCheatSystem.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCheatSystem.html">CheatSystem</a> :<span class="keyword">public</span> <a class="code" href="classSystem.html">System</a></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnUpdate(<span class="keywordtype">float</span> dt) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span><a class="code" href="classCircleCollider.html">CircleCollider</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="classHealth.html">Health</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classCheatSystem.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCheatSystem.html">CheatSystem</a> :<span class="keyword">public</span> <a class="code" href="classSystem.html">System</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnUpdate(<span class="keywordtype">float</span> dt) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual override methods</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a2bd6a0bc72c2e6b19858bf93dd28e04a">DebugWindow</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> OpenCheatMenu();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> RunCheats();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> noClip();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> toggleInfinteResources();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a2bd6a0bc72c2e6b19858bf93dd28e04a">DebugWindow</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a099d2878a8490a4503d2748e6b160f07">CheatMenu</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#ad273d3edb820c18ccf95be655fb79576">RunCheats</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a16b912a9f9159d37b5c4676c7ab37145">InfinitePlayerHealth</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#ae0dddd6d4ccc01c2e4848ed44b649eb1">InfiniteBaseHealth</a>();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Whether or not the console is open.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> m_CheatMenuIsOpen;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// The different cheats</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span> m_ResourceSwitch;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">bool</span> m_BaseGodMode;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> m_NoClip;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span> m_Pause;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// The player&#39;s collider.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classCircleCollider.html">CircleCollider</a>* m_CircleCollider;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton </span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton </span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>* <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">GetInstance</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>(<a class="code" href="classCheatSystem.html">CheatSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;__inline <a class="code" href="classCheatSystem.html">CheatSystem</a>* Cheats() {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a>();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a4bde2617a7a0686ec919ad84ea67fb20">OneShotOneKill</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a3166260d540252b15aa0fa4bebb20d8e">KillAllEnemies</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a9cbdaf6379c92c5c5c899a35d75be650">NoClip</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCheatSystem.html#ad92150d2b3e0f2e160f34598e2223542">ToggleInfinteResources</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#ab94b7892f8f824bb748327b95b8df8c8">InstantWin</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#aa9979d6a4fe3a0cf66b7c2e0abb1a2e7">InstantLose</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCheatSystem.html#a429d332a300c537e5f4d4b98e8cdbdc5">ResetGame</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">bool</span> m_CheatMenuIsOpen;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">bool</span> m_ToggleInfiniteResource;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">bool</span> m_ToggleBaseGodMode;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> m_TogglePlayerInfiniteHealth;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">bool</span> m_ToggleOneShotOneKill;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">bool</span> m_ToggleNoClip;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">bool</span> m_ToggleKillAllEnemies;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">int</span> m_PreviousPlayerHealth;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">int</span> m_PreviousBaseHealth;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">float</span> m_PreviousLaserDamage;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    std::string m_LoseSceneName;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    std::string m_RestartSceneName;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    std::string m_WinSceneName;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="classCircleCollider.html">CircleCollider</a>* m_PlayerCircleCollider;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> readLoseSceneName(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> readRestartSceneName(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">void</span> readWinSceneName(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classCheatSystem.html#ab69c029206e5830dd17ec7eaa88e2db0">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classCheatSystem.html#a24ad589e76396447d480ca95b9172a54">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton </span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton </span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>* <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">GetInstance</a>();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>(<a class="code" href="classCheatSystem.html">CheatSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;};</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;__inline <a class="code" href="classCheatSystem.html">CheatSystem</a>* Cheats() {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
-<div class="ttc" id="aclassCheatSystem_html"><div class="ttname"><a href="classCheatSystem.html">CheatSystem</a></div><div class="ttdef"><b>Definition:</b> CheatSystem.h:22</div></div>
-<div class="ttc" id="aclassCheatSystem_html_a2bd6a0bc72c2e6b19858bf93dd28e04a"><div class="ttname"><a href="classCheatSystem.html#a2bd6a0bc72c2e6b19858bf93dd28e04a">CheatSystem::DebugWindow</a></div><div class="ttdeci">virtual void DebugWindow() override</div><div class="ttdoc">The cheat/console window.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:49</div></div>
-<div class="ttc" id="aclassCheatSystem_html_ab950130b97dfb0089cd0413c1e1256dd"><div class="ttname"><a href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a></div><div class="ttdeci">static CheatSystem * GetInstance()</div><div class="ttdoc">gets the instance of AudioSystem</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:239</div></div>
+<div class="ttc" id="aclassCheatSystem_html"><div class="ttname"><a href="classCheatSystem.html">CheatSystem</a></div><div class="ttdef"><b>Definition:</b> CheatSystem.h:25</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a099d2878a8490a4503d2748e6b160f07"><div class="ttname"><a href="classCheatSystem.html#a099d2878a8490a4503d2748e6b160f07">CheatSystem::CheatMenu</a></div><div class="ttdeci">void CheatMenu()</div><div class="ttdoc">The actual cheat menu.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:78</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a16b912a9f9159d37b5c4676c7ab37145"><div class="ttname"><a href="classCheatSystem.html#a16b912a9f9159d37b5c4676c7ab37145">CheatSystem::InfinitePlayerHealth</a></div><div class="ttdeci">void InfinitePlayerHealth()</div><div class="ttdoc">Infinite Player Health.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:208</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a24ad589e76396447d480ca95b9172a54"><div class="ttname"><a href="classCheatSystem.html#a24ad589e76396447d480ca95b9172a54">CheatSystem::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Writes this CheatSystem to JSON.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:410</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a2bd6a0bc72c2e6b19858bf93dd28e04a"><div class="ttname"><a href="classCheatSystem.html#a2bd6a0bc72c2e6b19858bf93dd28e04a">CheatSystem::DebugWindow</a></div><div class="ttdeci">virtual void DebugWindow() override</div><div class="ttdoc">The cheat/console window.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:59</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a3166260d540252b15aa0fa4bebb20d8e"><div class="ttname"><a href="classCheatSystem.html#a3166260d540252b15aa0fa4bebb20d8e">CheatSystem::KillAllEnemies</a></div><div class="ttdeci">void KillAllEnemies()</div><div class="ttdoc">Kills All Enemies.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:286</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a429d332a300c537e5f4d4b98e8cdbdc5"><div class="ttname"><a href="classCheatSystem.html#a429d332a300c537e5f4d4b98e8cdbdc5">CheatSystem::ResetGame</a></div><div class="ttdeci">void ResetGame()</div><div class="ttdoc">Resets the speicified scene.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:364</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a4bde2617a7a0686ec919ad84ea67fb20"><div class="ttname"><a href="classCheatSystem.html#a4bde2617a7a0686ec919ad84ea67fb20">CheatSystem::OneShotOneKill</a></div><div class="ttdeci">void OneShotOneKill()</div><div class="ttdoc">Kills enemy with one hit from the laser.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:259</div></div>
+<div class="ttc" id="aclassCheatSystem_html_a9cbdaf6379c92c5c5c899a35d75be650"><div class="ttname"><a href="classCheatSystem.html#a9cbdaf6379c92c5c5c899a35d75be650">CheatSystem::NoClip</a></div><div class="ttdeci">void NoClip()</div><div class="ttdoc">Turns off player collisions.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:304</div></div>
+<div class="ttc" id="aclassCheatSystem_html_aa9979d6a4fe3a0cf66b7c2e0abb1a2e7"><div class="ttname"><a href="classCheatSystem.html#aa9979d6a4fe3a0cf66b7c2e0abb1a2e7">CheatSystem::InstantLose</a></div><div class="ttdeci">void InstantLose()</div><div class="ttdoc">Instantly loses the game.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:361</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ab69c029206e5830dd17ec7eaa88e2db0"><div class="ttname"><a href="classCheatSystem.html#ab69c029206e5830dd17ec7eaa88e2db0">CheatSystem::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">Gets this System's read methods.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:397</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ab94b7892f8f824bb748327b95b8df8c8"><div class="ttname"><a href="classCheatSystem.html#ab94b7892f8f824bb748327b95b8df8c8">CheatSystem::InstantWin</a></div><div class="ttdeci">void InstantWin()</div><div class="ttdoc">Instantly wins the game.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:358</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ab950130b97dfb0089cd0413c1e1256dd"><div class="ttname"><a href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a></div><div class="ttdeci">static CheatSystem * GetInstance()</div><div class="ttdoc">gets the instance of AudioSystem</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:448</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ad273d3edb820c18ccf95be655fb79576"><div class="ttname"><a href="classCheatSystem.html#ad273d3edb820c18ccf95be655fb79576">CheatSystem::RunCheats</a></div><div class="ttdeci">void RunCheats()</div><div class="ttdoc">Run the cheats.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:163</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ad92150d2b3e0f2e160f34598e2223542"><div class="ttname"><a href="classCheatSystem.html#ad92150d2b3e0f2e160f34598e2223542">CheatSystem::ToggleInfinteResources</a></div><div class="ttdeci">bool ToggleInfinteResources()</div><div class="ttdoc">Toggles the infinite resources cheat.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:336</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ae0dddd6d4ccc01c2e4848ed44b649eb1"><div class="ttname"><a href="classCheatSystem.html#ae0dddd6d4ccc01c2e4848ed44b649eb1">CheatSystem::InfiniteBaseHealth</a></div><div class="ttdeci">void InfiniteBaseHealth()</div><div class="ttdoc">Infinite Base Health Cheat.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:234</div></div>
 <div class="ttc" id="aclassCircleCollider_html"><div class="ttname"><a href="classCircleCollider.html">CircleCollider</a></div><div class="ttdoc">Circle-shaped Collider.</div><div class="ttdef"><b>Definition:</b> CircleCollider.h:17</div></div>
+<div class="ttc" id="aclassHealth_html"><div class="ttname"><a href="classHealth.html">Health</a></div><div class="ttdoc">Entity health component.</div><div class="ttdef"><b>Definition:</b> Health.h:23</div></div>
 <div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -301,11 +301,6 @@
         }
         m_EntityReferences.clear();
 
-        for ( int i = (int)m_Children.size() - 1; i >= 0; --i )
-        {
-            m_Children[ i ]->SetParent(nullptr);
-        }
-
         m_IsInScene = false;
 
         if ( m_Parent != nullptr )
@@ -471,18 +466,18 @@
             ImGui::EndCombo();
         }
 
-        if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
-        {
-            for ( auto& [ key, component ] : m_Components )
-            {
-                if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
-                {
-                    removeComponent( component );
-                    break;
-                }
-            }
-            ImGui::EndCombo();
-        }
+        //if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
+        //{
+        //    for ( auto& [ key, component ] : m_Components )
+        //    {
+        //        if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
+        //        {
+        //            removeComponent( component );
+        //            break;
+        //        }
+        //    }
+        //    ImGui::EndCombo();
+        //}
 
         static std::string name = "";
         ImGui::InputText( "Entity Name", &name );

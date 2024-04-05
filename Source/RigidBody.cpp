@@ -37,7 +37,7 @@
     /// @param  acceleration    the acceleration to apply
     void RigidBody::ApplyAcceleration( glm::vec2 const& acceleration )
     {
-        m_Velocity += acceleration * Engine::GetInstance()->GetFixedFrameDuration();
+        m_Velocity += acceleration * GameEngine()->GetFixedFrameDuration();
     }
 
     /// @brief  adds to the Velocity of this Rigidbody
@@ -52,7 +52,7 @@
     /// @param  force   the force to apply
     void RigidBody::ApplyForce( glm::vec2 const& force )
     {
-        ApplyImpulse( force * Engine::GetInstance()->GetFixedFrameDuration() );
+        ApplyImpulse( force * GameEngine()->GetFixedFrameDuration() );
     }
 
     /// @brief  applies an impulse to this RigidBody this frame
@@ -118,7 +118,7 @@
             return;
         }
 
-        float dt = Engine::GetInstance()->GetFixedFrameDuration();
+        float dt = GameEngine()->GetFixedFrameDuration();
 
         // linear movement
         glm::vec2 position = m_Transform->GetTranslation();
@@ -228,14 +228,15 @@
 
         float restitution = m_Restitution * rigidBodyB->GetRestitution();
 
-        float newSpeedA = (restitution * massB * relativeSpeed + momentum) / totalMass;
+        float newSpeedA = (restitution * massB *  relativeSpeed + momentum) / totalMass;
         float newSpeedB = (restitution * massA * -relativeSpeed + momentum) / totalMass;
 
         // apply the new velocities in the axis of the collision normal
         velA += collisionData.normal * (newSpeedA - speedA);
         velB += collisionData.normal * (newSpeedB - speedB);
 
-        m_Velocity = velA;
+
+        this      ->SetVelocity( velA );
         rigidBodyB->SetVelocity( velB );
 
         // if other will also collide with this, mark the collision as already resolved
@@ -257,10 +258,24 @@
         m_Transform->SetTranslation( pos );
 
         float speed = glm::dot( m_Velocity, collisionData.normal );
-
         float newSpeed = -speed * m_Restitution * other->GetRestitution();
+        float impulse = newSpeed - speed;
+        
+        glm::vec2 perpendicularAxis = glm::vec2( collisionData.normal.y, -collisionData.normal.x );
+        float perpendicularSpeed = glm::dot( m_Velocity, perpendicularAxis );
 
-        m_Velocity += collisionData.normal * (newSpeed - speed);
+        float frictionImpulse = m_Friction * other->GetFriction() * impulse;
+
+        if ( frictionImpulse >= glm::abs( perpendicularSpeed ) )
+        {
+            m_Velocity += perpendicularAxis * -perpendicularSpeed;
+        }
+        else
+        {
+            m_Velocity += perpendicularAxis * frictionImpulse * -glm::sign( perpendicularSpeed );
+        }
+
+        m_Velocity += collisionData.normal * impulse;
     }
 
 //-----------------------------------------------------------------------------

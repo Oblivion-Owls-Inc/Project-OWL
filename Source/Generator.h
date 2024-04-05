@@ -15,9 +15,11 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "Health.h"
+#include "Sprite.h"
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"
+#include "Interactable.h"
 
 
 class Generator : public Behavior
@@ -105,6 +107,9 @@ private: // variables
     /// @brief  shrink ring to match edited value if true
     bool m_ShrinkRing = false;
 
+    /// @brief  can activating the generator spawn a wave
+    bool m_CanSpawnWave = true;
+
     /// @brief  speed the particle ring grows and shrinks at
     float m_RadiusSpeed = 1.0f;
 
@@ -132,11 +137,20 @@ private: // variables
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
 
+    /// @brief  the Sprite component attached to this Generator
+    ComponentReference< Sprite > m_Sprite;
+
     /// @brief  the PathfinderTarget Component attached to this Generator
     ComponentReference< PathfinderTarget > m_PathfinderTarget;
 
     /// @brief  the Emitter component attached to this Generator
     ComponentReference< Emitter > m_Emitter;
+
+    /// @brief  the Interactable Component attached to this Generator
+    ComponentReference< Interactable > m_Interactable;
+
+    /// @brief  the wave prefab to spawn on generator activation
+    AssetReference< Entity > m_WavePrefab;
 
 
 //-----------------------------------------------------------------------------
@@ -187,6 +201,9 @@ private: // reading
 
     /// @brief	read the speed the particle ring changes
     void readSpeed(nlohmann::ordered_json const& json);
+
+    /// @brief	read the attached wave prefab to spawn
+    void readWavePrefab(nlohmann::ordered_json const& json);
 
 //-----------------------------------------------------------------------------
 public: // writing

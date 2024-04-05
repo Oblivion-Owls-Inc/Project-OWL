@@ -12,8 +12,12 @@
 
 #include "ComponentReference.t.h"
 #include "Health.h"
+#include "SceneTransition.h"
+#include "ComponentSystem.h"
 
 #include "SceneSystem.h"
+
+#include "Sprite.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -25,6 +29,14 @@
         Component( typeid( HomeBase ) )
     {}
 
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* HomeBase::GetHealth() { return m_Health; }
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -34,7 +46,10 @@
     /// @brief	destroy the base
     void HomeBase::Destroy()
     {
-	    SceneSystem::GetInstance()->SetNextScene(m_GameOverSceneName);
+        if ( m_SceneTransition != nullptr )
+        {
+            m_SceneTransition->StartTransition( m_GameOverSceneName );
+        }
     }
 
     
@@ -46,35 +61,34 @@
     /// @brief  called once when entering the scene
     void HomeBase::OnInit()
     {
-        m_Health.SetOnConnectCallback(
-            [ this ]()
-            {
-                m_Health->AddOnHealthChangedCallback(
-                    GetId(),
-                    [ this ]()
-                    {
-                        if ( m_Health->GetHealth()->GetCurrent() <= 0 )
-                        {
-                            Destroy();
-                        }
-                    }
-                );
-            }
-        );
-        m_Health.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Health->RemoveOnHealthChangedCallback( GetId() );
-            }
-        );
+        Components< HomeBase >()->AddComponent( this );
+
+        m_Health.SetOnConnectCallback( [ this ]() {
+            m_Health->AddOnHealthChangedCallback( GetId(), [ this ]() {
+                if ( m_Health->GetHealth()->GetCurrent() <= 0 )
+                {
+                    Destroy();
+                }
+            } );
+        } );
+        m_Health.SetOnDisconnectCallback( [ this ]() {
+            m_Health->RemoveOnHealthChangedCallback( GetId() );
+        } );
 
         m_Health.Init( GetEntity() );
+
+        m_SceneTransitionEntity.SetOwnerName( GetName() );
+        m_SceneTransitionEntity.Init();
     }
 
     /// @brief  called once when exiting the scene
     void HomeBase::OnExit()
     {
+        Components< HomeBase >()->RemoveComponent( this );
+
         m_Health.Exit();
+
+        m_SceneTransitionEntity.Exit();
     }
 
 
@@ -91,7 +105,9 @@
             ImGui::Text( "WARNING: no Health Component attached" );
         }
 
-        ImGui::InputText( "game over scene name", &m_GameOverSceneName );
+        Scenes()->InspectorSelectScene( "game over scene", &m_GameOverSceneName );
+
+        m_SceneTransitionEntity.Inspect( "scene transition entity" );
     }
 
 
@@ -107,6 +123,13 @@
         Stream::Read( m_GameOverSceneName, data );
     }
 
+    /// @brief  reads the Entity the SceneTransition Component is attached to
+    /// @param  data    the JSON data to read from
+    void HomeBase::readSceneTransitionEntity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_SceneTransitionEntity, data );
+    }
+
     
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -118,7 +141,8 @@
     ReadMethodMap< ISerializable > const& HomeBase::GetReadMethods() const
     {
         static ReadMethodMap< HomeBase > const readMethods = {
-            { "GameOverScene", &HomeBase::readGameOverSceneName }
+            { "GameOverScene"        , &HomeBase::readGameOverSceneName     },
+            { "SceneTransitionEntity", &HomeBase::readSceneTransitionEntity }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -132,7 +156,8 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "GameOverScene" ] = Stream::Write( m_GameOverSceneName );
+        json[ "GameOverScene"         ] = Stream::Write( m_GameOverSceneName     );
+        json[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
 
         return json;
     }
@@ -157,7 +182,9 @@
 
     /// @brief  copy constructor
     HomeBase::HomeBase( HomeBase const& other ) :
-        Component( other )
+        Component( other ),
+        m_GameOverSceneName    ( m_GameOverSceneName ),
+        m_SceneTransitionEntity( m_SceneTransitionEntity, { &m_SceneTransition } )
     {}
 
 
