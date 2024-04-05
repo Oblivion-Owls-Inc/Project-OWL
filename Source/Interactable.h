@@ -112,12 +112,18 @@ private: // members
     /// @brief  the control Action used to interact with this Interactable
     ActionReference m_InteractAction;
 
+    /// @brief  the offset position to display the prompt at
+    glm::vec2 m_PromptOffset = { 0.0f, 1.0f };
+
 
     /// @brief  the Sprite used to display the interact control prompt
     ComponentReference< Sprite > m_PromptSprite;
 
+    /// @brief  the Transform Component used to display the control prompt
+    ComponentReference< Transform > m_PromptTransform;
+
     /// @brief  the Entity used to display the interact control prompt
-    EntityReference m_PromptEntity = EntityReference( { &m_PromptSprite } );
+    EntityReference m_PromptEntity = EntityReference( { &m_PromptSprite, &m_PromptTransform } );
 
 
     /// @brief  the Transform attached to this Interactable
@@ -164,6 +170,10 @@ private: // reading
     /// @brief  reads the control Action used to interact with this Interactable
     /// @param  data    the JSON data to read from
     void readInteractAction( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the offset position to display the prompt at
+    /// @param  data    the JSON data to read from
+    void readPromptOffset( nlohmann::ordered_json const& data );
 
     /// @brief  reads the Entity used to display the interact control prompt
     /// @param  data    the JSON data to read from

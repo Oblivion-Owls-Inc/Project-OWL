@@ -74,6 +74,9 @@ private: // members
     /// @brief  texture to display when this button is selected
     AssetReference< Texture > m_SelectedTexture;
 
+    /// @brief  texture to display when this button is locked
+    AssetReference< Texture > m_LockedTexture;
+
 
     /// @brief  the ConstructionManager Behavior
     ComponentReference< ConstructionBehavior > m_ConstructionBehavior;
@@ -120,6 +123,10 @@ private: // reading
     /// @brief  reads the texture to display when this button is selected
     /// @param  data    the JSON data to read from
      void readSelectedTexture( nlohmann::ordered_json const& data );
+
+     /// @brief  reads the texture to display when this button is locked
+     /// @param  data    the JSON data to read from
+     void readLockedTexture( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the ConstructionManager Entity

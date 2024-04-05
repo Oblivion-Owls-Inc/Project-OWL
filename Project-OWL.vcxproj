@@ -527,6 +527,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
     <ClCompile Include="Source\CircleCollider.cpp" />
+    <ClCompile Include="Source\TurretUnlockUpgrade.cpp" />
     <ClCompile Include="Source\UiBarSprite.cpp" />
     <ClCompile Include="Source\UiButton.cpp" />
     <ClCompile Include="Source\UiElement.cpp" />
@@ -581,6 +582,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
+    <ClInclude Include="Source\TurretUnlockUpgrade.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
     <ClInclude Include="Source\Inventory.h" />
     <ClInclude Include="Source\ComponentSystem.h" />
