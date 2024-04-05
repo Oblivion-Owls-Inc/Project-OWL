@@ -275,7 +275,7 @@
                 ],
                 "Pivot": [
                     0.5,
-                    0.5
+                    0.3499999940395355
                 ],
                 "UseAspectRatio": true
             },
@@ -20949,7 +20949,7 @@
                 },
                 "StaticBody": {
                     "Restitution": 0.0,
-                    "Friction": 0.5
+                    "Friction": 1.0
                 },
                 "TilemapCollider": {
                     "CollisionLayer": 0,
@@ -91110,7 +91110,7 @@
                     "ChannelGroupName": "Effects"
                 },
                 "CircleCollider": {
-                    "Radius": 0.5,
+                    "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": {
                         "Flags": 3
@@ -91164,8 +91164,8 @@
                         "ActionName": ""
                     },
                     "VerticalMoveforce": [
-                        35.0,
-                        20.0
+                        40.0,
+                        0.0
                     ],
                     "HorizontalMoveforce": [
                         15.0,
@@ -91189,12 +91189,12 @@
                     ],
                     "Acceleration": [
                         0.0,
-                        -18.0
+                        -25.0
                     ],
                     "RotationalVelocity": 0.0,
                     "Mass": 1.0,
                     "Restitution": 0.0,
-                    "Friction": 0.5,
+                    "Friction": 0.25,
                     "Drag": 2.0
                 },
                 "Sprite": {
@@ -91213,8 +91213,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -14.5,
-                        121.5
+                        -15.552480697631836,
+                        121.3010025024414
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -91229,7 +91229,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 54.85261535644531,
+                            "Width": 23.06267738342285,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91247,8 +91247,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -1.7386102676391602,
-                                121.25630950927734
+                                -15.16750431060791,
+                                121.3927993774414
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91293,8 +91293,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -14.5,
-                                122.5
+                                -15.552480697631836,
+                                122.3010025024414
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91434,15 +91434,15 @@
                                 "Flags": 3
                             },
                             "Direction": [
-                                -0.8051182627677917,
-                                0.5931141972541809
+                                -0.947867751121521,
+                                0.3186641037464142
                             ],
                             "IsFiring": false
                         },
                         "Transform": {
                             "Translation": [
-                                -14.5,
-                                121.5
+                                -15.552480697631836,
+                                121.3010025024414
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91574,7 +91574,12 @@
                     }
                 },
                 "Inventory": {
-                    "Items": null
+                    "Items": [
+                        {
+                            "ItemId": 1,
+                            "Count": 3
+                        }
+                    ]
                 },
                 "Popup": {
                     "PopupEntity": {
@@ -91588,10 +91593,10 @@
                 "Sprite": {
                     "Layer": 4,
                     "Color": [
+                        0.501960813999176,
                         0.0,
                         0.0,
-                        0.0,
-                        0.0
+                        1.0
                     ],
                     "Opacity": 0.0,
                     "FrameIndex": 0,
@@ -91601,8 +91606,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        0.0,
-                        0.0
+                        -12.5,
+                        124.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -91632,13 +91637,13 @@
                         },
                         "Transform": {
                             "Translation": [
-                                0.0,
-                                0.0
+                                -12.5,
+                                124.5
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                1.0,
-                                1.0
+                                10.0,
+                                10.0
                             ],
                             "IsDiegetic": true
                         }
@@ -109346,8 +109351,8 @@
                 },
                 "UiElement": {
                     "Anchor": [
-                        1.0,
-                        -1.0
+                        0.01813638210296631,
+                        0.43222808837890625
                     ],
                     "Pivot": [
                         -0.3333333134651184,
@@ -109367,7 +109372,116 @@
                     ]
                 }
             },
-            "Children": null
+            "Children": [
+                {
+                    "Name": "ResourceCounter",
+                    "Components": {
+                        "ResourceCounterUi": {
+                            "Resources": {
+                                "ItemId": 1,
+                                "Count": 3
+                            },
+                            "Opacity": 0.0
+                        },
+                        "Sprite": {
+                            "Layer": 5,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 1,
+                            "Texture": {
+                                "AssetName": "Items"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                -0.5,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToWidth"
+                            ]
+                        }
+                    },
+                    "Children": [
+                        {
+                            "Name": "ResourceCounterText",
+                            "Components": {
+                                "Tilemap<int>": {
+                                    "Dimensions": [
+                                        10,
+                                        0
+                                    ],
+                                    "TileScale": [
+                                        0.5,
+                                        1.0
+                                    ],
+                                    "TileData": [
+                                        19
+                                    ]
+                                },
+                                "Text": {
+                                    "Text": "3"
+                                },
+                                "TilemapSprite": {
+                                    "Layer": 5,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 0.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "FontSheet"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        1.0,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        -1.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        }
+                    ]
+                }
+            ]
         },
         "Base": {
             "Name": "Base",
