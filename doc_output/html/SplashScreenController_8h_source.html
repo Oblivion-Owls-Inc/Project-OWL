@@ -85,141 +85,151 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="classSprite.html">Sprite</a>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="classTransform.html">Transform</a>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="classTexture.html">Texture</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span><a class="code" href="classSceneTransition.html">SceneTransition</a>;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classSplashScreenController.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSplashScreenController.html">SplashScreenController</a> : <span class="keyword">public</span> <a class="code" href="classBehavior.html">Behavior</a></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>: <span class="comment">// class LogoData</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// A sub class for logo data.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html">   35</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classSplashScreenController_1_1LogoData.html">LogoData</a> : <span class="keyword">public</span> <a class="code" href="classISerializable.html">ISerializable</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html#a92856d67a2d3be0e8fec0f59a72ab560">   42</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="classSplashScreenController_1_1LogoData.html#a92856d67a2d3be0e8fec0f59a72ab560">M_LogoTimer</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html#a82dea4c53675c6dfba7ea57851baf191">   45</a></span>&#160;        <a class="code" href="classAssetReference.html">AssetReference&lt;Texture&gt;</a> <a class="code" href="classSplashScreenController_1_1LogoData.html#a82dea4c53675c6dfba7ea57851baf191">M_LogoTexture</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html#a8ed7e86b94068dbdb6465f4cf10d46f6">   48</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="classSplashScreenController_1_1LogoData.html#a8ed7e86b94068dbdb6465f4cf10d46f6">M_LogoScale</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">public</span>: <span class="comment">// inspection</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classSplashScreenController_1_1LogoData.html#adeb7b2804a33ad0f861e047aa03f3c73">Inspect</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">private</span>: <span class="comment">// Reading</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classSplashScreenController.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSplashScreenController.html">SplashScreenController</a> : <span class="keyword">public</span> <a class="code" href="classBehavior.html">Behavior</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>: <span class="comment">// class LogoData</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// A sub class for logo data.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html">   36</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classSplashScreenController_1_1LogoData.html">LogoData</a> : <span class="keyword">public</span> <a class="code" href="classISerializable.html">ISerializable</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html#a92856d67a2d3be0e8fec0f59a72ab560">   43</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="classSplashScreenController_1_1LogoData.html#a92856d67a2d3be0e8fec0f59a72ab560">M_LogoTimer</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html#a82dea4c53675c6dfba7ea57851baf191">   46</a></span>&#160;        <a class="code" href="classAssetReference.html">AssetReference&lt;Texture&gt;</a> <a class="code" href="classSplashScreenController_1_1LogoData.html#a82dea4c53675c6dfba7ea57851baf191">M_LogoTexture</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classSplashScreenController_1_1LogoData.html#a8ed7e86b94068dbdb6465f4cf10d46f6">   49</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="classSplashScreenController_1_1LogoData.html#a8ed7e86b94068dbdb6465f4cf10d46f6">M_LogoScale</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">public</span>: <span class="comment">// inspection</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classSplashScreenController_1_1LogoData.html#adeb7b2804a33ad0f861e047aa03f3c73">Inspect</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">private</span>: <span class="comment">// Reading</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> readTimer(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> readLogo(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> readScale(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> readTimer(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> readLogo(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> readScale(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classSplashScreenController_1_1LogoData.html#a04b548a24f7f33fdd2fbd36c4daef748">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classSplashScreenController_1_1LogoData.html#a04b548a24f7f33fdd2fbd36c4daef748">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classSplashScreenController_1_1LogoData.html#a591d4e827925e530893f247d934dc2cc">Write</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classSplashScreenController_1_1LogoData.html#a591d4e827925e530893f247d934dc2cc">Write</a>() <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    };</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructor/destructor</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classSplashScreenController.html#a16feea7b3386977373b5fa98feb2aa23">SplashScreenController</a>();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classSplashScreenController.html#a10e1c5802bb6c3fa7a0ee9577714b387">  101</a></span>&#160;    <a class="code" href="classSplashScreenController.html#a10e1c5802bb6c3fa7a0ee9577714b387">~SplashScreenController</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual override methods</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#a71dcc18eb5ac111ed8d74b3b50271242">OnInit</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#a6ca2059b84526b684227263f28723e4a">OnExit</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#aae39df88e792fb25b8a9629133b4f204">OnUpdate</a>(<span class="keywordtype">float</span> dt) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    std::string m_NextSceneName = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    std::vector&lt;LogoData&gt; m_Logos = {};</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">float</span> m_Timer;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">int</span> m_Index;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt;Sprite&gt;</a> m_Sprite;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt;Transform&gt;</a> m_Transform;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="keyword">public</span>: <span class="comment">// Inspection</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#a2d148d9aa15e50968644aecfd4e3a72a">Inspector</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    };</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructor/destructor</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="classSplashScreenController.html#a16feea7b3386977373b5fa98feb2aa23">SplashScreenController</a>();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classSplashScreenController.html#a10e1c5802bb6c3fa7a0ee9577714b387">  102</a></span>&#160;    <a class="code" href="classSplashScreenController.html#a10e1c5802bb6c3fa7a0ee9577714b387">~SplashScreenController</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#a71dcc18eb5ac111ed8d74b3b50271242">OnInit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#a6ca2059b84526b684227263f28723e4a">OnExit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#aae39df88e792fb25b8a9629133b4f204">OnUpdate</a>(<span class="keywordtype">float</span> dt) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::string m_NextSceneName = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    std::vector&lt;LogoData&gt; m_Logos = {};</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">float</span> m_Timer;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">int</span> m_Index;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt;Sprite&gt;</a> m_Sprite;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt;Transform&gt;</a> m_Transform;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt; SceneTransition &gt;</a> m_SceneTransition;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="classEntityReference.html">EntityReference</a> m_SceneTransitionEntity = <a class="code" href="classEntityReference.html">EntityReference</a>( { &amp;m_SceneTransition } );</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">void</span> readSceneName(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordtype">void</span> readLogos(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">public</span>: <span class="comment">// Inspection</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSplashScreenController.html#a2d148d9aa15e50968644aecfd4e3a72a">Inspector</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">void</span> readSceneName(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classSplashScreenController.html#a0bf073867169dbf0d0f73ddf9dcbecad">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">void</span> readLogos(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classSplashScreenController.html#a5a24087f0db062e5bbad14699d1a0c77">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">void</span> readSceneTransitionEntity( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">public</span>: <span class="comment">// copying</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classSplashScreenController.html">SplashScreenController</a>* <a class="code" href="classSplashScreenController.html#aef24a864df432b7f8e1033c161f19f8a">Clone</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classSplashScreenController.html#a0bf073867169dbf0d0f73ddf9dcbecad">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="keyword">private</span>: <span class="comment">// copying</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classSplashScreenController.html#a5a24087f0db062e5bbad14699d1a0c77">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="classSplashScreenController.html#a16feea7b3386977373b5fa98feb2aa23">SplashScreenController</a>(<a class="code" href="classSplashScreenController.html">SplashScreenController</a> <span class="keyword">const</span>&amp; other);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keyword">public</span>: <span class="comment">// copying</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="comment">// disable assignment operator </span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordtype">void</span> operator =(<a class="code" href="classSplashScreenController.html">SplashScreenController</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classSplashScreenController.html">SplashScreenController</a>* <a class="code" href="classSplashScreenController.html#aef24a864df432b7f8e1033c161f19f8a">Clone</a>() <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;};</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="keyword">private</span>: <span class="comment">// copying</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="classSplashScreenController.html#a16feea7b3386977373b5fa98feb2aa23">SplashScreenController</a>(<a class="code" href="classSplashScreenController.html">SplashScreenController</a> <span class="keyword">const</span>&amp; other);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// disable assignment operator </span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">void</span> operator =(<a class="code" href="classSplashScreenController.html">SplashScreenController</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;};</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
 <div class="ttc" id="aAssetReference_8h_html"><div class="ttname"><a href="AssetReference_8h.html">AssetReference.h</a></div><div class="ttdoc">a reference to an Asset</div></div>
 <div class="ttc" id="aBehavior_8h_html"><div class="ttname"><a href="Behavior_8h.html">Behavior.h</a></div><div class="ttdoc">Virtual behavior component header.</div></div>
 <div class="ttc" id="aComponentReference_8h_html"><div class="ttname"><a href="ComponentReference_8h.html">ComponentReference.h</a></div><div class="ttdoc">a reference to a component in the scene</div></div>
@@ -227,24 +237,26 @@ $(function() {
 <div class="ttc" id="aclassAssetReference_html"><div class="ttname"><a href="classAssetReference.html">AssetReference&lt; Texture &gt;</a></div></div>
 <div class="ttc" id="aclassBehavior_html"><div class="ttname"><a href="classBehavior.html">Behavior</a></div><div class="ttdef"><b>Definition:</b> Behavior.h:17</div></div>
 <div class="ttc" id="aclassComponentReference_html"><div class="ttname"><a href="classComponentReference.html">ComponentReference&lt; Sprite &gt;</a></div></div>
+<div class="ttc" id="aclassEntityReference_html"><div class="ttname"><a href="classEntityReference.html">EntityReference</a></div><div class="ttdoc">a reference to an Entity in the scene</div><div class="ttdef"><b>Definition:</b> EntityReference.h:23</div></div>
 <div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:20</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html">SplashScreenController::LogoData</a></div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:36</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a04b548a24f7f33fdd2fbd36c4daef748"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a04b548a24f7f33fdd2fbd36c4daef748">SplashScreenController::LogoData::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">Gets the map of read methods for this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:77</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a591d4e827925e530893f247d934dc2cc"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a591d4e827925e530893f247d934dc2cc">SplashScreenController::LogoData::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Logo behavior data to a JSON file.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:95</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a82dea4c53675c6dfba7ea57851baf191"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a82dea4c53675c6dfba7ea57851baf191">SplashScreenController::LogoData::M_LogoTexture</a></div><div class="ttdeci">AssetReference&lt; Texture &gt; M_LogoTexture</div><div class="ttdoc">The texture for the logo.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:45</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a8ed7e86b94068dbdb6465f4cf10d46f6"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a8ed7e86b94068dbdb6465f4cf10d46f6">SplashScreenController::LogoData::M_LogoScale</a></div><div class="ttdeci">float M_LogoScale</div><div class="ttdoc">The scale for each logo.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:48</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a92856d67a2d3be0e8fec0f59a72ab560"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a92856d67a2d3be0e8fec0f59a72ab560">SplashScreenController::LogoData::M_LogoTimer</a></div><div class="ttdeci">float M_LogoTimer</div><div class="ttdoc">How long the logo is displayed for.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:42</div></div>
-<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_adeb7b2804a33ad0f861e047aa03f3c73"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#adeb7b2804a33ad0f861e047aa03f3c73">SplashScreenController::LogoData::Inspect</a></div><div class="ttdeci">bool Inspect()</div><div class="ttdoc">inspects this LogoData</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:34</div></div>
-<div class="ttc" id="aclassSplashScreenController_html"><div class="ttname"><a href="classSplashScreenController.html">SplashScreenController</a></div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:29</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_a0bf073867169dbf0d0f73ddf9dcbecad"><div class="ttname"><a href="classSplashScreenController.html#a0bf073867169dbf0d0f73ddf9dcbecad">SplashScreenController::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">Gets the map of read methods for this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:225</div></div>
+<div class="ttc" id="aclassSceneTransition_html"><div class="ttname"><a href="classSceneTransition.html">SceneTransition</a></div><div class="ttdoc">DESCRIPTION HERE.</div><div class="ttdef"><b>Definition:</b> SceneTransition.h:18</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html">SplashScreenController::LogoData</a></div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:37</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a04b548a24f7f33fdd2fbd36c4daef748"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a04b548a24f7f33fdd2fbd36c4daef748">SplashScreenController::LogoData::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">Gets the map of read methods for this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:78</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a591d4e827925e530893f247d934dc2cc"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a591d4e827925e530893f247d934dc2cc">SplashScreenController::LogoData::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Logo behavior data to a JSON file.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:96</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a82dea4c53675c6dfba7ea57851baf191"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a82dea4c53675c6dfba7ea57851baf191">SplashScreenController::LogoData::M_LogoTexture</a></div><div class="ttdeci">AssetReference&lt; Texture &gt; M_LogoTexture</div><div class="ttdoc">The texture for the logo.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:46</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a8ed7e86b94068dbdb6465f4cf10d46f6"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a8ed7e86b94068dbdb6465f4cf10d46f6">SplashScreenController::LogoData::M_LogoScale</a></div><div class="ttdeci">float M_LogoScale</div><div class="ttdoc">The scale for each logo.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:49</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_a92856d67a2d3be0e8fec0f59a72ab560"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#a92856d67a2d3be0e8fec0f59a72ab560">SplashScreenController::LogoData::M_LogoTimer</a></div><div class="ttdeci">float M_LogoTimer</div><div class="ttdoc">How long the logo is displayed for.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:43</div></div>
+<div class="ttc" id="aclassSplashScreenController_1_1LogoData_html_adeb7b2804a33ad0f861e047aa03f3c73"><div class="ttname"><a href="classSplashScreenController_1_1LogoData.html#adeb7b2804a33ad0f861e047aa03f3c73">SplashScreenController::LogoData::Inspect</a></div><div class="ttdeci">bool Inspect()</div><div class="ttdoc">inspects this LogoData</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:35</div></div>
+<div class="ttc" id="aclassSplashScreenController_html"><div class="ttname"><a href="classSplashScreenController.html">SplashScreenController</a></div><div class="ttdef"><b>Definition:</b> SplashScreenController.h:30</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_a0bf073867169dbf0d0f73ddf9dcbecad"><div class="ttname"><a href="classSplashScreenController.html#a0bf073867169dbf0d0f73ddf9dcbecad">SplashScreenController::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">Gets the map of read methods for this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:246</div></div>
 <div class="ttc" id="aclassSplashScreenController_html_a10e1c5802bb6c3fa7a0ee9577714b387"><div class="ttname"><a href="classSplashScreenController.html#a10e1c5802bb6c3fa7a0ee9577714b387">SplashScreenController::~SplashScreenController</a></div><div class="ttdeci">~SplashScreenController()=default</div><div class="ttdoc">Destructor for the logo behaviour.</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_a16feea7b3386977373b5fa98feb2aa23"><div class="ttname"><a href="classSplashScreenController.html#a16feea7b3386977373b5fa98feb2aa23">SplashScreenController::SplashScreenController</a></div><div class="ttdeci">SplashScreenController()</div><div class="ttdoc">Default constructor for the logo behaviour.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:109</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_a2d148d9aa15e50968644aecfd4e3a72a"><div class="ttname"><a href="classSplashScreenController.html#a2d148d9aa15e50968644aecfd4e3a72a">SplashScreenController::Inspector</a></div><div class="ttdeci">virtual void Inspector() override</div><div class="ttdoc">Used by the Debug System to display information about this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:189</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_a5a24087f0db062e5bbad14699d1a0c77"><div class="ttname"><a href="classSplashScreenController.html#a5a24087f0db062e5bbad14699d1a0c77">SplashScreenController::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Logo behavior data to a JSON file.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:238</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_a6ca2059b84526b684227263f28723e4a"><div class="ttname"><a href="classSplashScreenController.html#a6ca2059b84526b684227263f28723e4a">SplashScreenController::OnExit</a></div><div class="ttdeci">virtual void OnExit() override</div><div class="ttdoc">Called when this component's entity is removed from the scene.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:137</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_a71dcc18eb5ac111ed8d74b3b50271242"><div class="ttname"><a href="classSplashScreenController.html#a71dcc18eb5ac111ed8d74b3b50271242">SplashScreenController::OnInit</a></div><div class="ttdeci">virtual void OnInit() override</div><div class="ttdoc">Called when this component's entity is added to the scene.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:120</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_aae39df88e792fb25b8a9629133b4f204"><div class="ttname"><a href="classSplashScreenController.html#aae39df88e792fb25b8a9629133b4f204">SplashScreenController::OnUpdate</a></div><div class="ttdeci">virtual void OnUpdate(float dt) override</div><div class="ttdoc">Called every frame.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:147</div></div>
-<div class="ttc" id="aclassSplashScreenController_html_aef24a864df432b7f8e1033c161f19f8a"><div class="ttname"><a href="classSplashScreenController.html#aef24a864df432b7f8e1033c161f19f8a">SplashScreenController::Clone</a></div><div class="ttdeci">virtual SplashScreenController * Clone() const override</div><div class="ttdoc">Creates a new copy of this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:253</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_a16feea7b3386977373b5fa98feb2aa23"><div class="ttname"><a href="classSplashScreenController.html#a16feea7b3386977373b5fa98feb2aa23">SplashScreenController::SplashScreenController</a></div><div class="ttdeci">SplashScreenController()</div><div class="ttdoc">Default constructor for the logo behaviour.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:110</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_a2d148d9aa15e50968644aecfd4e3a72a"><div class="ttname"><a href="classSplashScreenController.html#a2d148d9aa15e50968644aecfd4e3a72a">SplashScreenController::Inspector</a></div><div class="ttdeci">virtual void Inspector() override</div><div class="ttdoc">Used by the Debug System to display information about this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:201</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_a5a24087f0db062e5bbad14699d1a0c77"><div class="ttname"><a href="classSplashScreenController.html#a5a24087f0db062e5bbad14699d1a0c77">SplashScreenController::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Logo behavior data to a JSON file.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:259</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_a6ca2059b84526b684227263f28723e4a"><div class="ttname"><a href="classSplashScreenController.html#a6ca2059b84526b684227263f28723e4a">SplashScreenController::OnExit</a></div><div class="ttdeci">virtual void OnExit() override</div><div class="ttdoc">Called when this component's entity is removed from the scene.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:141</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_a71dcc18eb5ac111ed8d74b3b50271242"><div class="ttname"><a href="classSplashScreenController.html#a71dcc18eb5ac111ed8d74b3b50271242">SplashScreenController::OnInit</a></div><div class="ttdeci">virtual void OnInit() override</div><div class="ttdoc">Called when this component's entity is added to the scene.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:121</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_aae39df88e792fb25b8a9629133b4f204"><div class="ttname"><a href="classSplashScreenController.html#aae39df88e792fb25b8a9629133b4f204">SplashScreenController::OnUpdate</a></div><div class="ttdeci">virtual void OnUpdate(float dt) override</div><div class="ttdoc">Called every frame.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:153</div></div>
+<div class="ttc" id="aclassSplashScreenController_html_aef24a864df432b7f8e1033c161f19f8a"><div class="ttname"><a href="classSplashScreenController.html#aef24a864df432b7f8e1033c161f19f8a">SplashScreenController::Clone</a></div><div class="ttdeci">virtual SplashScreenController * Clone() const override</div><div class="ttdoc">Creates a new copy of this Component.</div><div class="ttdef"><b>Definition:</b> SplashScreenController.cpp:275</div></div>
 <div class="ttc" id="aclassSprite_html"><div class="ttname"><a href="classSprite.html">Sprite</a></div><div class="ttdoc">Stores mesh + texture, along with other data needed to draw a basic 2D sprite.</div><div class="ttdef"><b>Definition:</b> Sprite.h:17</div></div>
 <div class="ttc" id="aclassTexture_html"><div class="ttname"><a href="classTexture.html">Texture</a></div><div class="ttdoc">Stores texture data, and allows to bind it for rendering.</div><div class="ttdef"><b>Definition:</b> Texture.h:14</div></div>
 <div class="ttc" id="aclassTransform_html"><div class="ttname"><a href="classTransform.html">Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:19</div></div>

@@ -37,6 +37,8 @@ void \mbox{\hyperlink{classSceneSystem_a9167f5f0bc197f908e1683b1cccd18ed}{Autosa
 \mbox{\Hypertarget{classSceneSystem_aa2ca02588a8ca0ea417bf5a698754aab}\label{classSceneSystem_aa2ca02588a8ca0ea417bf5a698754aab}} 
 void \mbox{\hyperlink{classSceneSystem_aa2ca02588a8ca0ea417bf5a698754aab}{Load\+Autosave}} ()
 \begin{DoxyCompactList}\small\item\em sets the next scene to the autosaved scene \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSceneSystem_a096491a205205e1a09fc095d26955915}{Inspector\+Select\+Scene}} (char const $\ast$label, std\+::string $\ast$scene\+Name)
+\begin{DoxyCompactList}\small\item\em selects a scene name in an inspector \end{DoxyCompactList}\item 
 std\+::string const  \& \mbox{\hyperlink{classSceneSystem_a56528509c11e234c5522dbcd1b88df10}{Get\+Scene\+Name}} () const
 \begin{DoxyCompactList}\small\item\em gets the name of the current scene \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}\label{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}} 
@@ -134,7 +136,27 @@ Save the scene using the name typed into the buffer
 
 Creates a button to cancel the save
 
-Close the window\mbox{\Hypertarget{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}\label{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}} 
+Close the window\mbox{\Hypertarget{classSceneSystem_a096491a205205e1a09fc095d26955915}\label{classSceneSystem_a096491a205205e1a09fc095d26955915}} 
+\index{SceneSystem@{SceneSystem}!InspectorSelectScene@{InspectorSelectScene}}
+\index{InspectorSelectScene@{InspectorSelectScene}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{InspectorSelectScene()}{InspectorSelectScene()}}
+{\footnotesize\ttfamily bool Scene\+System\+::\+Inspector\+Select\+Scene (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::string $\ast$}]{scene\+Name }\end{DoxyParamCaption})}
+
+
+
+selects a scene name in an inspector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the inspector \\
+\hline
+{\em scene\+Name} & pointer to where to store the selected scene \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a scene was selected 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}\label{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}} 
 \index{SceneSystem@{SceneSystem}!SaveScene@{SaveScene}}
 \index{SaveScene@{SaveScene}!SceneSystem@{SceneSystem}}
 \doxysubsubsection{\texorpdfstring{SaveScene()}{SaveScene()}}

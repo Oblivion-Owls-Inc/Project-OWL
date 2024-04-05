@@ -94,6 +94,11 @@ public: // accessors
     std::vector< UiBarSection >& GetSections();
 
 
+    /// @brief  gets the border positions of this UiBarSprite
+    /// @return the border positions of this UiBarSprite (min, max)
+    glm::vec2 const& GetBorderPositions() const;
+
+
 //-----------------------------------------------------------------------------
 public: //  methods
 //-----------------------------------------------------------------------------

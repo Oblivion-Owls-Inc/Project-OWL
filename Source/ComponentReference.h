@@ -92,6 +92,11 @@ public: // methods
     virtual void Exit() override;
 
 
+    /// @brief  assignment operator
+    /// @param  component   the component to assign to this ComponentReference
+    void operator =( ComponentType* component );
+
+
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
     /// @param  callback    the callback to call
     void SetOnConnectCallback( std::function< void () > callback );
@@ -117,11 +122,6 @@ public: // accessors
     /// @brief  implicit cast operator
     /// @return this ComponentReference's internal pointer
     operator ComponentType*() const;
-
-
-    /// @brief  assignment operator
-    /// @param  component   the component to assign to this ComponentReference
-    void operator =( ComponentType* component );
 
 
     /// @brief  gets the Entity this ComponentReference watches

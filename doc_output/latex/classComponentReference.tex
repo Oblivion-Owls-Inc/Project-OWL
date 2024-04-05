@@ -32,6 +32,8 @@ virtual void \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa
 \begin{DoxyCompactList}\small\item\em initializes this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to point to the \mbox{\hyperlink{classComponent}{Component}} of its type on the specified \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classComponentReference_aee73247a4cf3a3c394a4b4e34a597b57}{Exit}} () override
 \begin{DoxyCompactList}\small\item\em separates this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} from the target \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classComponentReference_ae7999e412c985f4de23509714f7c2de2}{operator=}} (Component\+Type $\ast$component)
+\begin{DoxyCompactList}\small\item\em assignment operator \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classComponentReference_a27305a3e9dd9c8621a6d5a0b14923c62}{Set\+On\+Connect\+Callback}} (std\+::function$<$ void() $>$ callback)
 \begin{DoxyCompactList}\small\item\em sets the callback to call when this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} connects to a \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classComponentReference_abcb571b8b74dd32ed33b7c58835c7e27}{Set\+On\+Disconnect\+Callback}} (std\+::function$<$ void() $>$ callback)
@@ -42,8 +44,6 @@ Component\+Type $\ast$ \mbox{\hyperlink{classComponentReference_ad7ef99858809491
 \begin{DoxyCompactList}\small\item\em member dereference operator \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classComponentReference_a34c4e5793d72723500ef0c9e8a2f36e2}{operator Component\+Type $\ast$}} () const
 \begin{DoxyCompactList}\small\item\em implicit cast operator \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classComponentReference_ae7999e412c985f4de23509714f7c2de2}{operator=}} (Component\+Type $\ast$component)
-\begin{DoxyCompactList}\small\item\em assignment operator \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classEntity}{Entity}} const  $\ast$ \mbox{\hyperlink{classComponentReference_a64b7e3ebb6d5e5ae416f093827c640e5}{Get\+Entity}} () const
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classEntity}{Entity}} this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} watches \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classComponentReference_acde69ca38ad57a326215b95f89d26e58}{Clear}} () override

@@ -39,7 +39,8 @@ void PauseSystem::OnSceneExit()
 {
     if (!m_Running && Debug().IsEditorRunning())
     {
-	   togglePause();
+        m_Running = true;
+	    togglePause();
     }
 }
 

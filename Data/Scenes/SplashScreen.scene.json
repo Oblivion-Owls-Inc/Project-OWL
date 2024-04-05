@@ -49,6 +49,18 @@
                     0.5
                 ],
                 "UseAspectRatio": true
+            },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
             }
         },
         "TransformAnimations": null,
@@ -83,6 +95,9 @@
             "Components": {
                 "SplashScreenController": {
                     "NextSceneName": "MainMenu",
+                    "SceneTransitionEntity": {
+                        "EntityName": "SceneTransitioner"
+                    },
                     "Logos": [
                         {
                             "Timer": 2.0,
@@ -132,6 +147,52 @@
                         1.0
                     ],
                     "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "SceneTransitioner": {
+            "Name": "SceneTransitioner",
+            "Components": {
+                "SceneTransition": {
+                    "TransitionDuration": 0.25,
+                    "NextSceneName": ""
+                },
+                "Sprite": {
+                    "Layer": 1000,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 0.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Rectangle"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
                 }
             },
             "Children": null

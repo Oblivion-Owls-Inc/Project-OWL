@@ -72,6 +72,12 @@
 #include "ControlPrompt.h"
 #include "BuildingSelectionButton.h"
 #include "DigEffect.h"
+#include "UiSlider.h"
+#include "Interactable.h"
+#include "Interactor.h"
+#include "LaserUpgrade.h"
+#include "TurretUnlockUpgrade.h"
+#include "SceneTransition.h"
 
 
 //-----------------------------------------------------------------------------
@@ -225,7 +231,13 @@
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
         { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
-        { "DigEffect"              , ComponentInfo< DigEffect               >() }
+        { "DigEffect"              , ComponentInfo< DigEffect               >() },
+        { "UiSlider"               , ComponentInfo< UiSlider                >() },
+        { "Interactable"           , ComponentInfo< Interactable            >() },
+        { "Interactor"             , ComponentInfo< Interactor              >() },
+        { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
+        { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
+        { "SceneTransition"        , ComponentInfo< SceneTransition         >() }
     };
 
 //-----------------------------------------------------------------------------

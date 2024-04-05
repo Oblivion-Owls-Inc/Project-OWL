@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                556
+                1163,
+                681
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -229,12 +229,25 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "DragSlider",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "boost_and_smoke",
+            "NextSceneName": "AlphaScene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -247,9 +260,12 @@
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<PauseComponent>": {},
         "BehaviorSystem<UiButton>": {},
+        "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
         "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
+        "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
@@ -312,7 +328,7 @@
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
+                "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -326,9 +342,10 @@
                 "BehaviorSystem<Popup>": false,
                 "BehaviorSystem<RigidBody>": false,
                 "BehaviorSystem<UiButton>": false,
+                "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": false,
-                "CheatSystem": true,
+                "CheatSystem": false,
                 "CollisionSystem": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,

@@ -301,11 +301,6 @@
         }
         m_EntityReferences.clear();
 
-        for ( int i = (int)m_Children.size() - 1; i >= 0; --i )
-        {
-            m_Children[ i ]->SetParent(nullptr);
-        }
-
         m_IsInScene = false;
 
         if ( m_Parent != nullptr )

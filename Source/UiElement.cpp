@@ -35,6 +35,20 @@
         SetIsDiegetic( false );
     }
 
+    
+//-----------------------------------------------------------------------------
+// public: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  converts a UI position to a local anchor position
+    /// @param  uiPos   the ui position to convert
+    /// @return the converted local anchor position
+    glm::vec2 UiElement::UiPosToLocalAnchor( glm::vec2 const& uiPos ) const
+    {
+        return glm::inverse( GetMatrix() ) * glm::vec4( 2.0f * uiPos, 0.0f, 1.0f );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: accessors

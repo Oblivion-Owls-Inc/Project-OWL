@@ -46,6 +46,13 @@ public: // methods
     void LoadAutosave();
 
 
+    /// @brief  selects a scene name in an inspector
+    /// @param  label       the label of the inspector
+    /// @param  sceneName   pointer to where to store the selected scene
+    /// @return whether a scene was selected
+    bool InspectorSelectScene( char const* label, std::string* sceneName );
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------

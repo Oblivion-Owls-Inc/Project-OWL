@@ -54,7 +54,11 @@ private: // class BuildingInfo
         /// @brief  the cost of the building
         std::vector< ItemStack > M_Cost = {};
 
-        ActionReference M_BuildAction;
+        /// @brief  the control action used to select this building
+        ActionReference M_SelectAction;
+
+        /// @brief  whether this building is unlocked
+        bool M_Unlocked = false;
         
 
     //-------------------------------------------------------------------------
@@ -92,9 +96,14 @@ private: // class BuildingInfo
         /// @param  data    the json data to read from
         void readCost( nlohmann::ordered_json const& data );
 
-        /// @brief  the control Action to build this building
+        /// @brief  the control Action to select this building
         /// @param  data    the JSON data to read from
-        void readBuildAction(nlohmann::ordered_json const& data);
+        void readSelectAction(nlohmann::ordered_json const& data);
+
+        /// @brief  reads whether this building is unlocked
+        /// @param  data    the JSON data to read from
+        void readUnlocked( nlohmann::ordered_json const& data );
+
 
     //-------------------------------------------------------------------------
     public: // reading / writing
@@ -145,6 +154,28 @@ public: // accessors
     /// @brief  sets whether buildings should be able to be constructed for free
     /// @param  ignoreCosts whether buildings should be able to be constructed for free
     void SetIgnoreCosts( bool ignoreCosts );
+
+    
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  checks whether the player can afford the specified building
+    /// @param  buildingIndex   the index of the building to check whether can be afforded
+    /// @return whether the building can be afforded
+    bool CanAffordBuilding( int buildingIndex ) const;
+
+
+    /// @brief  gets whether the specified building is unlocked
+    /// @param  buildingIndex   the index of the building to check if is locked
+    /// @return whether the specified building is unlocked
+    bool BuildingIsUnlocked( int buildingIndex ) const;
+
+    /// @brief  sets whether the specified building is unlocked
+    /// @param  buildingIndex   the index of the building to set whether is locked
+    /// @param  unlocked        whether the building should be unlocked
+    void SetBuildingUnlocked( int buildingIndex, bool unlocked );
 
 
 //-----------------------------------------------------------------------------

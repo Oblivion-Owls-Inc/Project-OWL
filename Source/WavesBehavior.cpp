@@ -34,6 +34,7 @@ WavesBehavior::WavesBehavior() :
 	inspectorGroup(0)
 {
 	waves.clear();
+	spawners.clear();
 }
 
 /// @brief cpy ctor
@@ -45,6 +46,7 @@ WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	inspectorGroup(other.inspectorGroup)
 {
 	waves = other.waves;
+	spawners = other.spawners;
 }
 
 /// @brief dtor

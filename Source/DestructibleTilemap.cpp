@@ -63,25 +63,34 @@
 
     }
 
-    /// @brief  gets the health proportion of the specified tile pos
+
+    /// @brief  gets the health of the tile at the specified position
     /// @param  tilePos the position of the tile to get the health of
-    /// @return the health of the tile from 1 to 0
-    float DestructibleTilemap::GetTileHealthProportion( glm::ivec2 const& tilePos ) const
+    /// @return the health of the tile
+    float DestructibleTilemap::GetTileHealth( glm::ivec2 const& tilePos ) const
     {
         if (
-            m_Tilemap       == nullptr || m_Tilemap      ->IsPositionWithinBounds( tilePos ) == false ||
             m_HealthTilemap == nullptr || m_HealthTilemap->IsPositionWithinBounds( tilePos ) == false
         )
         {
             return 0.0f;
         }
 
-        float health = m_HealthTilemap->GetTile( tilePos );
-        float maxHealth = GetMaxHealth( m_Tilemap->GetTile( tilePos ) );
-
-        return health / maxHealth;
+        return m_HealthTilemap->GetTile( tilePos );
     }
 
+    /// @brief  gets the max health of the tile at the specified position
+    /// @param  tilePos the position of the tile to get the max health of
+    /// @return the max health of the tile
+    float DestructibleTilemap::GetMaxHealth( glm::ivec2 const& tilePos ) const
+    {
+        if ( m_Tilemap == nullptr || m_Tilemap->IsPositionWithinBounds( tilePos ) == false )
+        {
+            return 0.0f;
+        }
+
+        return GetMaxHealth( m_Tilemap->GetTile( tilePos ) );
+    }
 
     /// @brief  gets the maximum health of tile type
     /// @param  tileId  the ID of the tile type to get the max heath of
@@ -94,6 +103,15 @@
         }
 
         return tileId < m_TileHealths.size() ? m_TileHealths[ tileId ] : INFINITY;
+    }
+
+
+    /// @brief  gets the health proportion of the specified tile pos
+    /// @param  tilePos the position of the tile to get the health of
+    /// @return the health of the tile from 1 to 0
+    float DestructibleTilemap::GetTileHealthProportion( glm::ivec2 const& tilePos ) const
+    {
+        return GetTileHealth( tilePos ) / GetMaxHealth( tilePos );
     }
 
 
@@ -257,12 +275,12 @@
             []( float* health ) -> bool
             {
                 bool changed = false;
-                changed |= ImGui::DragFloat( "", health, 0.05f, 0.05f, INFINITY, "%3f" );
+                changed |= ImGui::DragFloat( "", health, 0.05f, 0.05f, INFINITY, "%.3f", *health == INFINITY ? ImGuiSliderFlags_ReadOnly : ImGuiSliderFlags_None );
                 ImGui::SameLine();
-                if ( ImGui::SmallButton( "inf" ) )
+                if ( ImGui::SmallButton( *health == INFINITY ? "1.0" : "inf" ) )
                 {
                     changed = true;
-                    *health = INFINITY;
+                    *health = *health == INFINITY ? 1.0f : INFINITY;
                 }
 
                 return changed;
