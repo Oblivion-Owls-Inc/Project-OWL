@@ -108,6 +108,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a91d141f803b60f7391198e84a0dc2eed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a91d141f803b60f7391198e84a0dc2eed">CanAffordBuilding</a> (int buildingIndex) const</td></tr>
 <tr class="memdesc:a91d141f803b60f7391198e84a0dc2eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks whether the player can afford the specified building  <a href="classConstructionBehavior.html#a91d141f803b60f7391198e84a0dc2eed">More...</a><br /></td></tr>
 <tr class="separator:a91d141f803b60f7391198e84a0dc2eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a549a502df409d988b47ff6654066cc8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a549a502df409d988b47ff6654066cc8b">BuildingIsUnlocked</a> (int buildingIndex) const</td></tr>
+<tr class="memdesc:a549a502df409d988b47ff6654066cc8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether the specified building is unlocked  <a href="classConstructionBehavior.html#a549a502df409d988b47ff6654066cc8b">More...</a><br /></td></tr>
+<tr class="separator:a549a502df409d988b47ff6654066cc8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469f3b0fd2c31d5b1fbec282b9fc0452"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a469f3b0fd2c31d5b1fbec282b9fc0452">SetBuildingUnlocked</a> (int buildingIndex, bool unlocked)</td></tr>
+<tr class="memdesc:a469f3b0fd2c31d5b1fbec282b9fc0452"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether the specified building is unlocked  <a href="classConstructionBehavior.html#a469f3b0fd2c31d5b1fbec282b9fc0452">More...</a><br /></td></tr>
+<tr class="separator:a469f3b0fd2c31d5b1fbec282b9fc0452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7007eba3beb52b4b1a683062d2f3559e"><td class="memItemLeft" align="right" valign="top"><a id="a7007eba3beb52b4b1a683062d2f3559e"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConstructionBehavior.html#a7007eba3beb52b4b1a683062d2f3559e">Inspector</a> () override</td></tr>
 <tr class="memdesc:a7007eba3beb52b4b1a683062d2f3559e"><td class="mdescLeft">&#160;</td><td class="mdescRight">displays this <a class="el" href="classConstructionBehavior.html" title="Component that handles the construction of towers and modification of terrain.">ConstructionBehavior</a> in the Inspector <br /></td></tr>
@@ -178,6 +184,33 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classComponent.html">Component</a> that handles the construction of towers and modification of terrain. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a549a502df409d988b47ff6654066cc8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549a502df409d988b47ff6654066cc8b">&#9670;&nbsp;</a></span>BuildingIsUnlocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConstructionBehavior::BuildingIsUnlocked </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>buildingIndex</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets whether the specified building is unlocked </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buildingIndex</td><td>the index of the building to check if is locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the specified building is unlocked </dd></dl>
+
+</div>
+</div>
 <a id="a91d141f803b60f7391198e84a0dc2eed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a91d141f803b60f7391198e84a0dc2eed">&#9670;&nbsp;</a></span>CanAffordBuilding()</h2>
 
@@ -345,6 +378,43 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buildingIndex</td><td>the building index </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a469f3b0fd2c31d5b1fbec282b9fc0452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469f3b0fd2c31d5b1fbec282b9fc0452">&#9670;&nbsp;</a></span>SetBuildingUnlocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionBehavior::SetBuildingUnlocked </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>buildingIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>unlocked</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets whether the specified building is unlocked </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buildingIndex</td><td>the index of the building to set whether is locked </td></tr>
+    <tr><td class="paramname">unlocked</td><td>whether the building should be unlocked </td></tr>
   </table>
   </dd>
 </dl>

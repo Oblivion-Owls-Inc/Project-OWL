@@ -834,6 +834,9 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret0Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret0Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
@@ -900,6 +903,9 @@
                                         },
                                         "SelectedTexture": {
                                             "AssetName": "Turret1Selected"
+                                        },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret1Locked"
                                         },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
@@ -968,6 +974,9 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret2Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret2Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
@@ -1034,6 +1043,9 @@
                                         },
                                         "SelectedTexture": {
                                             "AssetName": "Turret3Selected"
+                                        },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret3Locked"
                                         },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
@@ -91449,20 +91461,24 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
+                            "Archetype": {
+                                "AssetName": "Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 3
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 1"
-                            }
+                            },
+                            "Unlocked": true
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Auto Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91473,28 +91489,30 @@
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Auto Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 2"
-                            }
+                            },
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Pulsar Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Pulsar Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 3"
-                            }
+                            },
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Force Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91505,12 +91523,10 @@
                                     "Count": 4
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Force Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 4"
-                            }
+                            },
+                            "Unlocked": false
                         }
                     ],
                     "BuildingIndex": -1,
@@ -109962,6 +109978,12 @@
                         1.0
                     ],
                     "IsDiegetic": true
+                },
+                "TurretUnlockUpgrade": {
+                    "UnlockBuildingIndex": 1,
+                    "ConstructionEntity": {
+                        "EntityName": "ConstructionManager"
+                    }
                 }
             },
             "Children": [
@@ -109990,7 +110012,7 @@
                         "Transform": {
                             "Translation": [
                                 -3.3489999771118164,
-                                122.79637908935547
+                                122.7959976196289
                             ],
                             "Rotation": 0.0,
                             "Scale": [
