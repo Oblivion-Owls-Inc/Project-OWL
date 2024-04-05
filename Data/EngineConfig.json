@@ -263,6 +263,8 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
+        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
         "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},

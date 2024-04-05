@@ -339,6 +339,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "SettingsButton": {
                 "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
                 "SheetDimensions": [
@@ -2039,7 +2051,10 @@
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Credits",
-                                        "EventName": "Credits"
+                                        "EventName": "Credits",
+                                        "SceneTransitionEntity": {
+                                            "EntityName": "SceneTransitionEntity"
+                                        }
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -2180,7 +2195,10 @@
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Settings",
-                                        "EventName": "Settings"
+                                        "EventName": "Settings",
+                                        "SceneTransitionEntity": {
+                                            "EntityName": "SceneTransitionEntity"
+                                        }
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -2556,7 +2574,10 @@
                             },
                             "SceneChangeButton": {
                                 "SceneName": "MainMenu",
-                                "EventName": "QuitConfirmation"
+                                "EventName": "QuitConfirmation",
+                                "SceneTransitionEntity": {
+                                    "EntityName": "SceneTransitionEntity"
+                                }
                             },
                             "Sprite": {
                                 "Layer": 40,
@@ -91208,7 +91229,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 24.39876937866211,
+                            "Width": 54.85261535644531,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91226,8 +91247,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -12.508612632751465,
-                                120.20344543457031
+                                -1.7386102676391602,
+                                121.25630950927734
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91245,7 +91266,10 @@
                         "WinState": {
                             "ItemID": 0,
                             "ItemCount": 10,
-                            "WinScene": "GameWin"
+                            "WinScene": "GameWin",
+                            "SceneTransitionEntity": {
+                                "EntityName": "SceneTransitionEntity"
+                            }
                         }
                     },
                     "Children": null
@@ -109434,7 +109458,10 @@
                     }
                 },
                 "HomeBase": {
-                    "GameOverScene": "Gameover"
+                    "GameOverScene": "Gameover",
+                    "SceneTransitionEntity": {
+                        "EntityName": "SceneTransitionEntity"
+                    }
                 },
                 "PathfinderTarget": {
                     "Priority": 0,
@@ -110029,9 +110056,58 @@
                     "Children": null
                 }
             ]
+        },
+        "SceneTransitionEntity": {
+            "Name": "SceneTransitionEntity",
+            "Components": {
+                "SceneTransition": {
+                    "TransitionDuration": 0.25,
+                    "NextSceneName": ""
+                },
+                "Sprite": {
+                    "Layer": 1000,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 0.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Rectangle"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
         }
     },
     "PreparsedScenes": [
+        "GameWin",
+        "Gameover",
+        "MainMenu",
         "Settings",
         "Tutorial"
     ]
