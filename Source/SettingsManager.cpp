@@ -114,10 +114,6 @@
         // The actual audio channels
         Audio()->InspectChannelGroup("SFX Group", &m_SFXChannelName, nullptr);
         Audio()->InspectChannelGroup("Music Group", &m_MusicChannelName, nullptr);
-
-        
-        ImGui::InputText("SFX Channel Name", &m_SFXChannelName);
-        ImGui::InputText("Music Channel Name", &m_MusicChannelName);
     }
 
 //-----------------------------------------------------------------------------
