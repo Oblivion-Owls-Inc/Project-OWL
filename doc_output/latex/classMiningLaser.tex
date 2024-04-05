@@ -34,6 +34,11 @@ float \mbox{\hyperlink{classMiningLaser_aab0af419d0b77c5ee9e01055ec7b7306}{Get\+
 \begin{DoxyCompactList}\small\item\em gets how quickly the laser breaks blocks \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMiningLaser_a935f0b5a2d45d38c1d4a2e8aeb65c075}{Set\+Mining\+Speed}} (float mining\+Speed)
 \begin{DoxyCompactList}\small\item\em sets how quickly the laser breaks blocks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMiningLaser_a322bf96d7f9c02d5d2ed84108f342564}\label{classMiningLaser_a322bf96d7f9c02d5d2ed84108f342564}} 
+float \mbox{\hyperlink{classMiningLaser_a322bf96d7f9c02d5d2ed84108f342564}{Get\+Max\+Toughness}} () const
+\begin{DoxyCompactList}\small\item\em gets the threshold of tile toughness above which tiles cannot be damaged @returnthe threshold of tile toughness above which tiles cannot be damaged \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_ab5e289b76aa8fc5fb363281ed03bcd20}{Set\+Max\+Toughness}} (float max\+Toughness)
+\begin{DoxyCompactList}\small\item\em sets the threshold of tile toughness above which tiles cannot be damaged \end{DoxyCompactList}\item 
 glm\+::vec4 const  \& \mbox{\hyperlink{classMiningLaser_aa94644890e85b90406529c781e15d9fb}{Get\+Beam\+Color}} () const
 \begin{DoxyCompactList}\small\item\em gets the beam color \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMiningLaser_acef87d8530b94b227ec80faa4001df0f}{Set\+Beam\+Color}} (glm\+::vec4 const \&beam\+Color)
@@ -60,7 +65,7 @@ void \mbox{\hyperlink{classMiningLaser_aa6f317cb0a3645f9c858444f5a393801}{Set\+I
 \begin{DoxyCompactList}\small\item\em sets whether the beam is firing \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classTransform}{Transform}} $\ast$ \mbox{\hyperlink{classMiningLaser_a52a2c754e8bbdaae44f4b4b276d94ed0}{Get\+Transform}} ()
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} \end{DoxyCompactList}\item 
-virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classMiningLaser_a68ea8a114340a0b06f4eac1da4c6ed74}{Get\+Read\+Methods}} () const override
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classMiningLaser_a9547bb0f7758754b0c87b20b2f8dcf33}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classMiningLaser_a070cfc359d9a54df2abc6fb33f2b9cd7}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} data to a JSON file. \end{DoxyCompactList}\item 
@@ -178,11 +183,11 @@ gets the range
 \begin{DoxyReturn}{Returns}
 the range 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMiningLaser_a68ea8a114340a0b06f4eac1da4c6ed74}\label{classMiningLaser_a68ea8a114340a0b06f4eac1da4c6ed74}} 
+\mbox{\Hypertarget{classMiningLaser_a9547bb0f7758754b0c87b20b2f8dcf33}\label{classMiningLaser_a9547bb0f7758754b0c87b20b2f8dcf33}} 
 \index{MiningLaser@{MiningLaser}!GetReadMethods@{GetReadMethods}}
 \index{GetReadMethods@{GetReadMethods}!MiningLaser@{MiningLaser}}
 \doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
-{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Mining\+Laser\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Mining\+Laser\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -296,6 +301,21 @@ sets whether the beam is firing
 \begin{DoxyReturn}{Returns}
 whether the beam is firing 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_ab5e289b76aa8fc5fb363281ed03bcd20}\label{classMiningLaser_ab5e289b76aa8fc5fb363281ed03bcd20}} 
+\index{MiningLaser@{MiningLaser}!SetMaxToughness@{SetMaxToughness}}
+\index{SetMaxToughness@{SetMaxToughness}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetMaxToughness()}{SetMaxToughness()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Max\+Toughness (\begin{DoxyParamCaption}\item[{float}]{max\+Toughness }\end{DoxyParamCaption})}
+
+
+
+sets the threshold of tile toughness above which tiles cannot be damaged 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Toughness} & the threshold of tile toughness above which tiles cannot be damaged \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classMiningLaser_a935f0b5a2d45d38c1d4a2e8aeb65c075}\label{classMiningLaser_a935f0b5a2d45d38c1d4a2e8aeb65c075}} 
 \index{MiningLaser@{MiningLaser}!SetMiningSpeed@{SetMiningSpeed}}
 \index{SetMiningSpeed@{SetMiningSpeed}!MiningLaser@{MiningLaser}}

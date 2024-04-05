@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                556
+                1163,
+                681
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -263,7 +263,9 @@
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
         "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
+        "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {

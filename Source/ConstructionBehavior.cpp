@@ -22,6 +22,7 @@
 #include "TurretBehavior.h"
 #include "ResourcesUiManager.h"
 #include "UiElement.h"
+#include "Generator.h"
 #include "Popup.h"
 
 
@@ -54,13 +55,13 @@
         {
             M_Archetype.SetOwnerName( "ConstructionBehavior" );
             M_Archetype.Init();
-            M_BuildAction.Init();
+            M_SelectAction.Init();
         }
 
         /// @brief  exits this BuildingInfo
         void ConstructionBehavior::BuildingInfo::Exit()
         {
-            M_BuildAction.Exit();
+            M_SelectAction.Exit();
         }
 
 
@@ -78,15 +79,16 @@
             changed |= M_Archetype.Inspect( "building prefab" );
 
             changed |= Inspection::InspectArray< ItemStack >(
-                "building cost",
-                &M_Cost,
+                "building cost", &M_Cost,
                 []( ItemStack* itemStack ) -> bool
                 {
                     return itemStack->Inspect();
                 }
             );
 
-            M_BuildAction.Inspect("Build Input");
+            changed |= M_SelectAction.Inspect("Selection Action");
+
+            changed |= ImGui::Checkbox( "unlocked", &M_Unlocked );
 
             return changed;
         }
@@ -108,22 +110,23 @@
         /// @param  data    the json data to read from
         void ConstructionBehavior::BuildingInfo::readCost( nlohmann::ordered_json const& data )
         {
-            M_Cost.clear();
-
-            for ( auto const& costData : data )
-            {
-                ItemStack item;
-                Stream::Read( item, costData );
-                M_Cost.push_back( item );
-            }
+            Stream::Read< ItemStack >( &M_Cost, data );
         }
 
-        /// @brief  the control Action to build this building
+        /// @brief  the control Action to select this building
         /// @param  data    the JSON data to read from
-        void ConstructionBehavior::BuildingInfo::readBuildAction(nlohmann::ordered_json const& data)
+        void ConstructionBehavior::BuildingInfo::readSelectAction( nlohmann::ordered_json const& data )
         {
-            Stream::Read(M_BuildAction, data);
+            Stream::Read( M_SelectAction, data );
         }
+
+        /// @brief  reads whether this building is unlocked
+        /// @param  data    the JSON data to read from
+        void ConstructionBehavior::BuildingInfo::readUnlocked( nlohmann::ordered_json const& data )
+        {
+            Stream::Read( M_Unlocked, data );
+        }
+
 
     //-------------------------------------------------------------------------
     // public: reading / writing
@@ -135,9 +138,10 @@
         ReadMethodMap< ISerializable > const& ConstructionBehavior::BuildingInfo::GetReadMethods() const
         {
             static ReadMethodMap< BuildingInfo > const readMethods = {
-                { "Archetype"    , &BuildingInfo::readArchetype   },
-                { "Cost"         , &BuildingInfo::readCost        },
-                { "Build Action" , &BuildingInfo::readBuildAction }
+                { "Archetype"   , &BuildingInfo::readArchetype    },
+                { "Cost"        , &BuildingInfo::readCost         },
+                { "SelectAction", &BuildingInfo::readSelectAction },
+                { "Unlocked"    , &BuildingInfo::readUnlocked     }
             };
 
             return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -150,15 +154,10 @@
         {
             nlohmann::ordered_json json;
 
-            nlohmann::ordered_json& costData = json[ "Cost" ];
-            for ( ItemStack const& itemStack : M_Cost )
-            {
-                costData.push_back( Stream::Write( itemStack ) );
-            }
-
-            json[ "Archetype" ] = Stream::Write( M_Archetype );
-
-            json["Build Action"] = Stream::Write(M_BuildAction);
+            json[ "Archetype"    ] = Stream::Write( M_Archetype    );
+            json[ "Cost"         ] = Stream::WriteArray( M_Cost );
+            json[ "SelectAction" ] = Stream::Write( M_SelectAction );
+            json[ "Unlocked"     ] = Stream::Write( M_Unlocked     );
 
             return json;
         }
@@ -277,6 +276,33 @@
     }
 
 
+    /// @brief  gets whether the specified building is unlocked
+    /// @param  buildingIndex   the index of the building to check if is locked
+    /// @return whether the specified building is unlocked
+    bool ConstructionBehavior::BuildingIsUnlocked( int buildingIndex ) const
+    {
+        if ( buildingIndex < 0 || buildingIndex >= m_BuildingInfos.size() )
+        {
+            return false;
+        }
+
+        return m_BuildingInfos[ buildingIndex ].M_Unlocked;
+    }
+
+    /// @brief  sets whether the specified building is unlocked
+    /// @param  buildingIndex   the index of the building to set whether is locked
+    /// @param  unlocked        whether the building should be unlocked
+    void ConstructionBehavior::SetBuildingUnlocked( int buildingIndex, bool unlocked )
+    {
+        if ( buildingIndex < 0 || buildingIndex >= m_BuildingInfos.size() )
+        {
+            return;
+        }
+
+        m_BuildingInfos[ buildingIndex ].M_Unlocked = unlocked;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
@@ -314,7 +340,7 @@
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
-            buildingInfo.M_BuildAction.SetOwnerName(GetName());
+            buildingInfo.M_SelectAction.SetOwnerName(GetName());
             buildingInfo.Init();
         }
     }
@@ -410,8 +436,9 @@
         for ( int i = 0; i < m_BuildingInfos.size(); ++i )
         {
             if (
-                m_BuildingInfos[i].M_BuildAction == nullptr ||
-                m_BuildingInfos[i].M_BuildAction->GetReleased() == false
+                m_BuildingInfos[ i ].M_Unlocked == false ||
+                m_BuildingInfos[ i ].M_SelectAction == nullptr ||
+                m_BuildingInfos[ i ].M_SelectAction->GetReleased() == false
             )
             {
                 continue;
@@ -464,6 +491,12 @@
             return false;
         }
 
+        // building is locked
+        if ( BuildingIsUnlocked( m_BuildingIndex ) == false )
+        {
+            return false;
+        }
+
         // not enough funds
         if ( CanAffordBuilding( m_BuildingIndex ) == false )
         {
@@ -494,7 +527,19 @@
             return false;
         }
 
-        return true;
+        for (Generator* generator : Behaviors< Generator >()->GetComponents())
+        {
+            float distance = glm::distance(
+                generator->GetTransform()->GetTranslation(),
+                m_TargetPos
+            );
+            if (distance <= generator->GetPowerRadius())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// @brief  palces the currently selected building

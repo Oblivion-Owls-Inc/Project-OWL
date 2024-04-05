@@ -1,0 +1,99 @@
+\hypertarget{classInteractor}{}\doxysection{Interactor Class Reference}
+\label{classInteractor}\index{Interactor@{Interactor}}
+
+
+\mbox{\hyperlink{classBehavior}{Behavior}} that can interact with nearby \mbox{\hyperlink{classInteractable}{Interactable}} Components.  
+
+
+
+
+{\ttfamily \#include $<$Interactor.\+h$>$}
+
+
+
+Inheritance diagram for Interactor\+:
+% FIG 0
+
+
+Collaboration diagram for Interactor\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classInteractor_a206fc87583c0a7292127b3ec176f65a2}\label{classInteractor_a206fc87583c0a7292127b3ec176f65a2}} 
+\mbox{\hyperlink{classInteractor_a206fc87583c0a7292127b3ec176f65a2}{Interactor}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractor_a083fe7277890813c81cbf4c55040744d}\label{classInteractor_a083fe7277890813c81cbf4c55040744d}} 
+void \mbox{\hyperlink{classInteractor_a083fe7277890813c81cbf4c55040744d}{Try\+Interact}} ()
+\begin{DoxyCompactList}\small\item\em tries to interact with the currently targeted \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ \mbox{\hyperlink{classInteractor_a2c607f1705624c5571e01bd2c816b7b3}{Get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classInteractor}{Interactor}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInteractable}{Interactable}} $\ast$ \mbox{\hyperlink{classInteractor_ae413f7dbbd7deb3319301bdbb4c545f7}{Get\+Targeted\+Interactable}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} currently being targeted by this \mbox{\hyperlink{classInteractor}{Interactor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractor_a0d40634e024afac9f32bb6adab3b1098}\label{classInteractor_a0d40634e024afac9f32bb6adab3b1098}} 
+virtual void \mbox{\hyperlink{classInteractor_a0d40634e024afac9f32bb6adab3b1098}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractor_a04b8439288ed9ae49f996cbfb0f66bda}\label{classInteractor_a04b8439288ed9ae49f996cbfb0f66bda}} 
+virtual void \mbox{\hyperlink{classInteractor_a04b8439288ed9ae49f996cbfb0f66bda}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInteractor_ae6532affdd58be4749ed491ab5913da2}\label{classInteractor_ae6532affdd58be4749ed491ab5913da2}} 
+virtual void \mbox{\hyperlink{classInteractor_ae6532affdd58be4749ed491ab5913da2}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em called every simulation frame \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classInteractor}{Interactor}} $\ast$ \mbox{\hyperlink{classInteractor_a050e626b4d25f88390540612472e0eb1}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classInteractor}{Interactor}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classBehavior}{Behavior}} that can interact with nearby \mbox{\hyperlink{classInteractable}{Interactable}} Components. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInteractor_a050e626b4d25f88390540612472e0eb1}\label{classInteractor_a050e626b4d25f88390540612472e0eb1}} 
+\index{Interactor@{Interactor}!Clone@{Clone}}
+\index{Clone@{Clone}!Interactor@{Interactor}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInteractor}{Interactor}} $\ast$ Interactor\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classInteractor}{Interactor}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classInteractor}{Interactor}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classInteractor_ae413f7dbbd7deb3319301bdbb4c545f7}\label{classInteractor_ae413f7dbbd7deb3319301bdbb4c545f7}} 
+\index{Interactor@{Interactor}!GetTargetedInteractable@{GetTargetedInteractable}}
+\index{GetTargetedInteractable@{GetTargetedInteractable}!Interactor@{Interactor}}
+\doxysubsubsection{\texorpdfstring{GetTargetedInteractable()}{GetTargetedInteractable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInteractable}{Interactable}} $\ast$ Interactor\+::\+Get\+Targeted\+Interactable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} currently being targeted by this \mbox{\hyperlink{classInteractor}{Interactor}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classInteractable}{Interactable}} \mbox{\hyperlink{classComponent}{Component}} currently being targeted by this \mbox{\hyperlink{classInteractor}{Interactor}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteractor_a2c607f1705624c5571e01bd2c816b7b3}\label{classInteractor_a2c607f1705624c5571e01bd2c816b7b3}} 
+\index{Interactor@{Interactor}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!Interactor@{Interactor}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ Interactor\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classInteractor}{Interactor}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classInteractor}{Interactor}} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Interactor_8h}{Interactor.\+h}}\item 
+Source/\mbox{\hyperlink{Interactor_8cpp}{Interactor.\+cpp}}\end{DoxyCompactItemize}
