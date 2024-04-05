@@ -159,6 +159,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Generator": {
+                "Filepath": "Data/Textures/GeneratorOn-Sheet.png",
+                "SheetDimensions": [
+                    2,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
             "HealthBar": {
                 "Filepath": "Data/Textures/healthBar.png",
                 "SheetDimensions": [
@@ -254,6 +266,18 @@
                     0.5
                 ],
                 "UseAspectRatio": false
+            },
+            "PlayerCharacter": {
+                "Filepath": "Data/Textures/PlayerCharacter.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
             },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
@@ -508,10 +532,10 @@
                 "UseAspectRatio": false
             },
             "Van": {
-                "Filepath": "Data/Textures/van_large.png",
+                "Filepath": "Data/Textures/BaseTruck160x128.png",
                 "SheetDimensions": [
                     8,
-                    2
+                    1
                 ],
                 "Pivot": [
                     0.5,
@@ -20904,7 +20928,7 @@
                 },
                 "StaticBody": {
                     "Restitution": 0.0,
-                    "Friction": 0.0
+                    "Friction": 0.5
                 },
                 "TilemapCollider": {
                     "CollisionLayer": 0,
@@ -91046,15 +91070,6 @@
         "Player": {
             "Name": "Player",
             "Components": {
-                "Animation": {
-                    "FrameIndex": 12,
-                    "FrameDelay": 0.06618662178516388,
-                    "IsRunning": false,
-                    "LoopCount": 0,
-                    "Animation": {
-                        "AssetName": "PlayerMoveUp"
-                    }
-                },
                 "AudioListener": {
                     "ZOffset": 0.0,
                     "IsActive": true
@@ -91074,7 +91089,7 @@
                     "ChannelGroupName": "Effects"
                 },
                 "CircleCollider": {
-                    "Radius": 0.30000001192092896,
+                    "Radius": 0.5,
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": {
                         "Flags": 3
@@ -91108,21 +91123,6 @@
                     "Active": true
                 },
                 "PlayerController": {
-                    "Animations": [
-                        {
-                            "AssetName": "PlayerMoveRight"
-                        },
-                        {
-                            "AssetName": "PlayerMoveLeft"
-                        },
-                        {
-                            "AssetName": "PlayerMoveUp"
-                        },
-                        {
-                            "AssetName": "PlayerMoveDown"
-                        }
-                    ],
-                    "MaxSpeed": 1.0,
                     "MiningLaserEntity": {
                         "EntityName": "MiningLaser"
                     },
@@ -91139,6 +91139,21 @@
                     "FireLaser": {
                         "ActionName": "FireLaser"
                     },
+                    "Interact": {
+                        "ActionName": ""
+                    },
+                    "VerticalMoveforce": [
+                        35.0,
+                        20.0
+                    ],
+                    "HorizontalMoveforce": [
+                        15.0,
+                        15.0
+                    ],
+                    "JumpSpeed": 5.0,
+                    "IsJumping": false,
+                    "GroundCollisionThreshold": 0.8999999761581421,
+                    "CoyoteTime": 0.30000001192092896,
                     "AimVertical": {
                         "ActionName": "AimVertical"
                     },
@@ -91153,13 +91168,13 @@
                     ],
                     "Acceleration": [
                         0.0,
-                        0.0
+                        -18.0
                     ],
                     "RotationalVelocity": 0.0,
                     "Mass": 1.0,
                     "Restitution": 0.0,
-                    "Friction": 0.0,
-                    "Drag": 12.0
+                    "Friction": 0.5,
+                    "Drag": 2.0
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -91170,9 +91185,9 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 12,
+                    "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "PlayerSheet"
+                        "AssetName": "PlayerCharacter"
                     }
                 },
                 "Transform": {
@@ -91193,7 +91208,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 46.125370025634766,
+                            "Width": 24.39876937866211,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91211,8 +91226,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -8.781373977661133,
-                                119.73275756835938
+                                -12.508612632751465,
+                                120.20344543457031
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -109441,13 +109456,13 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -13.0,
-                        121.5
+                        -12.9578218460083,
+                        121.7320785522461
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.0,
-                        1.0
+                        2.0,
+                        2.0
                     ],
                     "IsDiegetic": true
                 }
@@ -109548,6 +109563,10 @@
                     "InteractAction": {
                         "ActionName": "Interact"
                     },
+                    "PromptOffset": [
+                        0.0,
+                        1.0
+                    ],
                     "PromptEntity": {
                         "EntityName": "Generator1Prompt"
                     }
@@ -109567,7 +109586,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Van"
+                        "AssetName": "Generator"
                     }
                 },
                 "Transform": {
@@ -109717,6 +109736,10 @@
                     "InteractAction": {
                         "ActionName": "Interact"
                     },
+                    "PromptOffset": [
+                        0.0,
+                        1.0
+                    ],
                     "PromptEntity": {
                         "EntityName": "Generator2Prompt"
                     }
@@ -109736,7 +109759,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Van"
+                        "AssetName": "Generator"
                     }
                 },
                 "Transform": {
@@ -109834,6 +109857,10 @@
                     "InteractAction": {
                         "ActionName": "Interact"
                     },
+                    "PromptOffset": [
+                        0.0,
+                        1.0
+                    ],
                     "PromptEntity": {
                         "EntityName": "LaserUpgradePrompt"
                     }
@@ -109899,7 +109926,7 @@
                         "Transform": {
                             "Translation": [
                                 -6.899168014526367,
-                                122.7959976196289
+                                122.79637908935547
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -109922,6 +109949,10 @@
                     "InteractAction": {
                         "ActionName": "Interact"
                     },
+                    "PromptOffset": [
+                        0.0,
+                        1.0
+                    ],
                     "PromptEntity": {
                         "EntityName": "TurretUnlockPrompt"
                     }
@@ -109985,7 +110016,7 @@
                         "Transform": {
                             "Translation": [
                                 -3.3489999771118164,
-                                122.7959976196289
+                                122.79637908935547
                             ],
                             "Rotation": 0.0,
                             "Scale": [

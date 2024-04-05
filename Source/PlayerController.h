@@ -105,15 +105,8 @@ private: // member variables
     float m_CurrentCoyoteTime = 0.0f;
 
 
-    /// @brief  player directional movement animations
-    AssetReference< AnimationAsset > m_Animations[ 4 ] = {};
-
-
     /// @brief  a cached instance of the parent's Rigidbody.
     ComponentReference< RigidBody > m_RigidBody;
-
-    /// @brief  a cached instance of the parent's animation.
-    ComponentReference< Animation > m_Animation;
 
     /// @brief  a cached instance of the parent's AudioPlayer.
     ComponentReference< AudioPlayer > m_AudioPlayer;
@@ -142,6 +135,9 @@ private: // member variables
 
     /// @brief  the control Action to fire the laser
     ActionReference m_FireLaser;
+
+    /// @brief  the control Action to interact with something
+    ActionReference m_Interact;
 
     /// @brief  the control action for horizontal aim
     ActionReference m_AimHorizontal;
@@ -206,10 +202,6 @@ private: // reading
     /// @param data - the JSON file to read from.
     void readRespawnLocation(nlohmann::ordered_json const& data);
 
-    /// @brief Read in the animation names for the player.
-    /// @param data The JSON file to read from.
-    void readAnimations(nlohmann::ordered_json const& data);
-
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
     void readMiningLaserEntity( nlohmann::ordered_json const& data );
@@ -226,6 +218,10 @@ private: // reading
     /// @brief  reads the control Action to fire the laser
     /// @param  data    the JSON data to read from
     void readFireLaser( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control Action to interact with something
+    /// @param  data    the JSON data to read from
+    void readInteract( nlohmann::ordered_json const& data );
 
     /// @brief  reads the control action for horizontal aim
     /// @param  data    the JSON data to read from
