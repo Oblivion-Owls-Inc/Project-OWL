@@ -47,6 +47,30 @@
                 ],
                 "UseAspectRatio": false
             },
+            "CheckboxChecked": {
+                "Filepath": "Data/Textures/CheckedBox.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "CheckboxUnchecked": {
+                "Filepath": "Data/Textures/UncheckedBox.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Fontsheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [
@@ -690,7 +714,7 @@
                                 0.0,
                                 1.0
                             ],
-                            "Value": 1.0,
+                            "Value": 0.8999999761581421,
                             "Slope": 0.0
                         },
                         {
@@ -738,7 +762,7 @@
                     ]
                 },
                 "UiSlider": {
-                    "Value": 1.0,
+                    "Value": 0.8999999761581421,
                     "DragSliderAction": {
                         "ActionName": "DragSlider"
                     }
@@ -764,7 +788,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                0.9500000476837158,
+                                0.7599999904632568,
                                 0.0
                             ],
                             "Pivot": [
@@ -1023,9 +1047,22 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 1,
+                    "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Checkbox"
+                        "AssetName": "CheckboxChecked"
+                    }
+                },
+                "UiButton": {
+                    "ClickEventName": "",
+                    "ShouldActivateOnPress": false,
+                    "IdleFrame": 0,
+                    "HoveredFrame": 0,
+                    "DownFrame": 0,
+                    "PressSound": {
+                        "AssetName": ""
+                    },
+                    "ReleaseSound": {
+                        "AssetName": ""
                     }
                 },
                 "UiElement": {
@@ -1131,20 +1168,17 @@
                     "MusicVolumeSlider": {
                         "EntityName": "MusicSlider"
                     },
-                    "SFXChannelName": "Music",
-                    "MusicChannelName": ""
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
+                    "SFXChannelName": "Effects",
+                    "MusicChannelName": "Music",
+                    "CheckedBox": {
+                        "AssetName": "CheckboxChecked"
+                    },
+                    "UncheckedBox": {
+                        "AssetName": "CheckboxUnchecked"
+                    },
+                    "FullscreenToggle": {
+                        "EntityName": "FullscreenToggle"
+                    }
                 }
             },
             "Children": null

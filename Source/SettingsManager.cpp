@@ -15,6 +15,8 @@
 #include "UiElement.h"
 #include "UiBarSprite.h"
 #include "AudioSystem.h"
+#include "UiButton.h"
+#include "PlatformSystem.h"
 
 
 //-----------------------------------------------------------------------------
@@ -28,7 +30,7 @@
 
 
 //-----------------------------------------------------------------------------
-// public: // virtual override methods
+// public: virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief Called once entering the scene
@@ -79,7 +81,24 @@
             m_MusicVolumeSlider->RemoveOnSliderValueChangedCallback(GetId());
         });
 
-        
+
+        m_FullscreenToggleButton.SetOnConnectCallback([this]()
+        {
+                swapToggleTexture();
+
+                m_FullscreenToggleButton->AddOnClickedCallback(GetId(), [this]()
+                {
+                        Platform()->SetFullscreen(!Platform()->GetFullscren());
+
+                        swapToggleTexture();
+                });
+        });
+
+        m_FullscreenToggleButton.SetOnDisconnectCallback([this]()
+        {
+            m_FullscreenToggleButton->RemoveOnOnClickedCallback(GetId());
+        });
+     
 
         m_MasterVolumeEntity.SetOwnerName(GetName());
         m_MasterVolumeEntity.Init();
@@ -89,27 +108,61 @@
 
         m_MusicEntity.SetOwnerName(GetName());
         m_MusicEntity.Init();
+
+        m_CheckedToggleTexture.SetOwnerName(GetName());
+        m_CheckedToggleTexture.Init();
+        m_UncheckedToggleTexture.SetOwnerName(GetName());
+        m_UncheckedToggleTexture.Init();
+
+        m_FullscreenToggleEntity.SetOwnerName(GetName());
+        m_FullscreenToggleEntity.Init();
     }
 
     /// @brief Called once exiting scene
     void SettingsManager::OnExit()
     {
-        m_MasterVolumeEntity.Exit();
-        m_SFXEntity         .Exit();
-        m_MusicEntity       .Exit();
+        m_MasterVolumeEntity    .Exit();
+        m_SFXEntity             .Exit();
+        m_MusicEntity           .Exit();
+        m_FullscreenToggleEntity.Exit();
     }
 
-
 //-----------------------------------------------------------------------------
-// public: // virtual override methods
+// private: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Swaps the texture of the toggle
+    void SettingsManager::swapToggleTexture()
+    {
+        if (m_FullscreenToggleSprite == nullptr)
+        {
+            return;
+        }
+
+        if (Platform()->GetFullscren())
+        {
+            m_FullscreenToggleSprite->SetTexture(m_CheckedToggleTexture);
+        }
+        else
+        {
+            m_FullscreenToggleSprite->SetTexture(m_UncheckedToggleTexture);
+        }
+    }
+
+    
+//-----------------------------------------------------------------------------
+// public: inspection
 //-----------------------------------------------------------------------------
 
     /// @brief The inspector for the Settings Manager
     void SettingsManager::Inspector()
     {
-        m_MasterVolumeEntity.Inspect("Master Volume Slider");
-        m_SFXEntity         .Inspect("SFX Volume Slider");
-        m_MusicEntity       .Inspect("Msuic Volume Slider");
+        m_MasterVolumeEntity    .Inspect("Master Volume Slider");
+        m_SFXEntity             .Inspect("SFX Volume Slider");
+        m_MusicEntity           .Inspect("Msuic Volume Slider");
+        m_FullscreenToggleEntity.Inspect("Fullscreen Toggle");
+        m_CheckedToggleTexture  .Inspect("Fullscreen Toggle Check Texture");
+        m_UncheckedToggleTexture.Inspect("Fullscreen Toggle Unchecked Texture");
 
         // The actual audio channels
         Audio()->InspectChannelGroup("SFX Group", &m_SFXChannelName, nullptr);
@@ -152,7 +205,28 @@
     /// @param data The JSON file to reda from
     void SettingsManager::readMusicChannelName(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_SFXChannelName, data);
+        Stream::Read(m_MusicChannelName, data);
+    }
+
+    /// @brief Reads in the asset for the checked check box
+    /// @param data The JSON to read from
+    void SettingsManager::readCheckedAsset(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_CheckedToggleTexture, data);
+    }
+
+    /// @brief Reads in the asset for the unchecked check box
+    /// @param data The JSON to read from
+    void SettingsManager::readUncheckedAsset(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_UncheckedToggleTexture, data);
+    }
+
+    /// @brief Reads in the data for the fullscreen toggle entity
+    /// @param data The JSON to read from
+    void SettingsManager::readFullscreenToggle(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_FullscreenToggleEntity, data);
     }
 
 //-----------------------------------------------------------------------------
@@ -168,7 +242,10 @@
             { "SFXVolumeSlider"    , &SettingsManager::readSFXSlider          },
             { "MusicVolumeSlider"  , &SettingsManager::readMusicSlider        },
             { "SFXChannelName"     , &SettingsManager::readSFXChannelName     },
-            { "MusicChannelName"   , &SettingsManager::readMusicChannelName   }
+            { "MusicChannelName"   , &SettingsManager::readMusicChannelName   },
+            { "CheckedBox"         , &SettingsManager::readCheckedAsset       },
+            { "UncheckedBox"       , &SettingsManager::readUncheckedAsset     },
+            { "FullscreenToggle"   , &SettingsManager::readFullscreenToggle   }
         };
 
         return (ReadMethodMap<ISerializable> const&) readMethods;
@@ -185,6 +262,9 @@
         data["MusicVolumeSlider"] = Stream::Write(m_MusicEntity);
         data["SFXChannelName"] = Stream::Write(m_SFXChannelName);
         data["MusicChannelName"] = Stream::Write(m_MusicChannelName);
+        data["CheckedBox"] = m_CheckedToggleTexture.Write();
+        data["UncheckedBox"] = m_UncheckedToggleTexture.Write();
+        data["FullscreenToggle"] = Stream::Write(m_FullscreenToggleEntity);
 
         return data;
     }
@@ -208,11 +288,14 @@
     /// @param other Reference to another instance of SettingsManager
     SettingsManager::SettingsManager(const SettingsManager& other)
         : Component(other)
+        , m_FullscreenToggleEntity(other.m_FullscreenToggleEntity, {&m_FullscreenToggleButton, &m_FullscreenToggleSprite})
         , m_MasterVolumeEntity(other.m_MasterVolumeEntity, {&m_MasterVolumeSlider})
         , m_SFXEntity(other.m_SFXEntity, {&m_SFXVolumeSlider})
         , m_MusicEntity(other.m_MusicEntity, {&m_MusicVolumeSlider})
         , m_SFXChannelName(other.m_SFXChannelName)
         , m_MusicChannelName(other.m_MusicChannelName)
+        , m_CheckedToggleTexture(other.m_CheckedToggleTexture)
+        , m_UncheckedToggleTexture(other.m_UncheckedToggleTexture)
     {}
 
 

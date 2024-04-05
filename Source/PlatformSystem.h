@@ -81,6 +81,10 @@ public: // accessors
     /// @return the position of the game window
     glm::vec2 const& GetGameWindowPos() const;
 
+    /// @brief  Gets if the game is in full screen
+    /// @return Is the game in fullscreen
+    bool GetFullscren() const;
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods

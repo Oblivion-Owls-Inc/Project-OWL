@@ -14,13 +14,16 @@
     #include "Component.h"
     #include "ComponentReference.h"
     #include "EntityReference.h"
+    #include "AssetReference.h"
 
 //-----------------------------------------------------------------------------
 // Forward References
 //-----------------------------------------------------------------------------
     class UiSlider;
-    class UiElement;
+    class UiButton;
     class UiBarSprite;
+    class Sprite;
+    class Texture;
 
 
 /// @brief  Settings Manager Class
@@ -70,6 +73,24 @@ private: // members
     /// @brief The slider responsible for the volume of the in-game music
     ComponentReference<UiSlider> m_MusicVolumeSlider;
 
+
+    /// @brief The texture for the toggle when fullscreen is disabled
+    AssetReference<Texture> m_UncheckedToggleTexture;
+
+    /// @brief The texture for the toggle when fullscreen is enabled
+    AssetReference<Texture> m_CheckedToggleTexture;
+
+
+    /// @brief The sprite component of the fullscreen toggle
+    ComponentReference<Sprite> m_FullscreenToggleSprite;
+
+    /// @brief The component for the fullscreen button
+    ComponentReference<UiButton> m_FullscreenToggleButton;
+
+
+    /// @brief The entity that is the toggle
+    EntityReference m_FullscreenToggleEntity = EntityReference({ &m_FullscreenToggleButton, &m_FullscreenToggleSprite });
+
     /// @brief The entity for the master volume slider
     EntityReference m_MasterVolumeEntity = EntityReference({ &m_MasterVolumeSlider });
 
@@ -79,15 +100,20 @@ private: // members
     /// @brief The entity for the music slider
     EntityReference m_MusicEntity = EntityReference({ &m_MusicVolumeSlider });
 
+
     /// @brief Name of the SFX audio channel
     std::string m_SFXChannelName = "";
 
     /// @brief Name of the music audio channel
     std::string m_MusicChannelName = "";
 
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
+
+    /// @brief Swaps the texture of the toggle
+    void swapToggleTexture();
 
 
 //-----------------------------------------------------------------------------
@@ -122,6 +148,19 @@ private: // reading
     /// @brief Reads in the name of the music channel
     /// @param data The JSON file to reda from
     void readMusicChannelName(nlohmann::ordered_json const& data);
+
+    /// @brief Reads in the asset for the checked check box
+    /// @param data The JSON to read from
+    void readCheckedAsset(nlohmann::ordered_json const& data);
+
+    /// @brief Reads in the asset for the unchecked check box
+    /// @param data The JSON to read from
+    void readUncheckedAsset(nlohmann::ordered_json const& data);
+
+    /// @brief Reads in the data for the fullscreen toggle entity
+    /// @param data The JSON to read from
+    void readFullscreenToggle(nlohmann::ordered_json const& data);
+
 
 
 //-----------------------------------------------------------------------------
