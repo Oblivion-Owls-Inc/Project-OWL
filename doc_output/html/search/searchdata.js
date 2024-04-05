@@ -8,8 +8,7 @@ var indexSectionsWithContent =
   5: "os",
   6: "isu",
   7: "_cgkm",
-  8: "o",
-  9: "n"
+  8: "o"
 };
 
 var indexSectionNames =
@@ -22,8 +21,7 @@ var indexSectionNames =
   5: "typedefs",
   6: "enums",
   7: "enumvalues",
-  8: "related",
-  9: "defines"
+  8: "related"
 };
 
 var indexSectionLabels =
@@ -36,7 +34,6 @@ var indexSectionLabels =
   5: "Typedefs",
   6: "Enumerations",
   7: "Enumerator",
-  8: "Friends",
-  9: "Macros"
+  8: "Friends"
 };
 
