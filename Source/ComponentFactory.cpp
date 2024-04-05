@@ -238,9 +238,8 @@
         { "Interactor"             , ComponentInfo< Interactor              >() },
         { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
         { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
-        { "SceneTransition"        , ComponentInfo< SceneTransition         >() }
-        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
-        { "Building"               , ComponentInfo< Building                >() },
+        { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
+        { "Building"               , ComponentInfo< Building                >() }
     };
 
 //-----------------------------------------------------------------------------

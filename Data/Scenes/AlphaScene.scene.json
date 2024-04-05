@@ -3169,11 +3169,6 @@
                         "AllowMultipleSounds": false,
                         "ChannelGroupName": "Effects"
                     },
-                    "Building": {
-                        "BuildingEntity": {
-                            "EntityName": "Tiles"
-                        }
-                    },
                     "Sprite": {
                         "Layer": 1,
                         "Color": [
@@ -3393,7 +3388,7 @@
             },
             "Children": null
         },
-        {
+        "Tiles": {
             "Name": "Tiles",
             "Components": {
                 "Tilemap<int>": {
@@ -91093,7 +91088,7 @@
                 }
             ]
         },
-        {
+        "Player": {
             "Name": "Player",
             "Components": {
                 "AudioListener": {
@@ -91461,7 +91456,7 @@
                 }
             ]
         },
-        {
+        "ConstructionManager": {
             "Name": "ConstructionManager",
             "Components": {
                 "AudioPlayer": {
@@ -91657,7 +91652,7 @@
                 }
             ]
         },
-        {
+        "ResourcesUi": {
             "Name": "ResourcesUi",
             "Components": {
                 "Nineslice": {
@@ -91728,7 +91723,7 @@
             },
             "Children": null
         },
-        {
+        "Snow": {
             "Name": "Snow",
             "Components": {
                 "Emitter": {
@@ -91794,7 +91789,7 @@
             },
             "Children": null
         },
-        {
+        "PropTilemap": {
             "Name": "PropTilemap",
             "Components": {
                 "Tilemap<int>": {
@@ -109338,7 +109333,7 @@
             },
             "Children": null
         },
-        {
+        "CostUi": {
             "Name": "CostUi",
             "Components": {
                 "ResourcesUiManager": {
@@ -109488,7 +109483,7 @@
                 }
             ]
         },
-        {
+        "Base": {
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
@@ -109504,11 +109499,6 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false,
                     "ChannelGroupName": "Effects"
-                },
-                "Building": {
-                    "BuildingEntity": {
-                        "EntityName": "Tiles"
-                    }
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -109620,7 +109610,7 @@
             },
             "Children": null
         },
-        {
+        "Generator": {
             "Name": "Generator",
             "Components": {
                 "AudioPlayer": {
@@ -109636,11 +109626,6 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false,
                     "ChannelGroupName": "Effects"
-                },
-                "Building": {
-                    "BuildingEntity": {
-                        "EntityName": "Tiles"
-                    }
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -109798,7 +109783,7 @@
                 }
             ]
         },
-        {
+        "Generator2": {
             "Name": "Generator2",
             "Components": {
                 "AudioPlayer": {
@@ -109814,11 +109799,6 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false,
                     "ChannelGroupName": "Effects"
-                },
-                "Building": {
-                    "BuildingEntity": {
-                        "EntityName": "Tiles"
-                    }
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -109976,9 +109956,15 @@
                 }
             ]
         },
-        {
+        "Pause": {
             "Name": "Pause",
             "Components": {
+                "PauseComponent": {
+                    "PauseButton": {
+                        "ActionName": "Pause"
+                    },
+                    "EventName": "Continue"
+                },
                 "Popup": {
                     "PopupEntity": {
                         "AssetName": "PauseMenu"
