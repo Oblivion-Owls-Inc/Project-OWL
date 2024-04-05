@@ -76,6 +76,7 @@
 #include "Interactable.h"
 #include "Interactor.h"
 #include "LaserUpgrade.h"
+#include "TurretUnlockUpgrade.h"
 
 
 //-----------------------------------------------------------------------------
@@ -233,7 +234,8 @@
         { "UiSlider"               , ComponentInfo< UiSlider                >() },
         { "Interactable"           , ComponentInfo< Interactable            >() },
         { "Interactor"             , ComponentInfo< Interactor              >() },
-        { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() }
+        { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
+        { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() }
     };
 
 //-----------------------------------------------------------------------------
