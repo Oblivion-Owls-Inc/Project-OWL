@@ -37,6 +37,7 @@
         // Change the master volume with the master volume slider
         m_MasterVolumeSlider.SetOnConnectCallback([this]() 
         {
+            m_MasterVolumeSlider->SetValue(Audio()->GetVolume());
             m_MasterVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
             {
                 Audio()->SetVolume(newValue);
@@ -51,6 +52,7 @@
         // Change the sfx volume with the sfx volume slider
         m_SFXVolumeSlider.SetOnConnectCallback([this]()
         {
+            m_SFXVolumeSlider->SetValue(Audio()->GetVolume(m_SFXChannelName));
             m_SFXVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
             {
                 Audio()->SetVolume(m_SFXChannelName, newValue);
@@ -65,7 +67,8 @@
         // Change the music volume with the music volume slider
         m_MusicVolumeSlider.SetOnConnectCallback([this]()
         {
-            m_SFXVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
+            m_MusicVolumeSlider->SetValue(Audio()->GetVolume(m_MusicChannelName));
+            m_MusicVolumeSlider->AddOnSliderValueChangedCallback(GetId(), [this](float newValue)
             {
                 Audio()->SetVolume(m_MusicChannelName, newValue);
             });
@@ -86,11 +89,6 @@
 
         m_MusicEntity.SetOwnerName(GetName());
         m_MusicEntity.Init();
-
-        // Set the slider values to the current values
-        m_MasterVolumeSlider->SetValue(Audio()->GetVolume());
-        m_SFXVolumeSlider->SetValue(Audio()->GetVolume(m_SFXChannelName));
-        m_MusicVolumeSlider->SetValue(Audio()->GetVolume(m_MusicChannelName));
     }
 
     /// @brief Called once exiting scene
