@@ -78,6 +78,7 @@
 #include "LaserUpgrade.h"
 #include "SettingsManager.h"
 #include "TurretUnlockUpgrade.h"
+#include "SceneTransition.h"
 
 
 //-----------------------------------------------------------------------------
@@ -236,8 +237,10 @@
         { "Interactable"           , ComponentInfo< Interactable            >() },
         { "Interactor"             , ComponentInfo< Interactor              >() },
         { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
-        { "SettingsManager"        , ComponentInfo< SettingsManager         >() },
-        { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() }
+        { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
+        { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
+        { "SettingsManager"        , ComponentInfo< SettingsManager         >() }
+
     };
 
 //-----------------------------------------------------------------------------

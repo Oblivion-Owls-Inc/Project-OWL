@@ -51,14 +51,12 @@
     {
         m_Entity = Entities()->GetEntity( m_EntityName );
 
-        #ifdef _DEBUG
         if ( m_Entity == nullptr )
         {
             Debug() << "WARNING: Could not find Entity \"" << m_EntityName
                 << "\" (EntityReference owned by Entity \"" << m_OwnerName << "\")\n" << std::endl;
             return;
         }
-        #endif
 
         m_Entity->AddEntityReference( this );
 

@@ -13,6 +13,10 @@
 #include "Component.h"
 #include "EventListener.h"
 
+#include "EntityReference.h"
+#include "ComponentReference.h"
+class SceneTransition;
+
 /// @brief  Component that changes the scene when clicked
 class SceneChangeButton : public Component
 {
@@ -51,6 +55,7 @@ public: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
+
     /// @brief Listener for the button click
     EventListener<std::string> m_Listener;
    
@@ -59,6 +64,14 @@ private: // members
 
     /// @brief  the name of the event to listen for
     std::string m_EventName;
+
+
+    /// @brief  the SceneTransition Component responsible for changing scenes
+    ComponentReference< SceneTransition > m_SceneTransition;
+
+    /// @brief  the Entity the SceneTransition Component is attached to
+    EntityReference m_SceneTransitionEntity = EntityReference( { &m_SceneTransition } );
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -81,11 +94,16 @@ private: // reading
 //-----------------------------------------------------------------------------
 
     /// @brief  reads the scene name from the JSON data
+    /// @param  data    the JSON data to read from
     void readSceneName( nlohmann::ordered_json const& data);
 
     /// @brief  reads the event name from the JSON data
+    /// @param  data    the JSON data to read from
     void readEventName( nlohmann::ordered_json const& data);
 
+    /// @brief  reads the Entity the SceneTransition Component is attached to
+    /// @param  data    the JSON data to read from
+    void readSceneTransitionEntity( nlohmann::ordered_json const& data );
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

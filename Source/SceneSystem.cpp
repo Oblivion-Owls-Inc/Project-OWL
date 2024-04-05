@@ -168,6 +168,32 @@
     }
 
 
+    /// @brief  selects a scene name in an inspector
+    /// @param  label       the label of the inspector
+    /// @param  sceneName   pointer to where to store the selected scene
+    /// @return whether a scene was selected
+    bool SceneSystem::InspectorSelectScene( char const* label, std::string* sceneName )
+    {
+        bool changed = false;
+
+        if ( ImGui::BeginCombo( label, sceneName->c_str() ) )
+        {
+            getSceneNames();
+            for ( std::string const& scene : m_SceneNames )
+            {
+                if ( ImGui::Selectable( scene.c_str(), *sceneName == scene ) )
+                {
+                    *sceneName = scene;
+                    changed = true;
+                }
+            }
+            ImGui::EndCombo();
+        }
+
+        return changed;
+    }
+
+
 //-----------------------------------------------------------------------------
 // public accessors
 //-----------------------------------------------------------------------------
@@ -253,24 +279,26 @@
         {
             ImGui::Text( it->first.c_str() );
             ImGui::SameLine();
+            ImGui::PushID( it->first.c_str() );
             if ( ImGui::SmallButton( "X" ) )
             {
                 sceneToRemove = it;
             }
+            ImGui::PopID();
         }
         if ( sceneToRemove != m_PreparsedScenes.end() )
         {
             m_PreparsedScenes.erase( sceneToRemove );
         }
 
-        unsigned sceneToAdd = inspectorListScenes();
-        if ( ImGui::Button( "Add Preparsed Scene" ) )
+        std::string sceneToAdd = "select scene";
+        if ( InspectorSelectScene( "add preparsed scene", &sceneToAdd ) )
         {
-            if ( sceneToAdd != -1 && m_SceneNames[ sceneToAdd ] != m_CurrentSceneName )
+            if ( m_PreparsedScenes.contains( sceneToAdd ) == false )
             {
                 m_PreparsedScenes.emplace(
-                    m_SceneNames[ sceneToAdd ],
-                    Stream::ParseFromFile( scenePath( m_SceneNames[ sceneToAdd ] ) )
+                    sceneToAdd,
+                    Stream::ParseFromFile( scenePath( sceneToAdd ) )
                 );
             }
         }
