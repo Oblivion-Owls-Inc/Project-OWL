@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                447
+                1163,
+                681
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,13 +247,14 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "AlphaScene",
+            "NextSceneName": "Autosaved_Scene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
         "PauseSystem": {},
         "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
@@ -262,8 +263,8 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
-        "BehaviorSystem<PlayerController>": {},
         "ComponentSystem<ItemComponent>": {},
+        "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {

@@ -104,9 +104,13 @@
         m_MoveVertical  .SetOwnerName( GetName() );
         m_FireLaser     .SetOwnerName( GetName() );
         m_Interact      .SetOwnerName( GetName() );
+        m_AimHorizontal .SetOwnerName( GetName() );
+        m_AimVertical   .SetOwnerName( GetName() );
         m_MoveHorizontal.Init();
         m_MoveVertical  .Init();
         m_FireLaser     .Init();
+        m_AimHorizontal .Init();
+        m_AimVertical   .Init();
         m_Interact      .Init();
 
         m_Collider->AddOnCollisionCallback( GetId(),
@@ -153,6 +157,8 @@
         m_MoveVertical  .Exit();
         m_FireLaser     .Exit();
         m_Interact      .Exit();
+        m_AimHorizontal .Exit();
+        m_AimVertical   .Exit();
     }
 
    
@@ -356,6 +362,9 @@
         ImGui::DragFloat( "Jump Force", &m_JumpSpeed, 0.05f );
         ImGui::DragFloat( "Ground Collision Threshold", &m_GroundCollisionThreshold, 0.05f );
         ImGui::DragFloat( "Max Coyote Time", &m_MaxCoyoteTime, 0.05f );
+        m_MoveVertical  .Inspect( "Vertical Control Action"   );
+        m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
+        m_AimVertical   .Inspect( "Vertical Aim Action"       );
     }
 
 
@@ -483,6 +492,12 @@
     {
         Stream::Read(m_JumpSpeed, data);
     }
+    /// @brief  reads the control action for horizontal aim
+    /// @param  data    the JSON data to read from
+    void PlayerController::readAimHorizontal( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_AimHorizontal, data );
+    }
 
 //-----------------------------------------------------------------------------
 // public: reading writing
@@ -507,6 +522,15 @@
             { "IsJumping"               , &PlayerController::readIsJumping                },
             { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
             { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            }
+            { "MaxSpeed"         , &PlayerController::readMaxSpeed          },
+            { "RespawnLocation"  , &PlayerController::readRespawnLocation   },
+            { "Animations"       , &PlayerController::readAnimations        },
+            { "MiningLaserEntity", &PlayerController::readMiningLaserEntity },
+            { "MoveVertical"     , &PlayerController::readMoveVertical      },
+            { "MoveHorizontal"   , &PlayerController::readMoveHorizontal    },
+            { "FireLaser"        , &PlayerController::readFireLaser         },
+            { "AimVertical"      , &PlayerController::readAimVertical       },
+            { "AimHorizontal"    , &PlayerController::readAimHorizontal     }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -538,6 +562,14 @@
         data[ "IsJumping"           ]       = Stream::Write( m_IsJumping             );
         data[ "GroundCollisionThreshold" ]  = Stream::Write( m_GroundCollisionThreshold );
         data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
+        data[ "MaxSpeed"          ] = Stream::Write( m_MaxSpeed              );
+        data[ "MiningLaserEntity" ] = Stream::Write( m_MiningLaserEntity     );
+        data[ "RespawnLocation"   ] = Stream::Write( m_PlayerRespawnLocation );
+        data[ "MoveVertical"      ] = Stream::Write( m_MoveVertical          );
+        data[ "MoveHorizontal"    ] = Stream::Write( m_MoveHorizontal        );
+        data[ "FireLaser"         ] = Stream::Write( m_FireLaser             );
+        data[ "AimVertical"       ] = Stream::Write( m_AimVertical           );
+        data[ "AimHorizontal"     ] = Stream::Write( m_AimHorizontal         );
 
         return data;
     }
@@ -576,6 +608,13 @@
         m_IsJumping               ( other.m_IsJumping             ),
         m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
         m_MaxCoyoteTime           ( other.m_MaxCoyoteTime         )
+        m_MaxSpeed             ( other.m_MaxSpeed              ),
+        m_PlayerRespawnLocation( other.m_PlayerRespawnLocation ),
+        m_MoveVertical         ( other.m_MoveVertical          ),
+        m_MoveHorizontal       ( other.m_MoveHorizontal        ),
+        m_FireLaser            ( other.m_FireLaser             ),
+        m_AimVertical          ( other.m_AimVertical           ),
+        m_AimHorizontal        ( other.m_AimHorizontal         )
     {
         // Copy the animations
         for (int i = 0; i < NUM_ANIMATIONS; i++)

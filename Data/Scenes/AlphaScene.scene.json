@@ -159,18 +159,6 @@
                 ],
                 "UseAspectRatio": false
             },
-            "Generator": {
-                "Filepath": "Data/Textures/GeneratorOn-Sheet.png",
-                "SheetDimensions": [
-                    2,
-                    1
-                ],
-                "Pivot": [
-                    0.5,
-                    0.5
-                ],
-                "UseAspectRatio": false
-            },
             "HealthBar": {
                 "Filepath": "Data/Textures/healthBar.png",
                 "SheetDimensions": [
@@ -364,14 +352,26 @@
                 "UseAspectRatio": false
             },
             "Turret": {
-                "Filepath": "Data/Textures/Turrets/Type1Turret-Sheet.png",
+                "Filepath": "Data/Textures/Turret.png",
                 "SheetDimensions": [
-                    7,
+                    19,
                     1
                 ],
                 "Pivot": [
                     0.699999988079071,
                     0.6000000238418579
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret0Locked": {
+                "Filepath": "Data/Textures/InventorySlot1_Disabled.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
                 ],
                 "UseAspectRatio": false
             },
@@ -389,6 +389,18 @@
             },
             "Turret0Unselected": {
                 "Filepath": "Data/Textures/InventorySlot1_Inactive.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Turret1Locked": {
+                "Filepath": "Data/Textures/InventorySlot2_Disabled.png",
                 "SheetDimensions": [
                     1,
                     1
@@ -423,10 +435,10 @@
                 ],
                 "UseAspectRatio": false
             },
-            "Turret2": {
-                "Filepath": "Data/Textures/Turrets/Type4Turret-Sheet.png",
+            "Turret2Locked": {
+                "Filepath": "Data/Textures/InventorySlot3_Disabled.png",
                 "SheetDimensions": [
-                    8,
+                    1,
                     1
                 ],
                 "Pivot": [
@@ -459,10 +471,10 @@
                 ],
                 "UseAspectRatio": false
             },
-            "Turret3": {
-                "Filepath": "Data/Textures/Turrets/Type2Turret-Sheet.png",
+            "Turret3Locked": {
+                "Filepath": "Data/Textures/InventorySlot4_Disabled.png",
                 "SheetDimensions": [
-                    6,
+                    1,
                     1
                 ],
                 "Pivot": [
@@ -495,23 +507,11 @@
                 ],
                 "UseAspectRatio": false
             },
-            "Turret4": {
-                "Filepath": "Data/Textures/Turrets/Type6Turret-Sheet.png",
-                "SheetDimensions": [
-                    7,
-                    1
-                ],
-                "Pivot": [
-                    0.5,
-                    0.5
-                ],
-                "UseAspectRatio": false
-            },
             "Van": {
-                "Filepath": "Data/Textures/BaseTruck160x128.png",
+                "Filepath": "Data/Textures/van_large.png",
                 "SheetDimensions": [
                     8,
-                    1
+                    2
                 ],
                 "Pivot": [
                     0.5,
@@ -522,11 +522,6 @@
         },
         "TransformAnimations": null,
         "Animations": {
-            "Base Truck": {
-                "Start": 0,
-                "End": 8,
-                "FrameDuration": 0.125
-            },
             "EnemyMove": {
                 "Start": 0,
                 "End": 12,
@@ -703,7 +698,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret2"
+                            "AssetName": "Turret"
                         }
                     },
                     "Transform": {
@@ -713,8 +708,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.5,
-                            1.5
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     },
@@ -738,7 +733,7 @@
                 "Name": "BuildingSelectionUi",
                 "Components": {
                     "Sprite": {
-                        "Layer": 3,
+                        "Layer": 4,
                         "Color": [
                             0.0,
                             0.0,
@@ -779,7 +774,7 @@
                         "Name": "BuildingSelectionUiFrame",
                         "Components": {
                             "Sprite": {
-                                "Layer": 4,
+                                "Layer": 5,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -827,12 +822,15 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret0Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret0Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -894,12 +892,15 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret1Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret1Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -961,12 +962,15 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret2Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret2Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -1028,12 +1032,15 @@
                                         "SelectedTexture": {
                                             "AssetName": "Turret3Selected"
                                         },
+                                        "LockedTexture": {
+                                            "AssetName": "Turret3Locked"
+                                        },
                                         "ConstructionEntity": {
                                             "EntityName": "ConstructionManager"
                                         }
                                     },
                                     "Sprite": {
-                                        "Layer": 8,
+                                        "Layer": 6,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -1376,8 +1383,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.5,
-                            1.5
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     },
@@ -1486,7 +1493,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret4"
+                            "AssetName": "Turret"
                         }
                     },
                     "Transform": {
@@ -1496,8 +1503,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.5,
-                            1.5
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     },
@@ -2345,7 +2352,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret3"
+                            "AssetName": "Turret"
                         }
                     },
                     "Transform": {
@@ -2355,8 +2362,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.5,
-                            1.5
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     },
@@ -2885,8 +2892,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.5,
-                            1.5
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     },
@@ -2917,7 +2924,7 @@
                         "Opacity": 1.0
                     },
                     "Sprite": {
-                        "Layer": 2,
+                        "Layer": 5,
                         "Color": [
                             0.0,
                             0.0,
@@ -2983,7 +2990,7 @@
                                 "Text": ""
                             },
                             "TilemapSprite": {
-                                "Layer": 2,
+                                "Layer": 5,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -3138,8 +3145,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.5,
-                            1.5
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     },
@@ -91079,6 +91086,7 @@
                         "CurrentValue": 100
                     }
                 },
+                "Interactor": {},
                 "Inventory": {
                     "Items": null
                 },
@@ -91114,6 +91122,7 @@
                             "AssetName": "PlayerMoveDown"
                         }
                     ],
+                    "MaxSpeed": 1.0,
                     "MiningLaserEntity": {
                         "EntityName": "MiningLaser"
                     },
@@ -91130,21 +91139,12 @@
                     "FireLaser": {
                         "ActionName": "FireLaser"
                     },
-                    "Interact": {
-                        "ActionName": "Interact"
+                    "AimVertical": {
+                        "ActionName": "AimVertical"
                     },
-                    "VerticalMoveforce": [
-                        30.0,
-                        15.0
-                    ],
-                    "HorizontalMoveforce": [
-                        20.0,
-                        20.0
-                    ],
-                    "JumpSpeed": 1.0,
-                    "IsJumping": false,
-                    "GroundCollisionThreshold": 0.8999999761581421,
-                    "CoyoteTime": 0.30000001192092896
+                    "AimHorizontal": {
+                        "ActionName": "AimHorizontal"
+                    }
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -91153,13 +91153,13 @@
                     ],
                     "Acceleration": [
                         0.0,
-                        -18.0
+                        0.0
                     ],
                     "RotationalVelocity": 0.0,
                     "Mass": 1.0,
                     "Restitution": 0.0,
-                    "Friction": 50.0,
-                    "Drag": 2.0
+                    "Friction": 0.0,
+                    "Drag": 12.0
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -91178,7 +91178,7 @@
                 "Transform": {
                     "Translation": [
                         -14.5,
-                        121.3010025024414
+                        121.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -91193,7 +91193,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 36.66243362426758,
+                            "Width": 46.125370025634766,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91211,8 +91211,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -13.500850677490234,
-                                121.29113006591797
+                                -8.781373977661133,
+                                119.73275756835938
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91255,7 +91255,7 @@
                         "Transform": {
                             "Translation": [
                                 -14.5,
-                                122.3010025024414
+                                122.5
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91382,6 +91382,7 @@
                             },
                             "Range": 4.0,
                             "MiningSpeed": 4.0,
+                            "MaxToughness": 0.0,
                             "BeamColor": [
                                 1.0,
                                 0.0,
@@ -91394,15 +91395,15 @@
                                 "Flags": 3
                             },
                             "Direction": [
-                                -0.9363964796066284,
-                                0.3509439527988434
+                                -0.8051182627677917,
+                                0.5931141972541809
                             ],
-                            "IsFiring": true
+                            "IsFiring": false
                         },
                         "Transform": {
                             "Translation": [
                                 -14.5,
-                                121.3010025024414
+                                121.5
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91436,20 +91437,24 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
+                            "Archetype": {
+                                "AssetName": "Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 3
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 1"
-                            }
+                            },
+                            "Unlocked": true
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Auto Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91460,28 +91465,30 @@
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Auto Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 2"
-                            }
+                            },
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Pulsar Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Pulsar Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 3"
-                            }
+                            },
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Force Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91492,12 +91499,10 @@
                                     "Count": 4
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Force Turret"
-                            },
-                            "Build Action": {
+                            "SelectAction": {
                                 "ActionName": "Build Turret 4"
-                            }
+                            },
+                            "Unlocked": false
                         }
                     ],
                     "BuildingIndex": -1,
@@ -91634,7 +91639,7 @@
                         0.0,
                         0.0
                     ],
-                    "Layer": 2
+                    "Layer": 4
                 },
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
@@ -109314,7 +109319,7 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.10000000149011612,
+                        0.06700000166893005,
                         0.05000000074505806
                     ],
                     "SizeTypes": [
@@ -109328,15 +109333,6 @@
         "Base": {
             "Name": "Base",
             "Components": {
-                "Animation": {
-                    "FrameIndex": 0,
-                    "FrameDelay": 0.0,
-                    "IsRunning": true,
-                    "LoopCount": -1,
-                    "Animation": {
-                        "AssetName": "Base Truck"
-                    }
-                },
                 "AudioPlayer": {
                     "Sound": {
                         "AssetName": "BaseDamageSound"
@@ -109445,13 +109441,13 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -13.064029693603516,
-                        121.57707977294922
+                        -13.0,
+                        121.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.5,
-                        1.5
+                        1.0,
+                        1.0
                     ],
                     "IsDiegetic": true
                 }
@@ -109546,6 +109542,16 @@
                         "CurrentValue": 5
                     }
                 },
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.5,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "Generator1Prompt"
+                    }
+                },
                 "PathfinderTarget": {
                     "Priority": 1,
                     "Active": false
@@ -109561,23 +109567,61 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Generator"
+                        "AssetName": "Van"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        12.089897155761719,
-                        114.74604034423828
+                        12.0,
+                        114.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.5,
-                        1.5
+                        1.0,
+                        1.0
                     ],
                     "IsDiegetic": true
                 }
             },
-            "Children": null
+            "Children": [
+                {
+                    "Name": "Generator1Prompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                12.0,
+                                115.5
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         },
         "Generator2": {
             "Name": "Generator2",
@@ -109667,6 +109711,16 @@
                         "CurrentValue": 5
                     }
                 },
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.5,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "Generator2Prompt"
+                    }
+                },
                 "PathfinderTarget": {
                     "Priority": 1,
                     "Active": false
@@ -109682,23 +109736,61 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Generator"
+                        "AssetName": "Van"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        4.8210225105285645,
-                        94.7430191040039
+                        5.0,
+                        94.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.5,
-                        1.5
+                        1.0,
+                        1.0
                     ],
                     "IsDiegetic": true
                 }
             },
-            "Children": null
+            "Children": [
+                {
+                    "Name": "Generator2Prompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                5.0,
+                                95.5
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         },
         "Pause": {
             "Name": "Pause",
@@ -109732,6 +109824,180 @@
                 }
             },
             "Children": null
+        },
+        "LaserUpgrade": {
+            "Name": "LaserUpgrade",
+            "Components": {
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.0,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "LaserUpgradePrompt"
+                    }
+                },
+                "LaserUpgrade": {
+                    "SpeedMultiplier": 1.0,
+                    "DamageMultiplier": 1.0,
+                    "MaxToughnessIncrease": 2.0,
+                    "MiningLaserEntity": {
+                        "EntityName": "MiningLaser"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Ball1"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -6.899168014526367,
+                        121.79637908935547
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "LaserUpgradePrompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -6.899168014526367,
+                                122.7959976196289
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "TurretUnlock": {
+            "Name": "TurretUnlock",
+            "Components": {
+                "Interactable": {
+                    "Enabled": true,
+                    "InteractionRadius": 1.0,
+                    "InteractAction": {
+                        "ActionName": "Interact"
+                    },
+                    "PromptEntity": {
+                        "EntityName": "TurretUnlockPrompt"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fireball"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -3.3489999771118164,
+                        121.79637908935547
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                },
+                "TurretUnlockUpgrade": {
+                    "UnlockBuildingIndex": 1,
+                    "ConstructionEntity": {
+                        "EntityName": "ConstructionManager"
+                    }
+                }
+            },
+            "Children": [
+                {
+                    "Name": "TurretUnlockPrompt",
+                    "Components": {
+                        "ControlPrompt": {
+                            "Action": {
+                                "ActionName": "Interact"
+                            }
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 0.0,
+                            "FrameIndex": 32,
+                            "Texture": {
+                                "AssetName": "[non-serialized asset]"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -3.3489999771118164,
+                                122.7959976196289
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         }
     },
     "PreparsedScenes": [

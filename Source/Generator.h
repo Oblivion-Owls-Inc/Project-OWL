@@ -19,6 +19,7 @@
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"
+#include "Interactable.h"
 
 
 class Generator : public Behavior
@@ -144,6 +145,9 @@ private: // variables
 
     /// @brief  the Emitter component attached to this Generator
     ComponentReference< Emitter > m_Emitter;
+
+    /// @brief  the Interactable Component attached to this Generator
+    ComponentReference< Interactable > m_Interactable;
 
     /// @brief  the wave prefab to spawn on generator activation
     AssetReference< Entity > m_WavePrefab;

@@ -81,6 +81,16 @@ void Generator::OnInit()
         }
     );
 
+    m_Interactable.SetOnConnectCallback( [ this ]() {
+        m_Interactable->SetEnabled( m_IsActive == false );
+        m_Interactable->AddOnInteractCallback( GetId(), [ this ]( Interactor* ) {
+            Activate();
+        } );
+    } );
+    m_Interactable.SetOnDisconnectCallback( [ this ]() {
+        m_Interactable->RemoveOnInteractCallback( GetId() );
+    } );
+
     m_Collider        .Init( GetEntity() );
     m_AudioPlayer     .Init( GetEntity() );
     m_Transform       .Init( GetEntity() );
@@ -88,6 +98,7 @@ void Generator::OnInit()
     m_Emitter         .Init( GetEntity() );
     m_Sprite.Init(GetEntity());
     m_PathfinderTarget.Init( GetEntity() );
+    m_Interactable    .Init( GetEntity() );
 
     m_WavePrefab.SetOwnerName(GetName());
     m_WavePrefab.Init();
@@ -107,6 +118,7 @@ void Generator::OnExit()
     m_Emitter         .Exit();
     m_Sprite          .Exit();
     m_PathfinderTarget.Exit();
+    m_Interactable    .Exit();
 }
 
 /// @brief  called every frame
@@ -206,7 +218,12 @@ Generator* Generator::GetLowestGenerator()
 
 /// @brief activate the generator
 void Generator::Activate() 
-{ 
+{
+    if ( m_IsActive )
+    {
+        return;
+    }
+
     if (m_WavePrefab != nullptr && m_CanSpawnWave)
     {
         Entity* wave = m_WavePrefab->Clone();
@@ -227,6 +244,11 @@ void Generator::Activate()
     {
         m_PathfinderTarget->SetActive( true );
     }
+
+    if ( m_Interactable != nullptr )
+    {
+        m_Interactable->SetEnabled( false );
+    }
 }
 
 /// @brief deactivate the generator
@@ -237,9 +259,9 @@ void Generator::Deactivate()
     m_DeactivateRing = true;
     m_CanSpawnWave = true;
 
-    if (m_Sprite != nullptr)
+    if ( m_Interactable != nullptr )
     {
-        m_Sprite->SetFrameIndex(0);
+        m_Interactable->SetEnabled( true );
     }
 }
 
