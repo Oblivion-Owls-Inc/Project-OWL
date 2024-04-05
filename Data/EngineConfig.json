@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                32,
-                33
+                888,
+                551
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -254,6 +254,7 @@
         "PauseSystem": {},
         "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
