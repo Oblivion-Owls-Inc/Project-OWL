@@ -208,6 +208,9 @@
     /// @param other Reference to another instance of SettingsManager
     SettingsManager::SettingsManager(const SettingsManager& other)
         : Component(other)
+        , m_MasterVolumeEntity(other.m_MasterVolumeEntity, {&m_MasterVolumeSlider})
+        , m_SFXEntity(other.m_SFXEntity, {&m_SFXVolumeSlider})
+        , m_MusicEntity(other.m_MusicEntity, {&m_MusicVolumeSlider})
         , m_SFXChannelName(other.m_SFXChannelName)
         , m_MusicChannelName(other.m_MusicChannelName)
     {}
