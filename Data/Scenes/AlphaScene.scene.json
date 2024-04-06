@@ -1221,6 +1221,7 @@
                         "Delay": 0.0,
                         "Max": 2048,
                         "Continuous": true,
+                        "IsLocal": false,
                         "EmitData": [
                             [
                                 0.0,
@@ -3307,6 +3308,7 @@
                         "Delay": 0.0,
                         "Max": 128,
                         "Continuous": false,
+                        "IsLocal": false,
                         "EmitData": [
                             [
                                 0.0,
@@ -91116,6 +91118,55 @@
                         "Flags": 3
                     }
                 },
+                "Emitter": {
+                    "PPS": 800.0,
+                    "Delay": 0.0,
+                    "Max": 6912,
+                    "Continuous": true,
+                    "IsLocal": false,
+                    "EmitData": [
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.05000000074505806,
+                            0.05000000074505806
+                        ],
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        4.710000038146973,
+                        3.74399995803833,
+                        0.17999999225139618,
+                        0.0,
+                        0.03200000151991844,
+                        2.2320001125335693,
+                        0.0729999989271164,
+                        0.0,
+                        0.0,
+                        0.3100000023841858,
+                        0.3799999952316284,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "EmitterSprite": {
+                    "Layer": 1,
+                    "Color": [
+                        0.9927404522895813,
+                        0.9297297596931458,
+                        0.2540406584739685,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fireball"
+                    }
+                },
                 "Health": {
                     "Health": {
                         "BaseValue": 100,
@@ -91213,7 +91264,7 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -15.552480697631836,
+                        -15.747211456298828,
                         121.3010025024414
                     ],
                     "Rotation": 0.0,
@@ -91229,7 +91280,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 23.06267738342285,
+                            "Width": 11.531340599060059,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91247,8 +91298,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -15.16750431060791,
-                                121.3927993774414
+                                -15.29580307006836,
+                                121.73393249511719
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91293,7 +91344,7 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -15.552480697631836,
+                                -15.747211456298828,
                                 122.3010025024414
                             ],
                             "Rotation": 0.0,
@@ -91372,6 +91423,7 @@
                             "Delay": 0.0,
                             "Max": 2048,
                             "Continuous": false,
+                            "IsLocal": false,
                             "EmitData": [
                                 [
                                     0.0,
@@ -91434,14 +91486,14 @@
                                 "Flags": 3
                             },
                             "Direction": [
-                                -0.947867751121521,
-                                0.3186641037464142
+                                -0.6530064344406128,
+                                0.7573524117469788
                             ],
-                            "IsFiring": false
+                            "IsFiring": true
                         },
                         "Transform": {
                             "Translation": [
-                                -15.552480697631836,
+                                -15.747211456298828,
                                 121.3010025024414
                             ],
                             "Rotation": 0.0,
@@ -91731,6 +91783,7 @@
                     "Delay": 0.0,
                     "Max": 2048,
                     "Continuous": true,
+                    "IsLocal": false,
                     "EmitData": [
                         [
                             0.0,
@@ -109512,6 +109565,7 @@
                     "Delay": 0.0,
                     "Max": 2048,
                     "Continuous": true,
+                    "IsLocal": false,
                     "EmitData": [
                         [
                             0.0,
@@ -109639,6 +109693,7 @@
                     "Delay": 0.0,
                     "Max": 2048,
                     "Continuous": false,
+                    "IsLocal": false,
                     "EmitData": [
                         [
                             0.0,
@@ -109812,6 +109867,7 @@
                     "Delay": 0.0,
                     "Max": 2048,
                     "Continuous": false,
+                    "IsLocal": false,
                     "EmitData": [
                         [
                             0.0,
