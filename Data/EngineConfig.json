@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1054,
-                735
+                894,
+                614
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -297,7 +297,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.8999999761581421,
+            "Volume": 0.0,
             "Groups": [
                 {
                     "Name": "Music",
@@ -328,7 +328,7 @@
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": true,
+                "AssetLibrary<Texture>": false,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,

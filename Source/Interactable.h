@@ -63,7 +63,6 @@ public: // accessors
     /// @param  enabled whether the Interactable can be interacted with
     void SetEnabled( bool enabled );
 
-
     /// @brief  gets the radius at which this Interactable can be interacted with
     /// @return the radius at which this Interactable can be interacted with
     float GetInteractionRadius() const;
@@ -71,7 +70,6 @@ public: // accessors
     /// @brief  sets the radius at which this Interactable can be interacted with
     /// @param  radius  the radius at which this Interactable can be interacted with
     void SetInteractionRadius( float radius );
-
 
     /// @brief  gets the Transform attached to this Interactable
     /// @return the Transform attached to this Interactable

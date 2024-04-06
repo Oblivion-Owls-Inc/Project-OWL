@@ -1349,6 +1349,59 @@
                 },
                 "Children": null
             },
+            "DroppedResource": {
+                "Name": "DroppedResource",
+                "Components": {
+                    "ItemComponent": {
+                        "ItemStack": {
+                            "ItemId": 2,
+                            "Count": 1
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 1.0,
+                        "Restitution": 1.0,
+                        "Friction": 0.0,
+                        "Drag": 10.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 2,
+                        "Texture": {
+                            "AssetName": "Items"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            121.3010025024414
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            0.5,
+                            0.5
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
             "Enemy": {
                 "Name": "Enemy",
                 "Components": {
@@ -1423,7 +1476,10 @@
                     },
                     "EnemyBehavior": {
                         "Speed": 10.0,
-                        "Damage": 1
+                        "Damage": 1,
+                        "Reward Prefab": {
+                            "AssetName": "DroppedResource"
+                        }
                     },
                     "Health": {
                         "Health": {
@@ -3524,8 +3580,8 @@
             }
         }
     },
-    "Entities": {
-        "Music": {
+    "Entities": [
+        {
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
@@ -3545,7 +3601,7 @@
             },
             "Children": null
         },
-        "Tiles": {
+        {
             "Name": "Tiles",
             "Components": {
                 "Tilemap<int>": {
@@ -91245,7 +91301,7 @@
                 }
             ]
         },
-        "Player": {
+        {
             "Name": "Player",
             "Components": {
                 "AudioListener": {
@@ -91318,7 +91374,7 @@
                         "ActionName": "FireLaser"
                     },
                     "Interact": {
-                        "ActionName": ""
+                        "ActionName": "Interact"
                     },
                     "VerticalMoveforce": [
                         40.0,
@@ -91386,7 +91442,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 23.06267738342285,
+                            "Width": 54.852561950683594,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -91404,8 +91460,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -15.16750431060791,
-                                121.3927993774414
+                                3.3731327056884766,
+                                115.04512023925781
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -91613,7 +91669,7 @@
                 }
             ]
         },
-        "ConstructionManager": {
+        {
             "Name": "ConstructionManager",
             "Components": {
                 "AudioPlayer": {
@@ -91847,7 +91903,7 @@
                 }
             ]
         },
-        "ResourcesUi": {
+        {
             "Name": "ResourcesUi",
             "Components": {
                 "Nineslice": {
@@ -91918,7 +91974,7 @@
             },
             "Children": null
         },
-        "Snow": {
+        {
             "Name": "Snow",
             "Components": {
                 "Emitter": {
@@ -91984,7 +92040,7 @@
             },
             "Children": null
         },
-        "PropTilemap": {
+        {
             "Name": "PropTilemap",
             "Components": {
                 "Tilemap<int>": {
@@ -109528,7 +109584,7 @@
             },
             "Children": null
         },
-        "CostUi": {
+        {
             "Name": "CostUi",
             "Components": {
                 "ResourcesUiManager": {
@@ -109678,7 +109734,7 @@
                 }
             ]
         },
-        "Base": {
+        {
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
@@ -109758,7 +109814,8 @@
                     "GrowthSpeed": 10.0,
                     "WavePrefab": {
                         "AssetName": ""
-                    }
+                    },
+                    "Cost": 0
                 },
                 "Health": {
                     "Health": {
@@ -109805,7 +109862,7 @@
             },
             "Children": null
         },
-        "Generator": {
+        {
             "Name": "Generator",
             "Components": {
                 "AudioPlayer": {
@@ -109885,7 +109942,8 @@
                     "GrowthSpeed": 10.0,
                     "WavePrefab": {
                         "AssetName": "Wave"
-                    }
+                    },
+                    "Cost": 0
                 },
                 "Health": {
                     "Health": {
@@ -109978,7 +110036,7 @@
                 }
             ]
         },
-        "Generator2": {
+        {
             "Name": "Generator2",
             "Components": {
                 "AudioPlayer": {
@@ -110058,7 +110116,8 @@
                     "GrowthSpeed": 10.0,
                     "WavePrefab": {
                         "AssetName": "Wave"
-                    }
+                    },
+                    "Cost": 30
                 },
                 "Health": {
                     "Health": {
@@ -110151,7 +110210,7 @@
                 }
             ]
         },
-        "Pause": {
+        {
             "Name": "Pause",
             "Components": {
                 "PauseComponent": {
@@ -110184,7 +110243,7 @@
             },
             "Children": null
         },
-        "LaserUpgrade": {
+        {
             "Name": "LaserUpgrade",
             "Components": {
                 "Interactable": {
@@ -110276,7 +110335,7 @@
                 }
             ]
         },
-        "TurretUnlock": {
+        {
             "Name": "TurretUnlock",
             "Components": {
                 "Interactable": {
@@ -110366,7 +110425,7 @@
                 }
             ]
         },
-        "SceneTransitionEntity": {
+        {
             "Name": "SceneTransitionEntity",
             "Components": {
                 "SceneTransition": {
@@ -110412,7 +110471,7 @@
             },
             "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "GameWin",
         "Gameover",

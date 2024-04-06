@@ -20,6 +20,7 @@
 #include "RigidBody.h"
 #include "Animation.h"
 #include "AudioPlayer.h"
+#include "Inventory.h"
 #include "Health.h"
 #include "Transform.h"
 #include "CircleCollider.h"
@@ -119,6 +120,9 @@ private: // member variables
 
     /// @brief  a cached instance of the parent's collider.
     ComponentReference< Collider > m_Collider;
+
+    /// @brief a cached instance of the parent's Inventory.
+    ComponentReference< Inventory > m_Inventory;
     
 
     /// @brief  the miningLaser this PlayerController uses
@@ -245,6 +249,7 @@ private: // reading
     /// @brief Read in the is jumping state.
     /// @param data - the JSON file to read from.
     void readIsJumping( nlohmann::ordered_json const& data );
+    
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
