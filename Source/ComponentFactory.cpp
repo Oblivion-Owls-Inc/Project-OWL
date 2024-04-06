@@ -76,6 +76,7 @@
 #include "Interactable.h"
 #include "Interactor.h"
 #include "LaserUpgrade.h"
+#include "SettingsManager.h"
 #include "TurretUnlockUpgrade.h"
 #include "SceneTransition.h"
 
@@ -237,7 +238,9 @@
         { "Interactor"             , ComponentInfo< Interactor              >() },
         { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
         { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
-        { "SceneTransition"        , ComponentInfo< SceneTransition         >() }
+        { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
+        { "SettingsManager"        , ComponentInfo< SettingsManager         >() }
+
     };
 
 //-----------------------------------------------------------------------------
