@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1163,
-                681
+                1864,
+                1084
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Autosaved_Scene",
+            "NextSceneName": "BetaScene",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -328,7 +328,7 @@
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
                 "AssetLibrary<Texture>": true,
-                "AssetLibrary<TransformAnimation>": false,
+                "AssetLibrary<TransformAnimation>": true,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
                 "BehaviorSystem<Behavior>": false,
@@ -346,6 +346,7 @@
                 "CameraSystem": false,
                 "CheatSystem": false,
                 "CollisionSystem": false,
+                "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,
                 "DebugSystem": true,
