@@ -1,0 +1,167 @@
+\hypertarget{classSettingsManager}{}\doxysection{Settings\+Manager Class Reference}
+\label{classSettingsManager}\index{SettingsManager@{SettingsManager}}
+
+
+Settings Manager Class.  
+
+
+
+
+{\ttfamily \#include $<$Settings\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Settings\+Manager\+:
+% FIG 0
+
+
+Collaboration diagram for Settings\+Manager\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettingsManager_a07295ed235508bb4dcd0e7a040ef01db}{Settings\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSettingsManager_ae4e80b72b9b71ec5ff9d42cdd7704535}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSettingsManager_a826e3fa53fa6d99e182f9ed767c0cf42}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSettingsManager_a695771edfef00655af3cd512999a53c8}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classSettingsManager_a7f89ed242225940f4661d3a3ed692cc0}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSettingsManager_a8ba260f469a6e2afdc3233f75293a1b7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} $\ast$ \mbox{\hyperlink{classSettingsManager_a084059a76c1ebf96cbafae78f44dc856}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Settings Manager Class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSettingsManager_a07295ed235508bb4dcd0e7a040ef01db}\label{classSettingsManager_a07295ed235508bb4dcd0e7a040ef01db}} 
+\index{SettingsManager@{SettingsManager}!SettingsManager@{SettingsManager}}
+\index{SettingsManager@{SettingsManager}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{SettingsManager()}{SettingsManager()}}
+{\footnotesize\ttfamily Settings\+Manager\+::\+Settings\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+default constructor 
+
+Default Constructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSettingsManager_a084059a76c1ebf96cbafae78f44dc856}\label{classSettingsManager_a084059a76c1ebf96cbafae78f44dc856}} 
+\index{SettingsManager@{SettingsManager}!Clone@{Clone}}
+\index{Clone@{Clone}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} $\ast$ Settings\+Manager\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} 
+
+Clone this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}}.
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}}
+
+A newly created instance of \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classSettingsManager_a7f89ed242225940f4661d3a3ed692cc0}\label{classSettingsManager_a7f89ed242225940f4661d3a3ed692cc0}} 
+\index{SettingsManager@{SettingsManager}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Settings\+Manager\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} 
+
+Gets the map of the read methods for this component.
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}}
+
+The map of read methods for this component. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classSettingsManager_a695771edfef00655af3cd512999a53c8}\label{classSettingsManager_a695771edfef00655af3cd512999a53c8}} 
+\index{SettingsManager@{SettingsManager}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Settings\+Manager\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+shows the inspector for \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} 
+
+The inspector for the Settings Manager. 
+
+Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
+
+\mbox{\Hypertarget{classSettingsManager_a826e3fa53fa6d99e182f9ed767c0cf42}\label{classSettingsManager_a826e3fa53fa6d99e182f9ed767c0cf42}} 
+\index{SettingsManager@{SettingsManager}!OnExit@{OnExit}}
+\index{OnExit@{OnExit}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
+{\footnotesize\ttfamily void Settings\+Manager\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once when exiting the scene 
+
+Called once exiting scene. 
+
+Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{Component}}.
+
+\mbox{\Hypertarget{classSettingsManager_ae4e80b72b9b71ec5ff9d42cdd7704535}\label{classSettingsManager_ae4e80b72b9b71ec5ff9d42cdd7704535}} 
+\index{SettingsManager@{SettingsManager}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Settings\+Manager\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once when entering the scene 
+
+Called once entering the scene. 
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+\mbox{\Hypertarget{classSettingsManager_a8ba260f469a6e2afdc3233f75293a1b7}\label{classSettingsManager_a8ba260f469a6e2afdc3233f75293a1b7}} 
+\index{SettingsManager@{SettingsManager}!Write@{Write}}
+\index{Write@{Write}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Settings\+Manager\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} to JSON 
+
+Write all the \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}}
+
+The JSON file containing the \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{SettingsManager_8h}{Settings\+Manager.\+h}}\item 
+Source/Settings\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -27,6 +27,8 @@ std\+::string \mbox{\hyperlink{classPlatformSystem_a64d12b99210d49ff22d02de92ca2
 \begin{DoxyCompactList}\small\item\em Returns the window name. \end{DoxyCompactList}\item 
 glm\+::vec2 const  \& \mbox{\hyperlink{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}{Get\+Game\+Window\+Pos}} () const
 \begin{DoxyCompactList}\small\item\em gets the position of the game\+Window within the glfw window \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlatformSystem_a07bd5c5204a703b26ac66aae25dcf9e1}{Get\+Fullscren}} () const
+\begin{DoxyCompactList}\small\item\em Gets if the game is in full screen. \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}{Write}} () const override
@@ -63,6 +65,19 @@ adds a callback to get called whenever the window resizes
 {\em callback} & the to callback to add \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classPlatformSystem_a07bd5c5204a703b26ac66aae25dcf9e1}\label{classPlatformSystem_a07bd5c5204a703b26ac66aae25dcf9e1}} 
+\index{PlatformSystem@{PlatformSystem}!GetFullscren@{GetFullscren}}
+\index{GetFullscren@{GetFullscren}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetFullscren()}{GetFullscren()}}
+{\footnotesize\ttfamily bool Platform\+System\+::\+Get\+Fullscren (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets if the game is in full screen. 
+
+\begin{DoxyReturn}{Returns}
+Is the game in fullscreen 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}\label{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}} 
 \index{PlatformSystem@{PlatformSystem}!GetGameWindowPos@{GetGameWindowPos}}
 \index{GetGameWindowPos@{GetGameWindowPos}!PlatformSystem@{PlatformSystem}}

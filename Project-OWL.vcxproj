@@ -498,6 +498,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ResourcesUiManager.cpp" />
     <ClCompile Include="Source\SceneChangeButton.cpp" />
     <ClCompile Include="Source\SceneTransition.cpp" />
+    <ClCompile Include="Source\SettingsManager.cpp" />
     <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
     <ClCompile Include="Source\DigEffect.cpp" />
@@ -580,6 +581,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ResourcesUiManager.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
     <ClInclude Include="Source\SceneTransition.h" />
+    <ClInclude Include="Source\SettingsManager.h" />
     <ClInclude Include="Source\SplashScreenController.h" />
     <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
@@ -685,6 +687,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\MapTest.scene.json" />
     <None Include="Data\Scenes\Prototype v3.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\Scenes\Settings.scene.json" />
     <None Include="Data\Scenes\SplashScreen.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\shaders\nineslice.frag" />

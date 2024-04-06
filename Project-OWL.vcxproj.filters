@@ -387,6 +387,9 @@
     <Filter Include="Engine\Entity\Component\Building">
       <UniqueIdentifier>{79c556a0-4527-4bf3-bfbb-5463d4ee800a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\SettingsManager">
+      <UniqueIdentifier>{661f564d-2e4b-44f4-9b60-62e09a48e245}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -820,6 +823,12 @@
     </ClCompile>
     <ClCompile Include="Source\LaserUpgrade.cpp">
       <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SettingsManager.cpp">
+      <Filter>Game\Components\SettingsManager</Filter>
     </ClCompile>
     <ClCompile Include="Source\Building.cpp">
       <Filter>Engine\Entity\Component\Building</Filter>
@@ -1255,6 +1264,12 @@
     <ClInclude Include="Source\LaserUpgrade.h">
       <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SettingsManager.h">
+      <Filter>Game\Components\SettingsManager</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Building.h">
       <Filter>Engine\Entity\Component\Building</Filter>
     </ClInclude>
@@ -1340,6 +1355,9 @@
       <Filter>Data</Filter>
     </None>
     <None Include="Data\Scenes\AlphaScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Settings.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

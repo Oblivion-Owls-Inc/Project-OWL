@@ -138,6 +138,10 @@
         return m_WindowPos;
     }
 
+    /// @brief  Gets if the game is in full screen
+    /// @return Is the game in fullscreen
+    bool PlatformSystem::GetFullscren() const { return m_IsFullscreen; }
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
