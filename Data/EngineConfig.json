@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                551
+                1054,
+                735
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -263,7 +263,6 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
-        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
         "ComponentSystem<Interactable>": {},
@@ -331,7 +330,7 @@
                 "AssetLibrary<Sound>": false,
                 "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
-                "AudioSystem": true,
+                "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
                 "BehaviorSystem<Behavior>": false,
                 "BehaviorSystem<EditorCameraController>": false,
