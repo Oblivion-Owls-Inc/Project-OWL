@@ -91699,6 +91699,44 @@
                                 "ActionName": "Build Turret 4"
                             },
                             "Unlocked": false
+                        },
+                        {
+                            "Archetype": {
+                                "AssetName": "Railgun Turret"
+                            },
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 2
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 6
+                                }
+                            ],
+                            "SelectAction": {
+                                "ActionName": "Build Turret 5"
+                            },
+                            "Unlocked": false
+                        },
+                        {
+                            "Archetype": {
+                                "AssetName": "Explosive Turret"
+                            },
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 2
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 6
+                                }
+                            ],
+                            "SelectAction": {
+                                "ActionName": "Build Turret 6"
+                            },
+                            "Unlocked": false
                         }
                     ],
                     "BuildingIndex": -1,
