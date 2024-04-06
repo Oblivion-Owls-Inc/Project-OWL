@@ -46,7 +46,7 @@
     /// @return the converted local anchor position
     glm::vec2 UiElement::UiPosToLocalAnchor( glm::vec2 const& uiPos ) const
     {
-        return glm::inverse( GetMatrix() ) * glm::vec4( 2.0f * uiPos, 0.0f, 1.0f );
+        return 2.0f * glm::vec2( glm::inverse( GetMatrix() ) * glm::vec4( uiPos, 0.0f, 1.0f ) );
     }
 
 

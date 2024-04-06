@@ -103,14 +103,14 @@
             }
 
             // engine config saving
-            static char buffer[128] = "Data/EngineConfig.json"; // Buffer to hold the input, you can save this
-            ImGui::InputText("Engine config filepath", buffer, IM_ARRAYSIZE(buffer));
+            static std::string filepath = "Data/EngineConfig.json"; // Buffer to hold the input, you can save this
+            ImGui::InputText("Engine config filepath", &filepath);
 
             /// Save engine config button
             if (ImGui::Button("Save Engine Config"))
             {
                 /// Save the engine config to the filepath
-                Stream::WriteToFile(buffer, GameEngine()->Write());
+                Stream::WriteToFile(filepath, GameEngine()->Write());
                 ImGui::End();
                 return false; //close window
             }
@@ -276,8 +276,13 @@
     /// @brief  Calls all Systems' OnExit function
     void Engine::exit()
     {
+
         Debug() << std::endl << std::endl << "Exiting..."
             << std::endl << std::endl;
+
+
+        Stream::WriteToFile( "Data/EngineConfig.json", GameEngine()->Write() );
+
         for ( System * system : m_Systems )
         {
             system->OnExit();
