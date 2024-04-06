@@ -86,12 +86,15 @@ digraph "Source/EntityReference.h"
   Node28 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node29 [label="Source/SceneChangeButton.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SceneChangeButton_8cpp.html",tooltip="Component that changes the scene when clicked."];
   Node1 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node30 [label="Source/SplashScreenController.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SplashScreenController_8h_source.html",tooltip=" "];
+  Node30 [label="Source/SettingsManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SettingsManager_8h.html",tooltip="Settings Manager Class."];
   Node30 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node31 [label="Source/TurretUnlockUpgrade.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretUnlockUpgrade_8h.html",tooltip="collectable upgrade which unlocks a turret"];
+  Node31 [label="Source/SplashScreenController.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SplashScreenController_8h_source.html",tooltip=" "];
   Node31 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node32 [label="Source/WinState.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WinState_8h_source.html",tooltip=" "];
+  Node32 [label="Source/TurretUnlockUpgrade.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretUnlockUpgrade_8h.html",tooltip="collectable upgrade which unlocks a turret"];
   Node32 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node33 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="Source/WinState.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WinState_8h_source.html",tooltip=" "];
+  Node33 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
