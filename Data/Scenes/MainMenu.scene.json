@@ -320,8 +320,8 @@
             }
         }
     },
-    "Entities": {
-        "Camera": {
+    "Entities": [
+        {
             "Name": "Camera",
             "Components": {
                 "Camera": {
@@ -343,7 +343,7 @@
             },
             "Children": null
         },
-        "Background": {
+        {
             "Name": "Background",
             "Components": {
                 "AudioPlayer": {
@@ -399,7 +399,7 @@
             },
             "Children": null
         },
-        "MainMenu": {
+        {
             "Name": "MainMenu",
             "Components": {
                 "Sprite": {
@@ -503,7 +503,8 @@
                                     "EventName": "PlayButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": false
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -641,7 +642,8 @@
                                     "EventName": "TutorialButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": true
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -783,7 +785,8 @@
                                     "EventName": "SettingsButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": true
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -925,7 +928,8 @@
                                     "EventName": "CreditsButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": true
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -1188,7 +1192,7 @@
                 }
             ]
         },
-        "Moon": {
+        {
             "Name": "Moon",
             "Components": {
                 "Animation": {
@@ -1288,7 +1292,7 @@
                 }
             ]
         },
-        "GameTitle": {
+        {
             "Name": "GameTitle",
             "Components": {
                 "Sprite": {
@@ -1330,7 +1334,7 @@
             },
             "Children": null
         },
-        "SceneChanger": {
+        {
             "Name": "SceneChanger",
             "Components": {
                 "SceneTransition": {
@@ -1376,7 +1380,7 @@
             },
             "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "AlphaScene",
         "Credits",
