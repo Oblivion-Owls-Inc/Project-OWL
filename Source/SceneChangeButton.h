@@ -65,6 +65,9 @@ private: // members
     /// @brief  the name of the event to listen for
     std::string m_EventName;
 
+    /// @brief This flags determines if to load the previous scene
+    bool m_PreviousSceneFlag = false;
+
 
     /// @brief  the SceneTransition Component responsible for changing scenes
     ComponentReference< SceneTransition > m_SceneTransition;
@@ -104,6 +107,10 @@ private: // reading
     /// @brief  reads the Entity the SceneTransition Component is attached to
     /// @param  data    the JSON data to read from
     void readSceneTransitionEntity( nlohmann::ordered_json const& data );
+
+    /// @brief reads the state of the previous scene flag
+    /// @param data the JSON file to read from.
+    void readPreviousSceneFlag(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

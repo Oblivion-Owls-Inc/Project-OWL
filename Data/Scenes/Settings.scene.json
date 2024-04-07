@@ -238,8 +238,8 @@
             }
         }
     },
-    "Entities": {
-        "Camera": {
+    "Entities": [
+        {
             "Name": "Camera",
             "Components": {
                 "Camera": {
@@ -261,7 +261,7 @@
             },
             "Children": null
         },
-        "SettingsBase": {
+        {
             "Name": "SettingsBase",
             "Components": {
                 "Sprite": {
@@ -306,11 +306,12 @@
                     "Name": "SaveButton",
                     "Components": {
                         "SceneChangeButton": {
-                            "SceneName": "MainMenu",
-                            "EventName": "MainMenu",
+                            "SceneName": "Previous",
+                            "EventName": "Previous",
                             "SceneTransitionEntity": {
                                 "EntityName": "SceneChanger"
-                            }
+                            },
+                            "PreviousSceneFlag": false
                         },
                         "Sprite": {
                             "Layer": 3,
@@ -327,7 +328,7 @@
                             }
                         },
                         "UiButton": {
-                            "ClickEventName": "MainMenu",
+                            "ClickEventName": "Previous",
                             "ShouldActivateOnPress": false,
                             "IdleFrame": 0,
                             "HoveredFrame": 1,
@@ -433,7 +434,7 @@
                 }
             ]
         },
-        "MasterVolumePrompt": {
+        {
             "Name": "MasterVolumePrompt",
             "Components": {
                 "Tilemap<int>": {
@@ -504,7 +505,7 @@
             },
             "Children": null
         },
-        "SFXVolumePrompt": {
+        {
             "Name": "SFXVolumePrompt",
             "Components": {
                 "Tilemap<int>": {
@@ -572,7 +573,7 @@
             },
             "Children": null
         },
-        "MusicVolumePrompt": {
+        {
             "Name": "MusicVolumePrompt",
             "Components": {
                 "Tilemap<int>": {
@@ -642,7 +643,7 @@
             },
             "Children": null
         },
-        "FullscreenTogglePrompt": {
+        {
             "Name": "FullscreenTogglePrompt",
             "Components": {
                 "Tilemap<int>": {
@@ -717,7 +718,7 @@
             },
             "Children": null
         },
-        "MasterSlider": {
+        {
             "Name": "MasterSlider",
             "Components": {
                 "UiBarSprite": {
@@ -729,7 +730,7 @@
                                 0.0,
                                 1.0
                             ],
-                            "Value": 0.8999999761581421,
+                            "Value": 0.6941678524017334,
                             "Slope": 0.0
                         },
                         {
@@ -777,7 +778,7 @@
                     ]
                 },
                 "UiSlider": {
-                    "Value": 0.8999999761581421,
+                    "Value": 0.6941678524017334,
                     "DragSliderAction": {
                         "ActionName": "DragSlider"
                     }
@@ -803,7 +804,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                0.7599999904632568,
+                                0.36891889572143555,
                                 0.0
                             ],
                             "Pivot": [
@@ -828,7 +829,7 @@
                 }
             ]
         },
-        "SfxSlider": {
+        {
             "Name": "SfxSlider",
             "Components": {
                 "UiBarSprite": {
@@ -939,7 +940,7 @@
                 }
             ]
         },
-        "MusicSlider": {
+        {
             "Name": "MusicSlider",
             "Components": {
                 "UiBarSprite": {
@@ -1050,7 +1051,7 @@
                 }
             ]
         },
-        "FullscreenToggle": {
+        {
             "Name": "FullscreenToggle",
             "Components": {
                 "Sprite": {
@@ -1105,7 +1106,7 @@
             },
             "Children": null
         },
-        "SettingsLabel": {
+        {
             "Name": "SettingsLabel",
             "Components": {
                 "Tilemap<int>": {
@@ -1170,7 +1171,7 @@
             },
             "Children": null
         },
-        "Settings Manager": {
+        {
             "Name": "Settings Manager",
             "Components": {
                 "SettingsManager": {
@@ -1198,7 +1199,7 @@
             },
             "Children": null
         },
-        "SceneChanger": {
+        {
             "Name": "SceneChanger",
             "Components": {
                 "SceneTransition": {
@@ -1244,7 +1245,7 @@
             },
             "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "MainMenu"
     ]

@@ -59,6 +59,15 @@
 /// @brief  called once when entering the scene
 void Popup::OnInit()
 {
+    Entity* bleh = Entities()->GetEntity(m_PopupEntity.GetName());
+    
+    if (bleh)
+    {
+        bleh->Destroy();
+    }
+
+
+
     m_PopupEntity.SetOwnerName(GetName());
     m_PopupButton.SetOwnerName(GetName());
 
@@ -98,6 +107,7 @@ void Popup::OnFixedUpdate()
 /// @brief  called once when exiting the scene
 void Popup::OnExit()
 {
+
     m_Listener.Exit();
     BehaviorSystem< Popup >::GetInstance()->RemoveComponent(this);
 }

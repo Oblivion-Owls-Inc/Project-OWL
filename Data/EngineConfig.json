@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1054,
-                735
+                888,
+                577
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -297,7 +297,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.8999999761581421,
+            "Volume": 0.7083926200866699,
             "Groups": [
                 {
                     "Name": "Music",
