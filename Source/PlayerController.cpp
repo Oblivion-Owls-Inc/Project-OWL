@@ -187,17 +187,22 @@
                 direction *= glm::sqrt(1.5f); /// Compensate for normalization.
             }
 
+
             if (direction.x > 0 )
             {
                 // 0 is right
                 direction.x *= m_HorizontalMoveforce[0];
-                m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
+
+                if (Input()->GetKeyDown(GLFW_KEY_D))
+                    m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
             }
             else
             {
                 // 1 is left
                 direction.x *= m_HorizontalMoveforce[1];
-                m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
+
+                if (Input()->GetKeyDown(GLFW_KEY_A))
+                    m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
             }
 
             if (direction.y > 0 )

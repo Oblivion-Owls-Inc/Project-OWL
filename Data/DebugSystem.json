@@ -1,5 +1,7 @@
 {
     "AssetLibrary<Entity>": true,
+    "AssetLibrary<Texture>": true,
+    "CameraSystem": true,
     "DebugSystem": true,
     "InputSystem": true
 }

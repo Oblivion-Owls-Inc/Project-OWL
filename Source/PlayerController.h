@@ -167,6 +167,9 @@ private: // methods
     /// @param  other   - the collider of the other entity.
     void onCollisionEnter( Collider* other );
 
+    /// @brief  Makes sure the player stays within the bounds of the level.
+    void playerBoundaryCheck();
+
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
@@ -249,7 +252,6 @@ private: // reading
     /// @brief Read in the is jumping state.
     /// @param data - the JSON file to read from.
     void readIsJumping( nlohmann::ordered_json const& data );
-    
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

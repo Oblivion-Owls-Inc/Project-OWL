@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                894,
-                614
+                955,
+                427
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -289,9 +289,9 @@
         "CameraSystem": {},
         "RenderSystem": {
             "BackgroundColor": [
-                0.20000000298023224,
-                0.30000001192092896,
-                0.30000001192092896,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ]
         },
@@ -328,7 +328,7 @@
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
+                "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -345,7 +345,7 @@
                 "BehaviorSystem<UiButton>": false,
                 "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
-                "CameraSystem": false,
+                "CameraSystem": true,
                 "CheatSystem": false,
                 "CollisionSystem": false,
                 "ComponentSystem<Interactable>": false,
