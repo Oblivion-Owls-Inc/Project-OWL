@@ -12,7 +12,7 @@
         },
         "Textures": {
             "Background": {
-                "Filepath": "Data/Textures/Background.png",
+                "Filepath": "Data/Textures/BackgroundNew.png",
                 "SheetDimensions": [
                     1,
                     1
