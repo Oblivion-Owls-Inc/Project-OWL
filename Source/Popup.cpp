@@ -59,11 +59,11 @@
 /// @brief  called once when entering the scene
 void Popup::OnInit()
 {
-    Entity* bleh = Entities()->GetEntity(m_PopupEntity.GetName());
+    Entity* pop = Entities()->GetEntity(m_PopupEntity.GetName());
     
-    if (bleh)
+    if (pop)
     {
-        bleh->Destroy();
+        pop->Destroy();
     }
 
 
