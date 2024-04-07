@@ -7,6 +7,7 @@
 #pragma once
 #include "Behavior.h"
 #include "ComponentReference.h"
+#include "ActionReference.h"
 class Emitter;
 class Transform;
 class RigidBody;
@@ -53,7 +54,6 @@ private:
 //              Public methods
 //-----------------------------------------------------------------------------
 public:
-    
 
 
 
@@ -75,6 +75,15 @@ private:
     ComponentReference< Emitter > m_Flame;
     //ComponentReference< Emitter > m_Smoke;
 
+    /// @brief  Keep track of player angle to change it gradually
+    float m_Angle = 0.0f;
+
+    /// @brief  up/down input
+    ActionReference m_InputYAxis;
+
+    /// @brief  left/right input
+    ActionReference m_InputXAxis;
+
 
 //-----------------------------------------------------------------------------
 //              Reading / Writing
@@ -83,6 +92,13 @@ private:
     /// @brief   the map of read methods for this Component
     static ReadMethodMap< JetpackBoost > const s_ReadMethods;
 
+    /// @brief       Reads horizontal input axis
+    /// @param data  json to read from
+    void readXAxisInput(nlohmann::ordered_json const& data);
+
+    /// @brief       Reads vertical input axis
+    /// @param data  json to read from
+    void readYAxisInput(nlohmann::ordered_json const& data);
     
 
 public:

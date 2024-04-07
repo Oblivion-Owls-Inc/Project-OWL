@@ -78,6 +78,7 @@
 #include "LaserUpgrade.h"
 #include "TurretUnlockUpgrade.h"
 #include "SceneTransition.h"
+#include "JetpackBoost.h"
 
 
 //-----------------------------------------------------------------------------
@@ -237,7 +238,8 @@
         { "Interactor"             , ComponentInfo< Interactor              >() },
         { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
         { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
-        { "SceneTransition"        , ComponentInfo< SceneTransition         >() }
+        { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
+        { "JetpackBoost"           , ComponentInfo< JetpackBoost            >() }
     };
 
 //-----------------------------------------------------------------------------
