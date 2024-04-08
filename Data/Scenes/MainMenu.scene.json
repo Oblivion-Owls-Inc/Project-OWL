@@ -503,7 +503,8 @@
                                     "EventName": "PlayButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": false
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -641,7 +642,8 @@
                                     "EventName": "TutorialButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": true
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -783,7 +785,8 @@
                                     "EventName": "SettingsButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": true
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -925,7 +928,8 @@
                                     "EventName": "CreditsButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
-                                    }
+                                    },
+                                    "PreviousSceneFlag": true
                                 },
                                 "Sprite": {
                                     "Layer": 5,
