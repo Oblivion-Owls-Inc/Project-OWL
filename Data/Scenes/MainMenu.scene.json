@@ -1089,7 +1089,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "QuitButtonClicked",
+                                    "ClickEventName": "CloseApplication",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,

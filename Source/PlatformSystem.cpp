@@ -217,6 +217,29 @@
         glfwTerminate();
     }
 
+    void PlatformSystem::OnSceneInit()
+    {
+        /// Set the filter function for the listener
+        m_Listener.SetFilterFunction([&](std::string const& EventName) -> bool
+        {
+            return EventName == "CloseApplication";
+        });
+
+        /// Set the Callback function for the listener
+        m_Listener.SetResponseFunction([&](std::string const& EventName)
+        {
+            GameEngine()->Close();
+        });
+
+        m_Listener.Init();
+    }
+
+   
+    void PlatformSystem::OnSceneExit()
+    {
+        m_Listener.Exit();
+    }
+
 
     /// @brief  called every graphics frame
     /// @param  dt  the duration of the frame in seconds

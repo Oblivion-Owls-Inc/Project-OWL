@@ -67,8 +67,8 @@
         "Animations": null,
         "Archetypes": null
     },
-    "Entities": {
-        "Camera": {
+    "Entities": [
+        {
             "Name": "Camera",
             "Components": {
                 "Camera": {
@@ -90,7 +90,7 @@
             },
             "Children": null
         },
-        "Background": {
+        {
             "Name": "Background",
             "Components": {
                 "SplashScreenController": {
@@ -151,7 +151,7 @@
             },
             "Children": null
         },
-        "SceneTransitioner": {
+        {
             "Name": "SceneTransitioner",
             "Components": {
                 "SceneTransition": {
@@ -166,7 +166,7 @@
                         0.0,
                         0.0
                     ],
-                    "Opacity": 0.0,
+                    "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
                         "AssetName": "Rectangle"
@@ -197,7 +197,7 @@
             },
             "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "MainMenu"
     ]

@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                2408,
-                952
+                1691,
+                976
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "StartingSceneName": "MainMenu",
+            "StartingSceneName": "SplashScreen",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -270,7 +270,7 @@
         "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
-            "Layer": 6
+            "Layer": 3
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -297,7 +297,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.7083926200866699,
+            "Volume": 1.0,
             "Groups": [
                 {
                     "Name": "Music",
@@ -355,7 +355,7 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": false,
+                "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,
