@@ -205,6 +205,9 @@
         return m_CurrentSceneName;
     }
 
+    /// @brief Save the current scene as previous scene
+    void SceneSystem::SavePreviousScene() const { SaveScene("Previous"); }
+
 //-----------------------------------------------------------------------------
 // private constants
 //-----------------------------------------------------------------------------

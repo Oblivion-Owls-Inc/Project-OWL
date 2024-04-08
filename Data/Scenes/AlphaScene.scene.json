@@ -2207,11 +2207,12 @@
                                         "ChannelGroupName": ""
                                     },
                                     "SceneChangeButton": {
-                                        "SceneName": "Credits",
-                                        "EventName": "Credits",
+                                        "SceneName": "Settings",
+                                        "EventName": "Settings",
                                         "SceneTransitionEntity": {
                                             "EntityName": "SceneTransitionEntity"
-                                        }
+                                        },
+                                        "PreviousSceneFlag": true
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -2228,7 +2229,7 @@
                                         }
                                     },
                                     "UiButton": {
-                                        "ClickEventName": "Credits",
+                                        "ClickEventName": "Settings",
                                         "ShouldActivateOnPress": false,
                                         "IdleFrame": 0,
                                         "HoveredFrame": 1,
@@ -2351,11 +2352,12 @@
                                         "ChannelGroupName": ""
                                     },
                                     "SceneChangeButton": {
-                                        "SceneName": "Settings",
-                                        "EventName": "Settings",
+                                        "SceneName": "Tutorial",
+                                        "EventName": "Tutorial",
                                         "SceneTransitionEntity": {
                                             "EntityName": "SceneTransitionEntity"
-                                        }
+                                        },
+                                        "PreviousSceneFlag": true
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -2372,7 +2374,7 @@
                                         }
                                     },
                                     "UiButton": {
-                                        "ClickEventName": "Settings",
+                                        "ClickEventName": "Tutorial",
                                         "ShouldActivateOnPress": false,
                                         "IdleFrame": 0,
                                         "HoveredFrame": 1,
@@ -2734,7 +2736,8 @@
                                 "EventName": "QuitConfirmation",
                                 "SceneTransitionEntity": {
                                     "EntityName": "SceneTransitionEntity"
-                                }
+                                },
+                                "PreviousSceneFlag": false
                             },
                             "Sprite": {
                                 "Layer": 40,
@@ -3524,8 +3527,8 @@
             }
         }
     },
-    "Entities": {
-        "Music": {
+    "Entities": [
+        {
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
@@ -3545,7 +3548,7 @@
             },
             "Children": null
         },
-        "Tiles": {
+        {
             "Name": "Tiles",
             "Components": {
                 "Tilemap<int>": {
@@ -91245,7 +91248,7 @@
                 }
             ]
         },
-        "Player": {
+        {
             "Name": "Player",
             "Components": {
                 "AudioListener": {
@@ -91613,7 +91616,7 @@
                 }
             ]
         },
-        "ConstructionManager": {
+        {
             "Name": "ConstructionManager",
             "Components": {
                 "AudioPlayer": {
@@ -91847,7 +91850,7 @@
                 }
             ]
         },
-        "ResourcesUi": {
+        {
             "Name": "ResourcesUi",
             "Components": {
                 "Nineslice": {
@@ -91918,7 +91921,7 @@
             },
             "Children": null
         },
-        "Snow": {
+        {
             "Name": "Snow",
             "Components": {
                 "Emitter": {
@@ -91984,7 +91987,7 @@
             },
             "Children": null
         },
-        "PropTilemap": {
+        {
             "Name": "PropTilemap",
             "Components": {
                 "Tilemap<int>": {
@@ -109528,7 +109531,7 @@
             },
             "Children": null
         },
-        "CostUi": {
+        {
             "Name": "CostUi",
             "Components": {
                 "ResourcesUiManager": {
@@ -109678,7 +109681,7 @@
                 }
             ]
         },
-        "Base": {
+        {
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
@@ -109805,7 +109808,7 @@
             },
             "Children": null
         },
-        "Generator": {
+        {
             "Name": "Generator",
             "Components": {
                 "AudioPlayer": {
@@ -109978,7 +109981,7 @@
                 }
             ]
         },
-        "Generator2": {
+        {
             "Name": "Generator2",
             "Components": {
                 "AudioPlayer": {
@@ -110151,7 +110154,7 @@
                 }
             ]
         },
-        "Pause": {
+        {
             "Name": "Pause",
             "Components": {
                 "PauseComponent": {
@@ -110184,7 +110187,7 @@
             },
             "Children": null
         },
-        "LaserUpgrade": {
+        {
             "Name": "LaserUpgrade",
             "Components": {
                 "Interactable": {
@@ -110276,7 +110279,7 @@
                 }
             ]
         },
-        "TurretUnlock": {
+        {
             "Name": "TurretUnlock",
             "Components": {
                 "Interactable": {
@@ -110366,7 +110369,7 @@
                 }
             ]
         },
-        "SceneTransitionEntity": {
+        {
             "Name": "SceneTransitionEntity",
             "Components": {
                 "SceneTransition": {
@@ -110412,7 +110415,7 @@
             },
             "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "GameWin",
         "Gameover",

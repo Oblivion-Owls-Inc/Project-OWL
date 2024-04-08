@@ -61,6 +61,9 @@ public: // accessors
     /// @return the name of the current scene
     std::string const& GetSceneName() const;
 
+    /// @brief Saves the previous scene
+    void SavePreviousScene() const;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
