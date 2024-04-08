@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                2408,
-                952
+                176,
+                202
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -270,7 +270,7 @@
         "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
-            "Layer": 6
+            "Layer": 3
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -289,9 +289,9 @@
         "CameraSystem": {},
         "RenderSystem": {
             "BackgroundColor": [
-                0.20000000298023224,
-                0.30000001192092896,
-                0.30000001192092896,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ]
         },
@@ -345,7 +345,7 @@
                 "BehaviorSystem<UiButton>": false,
                 "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
-                "CameraSystem": false,
+                "CameraSystem": true,
                 "CheatSystem": false,
                 "CollisionSystem": false,
                 "ComponentSystem<Interactable>": false,
@@ -355,7 +355,7 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": false,
+                "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,

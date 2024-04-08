@@ -14,6 +14,7 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "System.h"
+#include "EventListener.h"
 
 
 //-----------------------------------------------------------------------------
@@ -97,6 +98,11 @@ private: // virtual override methods
     /// @brief Shuts down window / GLFW.
     virtual void OnExit() override;
 
+    /// @brief  Gets called whenever a scene is initialized
+    virtual void OnSceneInit();
+
+    /// @brief  Gets called whenever a scene is exited
+    virtual void OnSceneExit(); 
 
     /// @brief  called every graphics frame
     /// @param  dt  the duration of the frame in seconds
@@ -111,6 +117,8 @@ private: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
+    /// @brief Listens for the exit call
+    EventListener<std::string> m_Listener;
 
     /// @brief  the size in pixels of the window
 	glm::ivec2 m_WindowSize = { 800, 600 };
