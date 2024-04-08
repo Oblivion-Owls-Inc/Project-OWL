@@ -217,6 +217,7 @@
         glfwTerminate();
     }
 
+            return EventName == "CloseApplication";
 
     /// @brief  called every graphics frame
     /// @param  dt  the duration of the frame in seconds
