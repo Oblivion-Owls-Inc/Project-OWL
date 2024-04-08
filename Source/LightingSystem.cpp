@@ -119,14 +119,11 @@ void LightingSystem::OnExit()
 void LightingSystem::OnSceneInit() 
 {
     Renderer()->AddSprite(m_Sprite);
-
-    m_EventListener.Init();
 }
 
 /// @brief  Called when exiting a scene
 void LightingSystem::OnSceneExit() 
 {
-    m_EventListener.Exit();
     Renderer()->RemoveSprite(m_Sprite);
 }
 
