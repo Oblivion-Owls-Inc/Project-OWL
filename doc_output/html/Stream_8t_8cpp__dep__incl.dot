@@ -106,6 +106,7 @@ digraph "Source/Stream.t.cpp"
   Node12 -> Node148 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node148 [label="Source/Inventory.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Inventory_8h.html",tooltip="Inventory component that stores items."];
   Node148 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node148 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node12 -> Node75 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node12 -> Node149 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node149 [label="Source/LaserUpgrade.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$LaserUpgrade_8h.html",tooltip="collectable upgrade to the player's MiningLaser"];
