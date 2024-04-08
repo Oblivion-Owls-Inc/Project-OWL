@@ -320,8 +320,8 @@
             }
         }
     },
-    "Entities": {
-        "Camera": {
+    "Entities": [
+        {
             "Name": "Camera",
             "Components": {
                 "Camera": {
@@ -343,7 +343,7 @@
             },
             "Children": null
         },
-        "Background": {
+        {
             "Name": "Background",
             "Components": {
                 "AudioPlayer": {
@@ -399,7 +399,7 @@
             },
             "Children": null
         },
-        "MainMenu": {
+        {
             "Name": "MainMenu",
             "Components": {
                 "Sprite": {
@@ -1061,15 +1061,6 @@
                                     "AllowMultipleSounds": false,
                                     "ChannelGroupName": ""
                                 },
-                                "Popup": {
-                                    "PopupEntity": {
-                                        "AssetName": "DestructiveAction"
-                                    },
-                                    "PopupButton": {
-                                        "ActionName": ""
-                                    },
-                                    "EventName": ""
-                                },
                                 "Sprite": {
                                     "Layer": 5,
                                     "Color": [
@@ -1085,7 +1076,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "QuitButtonClicked",
+                                    "ClickEventName": "CloseApplication",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -1188,7 +1179,7 @@
                 }
             ]
         },
-        "Moon": {
+        {
             "Name": "Moon",
             "Components": {
                 "Animation": {
@@ -1288,7 +1279,7 @@
                 }
             ]
         },
-        "GameTitle": {
+        {
             "Name": "GameTitle",
             "Components": {
                 "Sprite": {
@@ -1330,7 +1321,7 @@
             },
             "Children": null
         },
-        "SceneChanger": {
+        {
             "Name": "SceneChanger",
             "Components": {
                 "SceneTransition": {
@@ -1376,7 +1367,7 @@
             },
             "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "AlphaScene",
         "Credits",

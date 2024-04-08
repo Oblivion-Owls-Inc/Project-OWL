@@ -8,6 +8,7 @@
 #pragma once
 #include "Entity.h"
 #include "ComponentSystem.h"
+#include "EventListener.h"
 #include "Sprite.h"
 #include "Light.h"
 
@@ -74,6 +75,9 @@ private:
     glm::mat4 m_S2W = {}, m_W2S = {};     /// @brief   Screen-to-world matrix (and inverse)
     int m_ShadowLayer = 5;                /// @brief   Rendering layer of the darkness
     unsigned long long m_PrevSize = 0;
+    EventListener<std::string> m_EventListener; /// @brief   Listens for changes in the scene change event.
+        
+
 
 
 //-----------------------------------------------------------------------------
