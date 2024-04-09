@@ -190,9 +190,16 @@ void Generator::OnUpdate(float dt)
 Generator::Generator(const Generator& other) :
     Behavior( other ),
     m_IsActive        ( other.m_IsActive         ),
+    m_ChangeActive    ( other.m_ChangeActive     ),
+    m_ActivateRing    ( other.m_ActivateRing     ),
+    m_DeactivateRing  ( other.m_DeactivateRing   ),
+    m_ShrinkRing      ( other.m_ShrinkRing       ),
+    m_RadiusSpeed     ( other.m_RadiusSpeed      ),
     m_PowerRadius     ( other.m_PowerRadius      ),
     m_ActivationRadius( other.m_ActivationRadius ),
-    m_Depth           ( other.m_Depth            )
+    m_Depth           ( other.m_Depth            ),
+    m_GrowthRadius    ( other.m_GrowthRadius     ),
+    m_WavePrefab      ( other.m_WavePrefab       )
 {}
 
 //-----------------------------------------------------------------------------
