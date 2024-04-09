@@ -26,7 +26,12 @@ CameraBehavior::CameraBehavior() : Behavior(typeid(CameraBehavior)) {}
 CameraBehavior* CameraBehavior::Clone() const { return new CameraBehavior(*this); }
 
 /// @brief  copy ctor
-CameraBehavior::CameraBehavior(const CameraBehavior& other) : Behavior(other) {}
+CameraBehavior::CameraBehavior( CameraBehavior const& other) :
+    Behavior( other ),
+    m_xBounds( other.m_xBounds ),
+    m_yBounds( other.m_yBounds ),
+    m_Factor ( other.m_Factor  )
+{}
 
 
 
@@ -90,7 +95,7 @@ void CameraBehavior::Inspector()
 	ImGui::DragFloat2("left / right", &m_xBounds[0], 0.01f);
 	ImGui::DragFloat2("bottom / top", &m_yBounds[0], 0.01f);
 	ImGui::Spacing();
-	ImGui::SliderFloat("Follow factor", &m_Factor, 0.0f, 5.0f, "%.2f");
+	ImGui::DragFloat( "Follow factor", &m_Factor, 0.05f, 0.0f, INFINITY );
 }
 
 
@@ -138,6 +143,7 @@ ReadMethodMap<CameraBehavior> const CameraBehavior::s_ReadMethods =
 {
 	{ "XBounds", &readXBounds },
 	{ "YBounds", &readYBounds },
+    { "Factor" , &readFactor  }
 };
 
 /// @brief		 Reads the horizontal bounds
@@ -156,6 +162,13 @@ void CameraBehavior::readYBounds(nlohmann::ordered_json const& data)
 	m_yBounds[1] = data[1];
 }
 
+/// @brief  reads the follow factor
+/// @param  data    the JSON data to read from
+void CameraBehavior::readFactor( nlohmann::ordered_json const& data )
+{
+    Stream::Read( m_Factor, data );
+}
+
 
 /// @brief	write to json
 nlohmann::ordered_json CameraBehavior::Write() const
@@ -164,6 +177,7 @@ nlohmann::ordered_json CameraBehavior::Write() const
 
 	data["XBounds"] = m_xBounds;
 	data["YBounds"] = m_yBounds;
+    data[ "Factor" ] = Stream::Write( m_Factor );
 
 	return data;
 }
