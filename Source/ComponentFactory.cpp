@@ -80,6 +80,7 @@
 #include "TurretUnlockUpgrade.h"
 #include "SceneTransition.h"
 #include "Building.h"
+#include "WindowFocusEvent.h"
 
 
 //-----------------------------------------------------------------------------
@@ -241,7 +242,8 @@
         { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
         { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
         { "SettingsManager"        , ComponentInfo< SettingsManager         >() },
-        { "Building"               , ComponentInfo< Building                >() }
+        { "Building"               , ComponentInfo< Building                >() },
+        { "WindowFocusEvent"       , ComponentInfo< WindowFocusEvent        >() }
     };
 
 //-----------------------------------------------------------------------------
