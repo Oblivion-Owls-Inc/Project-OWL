@@ -10,6 +10,9 @@
 #include "ComponentReference.h"
 #include "Inventory.h"
 
+#include "EntityReference.h"
+class SceneTransition;
+
 class WinState : public Behavior
 {
 //-----------------------------------------------------------------------------
@@ -84,12 +87,19 @@ private:
     /// @brief  How many needed to win
     int m_WinCount = 10;
 
-    /// @brief  Item holder's inventory
-    ComponentReference< Inventory > m_Inventory;
-
     /// @brief  Name of the scene to switch to upon meeting the requirement
     std::string m_WinSceneName = "GameWin";
 
+
+    /// @brief  the SceneTransition Component responsible for changing scenes
+    ComponentReference< SceneTransition > m_SceneTransition;
+
+    /// @brief  the Entity the SceneTransition Component is attached to
+    EntityReference m_SceneTransitionEntity = EntityReference( { &m_SceneTransition } );
+
+
+    /// @brief  Item holder's inventory
+    ComponentReference< Inventory > m_Inventory;
 
 //-----------------------------------------------------------------------------
 //              Reading / Writing
@@ -109,6 +119,10 @@ private:
     /// @brief		 Reads win scene's name
     /// @param data  json data to read
     void readWinScene(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the Entity the SceneTransition Component is attached to
+    /// @param  data    the JSON data to read from
+    void readSceneTransitionEntity( nlohmann::ordered_json const& data );
 
 public:
 

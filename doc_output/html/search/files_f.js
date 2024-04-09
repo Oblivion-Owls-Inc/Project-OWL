@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wavesbehavior_2ecpp_1384',['WavesBehavior.cpp',['../WavesBehavior_8cpp.html',1,'']]],
-  ['wavesinspector_2ecpp_1385',['WavesInspector.cpp',['../WavesInspector_8cpp.html',1,'']]]
+  ['wavesbehavior_2ecpp_1408',['WavesBehavior.cpp',['../WavesBehavior_8cpp.html',1,'']]],
+  ['wavesinspector_2ecpp_1409',['WavesInspector.cpp',['../WavesInspector_8cpp.html',1,'']]]
 ];

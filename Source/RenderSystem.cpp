@@ -63,7 +63,10 @@ void RenderSystem::OnUpdate(float dt)
 
     for ( Sprite* sprite : m_Sprites)
     {
-        sprite->Draw();
+        if ( sprite->GetOpacity() != 0.0f )
+        {
+            sprite->Draw();
+        }
     }
 
     // draw debug shapes
@@ -277,7 +280,7 @@ Sprite* RenderSystem::GetMouseOverSprite()
     {
         Sprite* sprite = *it;
 
-        if ( sprite->GetTransform() == nullptr )
+        if ( sprite->GetOpacity() == 0.0f || sprite->GetTransform() == nullptr )
         {
             continue;
         }

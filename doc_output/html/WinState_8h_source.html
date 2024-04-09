@@ -81,108 +81,121 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ComponentReference_8h.html">ComponentReference.h</a>&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Inventory_8h.html">Inventory.h</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classWinState.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classWinState.html">WinState</a> : <span class="keyword">public</span> <a class="code" href="classBehavior.html">Behavior</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructors / destructors</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classWinState.html#a726a9b1a46a626ea34c942a491d537c0">WinState</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="EntityReference_8h.html">EntityReference.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classSceneTransition.html">SceneTransition</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classWinState.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classWinState.html">WinState</a> : <span class="keyword">public</span> <a class="code" href="classBehavior.html">Behavior</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructors / destructors</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classWinState.html">WinState</a>* <a class="code" href="classWinState.html#a0f2eebb21729481f2ab446fdbeae257c">Clone</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classWinState.html#a726a9b1a46a626ea34c942a491d537c0">WinState</a>(<span class="keyword">const</span> <a class="code" href="classWinState.html">WinState</a>&amp; other);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//              Overrides</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnUpdate(<span class="keywordtype">float</span> dt) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classWinState.html#a726a9b1a46a626ea34c942a491d537c0">WinState</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classWinState.html">WinState</a>* <a class="code" href="classWinState.html#a0f2eebb21729481f2ab446fdbeae257c">Clone</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classWinState.html#a726a9b1a46a626ea34c942a491d537c0">WinState</a>(<span class="keyword">const</span> <a class="code" href="classWinState.html">WinState</a>&amp; other);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//              Overrides</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Inspector() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnHierarchyChange(<a class="code" href="classEntity.html">Entity</a>* previousParent);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnUpdate(<span class="keywordtype">float</span> dt) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Inspector() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//              Public methods</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classWinState.html#a2250cae91efc0914fd203ef10af549df">   56</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classWinState.html#a2250cae91efc0914fd203ef10af549df">SetWinItemID</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { m_Item = id; }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classWinState.html#ad306a068c0c0316f441b0ea114c1ae46">   59</a></span>&#160;    __inline <span class="keywordtype">int</span> <a class="code" href="classWinState.html#ad306a068c0c0316f441b0ea114c1ae46">GetWinItemID</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Item; }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnHierarchyChange(<a class="code" href="classEntity.html">Entity</a>* previousParent);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//              Public methods</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classWinState.html#a2250cae91efc0914fd203ef10af549df">   59</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classWinState.html#a2250cae91efc0914fd203ef10af549df">SetWinItemID</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { m_Item = id; }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classWinState.html#a423d4f861392ac2143a15e5a405a0f74">   62</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classWinState.html#a423d4f861392ac2143a15e5a405a0f74">SetWinItemCount</a>(<span class="keywordtype">int</span> count) { m_WinCount = count; }</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classWinState.html#ad306a068c0c0316f441b0ea114c1ae46">   62</a></span>&#160;    __inline <span class="keywordtype">int</span> <a class="code" href="classWinState.html#ad306a068c0c0316f441b0ea114c1ae46">GetWinItemID</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Item; }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classWinState.html#a9aabe2bc0f36be3b00a24c79fd4c9404">   65</a></span>&#160;    __inline <span class="keywordtype">int</span> <a class="code" href="classWinState.html#a9aabe2bc0f36be3b00a24c79fd4c9404">GetWinItemCount</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_WinCount; }</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classWinState.html#a423d4f861392ac2143a15e5a405a0f74">   65</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classWinState.html#a423d4f861392ac2143a15e5a405a0f74">SetWinItemCount</a>(<span class="keywordtype">int</span> count) { m_WinCount = count; }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classWinState.html#af9866f71e9cf432f9f2db942678d6a8d">   68</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classWinState.html#af9866f71e9cf432f9f2db942678d6a8d">SetWinSceneName</a>(std::string scene) { m_WinSceneName = scene; }</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classWinState.html#a9aabe2bc0f36be3b00a24c79fd4c9404">   68</a></span>&#160;    __inline <span class="keywordtype">int</span> <a class="code" href="classWinState.html#a9aabe2bc0f36be3b00a24c79fd4c9404">GetWinItemCount</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_WinCount; }</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classWinState.html#ac7f9dff2a395cc8424f752c2710a7397">   71</a></span>&#160;    __inline std::string <a class="code" href="classWinState.html#ac7f9dff2a395cc8424f752c2710a7397">GetWinSceneName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_WinSceneName; }</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classWinState.html#af9866f71e9cf432f9f2db942678d6a8d">   71</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classWinState.html#af9866f71e9cf432f9f2db942678d6a8d">SetWinSceneName</a>(std::string scene) { m_WinSceneName = scene; }</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">//              Data</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// (temporary, will need names once the items have them)</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">int</span> m_Item = 0;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> m_WinCount = 10;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classWinState.html#ac7f9dff2a395cc8424f752c2710a7397">   74</a></span>&#160;    __inline std::string <a class="code" href="classWinState.html#ac7f9dff2a395cc8424f752c2710a7397">GetWinSceneName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_WinSceneName; }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//              Data</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// (temporary, will need names once the items have them)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> m_Item = 0;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt; Inventory &gt;</a> m_Inventory;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> m_WinCount = 10;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    std::string m_WinSceneName = <span class="stringliteral">&quot;GameWin&quot;</span>;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//              Reading / Writing</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; WinState &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt; SceneTransition &gt;</a> m_SceneTransition;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classEntityReference.html">EntityReference</a> m_SceneTransitionEntity = <a class="code" href="classEntityReference.html">EntityReference</a>( { &amp;m_SceneTransition } );</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> readItemID(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> readItemCount(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">void</span> readWinScene(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt; Inventory &gt;</a> m_Inventory;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">//              Reading / Writing</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; WinState &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> readItemID(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classWinState.html#af8f8ac308fe1f3a633bc54e742dc9585">  117</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classWinState.html#af8f8ac308fe1f3a633bc54e742dc9585">GetReadMethods</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classWinState.html#a129a8cadba3775ee7d2de4be58f0dd0d">Write</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> readItemCount(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> readWinScene(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> readSceneTransitionEntity( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classWinState.html#af8f8ac308fe1f3a633bc54e742dc9585">  131</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classWinState.html#af8f8ac308fe1f3a633bc54e742dc9585">GetReadMethods</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classWinState.html#a129a8cadba3775ee7d2de4be58f0dd0d">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;};</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
 <div class="ttc" id="aBehavior_8h_html"><div class="ttname"><a href="Behavior_8h.html">Behavior.h</a></div><div class="ttdoc">Virtual behavior component header.</div></div>
 <div class="ttc" id="aComponentReference_8h_html"><div class="ttname"><a href="ComponentReference_8h.html">ComponentReference.h</a></div><div class="ttdoc">a reference to a component in the scene</div></div>
+<div class="ttc" id="aEntityReference_8h_html"><div class="ttname"><a href="EntityReference_8h.html">EntityReference.h</a></div><div class="ttdoc">a reference to an Entity in the scene</div></div>
 <div class="ttc" id="aInventory_8h_html"><div class="ttname"><a href="Inventory_8h.html">Inventory.h</a></div><div class="ttdoc">Inventory component that stores items.</div></div>
 <div class="ttc" id="aclassBehavior_html"><div class="ttname"><a href="classBehavior.html">Behavior</a></div><div class="ttdef"><b>Definition:</b> Behavior.h:17</div></div>
-<div class="ttc" id="aclassComponentReference_html"><div class="ttname"><a href="classComponentReference.html">ComponentReference&lt; Inventory &gt;</a></div></div>
+<div class="ttc" id="aclassComponentReference_html"><div class="ttname"><a href="classComponentReference.html">ComponentReference&lt; SceneTransition &gt;</a></div></div>
+<div class="ttc" id="aclassEntityReference_html"><div class="ttname"><a href="classEntityReference.html">EntityReference</a></div><div class="ttdoc">a reference to an Entity in the scene</div><div class="ttdef"><b>Definition:</b> EntityReference.h:23</div></div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:28</div></div>
-<div class="ttc" id="aclassWinState_html"><div class="ttname"><a href="classWinState.html">WinState</a></div><div class="ttdef"><b>Definition:</b> WinState.h:14</div></div>
-<div class="ttc" id="aclassWinState_html_a0f2eebb21729481f2ab446fdbeae257c"><div class="ttname"><a href="classWinState.html#a0f2eebb21729481f2ab446fdbeae257c">WinState::Clone</a></div><div class="ttdeci">WinState * Clone() const override</div><div class="ttdoc">Returns copy of this behavior.</div><div class="ttdef"><b>Definition:</b> WinState.cpp:25</div></div>
-<div class="ttc" id="aclassWinState_html_a129a8cadba3775ee7d2de4be58f0dd0d"><div class="ttname"><a href="classWinState.html#a129a8cadba3775ee7d2de4be58f0dd0d">WinState::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all WinState component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> WinState.cpp:122</div></div>
-<div class="ttc" id="aclassWinState_html_a2250cae91efc0914fd203ef10af549df"><div class="ttname"><a href="classWinState.html#a2250cae91efc0914fd203ef10af549df">WinState::SetWinItemID</a></div><div class="ttdeci">__inline void SetWinItemID(int id)</div><div class="ttdoc">Sets the ID of winning item.</div><div class="ttdef"><b>Definition:</b> WinState.h:56</div></div>
-<div class="ttc" id="aclassWinState_html_a423d4f861392ac2143a15e5a405a0f74"><div class="ttname"><a href="classWinState.html#a423d4f861392ac2143a15e5a405a0f74">WinState::SetWinItemCount</a></div><div class="ttdeci">__inline void SetWinItemCount(int count)</div><div class="ttdoc">Sets the item count required to win.</div><div class="ttdef"><b>Definition:</b> WinState.h:62</div></div>
-<div class="ttc" id="aclassWinState_html_a726a9b1a46a626ea34c942a491d537c0"><div class="ttname"><a href="classWinState.html#a726a9b1a46a626ea34c942a491d537c0">WinState::WinState</a></div><div class="ttdeci">WinState()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> WinState.cpp:19</div></div>
-<div class="ttc" id="aclassWinState_html_a9aabe2bc0f36be3b00a24c79fd4c9404"><div class="ttname"><a href="classWinState.html#a9aabe2bc0f36be3b00a24c79fd4c9404">WinState::GetWinItemCount</a></div><div class="ttdeci">__inline int GetWinItemCount() const</div><div class="ttdef"><b>Definition:</b> WinState.h:65</div></div>
-<div class="ttc" id="aclassWinState_html_ac7f9dff2a395cc8424f752c2710a7397"><div class="ttname"><a href="classWinState.html#ac7f9dff2a395cc8424f752c2710a7397">WinState::GetWinSceneName</a></div><div class="ttdeci">__inline std::string GetWinSceneName() const</div><div class="ttdef"><b>Definition:</b> WinState.h:71</div></div>
-<div class="ttc" id="aclassWinState_html_ad306a068c0c0316f441b0ea114c1ae46"><div class="ttname"><a href="classWinState.html#ad306a068c0c0316f441b0ea114c1ae46">WinState::GetWinItemID</a></div><div class="ttdeci">__inline int GetWinItemID() const</div><div class="ttdef"><b>Definition:</b> WinState.h:59</div></div>
-<div class="ttc" id="aclassWinState_html_af8f8ac308fe1f3a633bc54e742dc9585"><div class="ttname"><a href="classWinState.html#af8f8ac308fe1f3a633bc54e742dc9585">WinState::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of read methods for this Component</div><div class="ttdef"><b>Definition:</b> WinState.h:117</div></div>
-<div class="ttc" id="aclassWinState_html_af9866f71e9cf432f9f2db942678d6a8d"><div class="ttname"><a href="classWinState.html#af9866f71e9cf432f9f2db942678d6a8d">WinState::SetWinSceneName</a></div><div class="ttdeci">__inline void SetWinSceneName(std::string scene)</div><div class="ttdoc">Sets the scene to switch to upon meeting item count requirement.</div><div class="ttdef"><b>Definition:</b> WinState.h:68</div></div>
+<div class="ttc" id="aclassSceneTransition_html"><div class="ttname"><a href="classSceneTransition.html">SceneTransition</a></div><div class="ttdoc">DESCRIPTION HERE.</div><div class="ttdef"><b>Definition:</b> SceneTransition.h:18</div></div>
+<div class="ttc" id="aclassWinState_html"><div class="ttname"><a href="classWinState.html">WinState</a></div><div class="ttdef"><b>Definition:</b> WinState.h:17</div></div>
+<div class="ttc" id="aclassWinState_html_a0f2eebb21729481f2ab446fdbeae257c"><div class="ttname"><a href="classWinState.html#a0f2eebb21729481f2ab446fdbeae257c">WinState::Clone</a></div><div class="ttdeci">WinState * Clone() const override</div><div class="ttdoc">Returns copy of this behavior.</div><div class="ttdef"><b>Definition:</b> WinState.cpp:36</div></div>
+<div class="ttc" id="aclassWinState_html_a129a8cadba3775ee7d2de4be58f0dd0d"><div class="ttname"><a href="classWinState.html#a129a8cadba3775ee7d2de4be58f0dd0d">WinState::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all WinState component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> WinState.cpp:153</div></div>
+<div class="ttc" id="aclassWinState_html_a2250cae91efc0914fd203ef10af549df"><div class="ttname"><a href="classWinState.html#a2250cae91efc0914fd203ef10af549df">WinState::SetWinItemID</a></div><div class="ttdeci">__inline void SetWinItemID(int id)</div><div class="ttdoc">Sets the ID of winning item.</div><div class="ttdef"><b>Definition:</b> WinState.h:59</div></div>
+<div class="ttc" id="aclassWinState_html_a423d4f861392ac2143a15e5a405a0f74"><div class="ttname"><a href="classWinState.html#a423d4f861392ac2143a15e5a405a0f74">WinState::SetWinItemCount</a></div><div class="ttdeci">__inline void SetWinItemCount(int count)</div><div class="ttdoc">Sets the item count required to win.</div><div class="ttdef"><b>Definition:</b> WinState.h:65</div></div>
+<div class="ttc" id="aclassWinState_html_a726a9b1a46a626ea34c942a491d537c0"><div class="ttname"><a href="classWinState.html#a726a9b1a46a626ea34c942a491d537c0">WinState::WinState</a></div><div class="ttdeci">WinState()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> WinState.cpp:22</div></div>
+<div class="ttc" id="aclassWinState_html_a9aabe2bc0f36be3b00a24c79fd4c9404"><div class="ttname"><a href="classWinState.html#a9aabe2bc0f36be3b00a24c79fd4c9404">WinState::GetWinItemCount</a></div><div class="ttdeci">__inline int GetWinItemCount() const</div><div class="ttdef"><b>Definition:</b> WinState.h:68</div></div>
+<div class="ttc" id="aclassWinState_html_ac7f9dff2a395cc8424f752c2710a7397"><div class="ttname"><a href="classWinState.html#ac7f9dff2a395cc8424f752c2710a7397">WinState::GetWinSceneName</a></div><div class="ttdeci">__inline std::string GetWinSceneName() const</div><div class="ttdef"><b>Definition:</b> WinState.h:74</div></div>
+<div class="ttc" id="aclassWinState_html_ad306a068c0c0316f441b0ea114c1ae46"><div class="ttname"><a href="classWinState.html#ad306a068c0c0316f441b0ea114c1ae46">WinState::GetWinItemID</a></div><div class="ttdeci">__inline int GetWinItemID() const</div><div class="ttdef"><b>Definition:</b> WinState.h:62</div></div>
+<div class="ttc" id="aclassWinState_html_af8f8ac308fe1f3a633bc54e742dc9585"><div class="ttname"><a href="classWinState.html#af8f8ac308fe1f3a633bc54e742dc9585">WinState::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of read methods for this Component</div><div class="ttdef"><b>Definition:</b> WinState.h:131</div></div>
+<div class="ttc" id="aclassWinState_html_af9866f71e9cf432f9f2db942678d6a8d"><div class="ttname"><a href="classWinState.html#af9866f71e9cf432f9f2db942678d6a8d">WinState::SetWinSceneName</a></div><div class="ttdeci">__inline void SetWinSceneName(std::string scene)</div><div class="ttdoc">Sets the scene to switch to upon meeting item count requirement.</div><div class="ttdef"><b>Definition:</b> WinState.h:71</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

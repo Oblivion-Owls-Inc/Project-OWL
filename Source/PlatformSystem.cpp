@@ -138,6 +138,10 @@
         return m_WindowPos;
     }
 
+    /// @brief  Gets if the game is in full screen
+    /// @return Is the game in fullscreen
+    bool PlatformSystem::GetFullscren() const { return m_IsFullscreen; }
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
@@ -211,6 +215,29 @@
     {
         glfwDestroyWindow( m_Window );
         glfwTerminate();
+    }
+
+    void PlatformSystem::OnSceneInit()
+    {
+        /// Set the filter function for the listener
+        m_Listener.SetFilterFunction([&](std::string const& EventName) -> bool
+        {
+            return EventName == "CloseApplication";
+        });
+
+        /// Set the Callback function for the listener
+        m_Listener.SetResponseFunction([&](std::string const& EventName)
+        {
+            GameEngine()->Close();
+        });
+
+        m_Listener.Init();
+    }
+
+   
+    void PlatformSystem::OnSceneExit()
+    {
+        m_Listener.Exit();
     }
 
 

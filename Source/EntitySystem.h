@@ -46,6 +46,8 @@ public: // methods
     /// @param WindowName the name of the window to display
     /// @param DragAndDrop whether or not to allow drag and drop functionality
     void DisplayEntityHierarchy(std::vector<Entity *> EntityList, const std::string WindowName, bool DragAndDrop = true);
+
+
 ///-----------------------------------------------------------------------------
 public: //Accessors
 ///-----------------------------------------------------------------------------
@@ -116,6 +118,7 @@ public: // engine methods
 private: // methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  removes all queued Entities from the EntitySystem
     void removeEntities();
 
@@ -148,6 +151,7 @@ private: // inspection
 
     /// @brief Shows the Properites of the Selected Entity
     void entityPropertiesWindow(Entity* entity);
+
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

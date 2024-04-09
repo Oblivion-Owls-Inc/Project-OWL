@@ -12,6 +12,7 @@
 #include "Pool.h"
 
 #include "ComponentReference.h"
+#include "AssetReference.h"
 #include "Transform.h"
 #include "RigidBody.h"
 #include "AudioPlayer.h"
@@ -72,6 +73,9 @@ private: // Member Variables
     int m_Damage = 1;
 
 
+    /// @brief the cached reward that will be dropped 
+    Entity* m_RewardEntity = nullptr;
+
     /// @brief  the transform attached to this Enemy
     ComponentReference< Transform > m_Transform;
 
@@ -84,6 +88,8 @@ private: // Member Variables
     /// @brief  Health of this entity.
     ComponentReference< Health > m_Health;
 
+    /// @brief  the entity Prefab that will be dropped when this enemy dies.
+    AssetReference< Entity > m_Reward;
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
@@ -95,6 +101,8 @@ private: // methods
     /// @brief What to do when the enemy gets damaged.
     void onDamageTaken();
 
+    /// @brief The Event that is called when the enemy dies.
+    void onDeathEvent();
     
 ///-----------------------------------------------------------------------------
 public: // inspection
@@ -116,6 +124,9 @@ private: // Reading
     /// @brief  reads the damage
     /// @param  data    the json data to read from
     void readDamage(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the reward
+    void readReward(nlohmann::ordered_json const& data);
 
 
 ///-----------------------------------------------------------------------------

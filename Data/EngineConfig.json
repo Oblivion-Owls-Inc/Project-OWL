@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1163,
-                681
+                176,
+                202
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,13 +247,14 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Autosaved_Scene",
+            "StartingSceneName": "MainMenu",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
         "PauseSystem": {},
         "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
@@ -262,14 +263,14 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
-        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
         "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
-            "Layer": 6
+            "Layer": 3
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -288,15 +289,15 @@
         "CameraSystem": {},
         "RenderSystem": {
             "BackgroundColor": [
-                0.20000000298023224,
-                0.30000001192092896,
-                0.30000001192092896,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ]
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 1.0,
+            "Volume": 0.7083926200866699,
             "Groups": [
                 {
                     "Name": "Music",
@@ -326,7 +327,7 @@
             "OpenSystemWindows": {
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Sound>": true,
                 "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
@@ -340,19 +341,21 @@
                 "BehaviorSystem<PlayerController>": false,
                 "BehaviorSystem<Popup>": false,
                 "BehaviorSystem<RigidBody>": false,
+                "BehaviorSystem<SceneTransition>": false,
                 "BehaviorSystem<UiButton>": false,
                 "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
-                "CameraSystem": false,
+                "CameraSystem": true,
                 "CheatSystem": false,
                 "CollisionSystem": false,
+                "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,
                 "DebugSystem": true,
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": false,
+                "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,

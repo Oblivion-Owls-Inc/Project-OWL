@@ -108,7 +108,7 @@ digraph "Source/RenderSystem.cpp"
   Node57 [label="Mesh.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Mesh_8h.html",tooltip="Mesh class - holds on to buffer/VAO references, draws their contents."];
   Node57 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node58 [color="midnightblue",fontsize="10",style="solid"];
-  Node58 [label="PlatformSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlatformSystem_8h.html",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit."];
+  Node58 [label="PlatformSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$PlatformSystem_8h.html",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit."];
   Node58 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node58 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
@@ -122,11 +122,11 @@ digraph "Source/RenderSystem.cpp"
   Node50 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
   Node50 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node56 [color="midnightblue",fontsize="10",style="solid"];
-  Node1 -> Node59 [color="midnightblue",fontsize="10",style="solid"];
-  Node59 [label="InputSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$InputSystem_8h.html",tooltip="Input system, m_Handles key and mouse inputs."];
-  Node59 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node59 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node61 [color="midnightblue",fontsize="10",style="solid"];
-  Node61 [label="Engine.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Engine_8h.html",tooltip="Engine class."];
+  Node61 [label="InputSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$InputSystem_8h.html",tooltip="Input system, m_Handles key and mouse inputs."];
+  Node61 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node61 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node63 [color="midnightblue",fontsize="10",style="solid"];
+  Node63 [label="Engine.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Engine_8h.html",tooltip="Engine class."];
+  Node63 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
 }

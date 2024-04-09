@@ -168,6 +168,32 @@
     }
 
 
+    /// @brief  selects a scene name in an inspector
+    /// @param  label       the label of the inspector
+    /// @param  sceneName   pointer to where to store the selected scene
+    /// @return whether a scene was selected
+    bool SceneSystem::InspectorSelectScene( char const* label, std::string* sceneName )
+    {
+        bool changed = false;
+
+        if ( ImGui::BeginCombo( label, sceneName->c_str() ) )
+        {
+            getSceneNames();
+            for ( std::string const& scene : m_SceneNames )
+            {
+                if ( ImGui::Selectable( scene.c_str(), *sceneName == scene ) )
+                {
+                    *sceneName = scene;
+                    changed = true;
+                }
+            }
+            ImGui::EndCombo();
+        }
+
+        return changed;
+    }
+
+
 //-----------------------------------------------------------------------------
 // public accessors
 //-----------------------------------------------------------------------------
@@ -178,6 +204,9 @@
     {
         return m_CurrentSceneName;
     }
+
+    /// @brief Save the current scene as previous scene
+    void SceneSystem::SavePreviousScene() const { SaveScene("Previous"); }
 
 //-----------------------------------------------------------------------------
 // private constants
@@ -193,6 +222,7 @@
     /// @brief  Gets called once when the engine starts
     void SceneSystem::OnInit()
     {
+        m_NextSceneName = m_StartingSceneName;
         getSceneNames();
     }
 
@@ -215,7 +245,6 @@
     /// @brief  Gets called once before the Engine closes
     void SceneSystem::OnExit()
     {
-        assert( m_CurrentSceneName != "" );
 
         exitScene();
 
@@ -239,6 +268,9 @@
         }
         SetDebugEnable( showWindow );
 
+
+        ImGui::InputText("Starting Scene", &m_StartingSceneName);
+
         // wait for thread to finish before changing preparsed scenes
         if ( m_PreparseThread.joinable() )
         {
@@ -250,24 +282,26 @@
         {
             ImGui::Text( it->first.c_str() );
             ImGui::SameLine();
+            ImGui::PushID( it->first.c_str() );
             if ( ImGui::SmallButton( "X" ) )
             {
                 sceneToRemove = it;
             }
+            ImGui::PopID();
         }
         if ( sceneToRemove != m_PreparsedScenes.end() )
         {
             m_PreparsedScenes.erase( sceneToRemove );
         }
 
-        unsigned sceneToAdd = inspectorListScenes();
-        if ( ImGui::Button( "Add Preparsed Scene" ) )
+        std::string sceneToAdd = "select scene";
+        if ( InspectorSelectScene( "add preparsed scene", &sceneToAdd ) )
         {
-            if ( sceneToAdd != -1 && m_SceneNames[ sceneToAdd ] != m_CurrentSceneName )
+            if ( m_PreparsedScenes.contains( sceneToAdd ) == false )
             {
                 m_PreparsedScenes.emplace(
-                    m_SceneNames[ sceneToAdd ],
-                    Stream::ParseFromFile( scenePath( m_SceneNames[ sceneToAdd ] ) )
+                    sceneToAdd,
+                    Stream::ParseFromFile( scenePath( sceneToAdd ) )
                 );
             }
         }
@@ -289,9 +323,9 @@
 
     /// @brief  reads the next scene name
     /// @param  data    the data to read from
-    void SceneSystem::readNextSceneName( nlohmann::ordered_json const& data )
+    void SceneSystem::readStartingSceneName( nlohmann::ordered_json const& data )
     {
-        m_NextSceneName = Stream::Read<std::string>( data );
+        m_StartingSceneName = Stream::Read<std::string>( data );
     }
 
     /// @brief  reads the name of the autosave scene
@@ -304,7 +338,7 @@
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< SceneSystem > const SceneSystem::s_ReadMethods = {
         { "BaseScenePath", &readBaseScenePath },
-        { "NextSceneName", &readNextSceneName },
+        { "StartingSceneName", &readStartingSceneName },
         { "AutosaveName" , &readAutosaveName  }
     };
 
@@ -314,7 +348,7 @@
         nlohmann::ordered_json json;
 
         json[ "BaseScenePath" ] = m_BaseScenePath;
-        json[ "NextSceneName" ] = m_CurrentSceneName;
+        json[ "StartingSceneName" ] = m_StartingSceneName;
         json[ "AutosaveName"  ] = m_AutosaveName;
 
         return json;

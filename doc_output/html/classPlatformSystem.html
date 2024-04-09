@@ -106,6 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a000751d2abf49ccc77ea146869e3be2c"><td class="memItemLeft" align="right" valign="top">glm::vec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a000751d2abf49ccc77ea146869e3be2c">GetGameWindowPos</a> () const</td></tr>
 <tr class="memdesc:a000751d2abf49ccc77ea146869e3be2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the position of the gameWindow within the glfw window  <a href="classPlatformSystem.html#a000751d2abf49ccc77ea146869e3be2c">More...</a><br /></td></tr>
 <tr class="separator:a000751d2abf49ccc77ea146869e3be2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07bd5c5204a703b26ac66aae25dcf9e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a07bd5c5204a703b26ac66aae25dcf9e1">GetFullscren</a> () const</td></tr>
+<tr class="memdesc:a07bd5c5204a703b26ac66aae25dcf9e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if the game is in full screen.  <a href="classPlatformSystem.html#a07bd5c5204a703b26ac66aae25dcf9e1">More...</a><br /></td></tr>
+<tr class="separator:a07bd5c5204a703b26ac66aae25dcf9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a344964fb6aa36a9d64349cbfaa716a42"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a344964fb6aa36a9d64349cbfaa716a42">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:a344964fb6aa36a9d64349cbfaa716a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classPlatformSystem.html#a344964fb6aa36a9d64349cbfaa716a42">More...</a><br /></td></tr>
 <tr class="separator:a344964fb6aa36a9d64349cbfaa716a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,14 +126,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a> ()</td></tr>
 <tr class="memdesc:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
 <tr class="separator:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
-<tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
-<tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
-<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
-<tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a804bac94c6ffee7f7369c6c3928a5574"></a>
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
@@ -211,6 +206,26 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a07bd5c5204a703b26ac66aae25dcf9e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07bd5c5204a703b26ac66aae25dcf9e1">&#9670;&nbsp;</a></span>GetFullscren()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlatformSystem::GetFullscren </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets if the game is in full screen. </p>
+<dl class="section return"><dt>Returns</dt><dd>Is the game in fullscreen </dd></dl>
 
 </div>
 </div>
