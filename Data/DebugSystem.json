@@ -8,5 +8,6 @@
     "DebugSystem": true,
     "InputSystem": true,
     "LightingSystem": true,
+    "PauseSystem": true,
     "SceneSystem": true
 }

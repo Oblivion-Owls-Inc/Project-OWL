@@ -358,7 +358,7 @@
                 "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
-                "PauseSystem": false,
+                "PauseSystem": true,
                 "PlatformSystem": false,
                 "RenderSystem": false,
                 "SceneSystem": true,
