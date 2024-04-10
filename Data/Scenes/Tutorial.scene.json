@@ -51,6 +51,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "TutorialPromptTexture": {
                 "Filepath": "Data/Textures/Tutorial/DigDeeper_TutorialTwo_Update1.png",
                 "SheetDimensions": [
@@ -727,18 +739,6 @@
                         "AssetName": "Rectangle"
                     }
                 },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                },
                 "UiElement": {
                     "Anchor": [
                         0.0,
@@ -766,7 +766,6 @@
         }
     ],
     "PreparsedScenes": [
-        "AlphaScene",
-        "Settings"
+        "MainMenu"
     ]
 }

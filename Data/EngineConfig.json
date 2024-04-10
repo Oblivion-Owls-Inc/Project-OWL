@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1110,
-                639
+                1014,
+                670
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -297,7 +297,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.7083926200866699,
+            "Volume": 0.09007592499256134,
             "Groups": [
                 {
                     "Name": "Music",
@@ -306,7 +306,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 1.0,
+                    "Volume": 0.5320764183998108,
                     "Mute": false
                 },
                 {
@@ -318,14 +318,14 @@
         },
         "CheatSystem": {
             "LoseSceneName": "GameOver",
-            "RestartSceneName": "AlphaScene",
+            "RestartSceneName": "BetaScene",
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<AnimationAsset>": true,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": true,
                 "AssetLibrary<Texture>": true,
@@ -358,10 +358,10 @@
                 "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
-                "PauseSystem": false,
+                "PauseSystem": true,
                 "PlatformSystem": false,
                 "RenderSystem": false,
-                "SceneSystem": false,
+                "SceneSystem": true,
                 "TileInfoSystem": false
             }
         },

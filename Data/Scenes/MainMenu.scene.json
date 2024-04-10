@@ -499,7 +499,7 @@
                                     "ChannelGroupName": ""
                                 },
                                 "SceneChangeButton": {
-                                    "SceneName": "AlphaScene",
+                                    "SceneName": "BetaScene",
                                     "EventName": "PlayButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
@@ -1373,7 +1373,7 @@
         }
     ],
     "PreparsedScenes": [
-        "AlphaScene",
+        "BetaScene",
         "Credits",
         "Settings",
         "Tutorial"

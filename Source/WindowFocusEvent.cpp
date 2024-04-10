@@ -13,6 +13,7 @@
 #include "PlatformSystem.h"
 #include "EventSystem.h"
 #include "PauseSystem.h"
+#include "DebugSystem.h"
 
 
 //-----------------------------------------------------------------------------
@@ -46,7 +47,7 @@
     {
         Platform()->AddOnFocusChangedCallback( GetId(), [this]( bool focused )
         {
-            if ( m_DisableWhenPaused && Pause()->GetRunning() == false )
+            if ( Debug().IsEditorRunning() == false || (m_DisableWhenPaused && Pause()->GetRunning() == false) )
             {
                 return;
             }
