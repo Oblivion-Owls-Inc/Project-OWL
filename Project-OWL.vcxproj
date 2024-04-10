@@ -538,6 +538,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\WavesInspector.cpp" />
     <ClCompile Include="Source\TileInfoSystem.cpp" />
+    <ClCompile Include="Source\WindowFocusEvent.cpp" />
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -673,6 +674,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\UiSlider.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
+    <ClInclude Include="Source\WindowFocusEvent.h" />
     <ClInclude Include="Source\WinState.h" />
   </ItemGroup>
   <ItemGroup>
