@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                176,
-                202
+                1005,
+                530
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -325,7 +325,7 @@
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<AnimationAsset>": true,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": true,
                 "AssetLibrary<Texture>": true,
@@ -347,7 +347,7 @@
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": true,
                 "CheatSystem": false,
-                "CollisionSystem": false,
+                "CollisionSystem": true,
                 "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,
@@ -361,7 +361,7 @@
                 "PauseSystem": false,
                 "PlatformSystem": false,
                 "RenderSystem": false,
-                "SceneSystem": false,
+                "SceneSystem": true,
                 "TileInfoSystem": false
             }
         },

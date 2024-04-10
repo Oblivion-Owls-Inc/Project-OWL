@@ -1,9 +1,12 @@
 {
+    "AssetLibrary<AnimationAsset>": true,
     "AssetLibrary<Entity>": true,
     "AssetLibrary<Sound>": true,
     "AssetLibrary<Texture>": true,
     "CameraSystem": true,
+    "CollisionSystem": true,
     "DebugSystem": true,
     "InputSystem": true,
-    "LightingSystem": true
+    "LightingSystem": true,
+    "SceneSystem": true
 }
