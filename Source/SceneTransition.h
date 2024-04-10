@@ -104,6 +104,12 @@ private: // members
     /// @brief  the Sprite Component attached to this Entity
     ComponentReference< Sprite > m_Sprite;
 
+    /// @brief  whether the next scene has lighting
+    bool m_HasLighting = false;
+
+    /// @brief  the lighting layer of the next scene
+    int m_LightingLayer = 0;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
