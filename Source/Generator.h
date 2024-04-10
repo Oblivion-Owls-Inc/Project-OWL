@@ -155,7 +155,7 @@ private: // variables
     ComponentReference< Emitter > m_Emitter;
 
     /// @brief  the Interactable Component attached to this Generator
-    ComponentReference< Interactable > m_Interactable;
+    ComponentReference< Interactable, false > m_Interactable;
 
     /// @brief  the wave prefab to spawn on generator activation
     AssetReference< Entity > m_WavePrefab;

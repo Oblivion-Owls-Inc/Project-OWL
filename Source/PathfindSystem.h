@@ -67,6 +67,9 @@ public:
 //-----------------------------------------------------------------------------
 private:
 
+    /// @brief  called when the system starts
+    virtual void OnInit() override;
+
     /// @brief  Called every frame: manages the background thread
     virtual void OnUpdate(float dt) override;
 
