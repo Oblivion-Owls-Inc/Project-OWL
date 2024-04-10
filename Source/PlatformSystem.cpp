@@ -38,6 +38,22 @@
     }
 
 
+    /// @brief  adds a callback to get called whenever the focus of this window changes
+    /// @param  ownerId     ID of the owner of the callback (used for removing the callback later)
+    /// @param  callback    the to callback to add
+    void PlatformSystem::AddOnFocusChangedCallback( unsigned ownerId, std::function< void( bool focused ) > callback )
+    {
+        m_OnFocusChangedCallbacks.emplace( ownerId, callback );
+    }
+
+    /// @brief  removes an OnFocusChanged callback
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void PlatformSystem::RemoveOnFocusChangedCallback( unsigned ownerId )
+    {
+        m_OnFocusChangedCallbacks.erase( ownerId );
+    }
+
+
     /// @brief  sets whether the window is fullscreen
     /// @param  fullscreen  whether to set the window to fullscreen or windowed
     void PlatformSystem::SetFullscreen( bool fullscreen )
@@ -140,7 +156,19 @@
 
     /// @brief  Gets if the game is in full screen
     /// @return Is the game in fullscreen
-    bool PlatformSystem::GetFullscren() const { return m_IsFullscreen; }
+    bool PlatformSystem::GetFullscreen() const
+    {
+        return m_IsFullscreen;
+    }
+
+
+    /// @brief  gets whether the game window is focused
+    /// @return whether the game window is focused
+    bool PlatformSystem::GetIsFocused() const
+    {
+        return glfwGetWindowAttrib( m_Window, GLFW_FOCUSED );
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
@@ -200,12 +228,13 @@
 
         glDebugMessageCallback( openGlErrorCallback, NULL ); // set OpenGL error callback func
 
-        glfwSetWindowSizeCallback( m_Window, glfwWindowResizeCallback );
-        glfwSetWindowCloseCallback( m_Window, glfwWindowCloseCallback );
+        glfwSetWindowSizeCallback ( m_Window, glfwWindowResizeCallback );
+        glfwSetWindowCloseCallback( m_Window, glfwWindowCloseCallback  );
+        glfwSetWindowFocusCallback( m_Window, glfwWindowFocusCallback  );
 
 
         #ifndef NDEBUG
-            Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
+            Renderer()->SetDrawToBuffer( true ); // enable drawing to off-screen buffer
         #endif // NDEBUG
 
     }
@@ -215,6 +244,29 @@
     {
         glfwDestroyWindow( m_Window );
         glfwTerminate();
+    }
+
+    void PlatformSystem::OnSceneInit()
+    {
+        /// Set the filter function for the listener
+        m_Listener.SetFilterFunction([&](std::string const& EventName) -> bool
+        {
+            return EventName == "CloseApplication";
+        });
+
+        /// Set the Callback function for the listener
+        m_Listener.SetResponseFunction([&](std::string const& EventName)
+        {
+            GameEngine()->Close();
+        });
+
+        m_Listener.Init();
+    }
+
+   
+    void PlatformSystem::OnSceneExit()
+    {
+        m_Listener.Exit();
     }
 
 
@@ -356,6 +408,19 @@
     {
         Debug() << "Window Close Callback" << std::endl;
         GameEngine()->Close();
+    }
+
+    /// @brief  GLFW callback called whenever the window focus changes
+    /// @param  window  handle to the window that focus was changed on
+    /// @param  focused whether the window is focused
+    void PlatformSystem::glfwWindowFocusCallback( GLFWwindow* window, int focused )
+    {
+        Debug() << "Window focus: " << focused << std::endl;
+
+        for ( auto& [ key, callback ] : Platform()->m_OnFocusChangedCallbacks )
+        {
+            callback( focused );
+        }
     }
 
 

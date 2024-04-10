@@ -18,6 +18,7 @@
 #include "Inspection.h"
 
 #include "AudioSystem.h"
+#include "PlatformSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -171,7 +172,6 @@
     /// @return whether this AudioPlayer is paused
     bool AudioPlayer::GetIsPaused() const
     {
-
         if ( m_Channel == nullptr )
         {
             return true;
@@ -341,16 +341,26 @@
 
         m_ChannelGroup = Audio()->GetChannelGroup( m_ChannelGroupName );
 
-        if ( m_PlayOnInit )
+        Platform()->AddOnFocusChangedCallback( GetId(), [ this ]( bool focused )
+        {
+            onWindowFocusChangedCallback( focused );
+        } );
+
+        m_KeepPausedOnFocus = !m_PlayOnInit;
+
+        if ( m_PlayOnInit && Platform()->GetIsFocused() )
         {
             Play();
         }
+
     }
 
     /// @brief  called once when exiting the scene
     void AudioPlayer::OnExit()
     {
         Stop();
+
+        Platform()->RemoveOnFocusChangedCallback( GetId() );
 
         m_Transform.Exit();
         m_RigidBody.Exit();
@@ -412,6 +422,25 @@
         self->m_Channel = nullptr;
 
         return FMOD_OK;
+    }
+
+
+    /// @brief  callback to call when the window focus changes
+    /// @param  focused whether the window is focused
+    void AudioPlayer::onWindowFocusChangedCallback( bool focused )
+    {
+        if ( focused )
+        {
+            if ( !m_KeepPausedOnFocus )
+            {
+                Play();
+            }
+        }
+        else
+        {
+            m_KeepPausedOnFocus = GetIsPaused();
+            SetIsPaused( true );
+        }
     }
 
 

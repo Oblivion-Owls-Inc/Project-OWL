@@ -20,6 +20,7 @@
 #include "RigidBody.h"
 #include "Animation.h"
 #include "AudioPlayer.h"
+#include "Inventory.h"
 #include "Health.h"
 #include "Transform.h"
 #include "CircleCollider.h"
@@ -119,6 +120,9 @@ private: // member variables
 
     /// @brief  a cached instance of the parent's collider.
     ComponentReference< Collider > m_Collider;
+
+    /// @brief a cached instance of the parent's Inventory.
+    ComponentReference< Inventory > m_Inventory;
     
 
     /// @brief  the miningLaser this PlayerController uses
@@ -162,6 +166,9 @@ private: // methods
     /// @brief  What to do when the player has been hit.
     /// @param  other   - the collider of the other entity.
     void onCollisionEnter( Collider* other );
+
+    /// @brief  Makes sure the player stays within the bounds of the level.
+    void playerBoundaryCheck();
 
 //-----------------------------------------------------------------------------
 public: // inspection

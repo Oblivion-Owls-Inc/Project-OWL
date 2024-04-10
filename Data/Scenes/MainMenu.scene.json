@@ -1065,15 +1065,6 @@
                                     "AllowMultipleSounds": false,
                                     "ChannelGroupName": ""
                                 },
-                                "Popup": {
-                                    "PopupEntity": {
-                                        "AssetName": "DestructiveAction"
-                                    },
-                                    "PopupButton": {
-                                        "ActionName": ""
-                                    },
-                                    "EventName": ""
-                                },
                                 "Sprite": {
                                     "Layer": 5,
                                     "Color": [
@@ -1089,7 +1080,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "QuitButtonClicked",
+                                    "ClickEventName": "CloseApplication",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,

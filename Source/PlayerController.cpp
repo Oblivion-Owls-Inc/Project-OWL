@@ -21,6 +21,8 @@
 #include "EnemyBehavior.h"
 #include "EntitySystem.h"
 #include "Generator.h"
+#include "ItemStack.h"
+
 
 #include "ComponentReference.t.h"
 
@@ -92,6 +94,7 @@
         m_Transform  .Init( GetEntity() );
         m_Health     .Init( GetEntity() );
         m_Collider   .Init( GetEntity() );
+        m_Inventory  .Init( GetEntity() );
 
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
@@ -142,6 +145,7 @@
         m_Transform  .Exit();
         m_Health     .Exit();
         m_Collider   .Exit();
+        m_Inventory  .Exit();
 
         m_MiningLaserEntity.Exit();
 
@@ -158,28 +162,12 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        float DeltaTime = GameEngine()->GetFixedFrameDuration();
-
         if (
             m_AudioPlayer == nullptr ||
             m_RigidBody == nullptr
         )
         {
             return;
-        }
-
-        if ( m_Interact != nullptr && m_Interact->GetDown() )
-        {
-            for (auto& generator : Behaviors<Generator>()->GetComponents())
-            {
-                float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
-                    GetEntity()->GetComponent<Transform>()->GetTranslation());
-                if (generator->GetActivationRadius() > distance)
-                {
-                    generator->Activate();
-                    return;
-                }
-            }
         }
 
         // The normalised direction vector.
@@ -199,17 +187,22 @@
                 direction *= glm::sqrt(1.5f); /// Compensate for normalization.
             }
 
+
             if (direction.x > 0 )
             {
                 // 0 is right
                 direction.x *= m_HorizontalMoveforce[0];
-                m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
+
+                if (Input()->GetKeyDown(GLFW_KEY_D))
+                    m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
             }
             else
             {
                 // 1 is left
                 direction.x *= m_HorizontalMoveforce[1];
-                m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
+
+                if (Input()->GetKeyDown(GLFW_KEY_A))
+                    m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
             }
 
             if (direction.y > 0 )

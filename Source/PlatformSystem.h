@@ -14,6 +14,7 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "System.h"
+#include "EventListener.h"
 
 
 //-----------------------------------------------------------------------------
@@ -21,12 +22,6 @@
 //-----------------------------------------------------------------------------
 
 struct GLFWwindow;	// forward reference for GetWindowHandle()
-
-// #define GLAPIENTRY _stdcall
-// typedef unsigned int GLenum;
-// typedef unsigned int GLuint;
-// typedef int GLsizei;
-// typedef char GLchar;
 
 //-----------------------------------------------------------------------------
 
@@ -45,6 +40,16 @@ public: // methods
     /// @brief  removes an OnWindowResize callback
     /// @param  ownerId the ID of the owner of the callback to remove
     void RemoveOnWindowResizeCallback( unsigned ownerId );
+
+
+    /// @brief  adds a callback to get called whenever the focus of this window changes
+    /// @param  ownerId     ID of the owner of the callback (used for removing the callback later)
+    /// @param  callback    the to callback to add
+    void AddOnFocusChangedCallback( unsigned ownerId, std::function< void( bool focused ) > callback );
+
+    /// @brief  removes an OnFocusChanged callback
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void RemoveOnFocusChangedCallback( unsigned ownerId );
 
 
     /// @brief  sets whether the window is fullscreen
@@ -81,9 +86,13 @@ public: // accessors
     /// @return the position of the game window
     glm::vec2 const& GetGameWindowPos() const;
 
-    /// @brief  Gets if the game is in full screen
-    /// @return Is the game in fullscreen
-    bool GetFullscren() const;
+    /// @brief  gets if the game is in full screen
+    /// @return is the game in fullscreen
+    bool GetFullscreen() const;
+
+    /// @brief  gets whether the game window is focused
+    /// @return whether the game window is focused
+    bool GetIsFocused() const;
 
 
 //-----------------------------------------------------------------------------
@@ -97,6 +106,11 @@ private: // virtual override methods
     /// @brief Shuts down window / GLFW.
     virtual void OnExit() override;
 
+    /// @brief  Gets called whenever a scene is initialized
+    virtual void OnSceneInit();
+
+    /// @brief  Gets called whenever a scene is exited
+    virtual void OnSceneExit(); 
 
     /// @brief  called every graphics frame
     /// @param  dt  the duration of the frame in seconds
@@ -110,6 +124,10 @@ private: // virtual override methods
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
+
+
+    /// @brief Listens for the exit call
+    EventListener<std::string> m_Listener;
 
 
     /// @brief  the size in pixels of the window
@@ -132,6 +150,9 @@ private: // members
 
     /// @brief  callbacks to call whenever the window resizes
     std::map< unsigned, std::function< void ( glm::ivec2 const& ) > > m_OnWindowResizedCallbacks = {};
+
+    /// @brief  callbacks to call whenever the focus of the window changes
+    std::map< unsigned, std::function< void ( bool focused ) > > m_OnFocusChangedCallbacks = {};
     
 
 //-----------------------------------------------------------------------------
@@ -149,15 +170,20 @@ private: // callbacks
     );
 
 
-    /// @brief  callback called whenever the GLFW window resizes
+    /// @brief  GLFW callback called whenever the GLFW window resizes
     /// @param  window  handle to the window that was resized
     /// @param  width   the new width of the window
     /// @param  height  the new height of the window
     static void glfwWindowResizeCallback( GLFWwindow* window, int width, int height );
 
-    /// @brief  callback called whenever the GLFW window closes
+    /// @brief  GLFW callback called whenever the GLFW window closes
     /// @param  window  the window that was just closed
     static void glfwWindowCloseCallback( GLFWwindow* window );
+
+    /// @brief  GLFW callback called whenever the window focus changes
+    /// @param  window  handle to the window that focus was changed on
+    /// @param  focused whether the window is focused
+    static void glfwWindowFocusCallback( GLFWwindow* window, int focused );
 
 
 //-----------------------------------------------------------------------------
