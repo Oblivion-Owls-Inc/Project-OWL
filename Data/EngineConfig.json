@@ -3,7 +3,7 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1005,
+                1014,
                 670
             ],
             "WindowName": "Dig Deeper",
@@ -318,7 +318,7 @@
         },
         "CheatSystem": {
             "LoseSceneName": "GameOver",
-            "RestartSceneName": "AlphaScene",
+            "RestartSceneName": "BetaScene",
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
