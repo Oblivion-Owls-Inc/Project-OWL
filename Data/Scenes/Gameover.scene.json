@@ -158,18 +158,6 @@
                         "AssetName": "Rectangle"
                     }
                 },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                },
                 "UiElement": {
                     "Anchor": [
                         0.0,
