@@ -15,6 +15,10 @@ void \mbox{\hyperlink{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}{Add
 \begin{DoxyCompactList}\small\item\em adds a callback to get called whenever the window resizes \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPlatformSystem_a761878f6076e03f60246aea3044950f7}{Remove\+On\+Window\+Resize\+Callback}} (unsigned owner\+Id)
 \begin{DoxyCompactList}\small\item\em removes an On\+Window\+Resize callback \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlatformSystem_ac32507e77a4fc7a53adaf4290574c236}{Add\+On\+Focus\+Changed\+Callback}} (unsigned owner\+Id, std\+::function$<$ void(bool focused) $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds a callback to get called whenever the focus of this window changes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlatformSystem_ac8b7c543df5667dce11cfd3ad7d1a6d4}{Remove\+On\+Focus\+Changed\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes an On\+Focus\+Changed callback \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPlatformSystem_ac9f3d31161ee99951142fb3760f10f8c}{Set\+Fullscreen}} (bool fullscreen)
 \begin{DoxyCompactList}\small\item\em sets whether the window is fullscreen \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classPlatformSystem_a37c012e68c72ec7900c22dc8a3902fa4}{is\+Pos\+Within\+Window}} (glm\+::vec2 const \&screen\+Pos) const
@@ -27,8 +31,10 @@ std\+::string \mbox{\hyperlink{classPlatformSystem_a64d12b99210d49ff22d02de92ca2
 \begin{DoxyCompactList}\small\item\em Returns the window name. \end{DoxyCompactList}\item 
 glm\+::vec2 const  \& \mbox{\hyperlink{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}{Get\+Game\+Window\+Pos}} () const
 \begin{DoxyCompactList}\small\item\em gets the position of the game\+Window within the glfw window \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classPlatformSystem_a07bd5c5204a703b26ac66aae25dcf9e1}{Get\+Fullscren}} () const
-\begin{DoxyCompactList}\small\item\em Gets if the game is in full screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlatformSystem_a94dec990ffe00f65be65721daecab241}{Get\+Fullscreen}} () const
+\begin{DoxyCompactList}\small\item\em gets if the game is in full screen \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlatformSystem_ad9fa4e0852d66ad0464a0f162b605d2e}{Get\+Is\+Focused}} () const
+\begin{DoxyCompactList}\small\item\em gets whether the game window is focused \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}{Write}} () const override
@@ -48,6 +54,23 @@ static \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} $\ast$ \mbox{\hy
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPlatformSystem_ac32507e77a4fc7a53adaf4290574c236}\label{classPlatformSystem_ac32507e77a4fc7a53adaf4290574c236}} 
+\index{PlatformSystem@{PlatformSystem}!AddOnFocusChangedCallback@{AddOnFocusChangedCallback}}
+\index{AddOnFocusChangedCallback@{AddOnFocusChangedCallback}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{AddOnFocusChangedCallback()}{AddOnFocusChangedCallback()}}
+{\footnotesize\ttfamily void Platform\+System\+::\+Add\+On\+Focus\+Changed\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void(bool focused) $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback to get called whenever the focus of this window changes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & ID of the owner of the callback (used for removing the callback later) \\
+\hline
+{\em callback} & the to callback to add \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}\label{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}} 
 \index{PlatformSystem@{PlatformSystem}!AddOnWindowResizeCallback@{AddOnWindowResizeCallback}}
 \index{AddOnWindowResizeCallback@{AddOnWindowResizeCallback}!PlatformSystem@{PlatformSystem}}
@@ -65,17 +88,21 @@ adds a callback to get called whenever the window resizes
 {\em callback} & the to callback to add \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classPlatformSystem_a07bd5c5204a703b26ac66aae25dcf9e1}\label{classPlatformSystem_a07bd5c5204a703b26ac66aae25dcf9e1}} 
-\index{PlatformSystem@{PlatformSystem}!GetFullscren@{GetFullscren}}
-\index{GetFullscren@{GetFullscren}!PlatformSystem@{PlatformSystem}}
-\doxysubsubsection{\texorpdfstring{GetFullscren()}{GetFullscren()}}
-{\footnotesize\ttfamily bool Platform\+System\+::\+Get\+Fullscren (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classPlatformSystem_a94dec990ffe00f65be65721daecab241}\label{classPlatformSystem_a94dec990ffe00f65be65721daecab241}} 
+\index{PlatformSystem@{PlatformSystem}!GetFullscreen@{GetFullscreen}}
+\index{GetFullscreen@{GetFullscreen}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetFullscreen()}{GetFullscreen()}}
+{\footnotesize\ttfamily bool Platform\+System\+::\+Get\+Fullscreen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-Gets if the game is in full screen. 
+gets if the game is in full screen 
+
+Gets if the game is in full screen.
 
 \begin{DoxyReturn}{Returns}
+is the game in fullscreen
+
 Is the game in fullscreen 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}\label{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}} 
@@ -120,6 +147,19 @@ gets the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance, crea
 a pointer to the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance
 
 \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} pointer\+: new or existing instance of this system. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_ad9fa4e0852d66ad0464a0f162b605d2e}\label{classPlatformSystem_ad9fa4e0852d66ad0464a0f162b605d2e}} 
+\index{PlatformSystem@{PlatformSystem}!GetIsFocused@{GetIsFocused}}
+\index{GetIsFocused@{GetIsFocused}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetIsFocused()}{GetIsFocused()}}
+{\footnotesize\ttfamily bool Platform\+System\+::\+Get\+Is\+Focused (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether the game window is focused 
+
+\begin{DoxyReturn}{Returns}
+whether the game window is focused 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}\label{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}} 
 \index{PlatformSystem@{PlatformSystem}!GetReadMethods@{GetReadMethods}}
@@ -184,6 +224,21 @@ checks if a screen pos is within the game window
 \begin{DoxyReturn}{Returns}
 whether the position is within the window 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_ac8b7c543df5667dce11cfd3ad7d1a6d4}\label{classPlatformSystem_ac8b7c543df5667dce11cfd3ad7d1a6d4}} 
+\index{PlatformSystem@{PlatformSystem}!RemoveOnFocusChangedCallback@{RemoveOnFocusChangedCallback}}
+\index{RemoveOnFocusChangedCallback@{RemoveOnFocusChangedCallback}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{RemoveOnFocusChangedCallback()}{RemoveOnFocusChangedCallback()}}
+{\footnotesize\ttfamily void Platform\+System\+::\+Remove\+On\+Focus\+Changed\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes an On\+Focus\+Changed callback 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPlatformSystem_a761878f6076e03f60246aea3044950f7}\label{classPlatformSystem_a761878f6076e03f60246aea3044950f7}} 
 \index{PlatformSystem@{PlatformSystem}!RemoveOnWindowResizeCallback@{RemoveOnWindowResizeCallback}}
 \index{RemoveOnWindowResizeCallback@{RemoveOnWindowResizeCallback}!PlatformSystem@{PlatformSystem}}
