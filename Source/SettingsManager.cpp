@@ -88,7 +88,7 @@
 
                 m_FullscreenToggleButton->AddOnClickedCallback(GetId(), [this]()
                 {
-                        Platform()->SetFullscreen(!Platform()->GetFullscren());
+                        Platform()->SetFullscreen(!Platform()->GetFullscreen());
 
                         swapToggleTexture();
                 });
@@ -139,7 +139,7 @@
             return;
         }
 
-        if (Platform()->GetFullscren())
+        if (Platform()->GetFullscreen())
         {
             m_FullscreenToggleSprite->SetTexture(m_CheckedToggleTexture);
         }
