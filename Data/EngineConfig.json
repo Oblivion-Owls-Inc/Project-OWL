@@ -4,7 +4,7 @@
         "PlatformSystem": {
             "WindowSize": [
                 1005,
-                530
+                670
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -297,7 +297,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.7083926200866699,
+            "Volume": 0.09007592499256134,
             "Groups": [
                 {
                     "Name": "Music",
@@ -306,7 +306,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 1.0,
+                    "Volume": 0.5320764183998108,
                     "Mute": false
                 },
                 {
@@ -347,7 +347,7 @@
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": true,
                 "CheatSystem": false,
-                "CollisionSystem": true,
+                "CollisionSystem": false,
                 "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,

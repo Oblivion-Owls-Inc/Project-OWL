@@ -730,7 +730,7 @@
                                 0.0,
                                 1.0
                             ],
-                            "Value": 0.6941678524017334,
+                            "Value": 0.7562189102172852,
                             "Slope": 0.0
                         },
                         {
@@ -778,7 +778,7 @@
                     ]
                 },
                 "UiSlider": {
-                    "Value": 0.6941678524017334,
+                    "Value": 0.7562189102172852,
                     "DragSliderAction": {
                         "ActionName": "DragSlider"
                     }
@@ -804,7 +804,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                0.36891889572143555,
+                                0.4868159294128418,
                                 0.0
                             ],
                             "Pivot": [
@@ -1247,6 +1247,6 @@
         }
     ],
     "PreparsedScenes": [
-        "MainMenu"
+        "Previous"
     ]
 }
