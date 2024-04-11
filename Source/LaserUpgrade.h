@@ -61,6 +61,9 @@ private: // members
     /// @brief  how much the damage of the mining laser is multiplied by
     float m_DamageMultiplier = 2.0f;
 
+    /// @brief  how much the lasers range is increased by
+    float m_RangeIncrease = 1.0f;
+
     /// @brief  how much the max toughness the laser can mine is increased by
     float m_MaxToughnessIncrease = 1.0f;
 
@@ -106,6 +109,10 @@ private: // reading
     /// @brief  reads how much the damage of the mining laser is multiplied by
     /// @param  data    the JSON data to read from
     void readDamageMultiplier( nlohmann::ordered_json const& data );
+
+    /// @brief  reads how much the lasers range is increased by
+    /// @param  data    the JSON data to read from
+    void readRangeIncrease( nlohmann::ordered_json const& data );
 
     /// @brief  reads how much the max toughness the laser can mine is increased by
     /// @param  data    the JSON data to read from
