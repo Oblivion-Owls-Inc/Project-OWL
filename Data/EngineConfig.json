@@ -325,7 +325,7 @@
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": true,
+                "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": true,
                 "AssetLibrary<Texture>": true,
