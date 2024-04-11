@@ -845,6 +845,9 @@
     <ClCompile Include="Source\WindowFocusEvent.cpp">
       <Filter>Engine\Entity\Component\WindowFocusEvent</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EventEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1293,6 +1296,9 @@
     </ClInclude>
     <ClInclude Include="Source\WindowFocusEvent.h">
       <Filter>Engine\Entity\Component\WindowFocusEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventEmitter.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

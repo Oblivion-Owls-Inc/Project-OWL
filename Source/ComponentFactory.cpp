@@ -81,6 +81,7 @@
 #include "SceneTransition.h"
 #include "Building.h"
 #include "WindowFocusEvent.h"
+#include "EventEmitter.h"
 
 
 //-----------------------------------------------------------------------------
@@ -243,7 +244,8 @@
         { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
         { "SettingsManager"        , ComponentInfo< SettingsManager         >() },
         { "Building"               , ComponentInfo< Building                >() },
-        { "WindowFocusEvent"       , ComponentInfo< WindowFocusEvent        >() }
+        { "WindowFocusEvent"       , ComponentInfo< WindowFocusEvent        >() },
+		{ "EventEmitter"           , ComponentInfo< EventEmitter            >() }
     };
 
 //-----------------------------------------------------------------------------
