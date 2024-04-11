@@ -214,8 +214,8 @@
         static ReadMethodMap< SceneTransition > const readMethods = {
             { "TransitionDuration", &SceneTransition::readTransitionDuration },
             { "NextSceneName"     , &SceneTransition::readNextSceneName      },
-			{ "HasLighting"       , &SceneTransition::readHasLighting        },
-			{ "LightingLayer"     , &SceneTransition::readLightingLayer      }
+            { "HasLighting"       , &SceneTransition::readHasLighting        },
+            { "LightingLayer"     , &SceneTransition::readLightingLayer      }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
