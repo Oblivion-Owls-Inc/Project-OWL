@@ -19,6 +19,7 @@
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"
+#include "Light.h"
 #include "Interactable.h"
 
 
@@ -156,6 +157,9 @@ private: // variables
 
     /// @brief  the Interactable Component attached to this Generator
     ComponentReference< Interactable, false > m_Interactable;
+
+    /// @brief  the Light Component attached to this Generator
+    ComponentReference< Light > m_Light;
 
     /// @brief  the wave prefab to spawn on generator activation
     AssetReference< Entity > m_WavePrefab;

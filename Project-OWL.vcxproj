@@ -299,6 +299,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ControlPrompt.cpp" />
     <ClCompile Include="Source\ControlPromptSystem.cpp" />
     <ClCompile Include="Source\DestructibleTilemap.cpp" />
+    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EntityReference.cpp" />
     <ClCompile Include="Source\EventSystem.cpp" />
@@ -501,7 +502,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\SettingsManager.cpp" />
     <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
-    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
@@ -545,6 +545,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\BuildingSelectionButton.h" />
     <ClInclude Include="Source\ControlPrompt.h" />
     <ClInclude Include="Source\ControlPromptSystem.h" />
+    <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\InputAction.h" />
     <ClInclude Include="Source\BulletAoePulse.h" />
     <ClInclude Include="Source\Interactable.h" />
@@ -584,7 +585,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\SceneTransition.h" />
     <ClInclude Include="Source\SettingsManager.h" />
     <ClInclude Include="Source\SplashScreenController.h" />
-    <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\TurretUnlockUpgrade.h" />
