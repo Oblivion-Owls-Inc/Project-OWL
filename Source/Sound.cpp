@@ -22,7 +22,7 @@
     /// @param  filepath    the filepath of the sound to load
     /// @param  isLoopable  whether or not the sound should loop
     Sound::Sound( char const* filepath, bool isLoopable ) :
-        m_Filepath( filepath ),
+        m_Filepath  ( filepath   ),
         m_IsLoopable( isLoopable )
     {
         Reload();
@@ -63,7 +63,7 @@
             &channel
         );
 
-        channel->setVolume( volume );
+        channel->setVolume( volume * m_Volume );
         channel->setPitch( pitch );
         channel->setLoopCount( loopCount );
 
@@ -104,6 +104,13 @@
         return length / 1000.0f;
     }
 
+    /// @brief  gets the volume of this sound
+    /// @return the volume of this sound
+    float Sound::GetVolume() const
+    {
+        return m_Volume;
+    }
+
 //-----------------------------------------------------------------------------
 // inspector
 //-----------------------------------------------------------------------------
@@ -118,6 +125,8 @@
         Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, soundDirectory );
 
         ImGui::Checkbox( "Loopable", &m_IsLoopable );
+
+        ImGui::DragFloat( "volume", &m_Volume, 0.05f, 0.0f, INFINITY );
 
         if ( ImGui::Button( "Reload Sound" ) )
         {
@@ -136,14 +145,21 @@
     /// @param  data    the JSON data to read from
     void Sound::readFilepath( nlohmann::ordered_json const& data )
     {
-        m_Filepath = Stream::Read<std::string>( data );
+        Stream::Read( m_Filepath, data );
     }
 
     /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
     void Sound::readIsLoopable( nlohmann::ordered_json const& data )
     {
-        m_IsLoopable = Stream::Read<bool>( data );
+        Stream::Read( m_IsLoopable, data );
+    }
+
+    /// @brief  reads the default volume of this sound
+    /// @param  data    the JSON data to read from
+    void Sound::readVolume( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Volume, data );
     }
 
     /// @brief  runs after Sound has been loaded 
@@ -158,8 +174,9 @@
     {
         nlohmann::ordered_json data;
 
-        data["IsLoopable"] = m_IsLoopable;
-        data["Filepath"] = m_Filepath;
+        data[ "IsLoopable" ] = Stream::Write( m_IsLoopable );
+        data[ "Filepath"   ] = Stream::Write( m_Filepath   );
+        data[ "Volume"     ] = Stream::Write( m_Volume     );
 
         return data;
     }
@@ -167,7 +184,8 @@
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< Sound > const Sound::s_ReadMethods = {
         { "IsLoopable", &readIsLoopable },
-        { "Filepath" , &readFilepath  }
+        { "Filepath"  , &readFilepath   },
+        { "Volume"    , &readVolume     }
     };
 
 

@@ -75,7 +75,8 @@
         );
         if ( it == m_Groups.end() )
         {
-            Debug() << "WARNING: unable to find AudioGroup with name \"" << name << "\"" << std::endl;
+            // debug message for this returning nullptr is now handled externally by AudioPlayer
+            // Debug() << "WARNING: unable to find AudioGroup with name \"" << name << "\"" << std::endl;
             return nullptr;
         }
 

@@ -38,7 +38,8 @@ public: // methods
 
 
     /// @brief  initializes this AssetReference
-    void Init();
+    /// @param  required    whether this AssetReference is required (will not debug log if not required)
+    void Init( bool required = true );
 
 
     /// @brief  sets this AssetReference to nullptr

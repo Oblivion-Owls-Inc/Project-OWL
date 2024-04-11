@@ -116,12 +116,12 @@ void Generator::OnInit()
     m_Transform       .Init( GetEntity() );
     m_Health          .Init( GetEntity() );
     m_Emitter         .Init( GetEntity() );
-    m_Sprite.Init(GetEntity());
+    m_Sprite          .Init( GetEntity() );
     m_PathfinderTarget.Init( GetEntity() );
     m_Interactable    .Init( GetEntity() );
 
-    m_WavePrefab.SetOwnerName(GetName());
-    m_WavePrefab.Init();
+    m_WavePrefab.SetOwnerName( GetName() );
+    m_WavePrefab.Init( false );
 
     m_ChangeActive = m_IsActive;
     m_CanActivate = !m_IsActive;
