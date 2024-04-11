@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1864,
-                1084
+                1014,
+                670
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,13 +247,14 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "BetaScene",
+            "StartingSceneName": "MainMenu",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
         "PauseSystem": {},
         "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
@@ -262,14 +263,14 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
-        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
         "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
-            "Layer": 6
+            "Layer": 3
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -288,15 +289,15 @@
         "CameraSystem": {},
         "RenderSystem": {
             "BackgroundColor": [
-                0.20000000298023224,
-                0.30000001192092896,
-                0.30000001192092896,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ]
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 1.0,
+            "Volume": 0.09007592499256134,
             "Groups": [
                 {
                     "Name": "Music",
@@ -305,7 +306,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 1.0,
+                    "Volume": 0.5320764183998108,
                     "Mute": false
                 },
                 {
@@ -317,16 +318,16 @@
         },
         "CheatSystem": {
             "LoseSceneName": "GameOver",
-            "RestartSceneName": "AlphaScene",
+            "RestartSceneName": "BetaScene",
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<AnimationAsset>": true,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Sound>": true,
                 "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": true,
                 "AudioSystem": false,
@@ -340,10 +341,11 @@
                 "BehaviorSystem<PlayerController>": false,
                 "BehaviorSystem<Popup>": false,
                 "BehaviorSystem<RigidBody>": false,
+                "BehaviorSystem<SceneTransition>": false,
                 "BehaviorSystem<UiButton>": false,
                 "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
-                "CameraSystem": false,
+                "CameraSystem": true,
                 "CheatSystem": false,
                 "CollisionSystem": false,
                 "ComponentSystem<Interactable>": false,
@@ -353,13 +355,13 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": false,
+                "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
-                "PauseSystem": false,
+                "PauseSystem": true,
                 "PlatformSystem": false,
                 "RenderSystem": false,
-                "SceneSystem": false,
+                "SceneSystem": true,
                 "TileInfoSystem": false
             }
         },

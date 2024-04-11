@@ -46,6 +46,13 @@ public: // methods
     void LoadAutosave();
 
 
+    /// @brief  selects a scene name in an inspector
+    /// @param  label       the label of the inspector
+    /// @param  sceneName   pointer to where to store the selected scene
+    /// @return whether a scene was selected
+    bool InspectorSelectScene( char const* label, std::string* sceneName );
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -54,12 +61,18 @@ public: // accessors
     /// @return the name of the current scene
     std::string const& GetSceneName() const;
 
+    /// @brief Saves the previous scene
+    void SavePreviousScene() const;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief  The name of the current Scene
     std::string m_CurrentSceneName = "";
+
+    /// @brief Open this scene on start
+    std::string m_StartingSceneName = "";
 
     /// @brief  The name of the next Scene
     std::string m_NextSceneName = "";
@@ -124,7 +137,7 @@ private: // reading
 
     /// @brief  reads the next scene name
     /// @param  stream  the data to read from
-    void readNextSceneName( nlohmann::ordered_json const& data );
+    void readStartingSceneName( nlohmann::ordered_json const& data );
 
     /// @brief  reads the name of the autosave scene
     /// @param  stream  the data to read from

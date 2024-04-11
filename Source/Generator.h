@@ -15,6 +15,7 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "Health.h"
+#include "Sprite.h"
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"
@@ -83,6 +84,8 @@ public: // accessors
     /// @brief deactivate the generator
     void Deactivate();
 
+    int GetCost() { return m_Cost; } const
+
     /// @brief  get the transform of the generator
     /// @return the generator transform
     Transform* GetTransform() { return m_Transform; }
@@ -109,6 +112,9 @@ private: // variables
     /// @brief  can activating the generator spawn a wave
     bool m_CanSpawnWave = true;
 
+    /// @brief can the generator be activated
+    bool m_CanActivate = true;
+
     /// @brief  speed the particle ring grows and shrinks at
     float m_RadiusSpeed = 1.0f;
 
@@ -120,6 +126,9 @@ private: // variables
 
     /// @brief  radius a player can activate the generator within
     float m_ActivationRadius = 1.0f;
+
+    /// @brief Cost of the generator
+    int m_Cost = 0;
 
     /// @brief  depth value of the generator, used for determening lowest
     int m_Depth = 0;
@@ -135,6 +144,9 @@ private: // variables
 
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
+
+    /// @brief  the Sprite component attached to this Generator
+    ComponentReference< Sprite > m_Sprite;
 
     /// @brief  the PathfinderTarget Component attached to this Generator
     ComponentReference< PathfinderTarget > m_PathfinderTarget;
@@ -201,6 +213,9 @@ private: // reading
     /// @brief	read the attached wave prefab to spawn
     void readWavePrefab(nlohmann::ordered_json const& json);
 
+    /// @brief Read the cost of the generator
+    /// @param json - json object to read from
+    void readCost(nlohmann::ordered_json const& json);
 //-----------------------------------------------------------------------------
 public: // writing
 //-----------------------------------------------------------------------------
