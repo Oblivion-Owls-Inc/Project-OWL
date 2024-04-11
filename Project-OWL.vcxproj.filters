@@ -393,6 +393,21 @@
     <Filter Include="Engine\Entity\Component\WindowFocusEvent">
       <UniqueIdentifier>{a33b8ba4-4882-4621-b147-fd59b243b166}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\SceneTransition">
+      <UniqueIdentifier>{7466a836-3915-4647-8cae-7b860f616037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Upgrades\TurretUnlockUpgrade">
+      <UniqueIdentifier>{79f3b6f5-ef3d-4829-9070-dde81a373efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\OrbitBehavior">
+      <UniqueIdentifier>{df0ffbc9-3154-47e4-b729-8dc23cb556a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\DigEffect">
+      <UniqueIdentifier>{baa55688-08d0-46e7-bc34-473d6855d066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\BuildingSelectionButton">
+      <UniqueIdentifier>{7c1ca90a-c387-4e2f-9fa0-4acd27327c4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -785,9 +800,6 @@
     <ClCompile Include="Source\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\orbitbehavior.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\DestructibleTilemap.cpp">
       <Filter>Game\Components\DestructibleTilemap</Filter>
     </ClCompile>
@@ -806,14 +818,8 @@
     <ClCompile Include="Source\BulletAoePulse.cpp">
       <Filter>Game\Components\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DigEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UiSlider.cpp">
       <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BuildingSelectionButton.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Interactable.cpp">
       <Filter>Game\Components\Interactable</Filter>
@@ -836,14 +842,23 @@
     <ClCompile Include="Source\Building.cpp">
       <Filter>Engine\Entity\Component\Building</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SceneTransition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TurretUnlockUpgrade.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\WindowFocusEvent.cpp">
       <Filter>Engine\Entity\Component\WindowFocusEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneTransition.cpp">
+      <Filter>Game\Components\Behaviors\SceneTransition</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TurretUnlockUpgrade.cpp">
+      <Filter>Game\Components\Upgrades\TurretUnlockUpgrade</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\orbitbehavior.cpp">
+      <Filter>Game\Components\Behaviors\OrbitBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DigEffect.cpp">
+      <Filter>Game\Components\Behaviors\DigEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Game\Components\Behaviors\BuildingSelectionButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1234,9 +1249,6 @@
     <ClInclude Include="Source\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\orbitbehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\DestructibleTilemap.h">
       <Filter>Game\Components\DestructibleTilemap</Filter>
     </ClInclude>
@@ -1255,14 +1267,8 @@
     <ClInclude Include="Source\BulletAoePulse.h">
       <Filter>Game\Components\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DigEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UiSlider.h">
       <Filter>Engine\Entity\Component\Behavior\UiSlider</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuildingSelectionButton.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Interactable.h">
       <Filter>Game\Components\Interactable</Filter>
@@ -1285,14 +1291,23 @@
     <ClInclude Include="Source\Building.h">
       <Filter>Engine\Entity\Component\Building</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SceneTransition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TurretUnlockUpgrade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\WindowFocusEvent.h">
       <Filter>Engine\Entity\Component\WindowFocusEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneTransition.h">
+      <Filter>Game\Components\Behaviors\SceneTransition</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TurretUnlockUpgrade.h">
+      <Filter>Game\Components\Upgrades\TurretUnlockUpgrade</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\orbitbehavior.h">
+      <Filter>Game\Components\Behaviors\OrbitBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DigEffect.h">
+      <Filter>Game\Components\Behaviors\DigEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Game\Components\Behaviors\BuildingSelectionButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

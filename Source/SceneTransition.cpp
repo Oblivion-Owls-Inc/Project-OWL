@@ -100,11 +100,8 @@
             #endif
         }
 
-        if (m_HasLighting)
-        {
-			Lights()->SetLightingEnabled(true);
-            Lights()->SetShadowLayer(m_LightingLayer);
-		}
+		Lights()->SetLightingEnabled( m_HasLighting );
+        Lights()->SetShadowLayer( m_LightingLayer );
     }
 
     /// @brief  called once when exiting the scene
