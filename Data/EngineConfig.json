@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1014,
-                670
+                1773,
+                1019
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -358,10 +358,10 @@
                 "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
-                "PauseSystem": true,
+                "PauseSystem": false,
                 "PlatformSystem": false,
                 "RenderSystem": false,
-                "SceneSystem": true,
+                "SceneSystem": false,
                 "TileInfoSystem": false
             }
         },
