@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                465
+                1014,
+                586
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -279,7 +279,8 @@
                 "Player",
                 "Base",
                 "Projectiles",
-                "Foreground"
+                "Foreground",
+                "Items"
             ],
             "CollisionSteps": 8,
             "GridSize": 0.25
@@ -347,7 +348,7 @@
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": true,
                 "CheatSystem": false,
-                "CollisionSystem": false,
+                "CollisionSystem": true,
                 "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,
@@ -361,7 +362,7 @@
                 "PauseSystem": true,
                 "PlatformSystem": false,
                 "RenderSystem": false,
-                "SceneSystem": true,
+                "SceneSystem": false,
                 "TileInfoSystem": false
             }
         },
@@ -432,6 +433,33 @@
                             {
                                 "ItemIds": [
                                     0
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    }
+                },
+                {
+                    "LootTable": {
+                        "Entries": null,
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    }
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    1
                                 ],
                                 "MinCount": 1,
                                 "MaxCount": 1,
