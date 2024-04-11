@@ -77,14 +77,22 @@
     {
         Behaviors< UiButton >()->AddComponent( this );
 
+        // don't serialize sound for AudioPlayer
+        m_AudioPlayer.SetOnConnectCallback( [ this ]() {
+            m_AudioPlayer->SetSound( nullptr );
+        } );
+
         m_UiElement  .Init( GetEntity() );
         m_Sprite     .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
 
+
         m_PressSound  .SetOwnerName( GetName() );
-        m_PressSound  .Init();
         m_ReleaseSound.SetOwnerName( GetName() );
+        m_HoverSound.  SetOwnerName( GetName() );
+        m_PressSound  .Init();
         m_ReleaseSound.Init();
+        m_HoverSound.  Init();
     }
 
     /// @brief  called once when exiting the scene
@@ -159,6 +167,11 @@
             if ( m_Sprite != nullptr )
             {
                 m_Sprite->SetFrameIndex( m_HoveredFrame );
+            }
+            if ( m_AudioPlayer != nullptr )
+            {
+                m_AudioPlayer->SetSound( m_HoverSound );
+                m_AudioPlayer->Play();
             }
         }
     }
@@ -285,8 +298,9 @@
         ImGui::DragInt( "hovered frame index", (int*)&m_HoveredFrame, 0.05f, 0, INT_MAX );
         ImGui::DragInt( "down frame index"   , (int*)&m_DownFrame   , 0.05f, 0, INT_MAX );
 
-        m_PressSound  .Inspect( "button down sound" );
-        m_ReleaseSound.Inspect( "button up sound"   );
+        m_PressSound  .Inspect( "button down sound"  );
+        m_ReleaseSound.Inspect( "button up sound"    );
+        m_HoverSound  .Inspect( "button hover sound" );
 
     }
 
@@ -345,6 +359,13 @@
         Stream::Read( m_ReleaseSound, data );
     }
 
+    /// @brief  reads the sound this UiButton plays when it is hovered
+    /// @param  data    the JSON data to read from
+    void UiButton::readHoverSound( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_HoverSound, data );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -362,7 +383,8 @@
             { "HoveredFrame"         , &UiButton::readHoveredFrame          },
             { "DownFrame"            , &UiButton::readDownFrame             },
             { "PressSound"           , &UiButton::readPressSound            },
-            { "ReleaseSound"         , &UiButton::readReleaseSound          }
+            { "ReleaseSound"         , &UiButton::readReleaseSound          },
+            { "HoverSound"           , &UiButton::readHoverSound            }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -382,6 +404,7 @@
         json [ "DownFrame"             ] = Stream::Write( m_DownFrame             );
         json [ "PressSound"            ] = Stream::Write( m_PressSound            );
         json [ "ReleaseSound"          ] = Stream::Write( m_ReleaseSound          );
+        json [ "HoverSound"            ] = Stream::Write( m_HoverSound            );
 
         return json;
     }
@@ -415,7 +438,8 @@
         m_HoveredFrame         ( other.m_HoveredFrame          ),
         m_DownFrame            ( other.m_DownFrame             ),
         m_PressSound           ( other.m_PressSound            ),
-        m_ReleaseSound         ( other.m_ReleaseSound          )
+        m_ReleaseSound         ( other.m_ReleaseSound          ),
+        m_HoverSound           ( other.m_HoverSound            )
     {}
 
 

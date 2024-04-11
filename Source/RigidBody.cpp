@@ -107,7 +107,12 @@
     /// @param dt The time elapsed since the last frame.
     void RigidBody::OnUpdate(float dt)
     {
-        // TODO: interpolate visual position
+        if ( m_Transform == nullptr )
+        {
+            return;
+        }
+
+        m_Transform->SetMatrix( glm::translate( glm::mat4( 1.0f ), glm::vec3( m_Velocity * dt, 0.0f ) ) * m_Transform->GetMatrix() );
     }
 
     /// @brief Fixed update method called at a fixed time step.
@@ -228,14 +233,15 @@
 
         float restitution = m_Restitution * rigidBodyB->GetRestitution();
 
-        float newSpeedA = (restitution * massB * relativeSpeed + momentum) / totalMass;
+        float newSpeedA = (restitution * massB *  relativeSpeed + momentum) / totalMass;
         float newSpeedB = (restitution * massA * -relativeSpeed + momentum) / totalMass;
 
         // apply the new velocities in the axis of the collision normal
         velA += collisionData.normal * (newSpeedA - speedA);
         velB += collisionData.normal * (newSpeedB - speedB);
 
-        m_Velocity = velA;
+
+        this      ->SetVelocity( velA );
         rigidBodyB->SetVelocity( velB );
 
         // if other will also collide with this, mark the collision as already resolved
@@ -257,10 +263,24 @@
         m_Transform->SetTranslation( pos );
 
         float speed = glm::dot( m_Velocity, collisionData.normal );
-
         float newSpeed = -speed * m_Restitution * other->GetRestitution();
+        float impulse = newSpeed - speed;
+        
+        glm::vec2 perpendicularAxis = glm::vec2( collisionData.normal.y, -collisionData.normal.x );
+        float perpendicularSpeed = glm::dot( m_Velocity, perpendicularAxis );
 
-        m_Velocity += collisionData.normal * (newSpeed - speed);
+        float frictionImpulse = m_Friction * other->GetFriction() * impulse;
+
+        if ( frictionImpulse >= glm::abs( perpendicularSpeed ) )
+        {
+            m_Velocity += perpendicularAxis * -perpendicularSpeed;
+        }
+        else
+        {
+            m_Velocity += perpendicularAxis * frictionImpulse * -glm::sign( perpendicularSpeed );
+        }
+
+        m_Velocity += collisionData.normal * impulse;
     }
 
 //-----------------------------------------------------------------------------

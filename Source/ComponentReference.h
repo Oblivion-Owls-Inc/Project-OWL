@@ -47,6 +47,11 @@ public: // virtual methods
     virtual void TryRemove( Component* component ) = 0;
 
 
+    /// @brief  gets whether this Component Reference is required
+    /// @return whether this Component Reference is required
+    virtual bool GetIsRequired() const = 0;
+
+
 //-----------------------------------------------------------------------------
 };
 
@@ -92,6 +97,11 @@ public: // methods
     virtual void Exit() override;
 
 
+    /// @brief  assignment operator
+    /// @param  component   the component to assign to this ComponentReference
+    void operator =( ComponentType* component );
+
+
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
     /// @param  callback    the callback to call
     void SetOnConnectCallback( std::function< void () > callback );
@@ -119,14 +129,14 @@ public: // accessors
     operator ComponentType*() const;
 
 
-    /// @brief  assignment operator
-    /// @param  component   the component to assign to this ComponentReference
-    void operator =( ComponentType* component );
-
-
     /// @brief  gets the Entity this ComponentReference watches
     /// @return the Entity this ComponentReference watches
     Entity const* GetEntity() const;
+
+
+    /// @brief  gets whether this Component Reference is required
+    /// @return whether this Component Reference is required
+    virtual bool GetIsRequired() const override;
 
 
 //-----------------------------------------------------------------------------

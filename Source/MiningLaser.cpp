@@ -74,6 +74,21 @@
     }
 
 
+    /// @brief  gets the threshold of tile toughness above which tiles cannot be damaged
+    /// @returnthe threshold of tile toughness above which tiles cannot be damaged
+    float MiningLaser::GetMaxToughness() const
+    {
+        return m_MaxToughness;
+    }
+
+    /// @brief  sets the threshold of tile toughness above which tiles cannot be damaged
+    /// @param  maxToughness  the threshold of tile toughness above which tiles cannot be damaged
+    void MiningLaser::SetMaxToughness( float maxToughness )
+    {
+        m_MaxToughness = maxToughness;
+    }
+
+
     /// @brief  gets the beam color
     /// @return the beam color
     glm::vec4 const& MiningLaser::GetBeamColor() const
@@ -298,6 +313,12 @@
     /// @return the amount of overkill damage dealt, if the tile was destroyed
     float MiningLaser::damageTile( glm::ivec2 const& tilePos, float damage )
     {
+        // can't damage tiles with toughness greater than max
+        if ( m_DestructibleTilemap->GetMaxHealth( tilePos ) > m_MaxToughness )
+        {
+            return 0.0f;
+        }
+
         // TODO: run damage tile effect?
 
         return m_DestructibleTilemap->DamageTile( tilePos, damage );
@@ -327,6 +348,8 @@
         ImGui::DragFloat( "Max Range", &m_Range, 0.05f, 0.0f, INFINITY );
         
         ImGui::DragFloat( "Mining Speed", &m_MiningSpeed, 0.05f, 0.0f, INFINITY );
+
+        ImGui::DragFloat( "Max Toughness", &m_MaxToughness, 0.05f, 0.0f, INFINITY );
         
         ImGui::ColorEdit4( "Beam Color", &m_BeamColor[0] );
         
@@ -372,6 +395,13 @@
     void MiningLaser::readMiningSpeed( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_MiningSpeed, data );
+    }
+
+    /// @brief  reads the threshold of tile toughness above which tiles cannot be damaged
+    /// @param  data the json data to read from
+    void MiningLaser::readMaxToughness( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MaxToughness, data );
     }
 
 
@@ -421,24 +451,30 @@
     }
 
 
-
-    /// @brief  map of the read methods for this Component
-    ReadMethodMap< MiningLaser > MiningLaser::s_ReadMethods = {
-        { "TilemapEntity"       , &readTilemapEntity        },
-        { "Range"               , &readRange                },
-        { "MiningSpeed"         , &readMiningSpeed          },
-        { "BeamColor"           , &readBeamColor            },
-        { "BeamWidth"           , &readBeamWidth            },
-        { "DamageRate"          , &readDamageRate           },
-        { "CollideWithLayers"   , &readCollideWithLayers    },
-        { "Direction"           , &readDirection            },
-        { "IsFiring"            , &readIsFiring             }
-    };
-
-
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< ISerializable > const& MiningLaser::GetReadMethods() const
+    {
+        static ReadMethodMap< MiningLaser > const readMethods = {
+            { "TilemapEntity"       , &MiningLaser::readTilemapEntity        },
+            { "Range"               , &MiningLaser::readRange                },
+            { "MiningSpeed"         , &MiningLaser::readMiningSpeed          },
+            { "MaxToughness"        , &MiningLaser::readMaxToughness         },
+            { "BeamColor"           , &MiningLaser::readBeamColor            },
+            { "BeamWidth"           , &MiningLaser::readBeamWidth            },
+            { "DamageRate"          , &MiningLaser::readDamageRate           },
+            { "CollideWithLayers"   , &MiningLaser::readCollideWithLayers    },
+            { "Direction"           , &MiningLaser::readDirection            },
+            { "IsFiring"            , &MiningLaser::readIsFiring             }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
 
 
     /// @brief  Write all MiningLaser data to a JSON file.
@@ -450,6 +486,7 @@
         json[ "TilemapEntity"       ] = Stream::Write( m_TilemapEntity      );
         json[ "Range"               ] = Stream::Write( m_Range              );
         json[ "MiningSpeed"         ] = Stream::Write( m_MiningSpeed        );
+        json[ "MaxToughness"        ] = Stream::Write( m_MaxToughness       );
         json[ "BeamColor"           ] = Stream::Write( m_BeamColor          );
         json[ "BeamWidth"           ] = Stream::Write( m_BeamWidth          );
         json[ "DamageRate"          ] = Stream::Write( m_DamageRate         );
@@ -471,6 +508,7 @@
         Behavior( typeid( MiningLaser ) ),
         m_Range             ( other.m_Range              ),
         m_MiningSpeed       ( other.m_MiningSpeed        ),
+        m_MaxToughness      ( other.m_MaxToughness       ),
         m_BeamColor         ( other.m_BeamColor          ),
         m_BeamWidth         ( other.m_BeamWidth          ),
         m_DamageRate        ( other.m_DamageRate         ),

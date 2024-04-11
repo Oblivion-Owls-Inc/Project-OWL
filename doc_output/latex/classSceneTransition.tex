@@ -1,0 +1,172 @@
+\hypertarget{classSceneTransition}{}\doxysection{Scene\+Transition Class Reference}
+\label{classSceneTransition}\index{SceneTransition@{SceneTransition}}
+
+
+DESCRIPTION HERE.  
+
+
+
+
+{\ttfamily \#include $<$Scene\+Transition.\+h$>$}
+
+
+
+Inheritance diagram for Scene\+Transition\+:
+% FIG 0
+
+
+Collaboration diagram for Scene\+Transition\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSceneTransition_ad394e3987f1e4c81dea72d6a44d0517b}\label{classSceneTransition_ad394e3987f1e4c81dea72d6a44d0517b}} 
+\mbox{\hyperlink{classSceneTransition_ad394e3987f1e4c81dea72d6a44d0517b}{Scene\+Transition}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSceneTransition_a3a2a25cd91e4e4793254c8d25743cadd}{Start\+Transition}} (std\+::string const \&next\+Scene\+Name)
+\begin{DoxyCompactList}\small\item\em starts transitioning to the specified scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneTransition_a7fc48f3313243438dce3119df626d942}\label{classSceneTransition_a7fc48f3313243438dce3119df626d942}} 
+void \mbox{\hyperlink{classSceneTransition_a7fc48f3313243438dce3119df626d942}{Start\+Transition}} ()
+\begin{DoxyCompactList}\small\item\em starts transitioning to the next scene \end{DoxyCompactList}\item 
+std\+::string const  \& \mbox{\hyperlink{classSceneTransition_ae289d38bb5dddf06621b385dc12f764d}{Get\+Next\+Scene\+Name}} () const
+\begin{DoxyCompactList}\small\item\em gets the name of the scene this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} will transition to \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSceneTransition_ac0b6396b54e529405cb31adb2ec166f8}{Set\+Next\+Scene\+Name}} (std\+::string const \&next\+Scene\+Name)
+\begin{DoxyCompactList}\small\item\em sets the name of the scene this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} will transition to \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneTransition_a14988716f6323142112d451ae94c874c}\label{classSceneTransition_a14988716f6323142112d451ae94c874c}} 
+virtual void \mbox{\hyperlink{classSceneTransition_a14988716f6323142112d451ae94c874c}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneTransition_ac292ae0740e9d7caec0a622a53bfca6a}\label{classSceneTransition_ac292ae0740e9d7caec0a622a53bfca6a}} 
+virtual void \mbox{\hyperlink{classSceneTransition_ac292ae0740e9d7caec0a622a53bfca6a}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSceneTransition_a6da7149760eaf4e2b288b6089373d5ac}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em called once every simulation frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneTransition_a28b40cfa8e69d5e66b8acdae18bb616c}\label{classSceneTransition_a28b40cfa8e69d5e66b8acdae18bb616c}} 
+virtual void \mbox{\hyperlink{classSceneTransition_a28b40cfa8e69d5e66b8acdae18bb616c}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classSceneTransition_a2a7f3aa4942bfe17f020d4bdc3488f80}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSceneTransition_aff20ea9dcccbe4fce67ca77eb2203527}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} $\ast$ \mbox{\hyperlink{classSceneTransition_af3563485006b332b03307b2baada077b}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+DESCRIPTION HERE. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSceneTransition_af3563485006b332b03307b2baada077b}\label{classSceneTransition_af3563485006b332b03307b2baada077b}} 
+\index{SceneTransition@{SceneTransition}!Clone@{Clone}}
+\index{Clone@{Clone}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} $\ast$ Scene\+Transition\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classSceneTransition_ae289d38bb5dddf06621b385dc12f764d}\label{classSceneTransition_ae289d38bb5dddf06621b385dc12f764d}} 
+\index{SceneTransition@{SceneTransition}!GetNextSceneName@{GetNextSceneName}}
+\index{GetNextSceneName@{GetNextSceneName}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{GetNextSceneName()}{GetNextSceneName()}}
+{\footnotesize\ttfamily std\+::string const  \& Scene\+Transition\+::\+Get\+Next\+Scene\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of the scene this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} will transition to 
+
+\begin{DoxyReturn}{Returns}
+the name of the scene this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} will transition to 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSceneTransition_a2a7f3aa4942bfe17f020d4bdc3488f80}\label{classSceneTransition_a2a7f3aa4942bfe17f020d4bdc3488f80}} 
+\index{SceneTransition@{SceneTransition}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Scene\+Transition\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classSceneTransition_a6da7149760eaf4e2b288b6089373d5ac}\label{classSceneTransition_a6da7149760eaf4e2b288b6089373d5ac}} 
+\index{SceneTransition@{SceneTransition}!OnFixedUpdate@{OnFixedUpdate}}
+\index{OnFixedUpdate@{OnFixedUpdate}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
+{\footnotesize\ttfamily void Scene\+Transition\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once every simulation frame 
+
+called once every graphics frame 
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classSceneTransition_ac0b6396b54e529405cb31adb2ec166f8}\label{classSceneTransition_ac0b6396b54e529405cb31adb2ec166f8}} 
+\index{SceneTransition@{SceneTransition}!SetNextSceneName@{SetNextSceneName}}
+\index{SetNextSceneName@{SetNextSceneName}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{SetNextSceneName()}{SetNextSceneName()}}
+{\footnotesize\ttfamily void Scene\+Transition\+::\+Set\+Next\+Scene\+Name (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{next\+Scene\+Name }\end{DoxyParamCaption})}
+
+
+
+sets the name of the scene this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} will transition to 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Scene\+Name} & the name of the scene this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} will transition to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSceneTransition_a3a2a25cd91e4e4793254c8d25743cadd}\label{classSceneTransition_a3a2a25cd91e4e4793254c8d25743cadd}} 
+\index{SceneTransition@{SceneTransition}!StartTransition@{StartTransition}}
+\index{StartTransition@{StartTransition}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{StartTransition()}{StartTransition()}}
+{\footnotesize\ttfamily void Scene\+Transition\+::\+Start\+Transition (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{next\+Scene\+Name }\end{DoxyParamCaption})}
+
+
+
+starts transitioning to the specified scene 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Scene\+Name} & the name of the scene to transition to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSceneTransition_aff20ea9dcccbe4fce67ca77eb2203527}\label{classSceneTransition_aff20ea9dcccbe4fce67ca77eb2203527}} 
+\index{SceneTransition@{SceneTransition}!Write@{Write}}
+\index{Write@{Write}!SceneTransition@{SceneTransition}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Scene\+Transition\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classSceneTransition}{Scene\+Transition}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{SceneTransition_8h}{Scene\+Transition.\+h}}\item 
+Source/\mbox{\hyperlink{SceneTransition_8cpp}{Scene\+Transition.\+cpp}}\end{DoxyCompactItemize}

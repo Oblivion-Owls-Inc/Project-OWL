@@ -88,6 +88,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a761878f6076e03f60246aea3044950f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a761878f6076e03f60246aea3044950f7">RemoveOnWindowResizeCallback</a> (unsigned ownerId)</td></tr>
 <tr class="memdesc:a761878f6076e03f60246aea3044950f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an OnWindowResize callback  <a href="classPlatformSystem.html#a761878f6076e03f60246aea3044950f7">More...</a><br /></td></tr>
 <tr class="separator:a761878f6076e03f60246aea3044950f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32507e77a4fc7a53adaf4290574c236"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#ac32507e77a4fc7a53adaf4290574c236">AddOnFocusChangedCallback</a> (unsigned ownerId, std::function&lt; void(bool focused) &gt; callback)</td></tr>
+<tr class="memdesc:ac32507e77a4fc7a53adaf4290574c236"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a callback to get called whenever the focus of this window changes  <a href="classPlatformSystem.html#ac32507e77a4fc7a53adaf4290574c236">More...</a><br /></td></tr>
+<tr class="separator:ac32507e77a4fc7a53adaf4290574c236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b7c543df5667dce11cfd3ad7d1a6d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#ac8b7c543df5667dce11cfd3ad7d1a6d4">RemoveOnFocusChangedCallback</a> (unsigned ownerId)</td></tr>
+<tr class="memdesc:ac8b7c543df5667dce11cfd3ad7d1a6d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an OnFocusChanged callback  <a href="classPlatformSystem.html#ac8b7c543df5667dce11cfd3ad7d1a6d4">More...</a><br /></td></tr>
+<tr class="separator:ac8b7c543df5667dce11cfd3ad7d1a6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9f3d31161ee99951142fb3760f10f8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#ac9f3d31161ee99951142fb3760f10f8c">SetFullscreen</a> (bool fullscreen)</td></tr>
 <tr class="memdesc:ac9f3d31161ee99951142fb3760f10f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether the window is fullscreen  <a href="classPlatformSystem.html#ac9f3d31161ee99951142fb3760f10f8c">More...</a><br /></td></tr>
 <tr class="separator:ac9f3d31161ee99951142fb3760f10f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,6 +112,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a000751d2abf49ccc77ea146869e3be2c"><td class="memItemLeft" align="right" valign="top">glm::vec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a000751d2abf49ccc77ea146869e3be2c">GetGameWindowPos</a> () const</td></tr>
 <tr class="memdesc:a000751d2abf49ccc77ea146869e3be2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the position of the gameWindow within the glfw window  <a href="classPlatformSystem.html#a000751d2abf49ccc77ea146869e3be2c">More...</a><br /></td></tr>
 <tr class="separator:a000751d2abf49ccc77ea146869e3be2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94dec990ffe00f65be65721daecab241"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a94dec990ffe00f65be65721daecab241">GetFullscreen</a> () const</td></tr>
+<tr class="memdesc:a94dec990ffe00f65be65721daecab241"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets if the game is in full screen  <a href="classPlatformSystem.html#a94dec990ffe00f65be65721daecab241">More...</a><br /></td></tr>
+<tr class="separator:a94dec990ffe00f65be65721daecab241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9fa4e0852d66ad0464a0f162b605d2e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#ad9fa4e0852d66ad0464a0f162b605d2e">GetIsFocused</a> () const</td></tr>
+<tr class="memdesc:ad9fa4e0852d66ad0464a0f162b605d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether the game window is focused  <a href="classPlatformSystem.html#ad9fa4e0852d66ad0464a0f162b605d2e">More...</a><br /></td></tr>
+<tr class="separator:ad9fa4e0852d66ad0464a0f162b605d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a344964fb6aa36a9d64349cbfaa716a42"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a344964fb6aa36a9d64349cbfaa716a42">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:a344964fb6aa36a9d64349cbfaa716a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classPlatformSystem.html#a344964fb6aa36a9d64349cbfaa716a42">More...</a><br /></td></tr>
 <tr class="separator:a344964fb6aa36a9d64349cbfaa716a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,14 +135,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a> ()</td></tr>
 <tr class="memdesc:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
 <tr class="separator:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
-<tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
-<tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
-<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
-<tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a804bac94c6ffee7f7369c6c3928a5574"></a>
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
@@ -177,6 +181,43 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac32507e77a4fc7a53adaf4290574c236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac32507e77a4fc7a53adaf4290574c236">&#9670;&nbsp;</a></span>AddOnFocusChangedCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlatformSystem::AddOnFocusChangedCallback </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>ownerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(bool focused) &gt;&#160;</td>
+          <td class="paramname"><em>callback</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>adds a callback to get called whenever the focus of this window changes </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ownerId</td><td>ID of the owner of the callback (used for removing the callback later) </td></tr>
+    <tr><td class="paramname">callback</td><td>the to callback to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a48d1c8fb51bba89e3386ac04626bcc4b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a48d1c8fb51bba89e3386ac04626bcc4b">&#9670;&nbsp;</a></span>AddOnWindowResizeCallback()</h2>
 
@@ -211,6 +252,29 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a94dec990ffe00f65be65721daecab241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94dec990ffe00f65be65721daecab241">&#9670;&nbsp;</a></span>GetFullscreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlatformSystem::GetFullscreen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets if the game is in full screen </p>
+<p>Gets if the game is in full screen.</p>
+<dl class="section return"><dt>Returns</dt><dd>is the game in fullscreen</dd>
+<dd>
+Is the game in fullscreen </dd></dl>
 
 </div>
 </div>
@@ -283,6 +347,26 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="classPlatformSystem.html">PlatformSystem</a> instance</dd>
 <dd>
 <a class="el" href="classPlatformSystem.html">PlatformSystem</a> pointer: new or existing instance of this system. </dd></dl>
+
+</div>
+</div>
+<a id="ad9fa4e0852d66ad0464a0f162b605d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9fa4e0852d66ad0464a0f162b605d2e">&#9670;&nbsp;</a></span>GetIsFocused()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlatformSystem::GetIsFocused </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets whether the game window is focused </p>
+<dl class="section return"><dt>Returns</dt><dd>whether the game window is focused </dd></dl>
 
 </div>
 </div>
@@ -381,6 +465,32 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the position is within the window </dd></dl>
+
+</div>
+</div>
+<a id="ac8b7c543df5667dce11cfd3ad7d1a6d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8b7c543df5667dce11cfd3ad7d1a6d4">&#9670;&nbsp;</a></span>RemoveOnFocusChangedCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlatformSystem::RemoveOnFocusChangedCallback </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>ownerId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removes an OnFocusChanged callback </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ownerId</td><td>the ID of the owner of the callback to remove </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

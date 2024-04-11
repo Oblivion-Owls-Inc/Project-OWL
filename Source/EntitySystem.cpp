@@ -605,16 +605,40 @@
     /// @param  entityData  the json object containing the entity data
     void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
     {
-        for ( auto& [ name, entityData ] : data.items() )
+        if ( data.is_array() )
         {
-            Stream::PushDebugLocation( name + "." );
+            int i = 0;
+            for ( nlohmann::ordered_json const& entityData : data )
+            {
+                Stream::PushDebugLocation( "[ " + std::to_string( i ) + " ].");
 
-            Entity* entity = new Entity();
-            Stream::Read( entity, entityData );
-            m_Entities.push_back( entity );
-            addLoadedChildren( entity );
+                Entity* entity = new Entity();
+                Stream::Read( entity, entityData );
+                m_Entities.push_back( entity );
+                addLoadedChildren( entity );
 
-            Stream::PopDebugLocation();
+                Stream::PopDebugLocation();
+                ++i;
+            }
+        }
+        else if ( data.is_object() ) // old format
+        {
+            for ( auto& [ name, entityData ] : data.items() )
+            {
+                Stream::PushDebugLocation( name + "." );
+
+                Entity* entity = new Entity();
+                Stream::Read( entity, entityData );
+                m_Entities.push_back( entity );
+                addLoadedChildren( entity );
+
+                Stream::PopDebugLocation();
+            }
+        }
+        else
+        {
+            Debug() << "WARNING: JSON expected type 'object', but encountered type '" << data.type_name() << "' at " << Stream::GetDebugLocation() << std::endl;
+            return;
         }
 
         for ( Entity* entity : m_Entities )
@@ -628,7 +652,7 @@
     /// @return the written json data
     nlohmann::ordered_json EntitySystem::SaveEntities() const
     {
-        nlohmann::ordered_json json;
+        nlohmann::ordered_json json = nlohmann::ordered_json::array();
 
         for ( Entity* entity : m_Entities )
         {
@@ -638,7 +662,7 @@
                 continue;
             }
 
-            json[ entity->GetName() ] = entity->Write();
+            json.push_back( entity->Write() );
         }
 
         return json;

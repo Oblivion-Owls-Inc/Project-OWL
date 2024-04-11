@@ -9,8 +9,10 @@
 #pragma once
 #include "Component.h"
 
+#include "EntityReference.h"
 #include "ComponentReference.h"
 class Health;
+class SceneTransition;
 
 class HomeBase : public Component
 {
@@ -60,6 +62,13 @@ private: // members
     std::string m_GameOverSceneName = "Gameover";
 
 
+    /// @brief  the SceneTransition Component responsible for changing scenes
+    ComponentReference< SceneTransition > m_SceneTransition;
+
+    /// @brief  the Entity the SceneTransition Component is attached to
+    EntityReference m_SceneTransitionEntity = EntityReference( { &m_SceneTransition } );
+
+
     /// @brief  the Health Component attached to this Entity
     ComponentReference< Health > m_Health;
 
@@ -81,6 +90,10 @@ private: // reading
     /// @brief  reads the name of the scene to transition to when the base dies
     /// @param  data    the JSON data to read from
     void readGameOverSceneName( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the Entity the SceneTransition Component is attached to
+    /// @param  data    the JSON data to read from
+    void readSceneTransitionEntity( nlohmann::ordered_json const& data );
 
     
 //-----------------------------------------------------------------------------

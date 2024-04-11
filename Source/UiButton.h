@@ -113,6 +113,9 @@ private: // configurable members
     /// @brief  the sound this UiButton plays when it is released
     AssetReference< Sound > m_ReleaseSound;
 
+    /// @brief  the sound this UiButton plays when it is hovered
+    AssetReference< Sound > m_HoverSound;
+
 
 //-----------------------------------------------------------------------------
 private: // nonconfigurable members
@@ -214,6 +217,10 @@ private: // reading
     /// @brief  reads the sound this UiButton plays when it is released
     /// @param  data    the JSON data to read from
     void readReleaseSound( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the sound this UiButton plays when it is hovered
+    /// @param  data    the JSON data to read from
+    void readHoverSound( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

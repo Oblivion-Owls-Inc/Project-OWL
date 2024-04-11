@@ -115,6 +115,21 @@ void PathfindSystem::RemoveTransformCallback(Transform* t)
 //              Virtual overrides
 //-----------------------------------------------------------------------------
 
+
+
+/// @brief  called when the system starts
+void PathfindSystem::OnInit()
+{
+    m_Tilemap.SetOnDisconnectCallback( [this]()
+    {
+        if ( m_Thread.joinable() )
+        {
+            m_Thread.join();
+        }
+    } );
+}
+
+
 /// @brief  Called every frame: manages the background thread
 void PathfindSystem::OnUpdate(float dt)
 {
