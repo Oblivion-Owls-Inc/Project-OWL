@@ -100,7 +100,7 @@
             #endif
         }
 
-		Lights()->SetLightingEnabled( m_HasLighting );
+        Lights()->SetLightingEnabled( m_HasLighting );
         Lights()->SetShadowLayer( m_LightingLayer );
     }
 
