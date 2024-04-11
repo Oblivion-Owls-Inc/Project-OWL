@@ -156,7 +156,7 @@ private: // variables
     ComponentReference< Emitter > m_Emitter;
 
     /// @brief  the Interactable Component attached to this Generator
-    ComponentReference< Interactable > m_Interactable;
+    ComponentReference< Interactable, false > m_Interactable;
 
     /// @brief  the Light Component attached to this Generator
     ComponentReference< Light > m_Light;

@@ -125,6 +125,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a64b7e3ebb6d5e5ae416f093827c640e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentReference.html#a64b7e3ebb6d5e5ae416f093827c640e5">GetEntity</a> () const</td></tr>
 <tr class="memdesc:a64b7e3ebb6d5e5ae416f093827c640e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classEntity.html">Entity</a> this <a class="el" href="classComponentReference.html" title="a reference to a component in the scene">ComponentReference</a> watches  <a href="classComponentReference.html#a64b7e3ebb6d5e5ae416f093827c640e5">More...</a><br /></td></tr>
 <tr class="separator:a64b7e3ebb6d5e5ae416f093827c640e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab222b5fb19ee7e85a5f24d7d07e14e01"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentReference.html#ab222b5fb19ee7e85a5f24d7d07e14e01">GetIsRequired</a> () const override</td></tr>
+<tr class="memdesc:ab222b5fb19ee7e85a5f24d7d07e14e01"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classComponent.html">Component</a> Reference is required  <a href="classComponentReference.html#ab222b5fb19ee7e85a5f24d7d07e14e01">More...</a><br /></td></tr>
+<tr class="separator:ab222b5fb19ee7e85a5f24d7d07e14e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acde69ca38ad57a326215b95f89d26e58"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentReference.html#acde69ca38ad57a326215b95f89d26e58">Clear</a> () override</td></tr>
 <tr class="memdesc:acde69ca38ad57a326215b95f89d26e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets this <a class="el" href="classComponentReference.html" title="a reference to a component in the scene">ComponentReference</a> to nullptr  <a href="classComponentReference.html#acde69ca38ad57a326215b95f89d26e58">More...</a><br /></td></tr>
 <tr class="separator:acde69ca38ad57a326215b95f89d26e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -365,6 +368,43 @@ template&lt;class ComponentType , bool required&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classEntity.html">Entity</a> this <a class="el" href="classComponentReference.html" title="a reference to a component in the scene">ComponentReference</a> watches </dd></dl>
+
+</div>
+</div>
+<a id="ab222b5fb19ee7e85a5f24d7d07e14e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab222b5fb19ee7e85a5f24d7d07e14e01">&#9670;&nbsp;</a></span>GetIsRequired()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ComponentType , bool required&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classComponentReference.html">ComponentReference</a>&lt; ComponentType, required &gt;::GetIsRequired</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets whether this <a class="el" href="classComponent.html">Component</a> Reference is required </p>
+<dl class="section return"><dt>Returns</dt><dd>whether this <a class="el" href="classComponent.html">Component</a> Reference is required</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ComponentType</td><td>the type of <a class="el" href="classComponent.html">Component</a> this <a class="el" href="classComponentReference.html" title="a reference to a component in the scene">ComponentReference</a> refers to </td></tr>
+    <tr><td class="paramname">required</td><td>whether this <a class="el" href="classComponentReference.html" title="a reference to a component in the scene">ComponentReference</a> is required or optional (for debug logging purposes) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether this <a class="el" href="classComponent.html">Component</a> Reference is required </dd></dl>
+
+<p>Implements <a class="el" href="classComponentReferenceBase.html#a99dfb1786e802b6f2aabdfdee984b595">ComponentReferenceBase</a>.</p>
 
 </div>
 </div>

@@ -47,6 +47,11 @@ public: // virtual methods
     virtual void TryRemove( Component* component ) = 0;
 
 
+    /// @brief  gets whether this Component Reference is required
+    /// @return whether this Component Reference is required
+    virtual bool GetIsRequired() const = 0;
+
+
 //-----------------------------------------------------------------------------
 };
 
@@ -127,6 +132,11 @@ public: // accessors
     /// @brief  gets the Entity this ComponentReference watches
     /// @return the Entity this ComponentReference watches
     Entity const* GetEntity() const;
+
+
+    /// @brief  gets whether this Component Reference is required
+    /// @return whether this Component Reference is required
+    virtual bool GetIsRequired() const override;
 
 
 //-----------------------------------------------------------------------------

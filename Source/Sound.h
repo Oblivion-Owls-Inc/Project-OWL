@@ -65,6 +65,10 @@ public: // accessors
     /// @return the length of this sound in seconds
     float GetLength() const;
 
+    /// @brief  gets the volume of this sound
+    /// @return the volume of this sound
+    float GetVolume() const;
+
 
     /// @brief  gets whether this Sound is looping
     /// @return whether this Sound is looping
@@ -98,6 +102,9 @@ private: // member variables
     /// @brief  The filepath of this Sound
     std::string m_Filepath = "";
 
+    /// @brief  the default volume of this sound
+    float m_Volume = 1.0f;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -111,6 +118,10 @@ private: // reading
     /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
     void readIsLoopable( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the default volume of this sound
+    /// @param  data    the JSON data to read from
+    void readVolume( nlohmann::ordered_json const& data );
 
 
     /// @brief  map of the SceneSystem read methods
