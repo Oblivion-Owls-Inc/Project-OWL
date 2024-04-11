@@ -191,14 +191,14 @@
     /// @param  data    the JSON data to read from
     void SceneTransition::readHasLighting(nlohmann::ordered_json const& data)
     {
-		Stream::Read(m_HasLighting, data);
-	}
+        Stream::Read( m_HasLighting, data );
+    }
 
     /// @brief  reads the lighting layer of the next scene
     /// @param  data    the JSON data to read from
     void SceneTransition::readLightingLayer(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_LightingLayer, data);
+        Stream::Read( m_LightingLayer, data );
     }
 
 
