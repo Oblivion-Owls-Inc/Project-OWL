@@ -312,6 +312,34 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
+        m_Tilemap.SetOnConnectCallback( [ this ]()
+        {
+            if ( m_Buildings != nullptr )
+            {
+                m_Buildings->SetDimensions( m_Tilemap->GetDimensions() );
+            }
+
+            m_Tilemap->AddOnTilemapChangedCallback( GetId(), [ this ]( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int const& previousValue )
+            {
+                if ( tilePos == glm::ivec2( -1 ) && m_Buildings != nullptr )
+                {
+                    m_Buildings->SetDimensions( m_Tilemap->GetDimensions() );
+                }
+            } );
+        } );
+        m_Tilemap.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+        } );
+
+        m_Buildings.SetOnConnectCallback( [ this ]()
+        {
+            if ( m_Tilemap != nullptr )
+            {
+                m_Buildings->SetDimensions( m_Tilemap->GetDimensions() );
+            }
+        } );
+
         m_PlayerEntity .SetOwnerName( GetName() );
         m_TilemapEntity.SetOwnerName( GetName() );
         m_CostUiEntity .SetOwnerName( GetName() );
@@ -340,7 +368,7 @@
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
-            buildingInfo.M_SelectAction.SetOwnerName(GetName());
+            buildingInfo.M_SelectAction.SetOwnerName( GetName() );
             buildingInfo.Init();
         }
     }
@@ -359,13 +387,12 @@
         m_TurretPlacementSound.Exit();
         m_CostInventory       .Exit();
         m_Popup               .Exit();
-
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
 
         m_PlaceAction.Exit();
 
-        for (BuildingInfo& buildingInfo : m_BuildingInfos)
+        for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
             buildingInfo.Exit();
         }
