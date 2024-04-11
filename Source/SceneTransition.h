@@ -138,6 +138,14 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readNextSceneName( nlohmann::ordered_json const& data );
 
+    /// @brief  reads whether the scene has lighting
+    /// @param  data    the JSON data to read from
+    void readHasLighting(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the lighting layer of the next scene
+    /// @param  data    the JSON data to read from
+    void readLightingLayer(nlohmann::ordered_json const& data);
+
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
