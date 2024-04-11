@@ -57,8 +57,8 @@ digraph "Source/Entity.h"
   Node68 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node14 [label="Source/WavesInspector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesInspector_8cpp.html",tooltip="Definitions for wave and spawning editing in game."];
   Node3 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 -> Node52 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node52 [label="Source/RenderSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RenderSystem_8cpp.html",tooltip="System responsible for drawing sprites and basic shapes."];
+  Node3 -> Node53 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 [label="Source/RenderSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RenderSystem_8cpp.html",tooltip="System responsible for drawing sprites and basic shapes."];
   Node3 -> Node93 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node93 [label="Source/SceneSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SceneSystem_8cpp.html",tooltip="handles the process of resetting and changing scenes"];
   Node3 -> Node94 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -105,8 +105,8 @@ digraph "Source/Entity.h"
   Node46 [label="Source/LaserUpgrade.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LaserUpgrade_8cpp.html",tooltip="collectable upgrade to the player's MiningLaser"];
   Node98 -> Node77 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node98 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node98 -> Node53 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node53 [label="Source/ResourceCounterUi.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourceCounterUi_8cpp.html",tooltip="Ui Component that displays a resource sprite and a count."];
+  Node98 -> Node54 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 [label="Source/ResourceCounterUi.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourceCounterUi_8cpp.html",tooltip="Ui Component that displays a resource sprite and a count."];
   Node98 -> Node92 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node71 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -125,7 +125,7 @@ digraph "Source/Entity.h"
   Node1 -> Node47 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node105 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node105 [label="Source/PlatformSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlatformSystem_8cpp.html",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit."];
-  Node1 -> Node52 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node53 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node106 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node106 [label="Source/RigidBody.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$RigidBody_8h_source.html",tooltip=" "];
   Node106 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
