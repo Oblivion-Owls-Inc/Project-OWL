@@ -73,8 +73,8 @@ digraph "Source/PlayBar.h"
   Node101 -> Node48 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node48 [label="Source/LaserUpgrade.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LaserUpgrade_8cpp.html",tooltip="collectable upgrade to the player's MiningLaser"];
   Node101 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node101 -> Node56 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node56 [label="Source/SceneChangeButton.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SceneChangeButton_8cpp.html",tooltip="Component that changes the scene when clicked."];
+  Node101 -> Node57 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node57 [label="Source/SceneChangeButton.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SceneChangeButton_8cpp.html",tooltip="Component that changes the scene when clicked."];
   Node101 -> Node94 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node94 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
   Node2 -> Node107 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -108,7 +108,7 @@ digraph "Source/PlayBar.h"
   Node120 [label="Source/Pool.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Pool_8h.html",tooltip="Used for Pools like Time or Health."];
   Node120 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node120 -> Node119 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 -> Node56 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node57 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node95 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node123 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node123 [label="Source/Shader.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Shader_8cpp.html",tooltip="Shader class implementation."];

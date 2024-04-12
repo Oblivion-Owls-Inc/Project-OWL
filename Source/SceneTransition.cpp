@@ -10,6 +10,7 @@
 
 #include "SceneTransition.h"
 
+#include "LightingSystem.h"
 #include "BehaviorSystem.h"
 
 #include "ComponentReference.t.h"
@@ -98,6 +99,9 @@
                 m_Sprite->SetOpacity( 1.0f );
             #endif
         }
+
+        Lights()->SetLightingEnabled( m_HasLighting );
+        Lights()->SetShadowLayer( m_LightingLayer );
     }
 
     /// @brief  called once when exiting the scene
@@ -106,6 +110,8 @@
         Behaviors< SceneTransition >()->RemoveComponent( this );
 
         m_Sprite.Exit();
+
+        Lights()->SetLightingEnabled(false);
     }
 
 
@@ -155,6 +161,8 @@
     void SceneTransition::Inspector()
     {
         ImGui::DragFloat( "transition duration", &m_TransitionDuration, 0.05f, 0.0f, INFINITY );
+        ImGui::DragInt( "lighting layer", &m_LightingLayer, 1, 0, 100 );
+        ImGui::Checkbox("has lighting", &m_HasLighting);
 
         Scenes()->InspectorSelectScene( "transition to scene", &m_NextSceneName );
     }
@@ -179,6 +187,20 @@
         Stream::Read( m_NextSceneName, data );
     }
 
+    /// @brief  reads whether the scene has lighting
+    /// @param  data    the JSON data to read from
+    void SceneTransition::readHasLighting(nlohmann::ordered_json const& data)
+    {
+        Stream::Read( m_HasLighting, data );
+    }
+
+    /// @brief  reads the lighting layer of the next scene
+    /// @param  data    the JSON data to read from
+    void SceneTransition::readLightingLayer(nlohmann::ordered_json const& data)
+    {
+        Stream::Read( m_LightingLayer, data );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -191,7 +213,9 @@
     {
         static ReadMethodMap< SceneTransition > const readMethods = {
             { "TransitionDuration", &SceneTransition::readTransitionDuration },
-            { "NextSceneName"     , &SceneTransition::readNextSceneName      }
+            { "NextSceneName"     , &SceneTransition::readNextSceneName      },
+            { "HasLighting"       , &SceneTransition::readHasLighting        },
+            { "LightingLayer"     , &SceneTransition::readLightingLayer      }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -206,6 +230,8 @@
 
         json[ "TransitionDuration" ] = Stream::Write( m_TransitionDuration );
         json[ "NextSceneName"      ] = Stream::Write( m_NextSceneName      );
+        json[ "HasLighting"        ] = Stream::Write( m_HasLighting        );
+        json[ "LightingLayer"      ] = Stream::Write( m_LightingLayer      );
 
         return json;
     }
@@ -234,7 +260,9 @@
     SceneTransition::SceneTransition( SceneTransition const& other ) :
         Behavior( other ),
         m_TransitionDuration( other.m_TransitionDuration ),
-        m_NextSceneName     ( other.m_NextSceneName      )
+        m_NextSceneName     ( other.m_NextSceneName      ),
+        m_HasLighting	    ( other.m_HasLighting        ),
+        m_LightingLayer     ( other.m_LightingLayer      )
     {}
 
 

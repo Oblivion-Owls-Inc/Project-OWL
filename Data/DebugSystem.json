@@ -1,5 +1,4 @@
 {
-    "AssetLibrary<AnimationAsset>": true,
     "AssetLibrary<Entity>": true,
     "AssetLibrary<Sound>": true,
     "AssetLibrary<Texture>": true,
@@ -7,6 +6,5 @@
     "DebugSystem": true,
     "InputSystem": true,
     "LightingSystem": true,
-    "PauseSystem": true,
-    "SceneSystem": true
+    "PauseSystem": true
 }

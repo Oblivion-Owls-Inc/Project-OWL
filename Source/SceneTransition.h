@@ -104,6 +104,12 @@ private: // members
     /// @brief  the Sprite Component attached to this Entity
     ComponentReference< Sprite > m_Sprite;
 
+    /// @brief  whether this scene has lighting
+    bool m_HasLighting = false;
+
+    /// @brief  the lighting layer of the this scene
+    int m_LightingLayer = 0;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -131,6 +137,14 @@ private: // reading
     /// @brief  reads the name of the scene this SceneTransition will transition to
     /// @param  data    the JSON data to read from
     void readNextSceneName( nlohmann::ordered_json const& data );
+
+    /// @brief  reads whether the scene has lighting
+    /// @param  data    the JSON data to read from
+    void readHasLighting(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the lighting layer of the next scene
+    /// @param  data    the JSON data to read from
+    void readLightingLayer(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

@@ -38,6 +38,10 @@ public:
 
     __inline bool GetLightingEnabled() const { return m_Enabled; }
 
+    __inline bool SetLightingEnabled(bool enabled) { return m_Enabled = enabled; }
+
+    __inline void SetShadowLayer(int layer) { m_ShadowLayer = layer; }
+
 
 //-----------------------------------------------------------------------------
 //              Virtual overrides

@@ -116,6 +116,7 @@ void Generator::OnInit()
     m_Transform       .Init( GetEntity() );
     m_Health          .Init( GetEntity() );
     m_Emitter         .Init( GetEntity() );
+    m_Light           .Init( GetEntity() );
     m_Sprite          .Init( GetEntity() );
     m_PathfinderTarget.Init( GetEntity() );
     m_Interactable    .Init( GetEntity() );
@@ -140,6 +141,7 @@ void Generator::OnExit()
     m_Sprite          .Exit();
     m_PathfinderTarget.Exit();
     m_Interactable    .Exit();
+    m_Light           .Exit();
 }
 
 /// @brief  called every frame
@@ -277,6 +279,11 @@ void Generator::Activate()
     if ( m_Interactable != nullptr )
     {
         m_Interactable->SetEnabled( false );
+    }
+
+    if (m_Light != nullptr)
+    {
+        m_Light->SetStrength(0.8f);
     }
 }
 
