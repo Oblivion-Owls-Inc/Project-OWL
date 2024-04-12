@@ -70,6 +70,13 @@
         return m_UiElement;
     }
 
+    /// @brief  gets the Inventory Component attached to this ResourcesUiManager
+    /// @return the Inventory Component attached to this ResourcesUiManager
+    Inventory* ResourcesUiManager::GetInventory()
+    {
+        return m_Inventory;
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: virtual override methods
