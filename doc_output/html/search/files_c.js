@@ -1,21 +1,9 @@
 var searchData=
 [
-  ['scenechangebutton_2ecpp_1377',['SceneChangeButton.cpp',['../SceneChangeButton_8cpp.html',1,'']]],
-  ['scenechangebutton_2eh_1378',['SceneChangeButton.h',['../SceneChangeButton_8h.html',1,'']]],
-  ['scenesystem_2ecpp_1379',['SceneSystem.cpp',['../SceneSystem_8cpp.html',1,'']]],
-  ['scenesystem_2eh_1380',['SceneSystem.h',['../SceneSystem_8h.html',1,'']]],
-  ['scenetransition_2ecpp_1381',['SceneTransition.cpp',['../SceneTransition_8cpp.html',1,'']]],
-  ['scenetransition_2eh_1382',['SceneTransition.h',['../SceneTransition_8h.html',1,'']]],
-  ['settingsmanager_2eh_1383',['SettingsManager.h',['../SettingsManager_8h.html',1,'']]],
-  ['shader_2ecpp_1384',['Shader.cpp',['../Shader_8cpp.html',1,'']]],
-  ['shader_2eh_1385',['Shader.h',['../Shader_8h.html',1,'']]],
-  ['sound_2ecpp_1386',['Sound.cpp',['../Sound_8cpp.html',1,'']]],
-  ['sound_2eh_1387',['Sound.h',['../Sound_8h.html',1,'']]],
-  ['sprite_2ecpp_1388',['Sprite.cpp',['../Sprite_8cpp.html',1,'']]],
-  ['staticbody_2ecpp_1389',['StaticBody.cpp',['../StaticBody_8cpp.html',1,'']]],
-  ['staticbody_2eh_1390',['StaticBody.h',['../StaticBody_8h.html',1,'']]],
-  ['stream_2ecpp_1391',['Stream.cpp',['../Stream_8cpp.html',1,'']]],
-  ['stream_2eh_1392',['Stream.h',['../Stream_8h.html',1,'']]],
-  ['stream_2et_2ecpp_1393',['Stream.t.cpp',['../Stream_8t_8cpp.html',1,'']]],
-  ['system_2eh_1394',['System.h',['../System_8h.html',1,'']]]
+  ['rendersystem_2ecpp_1380',['RenderSystem.cpp',['../RenderSystem_8cpp.html',1,'']]],
+  ['rendersystem_2eh_1381',['RenderSystem.h',['../RenderSystem_8h.html',1,'']]],
+  ['resourcecounterui_2ecpp_1382',['ResourceCounterUi.cpp',['../ResourceCounterUi_8cpp.html',1,'']]],
+  ['resourcecounterui_2eh_1383',['ResourceCounterUi.h',['../ResourceCounterUi_8h.html',1,'']]],
+  ['resourcesuimanager_2ecpp_1384',['ResourcesUiManager.cpp',['../ResourcesUiManager_8cpp.html',1,'']]],
+  ['resourcesuimanager_2eh_1385',['ResourcesUiManager.h',['../ResourcesUiManager_8h.html',1,'']]]
 ];

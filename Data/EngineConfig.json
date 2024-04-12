@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                108,
-                32
+                1196,
+                837
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -329,7 +329,7 @@
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
+                "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
