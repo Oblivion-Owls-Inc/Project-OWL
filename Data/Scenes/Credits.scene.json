@@ -25,6 +25,30 @@
                 ],
                 "UseAspectRatio": true
             },
+            "Credits": {
+                "Filepath": "Data/Textures/GAM_Credits.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    1.0
+                ],
+                "UseAspectRatio": true
+            },
+            "DigDeeperLogo": {
+                "Filepath": "Data/Textures/DigDeeperLogo-export.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [
@@ -149,14 +173,97 @@
             }
         },
         "Animations": null,
-        "Archetypes": null
+        "Archetypes": {
+            "GAMCredits": {
+                "Name": "GAMCredits",
+                "Components": {
+                    "EffectAnimator": {
+                        "Effect": {
+                            "AssetName": "Scrolling"
+                        },
+                        "Time": 2.0,
+                        "Speed": 0.5,
+                        "LoopCount": 0,
+                        "IsPlaying": true
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Credits"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "GameTitle": {
+                "Name": "GameTitle",
+                "Components": {
+                    "EffectAnimator": {
+                        "Effect": {
+                            "AssetName": "Scrolling"
+                        },
+                        "Time": 2.0,
+                        "Speed": 0.5,
+                        "LoopCount": 0,
+                        "IsPlaying": false
+                    },
+                    "Sprite": {
+                        "Layer": 4,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "DigDeeperLogo"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            }
+        }
     },
     "Entities": [
         {
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 30.0,
+                    "Width": 39.13982391357422,
                     "IsActive": true
                 },
                 "Light": {
@@ -229,7 +336,9 @@
             "Components": {
                 "SceneTransition": {
                     "TransitionDuration": 0.25,
-                    "NextSceneName": ""
+                    "NextSceneName": "",
+                    "HasLighting": false,
+                    "LightingLayer": 0
                 },
                 "Sprite": {
                     "Layer": 1000,
@@ -298,83 +407,6 @@
             },
             "Children": [
                 {
-                    "Name": "ThanksForPlaying",
-                    "Components": {
-                        "Tilemap<int>": {
-                            "Dimensions": [
-                                41,
-                                0
-                            ],
-                            "TileScale": [
-                                0.6669999957084656,
-                                1.0
-                            ],
-                            "TileData": [
-                                52,
-                                72,
-                                65,
-                                78,
-                                75,
-                                0,
-                                57,
-                                79,
-                                85,
-                                0,
-                                38,
-                                79,
-                                82,
-                                0,
-                                48,
-                                76,
-                                65,
-                                89,
-                                73,
-                                78,
-                                71
-                            ]
-                        },
-                        "EffectAnimator": {
-                            "Effect": {
-                                "AssetName": "Scrolling"
-                            },
-                            "Time": 2.0,
-                            "Speed": 0.5,
-                            "LoopCount": 2,
-                            "IsPlaying": true
-                        },
-                        "Text": {
-                            "Text": "Thank You For Playing"
-                        },
-                        "TilemapSprite": {
-                            "Layer": 4,
-                            "Color": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Opacity": 1.0,
-                            "FrameIndex": 0,
-                            "Texture": {
-                                "AssetName": "FontSheet"
-                            }
-                        },
-                        "Transform": {
-                            "Translation": [
-                                -2.861445903778076,
-                                1.0190763473510742
-                            ],
-                            "Rotation": 0.0,
-                            "Scale": [
-                                0.5,
-                                0.5
-                            ],
-                            "IsDiegetic": false
-                        }
-                    },
-                    "Children": null
-                },
-                {
                     "Name": "MainMenuButton",
                     "Components": {
                         "AudioPlayer": {
@@ -432,7 +464,7 @@
                         "UiElement": {
                             "Anchor": [
                                 0.0,
-                                -0.18000000715255737
+                                -1.0
                             ],
                             "Pivot": [
                                 0.0,
@@ -579,7 +611,7 @@
                         "UiElement": {
                             "Anchor": [
                                 0.0,
-                                -0.3700000047683716
+                                -1.0
                             ],
                             "Pivot": [
                                 0.0,
@@ -668,77 +700,102 @@
                             "Children": null
                         }
                     ]
+                },
+                {
+                    "Name": "GameTitle",
+                    "Components": {
+                        "RigidBody": {
+                            "Velocity": [
+                                0.0,
+                                2.0
+                            ],
+                            "Acceleration": [
+                                0.0,
+                                0.0
+                            ],
+                            "RotationalVelocity": 0.0,
+                            "Mass": 1.0,
+                            "Restitution": 1.0,
+                            "Friction": 0.0,
+                            "Drag": 0.0
+                        },
+                        "Sprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "DigDeeperLogo"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                325.3946838378906
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                5.0,
+                                5.0
+                            ],
+                            "IsDiegetic": false
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "GAMCredits",
+                    "Components": {
+                        "RigidBody": {
+                            "Velocity": [
+                                0.0,
+                                2.0
+                            ],
+                            "Acceleration": [
+                                0.0,
+                                0.0
+                            ],
+                            "RotationalVelocity": 0.0,
+                            "Mass": 1.0,
+                            "Restitution": 1.0,
+                            "Friction": 0.0,
+                            "Drag": 0.0
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Credits"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                322.27496337890625
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                25.0,
+                                25.0
+                            ],
+                            "IsDiegetic": false
+                        }
+                    },
+                    "Children": null
                 }
             ]
-        },
-        {
-            "Name": "Wave",
-            "Components": {
-                "Transform": {
-                    "Translation": [
-                        23.089826583862305,
-                        46.84053039550781
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                },
-                "WavesBehavior": {
-                    "Spawners": [
-                        [
-                            23.0,
-                            47.0
-                        ]
-                    ],
-                    "Waves": [
-                        {
-                            "WaveNextTime": 0.0,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": ""
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 0.0,
-                                    "InitialOffset": 0.0,
-                                    "Spawner": 0
-                                },
-                                {
-                                    "Enemy": {
-                                        "AssetName": ""
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 0.0,
-                                    "InitialOffset": 0.0,
-                                    "Spawner": 0
-                                },
-                                {
-                                    "Enemy": {
-                                        "AssetName": ""
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 0.0,
-                                    "InitialOffset": 0.0,
-                                    "Spawner": 0
-                                },
-                                {
-                                    "Enemy": {
-                                        "AssetName": ""
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 0.0,
-                                    "InitialOffset": 0.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            "Children": null
         }
     ],
     "PreparsedScenes": [
