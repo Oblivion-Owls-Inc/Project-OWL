@@ -98,6 +98,8 @@
     /// @brief Removes this behavior from the behavior system on exit
     void EnemyBehavior::OnExit()
     {
+        onDeathEvent();
+
         Behaviors< EnemyBehavior >()->RemoveComponent( this );
 
         m_RigidBody  .Exit();
@@ -152,12 +154,6 @@
     /// @brief What to do when the enemy dies.
     void EnemyBehavior::onDeathEvent()
     {
-        m_RewardEntity = m_Reward->Clone();
-
-        m_RewardEntity->GetComponent<Transform>()->SetTranslation( m_Transform->GetTranslation() );
-
-        m_RewardEntity->AddToScene();
-
         GetEntity()->Destroy();
     }
 

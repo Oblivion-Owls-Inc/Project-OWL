@@ -232,6 +232,9 @@
         glfwSetWindowCloseCallback( m_Window, glfwWindowCloseCallback  );
         glfwSetWindowFocusCallback( m_Window, glfwWindowFocusCallback  );
 
+        
+
+
 
         #ifndef NDEBUG
             Renderer()->SetDrawToBuffer( true ); // enable drawing to off-screen buffer
