@@ -1,10 +1,10 @@
 /*********************************************************************
-* \file       JetpackBoost.cpp
-* \author     Eli Tsereteli
-* \date       April 2024
-* \copyright  Copyright (c) 2023 Digipen Institute of Technology
+* \file         JetpackBoost.cpp
+* \author       Eli Tsereteli
+* \date         April 2024
+* \copyright    Copyright (c) 2023 Digipen Institute of Technology
 * 
-* \brief      Controls jetpack visuals: particles + tilt.
+* \brief        Controls jetpack visuals: particles + tilt.
 *********************************************************************/
 
 #include "pch.h" // precompiled header has to be included first
@@ -15,7 +15,7 @@
 #include "Entity.h"
 #include "Emitter.h"
 #include "Transform.h"
-#include "RigidBody.h"
+#include "AudioPlayer.h"
 #include "InputSystem.h"
 
 static const float downAngle = 4.712389f;
@@ -49,20 +49,21 @@ void JetpackBoost::OnInit()
     //  own components
     m_Transform.Init( GetEntity() );
     m_Flame.Init( GetEntity() );
+    m_Sound.Init( GetEntity() );
 
-    //  parent components
+    //  parent component(s?)
     Entity* parent = GetEntity()->GetParent();
     if (parent)
-    {
         m_PTransform.Init(parent);
-        m_RBody.Init(parent);
-    }
 
     //  input
     m_InputYAxis.SetOwnerName( GetName() );
     m_InputXAxis.SetOwnerName( GetName() );
     m_InputYAxis.Init();
     m_InputXAxis.Init();
+
+    if (m_Transform && m_PTransform && m_Sound && m_Flame && m_InputXAxis && m_InputYAxis)
+        m_Initialized = true;
 }
 
 /// @brief  Removes itself from behavior system
@@ -72,7 +73,6 @@ void JetpackBoost::OnExit()
     m_Transform.Exit();
     m_Flame.Exit();
     m_PTransform.Exit();
-    m_RBody.Exit();
     m_InputXAxis.Exit();
     m_InputYAxis.Exit();
 }
@@ -81,26 +81,27 @@ void JetpackBoost::OnExit()
 /// @brief  
 void JetpackBoost::OnUpdate(float dt)
 {
-    if (!m_Transform || !m_Flame || !m_RBody || !m_PTransform)
+    if (!m_Initialized)
         return;
 
-    // which way is player facing   TODO: does x axis input do the same thing?
+    // which way is player facing
     float xscale = m_PTransform->GetScale().x;
 
     // goin up
     if (m_InputYAxis->GetAxis() > 0.0f)
     {
         m_Flame->SetContinuous(true);
+        m_Sound->Play();
 
         // tilt when trying to move left/right
         if (m_InputXAxis->GetAxis())
         {
-            if (m_Angle < 0.5f)     m_Angle += dt*2;
-            else                    m_Angle = 0.5f;
+            if (m_Angle < m_MaxAngle) m_Angle += m_AngleSpeed * dt;
+            else                      m_Angle = m_MaxAngle;
         }
         else
         {
-            if (m_Angle > 0.0f)     m_Angle -= dt*2;
+            if (m_Angle > 0.0f)     m_Angle -= m_AngleSpeed * dt;
             else                    m_Angle = 0.0f;
         }
     }
@@ -108,7 +109,8 @@ void JetpackBoost::OnUpdate(float dt)
     else
     {
         m_Flame->SetContinuous(false);
-        if (m_Angle > 0.0f)     m_Angle -= dt*2;
+        m_Sound->Stop();
+        if (m_Angle > 0.0f)     m_Angle -= m_AngleSpeed * dt;
         else                    m_Angle = 0.0f;
     }
 
@@ -120,24 +122,18 @@ void JetpackBoost::OnUpdate(float dt)
     m_Flame->SetEmitData(fdata);
 
     // align particles with jetpack
-    glm::vec2 pos = m_PTransform->GetTranslation();
-    static float direction = 0.182f;
-    static float distance = 0.1f;
-    ImGui::Begin("Jetpack");
-    ImGui::DragFloat("Direction", &direction, 0.001f);
-    ImGui::DragFloat("Distance", &distance, 0.001f);
-    ImGui::DragFloat("Angle", &m_Angle);
-    ImGui::End();
-    pos.x += (std::cos(m_Angle + direction*xscale) * distance) * xscale;
-    pos.y += (std::sin(m_Angle + direction*xscale) * distance);
-    m_Transform->SetTranslation(pos);
+    glm::mat4 parentt = m_PTransform->GetMatrix();
+    glm::vec2 offset = parentt * m_Offset;
+    m_Transform->SetTranslation(offset);
 }
 
 
 /// @brief  Tweak properties in debug window
 void JetpackBoost::Inspector()
 {
-    
+    ImGui::DragFloat2("Flame Offset", &m_Offset[0], 0.005f);
+    ImGui::DragFloat("Max Tilt (radians)", &m_MaxAngle, 0.005f);
+    ImGui::DragFloat("Tilt speed (radians/sec)", &m_AngleSpeed, 0.005f);
 }
 
 
@@ -145,8 +141,11 @@ void JetpackBoost::Inspector()
 void JetpackBoost::OnHierarchyChange(Entity* previousParent)
 {
     // re-init
-    //OnExit();
-    //OnInit();
+    if (m_Initialized)
+    {
+        OnExit();
+        OnInit();
+    }
 }
 
 
@@ -158,7 +157,10 @@ void JetpackBoost::OnHierarchyChange(Entity* previousParent)
 ReadMethodMap<JetpackBoost> const JetpackBoost::s_ReadMethods =
 {
     { "XAxisInputAction"               , &JetpackBoost::readXAxisInput },
-    { "YAxisInputAction"               , &JetpackBoost::readYAxisInput }
+    { "YAxisInputAction"               , &JetpackBoost::readYAxisInput },
+    { "FlameOffset"                    , &JetpackBoost::readOffset     },
+    { "MaxTiltRad"                     , &JetpackBoost::readMaxAngle   },
+    { "TiltSpeed"                      , &JetpackBoost::readAngleSpeed }
 };
 
 
@@ -178,6 +180,30 @@ void JetpackBoost::readYAxisInput(nlohmann::ordered_json const& data)
 }
 
 
+/// @brief       Reads the flame offset
+/// @param data  json to read from
+void JetpackBoost::readOffset(nlohmann::ordered_json const& data)
+{
+    m_Offset = glm::vec4( Stream::Read<2, float>(data), 0, 1 );
+}
+
+
+/// @brief       Reads maximum tilt angle
+/// @param data  json to read from
+void JetpackBoost::readMaxAngle(nlohmann::ordered_json const& data)
+{
+    m_MaxAngle = Stream::Read<float>(data);
+}
+
+
+/// @brief       Reads tilt angle speed
+/// @param data  json to read from
+void JetpackBoost::readAngleSpeed(nlohmann::ordered_json const& data)
+{
+    m_AngleSpeed = Stream::Read<float>(data);
+}
+
+
 /// @brief	write to json
 nlohmann::ordered_json JetpackBoost::Write() const
 {
@@ -185,6 +211,9 @@ nlohmann::ordered_json JetpackBoost::Write() const
 
     data[ "YAxisInputAction" ] = Stream::Write( m_InputYAxis );
     data[ "XAxisInputAction" ] = Stream::Write( m_InputXAxis );
+    data[ "FlameOffset" ] = Stream::Write( glm::vec2(m_Offset) );
+    data[ "MaxTiltRad" ] = Stream::Write( m_MaxAngle );
+    data[ "TiltSpeed" ] = Stream::Write( m_AngleSpeed );
 
     return data;
 }
