@@ -186,8 +186,8 @@ void TilemapSprite::Draw()
 
     // Calculate matrix and stride based on parent't transform
 
-    glm::vec2 stridex = {tileScale.x,0};  // right vector (x stride)
-    glm::vec2 stridey = {0,-tileScale.y}; // down vector (y stride)
+    glm::vec2 stridex = {tileScale.x - 0.00001f,0};  // right vector (x stride)
+    glm::vec2 stridey = {0,-tileScale.y + 0.00001f}; // down vector (y stride) (needs slight adjustment to avoid tearing)
 
     if (parent && parent->GetComponent<Transform>())
     {

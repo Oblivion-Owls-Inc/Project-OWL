@@ -81,6 +81,7 @@
 #include "SceneTransition.h"
 #include "Building.h"
 #include "WindowFocusEvent.h"
+#include "JetpackBoost.h"
 #include "GeneratorActivationCostUi.h"
 
 
@@ -245,6 +246,7 @@
         { "SettingsManager"          , ComponentInfo< SettingsManager           >() },
         { "Building"                 , ComponentInfo< Building                  >() },
         { "WindowFocusEvent"         , ComponentInfo< WindowFocusEvent          >() },
+        { "JetpackBoost"             , ComponentInfo< JetpackBoost              >() },
         { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() }
     };
 

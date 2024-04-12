@@ -1,10 +1,7 @@
 {
     "AssetLibrary<Entity>": true,
-    "AssetLibrary<Sound>": true,
-    "AssetLibrary<Texture>": true,
     "CameraSystem": true,
     "DebugSystem": true,
     "InputSystem": true,
-    "LightingSystem": true,
-    "PauseSystem": true
+    "LightingSystem": true
 }

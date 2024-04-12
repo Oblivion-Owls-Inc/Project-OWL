@@ -95,7 +95,7 @@ Sprite::Sprite(Sprite const& other) :
 
         if ( m_Transform == nullptr )
         {
-            m_Transform = GetEntity()->GetComponent< Transform >();
+            m_Transform.Init( GetEntity() );
             if ( m_Transform == nullptr )
             {
                 Debug() << "WARNING: Sprite component must have an attached Transform on entity \"" << GetEntity()->GetName() << "\"" << std::endl;
@@ -117,13 +117,8 @@ Sprite::Sprite(Sprite const& other) :
 
         // Stuff they both have in common: transform and opacity
         glm::mat4 mat(1);   // it can still draw without parent and transform
-        if (GetEntity())
+        if (m_Transform)
         {
-            if ( m_Transform == nullptr)
-            {
-                m_Transform = GetEntity()->GetComponent< Transform >();
-            }
-
             mat = m_Transform->GetMatrix();
 
             // world or UI space

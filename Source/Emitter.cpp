@@ -72,9 +72,12 @@ void Emitter::OnInit()
     m_Urange = cs->GetUniformID("range");
     m_Uoldest = cs->GetUniformID("oldest");
     m_UparentPos = cs->GetUniformID("parentPos");
+    m_Ulocal = cs->GetUniformID("local");
 
     // parent transform
-    m_Transform.Init(GetEntity());
+    m_Transform.Init( GetEntity() );
+    if (!m_Transform)
+        m_Transform.Init( GetEntity()->GetParent() );
 }
 
 
@@ -117,6 +120,18 @@ void Emitter::Update(float dt)
         return;
     }
 
+    glUniform1i(m_Ulocal, int(m_IsLocal));
+    if (m_Transform)
+        glUniform2fv(m_UparentPos, 1, &m_Transform->GetTranslation().x);
+    else
+    {
+        m_Transform.Init(GetEntity());
+        if (!m_Transform)
+            m_Transform.Init(GetEntity()->GetParent());
+    }
+
+
+
     // --------------- TIMING -------------- //
     
     if (m_Continuous)
@@ -156,13 +171,6 @@ void Emitter::Update(float dt)
 
         glUniform2i(m_Urange, m_CurrentIndex, m_CurrentIndex+count);
 
-
-        if (m_Transform)
-            glUniform2fv(m_UparentPos, 1, &m_Transform->GetTranslation().x);
-        else
-            m_Transform = GetEntity()->GetComponent<Transform>();
-
-
         m_CurrentIndex += count;
     }
     else
@@ -184,6 +192,7 @@ void Emitter::Inspector()
 {
     bool initChanged = false;
 
+    ImGui::Checkbox("Local translation", &m_IsLocal);
     ImGui::Checkbox("Continuous", &m_Continuous);
     if (!m_Continuous)
     {
@@ -291,6 +300,13 @@ void Emitter::readContinuous(nlohmann::ordered_json const& data)
     m_Continuous = Stream::Read< bool >(data);
 }
 
+/// @brief          Reads in the boolean for local position flag 
+/// @param  data    JSON data to read
+void Emitter::readLocal(nlohmann::ordered_json const& data)
+{
+    m_IsLocal= Stream::Read< bool >(data);
+}
+
 /// @brief          Reads in the value for particles per second
 /// @param  data    JSON data to read
 void Emitter::readPPS(nlohmann::ordered_json const& data)
@@ -347,7 +363,8 @@ ReadMethodMap< Emitter > const Emitter::s_ReadMethods = {
     {"PPS"       , &readPPS         },
     {"Delay"     , &readDelay       },
     {"Max"       , &readMax         },
-    {"EmitData"  , &readData        }
+    {"EmitData"  , &readData        },
+    {"IsLocal"   , &readLocal       }
 };
 
 
@@ -363,6 +380,7 @@ nlohmann::ordered_json Emitter::Write() const
     data["Delay"] = m_Delay;
     data["Max"] = m_BufferSize;
     data["Continuous"] = m_Continuous;
+    data["IsLocal"] = m_IsLocal;
 
     // ordered consistently with ParticleSystem::EmitData
     nlohmann::ordered_json& emitData = data[ "EmitData" ];
