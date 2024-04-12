@@ -185,7 +185,8 @@ private: // Members
         "BehaviorSystem<EditorCameraController>",
         "PathfindSystem",
         "BehaviorSystem<Generator>",
-        "ControlPromptSystem"
+        "ControlPromptSystem",
+        "LightingSystem"
     };
 
 //-----------------------------------------------------------------------------

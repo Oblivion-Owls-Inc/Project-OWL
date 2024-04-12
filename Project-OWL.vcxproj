@@ -292,12 +292,14 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\BuildingSelectionButton.cpp" />
     <ClCompile Include="Source\BulletAoe.cpp" />
     <ClCompile Include="Source\BulletAoePulse.cpp" />
+    <ClCompile Include="Source\Building.cpp" />
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
     <ClCompile Include="Source\ComponentReference.t.h" />
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\ControlPrompt.cpp" />
     <ClCompile Include="Source\ControlPromptSystem.cpp" />
     <ClCompile Include="Source\DestructibleTilemap.cpp" />
+    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EntityReference.cpp" />
     <ClCompile Include="Source\EventSystem.cpp" />
@@ -371,6 +373,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
     <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\JetpackBoost.cpp" />
     <ClCompile Include="Source\LaserUpgrade.cpp" />
     <ClCompile Include="Source\Lifetime.cpp" />
     <ClCompile Include="Source\Light.cpp" />
@@ -496,9 +499,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ResourceCounterUi.cpp" />
     <ClCompile Include="Source\ResourcesUiManager.cpp" />
     <ClCompile Include="Source\SceneChangeButton.cpp" />
+    <ClCompile Include="Source\SceneTransition.cpp" />
+    <ClCompile Include="Source\SettingsManager.cpp" />
     <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
-    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
@@ -535,20 +539,24 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\WavesInspector.cpp" />
     <ClCompile Include="Source\TileInfoSystem.cpp" />
+    <ClCompile Include="Source\WindowFocusEvent.cpp" />
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\BuildingSelectionButton.h" />
     <ClInclude Include="Source\ControlPrompt.h" />
     <ClInclude Include="Source\ControlPromptSystem.h" />
+    <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\InputAction.h" />
     <ClInclude Include="Source\BulletAoePulse.h" />
     <ClInclude Include="Source\Interactable.h" />
     <ClInclude Include="Source\Interactor.h" />
+    <ClInclude Include="Source\JetpackBoost.h" />
     <ClInclude Include="Source\LaserUpgrade.h" />
     <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Building.h" />
     <ClInclude Include="Source\DestructibleTilemap.h" />
     <ClInclude Include="Source\BulletAoe.h" />
     <ClInclude Include="Source\Popup.h" />
@@ -576,8 +584,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Nineslice.h" />
     <ClInclude Include="Source\ResourcesUiManager.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
+    <ClInclude Include="Source\SceneTransition.h" />
+    <ClInclude Include="Source\SettingsManager.h" />
     <ClInclude Include="Source\SplashScreenController.h" />
-    <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\TurretUnlockUpgrade.h" />
@@ -667,12 +676,14 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\UiSlider.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
+    <ClInclude Include="Source\WindowFocusEvent.h" />
     <ClInclude Include="Source\WinState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\ButtonPromptMappings\ButtonPrompts.json" />
     <None Include="Data\EngineConfig.json" />
     <None Include="Data\Scenes\AlphaScene.scene.json" />
+    <None Include="Data\Scenes\BetaScene.scene.json" />
     <None Include="Data\Scenes\collisionTest.scene.json" />
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
@@ -681,6 +692,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\MapTest.scene.json" />
     <None Include="Data\Scenes\Prototype v3.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\Scenes\Settings.scene.json" />
     <None Include="Data\Scenes\SplashScreen.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\shaders\nineslice.frag" />

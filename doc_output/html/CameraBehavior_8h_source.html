@@ -126,7 +126,7 @@ $(function() {
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt; Camera &gt;</a> m_Cam;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">float</span> m_xBounds[2] = {}, m_yBounds[2] = {};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::array&lt; float, 2 &gt; m_xBounds = {}, m_yBounds = {};</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">float</span> m_Factor = 1.0f;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
@@ -148,17 +148,19 @@ $(function() {
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> readYBounds(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classCameraBehavior.html#a598b323d5ae3d643f0d1a8ca03c082be">  113</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classCameraBehavior.html#a598b323d5ae3d643f0d1a8ca03c082be">GetReadMethods</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classCameraBehavior.html#ae730624674aa8be2cdabf60378ead03a">Write</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">void</span> readFactor( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classCameraBehavior.html#a598b323d5ae3d643f0d1a8ca03c082be">  117</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classCameraBehavior.html#a598b323d5ae3d643f0d1a8ca03c082be">GetReadMethods</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classCameraBehavior.html#ae730624674aa8be2cdabf60378ead03a">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
 <div class="ttc" id="aBehavior_8h_html"><div class="ttname"><a href="Behavior_8h.html">Behavior.h</a></div><div class="ttdoc">Virtual behavior component header.</div></div>
 <div class="ttc" id="aCamera_8h_html"><div class="ttname"><a href="Camera_8h.html">Camera.h</a></div><div class="ttdoc">Camera component for rendering.</div></div>
 <div class="ttc" id="aComponentReference_8h_html"><div class="ttname"><a href="ComponentReference_8h.html">ComponentReference.h</a></div><div class="ttdoc">a reference to a component in the scene</div></div>
@@ -167,8 +169,8 @@ $(function() {
 <div class="ttc" id="aclassCameraBehavior_html"><div class="ttname"><a href="classCameraBehavior.html">CameraBehavior</a></div><div class="ttdef"><b>Definition:</b> CameraBehavior.h:18</div></div>
 <div class="ttc" id="aclassCameraBehavior_html_a06622f6be9e71fbb5dd9ffd11e824df3"><div class="ttname"><a href="classCameraBehavior.html#a06622f6be9e71fbb5dd9ffd11e824df3">CameraBehavior::Clone</a></div><div class="ttdeci">CameraBehavior * Clone() const override</div><div class="ttdoc">Returns copy of this behavior.</div><div class="ttdef"><b>Definition:</b> CameraBehavior.cpp:26</div></div>
 <div class="ttc" id="aclassCameraBehavior_html_a3fbda2b766dba1e3a396f88383b25855"><div class="ttname"><a href="classCameraBehavior.html#a3fbda2b766dba1e3a396f88383b25855">CameraBehavior::CameraBehavior</a></div><div class="ttdeci">CameraBehavior()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> CameraBehavior.cpp:23</div></div>
-<div class="ttc" id="aclassCameraBehavior_html_a598b323d5ae3d643f0d1a8ca03c082be"><div class="ttname"><a href="classCameraBehavior.html#a598b323d5ae3d643f0d1a8ca03c082be">CameraBehavior::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of read methods for this Component</div><div class="ttdef"><b>Definition:</b> CameraBehavior.h:113</div></div>
-<div class="ttc" id="aclassCameraBehavior_html_ae730624674aa8be2cdabf60378ead03a"><div class="ttname"><a href="classCameraBehavior.html#ae730624674aa8be2cdabf60378ead03a">CameraBehavior::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all CameraBehavior component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> CameraBehavior.cpp:161</div></div>
+<div class="ttc" id="aclassCameraBehavior_html_a598b323d5ae3d643f0d1a8ca03c082be"><div class="ttname"><a href="classCameraBehavior.html#a598b323d5ae3d643f0d1a8ca03c082be">CameraBehavior::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of read methods for this Component</div><div class="ttdef"><b>Definition:</b> CameraBehavior.h:117</div></div>
+<div class="ttc" id="aclassCameraBehavior_html_ae730624674aa8be2cdabf60378ead03a"><div class="ttname"><a href="classCameraBehavior.html#ae730624674aa8be2cdabf60378ead03a">CameraBehavior::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all CameraBehavior component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> CameraBehavior.cpp:174</div></div>
 <div class="ttc" id="aclassComponentReference_html"><div class="ttname"><a href="classComponentReference.html">ComponentReference&lt; Transform &gt;</a></div></div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:28</div></div>
 <div class="ttc" id="apch_8h_html"><div class="ttname"><a href="pch_8h.html">pch.h</a></div><div class="ttdoc">This is a precompiled header file.</div></div>

@@ -175,11 +175,12 @@
     /// @brief  sets up the item counters using the contents of the Inventory
     void ResourcesUiManager::setupItemCounters()
     {
-        if ( m_ResourceCounters.empty() == false )
-        {
-            Debug() << "Error: m_ResourceCounters was not empty (" << GetName() << ")" << std::endl;
-            return;
-        }
+        // this error message is outdated, since scenes can be saved mid-running now
+        // if ( m_ResourceCounters.empty() == false )
+        // {
+        //     Debug() << "Error: m_ResourceCounters was not empty (" << GetName() << ")" << std::endl;
+        //     return;
+        // }
 
         for ( ItemStack const& itemStack : m_Inventory->GetItems() )
         {

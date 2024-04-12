@@ -1,8 +1,10 @@
 /*********************************************************************
-* \file   CameraBehavior.h
-* \brief  Camera that smoothly follows specified entity.
+* \file         CameraBehavior.h
+* \author       Eli Tsereteli
+* \date         April 2024
+* \copyright    Copyright (c) 2023 Digipen Institute of Technology
 * 
-* \author Eli Tsereteli
+* \brief        Makes camera smoothly follow specified entity.
 *********************************************************************/
 #pragma once
 
@@ -40,7 +42,7 @@ private:
     virtual void OnInit() override;
 
     /// @brief  Performs the smooth following
-    virtual void OnUpdate(float dt) override;
+    virtual void OnFixedUpdate() override;
 
     /// @brief  Removes itself from behavior system
     virtual void OnExit() override;
@@ -70,7 +72,7 @@ private:
     ///          dimensions don't exceed it). 
     ///          If camera dimensions exceed bounds, it will always be centered.
     ///          If bound[0] == bound[1], it's unbounded.
-    float m_xBounds[2] = {}, m_yBounds[2] = {};
+    std::array< float, 2 > m_xBounds = {}, m_yBounds = {};
 
     /// @brief   Low number - follows target slowly, does not bother centering;
     ///          High number - snaps firmly to target
@@ -104,6 +106,10 @@ private:
     /// @brief		 Reads the vertical bounds
     /// @param data  json data to read
     void readYBounds(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the follow factor
+    /// @param  data    the JSON data to read from
+    void readFactor( nlohmann::ordered_json const& data );
 
 
 public:

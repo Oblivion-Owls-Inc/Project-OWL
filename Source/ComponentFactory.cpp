@@ -76,7 +76,12 @@
 #include "Interactable.h"
 #include "Interactor.h"
 #include "LaserUpgrade.h"
+#include "SettingsManager.h"
 #include "TurretUnlockUpgrade.h"
+#include "SceneTransition.h"
+#include "Building.h"
+#include "WindowFocusEvent.h"
+#include "JetpackBoost.h"
 
 
 //-----------------------------------------------------------------------------
@@ -235,7 +240,12 @@
         { "Interactable"           , ComponentInfo< Interactable            >() },
         { "Interactor"             , ComponentInfo< Interactor              >() },
         { "LaserUpgrade"           , ComponentInfo< LaserUpgrade            >() },
-        { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() }
+        { "TurretUnlockUpgrade"    , ComponentInfo< TurretUnlockUpgrade     >() },
+        { "SceneTransition"        , ComponentInfo< SceneTransition         >() },
+        { "SettingsManager"        , ComponentInfo< SettingsManager         >() },
+        { "Building"               , ComponentInfo< Building                >() },
+        { "WindowFocusEvent"       , ComponentInfo< WindowFocusEvent        >() },
+        { "JetpackBoost"           , ComponentInfo< JetpackBoost            >() }
     };
 
 //-----------------------------------------------------------------------------

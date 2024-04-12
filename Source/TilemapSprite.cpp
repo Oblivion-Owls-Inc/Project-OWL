@@ -164,7 +164,7 @@ void TilemapSprite::OnExit()
 ///                       just NOT allow transform-less rendering?...
 void TilemapSprite::Draw()
 {
-    if (!m_Tilemap || !m_Texture)
+    if (!m_Tilemap || !m_Texture || !m_Transform)
         return;
 
     Mesh const* mesh = m_Texture->GetMesh();
@@ -186,8 +186,8 @@ void TilemapSprite::Draw()
 
     // Calculate matrix and stride based on parent't transform
 
-    glm::vec2 stridex = {tileScale.x,0};  // right vector (x stride)
-    glm::vec2 stridey = {0,-tileScale.y}; // down vector (y stride)
+    glm::vec2 stridex = {tileScale.x - 0.00001f,0};  // right vector (x stride)
+    glm::vec2 stridey = {0,-tileScale.y + 0.00001f}; // down vector (y stride) (needs slight adjustment to avoid tearing)
 
     if (parent && parent->GetComponent<Transform>())
     {

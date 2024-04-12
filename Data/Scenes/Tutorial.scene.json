@@ -51,6 +51,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "TutorialPromptTexture": {
                 "Filepath": "Data/Textures/Tutorial/DigDeeper_TutorialTwo_Update1.png",
                 "SheetDimensions": [
@@ -79,6 +91,152 @@
         "TransformAnimations": null,
         "Animations": null,
         "Archetypes": {
+            "ContinueButton": {
+                "Name": "ContinueButton",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "ButtonReleasedSound"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": false,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
+                    },
+                    "Popup": {
+                        "PopupEntity": {
+                            "AssetName": "TutorialTwo"
+                        },
+                        "PopupButton": {
+                            "ActionName": ""
+                        },
+                        "EventName": "Continue"
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Play"
+                        }
+                    },
+                    "UiButton": {
+                        "ClickEventName": "Continue",
+                        "ShouldActivateOnPress": false,
+                        "IdleFrame": 0,
+                        "HoveredFrame": 0,
+                        "DownFrame": 0,
+                        "PressSound": {
+                            "AssetName": "ButtonPressedSound"
+                        },
+                        "ReleaseSound": {
+                            "AssetName": "ButtonReleasedSound"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            0.10000000149011612
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            -2.299999952316284
+                        ],
+                        "FrameSize": [
+                            2.5999999046325684,
+                            0.6499999761581421
+                        ],
+                        "SizeTypes": [
+                            "Absolute",
+                            "Absolute"
+                        ]
+                    }
+                },
+                "Children": [
+                    {
+                        "Name": "Text",
+                        "Components": {
+                            "Tilemap<int>": {
+                                "Dimensions": [
+                                    10,
+                                    1
+                                ],
+                                "TileScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "TileData": [
+                                    35,
+                                    79,
+                                    78,
+                                    84,
+                                    73,
+                                    78,
+                                    85,
+                                    69,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "Text": {
+                                "Text": "Continue"
+                            },
+                            "TilemapSprite": {
+                                "Layer": 10,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "FontSheet"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.5,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    -0.8399999737739563,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    -1.7000000476837158,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.10000000149011612,
+                                    0.5799999833106995
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    }
+                ]
+            },
             "Text": {
                 "Name": "Text",
                 "Components": {
@@ -205,35 +363,25 @@
                             "AssetName": "TutorialPromptTexture"
                         }
                     },
-                    "UiElement": {
-                        "Anchor": [
+                    "Transform": {
+                        "Translation": [
                             0.0,
-                            0.1599999964237213
+                            0.30000001192092896
                         ],
-                        "Pivot": [
-                            0.0,
-                            0.0
+                        "Rotation": 0.0,
+                        "Scale": [
+                            3.799999952316284,
+                            2.4000000953674316
                         ],
-                        "Offset": [
-                            0.0,
-                            0.0
-                        ],
-                        "FrameSize": [
-                            1.2999999523162842,
-                            0.7799999713897705
-                        ],
-                        "SizeTypes": [
-                            "RelativeToHeight",
-                            "RelativeToHeight"
-                        ]
+                        "IsDiegetic": true
                     }
                 },
                 "Children": null
             }
         }
     },
-    "Entities": {
-        "Camera": {
+    "Entities": [
+        {
             "Name": "Camera",
             "Components": {
                 "Camera": {
@@ -255,7 +403,7 @@
             },
             "Children": null
         },
-        "ContinueButton": {
+        {
             "Name": "ContinueButton",
             "Components": {
                 "AudioPlayer": {
@@ -299,8 +447,8 @@
                     "ClickEventName": "Continue",
                     "ShouldActivateOnPress": false,
                     "IdleFrame": 0,
-                    "HoveredFrame": 0,
-                    "DownFrame": 0,
+                    "HoveredFrame": 1,
+                    "DownFrame": 2,
                     "PressSound": {
                         "AssetName": "ButtonPressedSound"
                     },
@@ -310,8 +458,8 @@
                 },
                 "UiElement": {
                     "Anchor": [
-                        0.4000000059604645,
-                        -0.800000011920929
+                        0.0,
+                        0.17000000178813934
                     ],
                     "Pivot": [
                         0.0,
@@ -319,15 +467,15 @@
                     ],
                     "Offset": [
                         0.0,
-                        0.0
+                        -2.299999952316284
                     ],
                     "FrameSize": [
-                        0.4000000059604645,
-                        0.10000000149011612
+                        2.5999999046325684,
+                        0.6499999761581421
                     ],
                     "SizeTypes": [
-                        "RelativeToHeight",
-                        "RelativeToHeight"
+                        "Absolute",
+                        "Absolute"
                     ]
                 }
             },
@@ -374,15 +522,15 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                -0.7400000095367432,
+                                0.5,
                                 0.0
                             ],
                             "Pivot": [
-                                0.0,
+                                -0.8399999737739563,
                                 0.0
                             ],
                             "Offset": [
-                                0.0,
+                                -1.7000000476837158,
                                 0.0
                             ],
                             "FrameSize": [
@@ -399,7 +547,7 @@
                 }
             ]
         },
-        "Tutorial": {
+        {
             "Name": "Tutorial",
             "Components": {
                 "Sprite": {
@@ -416,22 +564,15 @@
                         "AssetName": "Tutu test"
                     }
                 },
-                "UiElement": {
-                    "Anchor": [
-                        0.0,
-                        0.1599999964237213
+                "Transform": {
+                    "Translation": [
+                        0.028153419494628906,
+                        0.619369387626648
                     ],
-                    "Pivot": [
-                        0.0,
-                        0.0
-                    ],
-                    "Offset": [
-                        0.0,
-                        0.0
-                    ],
-                    "FrameSize": [
-                        1.2999999523162842,
-                        0.7799999713897705
+                    "Rotation": 0.0,
+                    "Scale": [
+                        3.799999952316284,
+                        2.4000000953674316
                     ],
                     "SizeTypes": [
                         "RelativeToHeight",
@@ -441,8 +582,8 @@
             },
             "Children": null
         },
-        "MenuButton": {
-            "Name": "MenuButton",
+        {
+            "Name": "ExitButton",
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
@@ -459,8 +600,12 @@
                     "ChannelGroupName": ""
                 },
                 "SceneChangeButton": {
-                    "SceneName": "MainMenu",
-                    "EventName": "Play"
+                    "SceneName": "Previous",
+                    "EventName": "Exit",
+                    "SceneTransitionEntity": {
+                        "EntityName": "SceneChanger"
+                    },
+                    "PreviousSceneFlag": false
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -477,11 +622,11 @@
                     }
                 },
                 "UiButton": {
-                    "ClickEventName": "Play",
+                    "ClickEventName": "Exit",
                     "ShouldActivateOnPress": false,
                     "IdleFrame": 0,
-                    "HoveredFrame": 0,
-                    "DownFrame": 0,
+                    "HoveredFrame": 1,
+                    "DownFrame": 2,
                     "PressSound": {
                         "AssetName": "ButtonPressedSound"
                     },
@@ -491,8 +636,8 @@
                 },
                 "UiElement": {
                     "Anchor": [
-                        -0.4000000059604645,
-                        -0.800000011920929
+                        0.0,
+                        -0.07000000029802322
                     ],
                     "Pivot": [
                         0.0,
@@ -500,15 +645,15 @@
                     ],
                     "Offset": [
                         0.0,
-                        0.0
+                        -2.299999952316284
                     ],
                     "FrameSize": [
-                        0.4000000059604645,
-                        0.10000000149011612
+                        2.5999999046325684,
+                        0.6499999761581421
                     ],
                     "SizeTypes": [
-                        "RelativeToHeight",
-                        "RelativeToHeight"
+                        "Absolute",
+                        "Absolute"
                     ]
                 }
             },
@@ -526,14 +671,14 @@
                                 1.0
                             ],
                             "TileData": [
-                                45,
-                                69,
-                                78,
-                                85
+                                37,
+                                88,
+                                73,
+                                84
                             ]
                         },
                         "Text": {
-                            "Text": "Menu"
+                            "Text": "Exit"
                         },
                         "TilemapSprite": {
                             "Layer": 10,
@@ -551,15 +696,15 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                -0.3499999940395355,
+                                0.5,
                                 0.0
                             ],
                             "Pivot": [
-                                0.0,
+                                -0.8399999737739563,
                                 0.0
                             ],
                             "Offset": [
-                                0.0,
+                                -1.2000000476837158,
                                 0.0
                             ],
                             "FrameSize": [
@@ -575,10 +720,55 @@
                     "Children": null
                 }
             ]
+        },
+        {
+            "Name": "SceneChanger",
+            "Components": {
+                "SceneTransition": {
+                    "TransitionDuration": 0.25,
+                    "NextSceneName": ""
+                },
+                "Sprite": {
+                    "Layer": 1000,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 0.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Rectangle"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
-        "AlphaScene",
-        "Settings"
+        "MainMenu"
     ]
 }

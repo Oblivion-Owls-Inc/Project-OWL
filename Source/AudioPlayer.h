@@ -66,7 +66,7 @@ public: // accessors
 
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void SetSound( AssetReference< Sound > const& sound );
+    void SetSound( Sound const* sound );
 
 
     /// @brief  gets whether this AudioPlayer is currently playing anything
@@ -223,6 +223,9 @@ private: // members
     /// @brief  The channel currently being used by this AudioPlayer
     FMOD::Channel* m_Channel = nullptr;
 
+    /// @brief  whether to stay paused when the window regains focus
+    bool m_KeepPausedOnFocus = false;
+
 
     /// @brief  callbacks to call whenever a sound finishes playing
     std::map< unsigned, std::function< void() > > m_OnSoundCompleteCallbacks = {};
@@ -246,6 +249,10 @@ private: // methods
         void* commandData1,
         void* commandData2
     );
+
+    /// @brief  callback to call when the window focus changes
+    /// @param  focused whether the window is focused
+    void onWindowFocusChangedCallback( bool focused );
 
 
     /// @brief  sets the spatial attributes of the current channel
