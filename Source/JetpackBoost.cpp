@@ -46,6 +46,26 @@ void JetpackBoost::OnInit()
 
     // init:
 
+    m_PTransform.SetOnConnectCallback( [ this ]()
+    {
+        // execute this here to prevent using old translation
+        m_PTransform->AddOnTransformChangedCallback(GetId(), [ this ]()
+        {
+            // which way is player facing
+            float xscale = m_PTransform->GetScale().x;
+
+            // align particles with jetpack
+            glm::mat4 parentt = m_PTransform->GetMatrix();
+            glm::vec2 offset = parentt * m_Offset;
+            m_Transform->SetTranslation(offset);
+        } );
+    } );
+
+    m_PTransform.SetOnDisconnectCallback([this]()
+    {
+        m_PTransform->RemoveOnTransformChangedCallback( GetId() );
+    } );
+
     //  own components
     m_Transform.Init( GetEntity() );
     m_Flame.Init( GetEntity() );
@@ -84,9 +104,6 @@ void JetpackBoost::OnUpdate(float dt)
     if (!m_Initialized)
         return;
 
-    // which way is player facing
-    float xscale = m_PTransform->GetScale().x;
-
     // goin up
     if (m_InputYAxis->GetAxis() > 0.0f)
     {
@@ -114,17 +131,15 @@ void JetpackBoost::OnUpdate(float dt)
         else                    m_Angle = 0.0f;
     }
 
+    // which way is player facing
+    float xscale = m_PTransform->GetScale().x;
+
     // rotate player and particle direction
     float angle = m_Angle * xscale;
-    m_PTransform->SetRotation( angle );
+    m_PTransform->SetRotation(angle);
     ParticleSystem::EmitData fdata = m_Flame->GetEmitData();
     fdata.direction = downAngle + angle;
     m_Flame->SetEmitData(fdata);
-
-    // align particles with jetpack
-    glm::mat4 parentt = m_PTransform->GetMatrix();
-    glm::vec2 offset = parentt * m_Offset;
-    m_Transform->SetTranslation(offset);
 }
 
 
