@@ -90,6 +90,7 @@ private:
 //-----------------------------------------------------------------------------
 private:
     bool m_Continuous = true;   /// @brief  If true, emits automatically.
+    bool m_IsLocal = false;     /// @brief  If true, particles follow parent
     float m_PPS = 0.0f;         /// @brief  Particles per second
     float m_Delay = 0.0f;       /// @brief  Delay between emissions.
     float m_DelayTimer = 0.0f;  /// @brief  Timer for the delay
@@ -122,7 +123,8 @@ private:
     /// @brief   Cached uniform locations
     unsigned int m_Urange = -1,
                  m_Uoldest = -1,
-                 m_UparentPos = -1;
+                 m_UparentPos = -1,
+                 m_Ulocal = -1;
 
 
 //-----------------------------------------------------------------------------
@@ -143,6 +145,10 @@ private:
     /// @brief          Reads in the boolean for continuous (active) flag 
     /// @param  data    JSON data to read
     void readContinuous(nlohmann::ordered_json const& data);
+
+    /// @brief          Reads in the boolean for local flag
+    /// @param  data    JSON data to read
+    void readLocal(nlohmann::ordered_json const& data);
 
     /// @brief          Reads in the value for particles per second
     /// @param  data    JSON data to read

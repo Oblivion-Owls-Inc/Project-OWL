@@ -1,8 +1,10 @@
 /*********************************************************************
-* \file   CameraBehavior.cpp
-* \brief  Camera that smoothly follows specified entity.
+* \file         CameraBehavior.cpp
+* \author       Eli Tsereteli
+* \date         April 2024
+* \copyright    Copyright (c) 2023 Digipen Institute of Technology
 *
-* \author Eli Tsereteli
+* \brief        Makes camera smoothly follow specified entity.
 *********************************************************************/
 
 
@@ -14,6 +16,7 @@
 #include "EntitySystem.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "Engine.h"
 
 #include "InputSystem.h"
 
@@ -64,8 +67,10 @@ void CameraBehavior::OnExit()
 
 
 /// @brief  Performs the smooth following
-void CameraBehavior::OnUpdate(float dt)
+void CameraBehavior::OnFixedUpdate()
 {
+	float dt = GameEngine()->GetFixedFrameDuration();
+
 	if (!m_Cam || !m_Transform || !m_ParentTransform)
 		return;
 
