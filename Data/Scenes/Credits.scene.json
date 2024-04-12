@@ -423,6 +423,28 @@
                             "AllowMultipleSounds": false,
                             "ChannelGroupName": ""
                         },
+                        "CircleCollider": {
+                            "Radius": 2.5,
+                            "CollisionLayer": 2,
+                            "CollisionLayerFlags": {
+                                "Flags": 1
+                            }
+                        },
+                        "RigidBody": {
+                            "Velocity": [
+                                0.0,
+                                2.0
+                            ],
+                            "Acceleration": [
+                                0.0,
+                                0.0
+                            ],
+                            "RotationalVelocity": 0.0,
+                            "Mass": 1.0,
+                            "Restitution": 0.0,
+                            "Friction": 0.0,
+                            "Drag": 0.0
+                        },
                         "SceneChangeButton": {
                             "SceneName": "MainMenu",
                             "EventName": "MainMenu",
@@ -445,6 +467,18 @@
                                 "AssetName": "MainMenuTexture"
                             }
                         },
+                        "Transform": {
+                            "Translation": [
+                                0.2735786437988281,
+                                1.7000000476837158
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                13.0,
+                                3.700000047683716
+                            ],
+                            "IsDiegetic": true
+                        },
                         "UiButton": {
                             "ClickEventName": "MainMenu",
                             "ShouldActivateOnPress": false,
@@ -460,28 +494,6 @@
                             "HoverSound": {
                                 "AssetName": ""
                             }
-                        },
-                        "UiElement": {
-                            "Anchor": [
-                                0.0,
-                                -1.0
-                            ],
-                            "Pivot": [
-                                0.0,
-                                0.0
-                            ],
-                            "Offset": [
-                                0.0,
-                                0.0
-                            ],
-                            "FrameSize": [
-                                3.2899999618530273,
-                                0.6600000262260437
-                            ],
-                            "SizeTypes": [
-                                "Absolute",
-                                "Absolute"
-                            ]
                         }
                     },
                     "Children": [
@@ -509,6 +521,28 @@
                                         85
                                     ]
                                 },
+                                "CircleCollider": {
+                                    "Radius": 2.5,
+                                    "CollisionLayer": 2,
+                                    "CollisionLayerFlags": {
+                                        "Flags": 1
+                                    }
+                                },
+                                "RigidBody": {
+                                    "Velocity": [
+                                        0.0,
+                                        2.0
+                                    ],
+                                    "Acceleration": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "RotationalVelocity": 0.0,
+                                    "Mass": 1.0,
+                                    "Restitution": 0.0,
+                                    "Friction": 0.0,
+                                    "Drag": 0.0
+                                },
                                 "Text": {
                                     "Text": "Main Menu"
                                 },
@@ -526,27 +560,17 @@
                                         "AssetName": "FontSheet"
                                     }
                                 },
-                                "UiElement": {
-                                    "Anchor": [
-                                        -0.8399999737739563,
-                                        0.0
+                                "Transform": {
+                                    "Translation": [
+                                        -3.2282142639160156,
+                                        1.6232261657714844
                                     ],
-                                    "Pivot": [
-                                        0.0,
-                                        0.0
+                                    "Rotation": 0.0,
+                                    "Scale": [
+                                        1.5,
+                                        2.0
                                     ],
-                                    "Offset": [
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "FrameSize": [
-                                        0.6669999957084656,
-                                        0.6669999957084656
-                                    ],
-                                    "SizeTypes": [
-                                        "RelativeToHeight",
-                                        "RelativeToHeight"
-                                    ]
+                                    "IsDiegetic": true
                                 }
                             },
                             "Children": null
@@ -570,6 +594,28 @@
                             "AllowMultipleSounds": false,
                             "ChannelGroupName": ""
                         },
+                        "CircleCollider": {
+                            "Radius": 8.5,
+                            "CollisionLayer": 2,
+                            "CollisionLayerFlags": {
+                                "Flags": 1
+                            }
+                        },
+                        "RigidBody": {
+                            "Velocity": [
+                                0.0,
+                                2.0
+                            ],
+                            "Acceleration": [
+                                0.0,
+                                0.0
+                            ],
+                            "RotationalVelocity": 0.0,
+                            "Mass": 1.0,
+                            "Restitution": 0.0,
+                            "Friction": 0.0,
+                            "Drag": 0.0
+                        },
                         "SceneChangeButton": {
                             "SceneName": "BetaScene",
                             "EventName": "PlayAgain",
@@ -592,6 +638,18 @@
                                 "AssetName": "MainMenuTexture"
                             }
                         },
+                        "Transform": {
+                            "Translation": [
+                                0.09119224548339844,
+                                -4.359002113342285
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                13.0,
+                                3.700000047683716
+                            ],
+                            "IsDiegetic": true
+                        },
                         "UiButton": {
                             "ClickEventName": "PlayAgain",
                             "ShouldActivateOnPress": false,
@@ -607,28 +665,6 @@
                             "HoverSound": {
                                 "AssetName": ""
                             }
-                        },
-                        "UiElement": {
-                            "Anchor": [
-                                0.0,
-                                -1.0
-                            ],
-                            "Pivot": [
-                                0.0,
-                                0.0
-                            ],
-                            "Offset": [
-                                0.0,
-                                0.0
-                            ],
-                            "FrameSize": [
-                                3.2899999618530273,
-                                0.6600000262260437
-                            ],
-                            "SizeTypes": [
-                                "Absolute",
-                                "Absolute"
-                            ]
                         }
                     },
                     "Children": [
@@ -657,6 +693,28 @@
                                         78
                                     ]
                                 },
+                                "CircleCollider": {
+                                    "Radius": 8.5,
+                                    "CollisionLayer": 2,
+                                    "CollisionLayerFlags": {
+                                        "Flags": 1
+                                    }
+                                },
+                                "RigidBody": {
+                                    "Velocity": [
+                                        0.0,
+                                        2.0
+                                    ],
+                                    "Acceleration": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "RotationalVelocity": 0.0,
+                                    "Mass": 1.0,
+                                    "Restitution": 0.0,
+                                    "Friction": 0.0,
+                                    "Drag": 0.0
+                                },
                                 "Text": {
                                     "Text": "Play Again"
                                 },
@@ -674,27 +732,17 @@
                                         "AssetName": "FontSheet"
                                     }
                                 },
-                                "UiElement": {
-                                    "Anchor": [
-                                        -0.9399999976158142,
-                                        0.0
+                                "Transform": {
+                                    "Translation": [
+                                        -4.614340782165527,
+                                        -4.4319562911987305
                                     ],
-                                    "Pivot": [
-                                        0.0,
-                                        0.0
+                                    "Rotation": 0.0,
+                                    "Scale": [
+                                        1.5,
+                                        2.0
                                     ],
-                                    "Offset": [
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "FrameSize": [
-                                        0.6669999957084656,
-                                        0.6669999957084656
-                                    ],
-                                    "SizeTypes": [
-                                        "RelativeToHeight",
-                                        "RelativeToHeight"
-                                    ]
+                                    "IsDiegetic": true
                                 }
                             },
                             "Children": null
@@ -796,6 +844,58 @@
                     "Children": null
                 }
             ]
+        },
+        {
+            "Name": "InvisibleCollider",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        3,
+                        4
+                    ],
+                    "TileScale": [
+                        17.5,
+                        1.0
+                    ],
+                    "TileData": [
+                        -1,
+                        -1,
+                        -1,
+                        -1,
+                        0,
+                        -1,
+                        -1,
+                        -1,
+                        -1,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "StaticBody": {
+                    "Restitution": 0.0,
+                    "Friction": 0.0
+                },
+                "TilemapCollider": {
+                    "CollisionLayer": 0,
+                    "CollisionLayerFlags": {
+                        "Flags": 4
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -29.488000869750977,
+                        8.180000305175781
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
         }
     ],
     "PreparsedScenes": [

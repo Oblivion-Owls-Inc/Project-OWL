@@ -3,7 +3,7 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1073,
+                1025,
                 587
             ],
             "WindowName": "Dig Deeper",
@@ -242,6 +242,22 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "SkipSplashScreen",
+                    "KeyboardButtons": [
+                        257,
+                        256
+                    ],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
@@ -269,8 +285,8 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": true,
-            "Layer": 3
+            "Enabled": false,
+            "Layer": 0
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -348,7 +364,7 @@
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": true,
                 "CheatSystem": false,
-                "CollisionSystem": false,
+                "CollisionSystem": true,
                 "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,

@@ -282,6 +282,59 @@
         }
     }
 
+    /// @brief Toggles Infinite Laser Range
+    void CheatSystem::InfiniteLaserRange()
+    {
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+        {
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "Infinite Laser Range: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleMaxLaserRange == false)
+            {
+                m_PreviousLaserRange = laser->GetRange();
+                laser->SetRange(9999.0f);
+                m_ToggleMaxLaserRange = true;
+            }
+            else
+            {
+                laser->SetRange(m_PreviousLaserRange);
+                m_ToggleMaxLaserRange = false;
+            }
+        }
+    }
+
+    void CheatSystem::InfiniteLaserToughness()
+    {
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+        {
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "Infinite Laser Toughness: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleMaxLaserTougness == false)
+            {
+                m_PreviousLaserMaxToughness = laser->GetMaxToughness();
+                laser->SetMaxToughness(9999.0f);
+                m_ToggleMaxLaserTougness = true;
+            }
+            else
+            {
+                laser->SetMaxToughness(m_PreviousLaserMaxToughness);
+                m_PreviousLaserMaxToughness = false;
+            }
+        }
+    }
+
     /// @brief Kills all enemies.
     void CheatSystem::KillAllEnemies()
     {
@@ -433,9 +486,13 @@
         m_PlayerCircleCollider(nullptr),
         m_ToggleOneShotOneKill(false),
         m_TogglePlayerInfiniteHealth(false),
+        m_ToggleMaxLaserRange(false),
+        m_ToggleMaxLaserTougness(false),
         m_PreviousBaseHealth(0),
         m_PreviousPlayerHealth(0),
-        m_PreviousLaserDamage(0.0f)
+        m_PreviousLaserDamage(0.0f),
+        m_PreviousLaserRange(0.0f),
+        m_PreviousLaserMaxToughness(0.0f)
     {}
 
 
