@@ -49,6 +49,10 @@ virtual void \mbox{\hyperlink{classInteractable_a5cdd46ebcd57912d137460995bdabac
 \mbox{\Hypertarget{classInteractable_ae1b751ace24dc083db58dec1b034c511}\label{classInteractable_ae1b751ace24dc083db58dec1b034c511}} 
 virtual void \mbox{\hyperlink{classInteractable_ae1b751ace24dc083db58dec1b034c511}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classInteractable_afaa00e69966119bc878e9cf1279e5de4}{On\+Add\+Child}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$child) override
+\begin{DoxyCompactList}\small\item\em called after a child is added to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classInteractable_ad16778a09bf0db19636f1147e5f0fa8b}{On\+Remove\+Child}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$child) override
+\begin{DoxyCompactList}\small\item\em called before a child is removed from this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classInteractable_ae9fb94360cf35b956cd1cca5b9f94cf9}\label{classInteractable_ae9fb94360cf35b956cd1cca5b9f94cf9}} 
 virtual void \mbox{\hyperlink{classInteractable_ae9fb94360cf35b956cd1cca5b9f94cf9}{Inspector}} () override
 \begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classInteractable}{Interactable}} \end{DoxyCompactList}\item 
@@ -196,6 +200,44 @@ interacts with this \mbox{\hyperlink{classInteractable}{Interactable}}
 {\em interactor} & the \mbox{\hyperlink{classInteractor}{Interactor}} \mbox{\hyperlink{classComponent}{Component}} that interacted with this \mbox{\hyperlink{classInteractable}{Interactable}} \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classInteractable_afaa00e69966119bc878e9cf1279e5de4}\label{classInteractable_afaa00e69966119bc878e9cf1279e5de4}} 
+\index{Interactable@{Interactable}!OnAddChild@{OnAddChild}}
+\index{OnAddChild@{OnAddChild}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{OnAddChild()}{OnAddChild()}}
+{\footnotesize\ttfamily void Interactable\+::\+On\+Add\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called after a child is added to this \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & the child \mbox{\hyperlink{classEntity}{Entity}} that was added \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_aac47602f1a581b4989adb6fefa4940d1}{Component}}.
+
+\mbox{\Hypertarget{classInteractable_ad16778a09bf0db19636f1147e5f0fa8b}\label{classInteractable_ad16778a09bf0db19636f1147e5f0fa8b}} 
+\index{Interactable@{Interactable}!OnRemoveChild@{OnRemoveChild}}
+\index{OnRemoveChild@{OnRemoveChild}!Interactable@{Interactable}}
+\doxysubsubsection{\texorpdfstring{OnRemoveChild()}{OnRemoveChild()}}
+{\footnotesize\ttfamily void Interactable\+::\+On\+Remove\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called before a child is removed from this \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & the child that will be removed \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_a4395f6697c9fb583a226c26754478eb0}{Component}}.
+
 \mbox{\Hypertarget{classInteractable_accfbf854c4ae10afc2c9b8c1cc1a831a}\label{classInteractable_accfbf854c4ae10afc2c9b8c1cc1a831a}} 
 \index{Interactable@{Interactable}!RemoveOnInteractCallback@{RemoveOnInteractCallback}}
 \index{RemoveOnInteractCallback@{RemoveOnInteractCallback}!Interactable@{Interactable}}
