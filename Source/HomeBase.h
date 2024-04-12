@@ -110,11 +110,11 @@ private: // reading
 
     /// @brief  reads the EventNameBegin from a JSON file
     /// @param data    the JSON file to read from
-    void ReadEventName(nlohmann::ordered_json const& data);
+    void readEventNameBegin(nlohmann::ordered_json const& data);
 
     /// @brief  reads the EventNameEnd from a JSON file
     /// @param data    the JSON file to read from
-    void ReadEventNameEnd(nlohmann::ordered_json const& data);
+    void readEventNameEnd(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

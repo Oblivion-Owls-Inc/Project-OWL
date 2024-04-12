@@ -208,8 +208,6 @@ Generator::Generator(const Generator& other) :
     m_ShrinkRing      ( other.m_ShrinkRing       ),
     m_RadiusSpeed     ( other.m_RadiusSpeed      ),
     m_PowerRadius     ( other.m_PowerRadius      ),
-    m_ActivationRadius( other.m_ActivationRadius ),
-    m_Depth           ( other.m_Depth            ),
     m_GrowthRadius    ( other.m_GrowthRadius     ),
     m_WavePrefab      ( other.m_WavePrefab       )
 {}

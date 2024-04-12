@@ -14,6 +14,7 @@
 #include "Health.h"
 #include "SceneTransition.h"
 #include "ComponentSystem.h"
+#include "Generator.h"
 
 #include "SceneSystem.h"
 
@@ -79,6 +80,34 @@
 
         m_SceneTransitionEntity.SetOwnerName( GetName() );
         m_SceneTransitionEntity.Init();
+
+        /*// Set the filter function for the listener
+        m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
+        {
+            return EventNameBegin == m_EventNameBegin;
+        });
+
+        /// Set the Callback function for the listener
+        m_ListenerBegin.SetResponseFunction([&](std::string const& EventNameBegin)
+        {
+            // do thing on start
+            GetEntity()->GetComponent<Generator>()->Activate();
+        });
+
+        /// Set the filter function for the listener
+        m_ListenerEnd.SetFilterFunction([&](std::string const& EventNameEnd) -> bool
+        {
+            return EventNameEnd == m_EventNameEnd;
+        });
+
+        /// Set the Callback function for the listener
+        m_ListenerEnd.SetResponseFunction([&](std::string const& EventNameEnd)
+        {
+            // do thing on end
+        });
+
+        m_ListenerBegin.Init();
+        m_ListenerEnd.Init();*/
     }
 
     /// @brief  called once when exiting the scene
@@ -135,14 +164,14 @@
 
     /// @brief  reads the EventNameBegin from a JSON file
     /// @param data    the JSON file to read from
-    void HomeBase::ReadEventNameBegin(nlohmann::ordered_json const& data)
+    void HomeBase::readEventNameBegin(nlohmann::ordered_json const& data)
     {
         Stream::Read(m_EventNameBegin, data);
     }
 
     /// @brief  reads the EventNameEnd from a JSON file
     /// @param data    the JSON file to read from
-    void HomeBase::ReadEventNameEnd(nlohmann::ordered_json const& data)
+    void HomeBase::readEventNameEnd(nlohmann::ordered_json const& data)
     {
         Stream::Read(m_EventNameEnd, data);
     }
@@ -160,8 +189,8 @@
         static ReadMethodMap< HomeBase > const readMethods = {
             { "GameOverScene"        , &HomeBase::readGameOverSceneName     },
             { "SceneTransitionEntity", &HomeBase::readSceneTransitionEntity },
-            { "EventNameBegin"       , &readEventNameBegin                  },
-            { "EventNameEnd"         , &readEventNameEnd                    }
+            { "EventNameBegin"       , &HomeBase::readEventNameBegin        },
+            { "EventNameEnd"         , &HomeBase::readEventNameEnd          }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
