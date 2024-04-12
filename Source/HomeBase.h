@@ -11,6 +11,7 @@
 
 #include "EntityReference.h"
 #include "ComponentReference.h"
+#include "EventListener.h"
 class Health;
 class SceneTransition;
 
@@ -72,6 +73,18 @@ private: // members
     /// @brief  the Health Component attached to this Entity
     ComponentReference< Health > m_Health;
 
+    /// @brief Listener for the button click
+    EventListener<std::string> m_ListenerBegin;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameBegin;
+
+    /// @brief Listener for the button click
+    EventListener<std::string> m_ListenerEnd;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameEnd;
+
     
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -95,7 +108,14 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readSceneTransitionEntity( nlohmann::ordered_json const& data );
 
-    
+    /// @brief  reads the EventNameBegin from a JSON file
+    /// @param data    the JSON file to read from
+    void ReadEventName(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void ReadEventNameEnd(nlohmann::ordered_json const& data);
+
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------

@@ -108,6 +108,9 @@
         Scenes()->InspectorSelectScene( "game over scene", &m_GameOverSceneName );
 
         m_SceneTransitionEntity.Inspect( "scene transition entity" );
+
+        ImGui::InputText("Event Name Begin", &m_EventNameBegin);
+        ImGui::InputText("Event Name End", &m_EventNameEnd);
     }
 
 
@@ -130,6 +133,20 @@
         Stream::Read( m_SceneTransitionEntity, data );
     }
 
+    /// @brief  reads the EventNameBegin from a JSON file
+    /// @param data    the JSON file to read from
+    void HomeBase::ReadEventNameBegin(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameBegin, data);
+    }
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void HomeBase::ReadEventNameEnd(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameEnd, data);
+    }
+
     
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -142,7 +159,9 @@
     {
         static ReadMethodMap< HomeBase > const readMethods = {
             { "GameOverScene"        , &HomeBase::readGameOverSceneName     },
-            { "SceneTransitionEntity", &HomeBase::readSceneTransitionEntity }
+            { "SceneTransitionEntity", &HomeBase::readSceneTransitionEntity },
+            { "EventNameBegin"       , &readEventNameBegin                  },
+            { "EventNameEnd"         , &readEventNameEnd                    }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -158,6 +177,8 @@
 
         json[ "GameOverScene"         ] = Stream::Write( m_GameOverSceneName     );
         json[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
+        json[ "EventNameBegin"        ] = m_EventNameBegin;
+        json[ "EventNameEnd"          ] = m_EventNameEnd;
 
         return json;
     }
@@ -184,7 +205,9 @@
     HomeBase::HomeBase( HomeBase const& other ) :
         Component( other ),
         m_GameOverSceneName    ( m_GameOverSceneName ),
-        m_SceneTransitionEntity( m_SceneTransitionEntity, { &m_SceneTransition } )
+        m_SceneTransitionEntity( m_SceneTransitionEntity, { &m_SceneTransition } ),
+        m_EventNameBegin(other.m_EventNameBegin),
+        m_EventNameEnd(other.m_EventNameEnd)
     {}
 
 
