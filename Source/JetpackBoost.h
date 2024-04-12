@@ -1,8 +1,10 @@
 /*********************************************************************
-* \file   JetpackBoost.h
-* \brief  s
+* \file       JetpackBoost.h
+* \author     Eli Tsereteli
+* \date       April 2024
+* \copyright  Copyright (c) 2023 Digipen Institute of Technology
 *
-* \author Eli Tsereteli
+* \brief      Controls jetpack visuals: particles + tilt.
 *********************************************************************/
 #pragma once
 #include "Behavior.h"

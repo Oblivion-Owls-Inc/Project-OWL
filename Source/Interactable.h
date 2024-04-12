@@ -63,7 +63,6 @@ public: // accessors
     /// @param  enabled whether the Interactable can be interacted with
     void SetEnabled( bool enabled );
 
-
     /// @brief  gets the radius at which this Interactable can be interacted with
     /// @return the radius at which this Interactable can be interacted with
     float GetInteractionRadius() const;
@@ -71,7 +70,6 @@ public: // accessors
     /// @brief  sets the radius at which this Interactable can be interacted with
     /// @param  radius  the radius at which this Interactable can be interacted with
     void SetInteractionRadius( float radius );
-
 
     /// @brief  gets the Transform attached to this Interactable
     /// @return the Transform attached to this Interactable
@@ -98,6 +96,15 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  called after a child is added to this Entity
+    /// @param  child   the child Entity that was added
+    virtual void OnAddChild( Entity* child ) override;
+
+    /// @brief  called before a child is removed from this Entity
+    /// @param  child   the child that will be removed
+    virtual void OnRemoveChild( Entity* child ) override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
@@ -122,8 +129,8 @@ private: // members
     /// @brief  the Transform Component used to display the control prompt
     ComponentReference< Transform > m_PromptTransform;
 
-    /// @brief  the Entity used to display the interact control prompt
-    EntityReference m_PromptEntity = EntityReference( { &m_PromptSprite, &m_PromptTransform } );
+    // /// @brief  the Entity used to display the interact control prompt
+    // EntityReference m_PromptEntity = EntityReference( { &m_PromptSprite, &m_PromptTransform } );
 
 
     /// @brief  the Transform attached to this Interactable
@@ -175,9 +182,9 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readPromptOffset( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the Entity used to display the interact control prompt
-    /// @param  data    the JSON data to read from
-    void readPromptEntity( nlohmann::ordered_json const& data );
+    // /// @brief  reads the Entity used to display the interact control prompt
+    // /// @param  data    the JSON data to read from
+    // void readPromptEntity( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

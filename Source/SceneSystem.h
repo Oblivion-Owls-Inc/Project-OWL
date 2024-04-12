@@ -61,12 +61,18 @@ public: // accessors
     /// @return the name of the current scene
     std::string const& GetSceneName() const;
 
+    /// @brief Saves the previous scene
+    void SavePreviousScene() const;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief  The name of the current Scene
     std::string m_CurrentSceneName = "";
+
+    /// @brief Open this scene on start
+    std::string m_StartingSceneName = "";
 
     /// @brief  The name of the next Scene
     std::string m_NextSceneName = "";
@@ -131,7 +137,7 @@ private: // reading
 
     /// @brief  reads the next scene name
     /// @param  stream  the data to read from
-    void readNextSceneName( nlohmann::ordered_json const& data );
+    void readStartingSceneName( nlohmann::ordered_json const& data );
 
     /// @brief  reads the name of the autosave scene
     /// @param  stream  the data to read from

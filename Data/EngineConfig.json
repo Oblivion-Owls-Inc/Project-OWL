@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                888,
-                551
+                1850,
+                1039
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "AlphaScene",
+            "StartingSceneName": "MainMenu",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -263,15 +263,14 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
-        "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
         "ComponentSystem<Interactable>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": false,
-            "Layer": 6
+            "Enabled": true,
+            "Layer": 3
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -280,7 +279,8 @@
                 "Player",
                 "Base",
                 "Projectiles",
-                "Foreground"
+                "Foreground",
+                "Items"
             ],
             "CollisionSteps": 8,
             "GridSize": 0.25
@@ -290,15 +290,15 @@
         "CameraSystem": {},
         "RenderSystem": {
             "BackgroundColor": [
-                0.20000000298023224,
-                0.30000001192092896,
-                0.30000001192092896,
+                0.0,
+                0.0,
+                0.0,
                 1.0
             ]
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 1.0,
+            "Volume": 0.09007592499256134,
             "Groups": [
                 {
                     "Name": "Music",
@@ -307,7 +307,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 1.0,
+                    "Volume": 0.5320764183998108,
                     "Mute": false
                 },
                 {
@@ -319,7 +319,7 @@
         },
         "CheatSystem": {
             "LoseSceneName": "GameOver",
-            "RestartSceneName": "AlphaScene",
+            "RestartSceneName": "BetaScene",
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
@@ -329,7 +329,7 @@
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": true,
+                "AssetLibrary<Texture>": false,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -342,10 +342,11 @@
                 "BehaviorSystem<PlayerController>": false,
                 "BehaviorSystem<Popup>": false,
                 "BehaviorSystem<RigidBody>": false,
+                "BehaviorSystem<SceneTransition>": false,
                 "BehaviorSystem<UiButton>": false,
                 "BehaviorSystem<UiSlider>": false,
                 "BehaviorSystem<WavesBehavior>": false,
-                "CameraSystem": false,
+                "CameraSystem": true,
                 "CheatSystem": false,
                 "CollisionSystem": false,
                 "ComponentSystem<Interactable>": false,
@@ -432,6 +433,33 @@
                             {
                                 "ItemIds": [
                                     0
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    }
+                },
+                {
+                    "LootTable": {
+                        "Entries": null,
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    }
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    1
                                 ],
                                 "MinCount": 1,
                                 "MaxCount": 1,

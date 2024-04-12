@@ -51,11 +51,18 @@
     {
         m_Entity = Entities()->GetEntity( m_EntityName );
 
+        // log an error if no entity was found, and a reference is required
         if ( m_Entity == nullptr )
         {
-            Debug() << "WARNING: Could not find Entity \"" << m_EntityName
-                << "\" (EntityReference owned by Entity \"" << m_OwnerName << "\")\n" << std::endl;
-            return;
+            for ( ComponentReferenceBase* reference : m_ComponentReferences )
+            {
+                if ( reference->GetIsRequired() )
+                {
+                    Debug() << "WARNING: Could not find Entity \"" << m_EntityName
+                        << "\" (EntityReference owned by Entity \"" << m_OwnerName << "\")\n" << std::endl;
+                    return;
+                }
+            }
         }
 
         m_Entity->AddEntityReference( this );

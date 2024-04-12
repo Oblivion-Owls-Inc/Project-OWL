@@ -79,15 +79,10 @@ digraph "Source/AudioPlayer.cpp"
   Node37 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node38 [label="Component.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Component_8h.html",tooltip="Virtual component header."];
   Node38 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node38 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node39 [label="ISerializable.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ISerializable_8h.html",tooltip="interface for all serializable objects"];
-  Node39 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node36 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node44 [label="AssetReference.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$AssetReference_8h.html",tooltip="a reference to an Asset"];
-  Node44 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node36 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node54 [label="Sound.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Sound_8h.html",tooltip="Wrapper class for FMOD sounds."];
-  Node54 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node36 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node56 [label="ComponentReference.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentReference_8h.html",tooltip="a reference to a component in the scene"];
   Node56 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -99,10 +94,9 @@ digraph "Source/AudioPlayer.cpp"
   Node58 [label="RigidBody.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$RigidBody_8h_source.html",tooltip=" "];
   Node58 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node58 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node49 [label="Entity.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
+  Node49 [label="Entity.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
   Node49 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node49 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node49 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node58 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node58 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -125,4 +119,8 @@ digraph "Source/AudioPlayer.cpp"
   Node1 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node60 [label="AudioSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$AudioSystem_8h.html",tooltip="System that implements FMOD and allows the loading and playing of audio."];
   Node60 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="PlatformSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$PlatformSystem_8h.html",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit."];
+  Node61 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

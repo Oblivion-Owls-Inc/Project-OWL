@@ -1,8 +1,10 @@
 /*********************************************************************
-* \file   JetpackBoost.cpp
-* \brief  s
-*
-* \author Eli Tsereteli
+* \file       JetpackBoost.cpp
+* \author     Eli Tsereteli
+* \date       April 2024
+* \copyright  Copyright (c) 2023 Digipen Institute of Technology
+* 
+* \brief      Controls jetpack visuals: particles + tilt.
 *********************************************************************/
 
 #include "pch.h" // precompiled header has to be included first
@@ -90,7 +92,7 @@ void JetpackBoost::OnUpdate(float dt)
     {
         m_Flame->SetContinuous(true);
 
-        // tilt when trying to move left/right   TODO: velocity threshold?
+        // tilt when trying to move left/right
         if (m_InputXAxis->GetAxis())
         {
             if (m_Angle < 0.5f)     m_Angle += dt*2;
@@ -119,7 +121,15 @@ void JetpackBoost::OnUpdate(float dt)
 
     // align particles with jetpack
     glm::vec2 pos = m_PTransform->GetTranslation();
-    pos.x += xscale * 0.1f;
+    static float direction = 0.182f;
+    static float distance = 0.1f;
+    ImGui::Begin("Jetpack");
+    ImGui::DragFloat("Direction", &direction, 0.001f);
+    ImGui::DragFloat("Distance", &distance, 0.001f);
+    ImGui::DragFloat("Angle", &m_Angle);
+    ImGui::End();
+    pos.x += (std::cos(m_Angle + direction*xscale) * distance) * xscale;
+    pos.y += (std::sin(m_Angle + direction*xscale) * distance);
     m_Transform->SetTranslation(pos);
 }
 

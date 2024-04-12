@@ -121,6 +121,11 @@ void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, in
 	if (!m_Archetype || !m_Texture)
 		return;
 
+    if ( tilePos == glm::ivec2( -1 ) )
+    {
+        return;
+    }
+
 	// skip if the tile wasn't changed to empty
 	int tileId = tilemap->GetTile(tilePos);
 	if (tileId != -1)

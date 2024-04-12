@@ -205,6 +205,9 @@
         return m_CurrentSceneName;
     }
 
+    /// @brief Save the current scene as previous scene
+    void SceneSystem::SavePreviousScene() const { SaveScene("Previous"); }
+
 //-----------------------------------------------------------------------------
 // private constants
 //-----------------------------------------------------------------------------
@@ -219,6 +222,7 @@
     /// @brief  Gets called once when the engine starts
     void SceneSystem::OnInit()
     {
+        m_NextSceneName = m_StartingSceneName;
         getSceneNames();
     }
 
@@ -241,7 +245,6 @@
     /// @brief  Gets called once before the Engine closes
     void SceneSystem::OnExit()
     {
-        assert( m_CurrentSceneName != "" );
 
         exitScene();
 
@@ -264,6 +267,9 @@
             return;
         }
         SetDebugEnable( showWindow );
+
+
+        ImGui::InputText("Starting Scene", &m_StartingSceneName);
 
         // wait for thread to finish before changing preparsed scenes
         if ( m_PreparseThread.joinable() )
@@ -317,9 +323,9 @@
 
     /// @brief  reads the next scene name
     /// @param  data    the data to read from
-    void SceneSystem::readNextSceneName( nlohmann::ordered_json const& data )
+    void SceneSystem::readStartingSceneName( nlohmann::ordered_json const& data )
     {
-        m_NextSceneName = Stream::Read<std::string>( data );
+        m_StartingSceneName = Stream::Read<std::string>( data );
     }
 
     /// @brief  reads the name of the autosave scene
@@ -332,7 +338,7 @@
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< SceneSystem > const SceneSystem::s_ReadMethods = {
         { "BaseScenePath", &readBaseScenePath },
-        { "NextSceneName", &readNextSceneName },
+        { "StartingSceneName", &readStartingSceneName },
         { "AutosaveName" , &readAutosaveName  }
     };
 
@@ -342,7 +348,7 @@
         nlohmann::ordered_json json;
 
         json[ "BaseScenePath" ] = m_BaseScenePath;
-        json[ "NextSceneName" ] = m_CurrentSceneName;
+        json[ "StartingSceneName" ] = m_StartingSceneName;
         json[ "AutosaveName"  ] = m_AutosaveName;
 
         return json;

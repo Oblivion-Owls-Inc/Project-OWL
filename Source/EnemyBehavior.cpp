@@ -86,10 +86,13 @@
             }
         );
 
+        m_Reward.SetOwnerName(GetName());
+
         m_RigidBody  .Init( GetEntity() );
         m_Transform  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
         m_Health     .Init( GetEntity() );
+        m_Reward     .Init();
     }
 
     /// @brief Removes this behavior from the behavior system on exit
@@ -142,8 +145,20 @@
     {
         if (m_Health->GetHealth()->GetCurrent() <= 0)
         {
-            GetEntity()->Destroy();
+            onDeathEvent();
         }
+    }
+
+    /// @brief What to do when the enemy dies.
+    void EnemyBehavior::onDeathEvent()
+    {
+        m_RewardEntity = m_Reward->Clone();
+
+        m_RewardEntity->GetComponent<Transform>()->SetTranslation( m_Transform->GetTranslation() );
+
+        m_RewardEntity->AddToScene();
+
+        GetEntity()->Destroy();
     }
 
     
@@ -172,6 +187,8 @@
             ImGui::Text( "WARNING: no Health attached" );
         }
 
+        m_Reward.Inspect("Reward Prefab");
+
         ImGui::DragFloat( "Speed", &m_Speed, 0.05f, 0.0f, INFINITY );
 
         ImGui::DragInt( "Damage", &m_Damage, 0.05f, 0, INT_MAX );
@@ -189,9 +206,18 @@
         Stream::Read( m_Speed, data );
     }
 
+    /// @brief reads the damage
+    /// @param data - the json data to read from
     void EnemyBehavior::readDamage(nlohmann::ordered_json const& data)
     {
         Stream::Read( m_Damage, data );
+    }
+
+    /// @brief Reads the reward prefab
+    /// @param data - the json data to read from
+    void EnemyBehavior::readReward(nlohmann::ordered_json const& data)
+    {
+        Stream::Read( m_Reward, data );
     }
 
 
@@ -206,7 +232,8 @@
     {
         static ReadMethodMap< EnemyBehavior > const readMethods = {
             { "Speed"           , &EnemyBehavior::readSpeed            },
-            { "Damage"          , &EnemyBehavior::readDamage           }
+            { "Damage"          , &EnemyBehavior::readDamage           },
+            { "Reward Prefab"   , &EnemyBehavior::readReward           }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -220,7 +247,7 @@
 
         data[ "Speed"            ] = Stream::Write( m_Speed            );
         data[ "Damage"           ] = Stream::Write( m_Damage           );
-
+        data[ "Reward Prefab"    ] = Stream::Write( m_Reward           );
         return data;
     }
 
@@ -248,7 +275,8 @@
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
         Behavior( other ),
         m_Speed ( other.m_Speed  ),
-        m_Damage( other.m_Damage )
+        m_Damage( other.m_Damage ),
+        m_Reward( other.m_Reward )
     {}
 
 

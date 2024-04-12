@@ -84,6 +84,11 @@
     {
         if ( m_SceneTransition != nullptr )
         {
+            // If the flag is marked true, overwrite the previous scene
+            if (m_PreviousSceneFlag)
+            {
+                Scenes()->SavePreviousScene();
+            }
             m_SceneTransition->StartTransition( m_SceneName );
         }
     }
@@ -99,6 +104,7 @@
         ImGui::InputText( "Event Name" , &m_EventName );
 
         Scenes()->InspectorSelectScene( "scene name", &m_SceneName );
+        ImGui::Checkbox("Overwrite Previous Scene", &m_PreviousSceneFlag);
 
         m_SceneTransitionEntity.Inspect( "scene transition entity" );
     }
@@ -127,6 +133,13 @@
         Stream::Read( m_SceneTransitionEntity, data );
     }
 
+    /// @brief reads the state of the previous scene flag
+    /// @param data the JSON file to read from.
+    void SceneChangeButton::readPreviousSceneFlag(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_PreviousSceneFlag, data);
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -140,7 +153,8 @@
         static ReadMethodMap< SceneChangeButton > const readMethods = {
 		    { "SceneName"            , &SceneChangeButton::readSceneName             },
             { "EventName"            , &SceneChangeButton::readEventName             },
-            { "SceneTransitionEntity", &SceneChangeButton::readSceneTransitionEntity }
+            { "SceneTransitionEntity", &SceneChangeButton::readSceneTransitionEntity },
+            { "PreviousSceneFlag"    , &SceneChangeButton::readPreviousSceneFlag     }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -156,6 +170,7 @@
         json[ "SceneName"             ] = Stream::Write( m_SceneName             );
         json[ "EventName"             ] = Stream::Write( m_EventName             );
         json[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
+        json[ "PreviousSceneFlag"     ] = Stream::Write(m_PreviousSceneFlag      );
 
         return json;
     }
@@ -185,7 +200,8 @@
         Component( other ),
         m_SceneName            ( other.m_SceneName ),
         m_EventName            ( other.m_EventName ),
-        m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } )
+        m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } ),
+        m_PreviousSceneFlag    (other.m_PreviousSceneFlag)
     {}
 
 

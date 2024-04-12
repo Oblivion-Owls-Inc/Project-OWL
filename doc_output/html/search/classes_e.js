@@ -1,14 +1,15 @@
 var searchData=
 [
-  ['scenechangebutton_1172',['SceneChangeButton',['../classSceneChangeButton.html',1,'']]],
-  ['scenesystem_1173',['SceneSystem',['../classSceneSystem.html',1,'']]],
-  ['scenetransition_1174',['SceneTransition',['../classSceneTransition.html',1,'']]],
-  ['scrollingbuffer_1175',['ScrollingBuffer',['../structScrollingBuffer.html',1,'']]],
-  ['shader_1176',['Shader',['../classShader.html',1,'']]],
-  ['sound_1177',['Sound',['../classSound.html',1,'']]],
-  ['splashscreencontroller_1178',['SplashScreenController',['../classSplashScreenController.html',1,'']]],
-  ['sprite_1179',['Sprite',['../classSprite.html',1,'']]],
-  ['staticbody_1180',['StaticBody',['../classStaticBody.html',1,'']]],
-  ['stream_1181',['Stream',['../classStream.html',1,'']]],
-  ['system_1182',['System',['../classSystem.html',1,'']]]
+  ['scenechangebutton_1194',['SceneChangeButton',['../classSceneChangeButton.html',1,'']]],
+  ['scenesystem_1195',['SceneSystem',['../classSceneSystem.html',1,'']]],
+  ['scenetransition_1196',['SceneTransition',['../classSceneTransition.html',1,'']]],
+  ['scrollingbuffer_1197',['ScrollingBuffer',['../structScrollingBuffer.html',1,'']]],
+  ['settingsmanager_1198',['SettingsManager',['../classSettingsManager.html',1,'']]],
+  ['shader_1199',['Shader',['../classShader.html',1,'']]],
+  ['sound_1200',['Sound',['../classSound.html',1,'']]],
+  ['splashscreencontroller_1201',['SplashScreenController',['../classSplashScreenController.html',1,'']]],
+  ['sprite_1202',['Sprite',['../classSprite.html',1,'']]],
+  ['staticbody_1203',['StaticBody',['../classStaticBody.html',1,'']]],
+  ['stream_1204',['Stream',['../classStream.html',1,'']]],
+  ['system_1205',['System',['../classSystem.html',1,'']]]
 ];
