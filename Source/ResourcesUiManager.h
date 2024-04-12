@@ -59,6 +59,10 @@ public: // accessors
     /// @return the UiElement attached to this ResourcesUiManager
     UiElement* GetUiElement();
 
+    /// @brief  gets the Inventory Component attached to this ResourcesUiManager
+    /// @return the Inventory Component attached to this ResourcesUiManager
+    Inventory* GetInventory();
+
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods
