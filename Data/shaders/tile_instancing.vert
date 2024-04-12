@@ -35,5 +35,5 @@ void main()
     int col = frame % columns;
     vec2 UV_offset = vec2(UVsize.x * col, UVsize.y * row);
 
-    v_UV = UV + UV_offset;
+    v_UV = UV + UV_offset - vec2(0, 0.000001);
 }

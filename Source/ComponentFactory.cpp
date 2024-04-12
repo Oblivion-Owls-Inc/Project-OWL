@@ -81,6 +81,7 @@
 #include "SceneTransition.h"
 #include "Building.h"
 #include "WindowFocusEvent.h"
+#include "JetpackBoost.h"
 #include "EventEmitter.h"
 
 
@@ -245,6 +246,7 @@
         { "SettingsManager"        , ComponentInfo< SettingsManager         >() },
         { "Building"               , ComponentInfo< Building                >() },
         { "WindowFocusEvent"       , ComponentInfo< WindowFocusEvent        >() },
+        { "JetpackBoost"           , ComponentInfo< JetpackBoost            >() },
 		{ "EventEmitter"           , ComponentInfo< EventEmitter            >() }
     };
 
