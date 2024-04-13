@@ -58,7 +58,6 @@ public:
     /// @param window The GLFW window handle to set
     void SetWindowHandle(GLFWwindow* window) { _window = window; }
 
-
     /// @brief Initialize the DebugSystem
     void OnInit() override;
 
@@ -82,6 +81,8 @@ public:
     /// @brief  sets whether the editor systems are enabled
     bool IsEditorRunning() const { return m_EditorRunning; }
 
+    /// @brief  Sets whether the FPS window is shown
+    void ShowFPSWindow(bool show) { m_ShowFpsWindow = show; }
 
     /// @brief  gets the DebugSystem PlayBar
     /// @return the DebugSystem PlayBar
@@ -194,7 +195,7 @@ private: // methods
 //-----------------------------------------------------------------------------
 
     /// @brief Shows the FPS window
-    void ShowFPSWindow();
+    void ShowFPSWindow(float deltatime);
     
     /// @brief Shows the Debug window
     void ImguiStartFrame();

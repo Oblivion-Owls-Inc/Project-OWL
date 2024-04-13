@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1014,
-                494
+                1648,
+                684
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -247,7 +247,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "StartingSceneName": "MainMenu",
+            "StartingSceneName": "SplashScreen",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -269,8 +269,8 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": true,
-            "Layer": 4
+            "Enabled": false,
+            "Layer": 0
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -323,13 +323,13 @@
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
-            "ShowFpsWindow": false,
+            "ShowFpsWindow": true,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
                 "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": true,
+                "AssetLibrary<Texture>": false,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -356,7 +356,7 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": true,
+                "LightingSystem": false,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,

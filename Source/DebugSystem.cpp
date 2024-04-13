@@ -131,7 +131,6 @@ void DebugSystem::OnUpdate(float dt)
 
 #ifndef NDEBUG // Show the Debug Window in Debug Mode
 
-
     if (m_ShowDebugWindows)
     {
         /// Loop through all the Systems in the Engine
@@ -144,15 +143,14 @@ void DebugSystem::OnUpdate(float dt)
         }
     }
 
+#endif // !DEBUG
+
+
     /// Show the FPS Window
     if (m_ShowFpsWindow)
     {
-        ShowFPSWindow();
+        ShowFPSWindow(dt);
     }
-
-
-#endif // !DEBUG
-
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
@@ -643,22 +641,18 @@ PlayBar& DebugSystem::GetPlayBar()
 }
 
 
-void DebugSystem::ShowFPSWindow()
+void DebugSystem::ShowFPSWindow(float deltatime)
 {
-    static auto endTime = std::chrono::system_clock::now();
+    static const int SampleSize = 3;
+    static double Samples[SampleSize] = { 0.0f }; //  for sample calculation
+    static const int ScrollingBufferSize = 100; // Total number of samples
+    static ScrollingBuffer<double, ScrollingBufferSize> FPS_Values; // Scrolling buffer
+
+    static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations | ImPlotAxisFlags_Lock;
+    static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
 
     static int CurrentSample = 0;
-    static const int SampleSize = 3;
-    static double Samples[SampleSize] = { 0.0f }; //Value accumulation for sample calculation
-    static const int ScrollingBufferSize = 100; // total number of samples
-
-    static ScrollingBuffer<double, ScrollingBufferSize> FPS_Values; //scrolling buffer
-    auto startTime = std::chrono::system_clock::now();
-
-    std::chrono::duration<double> timeElapsed = startTime - endTime;
-
-    double fps = 1.0 / timeElapsed.count();
-    Samples[CurrentSample] = fps;
+    Samples[CurrentSample] = 1.0 / deltatime;
     CurrentSample++;
 
     if (CurrentSample == SampleSize)
@@ -672,14 +666,8 @@ void DebugSystem::ShowFPSWindow()
         FPS_Values.push(newSample);
         CurrentSample = 0;
     }
-    endTime = startTime;
 
-
-    static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations
-        | ImPlotAxisFlags_Lock;
-
-    static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
-    if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) 
+    if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags))
     {
         ImPlot::SetupAxes(nullptr, nullptr, axis_flags);
         ImPlot::SetupAxisLimits(ImAxis_X1, 0, 100, ImGuiCond_None);
@@ -690,6 +678,7 @@ void DebugSystem::ShowFPSWindow()
         ImPlot::EndPlot();
     }
 }
+
 
 void DebugSystem::ImguiStartFrame()
 {
