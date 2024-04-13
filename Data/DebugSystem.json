@@ -4,7 +4,6 @@
     "AssetLibrary<Texture>": true,
     "AssetLibrary<TransformAnimation>": true,
     "CameraSystem": true,
-    "CollisionSystem": true,
     "DebugSystem": true,
     "InputSystem": true,
     "LightingSystem": true,

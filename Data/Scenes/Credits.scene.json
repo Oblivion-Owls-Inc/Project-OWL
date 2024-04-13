@@ -73,6 +73,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "OblivionOwlsLogo": {
+                "Filepath": "Data/Textures/OblivionOwlsLogo.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
             "Rectangle": {
                 "Filepath": "Data/Textures/Debug/Rectangle.png",
                 "SheetDimensions": [
@@ -423,28 +435,6 @@
                             "AllowMultipleSounds": false,
                             "ChannelGroupName": ""
                         },
-                        "CircleCollider": {
-                            "Radius": 2.5,
-                            "CollisionLayer": 2,
-                            "CollisionLayerFlags": {
-                                "Flags": 1
-                            }
-                        },
-                        "RigidBody": {
-                            "Velocity": [
-                                0.0,
-                                2.0
-                            ],
-                            "Acceleration": [
-                                0.0,
-                                0.0
-                            ],
-                            "RotationalVelocity": 0.0,
-                            "Mass": 1.0,
-                            "Restitution": 0.0,
-                            "Friction": 0.0,
-                            "Drag": 0.0
-                        },
                         "SceneChangeButton": {
                             "SceneName": "MainMenu",
                             "EventName": "MainMenu",
@@ -454,7 +444,7 @@
                             "PreviousSceneFlag": false
                         },
                         "Sprite": {
-                            "Layer": 2,
+                            "Layer": 7,
                             "Color": [
                                 0.0,
                                 0.0,
@@ -469,13 +459,13 @@
                         },
                         "Transform": {
                             "Translation": [
-                                0.2735786437988281,
-                                1.7000000476837158
+                                -12.620207786560059,
+                                8.610761642456055
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                13.0,
-                                3.700000047683716
+                                8.550000190734863,
+                                3.25
                             ],
                             "IsDiegetic": true
                         },
@@ -521,33 +511,11 @@
                                         85
                                     ]
                                 },
-                                "CircleCollider": {
-                                    "Radius": 2.5,
-                                    "CollisionLayer": 2,
-                                    "CollisionLayerFlags": {
-                                        "Flags": 1
-                                    }
-                                },
-                                "RigidBody": {
-                                    "Velocity": [
-                                        0.0,
-                                        2.0
-                                    ],
-                                    "Acceleration": [
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "RotationalVelocity": 0.0,
-                                    "Mass": 1.0,
-                                    "Restitution": 0.0,
-                                    "Friction": 0.0,
-                                    "Drag": 0.0
-                                },
                                 "Text": {
                                     "Text": "Main Menu"
                                 },
                                 "TilemapSprite": {
-                                    "Layer": 4,
+                                    "Layer": 8,
                                     "Color": [
                                         0.0,
                                         0.0,
@@ -562,185 +530,13 @@
                                 },
                                 "Transform": {
                                     "Translation": [
-                                        -3.2282142639160156,
-                                        1.6232261657714844
+                                        -15.598653793334961,
+                                        8.45802116394043
                                     ],
                                     "Rotation": 0.0,
                                     "Scale": [
-                                        1.5,
-                                        2.0
-                                    ],
-                                    "IsDiegetic": true
-                                }
-                            },
-                            "Children": null
-                        }
-                    ]
-                },
-                {
-                    "Name": "PlayAgainButton",
-                    "Components": {
-                        "AudioPlayer": {
-                            "Sound": {
-                                "AssetName": "[non-serialized asset]"
-                            },
-                            "Volume": 1.0,
-                            "Pitch": 1.0,
-                            "VolumeVariance": 0.0,
-                            "PitchVariance": 0.0,
-                            "DefaultLoopCount": 0,
-                            "PlayOnInit": false,
-                            "IsSpatial": false,
-                            "AllowMultipleSounds": false,
-                            "ChannelGroupName": ""
-                        },
-                        "CircleCollider": {
-                            "Radius": 8.5,
-                            "CollisionLayer": 2,
-                            "CollisionLayerFlags": {
-                                "Flags": 1
-                            }
-                        },
-                        "RigidBody": {
-                            "Velocity": [
-                                0.0,
-                                2.0
-                            ],
-                            "Acceleration": [
-                                0.0,
-                                0.0
-                            ],
-                            "RotationalVelocity": 0.0,
-                            "Mass": 1.0,
-                            "Restitution": 0.0,
-                            "Friction": 0.0,
-                            "Drag": 0.0
-                        },
-                        "SceneChangeButton": {
-                            "SceneName": "BetaScene",
-                            "EventName": "PlayAgain",
-                            "SceneTransitionEntity": {
-                                "EntityName": "SceneChanger"
-                            },
-                            "PreviousSceneFlag": false
-                        },
-                        "Sprite": {
-                            "Layer": 2,
-                            "Color": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Opacity": 1.0,
-                            "FrameIndex": 0,
-                            "Texture": {
-                                "AssetName": "MainMenuTexture"
-                            }
-                        },
-                        "Transform": {
-                            "Translation": [
-                                0.09119224548339844,
-                                -4.359002113342285
-                            ],
-                            "Rotation": 0.0,
-                            "Scale": [
-                                13.0,
-                                3.700000047683716
-                            ],
-                            "IsDiegetic": true
-                        },
-                        "UiButton": {
-                            "ClickEventName": "PlayAgain",
-                            "ShouldActivateOnPress": false,
-                            "IdleFrame": 0,
-                            "HoveredFrame": 1,
-                            "DownFrame": 2,
-                            "PressSound": {
-                                "AssetName": "ButtonClick"
-                            },
-                            "ReleaseSound": {
-                                "AssetName": "ButtonRelease"
-                            },
-                            "HoverSound": {
-                                "AssetName": ""
-                            }
-                        }
-                    },
-                    "Children": [
-                        {
-                            "Name": "PlayText",
-                            "Components": {
-                                "Tilemap<int>": {
-                                    "Dimensions": [
-                                        41,
-                                        0
-                                    ],
-                                    "TileScale": [
-                                        0.6669999957084656,
-                                        1.0
-                                    ],
-                                    "TileData": [
-                                        48,
-                                        76,
-                                        65,
-                                        89,
-                                        0,
-                                        33,
-                                        71,
-                                        65,
-                                        73,
-                                        78
-                                    ]
-                                },
-                                "CircleCollider": {
-                                    "Radius": 8.5,
-                                    "CollisionLayer": 2,
-                                    "CollisionLayerFlags": {
-                                        "Flags": 1
-                                    }
-                                },
-                                "RigidBody": {
-                                    "Velocity": [
-                                        0.0,
-                                        2.0
-                                    ],
-                                    "Acceleration": [
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "RotationalVelocity": 0.0,
-                                    "Mass": 1.0,
-                                    "Restitution": 0.0,
-                                    "Friction": 0.0,
-                                    "Drag": 0.0
-                                },
-                                "Text": {
-                                    "Text": "Play Again"
-                                },
-                                "TilemapSprite": {
-                                    "Layer": 4,
-                                    "Color": [
-                                        0.0,
-                                        0.0,
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "Opacity": 1.0,
-                                    "FrameIndex": 0,
-                                    "Texture": {
-                                        "AssetName": "FontSheet"
-                                    }
-                                },
-                                "Transform": {
-                                    "Translation": [
-                                        -4.614340782165527,
-                                        -4.4319562911987305
-                                    ],
-                                    "Rotation": 0.0,
-                                    "Scale": [
-                                        1.5,
-                                        2.0
+                                        1.0499999523162842,
+                                        1.399999976158142
                                     ],
                                     "IsDiegetic": true
                                 }
@@ -784,7 +580,7 @@
                         "Transform": {
                             "Translation": [
                                 0.0,
-                                325.3946838378906
+                                -6.843902587890625
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -830,8 +626,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                0.0,
-                                322.27496337890625
+                                -0.07317066192626953,
+                                -8.229268074035645
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -846,53 +642,48 @@
             ]
         },
         {
-            "Name": "InvisibleCollider",
+            "Name": "TeamLogo",
             "Components": {
-                "Tilemap<int>": {
-                    "Dimensions": [
-                        3,
-                        4
+                "RigidBody": {
+                    "Velocity": [
+                        0.0,
+                        2.0
                     ],
-                    "TileScale": [
-                        17.5,
-                        1.0
+                    "Acceleration": [
+                        0.0,
+                        0.0
                     ],
-                    "TileData": [
-                        -1,
-                        -1,
-                        -1,
-                        -1,
-                        0,
-                        -1,
-                        -1,
-                        -1,
-                        -1,
-                        0,
-                        0,
-                        0
-                    ]
+                    "RotationalVelocity": 0.0,
+                    "Mass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0,
+                    "Drag": 0.0
                 },
-                "StaticBody": {
-                    "Restitution": 0.0,
-                    "Friction": 0.0
-                },
-                "TilemapCollider": {
-                    "CollisionLayer": 0,
-                    "CollisionLayerFlags": {
-                        "Flags": 4
+                "Sprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "OblivionOwlsLogo"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        -29.488000869750977,
-                        8.180000305175781
+                        0.0,
+                        -35.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.0,
-                        1.0
+                        5.0,
+                        5.0
                     ],
-                    "IsDiegetic": true
+                    "IsDiegetic": false
                 }
             },
             "Children": null

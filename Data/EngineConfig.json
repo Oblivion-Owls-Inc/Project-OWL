@@ -364,7 +364,7 @@
                 "BehaviorSystem<WavesBehavior>": false,
                 "CameraSystem": true,
                 "CheatSystem": false,
-                "CollisionSystem": true,
+                "CollisionSystem": false,
                 "ComponentSystem<Interactable>": false,
                 "ComponentSystem<ItemComponent>": false,
                 "ControlPromptSystem": false,

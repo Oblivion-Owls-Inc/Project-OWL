@@ -115,6 +115,30 @@
             ImGui::SameLine();
             ImGui::Text("One Shot One Kill");
 
+            // The Infinite Laser Range Button
+            if (ImGui::Button(m_ToggleMaxLaserRange ? "Turn off Infinite Laser Range" : "Turn on Infinite Laser Range"))
+            {
+                InfiniteLaserRange();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Infinite Laser Range");
+
+            // The ability to mine almost anything button
+            if (ImGui::Button(m_ToggleMaxLaserTougness ? "Turn off Infinite Mining Toughness" : "Turn on Infinite Mining Toughness"))
+            {
+                InfiniteLaserToughness();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Mine almost any block");
+
+            // Mine at the speed of light.
+            if (ImGui::Button(m_ToggleMaxLaserMiningSpeed ? "Turn off Infinite Laser Mining Speed" : "Turn on Infinite Laser Mining Spedd"))
+            {
+                InfiniteLaserMiningSpeed();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Laser go brr");
+
             // The kill all enemies button.
             if (ImGui::Button(m_ToggleKillAllEnemies ? "Turn Off Kill all enemies" : "Turn On Kill All Enemies"))
             {
@@ -309,6 +333,7 @@
         }
     }
 
+    /// @brief Allows the mining laser to destroy most blocks
     void CheatSystem::InfiniteLaserToughness()
     {
         for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
@@ -330,7 +355,33 @@
             else
             {
                 laser->SetMaxToughness(m_PreviousLaserMaxToughness);
-                m_PreviousLaserMaxToughness = false;
+                m_ToggleMaxLaserTougness = false;
+            }
+        }
+    }
+
+    void CheatSystem::InfiniteLaserMiningSpeed()
+    {
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+        {
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "Infinite Laser Mining Speed: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleMaxLaserMiningSpeed == false)
+            {
+                m_PreviousLaserMiningSpeed = laser->GetMiningSpeed();
+                laser->SetMiningSpeed(9999.0f);
+                m_ToggleMaxLaserMiningSpeed = true;
+            }
+            else
+            {
+                laser->SetMiningSpeed(m_PreviousLaserMiningSpeed);
+                m_ToggleMaxLaserMiningSpeed = false;
             }
         }
     }
@@ -488,11 +539,13 @@
         m_TogglePlayerInfiniteHealth(false),
         m_ToggleMaxLaserRange(false),
         m_ToggleMaxLaserTougness(false),
+        m_ToggleMaxLaserMiningSpeed(false),
         m_PreviousBaseHealth(0),
         m_PreviousPlayerHealth(0),
         m_PreviousLaserDamage(0.0f),
         m_PreviousLaserRange(0.0f),
-        m_PreviousLaserMaxToughness(0.0f)
+        m_PreviousLaserMaxToughness(0.0f),
+        m_PreviousLaserMiningSpeed(0.0f)
     {}
 
 
