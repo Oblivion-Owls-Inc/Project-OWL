@@ -36,6 +36,8 @@ int \mbox{\hyperlink{classEngine_aaf09ae5be5a7f43804cedcb99ec52ed8}{Get\+Frame\+
 \begin{DoxyCompactList}\small\item\em gets the current graphics frame count \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classEngine_a54a2b4d293680df3c4f6f978023da227}{Get\+Fixed\+Frame\+Count}} () const
 \begin{DoxyCompactList}\small\item\em gets the current simulation frame count \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEngine_abbb9ff8cb2e9207e0d58f5c9fb1a7b69}{Get\+Fixed\+Updated\+This\+Frame}} () const
+\begin{DoxyCompactList}\small\item\em gets whether a fixed update took place this frame \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEngine_a0b12e00c76c381b58c44ee4e468cfd3a}{Get\+Systems}} () const
 \begin{DoxyCompactList}\small\item\em gets the array of all Systems in the engine. \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEngine_abc01dc48e09185a4e093d67904cfef6d}{Get\+Read\+Methods}} () const override
@@ -94,6 +96,19 @@ gets the duration of each fixed frame
 
 \begin{DoxyReturn}{Returns}
 the amount of time in seconds that each fixed frame lasts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_abbb9ff8cb2e9207e0d58f5c9fb1a7b69}\label{classEngine_abbb9ff8cb2e9207e0d58f5c9fb1a7b69}} 
+\index{Engine@{Engine}!GetFixedUpdatedThisFrame@{GetFixedUpdatedThisFrame}}
+\index{GetFixedUpdatedThisFrame@{GetFixedUpdatedThisFrame}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetFixedUpdatedThisFrame()}{GetFixedUpdatedThisFrame()}}
+{\footnotesize\ttfamily bool Engine\+::\+Get\+Fixed\+Updated\+This\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether a fixed update took place this frame 
+
+\begin{DoxyReturn}{Returns}
+whether a fixed update took place this frame 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classEngine_aaf09ae5be5a7f43804cedcb99ec52ed8}\label{classEngine_aaf09ae5be5a7f43804cedcb99ec52ed8}} 
 \index{Engine@{Engine}!GetFrameCount@{GetFrameCount}}
