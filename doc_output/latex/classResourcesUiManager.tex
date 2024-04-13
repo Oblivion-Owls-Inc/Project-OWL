@@ -25,6 +25,8 @@ Collaboration diagram for Resources\+Ui\+Manager\+:
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classResourcesUiManager_a3d2a9ad37a41b86c2a2e6030770ca74d}{Set\+Opacity}} (float opacity)
 \begin{DoxyCompactList}\small\item\em sets the opacity of the resources UI \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classResourcesUiManager_a6dc9de0dd6314485cd5f02ef16c762cc}{Set\+Text\+Colors}} (glm\+::vec4 const \&color, std\+::function$<$ bool(\mbox{\hyperlink{structItemStack}{Item\+Stack}} const \&item\+Stack) $>$ condition=\mbox{[}$\,$\mbox{]}(\mbox{\hyperlink{structItemStack}{Item\+Stack}} const \&) -\/$>$ bool \{ return true;\})
+\begin{DoxyCompactList}\small\item\em conditionally sets the color of each resource\+Counter\textquotesingle{}s text \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ \mbox{\hyperlink{classResourcesUiManager_acac4fba83a4b49dd447998fa216eaa65}{Get\+Ui\+Element}} ()
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classUiElement}{Ui\+Element}} attached to this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classInventory}{Inventory}} $\ast$ \mbox{\hyperlink{classResourcesUiManager_a8ffecbdebca0e658162ce9301c2dc4a4}{Get\+Inventory}} ()
@@ -149,6 +151,23 @@ sets the opacity of the resources UI
 
 \begin{DoxyParams}{Parameters}
 {\em opacity} & the opacity the resources UI should be \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classResourcesUiManager_a6dc9de0dd6314485cd5f02ef16c762cc}\label{classResourcesUiManager_a6dc9de0dd6314485cd5f02ef16c762cc}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!SetTextColors@{SetTextColors}}
+\index{SetTextColors@{SetTextColors}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{SetTextColors()}{SetTextColors()}}
+{\footnotesize\ttfamily void Resources\+Ui\+Manager\+::\+Set\+Text\+Colors (\begin{DoxyParamCaption}\item[{glm\+::vec4 const \&}]{color,  }\item[{std\+::function$<$ bool(\mbox{\hyperlink{structItemStack}{Item\+Stack}} const \&item\+Stack) $>$}]{condition = {\ttfamily \mbox{[}\mbox{]}(~\mbox{\hyperlink{structItemStack}{Item\+Stack}}~const\&~)~-\/$>$~bool~\{~return~true;~\}} }\end{DoxyParamCaption})}
+
+
+
+conditionally sets the color of each resource\+Counter\textquotesingle{}s text 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & the color to set the text \\
+\hline
+{\em condition} & function that returns true if the text color should be set \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}\label{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}} 
