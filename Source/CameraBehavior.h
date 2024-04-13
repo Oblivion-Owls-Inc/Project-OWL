@@ -42,7 +42,7 @@ private:
     virtual void OnInit() override;
 
     /// @brief  Performs the smooth following
-    virtual void OnFixedUpdate() override;
+    virtual void OnUpdate( float dt ) override;
 
     /// @brief  Removes itself from behavior system
     virtual void OnExit() override;
