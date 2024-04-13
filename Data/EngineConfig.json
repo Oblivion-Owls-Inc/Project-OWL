@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1196,
-                837
+                736,
+                15
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
