@@ -110,6 +110,12 @@
             Cameras()->GetMat_WorldToClip() * glm::vec4( targetPos + m_CostUiOffset, 0.0f, 1.0f )
         );
 
+        m_ResourcesUiManager->SetTextColors( glm::vec4( 0.0f, 0.0f, 0.0f, 0.0f ) );
+        m_ResourcesUiManager->SetTextColors( glm::vec4( 0.0f, -1.0f, -1.0f, 0.0f ), [ this ]( ItemStack const& itemStack ) -> bool
+        {
+            return m_Inventory->ContainsItemStack( itemStack ) == false;
+        } );
+
         if ( m_Interactor->GetTargetedInteractable() == m_TargetedInteractable )
         {
             return;
