@@ -243,11 +243,7 @@
             fixedUpdateSystems();
 
             m_PreviousFixedTime += m_FixedFrameDuration;
-
-            if ( currentTime - m_PreviousFixedTime >= m_FixedFrameDuration )
-            {
-                m_PreviousFixedTime = currentTime;
-            }
+            m_PreviousFixedTime = std::max( m_PreviousFixedTime, currentTime - m_FixedFrameDuration );
 
             m_FixedUpdatedThisFrame = true;
         }
