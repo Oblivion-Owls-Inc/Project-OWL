@@ -133,7 +133,10 @@ void DigEffect::Inspector()
 			m_BreakSounds[i].Inspect(id);
 		}
 		if (ImGui::Button("Add sound"))
+		{
 			m_BreakSounds.push_back(AssetReference<Sound>());
+			m_BreakSounds.back().SetOwnerName( GetName() );
+		}
 
 		if (m_BreakSounds.size() != 0 && ImGui::Button("Delete last"))
 			m_BreakSounds.erase(m_BreakSounds.end() - 1);
