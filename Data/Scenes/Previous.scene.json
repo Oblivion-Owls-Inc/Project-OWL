@@ -662,7 +662,7 @@
                                         0.0
                                     ],
                                     "Opacity": 1.0,
-                                    "FrameIndex": 1,
+                                    "FrameIndex": 0,
                                     "Texture": {
                                         "AssetName": "ButtonTexture"
                                     }
@@ -808,7 +808,7 @@
                                         0.0
                                     ],
                                     "Opacity": 1.0,
-                                    "FrameIndex": 0,
+                                    "FrameIndex": 1,
                                     "Texture": {
                                         "AssetName": "ButtonTexture"
                                     }
@@ -1207,10 +1207,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 45,
-                    "FrameDelay": 0.019847774878144264,
+                    "FrameIndex": 5,
+                    "FrameDelay": 0.049988314509391785,
                     "IsRunning": true,
-                    "LoopCount": 99639,
+                    "LoopCount": 99638,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1224,7 +1224,7 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 45,
+                    "FrameIndex": 5,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
@@ -1247,17 +1247,17 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 45,
-                            "FrameDelay": 0.019847774878144264,
+                            "FrameIndex": 5,
+                            "FrameDelay": 0.049988314509391785,
                             "IsRunning": true,
-                            "LoopCount": 99639,
+                            "LoopCount": 99638,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
                             "RotationSpeed": -1.0,
-                            "Angle": 5.4430460929870605,
+                            "Angle": 3.8898565769195557,
                             "Radius": [
                                 1.0,
                                 0.30000001192092896
@@ -1281,20 +1281,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 45,
+                            "FrameIndex": 5,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                2.5750479698181152,
-                                0.5292726755142212
+                                1.1748178005218506,
+                                0.5485832095146179
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.6116714477539063,
-                                0.6116714477539063
+                                0.6020978689193726,
+                                0.6020978689193726
                             ],
                             "IsDiegetic": true
                         }
