@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['killallenemies_1823',['KillAllEnemies',['../classCheatSystem.html#a3166260d540252b15aa0fa4bebb20d8e',1,'CheatSystem']]]
+  ['jetpackboost_1840',['JetpackBoost',['../classJetpackBoost.html#afd40c5a8baec5a2d92f436b38b035595',1,'JetpackBoost']]]
 ];

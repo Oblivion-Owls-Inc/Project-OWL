@@ -1,0 +1,110 @@
+\hypertarget{classJetpackBoost}{}\doxysection{Jetpack\+Boost Class Reference}
+\label{classJetpackBoost}\index{JetpackBoost@{JetpackBoost}}
+
+
+Inheritance diagram for Jetpack\+Boost\+:
+% FIG 0
+
+
+Collaboration diagram for Jetpack\+Boost\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classJetpackBoost_afd40c5a8baec5a2d92f436b38b035595}\label{classJetpackBoost_afd40c5a8baec5a2d92f436b38b035595}} 
+\mbox{\hyperlink{classJetpackBoost_afd40c5a8baec5a2d92f436b38b035595}{Jetpack\+Boost}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classJetpackBoost}{Jetpack\+Boost}} $\ast$ \mbox{\hyperlink{classJetpackBoost_adc6c2040a41897017d1fcab93a929303}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Returns copy of this behavior. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classJetpackBoost_a1aee7ac05a5063ed532f260582e3a4f5}\label{classJetpackBoost_a1aee7ac05a5063ed532f260582e3a4f5}} 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classJetpackBoost_a1aee7ac05a5063ed532f260582e3a4f5}{Set\+Max\+Tilt}} (float angle)
+\begin{DoxyCompactList}\small\item\em Sets maximum tilt angle to given value (rad) \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classJetpackBoost_afe28aabe98ad45c6ae26067f04cba3fe}{Get\+Max\+Tilt}} () const
+\item 
+\mbox{\Hypertarget{classJetpackBoost_a7ce9e6d45e3a70f55488d294ee65fe2d}\label{classJetpackBoost_a7ce9e6d45e3a70f55488d294ee65fe2d}} 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classJetpackBoost_a7ce9e6d45e3a70f55488d294ee65fe2d}{Set\+Tilt\+Speed}} (float rad\+\_\+per\+\_\+sec)
+\begin{DoxyCompactList}\small\item\em Sets tilt speed to given value (rad/sec) \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classJetpackBoost_a209c4e3e0a11443ab49f2050f779eec7}{Get\+Tilt\+Speed}} () const
+\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classJetpackBoost_aa1bc483b85e2cebe1c0c6e192b1329d4}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classJetpackBoost_a465ca8fb1cc77f9ce1c705e4562b7a85}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classJetpackBoost}{Jetpack\+Boost}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJetpackBoost_adc6c2040a41897017d1fcab93a929303}\label{classJetpackBoost_adc6c2040a41897017d1fcab93a929303}} 
+\index{JetpackBoost@{JetpackBoost}!Clone@{Clone}}
+\index{Clone@{Clone}!JetpackBoost@{JetpackBoost}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJetpackBoost}{Jetpack\+Boost}} $\ast$ Jetpack\+Boost\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns copy of this behavior. 
+
+Return a copy of this component. 
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classJetpackBoost_afe28aabe98ad45c6ae26067f04cba3fe}\label{classJetpackBoost_afe28aabe98ad45c6ae26067f04cba3fe}} 
+\index{JetpackBoost@{JetpackBoost}!GetMaxTilt@{GetMaxTilt}}
+\index{GetMaxTilt@{GetMaxTilt}!JetpackBoost@{JetpackBoost}}
+\doxysubsubsection{\texorpdfstring{GetMaxTilt()}{GetMaxTilt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline float Jetpack\+Boost\+::\+Get\+Max\+Tilt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Maximum tilt angle (rad) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classJetpackBoost_aa1bc483b85e2cebe1c0c6e192b1329d4}\label{classJetpackBoost_aa1bc483b85e2cebe1c0c6e192b1329d4}} 
+\index{JetpackBoost@{JetpackBoost}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!JetpackBoost@{JetpackBoost}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Jetpack\+Boost\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classJetpackBoost_a209c4e3e0a11443ab49f2050f779eec7}\label{classJetpackBoost_a209c4e3e0a11443ab49f2050f779eec7}} 
+\index{JetpackBoost@{JetpackBoost}!GetTiltSpeed@{GetTiltSpeed}}
+\index{GetTiltSpeed@{GetTiltSpeed}!JetpackBoost@{JetpackBoost}}
+\doxysubsubsection{\texorpdfstring{GetTiltSpeed()}{GetTiltSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline float Jetpack\+Boost\+::\+Get\+Tilt\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+How fast player tilts (rad/sec) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classJetpackBoost_a465ca8fb1cc77f9ce1c705e4562b7a85}\label{classJetpackBoost_a465ca8fb1cc77f9ce1c705e4562b7a85}} 
+\index{JetpackBoost@{JetpackBoost}!Write@{Write}}
+\index{Write@{Write}!JetpackBoost@{JetpackBoost}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Jetpack\+Boost\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classJetpackBoost}{Jetpack\+Boost}} component data to a JSON file. 
+
+write to json
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classJetpackBoost}{Jetpack\+Boost}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Jetpack\+Boost.\+h\item 
+Source/Jetpack\+Boost.\+cpp\end{DoxyCompactItemize}

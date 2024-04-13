@@ -183,6 +183,11 @@
     void Transform::SetMatrix(glm::mat4 const& newMatrix)
     {
         m_Matrix = newMatrix;
+
+        for (auto& callback : m_OnTransformChangedCallbacks)
+        {
+            callback.second();
+        }
     }
 
 
@@ -254,7 +259,7 @@
     {
         m_IsDirty = true;
 
-        for ( auto callback : m_OnTransformChangedCallbacks )
+        for ( auto& callback : m_OnTransformChangedCallbacks )
         {
             callback.second();
         }
