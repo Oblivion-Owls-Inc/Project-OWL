@@ -145,6 +145,8 @@ private: // members
         >
     > m_OnInteractCallbacks = {};
 
+    std::string m_EventCast = "";
+
 
 
 //-----------------------------------------------------------------------------
@@ -181,6 +183,10 @@ private: // reading
     /// @brief  reads the offset position to display the prompt at
     /// @param  data    the JSON data to read from
     void readPromptOffset( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the event to cast when interacted with
+    /// @param  data    the JSON data to read from
+    void readEventCast(nlohmann::ordered_json const& data);
 
     // /// @brief  reads the Entity used to display the interact control prompt
     // /// @param  data    the JSON data to read from

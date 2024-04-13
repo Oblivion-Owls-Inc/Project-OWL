@@ -307,6 +307,11 @@ Generator::Generator(const Generator& other) :
         {
             m_Interactable->SetEnabled( true );
         }
+
+        if (m_Sprite != nullptr)
+        {
+            m_Sprite->SetFrameIndex(1);
+        }
     }
 
 

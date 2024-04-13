@@ -121,6 +121,10 @@
         m_Collider->AddOnCollisionCallback( GetId(),
             [this](Collider* collider, CollisionData const& collisionData)
             {
+                if (collider->GetRigidBody() == nullptr && collider->GetStaticBody() == nullptr)
+                {
+                    return;
+                }
                 const glm::vec2 VerticleDirection(0.0f, 1.0f);
 
                 float dotProduct = glm::dot(collisionData.normal, VerticleDirection);
@@ -329,7 +333,7 @@
             if (base->CanWin())
             {
                 Events()->BroadcastEvent< std::string >("WinTheGame");
-                Debug() << "Event Emitted: " << m_EventNameBegin << std::endl;
+                Debug() << "Event Emitted: " << "WinTheGame" << std::endl;
             }
             return;
         }

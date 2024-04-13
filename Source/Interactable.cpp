@@ -13,6 +13,7 @@
 #include "Interactable.h"
 
 #include "ComponentSystem.h"
+#include "EventSystem.h"
 
 #include "ComponentReference.t.h"
 #include "Transform.h"
@@ -38,6 +39,11 @@
     /// @brief  interacts with this Interactable
     void Interactable::Interact( Interactor* interactor )
     {
+        if (m_EventCast != "")
+        {
+            Events()->BroadcastEvent< std::string >(m_EventCast);
+            Debug() << "Event Emitted: " << m_EventCast << std::endl;
+        }
         for ( auto& [ ownerId, callback ] : m_OnInteractCallbacks )
         {
             callback( interactor );
@@ -178,6 +184,7 @@
 
         m_InteractAction.Init();
 
+        
         // m_PromptEntity.SetOwnerName( GetName() );
         // m_PromptEntity.Init();
     }
@@ -242,6 +249,7 @@
 
         ImGui::DragFloat2( "prompt offset", &m_PromptOffset[ 0 ], 0.05f );
 
+        ImGui::InputText( "Cast Event", &m_EventCast );
         // m_PromptEntity.Inspect( "Prompt Entity" );
     }
 
@@ -279,6 +287,13 @@
         Stream::Read( &m_PromptOffset, data );
     }
 
+    /// @brief  reads the event to cast when interacted with
+    /// @param  data    the JSON data to read from
+    void Interactable::readEventCast(nlohmann::ordered_json const& data)
+    {
+        Stream::Read( m_EventCast, data);
+    }
+
     // /// @brief  reads the Entity used to display the interact control prompt
     // /// @param  data    the JSON data to read from
     // void Interactable::readPromptEntity( nlohmann::ordered_json const& data )
@@ -300,7 +315,8 @@
             { "Enabled"          , &Interactable::readEnabled           },
             { "InteractionRadius", &Interactable::readInteractionRadius },
             { "InteractAction"   , &Interactable::readInteractAction    },
-            { "PromptOffset"     , &Interactable::readPromptOffset      }
+            { "PromptOffset"     , &Interactable::readPromptOffset      },
+            { "EventCast"        , &Interactable::readEventCast         }
 
             // { "PromptEntity"     , &Interactable::readPromptEntity      }
         };
@@ -319,6 +335,7 @@
         json[ "InteractionRadius" ] = Stream::Write( m_InteractionRadius );
         json[ "InteractAction"    ] = Stream::Write( m_InteractAction    );
         json[ "PromptOffset"      ] = Stream::Write( m_PromptOffset      );
+        json[ "EventCast"         ] = Stream::Write( m_EventCast         );
 
         // json[ "PromptEntity"      ] = Stream::Write( m_PromptEntity      );
 
@@ -351,7 +368,8 @@
         m_Enabled          ( other.m_Enabled           ),
         m_InteractionRadius( other.m_InteractionRadius ),
         m_InteractAction   ( other.m_InteractAction    ),
-        m_PromptOffset     ( other.m_PromptOffset      )
+        m_PromptOffset     ( other.m_PromptOffset      ),
+        m_EventCast        ( other.m_EventCast         )
         // m_PromptEntity     ( other.m_PromptEntity, { &m_PromptSprite } )
     {}
 
