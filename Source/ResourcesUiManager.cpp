@@ -58,6 +58,21 @@
     }
 
 
+    /// @brief  conditionally sets the color of each resourceCounter's text
+    /// @param  color       the color to set the text
+    /// @param  condition   function that returns true if the text color should be set
+    void ResourcesUiManager::SetTextColors( glm::vec4 const& color, std::function< bool( ItemStack const& itemStack ) > condition )
+    {
+        for ( auto& [ itemId, resourceCounter ] : m_ResourceCounters )
+        {
+            if ( resourceCounter->GetTextSprite() != nullptr && condition( resourceCounter->GetItemStack() ) )
+            {
+                resourceCounter->GetTextSprite()->SetColor( color );
+            }
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
