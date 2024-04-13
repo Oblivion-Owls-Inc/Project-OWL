@@ -21,6 +21,7 @@
 #include "EmitterSprite.h"   // emitter texture/frame
 #include "EntitySystem.h"	 // spawn entity
 #include "Transform.h"	     // (and set its position)
+#include "AudioPlayer.h"	 // block breaking
 #include "Texture.h"
 
 /// @brief  Default constructor
@@ -47,10 +48,12 @@ void DigEffect::OnInit()
 	// if timer is non-zero, this is temp entity
 	if (m_Timer > 0.0f)
 	{
-		// if this is temporary entity, emit particles.
+		// if this is temporary entity, emit particles and init audio
 		Emitter* emitter = GetEntity()->GetComponent<Emitter>();
 		if (emitter != nullptr)
 			emitter->Emit();
+
+		m_AudioPlayer.Init( GetEntity() );
 	}
 	else if (m_Timer == 0.0f)
 	{
@@ -67,6 +70,12 @@ void DigEffect::OnInit()
 		m_Archetype.Init();
 		m_Texture.SetOwnerName( GetEntity()->GetName() );
 		m_Texture.Init();
+
+		for (auto& sound : m_BreakSounds)
+		{
+			sound.SetOwnerName( GetName() );
+			sound.Init();
+		}
 	}
 }
 
@@ -101,14 +110,38 @@ void DigEffect::OnUpdate(float dt)
 /// @brief  Tweak properties in debug window
 void DigEffect::Inspector()
 {
-	ImGui::InputFloat("Timer", &m_Timer, 0.01f);
-	ImGui::PushID(0);
-	m_Archetype.Inspect("Archetype (to spawn when tile breaks)");
-	ImGui::PopID();
-	ImGui::PushID(1);
-	m_Texture.Inspect("Texture");
-	ImGui::PopID();
-	ImGui::Text("(preview texture, frames should\nmatch parent tilemap IDs)");
+	if (m_Timer == 0.0f)
+	{
+		std::string message("Be advised: this is the spawner component. To edit timer (lifetime) and AudioPlayer properties, find the entity prefab named \"");
+		message += m_Archetype.GetName();
+		message += '\"';
+		ImGui::TextWrapped(message.c_str());
+
+		ImGui::PushID(0);
+		m_Archetype.Inspect("Archetype (to spawn when tile breaks)");
+		ImGui::PopID();
+		ImGui::PushID(1);
+		m_Texture.Inspect("Texture");
+		ImGui::PopID();
+		ImGui::TextWrapped("(frames of the texture should match parent tilemap IDs)");
+		ImGui::Spacing();
+		ImGui::Text("Break sounds");
+		for (int i = 0; i < m_BreakSounds.size(); ++i)
+		{
+			char id[4] = {};
+			sprintf_s(id, 4, "%i", i);
+			m_BreakSounds[i].Inspect(id);
+		}
+		if (ImGui::Button("Add sound"))
+			m_BreakSounds.push_back(AssetReference<Sound>());
+
+		if (m_BreakSounds.size() != 0 && ImGui::Button("Delete last"))
+			m_BreakSounds.erase(m_BreakSounds.end() - 1);
+
+		ImGui::TextWrapped("(order of the sounds should match parent tilemap IDs)");
+	}
+	else
+		ImGui::InputFloat("Timer", &m_Timer, 0.01f);
 }
 
 
@@ -118,13 +151,8 @@ void DigEffect::Inspector()
 /// @param tileId   old ID/frame of the changed tile
 void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int prevTileId)
 {
-	if (!m_Archetype || !m_Texture)
+	if ( !m_Archetype || !m_Texture || tilePos == glm::ivec2(-1) )
 		return;
-
-    if ( tilePos == glm::ivec2( -1 ) )
-    {
-        return;
-    }
 
 	// skip if the tile wasn't changed to empty
 	int tileId = tilemap->GetTile(tilePos);
@@ -133,11 +161,26 @@ void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, in
 
 	glm::vec2 pos = tilemap->TileCoordToWorldPos(tilePos);
 
+	// spawn from archetype at broken tile pos
 	Entity* temp = m_Archetype->Clone();
 	temp->GetComponent<Transform>()->SetTranslation(pos);
+
+	// set emitter's texture and frame
 	EmitterSprite* es = temp->GetComponent<EmitterSprite>();
 	es->SetTexture( m_Texture );
 	es->SetFrameIndex( prevTileId );
+
+	// set audio to respective sound
+	if (prevTileId < m_BreakSounds.size())
+	{
+		AudioPlayer* ap = temp->GetComponent<AudioPlayer>();
+		if (ap)
+		{
+			ap->SetSound( m_BreakSounds[prevTileId] );
+			ap->Play();
+		}
+	}
+
 	temp->AddToScene();
 }
 
@@ -167,12 +210,26 @@ void DigEffect::readTexture(nlohmann::ordered_json const& data)
 	Stream::Read(m_Texture, data);
 }
 
+/// @brief        reads the breaking sounds
+/// @param data   json to read from
+void DigEffect::readSounds(nlohmann::ordered_json const& data)
+{
+	if (data.size() == 0)
+		return;
+
+	m_BreakSounds.resize( data.size() );
+	for (int i=0; i<m_BreakSounds.size(); ++i)
+		Stream::Read( m_BreakSounds[i], data[i] );
+}
+
+
 /// @brief read method map
 ReadMethodMap<DigEffect> const DigEffect::s_ReadMethods =
 {
-	{ "Timer",		&readTimer },
+	{ "Timer",		&readTimer     },
 	{ "Archetype",	&readArchetype },
-	{ "Texture",    &readTexture }
+	{ "Texture",    &readTexture   },
+	{ "Sounds",     &readSounds    }
 };
 
 
@@ -184,6 +241,13 @@ nlohmann::ordered_json DigEffect::Write() const
 	data["Timer"] = m_Timer;
 	data["Archetype"] = Stream::Write(m_Archetype);
 	data["Texture"] = Stream::Write(m_Texture);
+
+	if (m_BreakSounds.size() != 0)
+	{
+		nlohmann::ordered_json& soundarray = data["Sounds"];
+		for (auto& sound : m_BreakSounds)
+			soundarray.push_back( Stream::Write(sound) );
+	}
 
 	return data;
 }
