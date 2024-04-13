@@ -22,6 +22,9 @@
 #include "EntitySystem.h"
 #include "Generator.h"
 #include "ItemStack.h"
+#include "HomeBase.h"
+#include "SceneTransition.h"
+#include "EventSystem.h"
 
 
 #include "ComponentReference.t.h"
@@ -89,13 +92,14 @@
             }
         );
 
-        m_RigidBody  .Init( GetEntity() );
-        m_AudioPlayer.Init( GetEntity() );
-        m_Transform  .Init( GetEntity() );
-        m_Health     .Init( GetEntity() );
-        m_Collider   .Init( GetEntity() );
-        m_Inventory  .Init( GetEntity() );
-
+        m_RigidBody     .Init( GetEntity() );
+        m_AudioPlayer   .Init( GetEntity() );
+        m_Transform     .Init( GetEntity() );
+        m_Health        .Init( GetEntity() );
+        m_Collider      .Init( GetEntity() );
+        m_Inventory     .Init( GetEntity() );
+        m_EffectAnimator.Init( GetEntity() );
+        
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
 
@@ -130,6 +134,21 @@
             }
         );
 
+        /// Set the filter function for the listener
+        m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
+        {
+            return EventNameBegin == m_EventNameBegin;
+        });
+
+        /// Set the Callback function for the listener
+        m_ListenerBegin.SetResponseFunction([&](std::string const& EventNameBegin)
+        {
+            // do thing on start
+            m_EffectAnimator->SetIsPlaying(false);
+            m_RigidBody->ApplyVelocity(glm::vec2(1, 10));
+        });
+
+        m_ListenerBegin.Init();
     }
 
 
@@ -140,12 +159,13 @@
 
         m_Collider->RemoveOnCollisionCallback(GetId());
 
-        m_RigidBody  .Exit();
-        m_AudioPlayer.Exit();
-        m_Transform  .Exit();
-        m_Health     .Exit();
-        m_Collider   .Exit();
-        m_Inventory  .Exit();
+        m_RigidBody     .Exit();
+        m_AudioPlayer   .Exit();
+        m_Transform     .Exit();
+        m_Health        .Exit();
+        m_Collider      .Exit();
+        m_Inventory     .Exit();
+        m_EffectAnimator.Exit();
 
         m_MiningLaserEntity.Exit();
 
@@ -155,6 +175,7 @@
         m_Interact      .Exit();
         m_AimHorizontal .Exit();
         m_AimVertical   .Exit();
+        m_ListenerBegin .Exit();
     }
 
    
@@ -302,6 +323,16 @@
     /// @param  other   - the collider of the other entity.
     void PlayerController::onCollisionEnter( Collider* other )
     {
+        HomeBase* base = other->GetEntity()->GetComponent<HomeBase>();
+        if (base)
+        {
+            if (base->CanWin())
+            {
+                Events()->BroadcastEvent< std::string >("WinTheGame");
+                Debug() << "Event Emitted: " << m_EventNameBegin << std::endl;
+            }
+            return;
+        }
         // Get the enemy behaviour component.
         EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
         if (!enemy)
@@ -342,6 +373,7 @@
         m_MoveVertical  .Inspect( "Vertical Control Action"   );
         m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
         m_AimVertical   .Inspect( "Vertical Aim Action"       );
+        ImGui::InputText("Event Name Begin", &m_EventNameBegin);
     }
 
 
@@ -460,6 +492,13 @@
         Stream::Read(m_AimVertical, data);
     }
 
+    /// @brief  reads the EventNameBegin from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameBegin(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameBegin, data);
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading writing
 //-----------------------------------------------------------------------------
@@ -483,7 +522,8 @@
             { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
             { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            },
             { "AimVertical"             , &PlayerController::readAimVertical              },
-            { "AimHorizontal"           , &PlayerController::readAimHorizontal            }
+            { "AimHorizontal"           , &PlayerController::readAimHorizontal            },
+            { "EventNameBegin"          , &PlayerController::readEventNameBegin           },
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -512,6 +552,7 @@
         data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
         data[ "AimVertical"       ] = Stream::Write( m_AimVertical           );
         data[ "AimHorizontal"     ] = Stream::Write( m_AimHorizontal         );
+        data[ "EventNameBegin"    ] = m_EventNameBegin;
 
         return data;
     }
@@ -551,7 +592,8 @@
         m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
         m_MaxCoyoteTime           ( other.m_MaxCoyoteTime         ),
         m_AimVertical             ( other.m_AimVertical           ),
-        m_AimHorizontal           ( other.m_AimHorizontal         )
+        m_AimHorizontal           ( other.m_AimHorizontal         ),
+        m_EventNameBegin          ( other.m_EventNameBegin        )
     {
     }
 

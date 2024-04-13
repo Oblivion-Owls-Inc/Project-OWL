@@ -38,6 +38,10 @@
     /// @return the Health Component attached to this Entity
     Health* HomeBase::GetHealth() { return m_Health; }
 
+    /// @brief  gets the current win state
+    /// @return bool if we can win the game
+    bool HomeBase::CanWin() { return m_CanWin; }
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -81,7 +85,7 @@
         m_SceneTransitionEntity.SetOwnerName( GetName() );
         m_SceneTransitionEntity.Init();
 
-        /*// Set the filter function for the listener
+        /// Set the filter function for the listener
         m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
         {
             return EventNameBegin == m_EventNameBegin;
@@ -103,11 +107,11 @@
         /// Set the Callback function for the listener
         m_ListenerEnd.SetResponseFunction([&](std::string const& EventNameEnd)
         {
-            // do thing on end
+            m_CanWin = true;
         });
 
         m_ListenerBegin.Init();
-        m_ListenerEnd.Init();*/
+        m_ListenerEnd.Init();
     }
 
     /// @brief  called once when exiting the scene
@@ -118,6 +122,8 @@
         m_Health.Exit();
 
         m_SceneTransitionEntity.Exit();
+        m_ListenerBegin.Exit();
+        m_ListenerEnd.Exit();
     }
 
 

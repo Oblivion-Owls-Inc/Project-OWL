@@ -24,6 +24,7 @@
 #include "Health.h"
 #include "Transform.h"
 #include "CircleCollider.h"
+#include "EffectAnimator.h"
 
 #include "EntityReference.h"
 #include "MiningLaser.h"
@@ -32,6 +33,7 @@
 #include "AnimationAsset.h"
 
 #include "ActionReference.h"
+#include "EventListener.h"
 
 
 class PlayerController : public Behavior
@@ -123,6 +125,9 @@ private: // member variables
 
     /// @brief a cached instance of the parent's Inventory.
     ComponentReference< Inventory > m_Inventory;
+
+    /// @brief a cached instance of the effect animator.
+    ComponentReference< EffectAnimator > m_EffectAnimator;
     
 
     /// @brief  the miningLaser this PlayerController uses
@@ -148,6 +153,12 @@ private: // member variables
 
     /// @brief  the control action for vertical aim
     ActionReference m_AimVertical;
+
+    /// @brief Listener for the begin event
+    EventListener<std::string> m_ListenerBegin;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameBegin;
 
 
 //-----------------------------------------------------------------------------
@@ -252,6 +263,10 @@ private: // reading
     /// @brief Read in the is jumping state.
     /// @param data - the JSON file to read from.
     void readIsJumping( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the EventNameBegin from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameBegin(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

@@ -33,6 +33,10 @@ public: // accessors
     /// @return the Health Component attached to this Entity
     Health* GetHealth();
 
+    /// @brief  gets the current win state
+    /// @return bool if we can win the game
+    bool CanWin();
+
 //-----------------------------------------------------------------------------
 public: // public method
 //-----------------------------------------------------------------------------
@@ -73,17 +77,19 @@ private: // members
     /// @brief  the Health Component attached to this Entity
     ComponentReference< Health > m_Health;
 
-    /// @brief Listener for the button click
+    /// @brief Listener for the start event
     EventListener<std::string> m_ListenerBegin;
 
     /// @brief  the name of the event to listen for
     std::string m_EventNameBegin;
 
-    /// @brief Listener for the button click
+    /// @brief Listener for the end event
     EventListener<std::string> m_ListenerEnd;
 
     /// @brief  the name of the event to listen for
     std::string m_EventNameEnd;
+
+    bool m_CanWin = false;
 
     
 //-----------------------------------------------------------------------------
