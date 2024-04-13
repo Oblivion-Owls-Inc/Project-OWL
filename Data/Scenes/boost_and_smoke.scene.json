@@ -3,39 +3,48 @@
         "Sounds": {
             "BaseDamageSound": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
+                "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg",
+                "Volume": 1.0
             },
             "ButtonPress": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+                "Filepath": "Data/Sounds/Effects/button_press.ogg",
+                "Volume": 1.0
             },
             "ButtonRelease": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+                "Filepath": "Data/Sounds/Effects/button_release.ogg",
+                "Volume": 1.0
             },
             "EnemySound": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
+                "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg",
+                "Volume": 1.0
             },
             "Music": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Music/background.ogg"
+                "Filepath": "Data/Sounds/Music/background.ogg",
+                "Volume": 1.0
             },
             "PlayerDigging": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Player/digging.ogg"
+                "Filepath": "Data/Sounds/Effects/Player/digging.ogg",
+                "Volume": 1.0
             },
             "PlayerFootSteps": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Player/Human-Ground-FootSteps.ogg"
+                "Filepath": "Data/Sounds/Effects/Player/Human-Ground-FootSteps.ogg",
+                "Volume": 1.0
             },
             "TurretPlacement": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Turret/TurretPlace.ogg"
+                "Filepath": "Data/Sounds/Effects/Turret/TurretPlace.ogg",
+                "Volume": 1.0
             },
             "TurretShoot": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
+                "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg",
+                "Volume": 1.0
             }
         },
         "Textures": {
@@ -761,6 +770,9 @@
                                 "SelectedTexture": {
                                     "AssetName": "Turret"
                                 },
+                                "LockedTexture": {
+                                    "AssetName": ""
+                                },
                                 "ConstructionEntity": {
                                     "EntityName": "ConstructionManager"
                                 }
@@ -789,6 +801,9 @@
                                     "AssetName": ""
                                 },
                                 "ReleaseSound": {
+                                    "AssetName": ""
+                                },
+                                "HoverSound": {
                                     "AssetName": ""
                                 }
                             },
@@ -955,7 +970,10 @@
                     },
                     "EnemyBehavior": {
                         "Speed": 10.0,
-                        "Damage": 1
+                        "Damage": 1,
+                        "Reward Prefab": {
+                            "AssetName": ""
+                        }
                     },
                     "Health": {
                         "Health": {
@@ -1480,6 +1498,9 @@
                                         },
                                         "ReleaseSound": {
                                             "AssetName": "ButtonRelease"
+                                        },
+                                        "HoverSound": {
+                                            "AssetName": ""
                                         }
                                     },
                                     "UiElement": {
@@ -1626,6 +1647,9 @@
                                         },
                                         "ReleaseSound": {
                                             "AssetName": "ButtonRelease"
+                                        },
+                                        "HoverSound": {
+                                            "AssetName": ""
                                         }
                                     },
                                     "UiElement": {
@@ -1740,7 +1764,11 @@
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Credits",
-                                        "EventName": "Credits"
+                                        "EventName": "Credits",
+                                        "SceneTransitionEntity": {
+                                            "EntityName": ""
+                                        },
+                                        "PreviousSceneFlag": false
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -1767,6 +1795,9 @@
                                         },
                                         "ReleaseSound": {
                                             "AssetName": "ButtonRelease"
+                                        },
+                                        "HoverSound": {
+                                            "AssetName": ""
                                         }
                                     },
                                     "UiElement": {
@@ -1881,7 +1912,11 @@
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Settings",
-                                        "EventName": "Settings"
+                                        "EventName": "Settings",
+                                        "SceneTransitionEntity": {
+                                            "EntityName": ""
+                                        },
+                                        "PreviousSceneFlag": false
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -1908,6 +1943,9 @@
                                         },
                                         "ReleaseSound": {
                                             "AssetName": "ButtonRelease"
+                                        },
+                                        "HoverSound": {
+                                            "AssetName": ""
                                         }
                                     },
                                     "UiElement": {
@@ -2257,7 +2295,11 @@
                             },
                             "SceneChangeButton": {
                                 "SceneName": "MainMenu",
-                                "EventName": "QuitConfirmation"
+                                "EventName": "QuitConfirmation",
+                                "SceneTransitionEntity": {
+                                    "EntityName": ""
+                                },
+                                "PreviousSceneFlag": false
                             },
                             "Sprite": {
                                 "Layer": 40,
@@ -2284,6 +2326,9 @@
                                 },
                                 "ReleaseSound": {
                                     "AssetName": "ButtonRelease"
+                                },
+                                "HoverSound": {
+                                    "AssetName": ""
                                 }
                             },
                             "UiElement": {
@@ -2421,6 +2466,9 @@
                                 },
                                 "ReleaseSound": {
                                     "AssetName": "ButtonRelease"
+                                },
+                                "HoverSound": {
+                                    "AssetName": ""
                                 }
                             },
                             "UiElement": {
@@ -2969,8 +3017,8 @@
             }
         }
     },
-    "Entities": {
-        "Tiles": {
+    "Entities": [
+        {
             "Name": "Tiles",
             "Components": {
                 "Tilemap<int>": {
@@ -90670,7 +90718,7 @@
                 }
             ]
         },
-        "Player": {
+        {
             "Name": "Player",
             "Components": {
                 "Animation": {
@@ -90734,21 +90782,6 @@
                     "Active": true
                 },
                 "PlayerController": {
-                    "Animations": [
-                        {
-                            "AssetName": "PlayerMoveRight"
-                        },
-                        {
-                            "AssetName": "PlayerMoveLeft"
-                        },
-                        {
-                            "AssetName": "PlayerMoveUp"
-                        },
-                        {
-                            "AssetName": "PlayerMoveDown"
-                        }
-                    ],
-                    "MaxSpeed": 1.0,
                     "MiningLaserEntity": {
                         "EntityName": "MiningLaser"
                     },
@@ -90768,6 +90801,18 @@
                     "Interact": {
                         "ActionName": "Interact"
                     },
+                    "VerticalMoveforce": [
+                        1.0,
+                        1.0
+                    ],
+                    "HorizontalMoveforce": [
+                        1.0,
+                        1.0
+                    ],
+                    "JumpSpeed": 1.0,
+                    "IsJumping": false,
+                    "GroundCollisionThreshold": 0.8999999761581421,
+                    "CoyoteTime": 0.30000001192092896,
                     "AimVertical": {
                         "ActionName": "AimVertical"
                     },
@@ -90822,7 +90867,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 14.73981761932373,
+                            "Width": 20.845233917236328,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -90833,15 +90878,16 @@
                             "YBounds": [
                                 -125.0,
                                 150.0
-                            ]
+                            ],
+                            "Factor": 1.0
                         },
                         "EditorCameraController": {
                             "Sensativity": -0.25
                         },
                         "Transform": {
                             "Translation": [
-                                -14.721126556396484,
-                                122.49341583251953
+                                -1.7758421897888184,
+                                125.36067962646484
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -90859,7 +90905,10 @@
                         "WinState": {
                             "ItemID": 0,
                             "ItemCount": 10,
-                            "WinScene": "GameWin"
+                            "WinScene": "GameWin",
+                            "SceneTransitionEntity": {
+                                "EntityName": ""
+                            }
                         }
                     },
                     "Children": null
@@ -91012,6 +91061,7 @@
                             },
                             "Range": 4.0,
                             "MiningSpeed": 4.0,
+                            "MaxToughness": 2.0,
                             "BeamColor": [
                                 1.0,
                                 0.0,
@@ -91046,7 +91096,7 @@
                 }
             ]
         },
-        "ConstructionManager": {
+        {
             "Name": "ConstructionManager",
             "Components": {
                 "AudioPlayer": {
@@ -91066,20 +91116,24 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
+                            "Archetype": {
+                                "AssetName": "Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 3
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Turret"
+                            "SelectAction": {
+                                "ActionName": ""
                             },
-                            "Build Action": {
-                                "ActionName": "Build Turret 1"
-                            }
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Auto Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91090,28 +91144,30 @@
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Auto Turret"
+                            "SelectAction": {
+                                "ActionName": ""
                             },
-                            "Build Action": {
-                                "ActionName": "Build Turret 2"
-                            }
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Pulsar Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 5
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Pulsar Turret"
+                            "SelectAction": {
+                                "ActionName": ""
                             },
-                            "Build Action": {
-                                "ActionName": "Build Turret 3"
-                            }
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Explosive Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91122,28 +91178,30 @@
                                     "Count": 3
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Explosive Turret"
+                            "SelectAction": {
+                                "ActionName": ""
                             },
-                            "Build Action": {
-                                "ActionName": "Build Turret 4"
-                            }
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Railgun Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 1,
                                     "Count": 10
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Railgun Turret"
+                            "SelectAction": {
+                                "ActionName": ""
                             },
-                            "Build Action": {
-                                "ActionName": "Build Turret 5"
-                            }
+                            "Unlocked": false
                         },
                         {
+                            "Archetype": {
+                                "AssetName": "Force Turret"
+                            },
                             "Cost": [
                                 {
                                     "ItemId": 0,
@@ -91154,12 +91212,10 @@
                                     "Count": 4
                                 }
                             ],
-                            "Archetype": {
-                                "AssetName": "Force Turret"
+                            "SelectAction": {
+                                "ActionName": ""
                             },
-                            "Build Action": {
-                                "ActionName": "Build Turret 6"
-                            }
+                            "Unlocked": false
                         }
                     ],
                     "BuildingIndex": -1,
@@ -91265,7 +91321,7 @@
                 }
             ]
         },
-        "ResourcesUi": {
+        {
             "Name": "ResourcesUi",
             "Components": {
                 "Nineslice": {
@@ -91336,7 +91392,7 @@
             },
             "Children": null
         },
-        "jetpack_boost": {
+        {
             "Name": "jetpack_boost",
             "Components": {
                 "Emitter": {
@@ -91459,7 +91515,7 @@
                 }
             ]
         },
-        "PropTilemap": {
+        {
             "Name": "PropTilemap",
             "Components": {
                 "Tilemap<int>": {
@@ -109003,7 +109059,7 @@
             },
             "Children": null
         },
-        "CostUi": {
+        {
             "Name": "CostUi",
             "Components": {
                 "ResourcesUiManager": {
@@ -109044,7 +109100,7 @@
             },
             "Children": null
         },
-        "Base": {
+        {
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
@@ -109119,10 +109175,12 @@
                 },
                 "Generator": {
                     "Radius": 15.0,
-                    "ActivateRadius": 1.0,
-                    "Depth": 0,
                     "Active": true,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    },
+                    "ActivationCost": []
                 },
                 "Health": {
                     "Health": {
@@ -109131,7 +109189,10 @@
                     }
                 },
                 "HomeBase": {
-                    "GameOverScene": "Gameover"
+                    "GameOverScene": "Gameover",
+                    "SceneTransitionEntity": {
+                        "EntityName": ""
+                    }
                 },
                 "PathfinderTarget": {
                     "Priority": 0,
@@ -109166,7 +109227,7 @@
             },
             "Children": null
         },
-        "Generator": {
+        {
             "Name": "Generator",
             "Components": {
                 "AudioPlayer": {
@@ -109241,10 +109302,12 @@
                 },
                 "Generator": {
                     "Radius": 10.0,
-                    "ActivateRadius": 1.0,
-                    "Depth": 0,
                     "Active": false,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    },
+                    "ActivationCost": []
                 },
                 "Health": {
                     "Health": {
@@ -109285,7 +109348,7 @@
             },
             "Children": null
         },
-        "Generator2": {
+        {
             "Name": "Generator2",
             "Components": {
                 "AudioPlayer": {
@@ -109360,10 +109423,12 @@
                 },
                 "Generator": {
                     "Radius": 10.0,
-                    "ActivateRadius": 1.0,
-                    "Depth": 0,
                     "Active": false,
-                    "GrowthSpeed": 10.0
+                    "GrowthSpeed": 10.0,
+                    "WavePrefab": {
+                        "AssetName": ""
+                    },
+                    "ActivationCost": []
                 },
                 "Health": {
                     "Health": {
@@ -109404,7 +109469,7 @@
             },
             "Children": null
         },
-        "Pause": {
+        {
             "Name": "Pause",
             "Components": {
                 "PauseComponent": {
@@ -109436,8 +109501,75 @@
                 }
             },
             "Children": null
+        },
+        {
+            "Name": "SmokeRise",
+            "Components": {
+                "Emitter": {
+                    "PPS": 143.5,
+                    "Delay": 0.0,
+                    "Max": 2048,
+                    "Continuous": true,
+                    "IsLocal": false,
+                    "EmitData": [
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.33000001311302185,
+                            0.3199999928474426
+                        ],
+                        [
+                            0.0,
+                            1.600000023841858
+                        ],
+                        0.5299999713897705,
+                        1.0809999704360962,
+                        0.10999996960163116,
+                        0.0,
+                        0.6790000200271606,
+                        0.5270000100135803,
+                        0.10599999874830246,
+                        0.0,
+                        0.0,
+                        2.5,
+                        3.0,
+                        0.0,
+                        0.0,
+                        0.24000003933906555
+                    ]
+                },
+                "EmitterSprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Ball"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -3.8603649139404297,
+                        123.12316131591797
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
         }
-    },
+    ],
     "PreparsedScenes": [
         "Settings",
         "Tutorial"
