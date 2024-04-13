@@ -182,8 +182,8 @@
     /// @param  other   the other TurretUnlockUpgrade to copy
     TurretUnlockUpgrade::TurretUnlockUpgrade( TurretUnlockUpgrade const& other ) :
         Component( other ),
-        m_UnlockBuildingIndex( m_UnlockBuildingIndex ),
-        m_ConstructionEntity ( m_ConstructionEntity, { &m_ConstructionBehavior } )
+        m_UnlockBuildingIndex( other.m_UnlockBuildingIndex ),
+        m_ConstructionEntity ( other.m_ConstructionEntity, { &m_ConstructionBehavior } )
     {}
 
 
