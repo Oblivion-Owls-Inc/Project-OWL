@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1230,
-                755
+                994,
+                718
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -298,7 +298,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.09007592499256134,
+            "Volume": 1.0,
             "Groups": [
                 {
                     "Name": "Music",
@@ -307,7 +307,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 0.5320764183998108,
+                    "Volume": 1.0,
                     "Mute": false
                 },
                 {
@@ -356,7 +356,7 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": false,
+                "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,
