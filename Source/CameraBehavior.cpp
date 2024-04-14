@@ -1,8 +1,10 @@
 /*********************************************************************
-* \file   CameraBehavior.cpp
-* \brief  Camera that smoothly follows specified entity.
+* \file         CameraBehavior.cpp
+* \author       Eli Tsereteli
+* \date         April 2024
+* \copyright    Copyright (c) 2023 Digipen Institute of Technology
 *
-* \author Eli Tsereteli
+* \brief        Makes camera smoothly follow specified entity.
 *********************************************************************/
 
 
@@ -14,6 +16,7 @@
 #include "EntitySystem.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "Engine.h"
 
 #include "InputSystem.h"
 
@@ -64,27 +67,28 @@ void CameraBehavior::OnExit()
 
 
 /// @brief  Performs the smooth following
-void CameraBehavior::OnUpdate(float dt)
+void CameraBehavior::OnUpdate( float dt )
 {
 	if (!m_Cam || !m_Transform || !m_ParentTransform)
 		return;
-
+            
 	// move
 	glm::vec2 pos = m_Transform->GetTranslation(), prev_pos = pos,
-			  tpos = m_ParentTransform->GetTranslation();
+			  tpos = m_ParentTransform->GetMatrix()[ 3 ];
 
-	pos += (tpos - pos) * dt * m_Factor;
+    // accurate smooth lerp equation
+	pos = lerp( tpos, pos, std::exp2( dt * -m_Factor ) );
 
 	// clamp to bounds
 	clampOrCenter(pos.y, m_yBounds[0], m_yBounds[1], m_Cam->GetHeight());
 	clampOrCenter(pos.x, m_xBounds[0], m_xBounds[1], m_Cam->GetWidth());
 
-	// This shouldn't be customizable. It's here to prevent aliasing.
-	// However, combining it with 'speed' determines how lazy it is
-	// with following the target. So I call it 'follow factor'.
-	glm::vec2 change = prev_pos - pos;
-	if (glm::dot(change, change) > dt*dt)
-		m_Transform->SetTranslation( pos );
+	// // This shouldn't be customizable. It's here to prevent aliasing.
+	// // However, combining it with 'speed' determines how lazy it is
+	// // with following the target. So I call it 'follow factor'.
+	// glm::vec2 change = prev_pos - pos;
+	// if (glm::dot(change, change) > dt*dt)
+	    m_Transform->SetTranslation( pos );
 }
 
 

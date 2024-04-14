@@ -29,7 +29,6 @@ public: // constructor / destructor
 	/// @brief  default constructor
 	EnemyBehavior();
 
-
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -102,7 +101,7 @@ private: // methods
     void onDamageTaken();
 
     /// @brief The Event that is called when the enemy dies.
-    void onDeathEvent();
+    void onDeath();
     
 ///-----------------------------------------------------------------------------
 public: // inspection

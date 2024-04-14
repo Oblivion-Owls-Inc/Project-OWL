@@ -5,7 +5,5 @@
     "AssetLibrary<TransformAnimation>": true,
     "CameraSystem": true,
     "DebugSystem": true,
-    "InputSystem": true,
-    "LightingSystem": true,
-    "PauseSystem": true
+    "InputSystem": true
 }

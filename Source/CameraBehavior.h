@@ -1,8 +1,10 @@
 /*********************************************************************
-* \file   CameraBehavior.h
-* \brief  Camera that smoothly follows specified entity.
+* \file         CameraBehavior.h
+* \author       Eli Tsereteli
+* \date         April 2024
+* \copyright    Copyright (c) 2023 Digipen Institute of Technology
 * 
-* \author Eli Tsereteli
+* \brief        Makes camera smoothly follow specified entity.
 *********************************************************************/
 #pragma once
 
@@ -40,7 +42,7 @@ private:
     virtual void OnInit() override;
 
     /// @brief  Performs the smooth following
-    virtual void OnUpdate(float dt) override;
+    virtual void OnUpdate( float dt ) override;
 
     /// @brief  Removes itself from behavior system
     virtual void OnExit() override;
