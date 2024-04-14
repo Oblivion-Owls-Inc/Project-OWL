@@ -172,6 +172,13 @@
         return m_FixedFrameCount;
     }
 
+    /// @brief  gets whether a fixed update took place this frame
+    /// @return whether a fixed update took place this frame
+    bool Engine::GetFixedUpdatedThisFrame() const
+    {
+        return m_FixedUpdatedThisFrame;
+    }
+
 
     /// @brief  Gets the array of all Systems in the engine.
     /// @return the array of all Systems in the engine
@@ -215,19 +222,35 @@
 
         double currentTime = glfwGetTime();
 
-        updateSystems( static_cast<float>(currentTime - m_PreviousTime) );
+        float deltaTime = static_cast<float>(currentTime - m_PreviousTime);
+
+        // const int maxFrameTimes = 60;
+        // static std::deque< float > frameTimes;
+        // 
+        // if ( frameTimes.size() >= maxFrameTimes )
+        // {
+        //     frameTimes.pop_front();
+        // }
+        // 
+        // frameTimes.push_back( deltaTime );
+        // 
+        // deltaTime = std::accumulate( frameTimes.begin(), frameTimes.end(), 0.0f ) / frameTimes.size();
+        // 
+        // Debug() << deltaTime << std::endl;
 
         if (currentTime - m_PreviousFixedTime > m_FixedFrameDuration)
         {
             fixedUpdateSystems();
 
             m_PreviousFixedTime += m_FixedFrameDuration;
+            m_PreviousFixedTime = std::max( m_PreviousFixedTime, currentTime - m_FixedFrameDuration );
 
-            if ( currentTime - m_PreviousFixedTime >= m_FixedFrameDuration )
-            {
-                m_PreviousFixedTime = currentTime;
-            }
+            m_FixedUpdatedThisFrame = true;
         }
+
+        updateSystems( deltaTime );
+
+        m_FixedUpdatedThisFrame = false;
 
         m_PreviousTime = currentTime;
 

@@ -75,6 +75,11 @@ public: // accessors
     int GetFixedFrameCount() const;
 
 
+    /// @brief  gets whether a fixed update took place this frame
+    /// @return whether a fixed update took place this frame
+    bool GetFixedUpdatedThisFrame() const;
+
+
     /// @brief  gets the array of all Systems in the engine.
     /// @return the array of all Systems in the engine
     std::vector< System * > const& GetSystems() const;
@@ -149,6 +154,10 @@ private: // member variables
 
     /// @brief  the number of fixed frames that have elapsed since the Engine started
     int m_FixedFrameCount = 0;
+
+
+    /// @brief  whether a fixed update took place this frame
+    bool m_FixedUpdatedThisFrame = false;
 
 
     /// @brief  The current update we're in

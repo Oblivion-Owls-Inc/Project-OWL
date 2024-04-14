@@ -408,6 +408,9 @@
     <Filter Include="Game\Components\Behaviors\BuildingSelectionButton">
       <UniqueIdentifier>{7c1ca90a-c387-4e2f-9fa0-4acd27327c4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\GeneratorActivationCostUi">
+      <UniqueIdentifier>{a8f522e3-5f21-448e-b2a6-89fc4a42b36a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -827,9 +830,6 @@
     <ClCompile Include="Source\Interactor.cpp">
       <Filter>Game\Components\Interactable\Interactor</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuildingSelectionButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LaserUpgrade.cpp">
       <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
     </ClCompile>
@@ -859,6 +859,12 @@
     </ClCompile>
     <ClCompile Include="Source\BuildingSelectionButton.cpp">
       <Filter>Game\Components\Behaviors\BuildingSelectionButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildingSelectionButton.cpp">
+      <Filter>Game\Components\Behaviors\BuildingSelectionButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GeneratorActivationCostUi.cpp">
+      <Filter>Game\Components\Behaviors\GeneratorActivationCostUi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1276,9 +1282,6 @@
     <ClInclude Include="Source\Interactor.h">
       <Filter>Game\Components\Interactable\Interactor</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BuildingSelectionButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LaserUpgrade.h">
       <Filter>Game\Components\Upgrades\LaserUpgrade</Filter>
     </ClInclude>
@@ -1308,6 +1311,12 @@
     </ClInclude>
     <ClInclude Include="Source\BuildingSelectionButton.h">
       <Filter>Game\Components\Behaviors\BuildingSelectionButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildingSelectionButton.h">
+      <Filter>Game\Components\Behaviors\BuildingSelectionButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GeneratorActivationCostUi.h">
+      <Filter>Game\Components\Behaviors\GeneratorActivationCostUi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
