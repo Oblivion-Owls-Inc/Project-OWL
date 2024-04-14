@@ -38,7 +38,7 @@
     /// @brief  sets whether the popup is open
     /// @param  open    whether the popup is open
     void Popup::SetOpen( bool open )
-    {
+    {    
         if ( open != GetOpen() )
         {
             togglePopup();
