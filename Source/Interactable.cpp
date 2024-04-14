@@ -141,30 +141,45 @@
     {
         Components< Interactable >()->AddComponent( this );
 
-        m_Transform.SetOnConnectCallback( [ this ]() {
-            m_Transform->AddOnTransformChangedCallback( GetId(), [ this ]() {
+        m_Transform.SetOnConnectCallback( [ this ]()
+        {
+            if ( m_PromptTransform != nullptr )
+            {
+                m_PromptTransform->SetTranslation( m_Transform->GetTranslation() + m_PromptOffset );
+            }
+            m_Transform->AddOnTransformChangedCallback( GetId(), [ this ]()
+            {
                 if ( m_PromptTransform != nullptr )
                 {
                     m_PromptTransform->SetTranslation( m_Transform->GetTranslation() + m_PromptOffset );
                 }
             } );
         } );
-        m_Transform.SetOnDisconnectCallback( [ this ]() {
+        m_Transform.SetOnDisconnectCallback( [ this ]()
+        {
             m_Transform->RemoveOnTransformChangedCallback( GetId() );
-        });
+        } );
+
+        m_PromptTransform.SetOnConnectCallback( [ this ]()
+        {
+            if ( m_Transform != nullptr )
+            {
+                m_PromptTransform->SetTranslation( m_Transform->GetTranslation() + m_PromptOffset );
+            }
+        } );
 
         m_Transform.Init( GetEntity() );
 
+        if ( GetEntity()->GetChildren().size() > 0 )
+        {
+            m_PromptSprite   .Init( GetEntity()->GetChildren()[ 0 ] );
+            m_PromptTransform.Init( GetEntity()->GetChildren()[ 0 ] );
+        }
+
         m_InteractAction.Init();
 
-        m_PromptEntity.SetOwnerName( GetName() );
-        m_PromptEntity.Init();
-
-
-        if ( m_PromptTransform != nullptr )
-        {
-            m_PromptTransform->SetTranslation( m_Transform->GetTranslation() + m_PromptOffset );
-        }
+        // m_PromptEntity.SetOwnerName( GetName() );
+        // m_PromptEntity.Init();
     }
 
 
@@ -173,11 +188,36 @@
     {
         Components< Interactable >()->RemoveComponent( this );
 
-        m_Transform.Exit();
+        m_Transform      .Exit();
+        m_PromptSprite   .Exit();
+        m_PromptTransform.Exit();
 
         m_InteractAction.Exit();
 
-        m_PromptEntity.Exit();
+        // m_PromptEntity.Exit();
+    }
+
+
+    /// @brief  called after a child is added to this Entity
+    /// @param  child   the child Entity that was added
+    void Interactable::OnAddChild( Entity* child )
+    {
+        if ( m_PromptSprite.GetEntity() == nullptr )
+        {
+            m_PromptSprite   .Init( child );
+            m_PromptTransform.Init( child );
+        }
+    }
+
+    /// @brief  called before a child is removed from this Entity
+    /// @param  child   the child that will be removed
+    void Interactable::OnRemoveChild( Entity* child )
+    {
+        if ( m_PromptSprite.GetEntity() == child )
+        {
+            m_PromptSprite   .Exit();
+            m_PromptTransform.Exit();
+        }
     }
 
 
@@ -202,7 +242,7 @@
 
         ImGui::DragFloat2( "prompt offset", &m_PromptOffset[ 0 ], 0.05f );
 
-        m_PromptEntity.Inspect( "Prompt Entity" );
+        // m_PromptEntity.Inspect( "Prompt Entity" );
     }
 
 
@@ -239,12 +279,12 @@
         Stream::Read( &m_PromptOffset, data );
     }
 
-    /// @brief  reads the Entity used to display the interact control prompt
-    /// @param  data    the JSON data to read from
-    void Interactable::readPromptEntity( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_PromptEntity, data );
-    }
+    // /// @brief  reads the Entity used to display the interact control prompt
+    // /// @param  data    the JSON data to read from
+    // void Interactable::readPromptEntity( nlohmann::ordered_json const& data )
+    // {
+    //     Stream::Read( m_PromptEntity, data );
+    // }
 
 
 //-----------------------------------------------------------------------------
@@ -260,8 +300,9 @@
             { "Enabled"          , &Interactable::readEnabled           },
             { "InteractionRadius", &Interactable::readInteractionRadius },
             { "InteractAction"   , &Interactable::readInteractAction    },
-            { "PromptOffset"     , &Interactable::readPromptOffset      },
-            { "PromptEntity"     , &Interactable::readPromptEntity      }
+            { "PromptOffset"     , &Interactable::readPromptOffset      }
+
+            // { "PromptEntity"     , &Interactable::readPromptEntity      }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -278,7 +319,8 @@
         json[ "InteractionRadius" ] = Stream::Write( m_InteractionRadius );
         json[ "InteractAction"    ] = Stream::Write( m_InteractAction    );
         json[ "PromptOffset"      ] = Stream::Write( m_PromptOffset      );
-        json[ "PromptEntity"      ] = Stream::Write( m_PromptEntity      );
+
+        // json[ "PromptEntity"      ] = Stream::Write( m_PromptEntity      );
 
         return json;
     }
@@ -309,8 +351,8 @@
         m_Enabled          ( other.m_Enabled           ),
         m_InteractionRadius( other.m_InteractionRadius ),
         m_InteractAction   ( other.m_InteractAction    ),
-        m_PromptOffset     ( other.m_PromptOffset      ),
-        m_PromptEntity     ( other.m_PromptEntity, { &m_PromptSprite } )
+        m_PromptOffset     ( other.m_PromptOffset      )
+        // m_PromptEntity     ( other.m_PromptEntity, { &m_PromptSprite } )
     {}
 
 

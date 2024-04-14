@@ -48,7 +48,7 @@ uniform ivec2 range;    // init start and end
 uniform int initIndex;  // which init data to use this time
 uniform int oldest;     // oldest particle index
 uniform vec2 parentPos; // emit from parent entity's position. scale and rotation should be independent, I think...
-                        //  TODO:? flag to stay within entity's local space? (as in, move with it instead of independently?)
+uniform bool local;     // when true, particles follow parent transform
 
 // positive unit random (0 to 1)
 float prand(float seed) { return fract( sin((float(gl_GlobalInvocationID.x) + 242.9 + seed) * fract(t)) * 43758.5453); }
@@ -64,6 +64,9 @@ void main()
     // it's one-dimensional. Only need the x.
     const uint idx = gl_GlobalInvocationID.x;
 
+    float isLocal = float(local);
+    float isGlobal = float(!local);
+
     // If this particle's ID is within range, initialize it
     if (range.x <= idx && idx < range.y)
     {
@@ -78,7 +81,7 @@ void main()
 
         // initialize   (to 0 or to initial values)
         particles[idx].vel = zinit *  (vec2( cos(direction), sin(direction) ) * speed);
-        particles[idx].pos = zinit *  (parentPos + init[initIndex].offset + pos_spread +
+        particles[idx].pos = zinit *  (isGlobal * parentPos + init[initIndex].offset + pos_spread +
                                        init[initIndex].startAhead * particles[idx].vel);
         particles[idx].size = zinit *  (init[initIndex].size - 
                                         init[initIndex].size_spread * prand(5.0));
@@ -110,7 +113,7 @@ void main()
     float rcos = cos(particles[idx].rotation);
     float rsin = sin(particles[idx].rotation);
     mat4 R = mat4( mat2(rcos, rsin, -rsin, rcos) );
-    mat4 T = mat4(1.0);  T[3] = vec4(particles[idx].pos, 0, 1);
+    mat4 T = mat4(1.0);  T[3] = vec4(particles[idx].pos + parentPos * isLocal, 0, 1);
 
     // arrange them from oldest to newest for rendering. inverse deque, wooo
     int renderIndex = (int(idx) + (init[initIndex].bufferSize - oldest)) % init[initIndex].bufferSize;

@@ -63,7 +63,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classGenerator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Generator Class Reference</div>  </div>
@@ -98,15 +97,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf816931e7eb054c11ed084d75330c0a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#abf816931e7eb054c11ed084d75330c0a">OnUpdate</a> (float dt) override</td></tr>
 <tr class="memdesc:abf816931e7eb054c11ed084d75330c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">called every frame  <a href="classGenerator.html#abf816931e7eb054c11ed084d75330c0a">More...</a><br /></td></tr>
 <tr class="separator:abf816931e7eb054c11ed084d75330c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16d04e7ba515d4f61f35e959b6c7240b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a16d04e7ba515d4f61f35e959b6c7240b">GetPowerRadius</a> ()</td></tr>
-<tr class="memdesc:a16d04e7ba515d4f61f35e959b6c7240b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the radius within turrets are powered  <a href="classGenerator.html#a16d04e7ba515d4f61f35e959b6c7240b">More...</a><br /></td></tr>
-<tr class="separator:a16d04e7ba515d4f61f35e959b6c7240b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2613639cd42b906d9a98b51305fd352d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a2613639cd42b906d9a98b51305fd352d">GetActivationRadius</a> ()</td></tr>
-<tr class="memdesc:a2613639cd42b906d9a98b51305fd352d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the radius a player can activate a generator within  <a href="classGenerator.html#a2613639cd42b906d9a98b51305fd352d">More...</a><br /></td></tr>
-<tr class="separator:a2613639cd42b906d9a98b51305fd352d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27474a4688c9d493c05280aa2ed946e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a27474a4688c9d493c05280aa2ed946e1">GetActive</a> ()</td></tr>
-<tr class="memdesc:a27474a4688c9d493c05280aa2ed946e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns if the generator is powered or not  <a href="classGenerator.html#a27474a4688c9d493c05280aa2ed946e1">More...</a><br /></td></tr>
-<tr class="separator:a27474a4688c9d493c05280aa2ed946e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb689f2a1b04afb4e05f62bc6f6f3b49"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#acb689f2a1b04afb4e05f62bc6f6f3b49">GetPowerRadius</a> () const</td></tr>
+<tr class="memdesc:acb689f2a1b04afb4e05f62bc6f6f3b49"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the radius within turrets are powered  <a href="classGenerator.html#acb689f2a1b04afb4e05f62bc6f6f3b49">More...</a><br /></td></tr>
+<tr class="separator:acb689f2a1b04afb4e05f62bc6f6f3b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f777f035f2ce4a54a8d76ec56085460"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a6f777f035f2ce4a54a8d76ec56085460">GetActive</a> () const</td></tr>
+<tr class="memdesc:a6f777f035f2ce4a54a8d76ec56085460"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns if the generator is powered or not  <a href="classGenerator.html#a6f777f035f2ce4a54a8d76ec56085460">More...</a><br /></td></tr>
+<tr class="separator:a6f777f035f2ce4a54a8d76ec56085460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd72e391711d4da19ab2b597bca7e42"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structItemStack.html">ItemStack</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a9cd72e391711d4da19ab2b597bca7e42">GetActivationCost</a> () const</td></tr>
+<tr class="memdesc:a9cd72e391711d4da19ab2b597bca7e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the activation cost of this <a class="el" href="classGenerator.html">Generator</a>  <a href="classGenerator.html#a9cd72e391711d4da19ab2b597bca7e42">More...</a><br /></td></tr>
+<tr class="separator:a9cd72e391711d4da19ab2b597bca7e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac246ea34a0bd64bf395e9f18211d941d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTransform.html">Transform</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#ac246ea34a0bd64bf395e9f18211d941d">GetTransform</a> () const</td></tr>
+<tr class="memdesc:ac246ea34a0bd64bf395e9f18211d941d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the transform of the generator  <a href="classGenerator.html#ac246ea34a0bd64bf395e9f18211d941d">More...</a><br /></td></tr>
+<tr class="separator:ac246ea34a0bd64bf395e9f18211d941d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39552a02a4d8b72325b239ce31feb603"><td class="memItemLeft" align="right" valign="top"><a id="a39552a02a4d8b72325b239ce31feb603"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a39552a02a4d8b72325b239ce31feb603">Activate</a> ()</td></tr>
 <tr class="memdesc:a39552a02a4d8b72325b239ce31feb603"><td class="mdescLeft">&#160;</td><td class="mdescRight">activate the generator <br /></td></tr>
@@ -115,12 +117,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a5e10c61f64447934c0cae2c1c498bc25">Deactivate</a> ()</td></tr>
 <tr class="memdesc:a5e10c61f64447934c0cae2c1c498bc25"><td class="mdescLeft">&#160;</td><td class="mdescRight">deactivate the generator <br /></td></tr>
 <tr class="separator:a5e10c61f64447934c0cae2c1c498bc25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c8ae35c0132240d09aa738d877496e5"><td class="memItemLeft" align="right" valign="top"><a id="a9c8ae35c0132240d09aa738d877496e5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetCost</b> ()</td></tr>
-<tr class="separator:a9c8ae35c0132240d09aa738d877496e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73c3a8ce4d1a2d1c9102c151b5ba0545"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classTransform.html">Transform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a73c3a8ce4d1a2d1c9102c151b5ba0545">GetTransform</a> ()</td></tr>
-<tr class="memdesc:a73c3a8ce4d1a2d1c9102c151b5ba0545"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the transform of the generator  <a href="classGenerator.html#a73c3a8ce4d1a2d1c9102c151b5ba0545">More...</a><br /></td></tr>
-<tr class="separator:a73c3a8ce4d1a2d1c9102c151b5ba0545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc819df33a3c49d209450066e006c1a"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a6cc819df33a3c49d209450066e006c1a">Write</a> () const override</td></tr>
 <tr class="memdesc:a6cc819df33a3c49d209450066e006c1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classGenerator.html">Generator</a> data to a JSON file.  <a href="classGenerator.html#a6cc819df33a3c49d209450066e006c1a">More...</a><br /></td></tr>
 <tr class="separator:a6cc819df33a3c49d209450066e006c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,12 +161,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a100a4c5719494187819e353e3def2e4e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classGenerator.html">Generator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a100a4c5719494187819e353e3def2e4e">GetLowestGenerator</a> ()</td></tr>
-<tr class="memdesc:a100a4c5719494187819e353e3def2e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the lowest generator  <a href="classGenerator.html#a100a4c5719494187819e353e3def2e4e">More...</a><br /></td></tr>
-<tr class="separator:a100a4c5719494187819e353e3def2e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -218,55 +208,39 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a2613639cd42b906d9a98b51305fd352d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2613639cd42b906d9a98b51305fd352d">&#9670;&nbsp;</a></span>GetActivationRadius()</h2>
+<a id="a9cd72e391711d4da19ab2b597bca7e42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd72e391711d4da19ab2b597bca7e42">&#9670;&nbsp;</a></span>GetActivationCost()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Generator::GetActivationRadius </td>
+          <td class="memname">std::vector&lt; <a class="el" href="structItemStack.html">ItemStack</a> &gt; const  &amp; Generator::GetActivationCost </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>returns the radius a player can activate a generator within </p>
-<dl class="section return"><dt>Returns</dt><dd>current radius for activating a generator </dd></dl>
+<p>gets the activation cost of this <a class="el" href="classGenerator.html">Generator</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the activation cost of this <a class="el" href="classGenerator.html">Generator</a> </dd></dl>
 
 </div>
 </div>
-<a id="a27474a4688c9d493c05280aa2ed946e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27474a4688c9d493c05280aa2ed946e1">&#9670;&nbsp;</a></span>GetActive()</h2>
+<a id="a6f777f035f2ce4a54a8d76ec56085460"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f777f035f2ce4a54a8d76ec56085460">&#9670;&nbsp;</a></span>GetActive()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Generator::GetActive </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>returns if the generator is powered or not </p>
@@ -274,58 +248,19 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a100a4c5719494187819e353e3def2e4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a100a4c5719494187819e353e3def2e4e">&#9670;&nbsp;</a></span>GetLowestGenerator()</h2>
+<a id="acb689f2a1b04afb4e05f62bc6f6f3b49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb689f2a1b04afb4e05f62bc6f6f3b49">&#9670;&nbsp;</a></span>GetPowerRadius()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classGenerator.html">Generator</a> * Generator::GetLowestGenerator </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>gets the lowest generator </p>
-<p>returns the lowest generator in the level</p>
-<dl class="section return"><dt>Returns</dt><dd>returns the lowest generator</dd>
-<dd>
-the lowest generator </dd></dl>
-
-</div>
-</div>
-<a id="a16d04e7ba515d4f61f35e959b6c7240b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16d04e7ba515d4f61f35e959b6c7240b">&#9670;&nbsp;</a></span>GetPowerRadius()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">float Generator::GetPowerRadius </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>returns the radius within turrets are powered </p>
@@ -333,27 +268,19 @@ the lowest generator </dd></dl>
 
 </div>
 </div>
-<a id="a73c3a8ce4d1a2d1c9102c151b5ba0545"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73c3a8ce4d1a2d1c9102c151b5ba0545">&#9670;&nbsp;</a></span>GetTransform()</h2>
+<a id="ac246ea34a0bd64bf395e9f18211d941d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac246ea34a0bd64bf395e9f18211d941d">&#9670;&nbsp;</a></span>GetTransform()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classTransform.html">Transform</a>* Generator::GetTransform </td>
+          <td class="memname"><a class="el" href="classTransform.html">Transform</a> const  * Generator::GetTransform </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>get the transform of the generator </p>

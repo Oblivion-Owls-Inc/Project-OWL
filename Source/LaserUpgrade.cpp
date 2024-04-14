@@ -92,6 +92,7 @@
         m_MiningLaser->SetMiningSpeed ( m_MiningLaser->GetMiningSpeed () * m_SpeedMultiplier      );
         m_MiningLaser->SetDamageRate  ( m_MiningLaser->GetDamageRate  () * m_DamageMultiplier     );
 
+        m_MiningLaser->SetRange       ( m_MiningLaser->GetRange       () + m_RangeIncrease        );
         m_MiningLaser->SetMaxToughness( m_MiningLaser->GetMaxToughness() + m_MaxToughnessIncrease );
     }
 
@@ -108,6 +109,7 @@
 
         ImGui::DragFloat( "mining speed multiplier", &m_SpeedMultiplier     , 0.05f, 1.0f, INFINITY );
         ImGui::DragFloat( "damage rate multiplier" , &m_DamageMultiplier    , 0.05f, 1.0f, INFINITY );
+        ImGui::DragFloat( "range increase"         , &m_RangeIncrease       , 0.05f, 0.0f, INFINITY );
         ImGui::DragFloat( "max toughness increase" , &m_MaxToughnessIncrease, 0.05f, 0.0f, INFINITY );
     }
 
@@ -129,6 +131,13 @@
     void LaserUpgrade::readDamageMultiplier( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_DamageMultiplier, data );
+    }
+
+    /// @brief  reads how much the lasers range is increased by
+    /// @param  data    the JSON data to read from
+    void LaserUpgrade::readRangeIncrease( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_RangeIncrease, data );
     }
 
     /// @brief  how much the max toughness the laser can mine is increased by
@@ -158,6 +167,7 @@
         static ReadMethodMap< LaserUpgrade > const readMethods = {
             { "SpeedMultiplier"     , &LaserUpgrade::readSpeedMultiplier      },
             { "DamageMultiplier"    , &LaserUpgrade::readDamageMultiplier     },
+            { "RangeIncrease"       , &LaserUpgrade::readRangeIncrease        },
             { "MaxToughnessIncrease", &LaserUpgrade::readMaxToughnessIncrease },
             { "MiningLaserEntity"   , &LaserUpgrade::readMiningLaserEntity    }
         };
@@ -174,6 +184,7 @@
 
         json[ "SpeedMultiplier"      ] = Stream::Write( m_SpeedMultiplier      );
         json[ "DamageMultiplier"     ] = Stream::Write( m_DamageMultiplier     );
+        json[ "RangeIncrease"        ] = Stream::Write( m_RangeIncrease        );
         json[ "MaxToughnessIncrease" ] = Stream::Write( m_MaxToughnessIncrease );
         json[ "MiningLaserEntity"    ] = Stream::Write( m_MiningLaserEntity    );
 
@@ -205,6 +216,7 @@
         Component( other ),
         m_SpeedMultiplier     ( other.m_SpeedMultiplier      ),
         m_DamageMultiplier    ( other.m_DamageMultiplier     ),
+        m_RangeIncrease       ( other.m_RangeIncrease        ),
         m_MaxToughnessIncrease( other.m_MaxToughnessIncrease ),
         m_MiningLaserEntity   ( other.m_MiningLaserEntity, { &m_MiningLaser } )
     {}

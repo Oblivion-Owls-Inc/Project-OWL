@@ -66,7 +66,7 @@ public: // accessors
 
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void SetSound( AssetReference< Sound > const& sound );
+    void SetSound( Sound const* sound );
 
 
     /// @brief  gets whether this AudioPlayer is currently playing anything

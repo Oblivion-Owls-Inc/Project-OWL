@@ -312,6 +312,34 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
+        m_Tilemap.SetOnConnectCallback( [ this ]()
+        {
+            if ( m_Buildings != nullptr )
+            {
+                m_Buildings->SetDimensions( m_Tilemap->GetDimensions() );
+            }
+
+            m_Tilemap->AddOnTilemapChangedCallback( GetId(), [ this ]( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int const& previousValue )
+            {
+                if ( tilePos == glm::ivec2( -1 ) && m_Buildings != nullptr )
+                {
+                    m_Buildings->SetDimensions( m_Tilemap->GetDimensions() );
+                }
+            } );
+        } );
+        m_Tilemap.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+        } );
+
+        m_Buildings.SetOnConnectCallback( [ this ]()
+        {
+            if ( m_Tilemap != nullptr )
+            {
+                m_Buildings->SetDimensions( m_Tilemap->GetDimensions() );
+            }
+        } );
+
         m_PlayerEntity .SetOwnerName( GetName() );
         m_TilemapEntity.SetOwnerName( GetName() );
         m_CostUiEntity .SetOwnerName( GetName() );
@@ -340,7 +368,7 @@
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
-            buildingInfo.M_SelectAction.SetOwnerName(GetName());
+            buildingInfo.M_SelectAction.SetOwnerName( GetName() );
             buildingInfo.Init();
         }
     }
@@ -359,13 +387,12 @@
         m_TurretPlacementSound.Exit();
         m_CostInventory       .Exit();
         m_Popup               .Exit();
-
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
 
         m_PlaceAction.Exit();
 
-        for (BuildingInfo& buildingInfo : m_BuildingInfos)
+        for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
             buildingInfo.Exit();
         }
@@ -602,7 +629,7 @@
             m_RadiusTransform->SetTranslation(m_TargetPos);
         }
 
-        moveCostUi();
+        updateCostUi();
         
         if ( isCurrentlyPlaceable() )
         {
@@ -663,8 +690,8 @@
         m_CostInventory->AddItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
     }
 
-    /// @brief  moves the cost Ui to align with the mouse
-    void ConstructionBehavior::moveCostUi()
+    /// @brief  moves the cost Ui to align with the mouse and displays what can be afforded
+    void ConstructionBehavior::updateCostUi()
     {
         if ( m_CostResourcesUiManager == nullptr || m_CostResourcesUiManager->GetUiElement() == nullptr )
         {
@@ -674,6 +701,15 @@
         m_CostResourcesUiManager->GetUiElement()->SetAnchor(
             Cameras()->GetMat_WorldToClip() * glm::vec4( m_TargetPos, 0.0f, 1.0f )
         );
+
+        if ( m_PlayerInventory != nullptr )
+        {
+            m_CostResourcesUiManager->SetTextColors( glm::vec4( 0.0f ) );
+            m_CostResourcesUiManager->SetTextColors( glm::vec4( 0.0f, -1.0f, -1.0f, 0.0f ), [ this ]( ItemStack const& itemStack ) -> bool
+            {
+                return m_PlayerInventory->ContainsItemStack( itemStack ) == false;
+            } );
+        }
     }
 
 

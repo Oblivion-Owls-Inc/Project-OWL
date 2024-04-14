@@ -46,8 +46,9 @@
 
     /// @brief  initializes this AssetReference
     /// @tparam AssetType   the type of asset this AssetReference refers to
+    /// @param  required    whether this AssetReference is required (will not debug log if not required)
     template< class AssetType >
-    void AssetReference< AssetType >::Init()
+    void AssetReference< AssetType >::Init( bool required )
     {
         if ( m_AssetName == s_NonSerializedName )
         {
@@ -57,7 +58,7 @@
         m_Asset = AssetLibrary< AssetType >()->GetAsset( m_AssetName );
 
         #ifdef _DEBUG
-        if ( m_Asset == nullptr )
+        if ( required && m_Asset == nullptr )
         {
             Debug() << "Warning: Could not find asset of type \"" << PrefixlessName( typeid( AssetType ) )
                 << "\" with name \"" << m_AssetName

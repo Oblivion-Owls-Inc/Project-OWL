@@ -557,9 +557,7 @@
         }
     ],
     "PreparsedScenes": [
-        "AlphaScene",
-        "Credits",
-        "Settings",
-        "Tutorial"
+        "BetaScene",
+        "MainMenu"
     ]
 }

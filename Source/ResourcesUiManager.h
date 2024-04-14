@@ -49,6 +49,11 @@ public: // methods
     /// @param  opacity the opacity the resources UI should be
     void SetOpacity( float opacity );
 
+    /// @brief  conditionally sets the color of each resourceCounter's text
+    /// @param  color       the color to set the text
+    /// @param  condition   function that returns true if the text color should be set
+    void SetTextColors( glm::vec4 const& color, std::function< bool( ItemStack const& itemStack ) > condition = []( ItemStack const& ) -> bool { return true; } );
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -58,6 +63,10 @@ public: // accessors
     /// @brief  gets the UiElement attached to this ResourcesUiManager
     /// @return the UiElement attached to this ResourcesUiManager
     UiElement* GetUiElement();
+
+    /// @brief  gets the Inventory Component attached to this ResourcesUiManager
+    /// @return the Inventory Component attached to this ResourcesUiManager
+    Inventory* GetInventory();
 
 
 //-----------------------------------------------------------------------------

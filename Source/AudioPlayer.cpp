@@ -127,7 +127,7 @@
 
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void AudioPlayer::SetSound( AssetReference< Sound > const& sound )
+    void AudioPlayer::SetSound( Sound const* sound )
     {
         m_Sound = sound;
     }
@@ -209,7 +209,7 @@
 
         if ( m_Channel != nullptr )
         {
-            m_Channel->setVolume( m_Volume );
+            m_Channel->setVolume( m_Volume * ( m_Sound != nullptr ? m_Sound->GetVolume() : 1.0f ) );
         }
     }
 
@@ -340,6 +340,10 @@
         m_RigidBody.Init( GetEntity() );
 
         m_ChannelGroup = Audio()->GetChannelGroup( m_ChannelGroupName );
+        if ( m_ChannelGroup == nullptr )
+        {
+            Debug() << "WARNING: unable to find AudioGroup with name \"" << m_ChannelGroupName << "\" (" << GetName() << ")" << std::endl;
+        }
 
         Platform()->AddOnFocusChangedCallback( GetId(), [ this ]( bool focused )
         {

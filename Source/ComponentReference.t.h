@@ -252,6 +252,16 @@
         return m_Entity;
     }
 
+    /// @brief  gets whether this Component Reference is required
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    /// @return whether this Component Reference is required
+    template < class ComponentType, bool required >
+    bool ComponentReference< ComponentType, required >::GetIsRequired() const
+    {
+        return required;
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: engine methods

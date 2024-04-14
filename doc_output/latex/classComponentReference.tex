@@ -46,6 +46,8 @@ Component\+Type $\ast$ \mbox{\hyperlink{classComponentReference_ad7ef99858809491
 \begin{DoxyCompactList}\small\item\em implicit cast operator \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classEntity}{Entity}} const  $\ast$ \mbox{\hyperlink{classComponentReference_a64b7e3ebb6d5e5ae416f093827c640e5}{Get\+Entity}} () const
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classEntity}{Entity}} this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} watches \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classComponentReference_ab222b5fb19ee7e85a5f24d7d07e14e01}{Get\+Is\+Required}} () const override
+\begin{DoxyCompactList}\small\item\em gets whether this \mbox{\hyperlink{classComponent}{Component}} Reference is required \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classComponentReference_acde69ca38ad57a326215b95f89d26e58}{Clear}} () override
 \begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to nullptr \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Try\+Set}} (\mbox{\hyperlink{classComponent}{Component}} $\ast$component) override
@@ -207,6 +209,34 @@ the \mbox{\hyperlink{classEntity}{Entity}} this \mbox{\hyperlink{classComponentR
 \begin{DoxyReturn}{Returns}
 the \mbox{\hyperlink{classEntity}{Entity}} this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} watches 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classComponentReference_ab222b5fb19ee7e85a5f24d7d07e14e01}\label{classComponentReference_ab222b5fb19ee7e85a5f24d7d07e14e01}} 
+\index{ComponentReference$<$ ComponentType, required $>$@{ComponentReference$<$ ComponentType, required $>$}!GetIsRequired@{GetIsRequired}}
+\index{GetIsRequired@{GetIsRequired}!ComponentReference$<$ ComponentType, required $>$@{ComponentReference$<$ ComponentType, required $>$}}
+\doxysubsubsection{\texorpdfstring{GetIsRequired()}{GetIsRequired()}}
+{\footnotesize\ttfamily template$<$class Component\+Type , bool required$>$ \\
+bool \mbox{\hyperlink{classComponentReference}{Component\+Reference}}$<$ Component\+Type, required $>$\+::Get\+Is\+Required\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets whether this \mbox{\hyperlink{classComponent}{Component}} Reference is required 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classComponent}{Component}} Reference is required
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component\+Type} & the type of \mbox{\hyperlink{classComponent}{Component}} this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} refers to \\
+\hline
+{\em required} & whether this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} is required or optional (for debug logging purposes) \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classComponent}{Component}} Reference is required 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponentReferenceBase_a99dfb1786e802b6f2aabdfdee984b595}{Component\+Reference\+Base}}.
+
 \mbox{\Hypertarget{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}\label{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}} 
 \index{ComponentReference$<$ ComponentType, required $>$@{ComponentReference$<$ ComponentType, required $>$}!Init@{Init}}
 \index{Init@{Init}!ComponentReference$<$ ComponentType, required $>$@{ComponentReference$<$ ComponentType, required $>$}}

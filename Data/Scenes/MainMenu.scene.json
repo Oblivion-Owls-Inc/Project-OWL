@@ -3,11 +3,13 @@
         "Sounds": {
             "ButtonPressedSound": {
                 "IsLoopable": false,
-                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+                "Filepath": "Data/Sounds/Effects/button_press.ogg",
+                "Volume": 1.0
             },
             "ButtonReleasedSound": {
                 "IsLoopable": false,
-                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+                "Filepath": "Data/Sounds/Effects/button_release.ogg",
+                "Volume": 2.0
             }
         },
         "Textures": {
@@ -224,6 +226,9 @@
                         },
                         "ReleaseSound": {
                             "AssetName": "ButtonReleasedSound"
+                        },
+                        "HoverSound": {
+                            "AssetName": ""
                         }
                     },
                     "UiElement": {
@@ -358,7 +363,7 @@
                     "PlayOnInit": false,
                     "IsSpatial": false,
                     "AllowMultipleSounds": false,
-                    "ChannelGroupName": ""
+                    "ChannelGroupName": "Music"
                 },
                 "Sprite": {
                     "Layer": 0,
@@ -486,20 +491,20 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": "ButtonPressedSound"
+                                        "AssetName": "[non-serialized asset]"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
                                     "VolumeVariance": 0.0,
-                                    "PitchVariance": 0.0,
+                                    "PitchVariance": 0.10000000149011612,
                                     "DefaultLoopCount": 0,
                                     "PlayOnInit": false,
                                     "IsSpatial": false,
-                                    "AllowMultipleSounds": false,
-                                    "ChannelGroupName": ""
+                                    "AllowMultipleSounds": true,
+                                    "ChannelGroupName": "Effects"
                                 },
                                 "SceneChangeButton": {
-                                    "SceneName": "AlphaScene",
+                                    "SceneName": "BetaScene",
                                     "EventName": "PlayButtonClicked",
                                     "SceneTransitionEntity": {
                                         "EntityName": "SceneChanger"
@@ -531,6 +536,9 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "HoverSound": {
+                                        "AssetName": ""
                                     }
                                 },
                                 "UiElement": {
@@ -625,7 +633,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": "ButtonPressedSound"
+                                        "AssetName": "[non-serialized asset]"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -634,8 +642,8 @@
                                     "DefaultLoopCount": 0,
                                     "PlayOnInit": false,
                                     "IsSpatial": false,
-                                    "AllowMultipleSounds": false,
-                                    "ChannelGroupName": ""
+                                    "AllowMultipleSounds": true,
+                                    "ChannelGroupName": "Effects"
                                 },
                                 "SceneChangeButton": {
                                     "SceneName": "Tutorial",
@@ -670,6 +678,9 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "HoverSound": {
+                                        "AssetName": ""
                                     }
                                 },
                                 "UiElement": {
@@ -768,7 +779,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": "ButtonReleasedSound"
+                                        "AssetName": "[non-serialized asset]"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -777,8 +788,8 @@
                                     "DefaultLoopCount": 0,
                                     "PlayOnInit": false,
                                     "IsSpatial": false,
-                                    "AllowMultipleSounds": false,
-                                    "ChannelGroupName": ""
+                                    "AllowMultipleSounds": true,
+                                    "ChannelGroupName": "Effects"
                                 },
                                 "SceneChangeButton": {
                                     "SceneName": "Settings",
@@ -813,6 +824,9 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "HoverSound": {
+                                        "AssetName": ""
                                     }
                                 },
                                 "UiElement": {
@@ -911,7 +925,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": "ButtonReleasedSound"
+                                        "AssetName": "[non-serialized asset]"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -920,8 +934,8 @@
                                     "DefaultLoopCount": 0,
                                     "PlayOnInit": false,
                                     "IsSpatial": false,
-                                    "AllowMultipleSounds": false,
-                                    "ChannelGroupName": ""
+                                    "AllowMultipleSounds": true,
+                                    "ChannelGroupName": "Effects"
                                 },
                                 "SceneChangeButton": {
                                     "SceneName": "Credits",
@@ -956,6 +970,9 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "HoverSound": {
+                                        "AssetName": ""
                                     }
                                 },
                                 "UiElement": {
@@ -1053,7 +1070,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": "ButtonReleasedSound"
+                                        "AssetName": "[non-serialized asset]"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -1062,8 +1079,8 @@
                                     "DefaultLoopCount": 0,
                                     "PlayOnInit": false,
                                     "IsSpatial": false,
-                                    "AllowMultipleSounds": false,
-                                    "ChannelGroupName": ""
+                                    "AllowMultipleSounds": true,
+                                    "ChannelGroupName": "Effects"
                                 },
                                 "Sprite": {
                                     "Layer": 5,
@@ -1090,6 +1107,9 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "HoverSound": {
+                                        "AssetName": ""
                                     }
                                 },
                                 "UiElement": {
@@ -1187,10 +1207,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 2,
-                    "FrameDelay": 0.009689879603683949,
+                    "FrameIndex": 18,
+                    "FrameDelay": 0.0029611862264573574,
                     "IsRunning": true,
-                    "LoopCount": 99641,
+                    "LoopCount": 99639,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1204,7 +1224,7 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 2,
+                    "FrameIndex": 18,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
@@ -1227,17 +1247,17 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 2,
-                            "FrameDelay": 0.009689879603683949,
+                            "FrameIndex": 18,
+                            "FrameDelay": 0.0029611862264573574,
                             "IsRunning": true,
-                            "LoopCount": 99641,
+                            "LoopCount": 99639,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
                             "RotationSpeed": -1.0,
-                            "Angle": 0.0,
+                            "Angle": 1.3929740190505981,
                             "Radius": [
                                 1.0,
                                 0.30000001192092896
@@ -1253,7 +1273,7 @@
                             "Layer Switch Angle": 3.1415927410125732
                         },
                         "Sprite": {
-                            "Layer": 3,
+                            "Layer": 1,
                             "Color": [
                                 0.0,
                                 0.0,
@@ -1261,20 +1281,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 2,
+                            "FrameIndex": 18,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                0.9280614852905273,
-                                0.6924462914466858
+                                2.0845754146575928,
+                                1.0479629039764404
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.5301807522773743,
-                                0.5301807522773743
+                                0.3523550033569336,
+                                0.3523550033569336
                             ],
                             "IsDiegetic": true
                         }
@@ -1373,7 +1393,7 @@
         }
     ],
     "PreparsedScenes": [
-        "AlphaScene",
+        "BetaScene",
         "Credits",
         "Settings",
         "Tutorial"

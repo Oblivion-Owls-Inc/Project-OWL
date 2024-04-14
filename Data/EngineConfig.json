@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1110,
-                639
+                989,
+                557
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -270,7 +270,7 @@
         "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
-            "Layer": 3
+            "Layer": 0
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -279,7 +279,8 @@
                 "Player",
                 "Base",
                 "Projectiles",
-                "Foreground"
+                "Foreground",
+                "Items"
             ],
             "CollisionSteps": 8,
             "GridSize": 0.25
@@ -297,7 +298,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.7083926200866699,
+            "Volume": 0.09007592499256134,
             "Groups": [
                 {
                     "Name": "Music",
@@ -306,7 +307,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 1.0,
+                    "Volume": 0.5320764183998108,
                     "Mute": false
                 },
                 {
@@ -318,7 +319,7 @@
         },
         "CheatSystem": {
             "LoseSceneName": "GameOver",
-            "RestartSceneName": "AlphaScene",
+            "RestartSceneName": "BetaScene",
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
@@ -327,8 +328,8 @@
             "OpenSystemWindows": {
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": true,
-                "AssetLibrary<Texture>": true,
+                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Texture>": false,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -355,7 +356,7 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": true,
+                "LightingSystem": false,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,
@@ -432,6 +433,33 @@
                             {
                                 "ItemIds": [
                                     0
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    }
+                },
+                {
+                    "LootTable": {
+                        "Entries": null,
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    }
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    1
                                 ],
                                 "MinCount": 1,
                                 "MaxCount": 1,

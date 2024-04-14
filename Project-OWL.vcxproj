@@ -242,7 +242,7 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -299,10 +299,12 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ControlPrompt.cpp" />
     <ClCompile Include="Source\ControlPromptSystem.cpp" />
     <ClCompile Include="Source\DestructibleTilemap.cpp" />
+    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EntityReference.cpp" />
     <ClCompile Include="Source\EventSystem.cpp" />
     <ClCompile Include="Source\ExampleComponent.cpp" />
+    <ClCompile Include="Source\GeneratorActivationCostUi.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp">
@@ -372,6 +374,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
     <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\JetpackBoost.cpp" />
     <ClCompile Include="Source\LaserUpgrade.cpp" />
     <ClCompile Include="Source\Lifetime.cpp" />
     <ClCompile Include="Source\Light.cpp" />
@@ -501,7 +504,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\SettingsManager.cpp" />
     <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
-    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
@@ -545,10 +547,13 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\BuildingSelectionButton.h" />
     <ClInclude Include="Source\ControlPrompt.h" />
     <ClInclude Include="Source\ControlPromptSystem.h" />
+    <ClInclude Include="Source\DigEffect.h" />
+    <ClInclude Include="Source\GeneratorActivationCostUi.h" />
     <ClInclude Include="Source\InputAction.h" />
     <ClInclude Include="Source\BulletAoePulse.h" />
     <ClInclude Include="Source\Interactable.h" />
     <ClInclude Include="Source\Interactor.h" />
+    <ClInclude Include="Source\JetpackBoost.h" />
     <ClInclude Include="Source\LaserUpgrade.h" />
     <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
@@ -584,7 +589,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\SceneTransition.h" />
     <ClInclude Include="Source\SettingsManager.h" />
     <ClInclude Include="Source\SplashScreenController.h" />
-    <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\TurretUnlockUpgrade.h" />
@@ -681,6 +685,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\ButtonPromptMappings\ButtonPrompts.json" />
     <None Include="Data\EngineConfig.json" />
     <None Include="Data\Scenes\AlphaScene.scene.json" />
+    <None Include="Data\Scenes\BetaScene.scene.json" />
     <None Include="Data\Scenes\collisionTest.scene.json" />
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />

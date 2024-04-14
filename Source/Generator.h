@@ -19,7 +19,9 @@
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"
+#include "Light.h"
 #include "Interactable.h"
+#include "ItemStack.h"
 
 
 class Generator : public Behavior
@@ -62,21 +64,28 @@ private: // copying
 public: // accessors
 //-----------------------------------------------------------------------------
 
-    /// @brief  gets the lowest generator
-    /// @return returns the lowest generator
-    static Generator* GetLowestGenerator();
 
     /// @brief returns the radius within turrets are powered
     /// @return the power radius of the generator
-    float GetPowerRadius() { return m_PowerRadius; }
-
-    /// @brief returns the radius a player can activate a generator within
-    /// @return current radius for activating a generator
-    float GetActivationRadius() { return m_ActivationRadius; }
+    float GetPowerRadius() const;
 
     /// @brief returns if the generator is powered or not
     /// @return is the generator active
-    bool GetActive() { return m_IsActive;  }
+    bool GetActive() const;
+
+    /// @brief  gets the activation cost of this Generator
+    /// @return the activation cost of this Generator
+    std::vector< ItemStack > const& GetActivationCost() const;
+
+    /// @brief  get the transform of the generator
+    /// @return the generator transform
+    Transform const* GetTransform() const;
+
+
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
 
     /// @brief activate the generator
     void Activate();
@@ -84,18 +93,15 @@ public: // accessors
     /// @brief deactivate the generator
     void Deactivate();
 
-    int GetCost() { return m_Cost; } const
-
-    /// @brief  get the transform of the generator
-    /// @return the generator transform
-    Transform* GetTransform() { return m_Transform; }
-
+    
 //-----------------------------------------------------------------------------
 private: // variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  is the generator active or not
     bool m_IsActive = false;  
+
 
     /// @brief  is the generator active or not
     bool m_ChangeActive = false;
@@ -108,6 +114,7 @@ private: // variables
 
     /// @brief  shrink ring to match edited value if true
     bool m_ShrinkRing = false;
+
 
     /// @brief  can activating the generator spawn a wave
     bool m_CanSpawnWave = true;
@@ -124,14 +131,10 @@ private: // variables
     /// @brief  radius the generator emits particles to
     float m_GrowthRadius = 1.0f;
 
-    /// @brief  radius a player can activate the generator within
-    float m_ActivationRadius = 1.0f;
 
-    /// @brief Cost of the generator
-    int m_Cost = 0;
+    /// @brief  the cost of activating this Generator
+    std::vector< ItemStack > m_ActivationCost = {};
 
-    /// @brief  depth value of the generator, used for determening lowest
-    int m_Depth = 0;
 
     /// @brief  the transform of the generator
     ComponentReference< Transform > m_Transform;
@@ -155,7 +158,11 @@ private: // variables
     ComponentReference< Emitter > m_Emitter;
 
     /// @brief  the Interactable Component attached to this Generator
-    ComponentReference< Interactable > m_Interactable;
+    ComponentReference< Interactable, false > m_Interactable;
+
+    /// @brief  the Light Component attached to this Generator
+    ComponentReference< Light > m_Light;
+
 
     /// @brief  the wave prefab to spawn on generator activation
     AssetReference< Entity > m_WavePrefab;
@@ -198,12 +205,6 @@ private: // reading
     /// @brief read the power radius
     void readRadius(nlohmann::ordered_json const& json);
 
-    /// @brief read the power radius
-    void readARadius(nlohmann::ordered_json const& json);
-
-    /// @brief read the depth of the generator
-    void readDepth(nlohmann::ordered_json const& json);
-
     /// @brief read if the generator starts on or off
     void readActive(nlohmann::ordered_json const& json);
 
@@ -215,7 +216,9 @@ private: // reading
 
     /// @brief Read the cost of the generator
     /// @param json - json object to read from
-    void readCost(nlohmann::ordered_json const& json);
+    void readActivationCost(nlohmann::ordered_json const& json);
+
+
 //-----------------------------------------------------------------------------
 public: // writing
 //-----------------------------------------------------------------------------
@@ -223,5 +226,7 @@ public: // writing
     /// @brief Write all Generator data to a JSON file.
     /// @return The JSON file containing the WavesBehavior data.
     virtual nlohmann::ordered_json Write() const override;
+
+//-----------------------------------------------------------------------------
 };
 

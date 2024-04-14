@@ -79,6 +79,13 @@
         return m_Resources.M_ItemId;
     }
 
+    /// @brief  gets the ItemStack this ResourceCounter represents
+    /// @return the ItemStack this ResourceCounter represents
+    ItemStack const& ResourceCounterUi::GetItemStack() const
+    {
+        return m_Resources;
+    }
+
 
     /// @brief  gets the UiElement attached to this ResourceCounterUi
     /// @return the UiElement attached to this ResourceCounterUi
@@ -100,6 +107,13 @@
             m_Sprite.Init( GetEntity() );
         }
         return m_Sprite;
+    }
+
+    /// @brief  gets the Text Sprite attached to this ResourceCounterUi
+    /// @return the Text Sprite attached to this ResourceCounterUi
+    TilemapSprite* ResourceCounterUi::GetTextSprite()
+    {
+        return m_TilemapSprite;
     }
 
     /// @brief  gets the Text attached to this ResourceCounterUi

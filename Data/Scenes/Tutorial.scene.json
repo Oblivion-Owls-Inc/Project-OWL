@@ -3,15 +3,18 @@
         "Sounds": {
             "ButtonPressedSound": {
                 "IsLoopable": false,
-                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+                "Filepath": "Data/Sounds/Effects/button_press.ogg",
+                "Volume": 1.0
             },
             "ButtonReleasedSound": {
                 "IsLoopable": false,
-                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+                "Filepath": "Data/Sounds/Effects/button_release.ogg",
+                "Volume": 1.0
             },
             "Text": {
                 "IsLoopable": true,
-                "Filepath": ""
+                "Filepath": "",
+                "Volume": 1.0
             }
         },
         "Textures": {
@@ -43,6 +46,18 @@
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
                 "SheetDimensions": [
                     3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
                     1
                 ],
                 "Pivot": [
@@ -130,6 +145,9 @@
                         },
                         "ReleaseSound": {
                             "AssetName": "ButtonReleasedSound"
+                        },
+                        "HoverSound": {
+                            "AssetName": ""
                         }
                     },
                     "UiElement": {
@@ -321,8 +339,8 @@
                     },
                     "Transform": {
                         "Translation": [
-                            -0.031934499740600586,
-                            0.2919708490371704
+                            0.02800000086426735,
+                            0.6190000176429749
                         ],
                         "Rotation": 0.0,
                         "Scale": [
@@ -353,8 +371,8 @@
                     },
                     "Transform": {
                         "Translation": [
-                            0.0,
-                            0.30000001192092896
+                            0.02800000086426735,
+                            0.6190000176429749
                         ],
                         "Rotation": 0.0,
                         "Scale": [
@@ -396,7 +414,7 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "ButtonReleasedSound"
+                        "AssetName": "[non-serialized asset]"
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -442,16 +460,19 @@
                     },
                     "ReleaseSound": {
                         "AssetName": "ButtonReleasedSound"
+                    },
+                    "HoverSound": {
+                        "AssetName": ""
                     }
                 },
                 "UiElement": {
                     "Anchor": [
                         0.0,
-                        0.17000000178813934
+                        -0.07000000029802322
                     ],
                     "Pivot": [
                         0.0,
-                        0.0
+                        -2.5
                     ],
                     "Offset": [
                         0.0,
@@ -572,7 +593,7 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "ButtonReleasedSound"
+                        "AssetName": "[non-serialized asset]"
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -617,6 +638,9 @@
                     },
                     "ReleaseSound": {
                         "AssetName": "ButtonReleasedSound"
+                    },
+                    "HoverSound": {
+                        "AssetName": ""
                     }
                 },
                 "UiElement": {
@@ -711,7 +735,9 @@
             "Components": {
                 "SceneTransition": {
                     "TransitionDuration": 0.25,
-                    "NextSceneName": ""
+                    "NextSceneName": "",
+                    "HasLighting": false,
+                    "LightingLayer": 0
                 },
                 "Sprite": {
                     "Layer": 1000,
@@ -726,18 +752,6 @@
                     "Texture": {
                         "AssetName": "Rectangle"
                     }
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
                 },
                 "UiElement": {
                     "Anchor": [
@@ -766,7 +780,6 @@
         }
     ],
     "PreparsedScenes": [
-        "AlphaScene",
-        "Settings"
+        "MainMenu"
     ]
 }

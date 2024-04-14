@@ -323,8 +323,8 @@ private: // helper methods
     /// @brief  sets up the cost Ui with the currently selected turret's cost
     void setupCostUi();
 
-    /// @brief  moves the cost Ui to align with the mouse
-    void moveCostUi();
+    /// @brief  moves the cost Ui to align with the mouse and displays what can be afforded
+    void updateCostUi();
 
 
 //-----------------------------------------------------------------------------
