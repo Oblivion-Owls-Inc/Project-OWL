@@ -225,6 +225,10 @@
     {
         if ( m_IsFiring == false )
         {
+            if (m_AudioPlayer != nullptr)
+            {
+                m_AudioPlayer->Stop();
+            }
             return;
         }
 
