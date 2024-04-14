@@ -107,13 +107,13 @@ public: // virtual override methods
 
     /// @brief Called when this component's entity is added to the scene
     virtual void OnInit() override;
-
+        
     /// @brief Called when this component's entity is removed from the scene
     virtual void OnExit() override;
 
     /// @brief Called every frame
     /// @param dt change in time
-    virtual void OnUpdate(float dt) override;
+    virtual void OnFixedUpdate() override;
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -126,10 +126,10 @@ private: // member variables
     std::vector<LogoData> m_Logos = {};
 
     /// @brief Universal timer
-    float m_Timer;
+    float m_Timer = 0;
 
     /// @brief Index for the vector of logo data.
-    int m_Index;
+    int m_Index = 0;
 
     /// @brief  A cached instance of the parent's Sprite.
     ComponentReference<Sprite> m_Sprite;

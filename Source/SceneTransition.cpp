@@ -86,6 +86,7 @@
     void SceneTransition::OnInit()
     {
         Behaviors< SceneTransition >()->AddComponent( this );
+        Lights()->SetLightingEnabled(false);
 
         m_Sprite.Init( GetEntity() );
 

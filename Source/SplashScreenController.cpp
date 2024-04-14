@@ -150,8 +150,9 @@ SplashScreenController::SplashScreenController()
 
     /// @brief Display the logo every frame
     /// @param dt change in time.
-    void SplashScreenController::OnUpdate( float dt )
+    void SplashScreenController::OnFixedUpdate()
     {
+        float dt = Engine::GetInstance()->GetFixedFrameDuration();
         // Sets the background to black
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
