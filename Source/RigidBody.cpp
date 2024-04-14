@@ -112,6 +112,11 @@
             return;
         }
 
+        if ( GameEngine()->GetFixedUpdatedThisFrame() )
+        {
+            return;
+        }
+
         m_Transform->SetMatrix( glm::translate( glm::mat4( 1.0f ), glm::vec3( m_Velocity * dt, 0.0f ) ) * m_Transform->GetMatrix() );
     }
 

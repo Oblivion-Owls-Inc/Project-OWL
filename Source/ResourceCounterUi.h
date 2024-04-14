@@ -55,6 +55,10 @@ public: // accessors
     /// @return the itemId of the resource this ResourceCounter displays
     int GetResourceId() const;
 
+    /// @brief  gets the ItemStack this ResourceCounter represents
+    /// @return the ItemStack this ResourceCounter represents
+    ItemStack const& GetItemStack() const;
+
 
     /// @brief  gets the UiElement attached to this ResourceCounterUi
     /// @return the UiElement attached to this ResourceCounterUi
@@ -63,6 +67,10 @@ public: // accessors
     /// @brief  gets the Sprite attached to this ResourceCounterUi
     /// @return the Sprite attached to this ResourceCounterUi
     Sprite* GetSprite();
+
+    /// @brief  gets the Text Sprite attached to this ResourceCounterUi
+    /// @return the Text Sprite attached to this ResourceCounterUi
+    TilemapSprite* GetTextSprite();
 
     /// @brief  gets the Text attached to this ResourceCounterUi
     /// @return the Text attached to this ResourceCounterUi
