@@ -57,7 +57,7 @@
     /// @brief Adds this behavior to the behavior system on init.
     void PlayerController::OnInit()
     {
-	    Behaviors< Behavior >()->AddComponent( this );
+	    Behaviors< PlayerController >()->AddComponent( this );
 
 
         m_Health.SetOnConnectCallback(
@@ -159,7 +159,7 @@
     /// @brief Removes this behavior from the behavior system on exit
     void PlayerController::OnExit()
     {
-        Behaviors<Behavior>()->RemoveComponent(this);
+        Behaviors<PlayerController>()->RemoveComponent(this);
 
         m_Collider->RemoveOnCollisionCallback(GetId());
 

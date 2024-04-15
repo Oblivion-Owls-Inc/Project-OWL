@@ -112,20 +112,23 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-    /// @brief read the power radius
+    /// @brief read the catchup speed
     void readCatchupSpeed(nlohmann::ordered_json const& json);
 
-    /// @brief read the power radius
+    /// @brief read the normal speed
     void readNormalSpeed(nlohmann::ordered_json const& json);
 
-    /// @brief read the power radius
+    /// @brief read the close speed
     void readCloseSpeed(nlohmann::ordered_json const& json);
 
-    /// @brief read the power radius
+    /// @brief read the catchup distance
     void readCatchupDistance(nlohmann::ordered_json const& json);
 
-    /// @brief read the power radius
+    /// @brief read the normal distance
     void readNormalDistance(nlohmann::ordered_json const& json);
+
+    /// @brief read the lose distance
+    void readLoseDistance(nlohmann::ordered_json const& json);
 
 
 //-----------------------------------------------------------------------------

@@ -1207,10 +1207,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 24,
-                    "FrameDelay": 0.0016259928233921528,
+                    "FrameIndex": 27,
+                    "FrameDelay": 0.0011641979217529297,
                     "IsRunning": true,
-                    "LoopCount": 99633,
+                    "LoopCount": 99637,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1224,7 +1224,7 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 24,
+                    "FrameIndex": 27,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
@@ -1247,17 +1247,17 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 24,
-                            "FrameDelay": 0.0016259928233921528,
+                            "FrameIndex": 27,
+                            "FrameDelay": 0.0011641979217529297,
                             "IsRunning": true,
-                            "LoopCount": 99633,
+                            "LoopCount": 99637,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
                             "RotationSpeed": -1.0,
-                            "Angle": 2.8075616359710693,
+                            "Angle": 3.374211311340332,
                             "Radius": [
                                 1.0,
                                 0.30000001192092896
@@ -1273,7 +1273,7 @@
                             "Layer Switch Angle": 3.1415927410125732
                         },
                         "Sprite": {
-                            "Layer": 1,
+                            "Layer": 3,
                             "Color": [
                                 0.0,
                                 0.0,
@@ -1281,20 +1281,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 24,
+                            "FrameIndex": 27,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                0.962960422039032,
-                                0.8510496616363525
+                                0.9346227645874023,
+                                0.6835355162620544
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.45087704062461853,
-                                0.45087704062461853
+                                0.5346357822418213,
+                                0.5346357822418213
                             ],
                             "IsDiegetic": true
                         }

@@ -47,7 +47,7 @@ DoomsDay* DoomsDay::Clone() const
 /// @brief	initialize DoomsDay
 void DoomsDay::OnInit()
 {
-    Behaviors< DoomsDay >()->AddComponent(this);
+    Behaviors< Behavior >()->AddComponent(this);
 
     
 }
@@ -55,7 +55,7 @@ void DoomsDay::OnInit()
 /// @brief	called on exit, handles loss state
 void DoomsDay::OnExit()
 {
-    Behaviors< DoomsDay >()->RemoveComponent(this);
+    Behaviors< Behavior >()->RemoveComponent(this);
 
     
 }
@@ -71,10 +71,25 @@ void DoomsDay::OnUpdate(float dt)
             GetEntity()->GetComponent<Transform>()->GetTranslation()
         );
 
+        distance -= 25;
+
         if (distance <= m_LoseDistance)
         {
             Events()->BroadcastEvent< std::string >("LoseTheGame");
             Debug() << "Event Emitted: " << "LoseTheGame" << std::endl;
+        }
+
+        if (distance <= m_NormalDistance)
+        {
+            setCloseSpeed();
+        }
+        else if (distance <= m_CatchupDistance)
+        {
+            setNormalSpeed();
+        }
+        else
+        {
+            setCatchupSpeed();
         }
     }
     
@@ -86,7 +101,13 @@ void DoomsDay::OnUpdate(float dt)
 
 /// @brief  copy ctor
 DoomsDay::DoomsDay(const DoomsDay& other) :
-    Behavior(other)
+    Behavior(other),
+    m_CatchupSpeed(other.m_CatchupSpeed),
+    m_NormalSpeed(other.m_NormalSpeed),
+    m_CloseSpeed(other.m_CloseSpeed),
+    m_CatchupDistance(other.m_CatchupDistance),
+    m_NormalDistance(other.m_NormalDistance),
+    m_LoseDistance(other.m_LoseDistance)
 {}
 
 
@@ -108,14 +129,20 @@ DoomsDay::DoomsDay(const DoomsDay& other) :
 
 void DoomsDay::setCatchupSpeed()
 {
+    GetEntity()->GetComponent<RigidBody>()->SetVelocity(
+        glm::vec2{ 0, m_CatchupSpeed });
 }
 
 void DoomsDay::setNormalSpeed()
 {
+    GetEntity()->GetComponent<RigidBody>()->SetVelocity(
+        glm::vec2{ 0, m_NormalSpeed });
 }
 
 void DoomsDay::setCloseSpeed()
 {
+    GetEntity()->GetComponent<RigidBody>()->SetVelocity(
+        glm::vec2{ 0, m_CloseSpeed });
 }
 
 //-----------------------------------------------------------------------------
@@ -142,8 +169,43 @@ void DoomsDay::Inspector()
 /// @brief read method map
 ReadMethodMap<DoomsDay> const DoomsDay::s_ReadMethods =
 {
-    
+    { "CatchupSpeed"    , &DoomsDay::readCatchupSpeed    },
+    { "NormalSpeed"     , &DoomsDay::readNormalSpeed     },
+    { "CloseSpeed"      , &DoomsDay::readCloseSpeed      },
+    { "CatchupDistance" , &DoomsDay::readCatchupDistance },
+    { "NormalDistance"  , &DoomsDay::readNormalDistance  },
+    { "LoseDistance"    , &DoomsDay::readLoseDistance    }
 };
+
+void DoomsDay::readCatchupSpeed(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_CatchupSpeed, json);
+}
+
+void DoomsDay::readNormalSpeed(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_NormalSpeed, json);
+}
+
+void DoomsDay::readCloseSpeed(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_CloseSpeed, json);
+}
+
+void DoomsDay::readCatchupDistance(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_CatchupDistance, json);
+}
+
+void DoomsDay::readNormalDistance(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_NormalDistance, json);
+}
+
+void DoomsDay::readLoseDistance(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_LoseDistance, json);
+}
 
 //-----------------------------------------------------------------------------
 // writing
@@ -154,7 +216,12 @@ nlohmann::ordered_json DoomsDay::Write() const
 {
     nlohmann::ordered_json data;
 
-    
+    data[ "CatchupSpeed"    ] = m_CatchupSpeed;
+    data[ "NormalSpeed"     ] = m_NormalSpeed;
+    data[ "CloseSpeed"      ] = m_CloseSpeed;
+    data[ "CatchupDistance" ] = m_CatchupDistance;
+    data[ "NormalDistance"  ] = m_NormalDistance;
+    data[ "LoseDistance"    ] = m_LoseDistance;
 
     return data;
 }

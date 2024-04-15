@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1706,
-                1029
+                2560,
+                1600
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -269,8 +269,8 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": true,
-            "Layer": 4
+            "Enabled": false,
+            "Layer": 0
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -298,7 +298,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.09007592499256134,
+            "Volume": 0.6990131735801697,
             "Groups": [
                 {
                     "Name": "Music",
