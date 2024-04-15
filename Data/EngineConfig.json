@@ -269,8 +269,8 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": false,
-            "Layer": 0
+            "Enabled": true,
+            "Layer": 4
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -298,7 +298,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.09007592499256134,
+            "Volume": 0.8038057088851929,
             "Groups": [
                 {
                     "Name": "Music",
