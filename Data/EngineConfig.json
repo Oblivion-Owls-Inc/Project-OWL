@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                994,
-                558
+                892,
+                600
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -269,7 +269,7 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": true,
+            "Enabled": false,
             "Layer": 4
         },
         "CollisionSystem": {
@@ -328,7 +328,7 @@
             "OpenSystemWindows": {
                 "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Sound>": true,
                 "AssetLibrary<Texture>": false,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
