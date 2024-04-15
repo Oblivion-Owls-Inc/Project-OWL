@@ -24,7 +24,7 @@
 #include "CollisionSystem.h"
 #include "DebugSystem.h"
 #include "RenderSystem.h"
-
+#include "ComponentReference.t.h"
 
 //-------------------------------------------------------------------------------------------
 // public: constructor
@@ -49,9 +49,11 @@
 
         m_Transform  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
-        //m_Animation  .Init( GetEntity() );
+        m_Animation  .Init( GetEntity() );
+
 
         m_BulletPrefab.SetOwnerName( GetName() );
+
         m_BulletPrefab.Init();
     }
 
@@ -62,7 +64,7 @@
 
         m_Transform  .Exit();
         m_AudioPlayer.Exit();
-        //m_Animation  .Exit();
+        m_Animation  .Exit();
     }
 
     /// @brief Called Every Fixed Frame by the system
@@ -77,7 +79,6 @@
         if ( m_IsActive )
         {
             float dt = GameEngine()->GetFixedFrameDuration();
-
 
             if (m_FireCooldown > 0.0f)
             {
@@ -97,6 +98,7 @@
                 /// Fire a bullet at the target
                 fireBullet(direction);
             }
+
         }
     }
 
@@ -133,7 +135,9 @@
             {
                 bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * m_BulletSize);
             }
+
             BulletAoePulse* pulse = bullet->GetComponent< BulletAoePulse >();
+
             if (pulse)
             {
                 pulse->SetDamage(m_BulletDamage);
@@ -143,19 +147,18 @@
             // Add the bullet to the entity system
             bullet->AddToScene();
             
-            
-
             // Play turret shoot sound
             if (m_AudioPlayer != nullptr)
             {
                 m_AudioPlayer->Play();
             }
 
-            //// Play turret shoot animation
-            //if (m_Animation != nullptr)
-            //{
-            //    m_Animation->Play();
-            //}
+            // Play turret shoot animation
+            if (m_Animation != nullptr)
+            {
+                m_Animation->Play();
+                m_Animation->SetLoopCount(1);
+            }
         }
 
         m_FireCooldown += 1.0f / m_FireRate;
