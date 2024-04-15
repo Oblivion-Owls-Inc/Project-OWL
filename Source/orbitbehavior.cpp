@@ -236,7 +236,7 @@ void OrbitBehavior::OnUpdate(float deltaTime)
     if (textureChangeTimer < TextureChangeInterval)
     {
         textureChangeTimer += deltaTime;
-        Debug() << "Texture Change Timer: " << textureChangeTimer << "\n";
+       // Debug() << "Texture Change Timer: " << textureChangeTimer << "\n";
         return;
     }
 
