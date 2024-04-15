@@ -45,6 +45,8 @@ WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	inspectorWave(other.inspectorWave),
 	inspectorGroup(other.inspectorGroup)
 {
+	waitForEvent = other.waitForEvent;
+	eventName = other.eventName;
 	waves = other.waves;
 	spawners = other.spawners;
 }
@@ -96,6 +98,20 @@ void WavesBehavior::OnInit()
             group.enemy.Init();
         }
     }
+
+	/// Set the filter function for the listener
+	m_Listener.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
+	{
+		return EventNameBegin == eventName;
+	});
+
+	/// Set the Callback function for the listener
+	m_Listener.SetResponseFunction([&](std::string const& EventNameBegin)
+	{
+		waitForEvent = false;
+	});
+
+	m_Listener.Init();
 }
 
 /// @brief cleanup WavesBehavior
@@ -103,12 +119,14 @@ void WavesBehavior::OnExit()
 {
 	/// Remove this behavior from the behavior system
 	Behaviors< WavesBehavior >()->RemoveComponent( this );
+
+	m_Listener.Exit();
 }
 
 /// @brief update waves behavior and handle when things should spawn
 void WavesBehavior::OnFixedUpdate()
 {
-	if (currentWave < numWaves)
+	if (currentWave < numWaves && waitForEvent == false)
 	{
 		float dt = Engine::GetInstance()->GetFixedFrameDuration();
 		if (waves[currentWave].timeToNextWave > 0.0f)
@@ -187,6 +205,20 @@ void WavesBehavior::Spawn(Entity const* enemy, int group)
 // private: reading
 //-----------------------------------------------------------------------------
 
+/// @brief read if we wait for an event
+/// @param data the data to read from.
+void WavesBehavior::readWait(nlohmann::ordered_json const& data)
+{
+	waitForEvent = Stream::Read<bool>(data);
+}
+
+/// @brief read the waves data
+/// @param data the data to read from.
+void WavesBehavior::readEvent(nlohmann::ordered_json const& data)
+{
+	eventName = Stream::Read<std::string>(data);
+}
+
 /// @brief read the waves data
 /// @param data the data to read from.
 void WavesBehavior::readWaves(nlohmann::ordered_json const& data)
@@ -262,6 +294,9 @@ nlohmann::ordered_json WavesBehavior::Write() const
 {
 	nlohmann::ordered_json data;
 
+	data["Wait"] = waitForEvent;
+	data["Event"] = eventName;
+
 	nlohmann::ordered_json& altSpawn = data["Spawners"];
 	for (int i = 0; i < spawners.size(); i++)
 	{
@@ -310,6 +345,8 @@ nlohmann::ordered_json WavesBehavior::EnemyGroup::Write() const
 /// @brief read method map
 ReadMethodMap<WavesBehavior> const WavesBehavior::s_ReadMethods =
 {
+	{ "Wait",		           &readWait},
+	{ "Event",		          &readEvent},
 	{ "Spawners",		   &readSpawners},
 	{ "Waves",				  &readWaves},
 };

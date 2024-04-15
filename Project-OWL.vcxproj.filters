@@ -411,6 +411,9 @@
     <Filter Include="Game\Components\Behaviors\GeneratorActivationCostUi">
       <UniqueIdentifier>{a8f522e3-5f21-448e-b2a6-89fc4a42b36a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\DoomsDay">
+      <UniqueIdentifier>{66433d39-fb17-45a3-9dd3-c714039d1306}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -869,6 +872,12 @@
     <ClCompile Include="Source\EventEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\JetpackBoost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DoomsDay.cpp">
+      <Filter>Game\Components\Behaviors\DoomsDay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1324,6 +1333,12 @@
     <ClInclude Include="Source\EventEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\JetpackBoost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DoomsDay.h">
+      <Filter>Game\Components\Behaviors\DoomsDay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -1411,5 +1426,6 @@
     <None Include="Data\Scenes\Settings.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\BetaScene.scene.json" />
   </ItemGroup>
 </Project>

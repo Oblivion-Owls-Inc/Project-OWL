@@ -76,7 +76,6 @@
                 m_Emitter->SetContinuous(false);
             }
         } );
-
         m_Interactable.SetOnConnectCallback( [ this ]() {
             m_Interactable->SetEnabled( m_IsActive == false );
             m_Interactable->AddOnInteractCallback( GetId(), [ this ]( Interactor*  interactor )

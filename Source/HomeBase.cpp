@@ -239,8 +239,8 @@
     /// @brief  copy constructor
     HomeBase::HomeBase( HomeBase const& other ) :
         Component( other ),
-        m_GameOverSceneName    ( m_GameOverSceneName ),
-        m_SceneTransitionEntity( m_SceneTransitionEntity, { &m_SceneTransition } ),
+        m_GameOverSceneName    ( other.m_GameOverSceneName ),
+        m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } ),
         m_EventNameBegin(other.m_EventNameBegin),
         m_EventNameEnd(other.m_EventNameEnd)
     {}

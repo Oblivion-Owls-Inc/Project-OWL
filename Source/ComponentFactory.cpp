@@ -84,6 +84,7 @@
 #include "JetpackBoost.h"
 #include "GeneratorActivationCostUi.h"
 #include "EventEmitter.h"
+#include "DoomsDay.h"
 
 
 //-----------------------------------------------------------------------------
@@ -249,7 +250,8 @@
         { "WindowFocusEvent"         , ComponentInfo< WindowFocusEvent          >() },
         { "JetpackBoost"             , ComponentInfo< JetpackBoost              >() },
         { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() },
-        { "EventEmitter"             , ComponentInfo< EventEmitter              >() }
+        { "EventEmitter"             , ComponentInfo< EventEmitter              >() },
+        { "DoomsDay"                 , ComponentInfo< DoomsDay                  >() }
     };
 
 //-----------------------------------------------------------------------------

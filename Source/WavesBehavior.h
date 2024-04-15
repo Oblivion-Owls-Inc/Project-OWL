@@ -10,8 +10,10 @@
 
 #include "behavior.h"
 #include "Transform.h"
+#include "EventSystem.h"
 
 #include "AssetReference.h"
+#include "EventListener.h"
 
 
 
@@ -95,6 +97,9 @@ private: // inspector methods
 
 	/// @brief lists all spawners and locations
 	void guiSpawners();
+
+	/// @brief lists all spawners and locations
+	void guiEvent();
 
 	/// @brief	allows dragging the spawner to change location
 	void debugDrag(int number);
@@ -216,6 +221,16 @@ private: // data
 	// container for the spawner locations
 	std::vector< glm::vec2 > spawners;
 
+	// should the wave wait for an event
+	bool waitForEvent = false;
+
+	// name of event to wait for
+	std::string eventName;
+
+	/// @brief Listener for the event
+	EventListener<std::string> m_Listener;
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -236,6 +251,14 @@ private: // methods
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
+	/// @brief read if we wait for an event
+	/// @param data the data to read from.
+	void readWait(nlohmann::ordered_json const& data);
+
+	/// @brief read the event
+	/// @param data the data to read from.
+	void readEvent(nlohmann::ordered_json const& data);
 
 	/// @brief read the waves data
 	/// @param data the data to read from.

@@ -343,7 +343,11 @@
         {
             return;
         }
-
+        if (enemy->GetEntity()->GetName() == "DoomsDay")
+        {
+            Events()->BroadcastEvent< std::string >("DoomsdayLoss");
+            Debug() << "Event Emitted: " << "DoomsdayLoss" << std::endl;
+        }
         if(m_Health)
         {
             // If the enemy collides with player, damage the player
