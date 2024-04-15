@@ -698,7 +698,8 @@
         m_Sound           ( other.m_Sound            ),
         m_ChannelGroup    ( other.m_ChannelGroup     ),
         m_ChannelGroupName( other.m_ChannelGroupName ),
-        m_PlayOnInit      ( other.m_PlayOnInit       )
+        m_PlayOnInit      ( other.m_PlayOnInit       ),
+        m_AllowMultipleSounds ( other.m_AllowMultipleSounds )
     {}
 
 
