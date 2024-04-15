@@ -13,8 +13,6 @@
 #include "ComponentReference.h"
 #include "Transform.h"
 #include "AudioPlayer.h"
-#include "Animation.h"
-
 
 #include "AssetReference.h"
 #include "Entity.h"
@@ -96,8 +94,6 @@ private: /// Members
 	/// @brief the AudioPlayer of this Turret
 	ComponentReference< AudioPlayer > m_AudioPlayer;
 
-	///// @brief the Animation of this Turret
-	//ComponentReference< Animation > m_Animation;
 
 //-----------------------------------------------------------------------------
 private: // methods

@@ -49,7 +49,6 @@
 
         m_Transform  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
-        //m_Animation  .Init( GetEntity() );
 
         m_BulletPrefab.SetOwnerName( GetName() );
         m_BulletPrefab.Init();
@@ -62,7 +61,6 @@
 
         m_Transform  .Exit();
         m_AudioPlayer.Exit();
-        //m_Animation  .Exit();
     }
 
     /// @brief Called Every Fixed Frame by the system
@@ -150,12 +148,6 @@
             {
                 m_AudioPlayer->Play();
             }
-
-            //// Play turret shoot animation
-            //if (m_Animation != nullptr)
-            //{
-            //    m_Animation->Play();
-            //}
         }
 
         m_FireCooldown += 1.0f / m_FireRate;

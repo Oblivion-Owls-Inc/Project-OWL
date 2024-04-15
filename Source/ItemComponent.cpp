@@ -70,11 +70,6 @@
         return m_Sprite;
     }
 
-    AudioPlayer* ItemComponent::GetAudioPlayer() const
-    {
-        return m_AudioPlayer;
-    }
-
 
 //-----------------------------------------------------------------------------
 // public:  methods
@@ -101,7 +96,6 @@
         m_Transform.Init( GetEntity() );
         m_Sprite   .Init( GetEntity() );
         m_RigidBody.Init( GetEntity() );
-        m_AudioPlayer.Init( GetEntity() );
 
     }
 
@@ -113,7 +107,6 @@
         m_Transform.Exit();
         m_Sprite   .Exit();
         m_RigidBody.Exit();
-        m_AudioPlayer.Exit();
     }
 
 
