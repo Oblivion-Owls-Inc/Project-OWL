@@ -13,6 +13,7 @@
 
 #include "ItemComponent.h"
 #include "RigidBody.h"
+#include "AudioPlayer.h"
 
 
 //-----------------------------------------------------------------------------
@@ -101,6 +102,13 @@
     void ItemCollector::collectItem( ItemComponent* item )
     {
         m_Inventory->AddItemStack( item->GetItemStack() );
+
+        AudioPlayer* audioPlayer = item->GetAudioPlayer();
+
+        if (audioPlayer)
+        {
+            audioPlayer->Play();
+        }
 
         item->GetEntity()->Destroy();
     }
