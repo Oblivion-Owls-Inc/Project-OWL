@@ -195,8 +195,9 @@
 
             if (m_AudioPlayer)
             {
-                m_AudioPlayer->SetSound(m_DeactivateSound);
-                m_AudioPlayer->Play();
+                m_AudioPlayer->Stop(); // Stop the hit sound
+                m_AudioPlayer->SetSound(m_DeactivateSound); // load the deactivate sound
+                m_AudioPlayer->Play(); // play the deactivate sound
             }
         }
         else if (m_ShrinkRing)
