@@ -690,14 +690,15 @@
     /// @param  other   the other AudioPlayer to copy
     AudioPlayer::AudioPlayer( AudioPlayer const& other ) :
         Behavior( other ),
-        m_Volume              ( other.m_Volume              ),
-        m_Pitch               ( other.m_Pitch               ),
-        m_VolumeVariance      ( other.m_VolumeVariance      ),
-        m_PitchVariance       ( other.m_PitchVariance       ),
-        m_IsSpatial           ( other.m_IsSpatial           ),
-        m_Sound               ( other.m_Sound               ),
-        m_ChannelGroup        ( other.m_ChannelGroup        ),
-        m_ChannelGroupName    ( other.m_ChannelGroupName    ),
+        m_Volume          ( other.m_Volume           ),
+        m_Pitch           ( other.m_Pitch            ),
+        m_VolumeVariance  ( other.m_VolumeVariance   ),
+        m_PitchVariance   ( other.m_PitchVariance    ),
+        m_IsSpatial       ( other.m_IsSpatial        ),
+        m_Sound           ( other.m_Sound            ),
+        m_ChannelGroup    ( other.m_ChannelGroup     ),
+        m_ChannelGroupName( other.m_ChannelGroupName ),
+        m_PlayOnInit      ( other.m_PlayOnInit       ),
         m_AllowMultipleSounds ( other.m_AllowMultipleSounds )
     {}
 

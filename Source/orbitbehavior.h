@@ -12,13 +12,73 @@
 #include "Behavior.h"
 #include "EntityReference.h"
 #include "ComponentReference.h"
-
+#include "AssetReference.h"
+#include "Texture.h"
+#include "AnimationAsset.h"
 class Transform;
 class Sprite;
 
 /// @brief  This Behavior orbits the entity around a point
 class OrbitBehavior : public Behavior
 {
+
+//-----------------------------------------------------------------------------
+public: // class PlanetData
+//-----------------------------------------------------------------------------
+
+    class PlanetData : public ISerializable
+    {
+    //-----------------------------------------------------------------------------
+    public:
+    //-----------------------------------------------------------------------------
+      /// @brief How long the planet is displayed for.
+      float m_SwitchLayerAngle;
+
+      /// @brief the texture for the planet
+      AssetReference<Texture> m_Texture;
+
+      /// @brief Which of the animation assets to use
+      AssetReference<AnimationAsset> m_AnimationAsset;
+    //-----------------------------------------------------------------------------
+    public: // inspection
+    //-----------------------------------------------------------------------------
+    
+        /// @brief  inspects this PlanetData
+        /// @return whether the PlanetData was modified
+        bool Inspect();
+    //-----------------------------------------------------------------------------
+    private: // Reading
+    //-----------------------------------------------------------------------------
+
+        /// @brief Read in the timer for the logo.
+        /// @param data The JSON file to read from.
+        void readSwitchLayerAngle(nlohmann::ordered_json const& data);
+
+        /// @brief Read in the PlanetTexture to de displayed.
+        /// @param data The JSON file to read from.
+        void readPlanetTexture(nlohmann::ordered_json const& data);
+
+        /// @brief Read in the scales for the logos.
+        /// @param data The JSON file to read from.
+        void readAnimationAsset(nlohmann::ordered_json const& data);
+
+    //-----------------------------------------------------------------------------
+    public: // reading / writing
+    //-----------------------------------------------------------------------------
+
+
+        /// @brief  Gets the map of read methods for this Component
+        /// @return The map of read methods for this Component
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+        /// @brief  Write all Logo behavior data to a JSON file.
+        /// @return The JSON file containing the Logo behavior data.
+        virtual nlohmann::ordered_json Write() const override;
+
+    //-----------------------------------------------------------------------------
+    };
+
     //-----------------------------------------------------------------------------
 public: // constructor / Destructor
     //-----------------------------------------------------------------------------
@@ -83,6 +143,15 @@ private: // members
     /// @brief The second layer to set the sprite to
     int m_SecondLayer = 1;
 
+    /// @brief The index of the planet to display
+    int m_Index = 0;
+
+    /// @brief The timer for the texture change
+    float textureChangeTimer = 0.0f;
+        
+    /// @brief The interval at which the texture can change
+    float TextureChangeInterval = 0.5f;
+
     /// @brief The Base Scale of the sprite
     glm::vec2 m_BaseScale = { .5f, .5f };
 
@@ -95,7 +164,8 @@ private: // members
     /// Angle in orbit to switch layers (radians)
     float m_LayerSwitchAngle = glm::pi<float>(); 
 
-
+    /// @brief the planets to display
+    std::vector<PlanetData> m_Planets;
 
     //-----------------------------------------------------------------------------
 private: // methods
@@ -145,6 +215,13 @@ private: // reading
 
     void readLayerSwitchAngle(nlohmann::ordered_json const& data);
 
+    /// @brief Reads the Planets from JSON
+    /// @param data - the JSON data to read from
+    void readPlanets(nlohmann::ordered_json const& data);
+
+    /// @brief Reads the Texture Change Interval from JSON
+    /// @param data  - the JSON data to read from
+    void readTextureChangeInterval(nlohmann::ordered_json const& data);
 
     //-----------------------------------------------------------------------------
 public: // reading / writing

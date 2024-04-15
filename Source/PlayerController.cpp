@@ -163,7 +163,6 @@
     void PlayerController::OnFixedUpdate()
     {
         if (
-            m_AudioPlayer == nullptr ||
             m_RigidBody == nullptr
         )
         {
@@ -226,11 +225,13 @@
                 direction.y *= m_VerticalMoveforce[1];
             }
 
-            m_AudioPlayer->Play();
+            if(m_AudioPlayer)
+                m_AudioPlayer->Play();
         }
         else
         {
-            m_AudioPlayer->Stop();
+            if (m_AudioPlayer)
+                m_AudioPlayer->Stop();
         }
 
 

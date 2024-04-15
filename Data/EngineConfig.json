@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                989,
-                557
+                1019,
+                327
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -298,7 +298,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.8038057088851929,
+            "Volume": 1.0,
             "Groups": [
                 {
                     "Name": "Music",
@@ -307,7 +307,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 0.5320764183998108,
+                    "Volume": 1.0,
                     "Mute": false
                 },
                 {
@@ -326,10 +326,10 @@
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<AnimationAsset>": true,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
+                "AssetLibrary<Sound>": true,
+                "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
@@ -356,7 +356,7 @@
                 "EntitySystem": false,
                 "EventSystem": false,
                 "InputSystem": true,
-                "LightingSystem": false,
+                "LightingSystem": true,
                 "ParticleSystem": false,
                 "PathfindSystem": false,
                 "PauseSystem": false,
