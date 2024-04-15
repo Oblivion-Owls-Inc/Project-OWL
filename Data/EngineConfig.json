@@ -298,7 +298,7 @@
         },
         "AudioSystem": {
             "MaxChannels": 1024,
-            "Volume": 0.6990131735801697,
+            "Volume": 1.0,
             "Groups": [
                 {
                     "Name": "Music",
@@ -307,7 +307,7 @@
                 },
                 {
                     "Name": "Effects",
-                    "Volume": 0.5320764183998108,
+                    "Volume": 1.0,
                     "Mute": false
                 },
                 {
@@ -326,11 +326,11 @@
             "ShowFpsWindow": true,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<AnimationAsset>": true,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
-                "AssetLibrary<TransformAnimation>": true,
+                "AssetLibrary<Sound>": true,
+                "AssetLibrary<Texture>": true,
+                "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
                 "BehaviorSystem<Behavior>": false,

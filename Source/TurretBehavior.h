@@ -13,6 +13,7 @@
 #include "ComponentReference.h"
 #include "Transform.h"
 #include "AudioPlayer.h"
+#include "Animation.h"
 
 #include "AssetReference.h"
 #include "Entity.h"
@@ -87,6 +88,8 @@ private: /// Members
 	/// @brief The bullet prefab to spawn
 	AssetReference< Entity > m_BulletPrefab;
 
+	/// @brief The animation of the turret
+	ComponentReference< Animation > m_Animation;
 
     /// @brief  the Transform of this Turret
     ComponentReference< Transform > m_Transform;
@@ -94,6 +97,7 @@ private: /// Members
 	/// @brief the AudioPlayer of this Turret
 	ComponentReference< AudioPlayer > m_AudioPlayer;
 
+	/// @brief the Animation of this Turret
 
 //-----------------------------------------------------------------------------
 private: // methods

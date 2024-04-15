@@ -203,6 +203,7 @@
         Behaviors< Behavior >()->AddComponent( this );
 
         m_Transform.Init( GetEntity() );
+        m_AudioPlayer.Init( GetEntity() );
 
         m_TilemapEntity.SetOwnerName( GetName() );
         m_TilemapEntity.Init();
@@ -216,6 +217,7 @@
         m_Transform.Exit();
 
         m_TilemapEntity.Exit();
+        m_AudioPlayer.Exit();
     }
 
     /// @brief  called every graohics frame
@@ -223,12 +225,21 @@
     {
         if ( m_IsFiring == false )
         {
+            if (m_AudioPlayer != nullptr)
+            {
+                m_AudioPlayer->Stop();
+            }
             return;
         }
 
         if ( m_Transform == nullptr )
         {
             return;
+        }
+
+        if (m_AudioPlayer != nullptr)
+        {
+            m_AudioPlayer->Play();
         }
 
         glm::vec2 start = m_Transform->GetTranslation();
@@ -281,6 +292,7 @@
             {
                 fireLaser( overkill );
             }
+
         }
         else
         {

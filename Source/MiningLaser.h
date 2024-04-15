@@ -18,8 +18,9 @@
 #include "EntityReference.h"
 #include "ComponentReference.h"
 #include "DestructibleTilemap.h"
-class Transform;
+#include "AudioPlayer.h"
 
+class Transform;
 
 /// @brief  Digging laser controllable by an entity
 class MiningLaser : public Behavior
@@ -161,6 +162,9 @@ private: // members
 
     /// @brief  the Tilemap this mining laser digs in
     ComponentReference< DestructibleTilemap > m_DestructibleTilemap;
+
+    /// @brief the AudioPlayer that plays the mining sound
+    ComponentReference< AudioPlayer > m_AudioPlayer;
 
     /// @brief  the Entity that the target Tilemap is a part of
     EntityReference m_TilemapEntity = EntityReference( { &m_DestructibleTilemap } );

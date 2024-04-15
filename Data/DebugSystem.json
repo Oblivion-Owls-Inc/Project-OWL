@@ -1,5 +1,8 @@
 {
+    "AssetLibrary<AnimationAsset>": true,
     "AssetLibrary<Entity>": true,
+    "AssetLibrary<Sound>": true,
+    "AssetLibrary<Texture>": true,
     "AssetLibrary<TransformAnimation>": true,
     "CameraSystem": true,
     "DebugSystem": true,
