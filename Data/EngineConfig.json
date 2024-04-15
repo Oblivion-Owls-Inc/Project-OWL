@@ -3,7 +3,7 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                892,
+                859,
                 600
             ],
             "WindowName": "Dig Deeper",
@@ -269,7 +269,7 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": false,
+            "Enabled": true,
             "Layer": 4
         },
         "CollisionSystem": {
