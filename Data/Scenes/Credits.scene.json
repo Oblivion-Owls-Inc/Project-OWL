@@ -13,6 +13,18 @@
             }
         },
         "Textures": {
+            "AssetCredits": {
+                "Filepath": "Data/Textures/GAM_Asset_Credits.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
             "Background": {
                 "Filepath": "Data/Textures/BackgroundNew.png",
                 "SheetDimensions": [
@@ -457,18 +469,6 @@
                                 "AssetName": "MainMenuTexture"
                             }
                         },
-                        "Transform": {
-                            "Translation": [
-                                -12.620207786560059,
-                                8.610761642456055
-                            ],
-                            "Rotation": 0.0,
-                            "Scale": [
-                                8.550000190734863,
-                                3.25
-                            ],
-                            "IsDiegetic": true
-                        },
                         "UiButton": {
                             "ClickEventName": "MainMenu",
                             "ShouldActivateOnPress": false,
@@ -484,6 +484,28 @@
                             "HoverSound": {
                                 "AssetName": ""
                             }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                -0.9300000071525574,
+                                0.5199999809265137
+                            ],
+                            "Pivot": [
+                                -1.0,
+                                1.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                2.190000057220459,
+                                0.6100000143051147
+                            ],
+                            "SizeTypes": [
+                                "Absolute",
+                                "Absolute"
+                            ]
                         }
                     },
                     "Children": [
@@ -528,17 +550,27 @@
                                         "AssetName": "FontSheet"
                                     }
                                 },
-                                "Transform": {
-                                    "Translation": [
-                                        -15.598653793334961,
-                                        8.45802116394043
+                                "UiElement": {
+                                    "Anchor": [
+                                        -0.9100000262260437,
+                                        0.0
                                     ],
-                                    "Rotation": 0.0,
-                                    "Scale": [
-                                        1.0499999523162842,
-                                        1.399999976158142
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
                                     ],
-                                    "IsDiegetic": true
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.5299999713897705,
+                                        0.5299999713897705
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
+                                    ]
                                 }
                             },
                             "Children": null
@@ -551,7 +583,7 @@
                         "RigidBody": {
                             "Velocity": [
                                 0.0,
-                                2.0
+                                1.0
                             ],
                             "Acceleration": [
                                 0.0,
@@ -598,7 +630,7 @@
                         "RigidBody": {
                             "Velocity": [
                                 0.0,
-                                2.0
+                                1.0
                             ],
                             "Acceleration": [
                                 0.0,
@@ -647,7 +679,7 @@
                 "RigidBody": {
                     "Velocity": [
                         0.0,
-                        2.0
+                        1.0
                     ],
                     "Acceleration": [
                         0.0,
@@ -677,6 +709,53 @@
                     "Translation": [
                         0.0,
                         -35.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        5.0,
+                        5.0
+                    ],
+                    "IsDiegetic": false
+                }
+            },
+            "Children": null
+        },
+        {
+            "Name": "GAMAssetCredits",
+            "Components": {
+                "RigidBody": {
+                    "Velocity": [
+                        0.0,
+                        1.0
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        0.0
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "Mass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0,
+                    "Drag": 0.0
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "AssetCredits"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        -40.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
