@@ -66,10 +66,9 @@ void DoomsDay::OnUpdate(float dt)
 {
     for (PlayerController* player : Behaviors< PlayerController >()->GetComponents())
     {
-        float distance = glm::distance(
-            player->GetEntity()->GetComponent<Transform>()->GetTranslation(),
-            GetEntity()->GetComponent<Transform>()->GetTranslation()
-        );
+        float distance =
+            player->GetEntity()->GetComponent<Transform>()->GetTranslation().y -
+            GetEntity()->GetComponent<Transform>()->GetTranslation().y;
 
         distance -= 25;
 
