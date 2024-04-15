@@ -108,8 +108,17 @@
         m_PathfinderTarget.Init( GetEntity() );
         m_Interactable    .Init( GetEntity() );
 
-        m_WavePrefab.SetOwnerName( GetName() );
-        m_WavePrefab.Init( false );
+        m_WavePrefab     .SetOwnerName( GetName() );
+        m_ActivateSound  .SetOwnerName( GetName() );
+        m_DeactivateSound.SetOwnerName( GetName() );
+        m_DamageSound    .SetOwnerName( GetName() );
+
+
+        m_WavePrefab     .Init( false );
+        m_ActivateSound  .Init();
+        m_DamageSound    .Init();
+        m_DeactivateSound.Init();
+
 
         m_ChangeActive = m_IsActive;
         m_CanActivate = !m_IsActive;
@@ -164,6 +173,12 @@
             data.startAhead = m_GrowthRadius;
             m_Emitter->SetEmitData(data);
             m_Emitter->SetContinuous(true);
+
+            if (m_AudioPlayer)
+            {
+                m_AudioPlayer->SetSound(m_ActivateSound);
+                m_AudioPlayer->Play();
+            }
         }
         else if (m_DeactivateRing)
         {
@@ -178,6 +193,12 @@
             data.startAhead = m_GrowthRadius;
             m_Emitter->SetEmitData(data);
 
+            if (m_AudioPlayer)
+            {
+                m_AudioPlayer->Stop(); // Stop the hit sound
+                m_AudioPlayer->SetSound(m_DeactivateSound); // load the deactivate sound
+                m_AudioPlayer->Play(); // play the deactivate sound
+            }
         }
         else if (m_ShrinkRing)
         {
@@ -202,11 +223,14 @@
     /// @brief  copy ctor
     Generator::Generator(const Generator& other) :
         Behavior( other ),
-        m_IsActive      ( other.m_IsActive       ),
-        m_PowerRadius   ( other.m_PowerRadius    ),
-        m_RadiusSpeed   ( other.m_RadiusSpeed    ),
-        m_WavePrefab    ( other.m_WavePrefab     ),
-        m_ActivationCost( other.m_ActivationCost )
+        m_IsActive       ( other.m_IsActive        ),
+        m_PowerRadius    ( other.m_PowerRadius     ),
+        m_RadiusSpeed    ( other.m_RadiusSpeed     ),
+        m_WavePrefab     ( other.m_WavePrefab      ),
+        m_ActivationCost ( other.m_ActivationCost  ),
+        m_ActivateSound  ( other.m_ActivateSound   ),
+        m_DeactivateSound( other.m_DeactivateSound ),
+        m_DamageSound    ( other.m_DamageSound     )
     {}
 
 
@@ -334,6 +358,7 @@
 
         if ( m_AudioPlayer )
         {
+            m_AudioPlayer->SetSound(m_DamageSound);
             m_AudioPlayer->Play();
         }
         enemy->GetEntity()->Destroy();
@@ -360,6 +385,11 @@
         ImGui::DragFloat( "Radius"      , &m_PowerRadius, 0.05f, 0.0f, INFINITY );
         ImGui::DragFloat( "Growth Speed", &m_RadiusSpeed, 0.05f, 0.0f, INFINITY );
         m_WavePrefab.Inspect( "Wave to Spawn" );
+        m_ActivateSound.Inspect( "Activate Sound" );
+        m_DeactivateSound.Inspect( "Deactivate Sound" );
+        m_DamageSound.Inspect( "Damage Sound" );
+
+
         ImGui::Checkbox( "Is Active", &m_ChangeActive );
 
         Inspection::InspectArray< ItemStack >( "Activation cost", &m_ActivationCost, []( ItemStack* itemStack ) -> bool
@@ -375,11 +405,14 @@
     /// @brief read method map
     ReadMethodMap<Generator> const Generator::s_ReadMethods =
     {
-        { "Radius"        , &readRadius         },
-        { "Active"        , &readActive         },
-        { "GrowthSpeed"   , &readSpeed          },
-        { "WavePrefab"    , &readWavePrefab     },
-        { "ActivationCost", &readActivationCost },
+        { "Radius"         , &readRadius          },
+        { "Active"         , &readActive          },
+        { "GrowthSpeed"    , &readSpeed           },
+        { "WavePrefab"     , &readWavePrefab      },
+        { "ActivationCost" , &readActivationCost  },
+        { "ActivateSound"  , &readActivateSound   },
+        { "DeactivateSound", &readDeactivateSound },
+        { "DamageSound"    , &readDamageSound     }
     };
 
     /// @brief	read the raidus from json
@@ -406,6 +439,21 @@
         Stream::Read(m_WavePrefab, json);
     }
 
+    void Generator::readActivateSound(nlohmann::ordered_json const& json)
+    {
+        Stream::Read(m_ActivateSound, json);
+    }
+
+    void Generator::readDeactivateSound(nlohmann::ordered_json const& json)
+    {
+        Stream::Read(m_DeactivateSound, json);
+    }
+
+    void Generator::readDamageSound(nlohmann::ordered_json const& json)
+    {
+            Stream::Read(m_DamageSound, json);
+    }
+
     void Generator::readActivationCost(nlohmann::ordered_json const& json)
     {
         Stream::Read< ItemStack >( &m_ActivationCost, json );
@@ -424,6 +472,9 @@
         data[ "Active"         ] = Stream::Write( m_IsActive    );
         data[ "GrowthSpeed"    ] = Stream::Write( m_RadiusSpeed );
         data[ "WavePrefab"     ] = Stream::Write( m_WavePrefab  );
+        data[ "ActivateSound"  ] = Stream::Write( m_ActivateSound );
+        data[ "DeactivateSound"] = Stream::Write( m_DeactivateSound );
+        data[ "DamageSound"    ] = Stream::Write( m_DamageSound );
         data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
 
         return data;

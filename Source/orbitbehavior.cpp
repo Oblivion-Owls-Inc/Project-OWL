@@ -14,6 +14,87 @@
 #include "Sprite.h"
 #include "Engine.h"
 #include "BehaviorSystem.h"
+#include "Texture.h"
+#include "AnimationAsset.h"
+
+
+
+
+//-----------------------------------------------------------------------------
+// private: Inspection
+//-----------------------------------------------------------------------------
+
+/// @brief  Inspects the PlanetData
+
+bool OrbitBehavior::PlanetData::Inspect()
+{
+    bool changed = false;
+
+    changed |= ImGui::DragFloat("Switch Sprite Angle", &m_SwitchLayerAngle, 0.1f);
+
+    changed |= m_Texture.Inspect("Planet Texture");
+
+    changed |= m_AnimationAsset.Inspect("Animation Asset");
+
+    return changed;
+}
+
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+/// @brief Reads the Switch Layer Angle from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::PlanetData::readSwitchLayerAngle(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_SwitchLayerAngle, data);
+}
+
+/// @brief Reads the Planet Texture from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::PlanetData::readPlanetTexture(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_Texture, data);
+}
+
+/// @brief Reads the Animation Asset from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::PlanetData::readAnimationAsset(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_AnimationAsset, data);
+}
+
+ReadMethodMap<ISerializable> const& OrbitBehavior::PlanetData::GetReadMethods() const
+{
+    
+    static ReadMethodMap<PlanetData> const readMethods = {
+        { "Switch Layer Angle", &PlanetData::readSwitchLayerAngle },
+        { "Planet Texture"    , &PlanetData::readPlanetTexture    },
+        { "Animation Asset"   , &PlanetData::readAnimationAsset   }
+    };
+
+
+    return (ReadMethodMap<ISerializable> const&)readMethods;
+}
+
+
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+    /// @brief Writes a logo's data to a file.
+    /// @return The JSON file containing the written ata.
+nlohmann::ordered_json OrbitBehavior::PlanetData::Write() const
+{
+    nlohmann::ordered_json data;
+
+    data["Switch Layer Angle"] = Stream::Write(m_SwitchLayerAngle);
+    data["Planet Texture"]     = Stream::Write(m_Texture);
+    data["Animation Asset"]    = Stream::Write(m_AnimationAsset);
+
+    return data;
+}
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -49,6 +130,13 @@ void OrbitBehavior::OnInit()
     m_Sprite.   Init( GetEntity() );
     m_Transform.Init( GetEntity() );
     m_OrbitPoint.Init(GetEntity()->GetParent());
+
+    for (auto& planet : m_Planets)
+    {
+        planet.m_Texture.Init(GetEntity());
+        planet.m_Texture.SetOwnerName( GetName() );
+        planet.m_AnimationAsset.Init(GetEntity());
+    }
 }
 
 
@@ -104,9 +192,9 @@ void OrbitBehavior::OnUpdate(float deltaTime)
         return; // Exit if any component is missing
     }
 
+
     // Calculate the maximum angle
     constexpr float MaxAngle = 2 * glm::pi<float>();
-
 
     // Update and clamp the orbit angle
     m_Angle += m_RotationSpeed * deltaTime;
@@ -138,6 +226,32 @@ void OrbitBehavior::OnUpdate(float deltaTime)
     else
     {
         m_Sprite->SetLayer(m_SecondLayer);
+    }
+
+    if (m_Planets.empty())
+    {
+        return;
+    }
+
+    if (textureChangeTimer < TextureChangeInterval)
+    {
+        textureChangeTimer += deltaTime;
+       // Debug() << "Texture Change Timer: " << textureChangeTimer << "\n";
+        return;
+    }
+
+    float angle = m_Planets[m_Index].m_SwitchLayerAngle;
+
+    if (angle > m_Angle)
+    {
+        m_Sprite->SetTexture(m_Planets[m_Index].m_Texture);
+        m_Index++;
+        textureChangeTimer = 0.0f;
+    }
+
+    if (m_Index >= m_Planets.size())
+    {
+        m_Index = 0;
     }
 }
 
@@ -176,6 +290,31 @@ void OrbitBehavior::Inspector()
     ImGui::DragFloat("Scale Extremes Angle", &m_ScaleExtremesAngle, 0.1f);
     ImGui::DragInt("First Layer", &m_FirstLayer, 1);
     ImGui::DragInt("Second Layer", &m_SecondLayer, 1);
+    ImGui::DragFloat("Texure Change Interval", &TextureChangeInterval, 0.5f, 0.0f, 10.0f);
+
+
+    // Inspector for the planetData vector.
+    Inspection::InspectArray< PlanetData >(
+        "Logos", &m_Planets,
+        [](PlanetData* planetData) -> bool
+        {
+            return planetData->Inspect();
+        }
+    );
+
+    if (ImGui::DragInt("Index", &m_Index))
+    {
+        if (m_Index < 0)
+        {
+            m_Index = 0;
+        }
+        else if (m_Index >= m_Planets.size())
+        {
+            m_Index = 0;
+        }
+
+        m_Sprite->SetTexture(m_Planets[m_Index].m_Texture);
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -247,6 +386,16 @@ void OrbitBehavior::readLayerSwitchAngle(nlohmann::ordered_json const& data)
     Stream::Read(m_LayerSwitchAngle, data);
 }
 
+void OrbitBehavior::readPlanets(nlohmann::ordered_json const& data)
+{
+   Stream::Read< PlanetData >(&m_Planets, data);
+}
+
+void OrbitBehavior::readTextureChangeInterval(nlohmann::ordered_json const& data)
+{
+    Stream::Read(TextureChangeInterval, data);
+}
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -266,7 +415,9 @@ ReadMethodMap< ISerializable > const& OrbitBehavior::GetReadMethods() const
         { "Base Scale",                  &OrbitBehavior::readBaseScale                 },
         { "Scale Oscillation Magnitude", &OrbitBehavior::readScaleOscillationMagnitude },
         { "Scale Extremes Angle",        &OrbitBehavior::readScaleExtremesAngle        },
-        { "Layer Switch Angle",          &OrbitBehavior::readLayerSwitchAngle          }
+        { "Layer Switch Angle",          &OrbitBehavior::readLayerSwitchAngle          },
+        { "Planets",                     &OrbitBehavior::readPlanets                   },
+        { "Texture Change Interval",     &OrbitBehavior::readTextureChangeInterval     }
 
     };
 
@@ -291,6 +442,9 @@ nlohmann::ordered_json OrbitBehavior::Write() const
     json["Scale Oscillation Magnitude"] = m_ScaleOscillationMagnitude;
     json["Scale Extremes Angle"]        = m_ScaleExtremesAngle;
     json["Layer Switch Angle"]          = m_LayerSwitchAngle;
+    json["Texture Change Interval"]     = TextureChangeInterval;
+
+    json["Planets"] = Stream::WriteArray(m_Planets);
 
     return json;
 }
@@ -326,8 +480,9 @@ OrbitBehavior::OrbitBehavior(OrbitBehavior const& other) :
     m_BaseScale(other.m_BaseScale),
     m_ScaleOscillationMagnitude(other.m_ScaleOscillationMagnitude),
     m_ScaleExtremesAngle(other.m_ScaleExtremesAngle),
-    m_LayerSwitchAngle(other.m_LayerSwitchAngle)
+    m_LayerSwitchAngle(other.m_LayerSwitchAngle),
+    m_Planets(other.m_Planets),
+    m_Index(other.m_Index),
+    TextureChangeInterval(other.TextureChangeInterval)
 {}
 
-
-//-----------------------------------------------------------------------------
