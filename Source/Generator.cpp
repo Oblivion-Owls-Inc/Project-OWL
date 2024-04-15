@@ -302,6 +302,11 @@ Generator::Generator(const Generator& other) :
         m_DeactivateRing = true;
         m_CanSpawnWave = true;
 
+        if (m_Sprite != nullptr)
+        {
+            m_Sprite->SetFrameIndex(0);
+        }
+
         if ( m_Interactable != nullptr )
         {
             m_Interactable->SetEnabled( true );

@@ -128,6 +128,9 @@ private: // member variables
 
     /// @brief a cached instance of the effect animator.
     ComponentReference< EffectAnimator > m_EffectAnimator;
+
+    /// @brief a cached instance of the sprite.
+    ComponentReference< Sprite > m_Sprite;
     
 
     /// @brief  the miningLaser this PlayerController uses

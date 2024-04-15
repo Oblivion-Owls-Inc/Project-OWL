@@ -99,6 +99,7 @@
         m_Collider      .Init( GetEntity() );
         m_Inventory     .Init( GetEntity() );
         m_EffectAnimator.Init( GetEntity() );
+        m_Sprite        .Init(GetEntity());
         
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
@@ -170,6 +171,7 @@
         m_Collider      .Exit();
         m_Inventory     .Exit();
         m_EffectAnimator.Exit();
+        m_Sprite        .Exit();
 
         m_MiningLaserEntity.Exit();
 
@@ -213,13 +215,17 @@
             }
 
 
-            if (direction.x > 0 )
+            if (direction.x > 0)
             {
                 // 0 is right
                 direction.x *= m_HorizontalMoveforce[0];
 
                 if (Input()->GetKeyDown(GLFW_KEY_D))
+                {
+                    m_Sprite->SetFrameIndex(0);
                     m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
+                }
+                    
             }
             else
             {
@@ -227,7 +233,11 @@
                 direction.x *= m_HorizontalMoveforce[1];
 
                 if (Input()->GetKeyDown(GLFW_KEY_A))
+                {
+                    m_Sprite->SetFrameIndex(0);
                     m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
+                }
+                    
             }
 
             if (direction.y > 0 )
