@@ -22,7 +22,7 @@
 #include "Light.h"
 #include "Interactable.h"
 #include "ItemStack.h"
-
+#include "Sound.h"
 
 class Generator : public Behavior
 {
@@ -163,10 +163,17 @@ private: // variables
     /// @brief  the Light Component attached to this Generator
     ComponentReference< Light > m_Light;
 
-
     /// @brief  the wave prefab to spawn on generator activation
     AssetReference< Entity > m_WavePrefab;
 
+    /// @brief  the sound to play when the generator activates
+    AssetReference< Sound > m_ActivateSound;
+
+    /// @brief  the sound to play when the generator deactivates
+    AssetReference< Sound > m_DeactivateSound;
+
+    /// @brief  the sound to play when the generator takes damage
+    AssetReference< Sound > m_DamageSound;
 
 //-----------------------------------------------------------------------------
 private: // private functions
@@ -213,6 +220,18 @@ private: // reading
 
     /// @brief	read the attached wave prefab to spawn
     void readWavePrefab(nlohmann::ordered_json const& json);
+
+    /// @brief Read the sound to play when the generator activates
+    /// @param json - json object to read from
+    void readActivateSound(nlohmann::ordered_json const& json);
+
+    /// @brief Read the sound to play when the generator deactivates
+    /// @param json - json object to read from
+    void readDeactivateSound(nlohmann::ordered_json const& json);
+
+    /// @brief Read the sound to play when the generator takes damage
+    /// @param json - json object to read from
+    void readDamageSound(nlohmann::ordered_json const& json);
 
     /// @brief Read the cost of the generator
     /// @param json - json object to read from
