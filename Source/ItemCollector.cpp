@@ -102,6 +102,14 @@
     void ItemCollector::collectItem( ItemComponent* item )
     {
         m_Inventory->AddItemStack( item->GetItemStack() );
+
+        AudioPlayer* audioPlayer = item->GetAudioPlayer();
+
+        if (audioPlayer)
+        {
+            audioPlayer->Play();
+        }
+
         item->GetEntity()->Destroy();
     }
 
@@ -111,14 +119,6 @@
     void ItemCollector::attractItem( ItemComponent* item, glm::vec2 const& offset )
     {
         glm::vec2 force = glm::normalize( offset ) * m_AttractionStrength;
-
-        AudioPlayer* audioPlayer = item->GetAudioPlayer();
-
-        if (audioPlayer)
-        {
-            audioPlayer->Play();
-        }
-
         item->GetRigidBody()->ApplyForce( force );
     }
 
