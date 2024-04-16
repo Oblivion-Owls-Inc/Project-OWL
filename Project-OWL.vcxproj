@@ -503,6 +503,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ResourcesUiManager.cpp" />
     <ClCompile Include="Source\SceneChangeButton.cpp" />
     <ClCompile Include="Source\SceneTransition.cpp" />
+    <ClCompile Include="Source\ScreenShake.cpp" />
     <ClCompile Include="Source\SettingsManager.cpp" />
     <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
@@ -591,6 +592,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ResourcesUiManager.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
     <ClInclude Include="Source\SceneTransition.h" />
+    <ClInclude Include="Source\ScreenShake.h" />
     <ClInclude Include="Source\SettingsManager.h" />
     <ClInclude Include="Source\SplashScreenController.h" />
     <ClInclude Include="Source\TilemapEditor.h" />

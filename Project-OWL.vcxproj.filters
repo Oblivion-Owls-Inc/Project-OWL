@@ -414,6 +414,9 @@
     <Filter Include="Game\Components\Behaviors\DoomsDay">
       <UniqueIdentifier>{66433d39-fb17-45a3-9dd3-c714039d1306}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\ScreenShake">
+      <UniqueIdentifier>{6a8c949a-af99-4a18-b059-7a2ec15bcad5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -878,6 +881,9 @@
     <ClCompile Include="Source\DoomsDay.cpp">
       <Filter>Game\Components\Behaviors\DoomsDay</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ScreenShake.cpp">
+      <Filter>Game\Components\Behaviors\ScreenShake</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1338,6 +1344,9 @@
     </ClInclude>
     <ClInclude Include="Source\DoomsDay.h">
       <Filter>Game\Components\Behaviors\DoomsDay</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ScreenShake.h">
+      <Filter>Game\Components\Behaviors\ScreenShake</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
