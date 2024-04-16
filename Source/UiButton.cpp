@@ -82,7 +82,6 @@
             m_AudioPlayer->SetSound( nullptr );
         } );
 
-        m_UiElement  .Init( GetEntity() );
         m_Sprite     .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
 
@@ -99,8 +98,6 @@
     void UiButton::OnExit()
     {
         Behaviors< UiButton >()->RemoveComponent( this );
-
-        m_UiElement  .Exit();
         m_Sprite     .Exit();
         m_AudioPlayer.Exit();
     }
@@ -110,11 +107,6 @@
     /// @param  dt  the duration of the frame
     void UiButton::OnUpdate( float dt )
     {
-        if ( m_UiElement == nullptr )
-        {
-            return;
-        }
-
         // use if statements instead of switch statement so that the functions can cascade if an earlier function changes the state
         if ( m_State == ButtonState::Idle )
         {

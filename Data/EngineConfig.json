@@ -242,6 +242,22 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "SkipSplashScreen",
+                    "KeyboardButtons": [
+                        257,
+                        256
+                    ],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
