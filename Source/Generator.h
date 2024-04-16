@@ -11,6 +11,7 @@
 #include "Component.h"
 
 #include "ComponentReference.h"
+#include "AssetReference.h"
 #include "AudioPlayer.h"
 #include "Transform.h"
 #include "Collider.h"
@@ -23,9 +24,11 @@
 #include "Interactable.h"
 #include "ItemStack.h"
 #include "Sound.h"
+#include "EventListener.h"
 
 class Generator : public Behavior
 {
+
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
 //-----------------------------------------------------------------------------
@@ -98,10 +101,11 @@ public: // methods
 private: // variables
 //-----------------------------------------------------------------------------
 
+    /// @brief If the generator can produce a reward
+    bool m_CanBeRewarded = true;
 
     /// @brief  is the generator active or not
     bool m_IsActive = false;  
-
 
     /// @brief  is the generator active or not
     bool m_ChangeActive = false;
@@ -114,7 +118,6 @@ private: // variables
 
     /// @brief  shrink ring to match edited value if true
     bool m_ShrinkRing = false;
-
 
     /// @brief  can activating the generator spawn a wave
     bool m_CanSpawnWave = true;
@@ -134,7 +137,6 @@ private: // variables
 
     /// @brief  the cost of activating this Generator
     std::vector< ItemStack > m_ActivationCost = {};
-
 
     /// @brief  the transform of the generator
     ComponentReference< Transform > m_Transform;
@@ -174,6 +176,9 @@ private: // variables
 
     /// @brief  the sound to play when the generator takes damage
     AssetReference< Sound > m_DamageSound;
+
+    /// @brief List of reward prefabs to spawn
+    std::vector < AssetReference< Entity > > m_RewardPrefabs;
 
 //-----------------------------------------------------------------------------
 private: // private functions
@@ -236,6 +241,14 @@ private: // reading
     /// @brief Read the cost of the generator
     /// @param json - json object to read from
     void readActivationCost(nlohmann::ordered_json const& json);
+
+    /// @brief Reads the reward prefabs
+    /// @param json - json object to read from
+    void readRewardPrefabs(nlohmann::ordered_json const& json);
+
+    /// @brief Read if the generator can be rewarded
+    /// @param json - json object to read from
+    void readCanBeRewarded(nlohmann::ordered_json const& json);
 
 
 //-----------------------------------------------------------------------------

@@ -114,6 +114,13 @@
         m_DamageSound    .SetOwnerName( GetName() );
 
 
+        for (auto& reward : m_RewardPrefabs)
+        {
+			reward.SetOwnerName( GetName() );
+			reward.Init();
+		}
+
+
         m_WavePrefab     .Init( false );
         m_ActivateSound  .Init();
         m_DamageSound    .Init();
@@ -230,7 +237,9 @@
         m_ActivationCost ( other.m_ActivationCost  ),
         m_ActivateSound  ( other.m_ActivateSound   ),
         m_DeactivateSound( other.m_DeactivateSound ),
-        m_DamageSound    ( other.m_DamageSound     )
+        m_DamageSound    ( other.m_DamageSound     ),
+        m_RewardPrefabs  ( other.m_RewardPrefabs   ),
+        m_CanBeRewarded  ( other.m_CanBeRewarded   )
     {}
 
 
@@ -396,6 +405,13 @@
         {
             return itemStack->Inspect();
         } );
+
+
+        Inspection::InspectArray< AssetReference< Entity > >("Rewards",
+         &m_RewardPrefabs, [](AssetReference< Entity >* reward) -> bool
+        {
+			return reward->Inspect("Reward to Spawn");
+		});
     }
 
 //-----------------------------------------------------------------------------
@@ -412,7 +428,9 @@
         { "ActivationCost" , &readActivationCost  },
         { "ActivateSound"  , &readActivateSound   },
         { "DeactivateSound", &readDeactivateSound },
-        { "DamageSound"    , &readDamageSound     }
+        { "DamageSound"    , &readDamageSound     },
+		{ "Rewards"        , &readRewardPrefabs   },
+		{ "CanBeRewarded"  , &readCanBeRewarded   }
     };
 
     /// @brief	read the raidus from json
@@ -459,6 +477,16 @@
         Stream::Read< ItemStack >( &m_ActivationCost, json );
     }
 
+    void Generator::readRewardPrefabs(nlohmann::ordered_json const& json)
+    {
+		Stream::Read< AssetReference< Entity > >( &m_RewardPrefabs, json );
+    }
+
+    void Generator::readCanBeRewarded(nlohmann::ordered_json const& json)
+    {
+        Stream::Read(m_CanBeRewarded, json);
+    }
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -476,6 +504,8 @@
         data[ "DeactivateSound"] = Stream::Write( m_DeactivateSound );
         data[ "DamageSound"    ] = Stream::Write( m_DamageSound );
         data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
+
+        data[ "Rewards" ] = Stream::WriteArray(m_RewardPrefabs);
 
         return data;
     }
