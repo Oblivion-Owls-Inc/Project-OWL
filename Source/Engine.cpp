@@ -219,10 +219,7 @@
     /// @brief  Updates the engine each frame
     void Engine::update()
     {
-
         double currentTime = glfwGetTime();
-
-        float deltaTime = static_cast<float>(currentTime - m_PreviousTime);
 
         // const int maxFrameTimes = 60;
         // static std::deque< float > frameTimes;
@@ -238,7 +235,7 @@
         // 
         // Debug() << deltaTime << std::endl;
 
-        if (currentTime - m_PreviousFixedTime > m_FixedFrameDuration)
+        if ( currentTime - m_PreviousFixedTime > m_FixedFrameDuration )
         {
             fixedUpdateSystems();
 
@@ -248,7 +245,10 @@
             m_FixedUpdatedThisFrame = true;
         }
 
-        updateSystems( deltaTime );
+        float deltaTime = static_cast< float >( currentTime - m_PreviousTime );
+        constexpr float maxDeltaTime = 1.0f / 8.0f;
+
+        updateSystems( std::min( deltaTime, maxDeltaTime ) );
 
         m_FixedUpdatedThisFrame = false;
 
