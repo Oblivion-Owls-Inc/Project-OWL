@@ -700,7 +700,7 @@
                                 "DefaultLoopCount": 0,
                                 "PlayOnInit": false,
                                 "IsSpatial": false,
-                                "AllowMultipleSounds": false,
+                                "AllowMultipleSounds": true,
                                 "ChannelGroupName": ""
                             },
                             "Sprite": {
@@ -840,7 +840,7 @@
                                 "DefaultLoopCount": 0,
                                 "PlayOnInit": false,
                                 "IsSpatial": false,
-                                "AllowMultipleSounds": false,
+                                "AllowMultipleSounds": true,
                                 "ChannelGroupName": ""
                             },
                             "Sprite": {

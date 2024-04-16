@@ -444,7 +444,7 @@
                             "DefaultLoopCount": 0,
                             "PlayOnInit": false,
                             "IsSpatial": false,
-                            "AllowMultipleSounds": false,
+                            "AllowMultipleSounds": true,
                             "ChannelGroupName": ""
                         },
                         "SceneChangeButton": {
@@ -769,7 +769,6 @@
         }
     ],
     "PreparsedScenes": [
-        "BetaScene",
         "MainMenu"
     ]
 }

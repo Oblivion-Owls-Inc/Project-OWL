@@ -3,11 +3,13 @@
         "Sounds": {
             "ButtonPress": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+                "Filepath": "Data/Sounds/Effects/button_press.ogg",
+                "Volume": 1.0
             },
             "ButtonRelease": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+                "Filepath": "Data/Sounds/Effects/button_release.ogg",
+                "Volume": 1.0
             }
         },
         "Textures": {
@@ -305,6 +307,20 @@
                 {
                     "Name": "SaveButton",
                     "Components": {
+                        "AudioPlayer": {
+                            "Sound": {
+                                "AssetName": "[non-serialized asset]"
+                            },
+                            "Volume": 1.0,
+                            "Pitch": 1.0,
+                            "VolumeVariance": 0.0,
+                            "PitchVariance": 0.0,
+                            "DefaultLoopCount": 0,
+                            "PlayOnInit": false,
+                            "IsSpatial": false,
+                            "AllowMultipleSounds": true,
+                            "ChannelGroupName": ""
+                        },
                         "SceneChangeButton": {
                             "SceneName": "Previous",
                             "EventName": "Previous",
@@ -338,6 +354,9 @@
                             },
                             "ReleaseSound": {
                                 "AssetName": "ButtonRelease"
+                            },
+                            "HoverSound": {
+                                "AssetName": ""
                             }
                         },
                         "UiElement": {
@@ -730,7 +749,7 @@
                                 0.0,
                                 1.0
                             ],
-                            "Value": 0.7562189102172852,
+                            "Value": 1.0,
                             "Slope": 0.0
                         },
                         {
@@ -778,7 +797,7 @@
                     ]
                 },
                 "UiSlider": {
-                    "Value": 0.7562189102172852,
+                    "Value": 1.0,
                     "DragSliderAction": {
                         "ActionName": "DragSlider"
                     }
@@ -804,7 +823,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                0.4868159294128418,
+                                0.9500000476837158,
                                 0.0
                             ],
                             "Pivot": [
@@ -1079,6 +1098,9 @@
                     },
                     "ReleaseSound": {
                         "AssetName": ""
+                    },
+                    "HoverSound": {
+                        "AssetName": ""
                     }
                 },
                 "UiElement": {
@@ -1204,7 +1226,9 @@
             "Components": {
                 "SceneTransition": {
                     "TransitionDuration": 0.25,
-                    "NextSceneName": ""
+                    "NextSceneName": "",
+                    "HasLighting": false,
+                    "LightingLayer": 0
                 },
                 "Sprite": {
                     "Layer": 1000,
