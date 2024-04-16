@@ -77,9 +77,12 @@ digraph "Source/ActionReference.h"
   Node27 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node28 [label="Source/Popup.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Popup_8cpp.html",tooltip="DESCRIPTION HERE."];
   Node1 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node29 [label="Source/UiSlider.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiSlider_8h.html",tooltip="Ui Slider component."];
+  Node29 [label="Source/SplashScreenController.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SplashScreenController_8h_source.html",tooltip=" "];
   Node29 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node29 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node29 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node30 [label="Source/UiSlider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiSlider_8cpp.html",tooltip="Ui Slider component."];
+  Node1 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="Source/UiSlider.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiSlider_8h.html",tooltip="Ui Slider component."];
+  Node30 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="Source/UiSlider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiSlider_8cpp.html",tooltip="Ui Slider component."];
 }
