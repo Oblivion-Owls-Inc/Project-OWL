@@ -11,10 +11,9 @@
 #include "Behavior.h"
 
 #include "ComponentReference.h"
-#include "UiElement.h"
 #include "Sprite.h"
 #include "AudioPlayer.h"
-
+#include "UiElement.h"
 #include "AssetReference.h"
 #include "Sound.h"
 
@@ -127,10 +126,6 @@ private: // nonconfigurable members
 
     /// @brief  whether this Button was activated since the last FixedUpdate
     bool m_ActivatedSinceLastFixedUpdate = false;
-
-
-    /// @brief  the UiElement Component attached to this UiButton
-    ComponentReference< UiElement > m_UiElement;
 
     /// @brief  the Sprite Component attached to this UiButton
     ComponentReference< Sprite > m_Sprite;

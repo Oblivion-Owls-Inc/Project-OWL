@@ -59,6 +59,15 @@ public: // methods
     /// @brief Kills enemy with one hit from the laser.
     void OneShotOneKill();
 
+    /// @brief The maximum range of the laser
+    void InfiniteLaserRange();
+
+    /// @brief The maximum toughness of the laser
+    void InfiniteLaserToughness();
+
+    /// @brief The maximum mining speed of the laser.
+    void InfiniteLaserMiningSpeed();
+
     /// @brief Kills All Enemies.
     void KillAllEnemies();
 
@@ -96,12 +105,24 @@ private: // members
     bool m_ToggleNoClip;
     /// @brief Toggles killing all enemies.
     bool m_ToggleKillAllEnemies;
+    /// @brief Toggles the maximum laser range.
+    bool m_ToggleMaxLaserRange;
+    /// @brief Toggles the maximum laser toughness.
+    bool m_ToggleMaxLaserTougness;
+    /// @brief Toggles the maximum mining speed.
+    bool m_ToggleMaxLaserMiningSpeed;
     /// @brief Store the previous value of the player's health
     int m_PreviousPlayerHealth;
     /// @brief Store the previous value of the base's health.
     int m_PreviousBaseHealth;
     /// @brief Store the previous value of the laser's damage.
     float m_PreviousLaserDamage;
+    /// @brief Store the previous value of the laser's range.
+    float m_PreviousLaserRange;
+    /// @brief Store the previous value of the laser's toughness.
+    float m_PreviousLaserMaxToughness;
+    /// @brief Store the previous mining laser speed.
+    float m_PreviousLaserMiningSpeed;
     /// @brief The name of the lose scene.
     std::string m_LoseSceneName;
     /// @brief The name of the scene to reset too.

@@ -233,6 +233,9 @@
         m_ConsoleCommandsMap.emplace("InstantWin", std::bind(&CheatSystem::InstantWin, Cheats()));
         m_ConsoleCommandsMap.emplace("InstantLose", std::bind(&CheatSystem::InstantLose, Cheats()));
         m_ConsoleCommandsMap.emplace("ResetGame", std::bind(&CheatSystem::ResetGame, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteLaserRange", std::bind(&CheatSystem::InfiniteLaserRange, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteLaserToughness", std::bind(&CheatSystem::InfiniteLaserToughness, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteLaserMiningSpeed", std::bind(&CheatSystem::InfiniteLaserMiningSpeed, Cheats()));
     }
 
     /// @brief Clears the console log
