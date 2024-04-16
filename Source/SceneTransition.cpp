@@ -161,7 +161,10 @@
     void SceneTransition::Inspector()
     {
         ImGui::DragFloat( "transition duration", &m_TransitionDuration, 0.05f, 0.0f, INFINITY );
-        ImGui::DragInt( "lighting layer", &m_LightingLayer, 1, 0, 100 );
+        if ( ImGui::InputInt( "lighting layer", &m_LightingLayer, 1, 0, 100 ) )
+        {
+            Lights()->SetShadowLayer(m_LightingLayer);
+        }
         ImGui::Checkbox("has lighting", &m_HasLighting);
 
         Scenes()->InspectorSelectScene( "transition to scene", &m_NextSceneName );

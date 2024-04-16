@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1019,
-                327
+                1737,
+                1192
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -269,8 +269,7 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": true,
-            "Layer": 4
+            "Enabled": true
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
