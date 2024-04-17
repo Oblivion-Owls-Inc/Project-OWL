@@ -134,7 +134,6 @@ private: // variables
     /// @brief  radius the generator emits particles to
     float m_GrowthRadius = 1.0f;
 
-
     /// @brief  the cost of activating this Generator
     std::vector< ItemStack > m_ActivationCost = {};
 
@@ -180,6 +179,9 @@ private: // variables
     /// @brief List of reward prefabs to spawn
     std::vector < AssetReference< Entity > > m_RewardPrefabs;
 
+    EventListener<std::string> m_EventListener;
+
+    std::string m_EventName = "";
 //-----------------------------------------------------------------------------
 private: // private functions
 //-----------------------------------------------------------------------------
@@ -250,7 +252,9 @@ private: // reading
     /// @param json - json object to read from
     void readCanBeRewarded(nlohmann::ordered_json const& json);
 
-
+    /// @brief read the event name
+    /// @param json - json object to read from
+    void readEventName(nlohmann::ordered_json const& json);
 //-----------------------------------------------------------------------------
 public: // writing
 //-----------------------------------------------------------------------------

@@ -398,6 +398,7 @@
         m_DeactivateSound.Inspect( "Deactivate Sound" );
         m_DamageSound.Inspect( "Damage Sound" );
 
+        ImGui::InputText( "Event Name", &m_EventName );
 
         ImGui::Checkbox( "Is Active", &m_ChangeActive );
 
@@ -430,7 +431,8 @@
         { "DeactivateSound", &readDeactivateSound },
         { "DamageSound"    , &readDamageSound     },
 		{ "Rewards"        , &readRewardPrefabs   },
-		{ "CanBeRewarded"  , &readCanBeRewarded   }
+		{ "CanBeRewarded"  , &readCanBeRewarded   },
+        { "EventName"      , &readEventName       }
     };
 
     /// @brief	read the raidus from json
@@ -487,6 +489,11 @@
         Stream::Read(m_CanBeRewarded, json);
     }
 
+    void Generator::readEventName(nlohmann::ordered_json const& json)
+    {
+		Stream::Read(m_EventName, json);
+    }
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -503,8 +510,10 @@
         data[ "ActivateSound"  ] = Stream::Write( m_ActivateSound );
         data[ "DeactivateSound"] = Stream::Write( m_DeactivateSound );
         data[ "DamageSound"    ] = Stream::Write( m_DamageSound );
-        data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
+        data[ "CanBeRewarded"  ] = Stream::Write( m_CanBeRewarded );
+        data[ "EventName"      ] = Stream::Write( m_EventName );
 
+        data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
         data[ "Rewards" ] = Stream::WriteArray(m_RewardPrefabs);
 
         return data;
