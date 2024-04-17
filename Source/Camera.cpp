@@ -148,6 +148,8 @@
     /// @brief  called once when leaving the scene
     void Camera::OnExit()
     {
+
+        m_Transform.Exit();
         if ( m_IsActive )
         {
             Cameras()->SetActiveCamera( nullptr );
