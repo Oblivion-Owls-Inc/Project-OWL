@@ -12,6 +12,7 @@
 #include "System.h"
 #include "DebugSystem.h"
 #include <string>
+#include <map>
 
 
 //------------------------------------------------------------------------------
@@ -78,6 +79,9 @@ public: // methods
     /// @return The current state of whether there are infinite resources
     bool ToggleInfinteResources();
 
+    /// @brief Unlocks all turrets
+    void UnlockAllTurrets();
+
     /// @brief Instantly wins the game
     void InstantWin();
 
@@ -111,6 +115,10 @@ private: // members
     bool m_ToggleMaxLaserTougness;
     /// @brief Toggles the maximum mining speed.
     bool m_ToggleMaxLaserMiningSpeed;
+    // Unlocks all turrets
+    bool m_UnlockAllTurrets;
+    // Toggle lighting on and off.
+    bool m_ToggleLight;
     /// @brief Store the previous value of the player's health
     int m_PreviousPlayerHealth;
     /// @brief Store the previous value of the base's health.
@@ -129,6 +137,8 @@ private: // members
     std::string m_RestartSceneName;
     /// @brief The name of the win scene.
     std::string m_WinSceneName;
+    /// @brief A map of building indexes and their states
+    std::map<int, bool> m_BuildingStates;
 
     /// @brief The player's circle collider.
     CircleCollider* m_PlayerCircleCollider;

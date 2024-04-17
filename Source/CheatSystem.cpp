@@ -154,6 +154,13 @@
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
+            
+            if (ImGui::Button(m_UnlockAllTurrets ? "Reset All Turrets States" : "Unlock All Turrets"))
+            {
+                UnlockAllTurrets();
+            }
+            ImGui::SameLine();
+            ImGui::Text(" Unlocks all Turrets");
 
             // The instant win button
             if (ImGui::Button("Instant Win"))
@@ -456,6 +463,40 @@
 
         m_ToggleInfiniteResource = cheatIsOn;
         return cheatIsOn;
+    }
+
+    /// @brief Unlocks all turrets
+    void CheatSystem::UnlockAllTurrets()
+    {
+        Entity* constructionEntity = Entities()->GetEntity("ConstructionManager");
+        if (constructionEntity == nullptr)
+        {
+            return;
+        }
+
+        ConstructionBehavior* constructionBehavior = constructionEntity->GetComponent< ConstructionBehavior >();
+        if (constructionBehavior == nullptr)
+        {
+            return;
+        }
+
+        if (m_UnlockAllTurrets == false)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                m_BuildingStates.emplace(i, constructionBehavior->BuildingIsUnlocked(i));
+                constructionBehavior->SetBuildingUnlocked(i, true);
+            }
+            m_UnlockAllTurrets = true;
+        }
+        else
+        {
+            for (auto iter = m_BuildingStates.begin(); iter != m_BuildingStates.end(); ++iter)
+            {
+                constructionBehavior->SetBuildingUnlocked(iter->first, iter->second);
+            }
+            m_UnlockAllTurrets = false;
+        }
     }
 
     /// @brief Instantly wins the game
