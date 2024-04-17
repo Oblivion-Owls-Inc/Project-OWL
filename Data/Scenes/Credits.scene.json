@@ -1,10 +1,774 @@
 {
     "Assets": {
-        "Sounds": null,
-        "Textures": null,
-        "TransformAnimations": null,
+        "Sounds": {
+            "ButtonClick": {
+                "IsLoopable": false,
+                "Filepath": "Data/Sounds/Effects/button_press.ogg",
+                "Volume": 1.0
+            },
+            "ButtonRelease": {
+                "IsLoopable": false,
+                "Filepath": "Data/Sounds/Effects/button_release.ogg",
+                "Volume": 1.0
+            }
+        },
+        "Textures": {
+            "AssetCredits": {
+                "Filepath": "Data/Textures/GAM_Asset_Credits.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "Background": {
+                "Filepath": "Data/Textures/BackgroundNew.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "Credits": {
+                "Filepath": "Data/Textures/GAM_Credits.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    1.0
+                ],
+                "UseAspectRatio": true
+            },
+            "DigDeeperLogo": {
+                "Filepath": "Data/Textures/DigDeeperLogo-export.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [
+                    16,
+                    8
+                ],
+                "Pivot": [
+                    0.0,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "MainMenuTexture": {
+                "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "OblivionOwlsLogo": {
+                "Filepath": "Data/Textures/OblivionOwlsLogo.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "Rectangle": {
+                "Filepath": "Data/Textures/Debug/Rectangle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            }
+        },
+        "TransformAnimations": {
+            "Scrolling": {
+                "ScaleCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "OffsetCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": true,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.35979047417640686,
+                            "Value": [
+                                0.0,
+                                -37.71991729736328,
+                                0.35979047417640686
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 150.23837280273438,
+                            "Value": [
+                                0.0,
+                                2679.310302734375,
+                                150.23837280273438
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "RotationCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "SkewCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
         "Animations": null,
-        "Archetypes": null
+        "Archetypes": {
+            "GAMCredits": {
+                "Name": "GAMCredits",
+                "Components": {
+                    "EffectAnimator": {
+                        "Effect": {
+                            "AssetName": "Scrolling"
+                        },
+                        "Time": 2.0,
+                        "Speed": 0.5,
+                        "LoopCount": 0,
+                        "IsPlaying": true
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Credits"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "GameTitle": {
+                "Name": "GameTitle",
+                "Components": {
+                    "EffectAnimator": {
+                        "Effect": {
+                            "AssetName": "Scrolling"
+                        },
+                        "Time": 2.0,
+                        "Speed": 0.5,
+                        "LoopCount": 0,
+                        "IsPlaying": false
+                    },
+                    "Sprite": {
+                        "Layer": 4,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "DigDeeperLogo"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            }
+        }
     },
-    "Entities": null
+    "Entities": [
+        {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 39.13982391357422,
+                    "IsActive": true
+                },
+                "Light": {
+                    "Radius": 20.0,
+                    "Strength": 20.0,
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        {
+            "Name": "Background",
+            "Components": {
+                "Sprite": {
+                    "Layer": 0,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Background"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToHeight",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        {
+            "Name": "SceneChanger",
+            "Components": {
+                "SceneTransition": {
+                    "TransitionDuration": 0.25,
+                    "NextSceneName": "",
+                    "HasLighting": false,
+                    "LightingLayer": 0
+                },
+                "Sprite": {
+                    "Layer": 1000,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 0.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Rectangle"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        {
+            "Name": "frame",
+            "Components": {
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToWidth"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "MainMenuButton",
+                    "Components": {
+                        "AudioPlayer": {
+                            "Sound": {
+                                "AssetName": "[non-serialized asset]"
+                            },
+                            "Volume": 1.0,
+                            "Pitch": 1.0,
+                            "VolumeVariance": 0.0,
+                            "PitchVariance": 0.0,
+                            "DefaultLoopCount": 0,
+                            "PlayOnInit": false,
+                            "IsSpatial": false,
+                            "AllowMultipleSounds": true,
+                            "ChannelGroupName": ""
+                        },
+                        "SceneChangeButton": {
+                            "SceneName": "MainMenu",
+                            "EventName": "MainMenu",
+                            "SceneTransitionEntity": {
+                                "EntityName": "SceneChanger"
+                            },
+                            "PreviousSceneFlag": false
+                        },
+                        "Sprite": {
+                            "Layer": 7,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "MainMenuTexture"
+                            }
+                        },
+                        "UiButton": {
+                            "ClickEventName": "MainMenu",
+                            "ShouldActivateOnPress": false,
+                            "IdleFrame": 0,
+                            "HoveredFrame": 1,
+                            "DownFrame": 2,
+                            "PressSound": {
+                                "AssetName": "ButtonClick"
+                            },
+                            "ReleaseSound": {
+                                "AssetName": "ButtonRelease"
+                            },
+                            "HoverSound": {
+                                "AssetName": ""
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                -0.9300000071525574,
+                                0.5199999809265137
+                            ],
+                            "Pivot": [
+                                -1.0,
+                                1.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                2.190000057220459,
+                                0.6100000143051147
+                            ],
+                            "SizeTypes": [
+                                "Absolute",
+                                "Absolute"
+                            ]
+                        }
+                    },
+                    "Children": [
+                        {
+                            "Name": "Text",
+                            "Components": {
+                                "Tilemap<int>": {
+                                    "Dimensions": [
+                                        41,
+                                        0
+                                    ],
+                                    "TileScale": [
+                                        0.6669999957084656,
+                                        1.0
+                                    ],
+                                    "TileData": [
+                                        45,
+                                        65,
+                                        73,
+                                        78,
+                                        0,
+                                        45,
+                                        69,
+                                        78,
+                                        85
+                                    ]
+                                },
+                                "Text": {
+                                    "Text": "Main Menu"
+                                },
+                                "TilemapSprite": {
+                                    "Layer": 8,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "FontSheet"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        -0.9100000262260437,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.5299999713897705,
+                                        0.5299999713897705
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        }
+                    ]
+                },
+                {
+                    "Name": "GameTitle",
+                    "Components": {
+                        "RigidBody": {
+                            "Velocity": [
+                                0.0,
+                                1.0
+                            ],
+                            "Acceleration": [
+                                0.0,
+                                0.0
+                            ],
+                            "RotationalVelocity": 0.0,
+                            "Mass": 1.0,
+                            "Restitution": 1.0,
+                            "Friction": 0.0,
+                            "Drag": 0.0
+                        },
+                        "Sprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "DigDeeperLogo"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                -6.843902587890625
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                5.0,
+                                5.0
+                            ],
+                            "IsDiegetic": false
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "GAMCredits",
+                    "Components": {
+                        "RigidBody": {
+                            "Velocity": [
+                                0.0,
+                                1.0
+                            ],
+                            "Acceleration": [
+                                0.0,
+                                0.0
+                            ],
+                            "RotationalVelocity": 0.0,
+                            "Mass": 1.0,
+                            "Restitution": 1.0,
+                            "Friction": 0.0,
+                            "Drag": 0.0
+                        },
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Credits"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                -0.07317066192626953,
+                                -8.229268074035645
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                25.0,
+                                25.0
+                            ],
+                            "IsDiegetic": false
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        {
+            "Name": "TeamLogo",
+            "Components": {
+                "RigidBody": {
+                    "Velocity": [
+                        0.0,
+                        1.0
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        0.0
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "Mass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0,
+                    "Drag": 0.0
+                },
+                "Sprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "OblivionOwlsLogo"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        -35.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        5.0,
+                        5.0
+                    ],
+                    "IsDiegetic": false
+                }
+            },
+            "Children": null
+        },
+        {
+            "Name": "GAMAssetCredits",
+            "Components": {
+                "RigidBody": {
+                    "Velocity": [
+                        0.0,
+                        1.0
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        0.0
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "Mass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0,
+                    "Drag": 0.0
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "AssetCredits"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        -40.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        5.0,
+                        5.0
+                    ],
+                    "IsDiegetic": false
+                }
+            },
+            "Children": null
+        }
+    ],
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
 }

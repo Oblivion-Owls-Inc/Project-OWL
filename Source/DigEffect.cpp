@@ -180,7 +180,7 @@ void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, in
 		if (ap)
 		{
 			ap->SetSound( m_BreakSounds[prevTileId] );
-			ap->Play();
+			// ap->Play(); // the audioPlayer will play its own sound on init, since it can only be spatial after being added to the scene
 		}
 	}
 

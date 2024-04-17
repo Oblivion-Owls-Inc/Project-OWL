@@ -177,7 +177,6 @@ public: // methods
     /// @param  unlocked        whether the building should be unlocked
     void SetBuildingUnlocked( int buildingIndex, bool unlocked );
 
-
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
