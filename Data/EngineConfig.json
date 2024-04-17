@@ -7,7 +7,7 @@
                 1151
             ],
             "WindowName": "Dig Deeper",
-            "VSync": true
+            "VSync": false
         },
         "EventSystem": {},
         "InputSystem": {
