@@ -35,6 +35,36 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  gets the length of the beam
+    /// @return the length of the beam
+    float BeamSprite::GetLength() const
+    {
+        return m_Length;
+    }
+
+    /// @brief  sets the length of the beam
+    /// @param  length  the length of the beam
+    void BeamSprite::SetLength( float length )
+    {
+        m_Length = length;
+    }
+
+
+    /// @brief  gets the phase of the texture along the beam
+    /// @return the phase of the texture along the beam
+    float BeamSprite::GetPhase() const
+    {
+        return m_Phase;
+    }
+
+    /// @brief  sets the phase of the texture along the beam
+    /// @param  phase   the phase of the texture along the beam
+    void BeamSprite::SetPhase( float phase )
+    {
+        m_Phase = phase;
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: virtual override methods
 //-----------------------------------------------------------------------------

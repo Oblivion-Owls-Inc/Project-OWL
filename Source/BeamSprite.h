@@ -33,6 +33,24 @@ public: // accessors
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  gets the length of the beam
+    /// @return the length of the beam
+    float GetLength() const;
+
+    /// @brief  sets the length of the beam
+    /// @param  length  the length of the beam
+    void SetLength( float length );
+
+
+    /// @brief  gets the phase of the texture along the beam
+    /// @return the phase of the texture along the beam
+    float GetPhase() const;
+
+    /// @brief  sets the phase of the texture along the beam
+    /// @param  phase   the phase of the texture along the beam
+    void SetPhase( float phase );
+
+
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------

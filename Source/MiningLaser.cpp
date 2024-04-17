@@ -89,36 +89,6 @@
     }
 
 
-    /// @brief  gets the beam color
-    /// @return the beam color
-    glm::vec4 const& MiningLaser::GetBeamColor() const
-    {
-        return m_BeamColor;
-    }
-
-    /// @brief  sets the beam color
-    /// @param  beamColor   the beam color
-    void MiningLaser::SetBeamColor( glm::vec4 const& beamColor )
-    {
-        m_BeamColor = beamColor;
-    }
-
-
-    /// @brief  gets the beam width
-    /// @return the beam width
-    float MiningLaser::GetBeamWidth() const
-    {
-        return m_BeamWidth;
-    }
-
-    /// @brief  sets the beam width
-    /// @param  beamWidth   the beam width
-    void MiningLaser::SetBeamWidth( float beamWidth )
-    {
-        m_BeamWidth = beamWidth;
-    }
-
-
     /// @brief  gets how much damage per second the laser deals
     /// @return how much damage per second the laser deals
     float MiningLaser::GetDamageRate() const
@@ -202,8 +172,9 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
-        m_Transform.Init( GetEntity() );
+        m_Transform  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
+        m_BeamSprite .Init( GetEntity() );
 
         m_TilemapEntity.SetOwnerName( GetName() );
         m_TilemapEntity.Init();
@@ -214,36 +185,32 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        m_Transform.Exit();
+        m_Transform  .Exit();
+        m_AudioPlayer.Exit();
+        m_BeamSprite .Exit();
 
         m_TilemapEntity.Exit();
-        m_AudioPlayer.Exit();
     }
 
     /// @brief  called every graohics frame
     void MiningLaser::OnUpdate( float dt )
     {
+        if ( m_Transform == nullptr || m_BeamSprite == nullptr )
+        {
+            return;
+        }
+
         if ( m_IsFiring == false )
         {
-            if (m_AudioPlayer != nullptr)
+            m_BeamSprite->SetOpacity( 0.0f );
+            if ( m_AudioPlayer != nullptr )
             {
                 m_AudioPlayer->Stop();
             }
             return;
         }
 
-        if ( m_Transform == nullptr )
-        {
-            return;
-        }
-
-        if (m_AudioPlayer != nullptr)
-        {
-            m_AudioPlayer->Play();
-        }
-
-        glm::vec2 start = m_Transform->GetTranslation();
-        Renderer()->DrawLine( start, start + m_Direction * m_beamLength, m_BeamWidth, m_BeamColor );
+        m_BeamSprite->SetPhase( std::fmodf( m_BeamSprite->GetPhase() + m_BeamSpritePhaseSpeed * dt, 1.0f ) );
     }
 
     /// @brief  called every simulation frame
@@ -254,7 +221,7 @@
             return;
         }
 
-        if ( m_Transform == nullptr )
+        if ( m_Transform == nullptr || m_BeamSprite == nullptr )
         {
             return;
         }
@@ -275,6 +242,15 @@
     {
         RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), m_Direction, m_Range, m_CollisionLayers );
         m_beamLength = hit.distance;
+
+        m_BeamSprite->SetOpacity( 1.0f );
+        m_BeamSprite->SetLength( m_beamLength );
+        m_Transform->SetRotation( std::atan2( m_Direction.y, m_Direction.x ) );
+
+        if ( m_AudioPlayer != nullptr )
+        {
+            m_AudioPlayer->Play();
+        }
 
         if ( hit.colliderHit == nullptr )
         {
@@ -363,9 +339,7 @@
 
         ImGui::DragFloat( "Max Toughness", &m_MaxToughness, 0.05f, 0.0f, INFINITY );
         
-        ImGui::ColorEdit4( "Beam Color", &m_BeamColor[0] );
-        
-        ImGui::DragFloat( "Beam Width", &m_BeamWidth, 0.05f, 0.0f, INFINITY );
+        ImGui::DragFloat( "Beam Sprite Scroll Speed", &m_BeamSpritePhaseSpeed, 0.05f );
         
         ImGui::DragFloat( "Damage Per Second", &m_DamageRate, 0.05f );
 
@@ -417,18 +391,11 @@
     }
 
 
-    /// @brief  reads the color of the beam
+    /// @brief  reads the speed at which the BeamSprite's phase scrolls
     /// @param  data the json data to read from
-    void MiningLaser::readBeamColor( nlohmann::ordered_json const& data )
+    void MiningLaser::readBeamSpritePhaseSpeed( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_BeamColor, data );
-    }
-
-    /// @brief  reads the width of the beam
-    /// @param  data the json data to read from
-    void MiningLaser::readBeamWidth( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_BeamWidth, data );
+        Stream::Read( m_BeamSpritePhaseSpeed, data );
     }
 
 
@@ -477,8 +444,7 @@
             { "Range"               , &MiningLaser::readRange                },
             { "MiningSpeed"         , &MiningLaser::readMiningSpeed          },
             { "MaxToughness"        , &MiningLaser::readMaxToughness         },
-            { "BeamColor"           , &MiningLaser::readBeamColor            },
-            { "BeamWidth"           , &MiningLaser::readBeamWidth            },
+            { "BeamSpritePhaseSpeed", &MiningLaser::readBeamSpritePhaseSpeed },
             { "DamageRate"          , &MiningLaser::readDamageRate           },
             { "CollideWithLayers"   , &MiningLaser::readCollideWithLayers    },
             { "Direction"           , &MiningLaser::readDirection            },
@@ -495,16 +461,15 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "TilemapEntity"       ] = Stream::Write( m_TilemapEntity      );
-        json[ "Range"               ] = Stream::Write( m_Range              );
-        json[ "MiningSpeed"         ] = Stream::Write( m_MiningSpeed        );
-        json[ "MaxToughness"        ] = Stream::Write( m_MaxToughness       );
-        json[ "BeamColor"           ] = Stream::Write( m_BeamColor          );
-        json[ "BeamWidth"           ] = Stream::Write( m_BeamWidth          );
-        json[ "DamageRate"          ] = Stream::Write( m_DamageRate         );
-        json[ "CollideWithLayers"   ] = Stream::Write( m_CollisionLayers    );
-        json[ "Direction"           ] = Stream::Write( m_Direction          );
-        json[ "IsFiring"            ] = Stream::Write( m_IsFiring           );
+        json[ "TilemapEntity"        ] = Stream::Write( m_TilemapEntity        );
+        json[ "Range"                ] = Stream::Write( m_Range                );
+        json[ "MiningSpeed"          ] = Stream::Write( m_MiningSpeed          );
+        json[ "MaxToughness"         ] = Stream::Write( m_MaxToughness         );
+        json[ "BeamSpritePhaseSpeed" ] = Stream::Write( m_BeamSpritePhaseSpeed );
+        json[ "DamageRate"           ] = Stream::Write( m_DamageRate           );
+        json[ "CollideWithLayers"    ] = Stream::Write( m_CollisionLayers      );
+        json[ "Direction"            ] = Stream::Write( m_Direction            );
+        json[ "IsFiring"             ] = Stream::Write( m_IsFiring             );
 
         return json;
     }
@@ -518,18 +483,16 @@
     /// @param  other   the other MiningLaser to copy
     MiningLaser::MiningLaser( const MiningLaser& other ) :
         Behavior( typeid( MiningLaser ) ),
-        m_Range             ( other.m_Range              ),
-        m_MiningSpeed       ( other.m_MiningSpeed        ),
-        m_MaxToughness      ( other.m_MaxToughness       ),
-        m_BeamColor         ( other.m_BeamColor          ),
-        m_BeamWidth         ( other.m_BeamWidth          ),
-        m_DamageRate        ( other.m_DamageRate         ),
-        m_CollisionLayers   ( other.m_CollisionLayers    ),
-        m_Direction         ( other.m_Direction          ),
-        m_IsFiring          ( other.m_IsFiring           ),
-        m_AccumulatedDamage ( other.m_AccumulatedDamage  ),
-
-        m_TilemapEntity( other.m_TilemapEntity, { &m_DestructibleTilemap } )
+        m_Range               ( other.m_Range                ),
+        m_MiningSpeed         ( other.m_MiningSpeed          ),
+        m_MaxToughness        ( other.m_MaxToughness         ),
+        m_BeamSpritePhaseSpeed( other.m_BeamSpritePhaseSpeed ),
+        m_DamageRate          ( other.m_DamageRate           ),
+        m_CollisionLayers     ( other.m_CollisionLayers      ),
+        m_Direction           ( other.m_Direction            ),
+        m_IsFiring            ( other.m_IsFiring             ),
+        m_AccumulatedDamage   ( other.m_AccumulatedDamage    ),
+        m_TilemapEntity       ( other.m_TilemapEntity, { &m_DestructibleTilemap } )
     {}
 
 //-----------------------------------------------------------------------------

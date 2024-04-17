@@ -285,7 +285,7 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": false
+            "Enabled": true
         },
         "CollisionSystem": {
             "CollisionLayerNames": [

@@ -19,6 +19,7 @@
 #include "ComponentReference.h"
 #include "DestructibleTilemap.h"
 #include "AudioPlayer.h"
+#include "BeamSprite.h"
 
 class Transform;
 
@@ -66,24 +67,6 @@ public: // accessors
     /// @brief  sets the threshold of tile toughness above which tiles cannot be damaged
     /// @param  maxToughness  the threshold of tile toughness above which tiles cannot be damaged
     void SetMaxToughness( float maxToughness );
-
-
-    /// @brief  gets the beam color
-    /// @return the beam color
-    glm::vec4 const& GetBeamColor() const;
-
-    /// @brief  sets the beam color
-    /// @param  beamColor   the beam color
-    void SetBeamColor( glm::vec4 const& beamColor );
-
-
-    /// @brief  gets the beam width
-    /// @return the beam width
-    float GetBeamWidth() const;
-
-    /// @brief  sets the beam width
-    /// @param  beamWidth   the beam width
-    void SetBeamWidth( float beamWidth );
 
 
     /// @brief  gets how much damage per second the laser deals
@@ -156,20 +139,6 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the Transform attached to this Entity
-    ComponentReference< Transform > m_Transform;
-
-
-    /// @brief  the Tilemap this mining laser digs in
-    ComponentReference< DestructibleTilemap > m_DestructibleTilemap;
-
-    /// @brief the AudioPlayer that plays the mining sound
-    ComponentReference< AudioPlayer > m_AudioPlayer;
-
-    /// @brief  the Entity that the target Tilemap is a part of
-    EntityReference m_TilemapEntity = EntityReference( { &m_DestructibleTilemap } );
-
-
     /// @brief  the range of the mining laser
     float m_Range = 2.0f;
 
@@ -181,11 +150,8 @@ private: // members
     float m_MaxToughness = 2.0f;
 
 
-    /// @brief  the color of the beam
-    glm::vec4 m_BeamColor = { 1.0f, 0.0f, 0.0f, 1.0f };
-
-    /// @brief  the width of the beam
-    float m_BeamWidth = 0.1f;
+    /// @brief  the speed at which the BeamSprite's phase scrolls
+    float m_BeamSpritePhaseSpeed = 1.0f;
 
 
     /// @brief  how much damage per second the laser deals
@@ -208,6 +174,23 @@ private: // members
 
     /// @brief  the laser's current length
     float m_beamLength = 0.0f;
+
+
+    /// @brief  the Transform attached to this Entity
+    ComponentReference< Transform > m_Transform;
+
+    /// @brief  the BeamSprite attached to this Entity
+    ComponentReference< BeamSprite > m_BeamSprite;
+
+    /// @brief the AudioPlayer that plays the mining sound
+    ComponentReference< AudioPlayer > m_AudioPlayer;
+
+
+    /// @brief  the Tilemap this mining laser digs in
+    ComponentReference< DestructibleTilemap > m_DestructibleTilemap;
+
+    /// @brief  the Entity that the target Tilemap is a part of
+    EntityReference m_TilemapEntity = EntityReference( { &m_DestructibleTilemap } );
 
 
 //-----------------------------------------------------------------------------
@@ -265,13 +248,9 @@ private: // reading
     void readMaxToughness( nlohmann::ordered_json const& data );
 
 
-    /// @brief  reads the color of the beam
+    /// @brief  reads the speed at which the BeamSprite's phase scrolls
     /// @param  data the json data to read from
-    void readBeamColor( nlohmann::ordered_json const& data );
-
-    /// @brief  reads the width of the beam
-    /// @param  data the json data to read from
-    void readBeamWidth( nlohmann::ordered_json const& data );
+    void readBeamSpritePhaseSpeed( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the damage rate
