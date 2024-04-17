@@ -43,9 +43,11 @@ public: // virtual override methods
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
 
+    virtual void OnUpdate(float deltaTime) override;
+
     /// @brief Called at a fixed interval
     virtual void OnFixedUpdate() override;
-
+    
     /// @brief  called once when exiting the scene
     virtual void OnExit() override;
 
@@ -70,6 +72,8 @@ private: // members
 
     /// @brief the distance of the shake from the center on the y-axis
     glm::vec2 m_ShakeYRange = glm::vec2(0.0f, 0.0f);
+
+    glm::vec2 m_ShakeRotationRange = glm::vec2(0.0f, 0.0f);
 
     /// @brief if the shake is active
     bool m_Active = false;
@@ -107,6 +111,10 @@ private: // reading
     /// @brief reads the shake y range from the JSON data
     /// @param data - the JSON data to read froma
     void readShakeYRange(nlohmann::ordered_json const& data);
+
+    /// @brief reads the shake rotation range from the JSON data
+    /// @param data - the JSON data to read from
+    void readShakeRotationRange(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

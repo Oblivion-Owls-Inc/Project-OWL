@@ -57,6 +57,31 @@ void ScreenShake::OnInit()
     Behaviors<Behavior>()->AddComponent(this);
 }
 
+void ScreenShake::OnUpdate(float deltaTime)
+{
+    // Lerp the rotation back to 0
+    float targetRotation = 0.0f; // Target rotation is 0
+    float currentRotation = m_Transform->GetRotation();
+
+    float rotationChange = 2 * deltaTime;
+
+    // Ensure the rotationChange doesn't overshoot the target
+    if (currentRotation < targetRotation) 
+    {
+        rotationChange = std::min(rotationChange, targetRotation - currentRotation);
+    }
+    else 
+    {
+        rotationChange = std::max(-rotationChange, targetRotation - currentRotation);
+    }
+
+    // Apply the rotation change
+    float newRotation = currentRotation + rotationChange;
+
+    m_Transform->SetRotation(newRotation);
+}
+
+
 /// @brief  called every fixed frame step
 void ScreenShake::OnFixedUpdate()
 {
@@ -91,6 +116,7 @@ void ScreenShake::ShakeScreen(float deltaTime)
     {
         shakeTimer = m_ShakeDuration; // reset the timer
         m_Active = false; // turn off the shake
+        m_Transform->SetRotation(0.0f); // reset the rotation
     }
 
     shakeTimer -= deltaTime; // decrement the timer
@@ -105,6 +131,9 @@ void ScreenShake::ShakeScreen(float deltaTime)
     // Apply shake
     m_Transform->SetTranslation( glm::vec2( pos.x + shakeX, pos.y + shakeY ) );
 
+    float shakeRotation = glm::linearRand(m_ShakeRotationRange.x, m_ShakeRotationRange.y);
+
+    m_Transform->SetRotation( m_Transform->GetRotation() + shakeRotation );
 }
 
 //-----------------------------------------------------------------------------
@@ -121,6 +150,8 @@ void ScreenShake::Inspector()
     ImGui::DragFloat2("Shake X Range", &m_ShakeXRange.x, 0.1f);
 
     ImGui::DragFloat2("Shake Y Range", &m_ShakeYRange.x, 0.1f);
+
+    ImGui::DragFloat2("Shake Rotation Range", &m_ShakeRotationRange.x, 0.1f);
 
     ImGui::Checkbox("Test Shake", &m_Active);
 }
@@ -158,6 +189,13 @@ void ScreenShake::readShakeYRange(nlohmann::ordered_json const& data)
 	Stream::Read(&m_ShakeYRange, data);
 }
 
+/// @brief reads the shake rotation range from the JSON data
+/// @param data - the JSON data to read from
+void ScreenShake::readShakeRotationRange(nlohmann::ordered_json const& data)
+{
+	Stream::Read(&m_ShakeRotationRange, data);
+}
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -171,7 +209,8 @@ ReadMethodMap< ISerializable > const& ScreenShake::GetReadMethods() const
         { "EventName"    , &ScreenShake::readEventName      },
 		{ "ShakeDuration", &ScreenShake::readShakeDuration  },
 		{ "ShakeXRange",   &ScreenShake::readShakeXRange    },
-		{ "ShakeYRange",   &ScreenShake::readShakeYRange    }
+		{ "ShakeYRange",   &ScreenShake::readShakeYRange    },
+        { "ShakeRotationRange", &ScreenShake::readShakeRotationRange }
     };
 
     return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -188,10 +227,10 @@ nlohmann::ordered_json ScreenShake::Write() const
     json["ShakeDuration"] = Stream::Write(m_ShakeDuration);
     json["ShakeXRange"] = Stream::Write(m_ShakeXRange);
     json["ShakeYRange"] = Stream::Write(m_ShakeYRange);
+    json["ShakeRotationRange"] = Stream::Write(m_ShakeRotationRange);
 
     return json;
 }
-
 
 //-----------------------------------------------------------------------------
 // public: copying
@@ -218,7 +257,8 @@ ScreenShake::ScreenShake(ScreenShake const& other) :
     m_EventName(other.m_EventName),
     m_ShakeDuration(other.m_ShakeDuration),
     m_ShakeXRange(other.m_ShakeXRange),
-    m_ShakeYRange(other.m_ShakeYRange)
+    m_ShakeYRange(other.m_ShakeYRange),
+    m_ShakeRotationRange(other.m_ShakeRotationRange)
 {}
 
 
