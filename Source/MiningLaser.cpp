@@ -195,22 +195,22 @@
     /// @brief  called every graohics frame
     void MiningLaser::OnUpdate( float dt )
     {
-        if ( m_Transform == nullptr || m_BeamSprite == nullptr )
+        if ( m_BeamSprite == nullptr )
         {
             return;
         }
 
-        if ( m_IsFiring == false )
+        if ( m_IsFiring )
         {
-            m_BeamSprite->SetOpacity( 0.0f );
-            if ( m_AudioPlayer != nullptr )
-            {
-                m_AudioPlayer->Stop();
-            }
+            m_BeamSprite->SetPhase( std::fmodf( m_BeamSprite->GetPhase() + m_BeamSpritePhaseSpeed * dt, 1.0f ) );
             return;
         }
 
-        m_BeamSprite->SetPhase( std::fmodf( m_BeamSprite->GetPhase() + m_BeamSpritePhaseSpeed * dt, 1.0f ) );
+        m_BeamSprite->SetOpacity( 0.0f );
+        if ( m_AudioPlayer != nullptr )
+        {
+            m_AudioPlayer->Stop();
+        }
     }
 
     /// @brief  called every simulation frame
@@ -227,7 +227,6 @@
         }
 
         fireLaser( m_MiningSpeed * GameEngine()->GetFixedFrameDuration() );
-
     }
 
 
@@ -242,10 +241,11 @@
     {
         RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), m_Direction, m_Range, m_CollisionLayers );
         m_beamLength = hit.distance;
+        float angle = std::atan2( m_Direction.y, m_Direction.x );
 
         m_BeamSprite->SetOpacity( 1.0f );
         m_BeamSprite->SetLength( m_beamLength );
-        m_Transform->SetRotation( std::atan2( m_Direction.y, m_Direction.x ) );
+        m_Transform->SetRotation( angle );
 
         if ( m_AudioPlayer != nullptr )
         {
