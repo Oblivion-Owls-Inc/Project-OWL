@@ -25,6 +25,7 @@
 #include "PlayerController.h"
 #include "BehaviorSystem.h"
 #include "HomeBase.h"
+#include "LightingSystem.h"
 
 
 //--------------------------------------------------------------------------------
@@ -185,6 +186,13 @@
             }
             ImGui::SameLine();
             ImGui::Text("Resets the game");
+
+            if (ImGui::Button(m_ToggleLight ? "Turn off lighting" : "Turn on Lighting"))
+            {
+                ToggleLighting();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Turns lighting on or off");
         }
 
         ImGui::End();
@@ -409,8 +417,6 @@
         }
     }
 
-
-
     /// @brief Turns off player collisions
     void CheatSystem::NoClip()
     {
@@ -499,6 +505,23 @@
         }
     }
 
+    /// @brief Enables or disables lighting
+    void CheatSystem::ToggleLighting()
+    {
+        m_ToggleLight = Lights()->GetLightingEnabled();
+
+        if (m_ToggleLight == false)
+        {
+            Lights()->SetLightingEnabled(true);
+            m_ToggleLight = true;
+        }
+        else
+        {
+            Lights()->SetLightingEnabled(false);
+            m_ToggleLight = false;
+        }
+    }
+
     /// @brief Instantly wins the game
     void CheatSystem::InstantWin() { Scenes()->SetNextScene(m_WinSceneName); }
 
@@ -581,6 +604,8 @@
         m_ToggleMaxLaserRange(false),
         m_ToggleMaxLaserTougness(false),
         m_ToggleMaxLaserMiningSpeed(false),
+        m_UnlockAllTurrets(false),
+        m_ToggleLight(Lights()->GetLightingEnabled()),
         m_PreviousBaseHealth(0),
         m_PreviousPlayerHealth(0),
         m_PreviousLaserDamage(0.0f),

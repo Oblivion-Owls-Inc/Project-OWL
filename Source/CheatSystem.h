@@ -82,6 +82,9 @@ public: // methods
     /// @brief Unlocks all turrets
     void UnlockAllTurrets();
 
+    /// @brief Turns the lighting on/off
+    void ToggleLighting();
+
     /// @brief Instantly wins the game
     void InstantWin();
 
