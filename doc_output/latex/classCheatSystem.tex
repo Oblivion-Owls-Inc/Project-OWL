@@ -25,6 +25,13 @@ void \mbox{\hyperlink{classCheatSystem_ae0dddd6d4ccc01c2e4848ed44b649eb1}{Infini
 \begin{DoxyCompactList}\small\item\em Infinite Base \mbox{\hyperlink{classHealth}{Health}} Cheat. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCheatSystem_a4bde2617a7a0686ec919ad84ea67fb20}{One\+Shot\+One\+Kill}} ()
 \begin{DoxyCompactList}\small\item\em Kills enemy with one hit from the laser. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCheatSystem_a76fa49c587dd17272c00eb407dd9f1aa}{Infinite\+Laser\+Range}} ()
+\begin{DoxyCompactList}\small\item\em The maximum range of the laser. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCheatSystem_a4c52a7ed68882d02bc463d9fbd421133}{Infinite\+Laser\+Toughness}} ()
+\begin{DoxyCompactList}\small\item\em The maximum toughness of the laser. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCheatSystem_a2e080c7591659bf94a856d9b40246d49}\label{classCheatSystem_a2e080c7591659bf94a856d9b40246d49}} 
+void \mbox{\hyperlink{classCheatSystem_a2e080c7591659bf94a856d9b40246d49}{Infinite\+Laser\+Mining\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em The maximum mining speed of the laser. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCheatSystem_a3166260d540252b15aa0fa4bebb20d8e}{Kill\+All\+Enemies}} ()
 \begin{DoxyCompactList}\small\item\em Kills All Enemies. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classCheatSystem_a9cbdaf6379c92c5c5c899a35d75be650}\label{classCheatSystem_a9cbdaf6379c92c5c5c899a35d75be650}} 
@@ -32,6 +39,11 @@ void \mbox{\hyperlink{classCheatSystem_a9cbdaf6379c92c5c5c899a35d75be650}{No\+Cl
 \begin{DoxyCompactList}\small\item\em Turns off player collisions. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classCheatSystem_ad92150d2b3e0f2e160f34598e2223542}{Toggle\+Infinte\+Resources}} ()
 \begin{DoxyCompactList}\small\item\em Toggles the infinite resources cheat. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCheatSystem_a5ea2590158668f83248623a9ef80a2a5}\label{classCheatSystem_a5ea2590158668f83248623a9ef80a2a5}} 
+void \mbox{\hyperlink{classCheatSystem_a5ea2590158668f83248623a9ef80a2a5}{Unlock\+All\+Turrets}} ()
+\begin{DoxyCompactList}\small\item\em Unlocks all turrets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCheatSystem_a1338fad4528aa7a98ef30e5629e31407}{Toggle\+Lighting}} ()
+\begin{DoxyCompactList}\small\item\em Turns the lighting on/off. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classCheatSystem_ab94b7892f8f824bb748327b95b8df8c8}\label{classCheatSystem_ab94b7892f8f824bb748327b95b8df8c8}} 
 void \mbox{\hyperlink{classCheatSystem_ab94b7892f8f824bb748327b95b8df8c8}{Instant\+Win}} ()
 \begin{DoxyCompactList}\small\item\em Instantly wins the game. \end{DoxyCompactList}\item 
@@ -111,7 +123,27 @@ This system\textquotesingle{}s read methods
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
-\mbox{\Hypertarget{classCheatSystem_a16b912a9f9159d37b5c4676c7ab37145}\label{classCheatSystem_a16b912a9f9159d37b5c4676c7ab37145}} 
+\mbox{\Hypertarget{classCheatSystem_a76fa49c587dd17272c00eb407dd9f1aa}\label{classCheatSystem_a76fa49c587dd17272c00eb407dd9f1aa}} 
+\index{CheatSystem@{CheatSystem}!InfiniteLaserRange@{InfiniteLaserRange}}
+\index{InfiniteLaserRange@{InfiniteLaserRange}!CheatSystem@{CheatSystem}}
+\doxysubsubsection{\texorpdfstring{InfiniteLaserRange()}{InfiniteLaserRange()}}
+{\footnotesize\ttfamily void Cheat\+System\+::\+Infinite\+Laser\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The maximum range of the laser. 
+
+Toggles Infinite Laser Range. \mbox{\Hypertarget{classCheatSystem_a4c52a7ed68882d02bc463d9fbd421133}\label{classCheatSystem_a4c52a7ed68882d02bc463d9fbd421133}} 
+\index{CheatSystem@{CheatSystem}!InfiniteLaserToughness@{InfiniteLaserToughness}}
+\index{InfiniteLaserToughness@{InfiniteLaserToughness}!CheatSystem@{CheatSystem}}
+\doxysubsubsection{\texorpdfstring{InfiniteLaserToughness()}{InfiniteLaserToughness()}}
+{\footnotesize\ttfamily void Cheat\+System\+::\+Infinite\+Laser\+Toughness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The maximum toughness of the laser. 
+
+Allows the mining laser to destroy most blocks. \mbox{\Hypertarget{classCheatSystem_a16b912a9f9159d37b5c4676c7ab37145}\label{classCheatSystem_a16b912a9f9159d37b5c4676c7ab37145}} 
 \index{CheatSystem@{CheatSystem}!InfinitePlayerHealth@{InfinitePlayerHealth}}
 \index{InfinitePlayerHealth@{InfinitePlayerHealth}!CheatSystem@{CheatSystem}}
 \doxysubsubsection{\texorpdfstring{InfinitePlayerHealth()}{InfinitePlayerHealth()}}
@@ -178,7 +210,17 @@ The current state of whether there are infinite resources
 
 the current state of whether there are infinite resources 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classCheatSystem_a24ad589e76396447d480ca95b9172a54}\label{classCheatSystem_a24ad589e76396447d480ca95b9172a54}} 
+\mbox{\Hypertarget{classCheatSystem_a1338fad4528aa7a98ef30e5629e31407}\label{classCheatSystem_a1338fad4528aa7a98ef30e5629e31407}} 
+\index{CheatSystem@{CheatSystem}!ToggleLighting@{ToggleLighting}}
+\index{ToggleLighting@{ToggleLighting}!CheatSystem@{CheatSystem}}
+\doxysubsubsection{\texorpdfstring{ToggleLighting()}{ToggleLighting()}}
+{\footnotesize\ttfamily void Cheat\+System\+::\+Toggle\+Lighting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Turns the lighting on/off. 
+
+Enables or disables lighting. \mbox{\Hypertarget{classCheatSystem_a24ad589e76396447d480ca95b9172a54}\label{classCheatSystem_a24ad589e76396447d480ca95b9172a54}} 
 \index{CheatSystem@{CheatSystem}!Write@{Write}}
 \index{Write@{Write}!CheatSystem@{CheatSystem}}
 \doxysubsubsection{\texorpdfstring{Write()}{Write()}}

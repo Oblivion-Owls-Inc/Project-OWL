@@ -25,18 +25,16 @@ class \mbox{\hyperlink{classLightingSystem_1_1LightingSprite}{Lighting\+Sprite}}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classLightingSystem_a3fe93325a8e49e2172f4db11299f29b0}\label{classLightingSystem_a3fe93325a8e49e2172f4db11299f29b0}} 
-\+\_\+\+\_\+inline unsigned int {\bfseries Get\+Tex\+Array\+ID} () const
+\+\_\+\+\_\+inline unsigned int \mbox{\hyperlink{classLightingSystem_a3fe93325a8e49e2172f4db11299f29b0}{Get\+Tex\+Array\+ID}} () const
 \item 
-\mbox{\Hypertarget{classLightingSystem_a055b93a1f17b95b6d10eab2f7959e09a}\label{classLightingSystem_a055b93a1f17b95b6d10eab2f7959e09a}} 
-\+\_\+\+\_\+inline bool {\bfseries Get\+Lighting\+Enabled} () const
+\+\_\+\+\_\+inline bool \mbox{\hyperlink{classLightingSystem_a055b93a1f17b95b6d10eab2f7959e09a}{Get\+Lighting\+Enabled}} () const
 \item 
-\mbox{\Hypertarget{classLightingSystem_a9ac0c37f571c49fd3cb44dd923f60dca}\label{classLightingSystem_a9ac0c37f571c49fd3cb44dd923f60dca}} 
-\+\_\+\+\_\+inline bool {\bfseries Set\+Lighting\+Enabled} (bool enabled)
-\item 
+\mbox{\Hypertarget{classLightingSystem_a35605e73962ae5ba5969617789632f71}\label{classLightingSystem_a35605e73962ae5ba5969617789632f71}} 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classLightingSystem_a35605e73962ae5ba5969617789632f71}{Set\+Lighting\+Enabled}} (bool enabled)
+\begin{DoxyCompactList}\small\item\em Sets the enabled state to provided boolean. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLightingSystem_a13b5847f4839ec4678af344328f6297c}\label{classLightingSystem_a13b5847f4839ec4678af344328f6297c}} 
-\+\_\+\+\_\+inline void {\bfseries Set\+Shadow\+Layer} (int layer)
-\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classLightingSystem_a13b5847f4839ec4678af344328f6297c}{Set\+Shadow\+Layer}} (int layer)
+\begin{DoxyCompactList}\small\item\em Sets current shadow layer to given integer. \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classLightingSystem_a0399c28c9f37af59f4f301204c3cb0d2}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classLightingSystem_ac56edc913458d6ec6ca12c73e50ec877}{Write}} () const override
@@ -68,6 +66,15 @@ Let there be light.
 \begin{DoxyReturn}{Returns}
 The singleton instance 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classLightingSystem_a055b93a1f17b95b6d10eab2f7959e09a}\label{classLightingSystem_a055b93a1f17b95b6d10eab2f7959e09a}} 
+\index{LightingSystem@{LightingSystem}!GetLightingEnabled@{GetLightingEnabled}}
+\index{GetLightingEnabled@{GetLightingEnabled}!LightingSystem@{LightingSystem}}
+\doxysubsubsection{\texorpdfstring{GetLightingEnabled()}{GetLightingEnabled()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline bool Lighting\+System\+::\+Get\+Lighting\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Enabled state of the lighting system 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classLightingSystem_a0399c28c9f37af59f4f301204c3cb0d2}\label{classLightingSystem_a0399c28c9f37af59f4f301204c3cb0d2}} 
 \index{LightingSystem@{LightingSystem}!GetReadMethods@{GetReadMethods}}
 \index{GetReadMethods@{GetReadMethods}!LightingSystem@{LightingSystem}}
@@ -85,6 +92,15 @@ this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
+\mbox{\Hypertarget{classLightingSystem_a3fe93325a8e49e2172f4db11299f29b0}\label{classLightingSystem_a3fe93325a8e49e2172f4db11299f29b0}} 
+\index{LightingSystem@{LightingSystem}!GetTexArrayID@{GetTexArrayID}}
+\index{GetTexArrayID@{GetTexArrayID}!LightingSystem@{LightingSystem}}
+\doxysubsubsection{\texorpdfstring{GetTexArrayID()}{GetTexArrayID()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline unsigned int Lighting\+System\+::\+Get\+Tex\+Array\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Open\+GL ID of the texture array 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classLightingSystem_ac56edc913458d6ec6ca12c73e50ec877}\label{classLightingSystem_ac56edc913458d6ec6ca12c73e50ec877}} 
 \index{LightingSystem@{LightingSystem}!Write@{Write}}
 \index{Write@{Write}!LightingSystem@{LightingSystem}}

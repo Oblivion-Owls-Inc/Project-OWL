@@ -16,12 +16,14 @@
 #include "ComponentReference.h"
 #include "AssetReference.h"
 #include "Tilemap.h"
+#include "Sound.h"
 
 
 // fwd refs
 class Emitter;
 class MiningLaser;
 class Texture;
+class AudioPlayer;
 
 /// @brief    Behavior class for the dig particle effect.
 class DigEffect : public Behavior
@@ -86,6 +88,12 @@ private:
     /// @brief   Texture to use for the particles
     AssetReference< Texture > m_Texture;
 
+    /// @brief   Audio player for breaking sound
+    ComponentReference< AudioPlayer > m_AudioPlayer;
+
+    /// @brief   Different breaking sound for each type of block
+    std::vector< AssetReference< Sound > > m_BreakSounds;
+
     /// @brief   Archetype to spawn when a tile breaks
     AssetReference< Entity > m_Archetype;
 
@@ -118,6 +126,10 @@ private:
     /// @brief        reads the texture to use for particles
     /// @param data   json to read from
     void readTexture(nlohmann::ordered_json const& data);
+
+    /// @brief        reads the breaking sounds
+    /// @param data   json to read from
+    void readSounds(nlohmann::ordered_json const& data);
 
 
     /// @brief   the map of read methods for this Component

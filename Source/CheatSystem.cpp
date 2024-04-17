@@ -25,6 +25,7 @@
 #include "PlayerController.h"
 #include "BehaviorSystem.h"
 #include "HomeBase.h"
+#include "LightingSystem.h"
 
 
 //--------------------------------------------------------------------------------
@@ -115,6 +116,30 @@
             ImGui::SameLine();
             ImGui::Text("One Shot One Kill");
 
+            // The Infinite Laser Range Button
+            if (ImGui::Button(m_ToggleMaxLaserRange ? "Turn off Infinite Laser Range" : "Turn on Infinite Laser Range"))
+            {
+                InfiniteLaserRange();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Infinite Laser Range");
+
+            // The ability to mine almost anything button
+            if (ImGui::Button(m_ToggleMaxLaserTougness ? "Turn off Infinite Mining Toughness" : "Turn on Infinite Mining Toughness"))
+            {
+                InfiniteLaserToughness();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Mine almost any block");
+
+            // Mine at the speed of light.
+            if (ImGui::Button(m_ToggleMaxLaserMiningSpeed ? "Turn off Infinite Laser Mining Speed" : "Turn on Infinite Laser Mining Spedd"))
+            {
+                InfiniteLaserMiningSpeed();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Laser go brr");
+
             // The kill all enemies button.
             if (ImGui::Button(m_ToggleKillAllEnemies ? "Turn Off Kill all enemies" : "Turn On Kill All Enemies"))
             {
@@ -130,6 +155,13 @@
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
+            
+            if (ImGui::Button(m_UnlockAllTurrets ? "Reset All Turrets States" : "Unlock All Turrets"))
+            {
+                UnlockAllTurrets();
+            }
+            ImGui::SameLine();
+            ImGui::Text(" Unlocks all Turrets");
 
             // The instant win button
             if (ImGui::Button("Instant Win"))
@@ -154,6 +186,13 @@
             }
             ImGui::SameLine();
             ImGui::Text("Resets the game");
+
+            if (ImGui::Button(m_ToggleLight ? "Turn off lighting" : "Turn on Lighting"))
+            {
+                ToggleLighting();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Turns lighting on or off");
         }
 
         ImGui::End();
@@ -282,6 +321,86 @@
         }
     }
 
+    /// @brief Toggles Infinite Laser Range
+    void CheatSystem::InfiniteLaserRange()
+    {
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+        {
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "Infinite Laser Range: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleMaxLaserRange == false)
+            {
+                m_PreviousLaserRange = laser->GetRange();
+                laser->SetRange(9999.0f);
+                m_ToggleMaxLaserRange = true;
+            }
+            else
+            {
+                laser->SetRange(m_PreviousLaserRange);
+                m_ToggleMaxLaserRange = false;
+            }
+        }
+    }
+
+    /// @brief Allows the mining laser to destroy most blocks
+    void CheatSystem::InfiniteLaserToughness()
+    {
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+        {
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "Infinite Laser Toughness: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleMaxLaserTougness == false)
+            {
+                m_PreviousLaserMaxToughness = laser->GetMaxToughness();
+                laser->SetMaxToughness(9999.0f);
+                m_ToggleMaxLaserTougness = true;
+            }
+            else
+            {
+                laser->SetMaxToughness(m_PreviousLaserMaxToughness);
+                m_ToggleMaxLaserTougness = false;
+            }
+        }
+    }
+
+    void CheatSystem::InfiniteLaserMiningSpeed()
+    {
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+        {
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "Infinite Laser Mining Speed: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleMaxLaserMiningSpeed == false)
+            {
+                m_PreviousLaserMiningSpeed = laser->GetMiningSpeed();
+                laser->SetMiningSpeed(9999.0f);
+                m_ToggleMaxLaserMiningSpeed = true;
+            }
+            else
+            {
+                laser->SetMiningSpeed(m_PreviousLaserMiningSpeed);
+                m_ToggleMaxLaserMiningSpeed = false;
+            }
+        }
+    }
+
     /// @brief Kills all enemies.
     void CheatSystem::KillAllEnemies()
     {
@@ -297,8 +416,6 @@
             m_ToggleKillAllEnemies = true;
         }
     }
-
-
 
     /// @brief Turns off player collisions
     void CheatSystem::NoClip()
@@ -352,6 +469,57 @@
 
         m_ToggleInfiniteResource = cheatIsOn;
         return cheatIsOn;
+    }
+
+    /// @brief Unlocks all turrets
+    void CheatSystem::UnlockAllTurrets()
+    {
+        Entity* constructionEntity = Entities()->GetEntity("ConstructionManager");
+        if (constructionEntity == nullptr)
+        {
+            return;
+        }
+
+        ConstructionBehavior* constructionBehavior = constructionEntity->GetComponent< ConstructionBehavior >();
+        if (constructionBehavior == nullptr)
+        {
+            return;
+        }
+
+        if (m_UnlockAllTurrets == false)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                m_BuildingStates.emplace(i, constructionBehavior->BuildingIsUnlocked(i));
+                constructionBehavior->SetBuildingUnlocked(i, true);
+            }
+            m_UnlockAllTurrets = true;
+        }
+        else
+        {
+            for (auto iter = m_BuildingStates.begin(); iter != m_BuildingStates.end(); ++iter)
+            {
+                constructionBehavior->SetBuildingUnlocked(iter->first, iter->second);
+            }
+            m_UnlockAllTurrets = false;
+        }
+    }
+
+    /// @brief Enables or disables lighting
+    void CheatSystem::ToggleLighting()
+    {
+        m_ToggleLight = Lights()->GetLightingEnabled();
+
+        if (m_ToggleLight == false)
+        {
+            Lights()->SetLightingEnabled(true);
+            m_ToggleLight = true;
+        }
+        else
+        {
+            Lights()->SetLightingEnabled(false);
+            m_ToggleLight = false;
+        }
     }
 
     /// @brief Instantly wins the game
@@ -433,9 +601,17 @@
         m_PlayerCircleCollider(nullptr),
         m_ToggleOneShotOneKill(false),
         m_TogglePlayerInfiniteHealth(false),
+        m_ToggleMaxLaserRange(false),
+        m_ToggleMaxLaserTougness(false),
+        m_ToggleMaxLaserMiningSpeed(false),
+        m_UnlockAllTurrets(false),
+        m_ToggleLight(Lights()->GetLightingEnabled()),
         m_PreviousBaseHealth(0),
         m_PreviousPlayerHealth(0),
-        m_PreviousLaserDamage(0.0f)
+        m_PreviousLaserDamage(0.0f),
+        m_PreviousLaserRange(0.0f),
+        m_PreviousLaserMaxToughness(0.0f),
+        m_PreviousLaserMiningSpeed(0.0f)
     {}
 
 

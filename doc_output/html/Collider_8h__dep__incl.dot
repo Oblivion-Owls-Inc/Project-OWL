@@ -73,6 +73,7 @@ digraph "Source/Collider.h"
   Node32 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
   Node11 -> Node33 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node33 [label="Source/TilemapTextureConnector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapTextureConnector_8cpp.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
+  Node11 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 -> Node34 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node34 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
   Node11 -> Node35 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

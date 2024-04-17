@@ -133,6 +133,306 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Planet01": {
+                "Filepath": "Data/Textures/Planets/planet1.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet02": {
+                "Filepath": "Data/Textures/Planets/planet2.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet03": {
+                "Filepath": "Data/Textures/Planets/planet3.png",
+                "SheetDimensions": [
+                    11,
+                    11
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet04": {
+                "Filepath": "Data/Textures/Planets/planet4.png",
+                "SheetDimensions": [
+                    11,
+                    11
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet05": {
+                "Filepath": "Data/Textures/Planets/planet5.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet06": {
+                "Filepath": "Data/Textures/Planets/planet6.png",
+                "SheetDimensions": [
+                    11,
+                    11
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet07": {
+                "Filepath": "Data/Textures/Planets/planet7.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet08": {
+                "Filepath": "Data/Textures/Planets/planet8.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet09": {
+                "Filepath": "Data/Textures/Planets/planet9.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet10": {
+                "Filepath": "Data/Textures/Planets/planet10.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet11": {
+                "Filepath": "Data/Textures/Planets/planet11.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet12": {
+                "Filepath": "Data/Textures/Planets/planet12.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet13": {
+                "Filepath": "Data/Textures/Planets/planet13.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet14": {
+                "Filepath": "Data/Textures/Planets/planet14.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet15": {
+                "Filepath": "Data/Textures/Planets/planet15.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet16": {
+                "Filepath": "Data/Textures/Planets/planet16.png",
+                "SheetDimensions": [
+                    11,
+                    11
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet17": {
+                "Filepath": "Data/Textures/Planets/planet17.png",
+                "SheetDimensions": [
+                    11,
+                    11
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet18": {
+                "Filepath": "Data/Textures/Planets/planet18.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet19": {
+                "Filepath": "Data/Textures/Planets/planet19.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet20": {
+                "Filepath": "Data/Textures/Planets/planet20.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet21": {
+                "Filepath": "Data/Textures/Planets/planet21.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet22": {
+                "Filepath": "Data/Textures/Planets/planet22.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet23": {
+                "Filepath": "Data/Textures/Planets/planet23.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet24": {
+                "Filepath": "Data/Textures/Planets/planet24.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Planet25": {
+                "Filepath": "Data/Textures/Planets/planet25.png",
+                "SheetDimensions": [
+                    8,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "QuitButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
                 "SheetDimensions": [
@@ -255,6 +555,418 @@
                     }
                 },
                 "Children": null
+            },
+            "QuitConfirmationBase": {
+                "Name": "QuitConfirmationBase",
+                "Components": {
+                    "Sprite": {
+                        "Layer": 26,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "ButtonTexture"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            -0.25
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            0.30000001192092896,
+                            0.30000001192092896
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToHeight"
+                        ]
+                    }
+                },
+                "Children": [
+                    {
+                        "Name": "Text",
+                        "Components": {
+                            "Tilemap<int>": {
+                                "Dimensions": [
+                                    16,
+                                    2
+                                ],
+                                "TileScale": [
+                                    0.5,
+                                    1.0
+                                ],
+                                "TileData": [
+                                    33,
+                                    82,
+                                    69,
+                                    0,
+                                    57,
+                                    79,
+                                    85,
+                                    0,
+                                    51,
+                                    85,
+                                    82,
+                                    69,
+                                    0,
+                                    57,
+                                    79,
+                                    85,
+                                    0,
+                                    55,
+                                    65,
+                                    78,
+                                    84,
+                                    0,
+                                    52,
+                                    79,
+                                    0,
+                                    49,
+                                    85,
+                                    73,
+                                    84,
+                                    31,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "Text": {
+                                "Text": "Are You Sure You Want To Quit?"
+                            },
+                            "TilemapSprite": {
+                                "Layer": 34,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    -1.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "FontSheet"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    -0.6499999761581421,
+                                    0.699999988079071
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.09000000357627869,
+                                    0.11999999731779099
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "ConfirmationButton",
+                        "Components": {
+                            "AudioPlayer": {
+                                "Sound": {
+                                    "AssetName": "ButtonRelease"
+                                },
+                                "Volume": 1.0,
+                                "Pitch": 1.0,
+                                "VolumeVariance": 0.0,
+                                "PitchVariance": 0.0,
+                                "DefaultLoopCount": 0,
+                                "PlayOnInit": false,
+                                "IsSpatial": false,
+                                "AllowMultipleSounds": true,
+                                "ChannelGroupName": ""
+                            },
+                            "Sprite": {
+                                "Layer": 40,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "ButtonTexture"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "CloseApplication",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": "ButtonPressedSound"
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": "ButtonReleasedSound"
+                                },
+                                "HoverSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    -0.5,
+                                    -0.5
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.4000000059604645,
+                                    0.20000000298023224
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": [
+                            {
+                                "Name": "Text",
+                                "Components": {
+                                    "Tilemap<int>": {
+                                        "Dimensions": [
+                                            10,
+                                            1
+                                        ],
+                                        "TileScale": [
+                                            0.6000000238418579,
+                                            1.0
+                                        ],
+                                        "TileData": [
+                                            57,
+                                            69,
+                                            83,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0
+                                        ]
+                                    },
+                                    "Text": {
+                                        "Text": "Yes"
+                                    },
+                                    "TilemapSprite": {
+                                        "Layer": 50,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            -1.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "FontSheet"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            -0.20000000298023224,
+                                            0.10000000149011612
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.20000000298023224
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.12999999523162842,
+                                            0.7099999785423279
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "ConfirmationButton",
+                        "Components": {
+                            "AudioPlayer": {
+                                "Sound": {
+                                    "AssetName": "ButtonRelease"
+                                },
+                                "Volume": 1.0,
+                                "Pitch": 1.0,
+                                "VolumeVariance": 0.0,
+                                "PitchVariance": 0.0,
+                                "DefaultLoopCount": 0,
+                                "PlayOnInit": false,
+                                "IsSpatial": false,
+                                "AllowMultipleSounds": true,
+                                "ChannelGroupName": ""
+                            },
+                            "Sprite": {
+                                "Layer": 40,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "ButtonTexture"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "Quit",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": "ButtonPressedSound"
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": "ButtonReleasedSound"
+                                },
+                                "HoverSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.5,
+                                    -0.5
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.4000000059604645,
+                                    0.20000000298023224
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": [
+                            {
+                                "Name": "Text",
+                                "Components": {
+                                    "Tilemap<int>": {
+                                        "Dimensions": [
+                                            10,
+                                            1
+                                        ],
+                                        "TileScale": [
+                                            0.6000000238418579,
+                                            1.0
+                                        ],
+                                        "TileData": [
+                                            46,
+                                            79,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0
+                                        ]
+                                    },
+                                    "Text": {
+                                        "Text": "No"
+                                    },
+                                    "TilemapSprite": {
+                                        "Layer": 50,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            -1.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "FontSheet"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            -0.10000000149011612,
+                                            0.10000000149011612
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.20000000298023224
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.12999999523162842,
+                                            0.7099999785423279
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            }
+                        ]
+                    }
+                ]
             },
             "Text": {
                 "Name": "Text",
@@ -1082,6 +1794,15 @@
                                     "AllowMultipleSounds": true,
                                     "ChannelGroupName": "Effects"
                                 },
+                                "Popup": {
+                                    "PopupEntity": {
+                                        "AssetName": "QuitConfirmationBase"
+                                    },
+                                    "PopupButton": {
+                                        "ActionName": ""
+                                    },
+                                    "EventName": "Quit"
+                                },
                                 "Sprite": {
                                     "Layer": 5,
                                     "Color": [
@@ -1097,7 +1818,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "CloseApplication",
+                                    "ClickEventName": "Quit",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -1207,10 +1928,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 18,
-                    "FrameDelay": 0.0029611862264573574,
+                    "FrameIndex": 28,
+                    "FrameDelay": 0.057971082627773285,
                     "IsRunning": true,
-                    "LoopCount": 99639,
+                    "LoopCount": 99627,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1224,7 +1945,7 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 18,
+                    "FrameIndex": 28,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
@@ -1247,17 +1968,17 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 18,
-                            "FrameDelay": 0.0029611862264573574,
+                            "FrameIndex": 28,
+                            "FrameDelay": 0.057971082627773285,
                             "IsRunning": true,
-                            "LoopCount": 99639,
+                            "LoopCount": 99627,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
                             "RotationSpeed": -1.0,
-                            "Angle": 1.3929740190505981,
+                            "Angle": 1.5,
                             "Radius": [
                                 1.0,
                                 0.30000001192092896
@@ -1270,7 +1991,244 @@
                             ],
                             "Scale Oscillation Magnitude": 0.30000001192092896,
                             "Scale Extremes Angle": 4.711999893188477,
-                            "Layer Switch Angle": 3.1415927410125732
+                            "Layer Switch Angle": 3.1415927410125732,
+                            "Texture Change Interval": 2.5,
+                            "Planets": [
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet01"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet02"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet03"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet04"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet05"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet06"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet07"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet08"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet08"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet09"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet10"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet11"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet12"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet13"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet14"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet15"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet16"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet17"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet18"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet19"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet20"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet21"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet22"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet23"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet24"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                },
+                                {
+                                    "Switch Layer Angle": 1.5,
+                                    "Planet Texture": {
+                                        "AssetName": "Planet25"
+                                    },
+                                    "Animation Asset": {
+                                        "AssetName": ""
+                                    }
+                                }
+                            ]
                         },
                         "Sprite": {
                             "Layer": 1,
@@ -1281,20 +2239,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 18,
+                            "FrameIndex": 28,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                2.0845754146575928,
-                                1.0479629039764404
+                                2.7194905281066895,
+                                0.927873432636261
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.3523550033569336,
-                                0.3523550033569336
+                                0.412362664937973,
+                                0.412362664937973
                             ],
                             "IsDiegetic": true
                         }
@@ -1350,7 +2308,9 @@
             "Components": {
                 "SceneTransition": {
                     "TransitionDuration": 0.25,
-                    "NextSceneName": ""
+                    "NextSceneName": "",
+                    "HasLighting": false,
+                    "LightingLayer": 0
                 },
                 "Sprite": {
                     "Layer": 1000,

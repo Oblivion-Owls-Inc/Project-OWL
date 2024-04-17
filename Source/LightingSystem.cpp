@@ -1,9 +1,10 @@
 /*****************************************************************//**
- * \file   LightingSystem.cpp
- * \brief  Renders lights in the scene.
+ * \file       LightingSystem.cpp
+ * \brief      Renders lights in the scene.
  * 
- * \author Eli Tsereteli
- * \date   Jan 2024
+ * \author     Eli Tsereteli
+ * \date       Jan 2024
+ * \copyright  Copyright (c) 2024 Digipen Instutute of Technology
  *********************************************************************/
 
 #include "pch.h" // precompiled header has to be included first
@@ -26,7 +27,7 @@
 void LightingSystem::OnInit()
 {
     m_Sprite = new LightingSprite;
-    m_Sprite->SetLayer(m_ShadowLayer);
+    m_Sprite->SetLayer(0);  // scene transition will take care of this
 
     Renderer()->AddShader("lights", new Shader("Data/shaders/vshader.vert", "Data/shaders/lighting.frag"));
     Renderer()->AddShader("spotlight", new Shader("Data/shaders/vshader.vert", "Data/shaders/spotlight.frag"));
@@ -39,7 +40,7 @@ void LightingSystem::OnInit()
 ///         to pre-calculate shadows.
 void LightingSystem::OnUpdate(float dt)
 {
-    if (!m_Enabled || !Cameras()->GetActiveCamera() || !GetComponents().size())
+    if (!m_Enabled || !GetComponents().size())
         return;
 
     // get matrix inverse only when it's changed
@@ -136,11 +137,9 @@ void LightingSystem::DebugWindow()
     if ( ImGui::Checkbox("Enable", &m_Enabled) )
         m_Sprite->SetOpacity( m_Enabled ? 1.0f : 0.0f );
 
-    if ( ImGui::InputInt("Layer", &m_ShadowLayer))
-        m_Sprite->SetLayer(m_ShadowLayer);
-
-    int lightcount = (int)GetComponents().size();
-    ImGui::InputInt("Active Light Count", &lightcount);
+    ImGui::Text("Active Light Count:  %i", (int)GetComponents().size());
+    ImGui::Spacing();
+    ImGui::TextWrapped("Adjust lighting layer per-scene in the SceneTransition entity.");
 
     ImGui::End();
 
@@ -188,18 +187,10 @@ void LightingSystem::readEnabled(nlohmann::ordered_json const& data)
     m_Enabled = Stream::Read< bool >(data);
 }
 
-/// @brief       Reads the rendering layer of shadows
-/// @param data  json data
-void LightingSystem::readLayer(nlohmann::ordered_json const& data)
-{
-    m_ShadowLayer = Stream::Read< int >(data);
-}
-
 
 /// @brief map of the LightingSystem read methods
 ReadMethodMap< LightingSystem > const LightingSystem::s_ReadMethods = {
-    { "Enabled", &readEnabled },
-    { "Layer",   &readLayer }
+    { "Enabled", &readEnabled }
 };
 
 
@@ -210,7 +201,6 @@ nlohmann::ordered_json LightingSystem::Write() const
     nlohmann::ordered_json json;
 
     json["Enabled"] = Stream::Write< bool >(m_Enabled);
-    json["Layer"] = Stream::Write< int >(m_ShadowLayer);
 
     return json;
 }

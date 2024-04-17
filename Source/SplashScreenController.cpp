@@ -126,6 +126,9 @@ SplashScreenController::SplashScreenController()
         m_Transform.Init(GetEntity());
         m_Sprite.Init(GetEntity());
 
+        m_SkipSplashScreen.SetOwnerName(GetName());
+        m_SkipSplashScreen.Init();
+
         m_SceneTransitionEntity.SetOwnerName( GetName() );
         m_SceneTransitionEntity.Init();
 
@@ -145,6 +148,8 @@ SplashScreenController::SplashScreenController()
         m_Transform.Exit();
         m_Sprite.Exit();
 
+        m_SkipSplashScreen.Exit();
+
         m_SceneTransitionEntity.Exit();
     }
 
@@ -163,9 +168,7 @@ SplashScreenController::SplashScreenController()
         }
 
         // Immediately switches to game.
-        //TODO: get any button press functionality.
-        if (Input()->GetKeyTriggered(GLFW_KEY_SPACE) || 
-            Input()->GetGamepadButtonDown(GLFW_GAMEPAD_BUTTON_START))
+        if (m_SkipSplashScreen->GetTriggered())
         {
             if ( m_SceneTransition != nullptr )
             {
@@ -212,6 +215,7 @@ SplashScreenController::SplashScreenController()
         );
 
         m_SceneTransitionEntity.Inspect( "scene transition entity" );
+        m_SkipSplashScreen.Inspect("Skip Splash Screen");
     }
 
 //--------------------------------------------------------------------------------
@@ -237,6 +241,13 @@ SplashScreenController::SplashScreenController()
         Stream::Read( m_SceneTransitionEntity, data );
     }
 
+    /// @brief  reads the action reference that skips the splash screen.
+    /// @param  data    the JSON data to read from
+    void SplashScreenController::readSkipSplashScreenReference(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_SkipSplashScreen, data);
+    }
+
 //--------------------------------------------------------------------------------
 // public: Reading/Writing
 //--------------------------------------------------------------------------------
@@ -246,9 +257,10 @@ SplashScreenController::SplashScreenController()
     ReadMethodMap<ISerializable> const& SplashScreenController::GetReadMethods() const
     {
         static ReadMethodMap<SplashScreenController> const readMethodsMap = {
-            { "NextSceneName"        , &SplashScreenController::readSceneName             },
-            { "Logos"                , &SplashScreenController::readLogos                 },
-            { "SceneTransitionEntity", &SplashScreenController::readSceneTransitionEntity }
+            { "NextSceneName"        , &SplashScreenController::readSceneName                 },
+            { "Logos"                , &SplashScreenController::readLogos                     },
+            { "SceneTransitionEntity", &SplashScreenController::readSceneTransitionEntity     },
+            { "SkipAction"           , &SplashScreenController::readSkipSplashScreenReference }        
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethodsMap;
@@ -263,6 +275,7 @@ SplashScreenController::SplashScreenController()
         data[ "NextSceneName"         ] = Stream::Write( m_NextSceneName         );
         data[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
         data[ "Logos"                 ] = Stream::WriteArray( m_Logos );
+        data[ "SkipAction"            ] = Stream::Write(m_SkipSplashScreen);
 
         return data;
     }
@@ -287,6 +300,7 @@ SplashScreenController::SplashScreenController()
         ,m_NextSceneName        ( other.m_NextSceneName )
         ,m_Logos                ( other.m_Logos         )
         ,m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } )
+        ,m_SkipSplashScreen      (other.m_SkipSplashScreen)
     {}
 
 

@@ -16,6 +16,7 @@
 #include "Transform.h"
 #include "Sprite.h"
 #include "RigidBody.h"
+#include "AudioPlayer.h"
 
 
 /// @brief      Item in the world that can be picked up
@@ -58,6 +59,9 @@ public: // accessors
     /// @return the Sprite attached to this ItemComponent
     Sprite* GetSprite() const;
 
+    /// @brief  gets the AudioPlayer attached to this ItemComponent
+    AudioPlayer* GetAudioPlayer() const;
+
 
 //-----------------------------------------------------------------------------
 public: //  methods
@@ -93,6 +97,9 @@ private: // members
 
     /// @brief  the RigidBody attached to this ItemComponent
     ComponentReference< RigidBody > m_RigidBody;
+
+    /// @brief  the AudioPlayer attached to this ItemComponent
+    ComponentReference< AudioPlayer > m_AudioPlayer;
 
 
 //-----------------------------------------------------------------------------
