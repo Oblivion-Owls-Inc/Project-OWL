@@ -25,6 +25,7 @@
 #include "PlayerController.h"
 #include "BehaviorSystem.h"
 #include "HomeBase.h"
+#include "LightingSystem.h"
 
 
 //--------------------------------------------------------------------------------
@@ -154,6 +155,13 @@
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
+            
+            if (ImGui::Button(m_UnlockAllTurrets ? "Reset All Turrets States" : "Unlock All Turrets"))
+            {
+                UnlockAllTurrets();
+            }
+            ImGui::SameLine();
+            ImGui::Text(" Unlocks all Turrets");
 
             // The instant win button
             if (ImGui::Button("Instant Win"))
@@ -178,6 +186,13 @@
             }
             ImGui::SameLine();
             ImGui::Text("Resets the game");
+
+            if (ImGui::Button(m_ToggleLight ? "Turn off lighting" : "Turn on Lighting"))
+            {
+                ToggleLighting();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Turns lighting on or off");
         }
 
         ImGui::End();
@@ -402,8 +417,6 @@
         }
     }
 
-
-
     /// @brief Turns off player collisions
     void CheatSystem::NoClip()
     {
@@ -456,6 +469,57 @@
 
         m_ToggleInfiniteResource = cheatIsOn;
         return cheatIsOn;
+    }
+
+    /// @brief Unlocks all turrets
+    void CheatSystem::UnlockAllTurrets()
+    {
+        Entity* constructionEntity = Entities()->GetEntity("ConstructionManager");
+        if (constructionEntity == nullptr)
+        {
+            return;
+        }
+
+        ConstructionBehavior* constructionBehavior = constructionEntity->GetComponent< ConstructionBehavior >();
+        if (constructionBehavior == nullptr)
+        {
+            return;
+        }
+
+        if (m_UnlockAllTurrets == false)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                m_BuildingStates.emplace(i, constructionBehavior->BuildingIsUnlocked(i));
+                constructionBehavior->SetBuildingUnlocked(i, true);
+            }
+            m_UnlockAllTurrets = true;
+        }
+        else
+        {
+            for (auto iter = m_BuildingStates.begin(); iter != m_BuildingStates.end(); ++iter)
+            {
+                constructionBehavior->SetBuildingUnlocked(iter->first, iter->second);
+            }
+            m_UnlockAllTurrets = false;
+        }
+    }
+
+    /// @brief Enables or disables lighting
+    void CheatSystem::ToggleLighting()
+    {
+        m_ToggleLight = Lights()->GetLightingEnabled();
+
+        if (m_ToggleLight == false)
+        {
+            Lights()->SetLightingEnabled(true);
+            m_ToggleLight = true;
+        }
+        else
+        {
+            Lights()->SetLightingEnabled(false);
+            m_ToggleLight = false;
+        }
     }
 
     /// @brief Instantly wins the game
@@ -540,6 +604,8 @@
         m_ToggleMaxLaserRange(false),
         m_ToggleMaxLaserTougness(false),
         m_ToggleMaxLaserMiningSpeed(false),
+        m_UnlockAllTurrets(false),
+        m_ToggleLight(Lights()->GetLightingEnabled()),
         m_PreviousBaseHealth(0),
         m_PreviousPlayerHealth(0),
         m_PreviousLaserDamage(0.0f),
