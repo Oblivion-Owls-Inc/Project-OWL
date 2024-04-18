@@ -220,6 +220,26 @@
             m_Emitter->SetEmitData(data);
             m_Emitter->SetContinuous(true);
         }
+
+
+        static float timer = 1.0f;
+        if (m_CanBeRewarded && m_IsActive)
+        {
+            if (Behaviors< EnemyBehavior >()->GetComponents().size() == 0 &&
+                timer <= 0.0f)
+            {
+                for (auto& reward : m_RewardPrefabs)
+                {
+                    reward->Clone()->AddToScene();
+				}
+
+                m_CanBeRewarded = false;
+			}
+			else
+			{
+				timer -= dt;
+		    }
+        }
     }
 
 //-----------------------------------------------------------------------------
@@ -398,8 +418,6 @@
         m_DeactivateSound.Inspect( "Deactivate Sound" );
         m_DamageSound.Inspect( "Damage Sound" );
 
-        ImGui::InputText( "Event Name", &m_EventName );
-
         ImGui::Checkbox( "Is Active", &m_ChangeActive );
 
         Inspection::InspectArray< ItemStack >( "Activation cost", &m_ActivationCost, []( ItemStack* itemStack ) -> bool
@@ -431,8 +449,7 @@
         { "DeactivateSound", &readDeactivateSound },
         { "DamageSound"    , &readDamageSound     },
 		{ "Rewards"        , &readRewardPrefabs   },
-		{ "CanBeRewarded"  , &readCanBeRewarded   },
-        { "EventName"      , &readEventName       }
+		{ "CanBeRewarded"  , &readCanBeRewarded   }
     };
 
     /// @brief	read the raidus from json
@@ -489,11 +506,6 @@
         Stream::Read(m_CanBeRewarded, json);
     }
 
-    void Generator::readEventName(nlohmann::ordered_json const& json)
-    {
-		Stream::Read(m_EventName, json);
-    }
-
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -511,7 +523,6 @@
         data[ "DeactivateSound"] = Stream::Write( m_DeactivateSound );
         data[ "DamageSound"    ] = Stream::Write( m_DamageSound );
         data[ "CanBeRewarded"  ] = Stream::Write( m_CanBeRewarded );
-        data[ "EventName"      ] = Stream::Write( m_EventName );
 
         data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
         data[ "Rewards" ] = Stream::WriteArray(m_RewardPrefabs);
