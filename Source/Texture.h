@@ -110,6 +110,9 @@ private: // member variables
     /// @brief  whether to use the aspect ratio of the texture instead of a square mesh
     bool m_UseAspectRatio = false;
 
+    /// @brief  whether the texture will repeat when sampled out of bounds
+    bool m_RepeatOutOfBounds = false;
+
 
     /// @brief  Width and height of the original image
     glm::ivec2 m_PixelDimensions = { 0, 0 };
@@ -151,6 +154,9 @@ private: // reading
     /// @param  data    the data to read from
     void readUseAspectRatio( nlohmann::ordered_json const& data );
 
+    /// @brief  reads whether the texture will repeat when sampled out of bounds
+    /// @param  data    the data to read from
+    void readRepeatOutOfBounds( nlohmann::ordered_json const& data );
 
     /// @brief  the read methods for textures
     static ReadMethodMap< Texture > const s_ReadMethods;

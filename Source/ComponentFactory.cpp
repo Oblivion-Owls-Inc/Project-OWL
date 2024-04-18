@@ -83,6 +83,7 @@
 #include "WindowFocusEvent.h"
 #include "JetpackBoost.h"
 #include "GeneratorActivationCostUi.h"
+#include "BeamSprite.h"
 
 
 //-----------------------------------------------------------------------------
@@ -247,7 +248,8 @@
         { "Building"                 , ComponentInfo< Building                  >() },
         { "WindowFocusEvent"         , ComponentInfo< WindowFocusEvent          >() },
         { "JetpackBoost"             , ComponentInfo< JetpackBoost              >() },
-        { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() }
+        { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() },
+        { "BeamSprite"               , ComponentInfo< BeamSprite                >() }
     };
 
 //-----------------------------------------------------------------------------

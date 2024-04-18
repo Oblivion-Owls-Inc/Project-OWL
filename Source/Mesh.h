@@ -45,6 +45,11 @@ public:
 
 
 
+    /// @brief  gets the scale of this mesh
+    /// @return the scale of this mesh
+    glm::vec2 GetScale() const;
+
+
     /// @brief               Returns the UV size.
     /// @return              UV size (x = width, y = height)
     __inline glm::vec2 GetUVsize() const { return m_UVsize; }
