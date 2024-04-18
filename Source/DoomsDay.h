@@ -48,7 +48,7 @@ public: // virtual override methods
 
     /// @brief  called every frame
     /// @param  dt delta time
-    virtual void OnUpdate(float dt) override;
+    virtual void OnFixedUpdate() override;
 
 //-----------------------------------------------------------------------------
 private: // copying

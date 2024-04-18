@@ -62,7 +62,7 @@ void DoomsDay::OnExit()
 
 /// @brief  called every frame
 /// @param  dt delta time
-void DoomsDay::OnUpdate(float dt)
+void DoomsDay::OnFixedUpdate()
 {
     for (PlayerController* player : Behaviors< PlayerController >()->GetComponents())
     {
