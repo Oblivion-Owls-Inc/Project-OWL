@@ -152,6 +152,7 @@
         m_ListenerEnd.Init();
         m_ListenerLose.Init();
         m_ListenerDoom.Init();
+        m_Camera.Init();
     }
 
     /// @brief  called once when exiting the scene

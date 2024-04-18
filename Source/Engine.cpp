@@ -48,6 +48,7 @@
 #include "UiSlider.h"
 #include "Interactable.h"
 #include "SceneTransition.h"
+#include "DoomsDay.h"
 
 #include "ItemComponent.h"
 #include "HomeBase.h"
@@ -412,6 +413,7 @@
         { "BehaviorSystem<UiSlider>"              , &addSystem< BehaviorSystem< UiSlider               > > },
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
         { "BehaviorSystem<SceneTransition>"       , &addSystem< BehaviorSystem< SceneTransition        > > },
+        { "BehaviorSystem<DoomsDay>"              , &addSystem< BehaviorSystem< DoomsDay               > > },
 
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
         { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase      > >         },

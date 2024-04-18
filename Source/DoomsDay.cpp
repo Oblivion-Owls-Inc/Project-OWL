@@ -47,7 +47,7 @@ DoomsDay* DoomsDay::Clone() const
 /// @brief	initialize DoomsDay
 void DoomsDay::OnInit()
 {
-    Behaviors< Behavior >()->AddComponent(this);
+    Behaviors< DoomsDay >()->AddComponent(this);
 
     
 }
@@ -55,7 +55,7 @@ void DoomsDay::OnInit()
 /// @brief	called on exit, handles loss state
 void DoomsDay::OnExit()
 {
-    Behaviors< Behavior >()->RemoveComponent(this);
+    Behaviors< DoomsDay >()->RemoveComponent(this);
 
     
 }
@@ -76,6 +76,11 @@ void DoomsDay::OnUpdate(float dt)
         {
             Events()->BroadcastEvent< std::string >("DoomsdayLoseTheGame");
             Debug() << "Event Emitted: " << "DoomsdayLoseTheGame" << std::endl;
+            
+            for (DoomsDay* doomsday : Behaviors< DoomsDay >()->GetComponents())
+            {
+                doomsday->SetHasLost();
+            }
             m_HasLost = true;
         }
 
@@ -121,7 +126,10 @@ DoomsDay::DoomsDay(const DoomsDay& other) :
 // public: methods
 //-----------------------------------------------------------------------------
 
-
+void DoomsDay::SetHasLost()
+{
+    m_HasLost = true;
+}
 
 //-----------------------------------------------------------------------------
 // private functions

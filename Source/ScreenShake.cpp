@@ -52,6 +52,7 @@ void ScreenShake::OnInit()
             m_Active = !m_Active;
 	});
 
+    m_Listener.Init();
     m_Transform.Init(GetEntity());
 
     Behaviors<Behavior>()->AddComponent(this);
@@ -109,10 +110,10 @@ void ScreenShake::OnExit()
 void ScreenShake::ShakeScreen(float deltaTime)
 {
     /// the timer for the shake
-    static float shakeTimer = 0.0f;
+    static float shakeTimer = m_ShakeDuration;
 
     /// if the shake timer is less than or equal to 0
-    if (shakeTimer <= 0.0f)
+    if (shakeTimer < 0.0f)
     {
         shakeTimer = m_ShakeDuration; // reset the timer
         m_Active = false; // turn off the shake

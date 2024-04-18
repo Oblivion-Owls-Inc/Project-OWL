@@ -25,6 +25,7 @@
 #include "HomeBase.h"
 #include "SceneTransition.h"
 #include "EventSystem.h"
+#include "Lifetime.h"
 
 
 #include "ComponentReference.t.h"
@@ -142,12 +143,30 @@
         /// Set the filter function for the listener
         m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
         {
+            if (EventNameBegin == "HidePlayer")
+            {
+                return true;
+            }
+            if (EventNameBegin == "ShowPlayer")
+            {
+                return true;
+            }
             return EventNameBegin == m_EventNameBegin;
         });
 
         /// Set the Callback function for the listener
         m_ListenerBegin.SetResponseFunction([&](std::string const& EventNameBegin)
         {
+            if (EventNameBegin == "HidePlayer")
+            {
+                GetEntity()->GetComponent<EffectAnimator>()->SetIsPlaying(true);
+                return;
+            }
+            if (EventNameBegin == "ShowPlayer")
+            {
+                GetEntity()->GetComponent<EffectAnimator>()->SetIsPlaying(false);
+                return;
+            }
             // do thing on start
             m_EffectAnimator->SetIsPlaying(false);
             m_RigidBody->ApplyVelocity(glm::vec2(1, 10));
@@ -345,6 +364,7 @@
             {
                 Events()->BroadcastEvent< std::string >("WinTheGame");
                 Debug() << "Event Emitted: " << "WinTheGame" << std::endl;
+                base->GetEntity()->GetComponent<Lifetime>()->GetLifetime()->SetCurrent(1.0);
             }
             return;
         }

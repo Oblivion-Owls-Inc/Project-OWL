@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1754,
-                1067
+                1667,
+                980
             ],
             "WindowName": "Dig Deeper",
             "VSync": false
@@ -279,6 +279,7 @@
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<UiSlider>": {},
         "BehaviorSystem<Generator>": {},
+        "BehaviorSystem<DoomsDay>": {},
         "BehaviorSystem<SceneTransition>": {},
         "ComponentSystem<ItemComponent>": {},
         "ComponentSystem<Interactable>": {},
@@ -349,6 +350,7 @@
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
                 "BehaviorSystem<Behavior>": false,
+                "BehaviorSystem<DoomsDay>": false,
                 "BehaviorSystem<EditorCameraController>": false,
                 "BehaviorSystem<EffectAnimator>": false,
                 "BehaviorSystem<EnemyBehavior>": false,
