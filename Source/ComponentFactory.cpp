@@ -189,8 +189,8 @@
         { "Animation"                , ComponentInfo< Animation                 >() },
         { "Text"                     , ComponentInfo< Text                      >() },
         { "PlayerController"         , ComponentInfo< PlayerController          >() },
-		{ "EnemyBehavior"            , ComponentInfo< EnemyBehavior             >() },
-		{ "Bullet"                   , ComponentInfo< Bullet                    >() },
+        { "EnemyBehavior"            , ComponentInfo< EnemyBehavior             >() },
+        { "Bullet"                   , ComponentInfo< Bullet                    >() },
         { "BulletAoe"                , ComponentInfo< BulletAoe                 >() },
         { "BulletAoePulse"           , ComponentInfo< BulletAoePulse            >() },
         { "TurretBehavior"           , ComponentInfo< TurretBehavior            >() },
@@ -254,7 +254,7 @@
         { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() },
         { "EventEmitter"             , ComponentInfo< EventEmitter              >() },
         { "DoomsDay"                 , ComponentInfo< DoomsDay                  >() },
-		{ "ScreenShake"              , ComponentInfo< ScreenShake               >() },
+        { "ScreenShake"              , ComponentInfo< ScreenShake               >() },
         { "BeamSprite"               , ComponentInfo< BeamSprite                >() }
     };
 
