@@ -73,15 +73,21 @@ public: // methods
 private: // variables
 //-----------------------------------------------------------------------------
 
+    /// @brief  event to cast on loss
     std::string m_LossEventName;
 
+    /// @brief  movement speeds
     float m_CatchupSpeed;
     float m_NormalSpeed;
     float m_CloseSpeed;
 
+    /// @brief  speed distances
     float m_CatchupDistance;
     float m_NormalDistance;
     float m_LoseDistance;
+
+    /// @brief  have we lost the game
+    bool m_HasLost = false;
 
 //-----------------------------------------------------------------------------
 private: // private functions

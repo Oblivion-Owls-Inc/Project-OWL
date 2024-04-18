@@ -316,9 +316,10 @@
         m_EventNameBegin(other.m_EventNameBegin),
         m_EventNameEnd(other.m_EventNameEnd),
         m_EventNameLose(other.m_EventNameLose),
-        m_EventNameDoom(other.m_EventNameDoom),
-        m_Camera(other.m_Camera)
-    {}
+        m_EventNameDoom(other.m_EventNameDoom)
+    {
+        m_Camera = other.m_Camera;
+    }
 
 
 //-----------------------------------------------------------------------------
