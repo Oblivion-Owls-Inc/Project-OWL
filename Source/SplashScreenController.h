@@ -18,6 +18,7 @@
 #include "ComponentReference.h"
 #include "EntityReference.h"
 #include "AssetReference.h"
+#include "ActionReference.h"
 
 
 class Sprite;
@@ -131,6 +132,9 @@ private: // member variables
     /// @brief Index for the vector of logo data.
     int m_Index;
 
+    /// @brief An action reference for skipping the slpash screen
+    ActionReference m_SkipSplashScreen;
+
     /// @brief  A cached instance of the parent's Sprite.
     ComponentReference<Sprite> m_Sprite;
 
@@ -167,6 +171,10 @@ private: // Reading
     /// @brief  reads the Entity the SceneTransition Component is attached to
     /// @param  data    the JSON data to read from
     void readSceneTransitionEntity( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the action reference that skips the splash screen.
+    /// @param  data    the JSON data to read from
+    void readSkipSplashScreenReference(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

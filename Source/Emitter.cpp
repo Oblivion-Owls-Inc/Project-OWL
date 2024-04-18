@@ -89,6 +89,8 @@ void Emitter::OnExit()
     glDeleteBuffers(1, &m_MatSSBO);
     glDeleteBuffers(1, &m_OpacitySSBO);
 
+    m_Transform.Exit();
+
     m_DataSSBO = 0;  // for destructor
 }
 

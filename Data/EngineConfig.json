@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1171,
-                626
+                889,
+                557
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -242,6 +242,22 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "SkipSplashScreen",
+                    "KeyboardButtons": [
+                        257,
+                        256
+                    ],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
@@ -269,8 +285,7 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": false,
-            "Layer": 0
+            "Enabled": true
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -326,10 +341,10 @@
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<AnimationAsset>": true,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": false,
-                "AssetLibrary<Texture>": false,
+                "AssetLibrary<Sound>": true,
+                "AssetLibrary<Texture>": true,
                 "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,

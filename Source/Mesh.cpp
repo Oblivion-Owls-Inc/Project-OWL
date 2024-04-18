@@ -65,6 +65,13 @@ void Mesh::LoadQuad( glm::vec2 scale, glm::ivec2 sheetDimensions, glm::vec2 pivo
 }
 
 
+/// @brief  gets the scale of this mesh
+/// @return the scale of this mesh
+glm::vec2 Mesh::GetScale() const
+{
+    return m_Bounds[ 1 ] - m_Bounds[ 0 ];
+}
+
 
 // helper
 /// @brief      Initializes the Vertex Array Object and the buffer tied to this mesh.

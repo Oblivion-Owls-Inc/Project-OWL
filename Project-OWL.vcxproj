@@ -289,6 +289,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\BeamSprite.cpp" />
     <ClCompile Include="Source\BuildingSelectionButton.cpp" />
     <ClCompile Include="Source\BulletAoe.cpp" />
     <ClCompile Include="Source\BulletAoePulse.cpp" />
@@ -544,6 +545,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BeamSprite.h" />
     <ClInclude Include="Source\BuildingSelectionButton.h" />
     <ClInclude Include="Source\ControlPrompt.h" />
     <ClInclude Include="Source\ControlPromptSystem.h" />
@@ -697,6 +699,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\Settings.scene.json" />
     <None Include="Data\Scenes\SplashScreen.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
+    <None Include="Data\shaders\beam.vert" />
     <None Include="Data\shaders\nineslice.frag" />
     <None Include="Data\shaders\nineslice.vert" />
     <None Include="Data\shaders\UiBar.frag" />
