@@ -56,7 +56,7 @@
     /// @brief  renders this Nineslice
     void Nineslice::Draw()
     {
-        if ( m_Texture == nullptr )
+        if ( m_Transform == nullptr || m_Texture == nullptr )
         {
             return;
         }
@@ -85,11 +85,6 @@
         if ( shader == nullptr )
         {
             Debug() << "Error: unable to find shader \"Nineslice\"" << std::endl;
-            return;
-        }
-
-        if ( m_Transform == nullptr )
-        {
             return;
         }
 

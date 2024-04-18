@@ -98,6 +98,11 @@
             reloadMesh();
         }
 
+        if ( ImGui::Checkbox( "Repeat Out of Bounds", &m_RepeatOutOfBounds ) )
+        {
+            loadImage();
+        }
+
         if ( ImGui::Button( "Reload Texture" ) )
         {
             loadImage();
@@ -190,6 +195,13 @@ void Texture::readUseAspectRatio( nlohmann::ordered_json const& data )
     Stream::Read( m_UseAspectRatio, data );
 }
 
+/// @brief  reads whether the texture will repeat when sampled out of bounds
+/// @param  data    the data to read from
+void Texture::readRepeatOutOfBounds( nlohmann::ordered_json const& data )
+{
+    Stream::Read( m_RepeatOutOfBounds, data );
+}
+
 
 /// @brief  gets called after reading all arugments 
 void Texture::AfterLoad()
@@ -206,10 +218,11 @@ nlohmann::ordered_json Texture::Write() const
 {
     nlohmann::ordered_json data;
 
-    data["Filepath"] = m_Filepath;
-    data["SheetDimensions"] = Stream::Write(m_SheetDimensions);
-    data["Pivot"] = Stream::Write( m_Pivot );
-    data["UseAspectRatio"] = Stream::Write( m_UseAspectRatio );
+    data[ "Filepath"          ] = Stream::Write( m_Filepath          );
+    data[ "SheetDimensions"   ] = Stream::Write( m_SheetDimensions   );
+    data[ "Pivot"             ] = Stream::Write( m_Pivot             );
+    data[ "UseAspectRatio"    ] = Stream::Write( m_UseAspectRatio    );
+    data[ "RepeatOutOfBounds" ] = Stream::Write( m_RepeatOutOfBounds );
 
     return data;
 }
@@ -218,10 +231,11 @@ nlohmann::ordered_json Texture::Write() const
 
 /// @brief  the read methods for textures
 ReadMethodMap< Texture > const Texture::s_ReadMethods = {
-    { "Filepath"       , &readFilepath        },
-    { "SheetDimensions", &readSheetDimensions },
-    { "Pivot"          , &readPivot           },
-    { "UseAspectRatio" , &readUseAspectRatio  }
+    { "Filepath"         , &readFilepath          },
+    { "SheetDimensions"  , &readSheetDimensions   },
+    { "Pivot"            , &readPivot             },
+    { "UseAspectRatio"   , &readUseAspectRatio    },
+    { "RepeatOutOfBounds", &readRepeatOutOfBounds }
 };
 
 
@@ -259,8 +273,8 @@ void Texture::loadImage()
         // sampling settings - scaling and wrapping
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, m_RepeatOutOfBounds ? GL_REPEAT : GL_CLAMP_TO_BORDER );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, m_RepeatOutOfBounds ? GL_REPEAT : GL_CLAMP_TO_BORDER );
 
         glTexParameterfv( GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, &glm::vec4( 0.0f, 0.0f, 0.0f, 0.0f )[ 0 ] );
 

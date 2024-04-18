@@ -411,6 +411,9 @@
     <Filter Include="Game\Components\Behaviors\GeneratorActivationCostUi">
       <UniqueIdentifier>{a8f522e3-5f21-448e-b2a6-89fc4a42b36a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\BeamSprite">
+      <UniqueIdentifier>{fd9dbf11-0e49-4a97-83f5-a5973a125684}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Components\Behaviors\DoomsDay">
       <UniqueIdentifier>{66433d39-fb17-45a3-9dd3-c714039d1306}</UniqueIdentifier>
     </Filter>
@@ -869,10 +872,13 @@
     <ClCompile Include="Source\GeneratorActivationCostUi.cpp">
       <Filter>Game\Components\Behaviors\GeneratorActivationCostUi</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EventEmitter.cpp">
+    <ClCompile Include="Source\JetpackBoost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\JetpackBoost.cpp">
+    <ClCompile Include="Source\BeamSprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite\BeamSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EventEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\DoomsDay.cpp">
@@ -1330,10 +1336,13 @@
     <ClInclude Include="Source\GeneratorActivationCostUi.h">
       <Filter>Game\Components\Behaviors\GeneratorActivationCostUi</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EventEmitter.h">
+    <ClInclude Include="Source\JetpackBoost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\JetpackBoost.h">
+    <ClInclude Include="Source\BeamSprite.h">
+      <Filter>Engine\Entity\Component\Sprite\BeamSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\DoomsDay.h">
@@ -1427,5 +1436,8 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\BetaScene.scene.json" />
+    <None Include="Data\shaders\beam.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
   </ItemGroup>
 </Project>

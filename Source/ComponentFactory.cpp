@@ -86,6 +86,7 @@
 #include "EventEmitter.h"
 #include "DoomsDay.h"
 #include "ScreenShake.h"
+#include "BeamSprite.h"
 
 
 //-----------------------------------------------------------------------------
@@ -253,7 +254,8 @@
         { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() },
         { "EventEmitter"             , ComponentInfo< EventEmitter              >() },
         { "DoomsDay"                 , ComponentInfo< DoomsDay                  >() },
-		{ "ScreenShake"              , ComponentInfo< ScreenShake               >() }
+		{ "ScreenShake"              , ComponentInfo< ScreenShake               >() },
+        { "BeamSprite"               , ComponentInfo< BeamSprite                >() }
     };
 
 //-----------------------------------------------------------------------------

@@ -176,14 +176,6 @@
             entity->Exit();
         }
 
-        for (Entity* entity : entitiesToRemove)
-        {
-            if (entity == SelectedEntity)
-                SelectedEntity = nullptr;
-
-            delete entity;
-        }
-
         // remove the entities from the System
         m_Entities.erase(
             std::remove_if(
@@ -193,6 +185,17 @@
             ),
             m_Entities.end()
         );
+
+        // delete the entities
+        for ( Entity* entity : entitiesToRemove )
+        {
+            if ( entity == SelectedEntity )
+            {
+                SelectedEntity = nullptr;
+            }
+
+            delete entity;
+        }
     }
 
 
