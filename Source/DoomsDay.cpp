@@ -74,8 +74,8 @@ void DoomsDay::OnUpdate(float dt)
 
         if (distance <= m_LoseDistance)
         {
-            Events()->BroadcastEvent< std::string >("LoseTheGame");
-            Debug() << "Event Emitted: " << "LoseTheGame" << std::endl;
+            Events()->BroadcastEvent< std::string >("DoomsdayLoseTheGame");
+            Debug() << "Event Emitted: " << "DoomsdayLoseTheGame" << std::endl;
         }
 
         if (distance <= m_NormalDistance)

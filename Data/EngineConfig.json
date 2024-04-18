@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1391,
-                1151
+                1754,
+                1067
             ],
             "WindowName": "Dig Deeper",
             "VSync": false
@@ -285,7 +285,7 @@
         "ParticleSystem": {},
         "PathfindSystem": null,
         "LightingSystem": {
-            "Enabled": false
+            "Enabled": true
         },
         "CollisionSystem": {
             "CollisionLayerNames": [
@@ -338,7 +338,7 @@
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
-            "ShowFpsWindow": true,
+            "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
                 "AssetLibrary<AnimationAsset>": true,

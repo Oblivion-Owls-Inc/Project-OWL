@@ -15,6 +15,12 @@
 #include "SceneTransition.h"
 #include "ComponentSystem.h"
 #include "Generator.h"
+#include "Tilemap.h"
+#include "EntitySystem.h"
+#include "PlayerController.h"
+#include "AssetLibrarySystem.h"
+#include "BehaviorSystem.h"
+#include "AssetReference.h"
 
 #include "SceneSystem.h"
 
@@ -72,7 +78,9 @@
             m_Health->AddOnHealthChangedCallback( GetId(), [ this ]() {
                 if ( m_Health->GetHealth()->GetCurrent() <= 0 )
                 {
-                    Destroy();
+                    Events()->BroadcastEvent< std::string >("LoseTheGame");
+                    Debug() << "Event Emitted: " << "LoseTheGame" << std::endl;
+                    //Destroy();
                 }
             } );
         } );
@@ -110,8 +118,40 @@
             m_CanWin = true;
         });
 
+        /// Set the filter function for the listener
+        m_ListenerLose.SetFilterFunction([&](std::string const& EventNameEnd) -> bool
+        {
+              return EventNameEnd == m_EventNameLose;
+        });
+
+        /// Set the Callback function for the listener
+        m_ListenerLose.SetResponseFunction([&](std::string const& EventNameEnd)
+        {
+            Destroy();
+        });
+
+        /// Set the filter function for the listener
+        m_ListenerDoom.SetFilterFunction([&](std::string const& EventNameEnd) -> bool
+        {
+            return EventNameEnd == m_EventNameDoom;
+        });
+
+        /// Set the Callback function for the listener
+        m_ListenerDoom.SetResponseFunction([&](std::string const& EventNameEnd)
+        {
+             for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
+             {
+                 Transform* transform = player->GetEntity()->GetComponent<Transform>();
+                 Entity* clone = m_Camera->Clone();
+                 clone->GetComponent<Transform>()->SetTranslation(transform->GetTranslation());
+                 clone->AddToScene();
+             }
+        });
+
         m_ListenerBegin.Init();
         m_ListenerEnd.Init();
+        m_ListenerLose.Init();
+        m_ListenerDoom.Init();
     }
 
     /// @brief  called once when exiting the scene
@@ -124,6 +164,8 @@
         m_SceneTransitionEntity.Exit();
         m_ListenerBegin.Exit();
         m_ListenerEnd.Exit();
+        m_ListenerLose.Exit();
+        m_ListenerDoom.Exit();
     }
 
 
@@ -146,6 +188,9 @@
 
         ImGui::InputText("Event Name Begin", &m_EventNameBegin);
         ImGui::InputText("Event Name End", &m_EventNameEnd);
+        ImGui::InputText("Event Name Lose", &m_EventNameLose);
+        ImGui::InputText("Event Name Doom", &m_EventNameDoom);
+        m_Camera.Inspect("Camera Prefab");
     }
 
 
@@ -182,6 +227,27 @@
         Stream::Read(m_EventNameEnd, data);
     }
 
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void HomeBase::readEventNameLose(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameLose, data);
+    }
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void HomeBase::readEventNameDoom(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameDoom, data);
+    }
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void HomeBase::readCameraPrefab(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_Camera, data);
+    }
+
     
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -196,7 +262,10 @@
             { "GameOverScene"        , &HomeBase::readGameOverSceneName     },
             { "SceneTransitionEntity", &HomeBase::readSceneTransitionEntity },
             { "EventNameBegin"       , &HomeBase::readEventNameBegin        },
-            { "EventNameEnd"         , &HomeBase::readEventNameEnd          }
+            { "EventNameEnd"         , &HomeBase::readEventNameEnd          },
+            { "EventNameLose"        , &HomeBase::readEventNameLose         },
+            { "EventNameDoom"        , &HomeBase::readEventNameDoom         },
+            { "CameraPrefab"         , &HomeBase::readCameraPrefab          }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -214,6 +283,9 @@
         json[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
         json[ "EventNameBegin"        ] = m_EventNameBegin;
         json[ "EventNameEnd"          ] = m_EventNameEnd;
+        json[ "EventNameLose"         ] = m_EventNameLose;
+        json[ "EventNameDoom"         ] = m_EventNameDoom;
+        json[ "CameraPrefab"          ] = Stream::Write(m_Camera);
 
         return json;
     }
@@ -242,7 +314,10 @@
         m_GameOverSceneName    ( other.m_GameOverSceneName ),
         m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } ),
         m_EventNameBegin(other.m_EventNameBegin),
-        m_EventNameEnd(other.m_EventNameEnd)
+        m_EventNameEnd(other.m_EventNameEnd),
+        m_EventNameLose(other.m_EventNameLose),
+        m_EventNameDoom(other.m_EventNameDoom),
+        m_Camera(other.m_Camera)
     {}
 
 

@@ -11,6 +11,7 @@
 
 #include "EntityReference.h"
 #include "ComponentReference.h"
+#include "AssetReference.h"
 #include "EventListener.h"
 class Health;
 class SceneTransition;
@@ -66,13 +67,14 @@ private: // members
     /// @brief  the name of the scene to transition to when the base dies
     std::string m_GameOverSceneName = "Gameover";
 
+    /// @brief  camera for doomsday
+    AssetReference< Entity > m_Camera;
 
     /// @brief  the SceneTransition Component responsible for changing scenes
     ComponentReference< SceneTransition > m_SceneTransition;
 
     /// @brief  the Entity the SceneTransition Component is attached to
     EntityReference m_SceneTransitionEntity = EntityReference( { &m_SceneTransition } );
-
 
     /// @brief  the Health Component attached to this Entity
     ComponentReference< Health > m_Health;
@@ -88,6 +90,18 @@ private: // members
 
     /// @brief  the name of the event to listen for
     std::string m_EventNameEnd;
+
+    /// @brief Listener for the standard lose event
+    EventListener<std::string> m_ListenerLose;
+    
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameLose;
+
+    /// @brief Listener for the doomsday death event
+    EventListener<std::string> m_ListenerDoom;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameDoom;
 
     bool m_CanWin = false;
 
@@ -121,6 +135,18 @@ private: // reading
     /// @brief  reads the EventNameEnd from a JSON file
     /// @param data    the JSON file to read from
     void readEventNameEnd(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameLose(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameDoom(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameEnd from a JSON file
+    /// @param data    the JSON file to read from
+    void readCameraPrefab(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
