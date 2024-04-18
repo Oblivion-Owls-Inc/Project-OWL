@@ -27,6 +27,8 @@ void \mbox{\hyperlink{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}{Load\+Vertice
 \begin{DoxyCompactList}\small\item\em Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMesh_a83c363283500c6211baae5c531f5a4f8}{Load\+Quad}} (glm\+::vec2 scale=\{ 1.\+0f, 1.\+0f \}, glm\+::ivec2 sheet\+Dimensions=\{ 1, 1 \}, glm\+::vec2 pivot=\{ 0.\+5f, 0.\+5f \})
 \begin{DoxyCompactList}\small\item\em Initializes mesh as a quad. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classMesh_a59b99ff6c12f0b2efaffb69493d577fa}{Get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em gets the scale of this mesh \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline glm\+::vec2 \mbox{\hyperlink{classMesh_aa7dfde4bc25999f25dd17bf010230832}{Get\+UVsize}} () const
 \begin{DoxyCompactList}\small\item\em Returns the UV size. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline glm\+::vec2 const  $\ast$ \mbox{\hyperlink{classMesh_ac4ba453ca2c70da9fab94a751ab092d1}{Get\+Bounds}} () const
@@ -113,6 +115,19 @@ this mesh\textquotesingle{}s AABB (an array of 2 glm\+::vec2s)
 
 \begin{DoxyReturn}{Returns}
 Id of the vertex buffer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMesh_a59b99ff6c12f0b2efaffb69493d577fa}\label{classMesh_a59b99ff6c12f0b2efaffb69493d577fa}} 
+\index{Mesh@{Mesh}!GetScale@{GetScale}}
+\index{GetScale@{GetScale}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{GetScale()}{GetScale()}}
+{\footnotesize\ttfamily glm\+::vec2 Mesh\+::\+Get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the scale of this mesh 
+
+\begin{DoxyReturn}{Returns}
+the scale of this mesh 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classMesh_aa7dfde4bc25999f25dd17bf010230832}\label{classMesh_aa7dfde4bc25999f25dd17bf010230832}} 
 \index{Mesh@{Mesh}!GetUVsize@{GetUVsize}}
