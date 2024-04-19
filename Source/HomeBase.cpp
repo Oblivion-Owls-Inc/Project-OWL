@@ -142,7 +142,7 @@
              for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
              {
                  Transform* transform = player->GetEntity()->GetComponent<Transform>();
-                 Entity* clone = m_Camera->Clone();
+                 Entity* clone = m_CameraPrefab->Clone();
                  clone->GetComponent<Transform>()->SetTranslation(transform->GetTranslation());
                  clone->AddToScene();
              }
@@ -152,7 +152,7 @@
         m_ListenerEnd.Init();
         m_ListenerLose.Init();
         m_ListenerDoom.Init();
-        m_Camera.Init();
+        m_CameraPrefab.Init();
 
         m_ActivateSound.Init();
         m_DeactivateSound.Init();
@@ -198,7 +198,7 @@
         ImGui::Separator();
         m_ActivateSound.Inspect("Drive Sound");
         m_DeactivateSound.Inspect("Breakdown Sound");
-        m_Camera.Inspect("Camera Prefab");
+        m_CameraPrefab.Inspect("Camera Prefab");
     }
 
 
@@ -253,7 +253,7 @@
     /// @param data    the JSON file to read from
     void HomeBase::readCameraPrefab(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_Camera, data);
+        Stream::Read(m_CameraPrefab, data);
     }
 
     /// @brief reads the DriveSound from the JSON data
@@ -309,7 +309,7 @@
         json[ "EventNameEnd"          ] = m_EventNameEnd;
         json[ "EventNameLose"         ] = m_EventNameLose;
         json[ "EventNameDoom"         ] = m_EventNameDoom;
-        json[ "CameraPrefab"          ] = Stream::Write(m_Camera);
+        json[ "CameraPrefab"          ] = Stream::Write(m_CameraPrefab);
         json[ "DriveSound"            ] = Stream::Write(m_ActivateSound);
         json[ "DeactivateSound"       ] = Stream::Write(m_DeactivateSound);
 
@@ -344,11 +344,11 @@
         m_EventNameEnd(other.m_EventNameEnd),
         m_EventNameLose(other.m_EventNameLose),
         m_EventNameDoom(other.m_EventNameDoom),
-        m_Camera(other.m_Camera),
+        m_CameraPrefab(other.m_CameraPrefab),
         m_ActivateSound(other.m_ActivateSound),
         m_DeactivateSound(other.m_DeactivateSound)
     {
-        m_Camera = other.m_Camera;
+        m_CameraPrefab = other.m_CameraPrefab;
     }
 
 

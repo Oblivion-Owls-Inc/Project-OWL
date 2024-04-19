@@ -176,6 +176,15 @@ private: // member variables
     /// @brief  the name of the event to listen for
     std::string m_EventNameBegin;
 
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameWin;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameHide;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameShow;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -291,6 +300,18 @@ private: // reading
     /// @brief  reads the EventNameBegin from a JSON file
     /// @param data    the JSON file to read from
     void readEventNameBegin(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameWin from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameWin(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameWin from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameHide(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventNameWin from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameShow(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

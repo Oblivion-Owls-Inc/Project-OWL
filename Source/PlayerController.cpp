@@ -150,11 +150,11 @@
         /// Set the filter function for the listener
         m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
         {
-            if (EventNameBegin == "HidePlayer")
+            if (EventNameBegin == m_EventNameHide)
             {
                 return true;
             }
-            if (EventNameBegin == "ShowPlayer")
+            if (EventNameBegin == m_EventNameShow)
             {
                 return true;
             }
@@ -164,12 +164,12 @@
         /// Set the Callback function for the listener
         m_ListenerBegin.SetResponseFunction([&](std::string const& EventNameBegin)
         {
-            if (EventNameBegin == "HidePlayer")
+            if (EventNameBegin == m_EventNameHide)
             {
                 m_EffectAnimator->SetIsPlaying(true);
                 return;
             }
-            if (EventNameBegin == "ShowPlayer")
+            if (EventNameBegin == m_EventNameShow)
             {
                 m_EffectAnimator->SetIsPlaying(false);
                 return;
@@ -349,8 +349,8 @@
         {
             if (base->CanWin())
             {
-                Events()->BroadcastEvent< std::string >("WinTheGame");
-                Debug() << "Event Emitted: " << "WinTheGame" << std::endl;
+                Events()->BroadcastEvent< std::string >(m_EventNameWin);
+                Debug() << "Event Emitted: " << m_EventNameWin << std::endl;
                 base->GetEntity()->GetComponent<Lifetime>()->GetLifetime()->SetCurrent(1.0);
             }
             return;
@@ -360,11 +360,6 @@
         if ( enemy == nullptr )
         {
             return;
-        }
-        if (enemy->GetEntity()->GetName() == "DoomsDay")
-        {
-            Events()->BroadcastEvent< std::string >("DoomsdayLoss");
-            Debug() << "Event Emitted: " << "DoomsdayLoss" << std::endl;
         }
         if(m_Health)
         {
@@ -401,6 +396,9 @@
         m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
         m_AimVertical   .Inspect( "Vertical Aim Action"       );
         ImGui::InputText("Event Name Begin", &m_EventNameBegin);
+        ImGui::InputText("Event Name Win",   &m_EventNameWin);
+        ImGui::InputText("Event Name Hide", &m_EventNameHide);
+        ImGui::InputText("Event Name Show", &m_EventNameShow);
     }
 
 
@@ -543,6 +541,27 @@
         Stream::Read(m_EventNameBegin, data);
     }
 
+    /// @brief  reads the EventNameWin from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameWin(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameWin, data);
+    }
+
+    /// @brief  reads the EventNameHide from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameHide(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameHide, data);
+    }
+
+    /// @brief  reads the EventNameShow from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameShow(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameShow, data);
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading writing
 //-----------------------------------------------------------------------------
@@ -569,6 +588,9 @@
             { "AimVertical"             , &PlayerController::readAimVertical              },
             { "AimHorizontal"           , &PlayerController::readAimHorizontal            },
             { "EventNameBegin"          , &PlayerController::readEventNameBegin           },
+            { "EventNameWin"            , &PlayerController::readEventNameWin             },
+            { "EventNameHide"           , &PlayerController::readEventNameHide            },
+            { "EventNameShow"           , &PlayerController::readEventNameShow            }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -595,9 +617,12 @@
         data[ "IsJumping"           ]       = Stream::Write( m_IsJumping             );
         data[ "GroundCollisionThreshold" ]  = Stream::Write( m_GroundCollisionThreshold );
         data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
-        data[ "AimVertical"       ] = Stream::Write( m_AimVertical           );
-        data[ "AimHorizontal"     ] = Stream::Write( m_AimHorizontal         );
-        data[ "EventNameBegin"    ] = m_EventNameBegin;
+        data[ "AimVertical"         ]       = Stream::Write( m_AimVertical           );
+        data[ "AimHorizontal"       ]       = Stream::Write( m_AimHorizontal         );
+        data[ "EventNameBegin"      ]       = m_EventNameBegin;
+        data[ "EventNameWin"        ]       = m_EventNameWin;
+        data["EventNameHide"        ]       = m_EventNameHide;
+        data["EventNameShow"        ]       = m_EventNameShow;
 
         return data;
     }
@@ -633,6 +658,9 @@
         m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
         m_MaxCoyoteTime           ( other.m_MaxCoyoteTime            ),
         m_EventNameBegin          ( other.m_EventNameBegin           ),
+        m_EventNameWin            ( other.m_EventNameWin             ),
+        m_EventNameHide           ( other.m_EventNameHide            ),
+        m_EventNameShow           ( other.m_EventNameShow            ),
         m_MiningLaserOffset       ( other.m_MiningLaserOffset        ),
         m_MoveVertical            ( other.m_MoveVertical             ),
         m_MoveHorizontal          ( other.m_MoveHorizontal           ),

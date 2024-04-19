@@ -70,7 +70,7 @@ private: // members
     std::string m_GameOverSceneName = "Gameover";
 
     /// @brief  camera for doomsday
-    AssetReference< Entity > m_Camera;
+    AssetReference< Entity > m_CameraPrefab;
 
     /// @brief  the SceneTransition Component responsible for changing scenes
     ComponentReference< SceneTransition > m_SceneTransition;
