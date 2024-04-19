@@ -67,6 +67,7 @@ digraph "Source/AssetReference.h"
   Node23 [label="Source/MiningLaser.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$MiningLaser_8h.html",tooltip="Digging laser controllable by an entity."];
   Node23 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node23 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node24 [label="Source/LaserUpgrade.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LaserUpgrade_8cpp.html",tooltip="collectable upgrade to the player's MiningLaser"];
   Node23 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
