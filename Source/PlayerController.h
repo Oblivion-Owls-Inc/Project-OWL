@@ -63,6 +63,10 @@ public: // accessors
     /// @return The MiningLaser component attached to this Entity.
     MiningLaser* GetMiningLaser() {  return m_MiningLaser;  }
 
+    /// @brief  Gets the Transform component attached to this Entity.
+    /// @return The Transform component attached to this Entity.
+    Transform const* GetTransform() const { return m_Transform; }
+
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods

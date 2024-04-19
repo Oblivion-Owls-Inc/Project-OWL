@@ -61,7 +61,7 @@ private: // copying
 public: // accessors
 //-----------------------------------------------------------------------------
 
-
+    
 
 //-----------------------------------------------------------------------------
 public: // methods
@@ -88,6 +88,8 @@ private: // variables
 
     /// @brief  have we lost the game
     bool m_HasLost = false;
+
+    ComponentReference<Transform> m_Transform;
 
 //-----------------------------------------------------------------------------
 private: // private functions

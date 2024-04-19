@@ -48,7 +48,7 @@ DoomsDay* DoomsDay::Clone() const
 void DoomsDay::OnInit()
 {
     Behaviors< DoomsDay >()->AddComponent(this);
-
+    m_Transform.Init(GetEntity());
     
 }
 
@@ -56,7 +56,7 @@ void DoomsDay::OnInit()
 void DoomsDay::OnExit()
 {
     Behaviors< DoomsDay >()->RemoveComponent(this);
-
+    m_Transform.Exit();
     
 }
 
@@ -67,8 +67,8 @@ void DoomsDay::OnFixedUpdate()
     for (PlayerController* player : Behaviors< PlayerController >()->GetComponents())
     {
         float distance =
-            player->GetEntity()->GetComponent<Transform>()->GetTranslation().y -
-            GetEntity()->GetComponent<Transform>()->GetTranslation().y;
+            player->GetTransform()->GetTranslation().y -
+            m_Transform->GetTranslation().y;
 
         distance -= 25;
 
