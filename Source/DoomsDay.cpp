@@ -117,7 +117,7 @@ DoomsDay::DoomsDay(const DoomsDay& other) :
     m_CatchupDistance(other.m_CatchupDistance),
     m_NormalDistance(other.m_NormalDistance),
     m_LoseDistance(other.m_LoseDistance),
-    m_LossEventName(other.m_LossEventName),
+    m_LossEventName(other.m_LossEventName)
 {}
 
 
