@@ -23,7 +23,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             },
             "ButtonBase2": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -35,7 +36,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Checkbox": {
                 "Filepath": "Data/Textures/CheckboxSheet.png",
@@ -47,7 +49,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "CheckboxChecked": {
                 "Filepath": "Data/Textures/CheckedBox.png",
@@ -59,7 +62,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "CheckboxUnchecked": {
                 "Filepath": "Data/Textures/UncheckedBox.png",
@@ -71,7 +75,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Fontsheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -83,7 +88,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Rectangle": {
                 "Filepath": "Data/Textures/Debug/Rectangle.png",
@@ -95,7 +101,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "SettingsBase": {
                 "Filepath": "Data/Textures/SettingsBase.png",
@@ -107,7 +114,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "SettingsBaseTemp": {
                 "Filepath": "Data/Textures/Group 2.png",
@@ -119,7 +127,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "SliderBase": {
                 "Filepath": "Data/Textures/SliderBase.png",
@@ -131,7 +140,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "SliderFill": {
                 "Filepath": "Data/Textures/SliderFill.png",
@@ -143,7 +153,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "SliderPull": {
                 "Filepath": "Data/Textures/SliderPull.png",
@@ -155,7 +166,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             }
         },
         "TransformAnimations": null,
@@ -319,7 +331,7 @@
                             "PlayOnInit": false,
                             "IsSpatial": false,
                             "AllowMultipleSounds": true,
-                            "ChannelGroupName": ""
+                            "ChannelGroupName": "Effects"
                         },
                         "SceneChangeButton": {
                             "SceneName": "Previous",
@@ -855,7 +867,7 @@
                                 0.0,
                                 1.0
                             ],
-                            "Value": 1.0,
+                            "Value": 0.44302496314048767,
                             "Slope": 0.0
                         },
                         {
@@ -903,7 +915,7 @@
                     ]
                 },
                 "UiSlider": {
-                    "Value": 1.0,
+                    "Value": 0.44302496314048767,
                     "DragSliderAction": {
                         "ActionName": "DragSlider"
                     }
@@ -929,7 +941,7 @@
                         },
                         "UiElement": {
                             "Anchor": [
-                                0.9500000476837158,
+                                -0.10825252532958984,
                                 0.0
                             ],
                             "Pivot": [
