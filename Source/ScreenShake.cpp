@@ -97,7 +97,8 @@ void ScreenShake::OnFixedUpdate()
 void ScreenShake::OnExit()
 {
     m_Listener.Exit();
-    
+    m_Transform.Exit();
+
     Behaviors<Behavior>()->RemoveComponent(this);
 }
 
