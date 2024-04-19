@@ -324,6 +324,8 @@
         m_ChangeActive = true;
         m_ActivateRing = true;
 
+        m_CurrentTime = m_RewardTimer;
+
         if (m_Sprite != nullptr)
         {
             m_Sprite->SetFrameIndex(1);
