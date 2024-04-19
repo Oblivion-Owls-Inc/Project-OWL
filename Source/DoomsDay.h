@@ -138,6 +138,8 @@ private: // reading
     /// @brief read the lose distance
     void readLoseDistance(nlohmann::ordered_json const& json);
 
+    void readLossEventName(nlohmann::ordered_json const& json);
+
 
 //-----------------------------------------------------------------------------
 public: // writing
