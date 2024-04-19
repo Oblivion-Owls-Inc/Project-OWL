@@ -81,20 +81,24 @@ public: // virtual override methods
 private: // member variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief The amount of force to apply to the player when moving vertically
     glm::vec2 m_VerticalMoveforce = { 1.0f, 1.0f };
 
     /// @brief The amount of force to apply to the player when moving horizontally
     glm::vec2 m_HorizontalMoveforce = { 1.0f, 1.0f };
 
+
     /// @brief  Player respawn location
     glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
+
 
     /// @brief Jump force
     float m_JumpSpeed = 1.0f;
 
     /// @brief  if the player is currently jumping
     bool m_IsJumping = false;
+
 
     /// @breif  How closely aligned the collision normal must be with the vertical axis
     float m_GroundCollisionThreshold = 0.9f;
@@ -104,6 +108,10 @@ private: // member variables
 
     /// @brief  The current time the player has to jump after falling off a platform
     float m_CurrentCoyoteTime = 0.0f;
+
+
+    /// @brief  the offset from the player of the mining laser's position (when facing left)
+    glm::vec2 m_MiningLaserOffset = glm::vec2( 0.0f, 0.0f );
 
 
     /// @brief  a cached instance of the parent's Rigidbody.
@@ -127,6 +135,7 @@ private: // member variables
 
     /// @brief  the miningLaser this PlayerController uses
     ComponentReference< MiningLaser > m_MiningLaser;
+
     /// @brief  the Entity the MiningLaser this PlayerController uses is attached to
     EntityReference m_MiningLaserEntity = EntityReference( { &m_MiningLaser } );
 
@@ -187,9 +196,6 @@ private: // inspection
     /// @brief Allows all vector attributes to be accessed by the editor.
     void vectorInspector();
 
-    /// @brief Allows all animation attributes to be accessed by the editor.
-    void animationInspector();
-
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -197,17 +203,42 @@ private: // reading
 
 
 
-    /// @brief Read in the amount of force to apply to the player when moving vertically.
-    /// @param data - the JSON file to read from.
+    /// @brief  reads in the amount of force to apply to the player when moving vertically
+    /// @param  data    the JSON data to read from
     void readVerticalMoveForce( nlohmann::ordered_json const& data );
 
-    /// @brief Read in the amount of force to apply to the player when moving horizontally.
-    /// @param data - the JSON file to read from.
+    /// @brief  reads in the amount of force to apply to the player when moving horizontally
+    /// @param  data    the JSON data to read from
     void readHorizontalMoveForce( nlohmann::ordered_json const& data );
 
-    /// @brief Read in the respawn location for the player.
-    /// @param data - the JSON file to read from.
+
+    /// @brief  reads in the respawn location for the player
+    /// @param  data    the JSON data to read from
     void readRespawnLocation(nlohmann::ordered_json const& data);
+
+
+    /// @brief  reads the JumpSpeed
+    /// @param  data    the JSON data to read from
+    void readJumpSpeed( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the is jumping state.
+    /// @param  data    the JSON data to read from
+    void readIsJumping( nlohmann::ordered_json const& data );
+
+
+    /// @brief Read in the ground collision threshold.
+    /// @param  data    the JSON data to read from
+    void readGroundCollisionThreshold( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the max coyote time.
+    /// @param  data    the JSON data to read from
+    void readMaxCoyoteTime( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads the offset from the player of the mining laser's position (when facing left)
+    /// @param  data    the JSON data to read from
+    void readMiningLaserOffset( nlohmann::ordered_json const& data );
+
 
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
@@ -238,20 +269,6 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readAimVertical( nlohmann::ordered_json const& data );
 
-    /// @brief  Reads the JumpSpeed from the JSON file.
-    void readJumpSpeed( nlohmann::ordered_json const& data );
-
-    /// @brief Read in the ground collision threshold.
-    /// @param data - the JSON file to read from.
-    void readGroundCollisionThreshold( nlohmann::ordered_json const& data );
-
-    /// @brief Read in the max coyote time.
-    /// @param data - the JSON file to read from.
-    void readMaxCoyoteTime( nlohmann::ordered_json const& data );
-
-    /// @brief Read in the is jumping state.
-    /// @param data - the JSON file to read from.
-    void readIsJumping( nlohmann::ordered_json const& data );
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

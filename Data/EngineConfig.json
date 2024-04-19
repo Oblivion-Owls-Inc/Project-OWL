@@ -300,6 +300,7 @@
             "CollisionSteps": 8,
             "GridSize": 0.25
         },
+        "BehaviorSystem<MiningLaser>": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
@@ -353,6 +354,7 @@
                 "BehaviorSystem<EffectAnimator>": false,
                 "BehaviorSystem<EnemyBehavior>": false,
                 "BehaviorSystem<Generator>": false,
+                "BehaviorSystem<MiningLaser>": false,
                 "BehaviorSystem<PauseComponent>": false,
                 "BehaviorSystem<PlayerController>": false,
                 "BehaviorSystem<Popup>": false,
