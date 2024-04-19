@@ -57,37 +57,43 @@
 	    Behaviors< PlayerController >()->AddComponent( this );
 
 
-        m_Health.SetOnConnectCallback(
-            [ this ]()
-            {
-                m_Health->AddOnHealthChangedCallback(
-                    GetId(),
-                    std::bind( &PlayerController::playerRespawn, this )
-                );
-            }
-        );
-        m_Health.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Health->RemoveOnHealthChangedCallback( GetId() );
-            }
-        );
+        m_Health.SetOnConnectCallback( [ this ]()
+        {
+            m_Health->AddOnHealthChangedCallback(
+                GetId(),
+                std::bind( &PlayerController::playerRespawn, this )
+            );
+        } );
+        m_Health.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Health->RemoveOnHealthChangedCallback( GetId() );
+        } );
 
-        m_Collider.SetOnConnectCallback(
-            [ this ]()
+        m_Collider.SetOnConnectCallback( [ this ]()
+        {
+            m_Collider->AddOnCollisionEnterCallback(
+                GetId(),
+                std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
+            );
+
+            m_Collider->AddOnCollisionCallback( GetId(), [ this ]( Collider* collider, CollisionData const& collisionData )
             {
-                m_Collider->AddOnCollisionEnterCallback(
-                    GetId(),
-                    std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
-                );
-            }
-        );
-        m_Collider.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Collider->RemoveOnCollisionEnterCallback( GetId() );
-            }
-        );
+                const glm::vec2 VerticleDirection( 0.0f, 1.0f );
+
+                float dotProduct = glm::dot( collisionData.normal, VerticleDirection );
+
+                if ( dotProduct > m_GroundCollisionThreshold ) // If the player is colliding with the ground
+                {
+                    m_IsJumping = false;
+                    m_CurrentCoyoteTime = 0.0f;
+                }
+            } );
+        } );
+        m_Collider.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Collider->RemoveOnCollisionEnterCallback( GetId() );
+            m_Collider->RemoveOnCollisionCallback     ( GetId() );
+        } );
 
         m_Transform.SetOnConnectCallback( [ this ]()
         {
@@ -95,7 +101,7 @@
             {
                 if ( m_MiningLaser != nullptr && m_MiningLaser->GetTransform() != nullptr )
                 {
-                    m_MiningLaser->GetTransform()->SetTranslation( glm::vec2( m_Transform->GetMatrix()[ 3 ] ) + m_MiningLaserOffset * m_Transform->GetScale() );
+                    m_MiningLaser->GetTransform()->SetTranslation( glm::vec2(m_Transform->GetMatrix() * glm::vec4( m_MiningLaserOffset, 0.0f, 1.0f )) );
                 }
             } );
         } );
@@ -114,8 +120,6 @@
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
 
-
-
         m_MoveHorizontal.SetOwnerName( GetName() );
         m_MoveVertical  .SetOwnerName( GetName() );
         m_FireLaser     .SetOwnerName( GetName() );
@@ -128,32 +132,13 @@
         m_AimHorizontal .Init();
         m_AimVertical   .Init();
         m_Interact      .Init();
-
-        m_Collider->AddOnCollisionCallback( GetId(),
-            [this](Collider* collider, CollisionData const& collisionData)
-            {
-                const glm::vec2 VerticleDirection(0.0f, 1.0f);
-
-                float dotProduct = glm::dot(collisionData.normal, VerticleDirection);
-
-                if (dotProduct > m_GroundCollisionThreshold) // If the player is colliding with the ground
-                {
-                    m_IsJumping = false;
-                    
-                    m_CurrentCoyoteTime = 0.0f;
-                }
-            }
-        );
-
     }
 
 
     /// @brief Removes this behavior from the behavior system on exit
     void PlayerController::OnExit()
     {
-        Behaviors<PlayerController>()->RemoveComponent(this);
-
-        m_Collider->RemoveOnCollisionCallback(GetId());
+        Behaviors< PlayerController >()->RemoveComponent( this );
 
         m_RigidBody  .Exit();
         m_AudioPlayer.Exit();
@@ -177,7 +162,7 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        if ( m_RigidBody == nullptr )
+        if ( m_RigidBody == nullptr || m_Transform == nullptr )
         {
             return;
         }
@@ -186,70 +171,54 @@
         glm::vec2 direction = { 0.0f, 0.0f };
 
         direction.x = m_MoveHorizontal != nullptr ? m_MoveHorizontal->GetAxis() : 0.0f;
-        direction.y = m_MoveVertical != nullptr ? m_MoveVertical->GetAxis() : 0.0f;
+        direction.y = m_MoveVertical   != nullptr ? m_MoveVertical  ->GetAxis() : 0.0f;
 
-        if ( direction != glm::vec2( 0 ) )
+        if ( direction != glm::vec2( 0.0f ) )
         {
-
-            direction = glm::normalize(direction);
-
-            /// If the player is moving diagonally, adjust the speed
-            if (direction.x != 0.0f && direction.y != 0.0f)
+            if ( direction.x > 0 )
             {
-                direction *= glm::sqrt(1.5f); /// Compensate for normalization.
+                direction.x *= m_HorizontalMoveforce[ 0 ];
+
+                m_Transform->SetScale( glm::vec2( -1.0f, 1.0f ) );
+            }
+            else if ( direction.x < 0 )
+            {
+                direction.x *= m_HorizontalMoveforce[ 1 ];
+
+                m_Transform->SetScale( glm::vec2( 1.0f, 1.0f ) );
             }
 
-
-            if (direction.x > 0 )
+            if ( direction.y > 0 )
             {
-                // 0 is right
-                direction.x *= m_HorizontalMoveforce[0];
+                direction.y *= m_VerticalMoveforce[ 0 ];
 
-                if (Input()->GetKeyDown(GLFW_KEY_D))
-                    m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
-            }
-            else
-            {
-                // 1 is left
-                direction.x *= m_HorizontalMoveforce[1];
-
-                if (Input()->GetKeyDown(GLFW_KEY_A))
-                    m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
-            }
-
-            if (direction.y > 0 )
-            {
-                // 2 is up
-                direction.y *= m_VerticalMoveforce[0];
-
-                if (m_IsJumping == false || m_CurrentCoyoteTime <= m_MaxCoyoteTime)
+                if ( m_IsJumping == false || m_CurrentCoyoteTime <= m_MaxCoyoteTime )
                 {
-                    m_RigidBody->ApplyVelocity(glm::vec2(0, m_JumpSpeed));
+                    m_RigidBody->ApplyVelocity( glm::vec2( 0, m_JumpSpeed ) );
                     m_IsJumping = true;
                     m_CurrentCoyoteTime = m_MaxCoyoteTime + 1; // Make sure that the player can't jump again
-                                                               // until they hit the ground.
+                    // until they hit the ground.
                 }
-
             }
             else
             {
-                // 3 is down
-
-                direction.y *= m_VerticalMoveforce[1];
+                direction.y *= m_VerticalMoveforce[ 1 ];
             }
 
-            if(m_AudioPlayer)
+            m_RigidBody->ApplyAcceleration( direction );
+
+            if ( m_AudioPlayer != nullptr )
+            {
                 m_AudioPlayer->Play();
+            }
         }
         else
         {
-            if (m_AudioPlayer)
+            if ( m_AudioPlayer != nullptr )
+            {
                 m_AudioPlayer->Stop();
+            }
         }
-
-
-       
-        m_RigidBody->ApplyAcceleration( direction );
 
         updateMiningLaser();
     }
@@ -263,33 +232,48 @@
     /// @brief  updates the mining laser
     void PlayerController::updateMiningLaser()
     {
-        if ( m_MiningLaser == nullptr || m_MiningLaser->GetTransform() == nullptr )
+        if ( m_Transform == nullptr || m_MiningLaser == nullptr || m_MiningLaser->GetTransform() == nullptr )
         {
             return;
         }
 
-        if ( m_FireLaser != nullptr && m_FireLaser->GetDown() )
+        if ( m_FireLaser == nullptr || m_FireLaser->GetDown() == false )
         {
-            m_MiningLaser->SetIsFiring( true );
+            m_MiningLaser->SetIsFiring( false );
+            return;
+        }
 
-            glm::vec2 direction = { 1.0f, 0.0f };
-            if ( m_AimHorizontal != nullptr && m_AimVertical != nullptr && Input()->IsControllerMostRecentInput() )
-            {
-                direction.x = m_AimHorizontal->GetAxis();
-                direction.y = m_AimVertical  ->GetAxis();
-            }
-            else
-            {
-                direction = Input()->GetMousePosWorld() - m_Transform->GetTranslation();
-            }
-
-            m_MiningLaser->GetTransform()->SetRotation( std::atan2( direction.y, direction.x ) );
+        // get direction from player to aim laser
+        glm::vec2 direction = { 1.0f, 0.0f };
+        if ( m_AimHorizontal != nullptr && m_AimVertical != nullptr && Input()->IsControllerMostRecentInput() )
+        {
+            direction.x = m_AimHorizontal->GetAxis();
+            direction.y = m_AimVertical  ->GetAxis();
         }
         else
         {
-            m_MiningLaser->SetIsFiring( false );
+            direction = Input()->GetMousePosWorld() - m_Transform->GetTranslation();
         }
 
+
+        if ( direction.x > 0 )
+        {
+            m_Transform->SetScale( glm::vec2( -1.0f, 1.0f ) );
+        }
+        else if ( direction.x < 0 )
+        {
+            m_Transform->SetScale( glm::vec2( 1.0f, 1.0f ) );
+        }
+
+        // adjust direction to mouse to include laser offset
+        if ( m_AimHorizontal == nullptr || m_AimVertical == nullptr || Input()->IsControllerMostRecentInput() == false )
+        {
+            direction = Input()->GetMousePosWorld() - glm::vec2(m_Transform->GetMatrix() * glm::vec4( m_MiningLaserOffset, 0.0f, 1.0f ));
+        }
+
+        m_MiningLaser->GetTransform()->SetRotation( std::atan2( direction.y, direction.x ) );
+
+        m_MiningLaser->SetIsFiring( true );
     }
 
 

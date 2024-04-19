@@ -272,7 +272,6 @@
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
-        "BehaviorSystem<MiningLaser>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
@@ -301,6 +300,7 @@
             "CollisionSteps": 8,
             "GridSize": 0.25
         },
+        "BehaviorSystem<MiningLaser>": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
