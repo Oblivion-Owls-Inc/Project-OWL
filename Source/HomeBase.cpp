@@ -78,8 +78,8 @@
             m_Health->AddOnHealthChangedCallback( GetId(), [ this ]() {
                 if ( m_Health->GetHealth()->GetCurrent() <= 0 )
                 {
-                    Events()->BroadcastEvent< std::string >("LoseTheGame");
-                    Debug() << "Event Emitted: " << "LoseTheGame" << std::endl;
+                    Events()->BroadcastEvent< std::string >(m_EventNameCutsceneLose);
+                    Debug() << "Event Emitted: " << m_EventNameCutsceneLose << std::endl;
                     //Destroy();
                 }
             } );
@@ -142,7 +142,7 @@
              for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
              {
                  Transform* transform = player->GetEntity()->GetComponent<Transform>();
-                 Entity* clone = m_Camera->Clone();
+                 Entity* clone = m_CameraPrefab->Clone();
                  clone->GetComponent<Transform>()->SetTranslation(transform->GetTranslation());
                  clone->AddToScene();
              }
@@ -152,7 +152,7 @@
         m_ListenerEnd.Init();
         m_ListenerLose.Init();
         m_ListenerDoom.Init();
-        m_Camera.Init();
+        m_CameraPrefab.Init();
 
         m_ActivateSound.Init();
         m_DeactivateSound.Init();
@@ -195,10 +195,11 @@
         ImGui::InputText("Event Name End", &m_EventNameEnd);
         ImGui::InputText("Event Name Lose", &m_EventNameLose);
         ImGui::InputText("Event Name Doom", &m_EventNameDoom);
+        ImGui::InputText("Event Name Cutscene Lose", &m_EventNameCutsceneLose);
         ImGui::Separator();
         m_ActivateSound.Inspect("Drive Sound");
         m_DeactivateSound.Inspect("Breakdown Sound");
-        m_Camera.Inspect("Camera Prefab");
+        m_CameraPrefab.Inspect("Camera Prefab");
     }
 
 
@@ -242,18 +243,25 @@
         Stream::Read(m_EventNameLose, data);
     }
 
-    /// @brief  reads the EventNameEnd from a JSON file
+    /// @brief  reads the EventNameDoom from a JSON file
     /// @param data    the JSON file to read from
     void HomeBase::readEventNameDoom(nlohmann::ordered_json const& data)
     {
         Stream::Read(m_EventNameDoom, data);
     }
 
-    /// @brief  reads the EventNameEnd from a JSON file
+    /// @brief  reads the EventNameCutsceneLose from a JSON file
+    /// @param data    the JSON file to read from
+    void HomeBase::readEventNameCutsceneLose(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameCutsceneLose, data);
+    }
+
+    /// @brief  reads the CameraPrefab from a JSON file
     /// @param data    the JSON file to read from
     void HomeBase::readCameraPrefab(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_Camera, data);
+        Stream::Read(m_CameraPrefab, data);
     }
 
     /// @brief reads the DriveSound from the JSON data
@@ -287,6 +295,7 @@
             { "EventNameEnd"         , &HomeBase::readEventNameEnd          },
             { "EventNameLose"        , &HomeBase::readEventNameLose         },
             { "EventNameDoom"        , &HomeBase::readEventNameDoom         },
+            { "EventNameCutsceneLose", &HomeBase::readEventNameCutsceneLose },
             { "CameraPrefab"         , &HomeBase::readCameraPrefab          },
             { "DriveSound"           , &HomeBase::readDriveSound            },
             { "DeactivateSound"      , &HomeBase::readDeactivateSound       }
@@ -309,7 +318,8 @@
         json[ "EventNameEnd"          ] = m_EventNameEnd;
         json[ "EventNameLose"         ] = m_EventNameLose;
         json[ "EventNameDoom"         ] = m_EventNameDoom;
-        json[ "CameraPrefab"          ] = Stream::Write(m_Camera);
+        json[ "EventNameCutsceneLose" ] = m_EventNameCutsceneLose;
+        json[ "CameraPrefab"          ] = Stream::Write(m_CameraPrefab);
         json[ "DriveSound"            ] = Stream::Write(m_ActivateSound);
         json[ "DeactivateSound"       ] = Stream::Write(m_DeactivateSound);
 
@@ -344,11 +354,12 @@
         m_EventNameEnd(other.m_EventNameEnd),
         m_EventNameLose(other.m_EventNameLose),
         m_EventNameDoom(other.m_EventNameDoom),
-        m_Camera(other.m_Camera),
+        m_EventNameCutsceneLose(other.m_EventNameCutsceneLose),
+        m_CameraPrefab(other.m_CameraPrefab),
         m_ActivateSound(other.m_ActivateSound),
         m_DeactivateSound(other.m_DeactivateSound)
     {
-        m_Camera = other.m_Camera;
+        m_CameraPrefab = other.m_CameraPrefab;
     }
 
 
