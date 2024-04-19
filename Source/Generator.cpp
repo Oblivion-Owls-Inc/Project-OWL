@@ -129,6 +129,8 @@
 
         m_ChangeActive = m_IsActive;
         m_CanActivate = !m_IsActive;
+
+        m_CurrentTime = m_RewardTimer;
     }
 
     /// @brief	called on exit, handles loss state
@@ -221,12 +223,11 @@
             m_Emitter->SetContinuous(true);
         }
 
-
-        static float timer = 1.0f;
         if (m_CanBeRewarded && m_IsActive)
         {
+
             if (Behaviors< EnemyBehavior >()->GetComponents().size() == 0 &&
-                timer <= 0.0f)
+                m_CurrentTime <= 0.0f)
             {
                 for (auto& reward : m_RewardPrefabs)
                 {
@@ -235,9 +236,9 @@
 
                 m_CanBeRewarded = false;
 			}
-			else
+			else if (m_CurrentTime > 0.0f)
 			{
-				timer -= dt;
+                m_CurrentTime -= dt;
 		    }
         }
     }
@@ -259,7 +260,8 @@
         m_DeactivateSound( other.m_DeactivateSound ),
         m_DamageSound    ( other.m_DamageSound     ),
         m_RewardPrefabs  ( other.m_RewardPrefabs   ),
-        m_CanBeRewarded  ( other.m_CanBeRewarded   )
+        m_CanBeRewarded  ( other.m_CanBeRewarded   ),
+        m_RewardTimer	 ( other.m_RewardTimer     )
     {}
 
 
@@ -413,19 +415,24 @@
     {
         ImGui::DragFloat( "Radius"      , &m_PowerRadius, 0.05f, 0.0f, INFINITY );
         ImGui::DragFloat( "Growth Speed", &m_RadiusSpeed, 0.05f, 0.0f, INFINITY );
+        ImGui::DragFloat( "Reward Timer", &m_RewardTimer, 0.05f, 0.0f, INFINITY );
+        ImGui::Separator();
+
         m_WavePrefab.Inspect( "Wave to Spawn" );
         m_ActivateSound.Inspect( "Activate Sound" );
         m_DeactivateSound.Inspect( "Deactivate Sound" );
         m_DamageSound.Inspect( "Damage Sound" );
 
+        ImGui::Separator();
         ImGui::Checkbox( "Is Active", &m_ChangeActive );
 
+        ImGui::Separator();
         Inspection::InspectArray< ItemStack >( "Activation cost", &m_ActivationCost, []( ItemStack* itemStack ) -> bool
         {
             return itemStack->Inspect();
         } );
 
-
+        ImGui::Separator();
         Inspection::InspectArray< AssetReference< Entity > >("Rewards",
          &m_RewardPrefabs, [](AssetReference< Entity >* reward) -> bool
         {
@@ -449,7 +456,8 @@
         { "DeactivateSound", &readDeactivateSound },
         { "DamageSound"    , &readDamageSound     },
 		{ "Rewards"        , &readRewardPrefabs   },
-		{ "CanBeRewarded"  , &readCanBeRewarded   }
+		{ "CanBeRewarded"  , &readCanBeRewarded   },
+        { "RewardTimer"    , &readRewardTimer     }
     };
 
     /// @brief	read the raidus from json
@@ -506,6 +514,11 @@
         Stream::Read(m_CanBeRewarded, json);
     }
 
+    void Generator::readRewardTimer(nlohmann::ordered_json const& json)
+    {
+       Stream::Read(m_RewardTimer, json);
+    }
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -523,6 +536,8 @@
         data[ "DeactivateSound"] = Stream::Write( m_DeactivateSound );
         data[ "DamageSound"    ] = Stream::Write( m_DamageSound );
         data[ "CanBeRewarded"  ] = Stream::Write( m_CanBeRewarded );
+
+        data[ "RewardTimer" ] = Stream::Write( m_RewardTimer );
 
         data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
         data[ "Rewards" ] = Stream::WriteArray(m_RewardPrefabs);
