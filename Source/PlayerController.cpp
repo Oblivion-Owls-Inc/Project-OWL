@@ -166,12 +166,12 @@
         {
             if (EventNameBegin == "HidePlayer")
             {
-                GetEntity()->GetComponent<EffectAnimator>()->SetIsPlaying(true);
+                m_EffectAnimator->SetIsPlaying(true);
                 return;
             }
             if (EventNameBegin == "ShowPlayer")
             {
-                GetEntity()->GetComponent<EffectAnimator>()->SetIsPlaying(false);
+                m_EffectAnimator->SetIsPlaying(false);
                 return;
             }
             // do thing on start
