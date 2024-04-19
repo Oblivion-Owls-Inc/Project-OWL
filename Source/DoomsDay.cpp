@@ -49,7 +49,7 @@ void DoomsDay::OnInit()
 {
     Behaviors< DoomsDay >()->AddComponent(this);
 
-    
+    m_RigidBody.Init(GetEntity());
 }
 
 /// @brief	called on exit, handles loss state
@@ -57,7 +57,7 @@ void DoomsDay::OnExit()
 {
     Behaviors< DoomsDay >()->RemoveComponent(this);
 
-    
+    m_RigidBody.Exit();
 }
 
 /// @brief  called every frame
@@ -113,7 +113,7 @@ DoomsDay::DoomsDay(const DoomsDay& other) :
     m_CatchupDistance(other.m_CatchupDistance),
     m_NormalDistance(other.m_NormalDistance),
     m_LoseDistance(other.m_LoseDistance),
-    m_LossEventName(other.m_LossEventName)
+    m_LossEventName(other.m_LossEventName),
 {}
 
 
@@ -138,20 +138,26 @@ void DoomsDay::SetHasLost()
 
 void DoomsDay::setCatchupSpeed()
 {
-    GetEntity()->GetComponent<RigidBody>()->SetVelocity(
-        glm::vec2{ 0, m_CatchupSpeed });
+    if (m_RigidBody)
+    {
+        m_RigidBody->SetVelocity( glm::vec2{ 0, m_CatchupSpeed });
+    }
 }
 
 void DoomsDay::setNormalSpeed()
 {
-    GetEntity()->GetComponent<RigidBody>()->SetVelocity(
-        glm::vec2{ 0, m_NormalSpeed });
+    if (m_RigidBody)
+    {
+        m_RigidBody->SetVelocity(glm::vec2{ 0, m_NormalSpeed });
+    }
 }
 
 void DoomsDay::setCloseSpeed()
 {
-    GetEntity()->GetComponent<RigidBody>()->SetVelocity(
-        glm::vec2{ 0, m_CloseSpeed });
+    if (m_RigidBody)
+    {
+        m_RigidBody->SetVelocity(glm::vec2{ 0, m_CloseSpeed });
+    }
 }
 
 //-----------------------------------------------------------------------------

@@ -89,6 +89,9 @@ private: // variables
     /// @brief  have we lost the game
     bool m_HasLost = false;
 
+
+    ComponentReference< RigidBody > m_RigidBody;
+
 //-----------------------------------------------------------------------------
 private: // private functions
 //-----------------------------------------------------------------------------
