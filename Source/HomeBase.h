@@ -13,6 +13,8 @@
 #include "ComponentReference.h"
 #include "AssetReference.h"
 #include "EventListener.h"
+#include "Sound.h"
+
 class Health;
 class SceneTransition;
 
@@ -103,13 +105,16 @@ private: // members
     /// @brief  the name of the event to listen for
     std::string m_EventNameDoom;
 
-    bool m_CanWin = false;
+    /// @brief  the sound to play when driving / in and out 
+    AssetReference< Sound > m_ActivateSound;
 
-    
+    /// @brief  the sound to play when the base breaks down 
+    AssetReference< Sound > m_DeactivateSound;
+
+    bool m_CanWin = false;
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
-
 
     /// @brief  inspector for this HomeBase
     virtual void Inspector() override;
@@ -147,6 +152,14 @@ private: // reading
     /// @brief  reads the EventNameEnd from a JSON file
     /// @param data    the JSON file to read from
     void readCameraPrefab(nlohmann::ordered_json const& data);
+
+    /// @brief reads the DriveSound from the JSON data
+    /// @param data - the JSON data to read from
+    void readDriveSound(nlohmann::ordered_json const& data);
+
+    /// @brief reads the break down sound from the JSON data
+    /// @param data - the JSON data to read from
+    void readDeactivateSound(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

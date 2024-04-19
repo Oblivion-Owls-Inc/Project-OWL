@@ -153,6 +153,10 @@
         m_ListenerLose.Init();
         m_ListenerDoom.Init();
         m_Camera.Init();
+
+        m_ActivateSound.Init();
+        m_DeactivateSound.Init();
+
     }
 
     /// @brief  called once when exiting the scene
@@ -191,6 +195,9 @@
         ImGui::InputText("Event Name End", &m_EventNameEnd);
         ImGui::InputText("Event Name Lose", &m_EventNameLose);
         ImGui::InputText("Event Name Doom", &m_EventNameDoom);
+        ImGui::Separator();
+        m_ActivateSound.Inspect("Drive Sound");
+        m_DeactivateSound.Inspect("Breakdown Sound");
         m_Camera.Inspect("Camera Prefab");
     }
 
@@ -249,6 +256,20 @@
         Stream::Read(m_Camera, data);
     }
 
+    /// @brief reads the DriveSound from the JSON data
+    /// @param data - the JSON data to read from
+    void HomeBase::readDriveSound(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_ActivateSound, data);
+    }
+
+    /// @brief reads the break down sound from the JSON data
+    /// @param data - the JSON data to read from
+    void HomeBase::readDeactivateSound(nlohmann::ordered_json const& data)
+    {
+       Stream::Read(m_DeactivateSound, data);
+    }
+
     
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -266,7 +287,9 @@
             { "EventNameEnd"         , &HomeBase::readEventNameEnd          },
             { "EventNameLose"        , &HomeBase::readEventNameLose         },
             { "EventNameDoom"        , &HomeBase::readEventNameDoom         },
-            { "CameraPrefab"         , &HomeBase::readCameraPrefab          }
+            { "CameraPrefab"         , &HomeBase::readCameraPrefab          },
+            { "DriveSound"           , &HomeBase::readDriveSound            },
+            { "DeactivateSound"      , &HomeBase::readDeactivateSound       }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -287,6 +310,9 @@
         json[ "EventNameLose"         ] = m_EventNameLose;
         json[ "EventNameDoom"         ] = m_EventNameDoom;
         json[ "CameraPrefab"          ] = Stream::Write(m_Camera);
+        json[ "DriveSound"            ] = Stream::Write(m_ActivateSound);
+        json[ "DeactivateSound"       ] = Stream::Write(m_DeactivateSound);
+
 
         return json;
     }
@@ -317,7 +343,10 @@
         m_EventNameBegin(other.m_EventNameBegin),
         m_EventNameEnd(other.m_EventNameEnd),
         m_EventNameLose(other.m_EventNameLose),
-        m_EventNameDoom(other.m_EventNameDoom)
+        m_EventNameDoom(other.m_EventNameDoom),
+        m_Camera(other.m_Camera),
+        m_ActivateSound(other.m_ActivateSound),
+        m_DeactivateSound(other.m_DeactivateSound)
     {
         m_Camera = other.m_Camera;
     }

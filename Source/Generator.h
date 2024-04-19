@@ -98,7 +98,6 @@ public: // methods
 private: // variables
 //-----------------------------------------------------------------------------
 
-
     /// @brief  is the generator active or not
     bool m_IsActive = false;  
 
@@ -115,7 +114,6 @@ private: // variables
     /// @brief  shrink ring to match edited value if true
     bool m_ShrinkRing = false;
 
-
     /// @brief  can activating the generator spawn a wave
     bool m_CanSpawnWave = true;
 
@@ -131,10 +129,8 @@ private: // variables
     /// @brief  radius the generator emits particles to
     float m_GrowthRadius = 1.0f;
 
-
     /// @brief  the cost of activating this Generator
     std::vector< ItemStack > m_ActivationCost = {};
-
 
     /// @brief  the transform of the generator
     ComponentReference< Transform > m_Transform;

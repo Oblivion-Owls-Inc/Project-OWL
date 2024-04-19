@@ -108,6 +108,7 @@
         m_Interactable    .Init( GetEntity() );
 
         m_WavePrefab     .SetOwnerName( GetName() );
+
         m_ActivateSound  .SetOwnerName( GetName() );
         m_DeactivateSound.SetOwnerName( GetName() );
         m_DamageSound    .SetOwnerName( GetName() );
