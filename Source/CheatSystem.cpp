@@ -337,7 +337,7 @@
             if (m_ToggleMaxLaserRange == false)
             {
                 m_PreviousLaserRange = laser->GetRange();
-                laser->SetRange(9999.0f);
+                laser->SetRange(999.0f);
                 m_ToggleMaxLaserRange = true;
             }
             else

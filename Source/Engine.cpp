@@ -49,6 +49,7 @@
 #include "Interactable.h"
 #include "SceneTransition.h"
 #include "DoomsDay.h"
+#include "MiningLaser.h"
 
 #include "ItemComponent.h"
 #include "HomeBase.h"
@@ -414,6 +415,7 @@
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
         { "BehaviorSystem<SceneTransition>"       , &addSystem< BehaviorSystem< SceneTransition        > > },
         { "BehaviorSystem<DoomsDay>"              , &addSystem< BehaviorSystem< DoomsDay               > > },
+        { "BehaviorSystem<MiningLaser>"           , &addSystem< BehaviorSystem< MiningLaser            > > },
 
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
         { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase      > >         },

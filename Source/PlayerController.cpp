@@ -61,37 +61,66 @@
 	    Behaviors< PlayerController >()->AddComponent( this );
 
 
-        m_Health.SetOnConnectCallback(
-            [ this ]()
-            {
-                m_Health->AddOnHealthChangedCallback(
-                    GetId(),
-                    std::bind( &PlayerController::playerRespawn, this )
-                );
-            }
-        );
-        m_Health.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Health->RemoveOnHealthChangedCallback( GetId() );
-            }
-        );
+        m_Health.SetOnConnectCallback( [ this ]()
+        {
+            m_Health->AddOnHealthChangedCallback(
+                GetId(),
+                std::bind( &PlayerController::playerRespawn, this )
+            );
+        } );
+        m_Health.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Health->RemoveOnHealthChangedCallback( GetId() );
+        } );
 
-        m_Collider.SetOnConnectCallback(
-            [ this ]()
+        m_Collider.SetOnConnectCallback( [ this ]()
+        {
+            m_Collider->AddOnCollisionEnterCallback(
+                GetId(),
+                std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
+            );
+
+
+            m_Collider->AddOnCollisionCallback(GetId(),
+                [this](Collider* collider, CollisionData const& collisionData)
+                {
+                    if (collider->GetRigidBody() == nullptr && collider->GetStaticBody() == nullptr)
+                    {
+                        return;
+                    }
+                    const glm::vec2 VerticleDirection(0.0f, 1.0f);
+
+                    float dotProduct = glm::dot(collisionData.normal, VerticleDirection);
+
+                    if (dotProduct > m_GroundCollisionThreshold) // If the player is colliding with the ground
+                    {
+                        m_IsJumping = false;
+
+                        m_CurrentCoyoteTime = 0.0f;
+                    }
+                }
+            );
+        } );
+        m_Collider.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Collider->RemoveOnCollisionEnterCallback( GetId() );
+            m_Collider->RemoveOnCollisionCallback     ( GetId() );
+        } );
+
+        m_Transform.SetOnConnectCallback( [ this ]()
+        {
+            m_Transform->AddOnTransformChangedCallback( GetId(), [ this ]()
             {
-                m_Collider->AddOnCollisionEnterCallback(
-                    GetId(),
-                    std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
-                );
-            }
-        );
-        m_Collider.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Collider->RemoveOnCollisionEnterCallback( GetId() );
-            }
-        );
+                if ( m_MiningLaser != nullptr && m_MiningLaser->GetTransform() != nullptr )
+                {
+                    m_MiningLaser->GetTransform()->SetTranslation( glm::vec2(m_Transform->GetMatrix() * glm::vec4( m_MiningLaserOffset, 0.0f, 1.0f )) );
+                }
+            } );
+        } );
+        m_Transform.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Transform->RemoveOnTransformChangedCallback( GetId() );
+        } );
 
         m_RigidBody     .Init( GetEntity() );
         m_AudioPlayer   .Init( GetEntity() );
@@ -105,8 +134,6 @@
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
 
-
-
         m_MoveHorizontal.SetOwnerName( GetName() );
         m_MoveVertical  .SetOwnerName( GetName() );
         m_FireLaser     .SetOwnerName( GetName() );
@@ -119,26 +146,6 @@
         m_AimHorizontal .Init();
         m_AimVertical   .Init();
         m_Interact      .Init();
-
-        m_Collider->AddOnCollisionCallback( GetId(),
-            [this](Collider* collider, CollisionData const& collisionData)
-            {
-                if (collider->GetRigidBody() == nullptr && collider->GetStaticBody() == nullptr)
-                {
-                    return;
-                }
-                const glm::vec2 VerticleDirection(0.0f, 1.0f);
-
-                float dotProduct = glm::dot(collisionData.normal, VerticleDirection);
-
-                if (dotProduct > m_GroundCollisionThreshold) // If the player is colliding with the ground
-                {
-                    m_IsJumping = false;
-                    
-                    m_CurrentCoyoteTime = 0.0f;
-                }
-            }
-        );
 
         /// Set the filter function for the listener
         m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
@@ -179,9 +186,7 @@
     /// @brief Removes this behavior from the behavior system on exit
     void PlayerController::OnExit()
     {
-        Behaviors<PlayerController>()->RemoveComponent(this);
-
-        m_Collider->RemoveOnCollisionCallback(GetId());
+        Behaviors< PlayerController >()->RemoveComponent( this );
 
         m_RigidBody     .Exit();
         m_AudioPlayer   .Exit();
@@ -208,9 +213,7 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        if (
-            m_RigidBody == nullptr
-        )
+        if ( m_RigidBody == nullptr || m_Transform == nullptr )
         {
             return;
         }
@@ -219,78 +222,54 @@
         glm::vec2 direction = { 0.0f, 0.0f };
 
         direction.x = m_MoveHorizontal != nullptr ? m_MoveHorizontal->GetAxis() : 0.0f;
-        direction.y = m_MoveVertical != nullptr ? m_MoveVertical->GetAxis() : 0.0f;
+        direction.y = m_MoveVertical   != nullptr ? m_MoveVertical  ->GetAxis() : 0.0f;
 
-        if ( direction != glm::vec2( 0 ) )
+        if ( direction != glm::vec2( 0.0f ) )
         {
-
-            direction = glm::normalize(direction);
-
-            /// If the player is moving diagonally, adjust the speed
-            if (direction.x != 0.0f && direction.y != 0.0f)
+            if ( direction.x > 0 )
             {
-                direction *= glm::sqrt(1.5f); /// Compensate for normalization.
+                direction.x *= m_HorizontalMoveforce[ 0 ];
+
+                m_Transform->SetScale( glm::vec2( -1.0f, 1.0f ) );
+            }
+            else if ( direction.x < 0 )
+            {
+                direction.x *= m_HorizontalMoveforce[ 1 ];
+
+                m_Transform->SetScale( glm::vec2( 1.0f, 1.0f ) );
             }
 
-
-            if (direction.x > 0)
+            if ( direction.y > 0 )
             {
-                // 0 is right
-                direction.x *= m_HorizontalMoveforce[0];
+                direction.y *= m_VerticalMoveforce[ 0 ];
 
-                if (Input()->GetKeyDown(GLFW_KEY_D))
+                if ( m_IsJumping == false || m_CurrentCoyoteTime <= m_MaxCoyoteTime )
                 {
-                    m_Sprite->SetFrameIndex(0);
-                    m_Transform->SetScale(glm::vec2(-1.0f, 1.0f));
-                }
-                    
-            }
-            else
-            {
-                // 1 is left
-                direction.x *= m_HorizontalMoveforce[1];
-
-                if (Input()->GetKeyDown(GLFW_KEY_A))
-                {
-                    m_Sprite->SetFrameIndex(0);
-                    m_Transform->SetScale(glm::vec2(1.0f, 1.0f));
-                }
-                    
-            }
-
-            if (direction.y > 0 )
-            {
-                // 2 is up
-                direction.y *= m_VerticalMoveforce[0];
-
-                if (m_IsJumping == false || m_CurrentCoyoteTime <= m_MaxCoyoteTime)
-                {
-                    m_RigidBody->ApplyVelocity(glm::vec2(0, m_JumpSpeed));
+                    m_RigidBody->ApplyVelocity( glm::vec2( 0, m_JumpSpeed ) );
                     m_IsJumping = true;
                     m_CurrentCoyoteTime = m_MaxCoyoteTime + 1; // Make sure that the player can't jump again
-                                                               // until they hit the ground.
+                    // until they hit the ground.
                 }
-
             }
             else
             {
-                // 3 is down
-
-                direction.y *= m_VerticalMoveforce[1];
+                direction.y *= m_VerticalMoveforce[ 1 ];
             }
 
-            if(m_AudioPlayer)
+            m_RigidBody->ApplyAcceleration( direction );
+
+            if ( m_AudioPlayer != nullptr )
+            {
                 m_AudioPlayer->Play();
+            }
         }
         else
         {
-            if (m_AudioPlayer)
+            if ( m_AudioPlayer != nullptr )
+            {
                 m_AudioPlayer->Stop();
+            }
         }
-
-
-       
-        m_RigidBody->ApplyAcceleration( direction );
 
         updateMiningLaser();
     }
@@ -304,40 +283,48 @@
     /// @brief  updates the mining laser
     void PlayerController::updateMiningLaser()
     {
-        if ( m_MiningLaser == nullptr )
+        if ( m_Transform == nullptr || m_MiningLaser == nullptr || m_MiningLaser->GetTransform() == nullptr )
         {
             return;
         }
 
-        m_MiningLaser->GetTransform()->SetTranslation( m_Transform->GetTranslation() );
-
-        if ( m_FireLaser != nullptr && m_FireLaser->GetDown() )
+        if ( m_FireLaser == nullptr || m_FireLaser->GetDown() == false )
         {
-            m_MiningLaser->SetIsFiring( true );
+            m_MiningLaser->SetIsFiring( false );
+            return;
+        }
 
-            glm::vec2 direction = { 0 , 0 };
-            if ( Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER ) >= 1.0f )
-            {
-                // Get the data from the right thumbstick.
-                direction.x = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X );
-                direction.y = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y );
-            }
-            else
-            {
-                direction = Input()->GetMousePosWorld() - m_Transform->GetTranslation();
-            }
-
-            m_MiningLaser->SetDirection(
-                direction == glm::vec2( 0.0f ) ?
-                    glm::vec2( 1.0f, 0.0f ) :
-                    glm::normalize( direction )
-            );
+        // get direction from player to aim laser
+        glm::vec2 direction = { 1.0f, 0.0f };
+        if ( m_AimHorizontal != nullptr && m_AimVertical != nullptr && Input()->IsControllerMostRecentInput() )
+        {
+            direction.x = m_AimHorizontal->GetAxis();
+            direction.y = m_AimVertical  ->GetAxis();
         }
         else
         {
-            m_MiningLaser->SetIsFiring( false );
+            direction = Input()->GetMousePosWorld() - m_Transform->GetTranslation();
         }
 
+
+        if ( direction.x > 0 )
+        {
+            m_Transform->SetScale( glm::vec2( -1.0f, 1.0f ) );
+        }
+        else if ( direction.x < 0 )
+        {
+            m_Transform->SetScale( glm::vec2( 1.0f, 1.0f ) );
+        }
+
+        // adjust direction to mouse to include laser offset
+        if ( m_AimHorizontal == nullptr || m_AimVertical == nullptr || Input()->IsControllerMostRecentInput() == false )
+        {
+            direction = Input()->GetMousePosWorld() - glm::vec2(m_Transform->GetMatrix() * glm::vec4( m_MiningLaserOffset, 0.0f, 1.0f ));
+        }
+
+        m_MiningLaser->GetTransform()->SetRotation( std::atan2( direction.y, direction.x ) );
+
+        m_MiningLaser->SetIsFiring( true );
     }
 
 
@@ -345,7 +332,7 @@
     void PlayerController::playerRespawn()
     {
         // If the player is dead
-        if (m_Health->GetHealth()->GetCurrent() <= 0)
+        if ( m_Health->GetHealth()->GetCurrent() <= 0 )
         {
             m_Transform->SetTranslation(m_PlayerRespawnLocation);
             m_Health->GetHealth()->Reset();
@@ -369,8 +356,8 @@
             return;
         }
         // Get the enemy behaviour component.
-        EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-        if (!enemy)
+        EnemyBehavior* enemy = other->GetEntity()->GetComponent< EnemyBehavior >();
+        if ( enemy == nullptr )
         {
             return;
         }
@@ -382,7 +369,7 @@
         if(m_Health)
         {
             // If the enemy collides with player, damage the player
-            m_Health->TakeDamage(enemy->GetDamage());
+            m_Health->TakeDamage( enemy->GetDamage() );
         }
 
         // Add physical reaction to enemy.
@@ -399,17 +386,18 @@
     {
         vectorInspector();
 
+        ImGui::DragFloat( "Jump Force"                , &m_JumpSpeed               , 0.05f,  0.0f, INFINITY );
+        ImGui::DragFloat( "Ground Collision Threshold", &m_GroundCollisionThreshold, 0.05f, -1.0f, 1.0f     );
+        ImGui::DragFloat( "Max Coyote Time"           , &m_MaxCoyoteTime           , 0.05f,  0.0f, INFINITY );
+
+        ImGui::DragFloat2( "mining laser offset", &m_MiningLaserOffset[ 0 ], 0.05f );
+
         m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
 
-        m_MoveVertical.Inspect( "Vertical Control Action" );
-        m_MoveHorizontal.Inspect( "Horizontal Control Action" );
-        m_FireLaser.Inspect( "Fire Laser Control Action" );
-        m_Interact.Inspect( "Interact Control Action" );
-
-        ImGui::DragFloat( "Jump Force", &m_JumpSpeed, 0.05f );
-        ImGui::DragFloat( "Ground Collision Threshold", &m_GroundCollisionThreshold, 0.05f );
-        ImGui::DragFloat( "Max Coyote Time", &m_MaxCoyoteTime, 0.05f );
         m_MoveVertical  .Inspect( "Vertical Control Action"   );
+        m_MoveHorizontal.Inspect( "Horizontal Control Action" );
+        m_FireLaser     .Inspect( "Fire Laser Control Action" );
+        m_Interact      .Inspect( "Interact Control Action"   );
         m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
         m_AimVertical   .Inspect( "Vertical Aim Action"       );
         ImGui::InputText("Event Name Begin", &m_EventNameBegin);
@@ -424,7 +412,7 @@
     /// @brief Helper function for inspector.
     void PlayerController::vectorInspector()
     {
-        ImGui::DragFloat2( "Vertical Moveforce",   &m_VerticalMoveforce[ 0 ],   0.05f );
+        ImGui::DragFloat2( "Vertical Moveforce"  , &m_VerticalMoveforce  [ 0 ], 0.05f );
         ImGui::DragFloat2( "Horizontal Moveforce", &m_HorizontalMoveforce[ 0 ], 0.05f );
 
         // Change the respawn location in the editor.
@@ -451,6 +439,7 @@
         m_HorizontalMoveforce = Stream::Read<2, float>(data);
     }
 
+
     /// @brief Read in the respawn location for the player.
     /// @param data - the JSON file to read from.
     void PlayerController::readRespawnLocation(nlohmann::ordered_json const& data)
@@ -458,20 +447,21 @@
         m_PlayerRespawnLocation = Stream::Read<2, float>(data);
     }
 
-    /// @brief  reads the name of the MiningLaser entity this PlayerController uses
+
+    /// @brief  reads the JumpSpeed
     /// @param  data    the JSON data to read from
-    void PlayerController::readMiningLaserEntity( nlohmann::ordered_json const& data )
+    void PlayerController::readJumpSpeed(nlohmann::ordered_json const& data)
     {
-        Stream::Read( m_MiningLaserEntity, data );
+        Stream::Read(m_JumpSpeed, data);
     }
 
-
-    /// @brief  the control Action used for vertical movement
-    /// @param  data    the JSON data to read from
-    void PlayerController::readMoveVertical( nlohmann::ordered_json const& data )
+    /// @brief Read in the is jumping state.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readIsJumping(nlohmann::ordered_json const& data)
     {
-        Stream::Read( m_MoveVertical, data );
+        Stream::Read(m_IsJumping, data);
     }
+
 
     /// @brief Read in the ground collision threshold.
     /// @param data - the JSON file to read from.
@@ -487,11 +477,28 @@
         Stream::Read(m_MaxCoyoteTime, data);
     }
 
-    /// @brief Read in the is jumping state.
-    /// @param data - the JSON file to read from.
-    void PlayerController::readIsJumping(nlohmann::ordered_json const& data)
+
+    /// @brief  reads the offset from the player of the mining laser's position (when facing left)
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMiningLaserOffset( nlohmann::ordered_json const& data )
     {
-        Stream::Read(m_IsJumping, data);
+        Stream::Read( &m_MiningLaserOffset, data );
+    }
+
+
+    /// @brief  reads the name of the MiningLaser entity this PlayerController uses
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMiningLaserEntity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MiningLaserEntity, data );
+    }
+
+
+    /// @brief  the control Action used for vertical movement
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMoveVertical( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MoveVertical, data );
     }
 
     /// @brief  the control Action used for vertical movement
@@ -515,10 +522,6 @@
         Stream::Read( m_Interact, data );
     }
 
-    void PlayerController::readJumpSpeed(nlohmann::ordered_json const& data)
-    {
-        Stream::Read(m_JumpSpeed, data);
-    }
     /// @brief  reads the control action for horizontal aim
     /// @param  data    the JSON data to read from
     void PlayerController::readAimHorizontal( nlohmann::ordered_json const& data )
@@ -526,6 +529,8 @@
         Stream::Read( m_AimHorizontal, data );
     }
 
+    /// @brief  reads the control action for vertical aim
+    /// @param  data    the JSON data to read from
     void PlayerController::readAimVertical(nlohmann::ordered_json const& data)
     {
         Stream::Read(m_AimVertical, data);
@@ -551,15 +556,16 @@
             { "VerticalMoveforce"       , &PlayerController::readVerticalMoveForce        },
             { "HorizontalMoveforce"     , &PlayerController::readHorizontalMoveForce      },
             { "RespawnLocation"         , &PlayerController::readRespawnLocation          },
+            { "JumpSpeed"               , &PlayerController::readJumpSpeed                },
+            { "IsJumping"               , &PlayerController::readIsJumping                },
+            { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
+            { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            },
+            { "MiningLaserOffset"       , &PlayerController::readMiningLaserOffset        },
             { "MiningLaserEntity"       , &PlayerController::readMiningLaserEntity        },
             { "MoveVertical"            , &PlayerController::readMoveVertical             },
             { "MoveHorizontal"          , &PlayerController::readMoveHorizontal           },
             { "FireLaser"               , &PlayerController::readFireLaser                },
             { "Interact"                , &PlayerController::readInteract                 },
-            { "JumpSpeed"               , &PlayerController::readJumpSpeed                },
-            { "IsJumping"               , &PlayerController::readIsJumping                },
-            { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
-            { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            },
             { "AimVertical"             , &PlayerController::readAimVertical              },
             { "AimHorizontal"           , &PlayerController::readAimHorizontal            },
             { "EventNameBegin"          , &PlayerController::readEventNameBegin           },
@@ -619,22 +625,23 @@
     /// @param other A PlayerController to copy.
     PlayerController::PlayerController(PlayerController const& other):
         Behavior( other ),
-        m_PlayerRespawnLocation   ( other.m_PlayerRespawnLocation ),
-        m_MoveVertical            ( other.m_MoveVertical          ),
-        m_MoveHorizontal          ( other.m_MoveHorizontal        ),
-        m_FireLaser               ( other.m_FireLaser             ),
-        m_Interact                ( other.m_Interact              ),
-        m_VerticalMoveforce       ( other.m_VerticalMoveforce     ),
-        m_HorizontalMoveforce     ( other.m_HorizontalMoveforce   ),
-        m_JumpSpeed               ( other.m_JumpSpeed             ),
-        m_IsJumping               ( other.m_IsJumping             ),
+        m_VerticalMoveforce       ( other.m_VerticalMoveforce        ),
+        m_HorizontalMoveforce     ( other.m_HorizontalMoveforce      ),
+        m_PlayerRespawnLocation   ( other.m_PlayerRespawnLocation    ),
+        m_JumpSpeed               ( other.m_JumpSpeed                ),
+        m_IsJumping               ( other.m_IsJumping                ),
         m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
-        m_MaxCoyoteTime           ( other.m_MaxCoyoteTime         ),
-        m_AimVertical             ( other.m_AimVertical           ),
-        m_AimHorizontal           ( other.m_AimHorizontal         ),
-        m_EventNameBegin          ( other.m_EventNameBegin        )
-    {
-    }
+        m_MaxCoyoteTime           ( other.m_MaxCoyoteTime            ),
+        m_EventNameBegin          ( other.m_EventNameBegin           ),
+        m_MiningLaserOffset       ( other.m_MiningLaserOffset        ),
+        m_MoveVertical            ( other.m_MoveVertical             ),
+        m_MoveHorizontal          ( other.m_MoveHorizontal           ),
+        m_FireLaser               ( other.m_FireLaser                ),
+        m_Interact                ( other.m_Interact                 ),
+        m_AimVertical             ( other.m_AimVertical              ),
+        m_AimHorizontal           ( other.m_AimHorizontal            ),
+        m_MiningLaserEntity       ( other.m_MiningLaserEntity, { &m_MiningLaser } )
+    {}
 
 
 //--------------------------------------------------------------------------------    

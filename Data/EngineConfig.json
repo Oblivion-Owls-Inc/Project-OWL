@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                84,
-                345
+                1025,
+                591
             ],
             "WindowName": "Dig Deeper",
             "VSync": false
@@ -301,6 +301,7 @@
             "CollisionSteps": 8,
             "GridSize": 0.25
         },
+        "BehaviorSystem<MiningLaser>": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
@@ -342,11 +343,11 @@
             "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
-                "AssetLibrary<AnimationAsset>": true,
+                "AssetLibrary<AnimationAsset>": false,
                 "AssetLibrary<Entity>": true,
-                "AssetLibrary<Sound>": true,
-                "AssetLibrary<Texture>": true,
-                "AssetLibrary<TransformAnimation>": true,
+                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Texture>": false,
+                "AssetLibrary<TransformAnimation>": false,
                 "AudioSystem": false,
                 "BehaviorSystem<Animation>": false,
                 "BehaviorSystem<Behavior>": false,
@@ -355,6 +356,7 @@
                 "BehaviorSystem<EffectAnimator>": false,
                 "BehaviorSystem<EnemyBehavior>": false,
                 "BehaviorSystem<Generator>": false,
+                "BehaviorSystem<MiningLaser>": false,
                 "BehaviorSystem<PauseComponent>": false,
                 "BehaviorSystem<PlayerController>": false,
                 "BehaviorSystem<Popup>": false,

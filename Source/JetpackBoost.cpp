@@ -104,41 +104,44 @@ void JetpackBoost::OnUpdate(float dt)
     if (!m_Initialized)
         return;
 
+    float targetAngle = 0.0f;
+
     // goin up
     if (m_InputYAxis->GetAxis() > 0.0f)
     {
         m_Flame->SetContinuous(true);
         m_Sound->Play();
 
-        // tilt when trying to move left/right
-        if (m_InputXAxis->GetAxis())
-        {
-            if (m_Angle < m_MaxAngle) m_Angle += m_AngleSpeed * dt;
-            else                      m_Angle = m_MaxAngle;
-        }
-        else
-        {
-            if (m_Angle > 0.0f)     m_Angle -= m_AngleSpeed * dt;
-            else                    m_Angle = 0.0f;
-        }
+        targetAngle = m_MaxAngle * -Sign( m_InputXAxis->GetAxis() );
     }
     // not goin up
     else
     {
         m_Flame->SetContinuous(false);
         m_Sound->Stop();
-        if (m_Angle > 0.0f)     m_Angle -= m_AngleSpeed * dt;
-        else                    m_Angle = 0.0f;
+    }
+
+    // rotate towards target
+    if ( std::abs( m_Angle - targetAngle ) < m_AngleSpeed * dt )
+    {
+        m_Angle = targetAngle;
+    }
+    else if ( m_Angle < targetAngle )
+    {
+        m_Angle += m_AngleSpeed * dt;
+    }
+    else
+    {
+        m_Angle -= m_AngleSpeed * dt;
     }
 
     // which way is player facing
     float xscale = m_PTransform->GetScale().x;
 
     // rotate player and particle direction
-    float angle = m_Angle * xscale;
-    m_PTransform->SetRotation(angle);
+    m_PTransform->SetRotation(m_Angle);
     ParticleSystem::EmitData fdata = m_Flame->GetEmitData();
-    fdata.direction = downAngle + angle;
+    fdata.direction = downAngle + m_Angle;
     m_Flame->SetEmitData(fdata);
 }
 

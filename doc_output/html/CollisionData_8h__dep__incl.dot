@@ -54,6 +54,7 @@ digraph "Source/CollisionData.h"
   Node18 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node26 [label="Source/MiningLaser.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$MiningLaser_8h.html",tooltip="Digging laser controllable by an entity."];
   Node26 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node26 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node28 [label="Source/MiningLaser.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MiningLaser_8cpp.html",tooltip="Digging laser controllable by an entity."];
   Node26 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
