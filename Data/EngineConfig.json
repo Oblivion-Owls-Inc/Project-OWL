@@ -276,7 +276,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "StartingSceneName": "MainMenu",
+            "StartingSceneName": "SplashScreen",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
