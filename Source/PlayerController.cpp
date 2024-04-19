@@ -58,7 +58,7 @@
     /// @brief Adds this behavior to the behavior system on init.
     void PlayerController::OnInit()
     {
-	    Behaviors< PlayerController >()->AddComponent( this );
+        Behaviors< PlayerController >()->AddComponent( this );
 
 
         m_Health.SetOnConnectCallback( [ this ]()
