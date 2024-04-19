@@ -222,7 +222,12 @@
     /// @brief  Gets called once when the engine starts
     void SceneSystem::OnInit()
     {
-        m_NextSceneName = m_StartingSceneName;
+        #ifndef DEBUG
+            m_NextSceneName = m_StartingSceneName;
+        #else
+            m_NextSceneName = m_AutosaveName;
+        #endif
+
         getSceneNames();
     }
 
