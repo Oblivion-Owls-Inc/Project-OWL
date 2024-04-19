@@ -258,12 +258,25 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "Press UI Button",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "StartingSceneName": "MainMenu",
+            "StartingSceneName": "SplashScreen",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
