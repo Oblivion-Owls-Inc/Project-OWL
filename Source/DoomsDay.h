@@ -89,9 +89,10 @@ private: // variables
     /// @brief  have we lost the game
     bool m_HasLost = false;
 
-
+    /// @brief The rigid body of the object
     ComponentReference< RigidBody > m_RigidBody;
 
+    /// @brief The transform of the object
     ComponentReference<Transform> m_Transform;
 
 //-----------------------------------------------------------------------------

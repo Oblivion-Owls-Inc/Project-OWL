@@ -49,13 +49,17 @@ public: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
-    std::string m_EventName;
+    /// @brief the name of the event to emit on init
+    std::string m_InitEventName;
+
+    /// @brief the name of the event to emit on exit
+    std::string m_ExitEventName;
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
-    void EmitEvent() const;
+    void EmitEvent(std::string EventName) const;
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -73,6 +77,14 @@ private: // reading
     /// @brief  reads the event name from JSON
     /// @param  data    the JSON data to read
     void readEventName( nlohmann::ordered_json const& data );
+
+    /// @brief reads the init event name from JSON
+    /// @param data - the JSON data to read
+    void readInitEventName( nlohmann::ordered_json const& data );
+
+    /// @brief reads the exit event name from JSON
+    /// @param data - the JSON data to read
+    void readExitEventName( nlohmann::ordered_json const& data );
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

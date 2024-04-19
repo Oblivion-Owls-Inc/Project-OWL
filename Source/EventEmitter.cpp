@@ -42,13 +42,19 @@ EventEmitter::EventEmitter() :
     /// @brief  called once when entering the scene
 void EventEmitter::OnInit()
 {
-    EmitEvent();
+    if (!m_InitEventName.empty())
+    {
+        EmitEvent(m_InitEventName);
+    }
 }
 
 /// @brief  called once when exiting the scene
 void EventEmitter::OnExit()
 {
-    EmitEvent();
+    if (!m_ExitEventName.empty())
+    {
+        EmitEvent(m_ExitEventName);
+    }
 }
 
 
@@ -56,10 +62,10 @@ void EventEmitter::OnExit()
 // private: methods
 //-----------------------------------------------------------------------------
 
-void EventEmitter::EmitEvent() const
+void EventEmitter::EmitEvent(std::string EventName) const
 {
-    Events()->BroadcastEvent< std::string >(m_EventName);
-    Debug() << "Event Emitted: " << m_EventName << std::endl;
+    Events()->BroadcastEvent< std::string >(EventName);
+    Debug() << "Event Emitted: " << EventName << std::endl;
 }
 
 //-----------------------------------------------------------------------------
@@ -71,7 +77,9 @@ void EventEmitter::EmitEvent() const
 /// @brief  shows the inspector for EventEmitter
 void EventEmitter::Inspector()
 {
-    ImGui::InputText("Event Name", &m_EventName);
+    ImGui::InputText("Init Event Name", &m_InitEventName);
+    ImGui::Separator();
+    ImGui::InputText("Exit Event Name", &m_ExitEventName);
 }
 
 
@@ -79,9 +87,14 @@ void EventEmitter::Inspector()
 // private: reading
 //-----------------------------------------------------------------------------
 
-void EventEmitter::readEventName(nlohmann::ordered_json const& data)
+void EventEmitter::readInitEventName(nlohmann::ordered_json const& data)
 {
-    Stream::Read(m_EventName, data);
+    Stream::Read(m_InitEventName, data);
+}
+
+void EventEmitter::readExitEventName(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_ExitEventName, data);
 }
 
 //-----------------------------------------------------------------------------
@@ -94,7 +107,8 @@ void EventEmitter::readEventName(nlohmann::ordered_json const& data)
 ReadMethodMap< ISerializable > const& EventEmitter::GetReadMethods() const
 {
     static ReadMethodMap< EventEmitter > const readMethods = {
-        { "EventName", &EventEmitter::readEventName }
+        { "InitEventName", &EventEmitter::readInitEventName },
+        { "ExitEventName", &EventEmitter::readExitEventName }
     };
 
     return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -107,7 +121,8 @@ nlohmann::ordered_json EventEmitter::Write() const
 {
     nlohmann::ordered_json json = nlohmann::ordered_json::object();
 
-    json["EventName"] = m_EventName;
+    json["InitEventName"] = m_InitEventName;
+    json["ExitEventName"] = m_ExitEventName;
 
     return json;
 }
@@ -134,7 +149,9 @@ EventEmitter* EventEmitter::Clone() const
     /// @brief  copy-constructor for the EventEmitter
     /// @param  other   the other EventEmitter to copy
 EventEmitter::EventEmitter(EventEmitter const& other) :
-    Component(other), m_EventName(other.m_EventName)
+    Component(other), 
+    m_InitEventName(other.m_InitEventName), 
+    m_ExitEventName(other.m_ExitEventName)
 {}
 
 

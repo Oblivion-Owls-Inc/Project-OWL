@@ -48,9 +48,9 @@ void ScreenShake::OnInit()
     });
 
     m_Listener.SetResponseFunction([&](std::string const& EventName)
-	{
+    {
             m_Active = !m_Active;
-	});
+    });
 
     m_Listener.Init();
     m_Transform.Init(GetEntity());
@@ -88,16 +88,17 @@ void ScreenShake::OnFixedUpdate()
 {
     float deltaTime = GameEngine()->GetFixedFrameDuration();
     if (m_Active)
-	{
-		ShakeScreen( deltaTime );
-	}
+    {
+        ShakeScreen( deltaTime );
+    }
 }
 
 /// @brief  called once when exiting the scene
 void ScreenShake::OnExit()
 {
     m_Listener.Exit();
-    
+    m_Transform.Exit();
+
     Behaviors<Behavior>()->RemoveComponent(this);
 }
 
@@ -187,14 +188,14 @@ void ScreenShake::readShakeXRange(nlohmann::ordered_json const& data)
 /// @param data - the JSON data to read froma
 void ScreenShake::readShakeYRange(nlohmann::ordered_json const& data)
 {
-	Stream::Read(&m_ShakeYRange, data);
+    Stream::Read(&m_ShakeYRange, data);
 }
 
 /// @brief reads the shake rotation range from the JSON data
 /// @param data - the JSON data to read from
 void ScreenShake::readShakeRotationRange(nlohmann::ordered_json const& data)
 {
-	Stream::Read(&m_ShakeRotationRange, data);
+    Stream::Read(&m_ShakeRotationRange, data);
 }
 
 //-----------------------------------------------------------------------------
@@ -208,9 +209,9 @@ ReadMethodMap< ISerializable > const& ScreenShake::GetReadMethods() const
 {
     static ReadMethodMap< ScreenShake > const readMethods = {
         { "EventName"    , &ScreenShake::readEventName      },
-		{ "ShakeDuration", &ScreenShake::readShakeDuration  },
-		{ "ShakeXRange",   &ScreenShake::readShakeXRange    },
-		{ "ShakeYRange",   &ScreenShake::readShakeYRange    },
+        { "ShakeDuration", &ScreenShake::readShakeDuration  },
+        { "ShakeXRange",   &ScreenShake::readShakeXRange    },
+        { "ShakeYRange",   &ScreenShake::readShakeYRange    },
         { "ShakeRotationRange", &ScreenShake::readShakeRotationRange }
     };
 

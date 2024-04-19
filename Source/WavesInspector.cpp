@@ -467,9 +467,7 @@ void WavesBehavior::guiSpawners()
 void WavesBehavior::guiEvent()
 {
 	// general inspector info
-	char title[20];
-	snprintf(title, sizeof(title), "Event:");
-	if (ImGui::TreeNode(title))
+	if (ImGui::TreeNode("Event: "))
 	{
 		ImGui::InputText("Event Name", &eventName);
 
