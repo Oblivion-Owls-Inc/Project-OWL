@@ -87,15 +87,6 @@ public: // accessors
     void SetCollisionLayers( CollisionLayerFlags collisionLayers );
 
 
-    /// @brief  gets the direction that the beam is firing in
-    /// @return the direction that the beam is firing in
-    glm::vec2 const& GetDirection() const;
-
-    /// @brief  sets the direction that the beam is firing in
-    /// @param  direction   the direction that the beam is firing in
-    void SetDirection( glm::vec2 const& direction );
-
-
     /// @brief  gets whether the beam is firing
     /// @return whether the beam is firing
     bool GetIsFiring() const;
@@ -164,9 +155,6 @@ private: // members
     /// @brief  which layers the laser collides with
     CollisionLayerFlags m_CollisionLayers = 0;
 
-
-    /// @brief  the direction to aim the laser in
-    glm::vec2 m_Direction = { 1.0f, 0.0f };
 
     /// @brief  whether the laser is active
     bool m_IsFiring = false;
@@ -262,10 +250,6 @@ private: // reading
     /// @param  data the json data to read from
     void readCollideWithLayers( nlohmann::ordered_json const& data );
 
-
-    /// @brief  reads the direction the laser fires in
-    /// @param  data the json data to read from
-    void readDirection( nlohmann::ordered_json const& data );
 
     /// @brief  reads whether the beam is firing
     /// @param  data the json data to read from

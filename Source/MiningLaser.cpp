@@ -119,21 +119,6 @@
     }
 
 
-    /// @brief  gets the direction that the beam is firing in
-    /// @return the direction that the beam is firing in
-    glm::vec2 const& MiningLaser::GetDirection() const
-    {
-        return m_Direction;
-    }
-
-    /// @brief  sets the direction that the beam is firing in
-    /// @param  direction   the direction that the beam is firing in
-    void MiningLaser::SetDirection( glm::vec2 const& direction )
-    {
-        m_Direction = direction;
-    }
-
-
     /// @brief  gets whether the beam is firing
     /// @return whether the beam is firing
     bool MiningLaser::GetIsFiring() const
@@ -170,7 +155,7 @@
     /// @brief  called once when entering the scene
     void MiningLaser::OnInit()
     {
-        Behaviors< Behavior >()->AddComponent( this );
+        Behaviors< MiningLaser >()->AddComponent( this );
 
         m_Transform  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
@@ -183,7 +168,7 @@
     /// @brief  called once when exiting the scene
     void MiningLaser::OnExit()
     {
-        Behaviors< Behavior >()->RemoveComponent( this );
+        Behaviors< MiningLaser >()->RemoveComponent( this );
 
         m_Transform  .Exit();
         m_AudioPlayer.Exit();
@@ -239,13 +224,13 @@
     /// @param  tileDamage  the amount of damage to deal to tiles. May be called recursively if damage overkills
     void MiningLaser::fireLaser( float tileDamage )
     {
-        RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), m_Direction, m_Range, m_CollisionLayers );
+        float angle = m_Transform->GetRotation();
+        glm::vec2 direction = glm::vec2( std::cos( angle ), std::sin( angle ) );
+        RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), direction, m_Range, m_CollisionLayers );
         m_beamLength = hit.distance;
-        float angle = std::atan2( m_Direction.y, m_Direction.x );
 
         m_BeamSprite->SetOpacity( 1.0f );
-        m_BeamSprite->SetLength( m_beamLength );
-        m_Transform->SetRotation( angle );
+        m_BeamSprite->SetLength ( m_beamLength );
 
         if ( m_AudioPlayer != nullptr )
         {
@@ -345,12 +330,6 @@
 
         m_CollisionLayers.Inspect( "Collsion Layers" );
 
-        float angle = std::atan2( m_Direction.y, m_Direction.x );
-        if ( ImGui::SliderAngle( "Direction", &angle, -180.0f, 180.0f ) )
-        {
-            m_Direction = glm::vec2( std::cos( angle ), std::sin( angle ) );
-        }
-
         ImGui::Checkbox( "Is Firing", &m_IsFiring );
     }
 
@@ -414,14 +393,6 @@
         Stream::Read( m_CollisionLayers, data );
     }
 
-
-    /// @brief  reads the direction the laser fires in
-    /// @param  data the json data to read from
-    void MiningLaser::readDirection( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( &m_Direction, data );
-    }
-
     /// @brief  reads whether the beam is firing
     /// @param  data the json data to read from
     void MiningLaser::readIsFiring( nlohmann::ordered_json const& data )
@@ -447,7 +418,6 @@
             { "BeamSpritePhaseSpeed", &MiningLaser::readBeamSpritePhaseSpeed },
             { "DamageRate"          , &MiningLaser::readDamageRate           },
             { "CollideWithLayers"   , &MiningLaser::readCollideWithLayers    },
-            { "Direction"           , &MiningLaser::readDirection            },
             { "IsFiring"            , &MiningLaser::readIsFiring             }
         };
 
@@ -468,7 +438,6 @@
         json[ "BeamSpritePhaseSpeed" ] = Stream::Write( m_BeamSpritePhaseSpeed );
         json[ "DamageRate"           ] = Stream::Write( m_DamageRate           );
         json[ "CollideWithLayers"    ] = Stream::Write( m_CollisionLayers      );
-        json[ "Direction"            ] = Stream::Write( m_Direction            );
         json[ "IsFiring"             ] = Stream::Write( m_IsFiring             );
 
         return json;
@@ -489,7 +458,6 @@
         m_BeamSpritePhaseSpeed( other.m_BeamSpritePhaseSpeed ),
         m_DamageRate          ( other.m_DamageRate           ),
         m_CollisionLayers     ( other.m_CollisionLayers      ),
-        m_Direction           ( other.m_Direction            ),
         m_IsFiring            ( other.m_IsFiring             ),
         m_AccumulatedDamage   ( other.m_AccumulatedDamage    ),
         m_TilemapEntity       ( other.m_TilemapEntity, { &m_DestructibleTilemap } )

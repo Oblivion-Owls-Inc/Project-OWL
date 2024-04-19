@@ -89,6 +89,21 @@
             }
         );
 
+        m_Transform.SetOnConnectCallback( [ this ]()
+        {
+            m_Transform->AddOnTransformChangedCallback( GetId(), [ this ]()
+            {
+                if ( m_MiningLaser != nullptr && m_MiningLaser->GetTransform() != nullptr )
+                {
+                    m_MiningLaser->GetTransform()->SetTranslation( glm::vec2( m_Transform->GetMatrix()[ 3 ] ) + m_MiningLaserOffset * m_Transform->GetScale() );
+                }
+            } );
+        } );
+        m_Transform.SetOnDisconnectCallback( [ this ]()
+        {
+            m_Transform->RemoveOnTransformChangedCallback( GetId() );
+        } );
+
         m_RigidBody  .Init( GetEntity() );
         m_AudioPlayer.Init( GetEntity() );
         m_Transform  .Init( GetEntity() );
@@ -162,9 +177,7 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        if (
-            m_RigidBody == nullptr
-        )
+        if ( m_RigidBody == nullptr )
         {
             return;
         }
@@ -250,34 +263,27 @@
     /// @brief  updates the mining laser
     void PlayerController::updateMiningLaser()
     {
-        if ( m_MiningLaser == nullptr )
+        if ( m_MiningLaser == nullptr || m_MiningLaser->GetTransform() == nullptr )
         {
             return;
         }
-
-        m_MiningLaser->GetTransform()->SetTranslation( m_Transform->GetTranslation() );
 
         if ( m_FireLaser != nullptr && m_FireLaser->GetDown() )
         {
             m_MiningLaser->SetIsFiring( true );
 
-            glm::vec2 direction = { 0 , 0 };
-            if ( Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER ) >= 1.0f )
+            glm::vec2 direction = { 1.0f, 0.0f };
+            if ( m_AimHorizontal != nullptr && m_AimVertical != nullptr && Input()->IsControllerMostRecentInput() )
             {
-                // Get the data from the right thumbstick.
-                direction.x = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X );
-                direction.y = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y );
+                direction.x = m_AimHorizontal->GetAxis();
+                direction.y = m_AimVertical  ->GetAxis();
             }
             else
             {
                 direction = Input()->GetMousePosWorld() - m_Transform->GetTranslation();
             }
 
-            m_MiningLaser->SetDirection(
-                direction == glm::vec2( 0.0f ) ?
-                    glm::vec2( 1.0f, 0.0f ) :
-                    glm::normalize( direction )
-            );
+            m_MiningLaser->GetTransform()->SetRotation( std::atan2( direction.y, direction.x ) );
         }
         else
         {
@@ -291,7 +297,7 @@
     void PlayerController::playerRespawn()
     {
         // If the player is dead
-        if (m_Health->GetHealth()->GetCurrent() <= 0)
+        if ( m_Health->GetHealth()->GetCurrent() <= 0 )
         {
             m_Transform->SetTranslation(m_PlayerRespawnLocation);
             m_Health->GetHealth()->Reset();
@@ -304,16 +310,16 @@
     void PlayerController::onCollisionEnter( Collider* other )
     {
         // Get the enemy behaviour component.
-        EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-        if (!enemy)
+        EnemyBehavior* enemy = other->GetEntity()->GetComponent< EnemyBehavior >();
+        if ( enemy == nullptr )
         {
             return;
         }
 
-        if(m_Health)
+        if ( m_Health != nullptr )
         {
             // If the enemy collides with player, damage the player
-            m_Health->TakeDamage(enemy->GetDamage());
+            m_Health->TakeDamage( enemy->GetDamage() );
         }
 
         // Add physical reaction to enemy.
@@ -330,17 +336,18 @@
     {
         vectorInspector();
 
+        ImGui::DragFloat( "Jump Force"                , &m_JumpSpeed               , 0.05f,  0.0f, INFINITY );
+        ImGui::DragFloat( "Ground Collision Threshold", &m_GroundCollisionThreshold, 0.05f, -1.0f, 1.0f     );
+        ImGui::DragFloat( "Max Coyote Time"           , &m_MaxCoyoteTime           , 0.05f,  0.0f, INFINITY );
+
+        ImGui::DragFloat2( "mining laser offset", &m_MiningLaserOffset[ 0 ], 0.05f );
+
         m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
 
-        m_MoveVertical.Inspect( "Vertical Control Action" );
-        m_MoveHorizontal.Inspect( "Horizontal Control Action" );
-        m_FireLaser.Inspect( "Fire Laser Control Action" );
-        m_Interact.Inspect( "Interact Control Action" );
-
-        ImGui::DragFloat( "Jump Force", &m_JumpSpeed, 0.05f );
-        ImGui::DragFloat( "Ground Collision Threshold", &m_GroundCollisionThreshold, 0.05f );
-        ImGui::DragFloat( "Max Coyote Time", &m_MaxCoyoteTime, 0.05f );
         m_MoveVertical  .Inspect( "Vertical Control Action"   );
+        m_MoveHorizontal.Inspect( "Horizontal Control Action" );
+        m_FireLaser     .Inspect( "Fire Laser Control Action" );
+        m_Interact      .Inspect( "Interact Control Action"   );
         m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
         m_AimVertical   .Inspect( "Vertical Aim Action"       );
     }
@@ -354,7 +361,7 @@
     /// @brief Helper function for inspector.
     void PlayerController::vectorInspector()
     {
-        ImGui::DragFloat2( "Vertical Moveforce",   &m_VerticalMoveforce[ 0 ],   0.05f );
+        ImGui::DragFloat2( "Vertical Moveforce"  , &m_VerticalMoveforce  [ 0 ], 0.05f );
         ImGui::DragFloat2( "Horizontal Moveforce", &m_HorizontalMoveforce[ 0 ], 0.05f );
 
         // Change the respawn location in the editor.
@@ -381,6 +388,7 @@
         m_HorizontalMoveforce = Stream::Read<2, float>(data);
     }
 
+
     /// @brief Read in the respawn location for the player.
     /// @param data - the JSON file to read from.
     void PlayerController::readRespawnLocation(nlohmann::ordered_json const& data)
@@ -388,20 +396,21 @@
         m_PlayerRespawnLocation = Stream::Read<2, float>(data);
     }
 
-    /// @brief  reads the name of the MiningLaser entity this PlayerController uses
+
+    /// @brief  reads the JumpSpeed
     /// @param  data    the JSON data to read from
-    void PlayerController::readMiningLaserEntity( nlohmann::ordered_json const& data )
+    void PlayerController::readJumpSpeed(nlohmann::ordered_json const& data)
     {
-        Stream::Read( m_MiningLaserEntity, data );
+        Stream::Read(m_JumpSpeed, data);
     }
 
-
-    /// @brief  the control Action used for vertical movement
-    /// @param  data    the JSON data to read from
-    void PlayerController::readMoveVertical( nlohmann::ordered_json const& data )
+    /// @brief Read in the is jumping state.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readIsJumping(nlohmann::ordered_json const& data)
     {
-        Stream::Read( m_MoveVertical, data );
+        Stream::Read(m_IsJumping, data);
     }
+
 
     /// @brief Read in the ground collision threshold.
     /// @param data - the JSON file to read from.
@@ -417,11 +426,28 @@
         Stream::Read(m_MaxCoyoteTime, data);
     }
 
-    /// @brief Read in the is jumping state.
-    /// @param data - the JSON file to read from.
-    void PlayerController::readIsJumping(nlohmann::ordered_json const& data)
+
+    /// @brief  reads the offset from the player of the mining laser's position (when facing left)
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMiningLaserOffset( nlohmann::ordered_json const& data )
     {
-        Stream::Read(m_IsJumping, data);
+        Stream::Read( &m_MiningLaserOffset, data );
+    }
+
+
+    /// @brief  reads the name of the MiningLaser entity this PlayerController uses
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMiningLaserEntity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MiningLaserEntity, data );
+    }
+
+
+    /// @brief  the control Action used for vertical movement
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMoveVertical( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MoveVertical, data );
     }
 
     /// @brief  the control Action used for vertical movement
@@ -445,10 +471,6 @@
         Stream::Read( m_Interact, data );
     }
 
-    void PlayerController::readJumpSpeed(nlohmann::ordered_json const& data)
-    {
-        Stream::Read(m_JumpSpeed, data);
-    }
     /// @brief  reads the control action for horizontal aim
     /// @param  data    the JSON data to read from
     void PlayerController::readAimHorizontal( nlohmann::ordered_json const& data )
@@ -456,10 +478,13 @@
         Stream::Read( m_AimHorizontal, data );
     }
 
+    /// @brief  reads the control action for vertical aim
+    /// @param  data    the JSON data to read from
     void PlayerController::readAimVertical(nlohmann::ordered_json const& data)
     {
         Stream::Read(m_AimVertical, data);
     }
+
 
 //-----------------------------------------------------------------------------
 // public: reading writing
@@ -474,15 +499,16 @@
             { "VerticalMoveforce"       , &PlayerController::readVerticalMoveForce        },
             { "HorizontalMoveforce"     , &PlayerController::readHorizontalMoveForce      },
             { "RespawnLocation"         , &PlayerController::readRespawnLocation          },
+            { "JumpSpeed"               , &PlayerController::readJumpSpeed                },
+            { "IsJumping"               , &PlayerController::readIsJumping                },
+            { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
+            { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            },
+            { "MiningLaserOffset"       , &PlayerController::readMiningLaserOffset        },
             { "MiningLaserEntity"       , &PlayerController::readMiningLaserEntity        },
             { "MoveVertical"            , &PlayerController::readMoveVertical             },
             { "MoveHorizontal"          , &PlayerController::readMoveHorizontal           },
             { "FireLaser"               , &PlayerController::readFireLaser                },
             { "Interact"                , &PlayerController::readInteract                 },
-            { "JumpSpeed"               , &PlayerController::readJumpSpeed                },
-            { "IsJumping"               , &PlayerController::readIsJumping                },
-            { "GroundCollisionThreshold", &PlayerController::readGroundCollisionThreshold },
-            { "MaxCoyoteTime"           , &PlayerController::readMaxCoyoteTime            },
             { "AimVertical"             , &PlayerController::readAimVertical              },
             { "AimHorizontal"           , &PlayerController::readAimHorizontal            }
         };
@@ -498,21 +524,21 @@
     {
         nlohmann::ordered_json data;
 
-
-        data[ "MiningLaserEntity"   ]       = Stream::Write( m_MiningLaserEntity     );
-        data[ "RespawnLocation"     ]       = Stream::Write( m_PlayerRespawnLocation );
-        data[ "MoveVertical"        ]       = Stream::Write( m_MoveVertical          );
-        data[ "MoveHorizontal"      ]       = Stream::Write( m_MoveHorizontal        );
-        data[ "FireLaser"           ]       = Stream::Write( m_FireLaser             );
-        data[ "Interact"            ]       = Stream::Write( m_Interact              );
-        data[ "VerticalMoveforce"   ]       = Stream::Write( m_VerticalMoveforce     );
-        data[ "HorizontalMoveforce" ]       = Stream::Write( m_HorizontalMoveforce   );
-        data[ "JumpSpeed"           ]       = Stream::Write( m_JumpSpeed             );
-        data[ "IsJumping"           ]       = Stream::Write( m_IsJumping             );
-        data[ "GroundCollisionThreshold" ]  = Stream::Write( m_GroundCollisionThreshold );
-        data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
-        data[ "AimVertical"       ] = Stream::Write( m_AimVertical           );
-        data[ "AimHorizontal"     ] = Stream::Write( m_AimHorizontal         );
+        data[ "VerticalMoveforce"        ] = Stream::Write( m_VerticalMoveforce        );
+        data[ "HorizontalMoveforce"      ] = Stream::Write( m_HorizontalMoveforce      );
+        data[ "RespawnLocation"          ] = Stream::Write( m_PlayerRespawnLocation    );
+        data[ "JumpSpeed"                ] = Stream::Write( m_JumpSpeed                );
+        data[ "IsJumping"                ] = Stream::Write( m_IsJumping                );
+        data[ "GroundCollisionThreshold" ] = Stream::Write( m_GroundCollisionThreshold );
+        data[ "MaxCoyoteTime"            ] = Stream::Write( m_MaxCoyoteTime            );
+        data[ "MiningLaserOffset"        ] = Stream::Write( m_MiningLaserOffset        );
+        data[ "MiningLaserEntity"        ] = Stream::Write( m_MiningLaserEntity        );
+        data[ "MoveVertical"             ] = Stream::Write( m_MoveVertical             );
+        data[ "MoveHorizontal"           ] = Stream::Write( m_MoveHorizontal           );
+        data[ "FireLaser"                ] = Stream::Write( m_FireLaser                );
+        data[ "Interact"                 ] = Stream::Write( m_Interact                 );
+        data[ "AimVertical"              ] = Stream::Write( m_AimVertical              );
+        data[ "AimHorizontal"            ] = Stream::Write( m_AimHorizontal            );
 
         return data;
     }
@@ -540,21 +566,22 @@
     /// @param other A PlayerController to copy.
     PlayerController::PlayerController(PlayerController const& other):
         Behavior( other ),
-        m_PlayerRespawnLocation   ( other.m_PlayerRespawnLocation ),
-        m_MoveVertical            ( other.m_MoveVertical          ),
-        m_MoveHorizontal          ( other.m_MoveHorizontal        ),
-        m_FireLaser               ( other.m_FireLaser             ),
-        m_Interact                ( other.m_Interact              ),
-        m_VerticalMoveforce       ( other.m_VerticalMoveforce     ),
-        m_HorizontalMoveforce     ( other.m_HorizontalMoveforce   ),
-        m_JumpSpeed               ( other.m_JumpSpeed             ),
-        m_IsJumping               ( other.m_IsJumping             ),
+        m_VerticalMoveforce       ( other.m_VerticalMoveforce        ),
+        m_HorizontalMoveforce     ( other.m_HorizontalMoveforce      ),
+        m_PlayerRespawnLocation   ( other.m_PlayerRespawnLocation    ),
+        m_JumpSpeed               ( other.m_JumpSpeed                ),
+        m_IsJumping               ( other.m_IsJumping                ),
         m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
-        m_MaxCoyoteTime           ( other.m_MaxCoyoteTime         ),
-        m_AimVertical             ( other.m_AimVertical           ),
-        m_AimHorizontal           ( other.m_AimHorizontal         )
-    {
-    }
+        m_MaxCoyoteTime           ( other.m_MaxCoyoteTime            ),
+        m_MiningLaserOffset       ( other.m_MiningLaserOffset        ),
+        m_MoveVertical            ( other.m_MoveVertical             ),
+        m_MoveHorizontal          ( other.m_MoveHorizontal           ),
+        m_FireLaser               ( other.m_FireLaser                ),
+        m_Interact                ( other.m_Interact                 ),
+        m_AimVertical             ( other.m_AimVertical              ),
+        m_AimHorizontal           ( other.m_AimHorizontal            ),
+        m_MiningLaserEntity       ( other.m_MiningLaserEntity, { &m_MiningLaser } )
+    {}
 
 
 //--------------------------------------------------------------------------------    
