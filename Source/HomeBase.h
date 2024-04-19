@@ -105,6 +105,9 @@ private: // members
     /// @brief  the name of the event to listen for
     std::string m_EventNameDoom;
 
+    /// @brief  the name of the event to listen for
+    std::string m_EventNameCutsceneLose;
+
     /// @brief  the sound to play when driving / in and out 
     AssetReference< Sound > m_ActivateSound;
 
@@ -141,15 +144,19 @@ private: // reading
     /// @param data    the JSON file to read from
     void readEventNameEnd(nlohmann::ordered_json const& data);
 
-    /// @brief  reads the EventNameEnd from a JSON file
+    /// @brief  reads the EventNameLose from a JSON file
     /// @param data    the JSON file to read from
     void readEventNameLose(nlohmann::ordered_json const& data);
 
-    /// @brief  reads the EventNameEnd from a JSON file
+    /// @brief  reads the EventNameDoom from a JSON file
     /// @param data    the JSON file to read from
     void readEventNameDoom(nlohmann::ordered_json const& data);
 
-    /// @brief  reads the EventNameEnd from a JSON file
+    /// @brief  reads the EventNameCutsceneLose from a JSON file
+    /// @param data    the JSON file to read from
+    void readEventNameCutsceneLose(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the CameraPrefab from a JSON file
     /// @param data    the JSON file to read from
     void readCameraPrefab(nlohmann::ordered_json const& data);
 
