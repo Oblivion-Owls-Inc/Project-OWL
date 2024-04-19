@@ -50,6 +50,8 @@ void DoomsDay::OnInit()
     Behaviors< DoomsDay >()->AddComponent(this);
 
     m_RigidBody.Init(GetEntity());
+    m_Transform.Init(GetEntity());
+    
 }
 
 /// @brief	called on exit, handles loss state
@@ -58,6 +60,8 @@ void DoomsDay::OnExit()
     Behaviors< DoomsDay >()->RemoveComponent(this);
 
     m_RigidBody.Exit();
+    m_Transform.Exit();
+    
 }
 
 /// @brief  called every frame
@@ -67,8 +71,8 @@ void DoomsDay::OnFixedUpdate()
     for (PlayerController* player : Behaviors< PlayerController >()->GetComponents())
     {
         float distance =
-            player->GetEntity()->GetComponent<Transform>()->GetTranslation().y -
-            GetEntity()->GetComponent<Transform>()->GetTranslation().y;
+            player->GetTransform()->GetTranslation().y -
+            m_Transform->GetTranslation().y;
 
         distance -= 25;
 

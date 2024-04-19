@@ -61,7 +61,7 @@ private: // copying
 public: // accessors
 //-----------------------------------------------------------------------------
 
-
+    
 
 //-----------------------------------------------------------------------------
 public: // methods
@@ -91,6 +91,8 @@ private: // variables
 
 
     ComponentReference< RigidBody > m_RigidBody;
+
+    ComponentReference<Transform> m_Transform;
 
 //-----------------------------------------------------------------------------
 private: // private functions
