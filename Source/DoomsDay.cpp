@@ -74,8 +74,8 @@ void DoomsDay::OnFixedUpdate()
 
         if (distance <= m_LoseDistance && m_HasLost == false)
         {
-            Events()->BroadcastEvent< std::string >("DoomsdayLoseTheGame");
-            Debug() << "Event Emitted: " << "DoomsdayLoseTheGame" << std::endl;
+            Events()->BroadcastEvent< std::string >(m_LossEventName);
+            Debug() << "Event Emitted: " << m_LossEventName << std::endl;
             
             for (DoomsDay* doomsday : Behaviors< DoomsDay >()->GetComponents())
             {
@@ -112,7 +112,8 @@ DoomsDay::DoomsDay(const DoomsDay& other) :
     m_CloseSpeed(other.m_CloseSpeed),
     m_CatchupDistance(other.m_CatchupDistance),
     m_NormalDistance(other.m_NormalDistance),
-    m_LoseDistance(other.m_LoseDistance)
+    m_LoseDistance(other.m_LoseDistance),
+    m_LossEventName(other.m_LossEventName)
 {}
 
 
@@ -163,11 +164,23 @@ void DoomsDay::Inspector()
     ImGui::DragFloat("Close Speed", &m_CloseSpeed, 0.05f, 0.0f, INFINITY);
     ImGui::DragFloat("Lose distance", &m_LoseDistance, 0.05f, 0.0f, INFINITY);
 
+    ImGui::Separator();
+    ImGui::NewLine();
+
     ImGui::DragFloat("Normal Distance", &m_NormalDistance, 0.05f, 0.0f, INFINITY);
     ImGui::DragFloat("Normal Speed", &m_NormalSpeed, 0.05f, 0.0f, INFINITY);
-    
+
+    ImGui::Separator();
+    ImGui::NewLine();
+
     ImGui::DragFloat("Catchup Distance", &m_CatchupDistance, 0.05f, 0.0f, INFINITY);
     ImGui::DragFloat("Catchup Speed", &m_CatchupSpeed, 0.05f, 0.0f, INFINITY);
+
+    ImGui::Separator();
+    ImGui::NewLine();
+
+
+    ImGui::InputText("Loss Event Name", &m_LossEventName);
 }
 
 //-----------------------------------------------------------------------------
@@ -182,7 +195,8 @@ ReadMethodMap<DoomsDay> const DoomsDay::s_ReadMethods =
     { "CloseSpeed"      , &DoomsDay::readCloseSpeed      },
     { "CatchupDistance" , &DoomsDay::readCatchupDistance },
     { "NormalDistance"  , &DoomsDay::readNormalDistance  },
-    { "LoseDistance"    , &DoomsDay::readLoseDistance    }
+    { "LoseDistance"    , &DoomsDay::readLoseDistance    },
+    { "LossEventName"   , &DoomsDay::readLossEventName   }
 };
 
 void DoomsDay::readCatchupSpeed(nlohmann::ordered_json const& json)
@@ -215,6 +229,11 @@ void DoomsDay::readLoseDistance(nlohmann::ordered_json const& json)
     Stream::Read(m_LoseDistance, json);
 }
 
+void DoomsDay::readLossEventName(nlohmann::ordered_json const& json)
+{
+    Stream::Read(m_LossEventName, json);
+}
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -230,6 +249,7 @@ nlohmann::ordered_json DoomsDay::Write() const
     data[ "CatchupDistance" ] = m_CatchupDistance;
     data[ "NormalDistance"  ] = m_NormalDistance;
     data[ "LoseDistance"    ] = m_LoseDistance;
+    data[ "LossEventName"   ] = m_LossEventName;
 
     return data;
 }
