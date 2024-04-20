@@ -126,7 +126,6 @@ void LightingSystem::DrawLights()
 
     // draw it all
     glBindVertexArray(Renderer()->GetDefaultMesh()->GetVAO());
-    glBindTexture(GL_TEXTURE_2D_ARRAY, NULL);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glBindVertexArray(0);
 
