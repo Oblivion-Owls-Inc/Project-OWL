@@ -47,6 +47,8 @@ public:
     /// @brief      Sets current shadow layer to given integer
     __inline void SetShadowLayer(int layer) { m_Sprite->SetLayer(layer); }
 
+    void DrawLights();
+
 
 //-----------------------------------------------------------------------------
 //              Virtual overrides
@@ -82,7 +84,12 @@ private:
     bool m_Enabled = false;               /// @brief   For debugging. Can disable all lights.
     glm::mat4 m_S2W = {}, m_W2S = {};     /// @brief   Screen-to-world matrix (and inverse)
     unsigned long long m_PrevSize = 0;    /// @brief   To reallocate only when light count has changed
-
+    unsigned int m_UBOpos = -1, 
+                 m_UBOrad = -1, 
+                 m_UBOstr = -1;
+    std::vector<glm::vec4> m_Positions;
+    std::vector<float> m_Radii,
+                       m_Strengths;
 
 //-----------------------------------------------------------------------------
 //              Helpers

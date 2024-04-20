@@ -1,4 +1,4 @@
-/*****************************************************************//**
+﻿/*****************************************************************//**
  * \file       LightingSystem.cpp
  * \brief      Renders lights in the scene.
  * 
@@ -15,6 +15,8 @@
 #include "CameraSystem.h"   // world-to-screen matrix for frag shader uniforms
 #include "Entity.h"         // parent position
 #include "Transform.h"      // parent position
+
+#include "InputSystem.h"
 
 
 
@@ -33,6 +35,22 @@ void LightingSystem::OnInit()
     Renderer()->AddShader("spotlight", new Shader("Data/shaders/vshader.vert", "Data/shaders/spotlight.frag"));
     Platform()->AddOnWindowResizeCallback( GetId(), std::bind(&LightingSystem::reallocTexArray, this) );
     glGenFramebuffers(1, &m_FBO);
+
+    // uniform blocks
+    //glGenBuffers(1, &m_UBOrad);
+    //glGenBuffers(1, &m_UBOstr);         // TODO: do I need to bind them?
+    //glBindBufferBase(GL_UNIFORM_BUFFER, 1, m_UBOrad);
+    //glBindBufferBase(GL_UNIFORM_BUFFER, 2, m_UBOstr);
+
+    glGenBuffers(1, &m_UBOpos);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 20, m_UBOpos);
+    glGenBuffers(1, &m_UBOrad);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 25, m_UBOrad);
+    glGenBuffers(1, &m_UBOstr);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 30, m_UBOstr);
+
+
+    glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
 
 
@@ -42,6 +60,9 @@ void LightingSystem::OnUpdate(float dt)
 {
     if (!m_Enabled || !GetComponents().size())
         return;
+    
+    // for inverted screen y-coordinates
+    float scrheight = (float)Platform()->GetWindowDimensions().y;
 
     // get matrix inverse only when it's changed
     glm::mat4 s2w = Cameras()->GetMat_ScreenToWorld();
@@ -51,59 +72,65 @@ void LightingSystem::OnUpdate(float dt)
         m_W2S = glm::inverse(s2w);
     }
 
-    // render stuff to texture array
-    glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
-
-    // common to all light sources: shader, transform matrix, VAO
-    Shader* spotShader = Renderer()->SetActiveShader("spotlight");
-    glm::mat4 m( glm::mat2(2.0f) );
-    glUniformMatrix4fv(spotShader->GetUniformID("mvp"), 1, false, &m[0][0]);
-    glBindVertexArray(Renderer()->GetDefaultMesh()->GetVAO());
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-    // render spotlights. one per layer.
+    // put individual light source stats into vectors
     size_t size = GetComponents().size();
-    if (size != m_PrevSize)
+    m_Positions.clear();
+    m_Radii.clear();
+    m_Strengths.clear();
+    for (Light* thislight : GetComponents())
     {
-        reallocTexArray();
-        size = m_PrevSize;
-    }
-    for (size_t i=0; i<size; ++i)
-    {
-        Light &thislight = *GetComponents()[i];
-
-        if (thislight.GetRadius() > 3.0f || thislight.GetStrength() > 2.0f)
-            thislight.GetRadius();
-
-        glm::vec4 pos = glm::vec4( thislight.GetOffset(), 0, 1 );
-        Transform* pt = GetComponents()[i]->GetEntity()->GetComponent<Transform>();
+        // light position
+        glm::vec4 pos = glm::vec4( thislight->GetOffset(), 0, 1 );
+        Transform* pt = thislight->GetEntity()->GetComponent<Transform>();
         if (pt)
             pos += glm::vec4(pt->GetTranslation(), 0, 0);
 
-        glUniform1f(spotShader->GetUniformID("light_strength"), thislight.GetStrength());
+        // convert it to screen coords
+        glm::vec4 scrpos = m_W2S * pos;
+        scrpos.y = scrheight - scrpos.y; // TODO: does W2S need fixing, or am I doing something wrong here?
 
-        // convert position and radius to screen dimensions, set them on the shader
-        pos = m_W2S * pos;
-        glUniform2f(spotShader->GetUniformID("light_pos"), pos.x, pos.y);
-        glUniform1f(spotShader->GetUniformID("light_radius"), thislight.GetRadius() *
-                                                              m_W2S[0][0]);
-            // this scaling of the radius won't work if the camera is rotated.
-            // then again, will we ever rotate it?
-            // sqrt of determinant would be more proper, but that's expensive...
-
-        // render this light source to its appropriate texture layer
-        glFramebufferTextureLayer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_TextureArrayID, 0, (int)i);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        m_Positions.push_back(scrpos);
+        m_Radii.push_back(thislight->GetRadius() * m_W2S[0][0]);
+        m_Strengths.push_back(thislight->GetStrength());
     }
-    glBindVertexArray(0);  // unbind VAO
-
-    // later: 1. Calculate shadows using compute shader
-    //        2. Render the shadows on top of spotlights
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0); // reset to default FBO (backbuffer)
 
     (void)dt;
+}
+
+void LightingSystem::DrawLights()
+{
+    if (!GetComponents().size() || !m_Enabled)
+        return;
+
+    Shader* spotShader = Renderer()->SetActiveShader("spotlight");
+
+    // common to all light sources: transform matrix (covers full screen), ambient light?
+    glm::mat4 m(glm::mat2(2.0f));
+    glUniformMatrix4fv(spotShader->GetUniformID("mvp"), 1, false, &m[0][0]);
+
+    // light count
+    //spotShader->GetUniformID("ambient");
+    glUniform1i(spotShader->GetUniformID("light_count"), (int)GetComponents().size());
+
+    // send the vectors to GPU
+    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOpos);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(glm::vec4) * (int)m_Positions.size(),
+        &m_Positions[0], GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOrad);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * (int)m_Radii.size(),
+        &m_Radii[0], GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOstr);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * (int)m_Strengths.size(),
+        &m_Strengths[0], GL_DYNAMIC_DRAW);
+    
+
+    // draw it all
+    glBindVertexArray(Renderer()->GetDefaultMesh()->GetVAO());
+    glBindTexture(GL_TEXTURE_2D_ARRAY, NULL);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glBindVertexArray(0);
+
+    glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
 
 
@@ -243,23 +270,7 @@ LightingSystem::LightingSprite::LightingSprite() :
 /// @brief   Called by RenderSystem in accordance with its layer.
 void LightingSystem::LightingSprite::Draw()
 {
-    if (!Lights()->GetLightingEnabled())
-        return;
-
-    Shader* shdr = Renderer()->SetActiveShader("lights");
-
-    // uniforms
-    glm::mat4 m( glm::mat2(2.0f) );
-    glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
-    glUniform1f(shdr->GetUniformID("opacity"), m_Opacity);
-    glUniform1i(shdr->GetUniformID("light_count"), (int)Lights()->GetComponents().size());
-    glUniform2f(shdr->GetUniformID("UV_offset"), 0.0f, 0.0f);
-
-    // draw the combination of textures in the array
-    glBindVertexArray(Renderer()->GetDefaultMesh()->GetVAO());
-    glBindTexture(GL_TEXTURE_2D_ARRAY, Lights()->GetTexArrayID());
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    glBindVertexArray(0);
+    Lights()->DrawLights();
 }
 
 // ========================================================================== //
