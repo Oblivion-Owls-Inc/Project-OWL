@@ -4,9 +4,9 @@
 
 out vec4 pixel_color;
 
-layout(std430, binding = 20) buffer light_positions { vec4 positions[]; };
-layout(std430, binding = 25) buffer light_radii { float radii[]; };
-layout(std430, binding = 30) buffer light_strengths { float strengths[]; };
+layout(std430, binding = 13) buffer light_positions { vec4 positions[]; };
+layout(std430, binding = 14) buffer light_radii { float radii[]; };
+layout(std430, binding = 15) buffer light_strengths { float strengths[]; };
 
 //uniform float ambient = 0.0;
 uniform int light_count = 0;

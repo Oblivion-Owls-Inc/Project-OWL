@@ -43,11 +43,11 @@ void LightingSystem::OnInit()
     //glBindBufferBase(GL_UNIFORM_BUFFER, 2, m_UBOstr);
 
     glGenBuffers(1, &m_UBOpos);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 20, m_UBOpos);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 13, m_UBOpos);
     glGenBuffers(1, &m_UBOrad);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 25, m_UBOrad);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 14, m_UBOrad);
     glGenBuffers(1, &m_UBOstr);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 30, m_UBOstr);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 15, m_UBOstr);
 
 
     glBindBuffer(GL_UNIFORM_BUFFER, 0);
