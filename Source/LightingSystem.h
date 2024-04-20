@@ -42,7 +42,11 @@ public:
     __inline bool GetLightingEnabled() const { return m_Enabled; }
 
     /// @brief      Sets the enabled state to provided boolean
-    __inline void SetLightingEnabled(bool enabled) { m_Enabled = enabled; }
+    __inline void SetLightingEnabled(bool enabled)
+    {
+        m_Enabled = enabled;
+        m_Sprite->SetOpacity( m_Enabled ? 1.0f : 0.0f );
+    }
 
     /// @brief      Sets current shadow layer to given integer
     __inline void SetShadowLayer(int layer) { m_Sprite->SetLayer(layer); }
