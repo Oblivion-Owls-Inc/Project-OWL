@@ -144,15 +144,21 @@ void DebugSystem::OnUpdate(float dt)
         }
     }
 
+
+#endif // !DEBUG
+
+#ifdef NDEBUG
+    if (Input()->GetKeyTriggered(GLFW_KEY_F2))
+    {
+        m_ShowFpsWindow = !m_ShowFpsWindow;
+    }
+#endif // !NDEBUG
+
     /// Show the FPS Window
     if (m_ShowFpsWindow)
     {
         ShowFPSWindow();
     }
-
-
-#endif // !DEBUG
-
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {

@@ -42,10 +42,16 @@ public:
     __inline bool GetLightingEnabled() const { return m_Enabled; }
 
     /// @brief      Sets the enabled state to provided boolean
-    __inline void SetLightingEnabled(bool enabled) { m_Enabled = enabled; }
+    __inline void SetLightingEnabled(bool enabled)
+    {
+        m_Enabled = enabled;
+        m_Sprite->SetOpacity( m_Enabled ? 1.0f : 0.0f );
+    }
 
     /// @brief      Sets current shadow layer to given integer
     __inline void SetShadowLayer(int layer) { m_Sprite->SetLayer(layer); }
+
+    void DrawLights();
 
 
 //-----------------------------------------------------------------------------
@@ -82,7 +88,12 @@ private:
     bool m_Enabled = false;               /// @brief   For debugging. Can disable all lights.
     glm::mat4 m_S2W = {}, m_W2S = {};     /// @brief   Screen-to-world matrix (and inverse)
     unsigned long long m_PrevSize = 0;    /// @brief   To reallocate only when light count has changed
-
+    unsigned int m_UBOpos = -1, 
+                 m_UBOrad = -1, 
+                 m_UBOstr = -1;
+    std::vector<glm::vec4> m_Positions;
+    std::vector<float> m_Radii,
+                       m_Strengths;
 
 //-----------------------------------------------------------------------------
 //              Helpers
