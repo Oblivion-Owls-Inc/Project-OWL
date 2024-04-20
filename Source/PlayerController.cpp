@@ -354,6 +354,7 @@
                 Debug() << "Event Emitted: " << m_EventNameWin << std::endl;
                 base->GetEntity()->GetComponent<Lifetime>()->GetLifetime()->SetCurrent(1.0);
                 base->PlayWinSound();
+                m_Health->Reset();
             }
             return;
         }

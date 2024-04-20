@@ -89,6 +89,11 @@ public: // methods
     /// @param damage - the amount of damage to apply.
     void TakeDamage(int damage);
 
+
+    /// @brief  resets the health to full
+    void Reset();
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
