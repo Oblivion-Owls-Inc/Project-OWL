@@ -1,0 +1,104 @@
+\hypertarget{classEventEmitter}{}\doxysection{Event\+Emitter Class Reference}
+\label{classEventEmitter}\index{EventEmitter@{EventEmitter}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that emits events on Init and Exit.  
+
+
+
+
+{\ttfamily \#include $<$Event\+Emitter.\+h$>$}
+
+
+
+Inheritance diagram for Event\+Emitter\+:
+% FIG 0
+
+
+Collaboration diagram for Event\+Emitter\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEventEmitter_a3fb9421434e0cfcf3e8e891bb149e4db}\label{classEventEmitter_a3fb9421434e0cfcf3e8e891bb149e4db}} 
+\mbox{\hyperlink{classEventEmitter_a3fb9421434e0cfcf3e8e891bb149e4db}{Event\+Emitter}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEventEmitter_a1840c280c9d42aa1d753b86399806682}\label{classEventEmitter_a1840c280c9d42aa1d753b86399806682}} 
+virtual void \mbox{\hyperlink{classEventEmitter_a1840c280c9d42aa1d753b86399806682}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEventEmitter_ae599ae21853bf852d3a4d6499267dcce}\label{classEventEmitter_ae599ae21853bf852d3a4d6499267dcce}} 
+virtual void \mbox{\hyperlink{classEventEmitter_ae599ae21853bf852d3a4d6499267dcce}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEventEmitter_aae8f7fdce633df49ebd22d0d971a6c0b}\label{classEventEmitter_aae8f7fdce633df49ebd22d0d971a6c0b}} 
+virtual void \mbox{\hyperlink{classEventEmitter_aae8f7fdce633df49ebd22d0d971a6c0b}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEventEmitter_ade9ea1e421490d97dee43f4af66f0c8d}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEventEmitter_a34793309b0b6ca8562100df2207a0336}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} $\ast$ \mbox{\hyperlink{classEventEmitter_a70606b23313b2afa3b562b7bf276fbc8}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that emits events on Init and Exit. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEventEmitter_a70606b23313b2afa3b562b7bf276fbc8}\label{classEventEmitter_a70606b23313b2afa3b562b7bf276fbc8}} 
+\index{EventEmitter@{EventEmitter}!Clone@{Clone}}
+\index{Clone@{Clone}!EventEmitter@{EventEmitter}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} $\ast$ Event\+Emitter\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classEventEmitter_ade9ea1e421490d97dee43f4af66f0c8d}\label{classEventEmitter_ade9ea1e421490d97dee43f4af66f0c8d}} 
+\index{EventEmitter@{EventEmitter}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!EventEmitter@{EventEmitter}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Event\+Emitter\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classEventEmitter_a34793309b0b6ca8562100df2207a0336}\label{classEventEmitter_a34793309b0b6ca8562100df2207a0336}} 
+\index{EventEmitter@{EventEmitter}!Write@{Write}}
+\index{Write@{Write}!EventEmitter@{EventEmitter}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Event\+Emitter\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classEventEmitter}{Event\+Emitter}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Event\+Emitter.\+h\item 
+Source/Event\+Emitter.\+cpp\end{DoxyCompactItemize}

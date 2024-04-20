@@ -94,6 +94,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a566aced6020932acbc73f6e8f3ce11b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMiningLaser.html">MiningLaser</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayerController.html#a566aced6020932acbc73f6e8f3ce11b6">GetMiningLaser</a> ()</td></tr>
 <tr class="memdesc:a566aced6020932acbc73f6e8f3ce11b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> component attached to this <a class="el" href="classEntity.html">Entity</a>.  <a href="classPlayerController.html#a566aced6020932acbc73f6e8f3ce11b6">More...</a><br /></td></tr>
 <tr class="separator:a566aced6020932acbc73f6e8f3ce11b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add47a6c672cbb742252d1bf9c3cbf349"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTransform.html">Transform</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayerController.html#add47a6c672cbb742252d1bf9c3cbf349">GetTransform</a> () const</td></tr>
+<tr class="memdesc:add47a6c672cbb742252d1bf9c3cbf349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classTransform.html">Transform</a> component attached to this <a class="el" href="classEntity.html">Entity</a>.  <a href="classPlayerController.html#add47a6c672cbb742252d1bf9c3cbf349">More...</a><br /></td></tr>
+<tr class="separator:add47a6c672cbb742252d1bf9c3cbf349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c1b99a919e5cd5836ea437c326507c"><td class="memItemLeft" align="right" valign="top"><a id="a60c1b99a919e5cd5836ea437c326507c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetActive</b> () const</td></tr>
+<tr class="separator:a60c1b99a919e5cd5836ea437c326507c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6709fd05481c13c8845ff9f4c865a84"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayerController.html#ab6709fd05481c13c8845ff9f4c865a84">OnInit</a> () override</td></tr>
 <tr class="memdesc:ab6709fd05481c13c8845ff9f4c865a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is added to the Scene  <a href="classPlayerController.html#ab6709fd05481c13c8845ff9f4c865a84">More...</a><br /></td></tr>
 <tr class="separator:ab6709fd05481c13c8845ff9f4c865a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -319,6 +325,34 @@ A copy of the current <a class="el" href="classPlayerController.html">PlayerCont
 
 </div>
 </div>
+<a id="add47a6c672cbb742252d1bf9c3cbf349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add47a6c672cbb742252d1bf9c3cbf349">&#9670;&nbsp;</a></span>GetTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTransform.html">Transform</a> const* PlayerController::GetTransform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the <a class="el" href="classTransform.html">Transform</a> component attached to this <a class="el" href="classEntity.html">Entity</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classTransform.html">Transform</a> component attached to this <a class="el" href="classEntity.html">Entity</a>. </dd></dl>
+
+</div>
+</div>
 <a id="aa9ec38dc404388d57ebabea4b8e6802c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9ec38dc404388d57ebabea4b8e6802c">&#9670;&nbsp;</a></span>OnExit()</h2>
 
@@ -407,6 +441,8 @@ A copy of the current <a class="el" href="classPlayerController.html">PlayerCont
 <hr  />
  <h2><a class="anchor" id="autotoc_md11"></a>
 Public: methods</h2>
+<p>Set the filter function for the listener</p>
+<p>Set the Callback function for the listener</p>
 
 <p>Reimplemented from <a class="el" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">Component</a>.</p>
 

@@ -54,7 +54,7 @@ public: // accessors
 	void DecreasePoolTime(Value value);
 	
 	/// @brief Resets the pool to its default value
-	__inline void Reset() { m_CurrentValue = m_MaximumValue; }
+    __inline void Reset() { m_CurrentValue = m_MaximumValue; }
 
 //-----------------------------------------------------------------------------
 public: // virtual methods

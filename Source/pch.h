@@ -60,6 +60,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/vec2.hpp>
+#include <glm/gtc/random.hpp>
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Nlohmann JSON

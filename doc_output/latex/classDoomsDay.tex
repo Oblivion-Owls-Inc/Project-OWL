@@ -1,0 +1,124 @@
+\hypertarget{classDoomsDay}{}\doxysection{Dooms\+Day Class Reference}
+\label{classDoomsDay}\index{DoomsDay@{DoomsDay}}
+
+
+Inheritance diagram for Dooms\+Day\+:
+% FIG 0
+
+
+Collaboration diagram for Dooms\+Day\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDoomsDay_a5520f3256490eaf733d4dfa0bba5fd61}\label{classDoomsDay_a5520f3256490eaf733d4dfa0bba5fd61}} 
+\mbox{\hyperlink{classDoomsDay_a5520f3256490eaf733d4dfa0bba5fd61}{Dooms\+Day}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} $\ast$ \mbox{\hyperlink{classDoomsDay_a74356878aab956cfd0256b82408cfe58}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} clone. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDoomsDay_a4f8ee48e28bffa2d2945da64654908be}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called when \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} initializes \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDoomsDay_aee8b7074413c14743eb3926860ddceb7}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called when \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} exits \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDoomsDay_aadfe44d5604da8c939b25c2f07308f1f}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em called every frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDoomsDay_a3a1fc9107c694e255be5aa7758ae07a2}\label{classDoomsDay_a3a1fc9107c694e255be5aa7758ae07a2}} 
+void {\bfseries Set\+Has\+Lost} ()
+\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDoomsDay_aa24407066ebc03af004d1b756743f8c6}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDoomsDay_a74356878aab956cfd0256b82408cfe58}\label{classDoomsDay_a74356878aab956cfd0256b82408cfe58}} 
+\index{DoomsDay@{DoomsDay}!Clone@{Clone}}
+\index{Clone@{Clone}!DoomsDay@{DoomsDay}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} $\ast$ Dooms\+Day\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} clone. 
+
+clone
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classComponent}{Component}} pointer of the cloned \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} behavior 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classDoomsDay_aee8b7074413c14743eb3926860ddceb7}\label{classDoomsDay_aee8b7074413c14743eb3926860ddceb7}} 
+\index{DoomsDay@{DoomsDay}!OnExit@{OnExit}}
+\index{OnExit@{OnExit}!DoomsDay@{DoomsDay}}
+\doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
+{\footnotesize\ttfamily void Dooms\+Day\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called when \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} exits 
+
+called on exit, handles loss state 
+
+Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{Component}}.
+
+\mbox{\Hypertarget{classDoomsDay_aadfe44d5604da8c939b25c2f07308f1f}\label{classDoomsDay_aadfe44d5604da8c939b25c2f07308f1f}} 
+\index{DoomsDay@{DoomsDay}!OnFixedUpdate@{OnFixedUpdate}}
+\index{OnFixedUpdate@{OnFixedUpdate}!DoomsDay@{DoomsDay}}
+\doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
+{\footnotesize\ttfamily void Dooms\+Day\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called every frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & delta time \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classDoomsDay_a4f8ee48e28bffa2d2945da64654908be}\label{classDoomsDay_a4f8ee48e28bffa2d2945da64654908be}} 
+\index{DoomsDay@{DoomsDay}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!DoomsDay@{DoomsDay}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Dooms\+Day\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called when \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} initializes 
+
+initialize \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} 
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+\mbox{\Hypertarget{classDoomsDay_aa24407066ebc03af004d1b756743f8c6}\label{classDoomsDay_aa24407066ebc03af004d1b756743f8c6}} 
+\index{DoomsDay@{DoomsDay}!Write@{Write}}
+\index{Write@{Write}!DoomsDay@{DoomsDay}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Dooms\+Day\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classDoomsDay}{Dooms\+Day}} data to a JSON file. 
+
+write to json
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classWavesBehavior}{Waves\+Behavior}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Dooms\+Day.\+h\item 
+Source/Dooms\+Day.\+cpp\end{DoxyCompactItemize}

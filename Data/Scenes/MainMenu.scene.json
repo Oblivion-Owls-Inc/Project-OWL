@@ -10,6 +10,11 @@
                 "IsLoopable": false,
                 "Filepath": "Data/Sounds/Effects/button_release.ogg",
                 "Volume": 2.0
+            },
+            "Music": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Music/MenuMusic.ogg",
+                "Volume": 0.20000000298023224
             }
         },
         "Textures": {
@@ -23,7 +28,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             },
             "ButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -35,7 +41,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "CreditsButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -47,7 +54,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -59,7 +67,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "GameTitleTexture": {
                 "Filepath": "Data/Textures/DigDeeperLogo-export.png",
@@ -71,7 +80,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             },
             "HowToPlayButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -83,7 +93,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             },
             "LavaTexture": {
                 "Filepath": "Data/Textures/Lava.png",
@@ -95,7 +106,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "MainMenuBackgroundTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/PauseBackground.png",
@@ -107,7 +119,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "MainMenubaseTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/PauseBase.png",
@@ -119,7 +132,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Moon_Texture": {
                 "Filepath": "Data/Textures/moon.png",
@@ -131,7 +145,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet01": {
                 "Filepath": "Data/Textures/Planets/planet1.png",
@@ -143,7 +158,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet02": {
                 "Filepath": "Data/Textures/Planets/planet2.png",
@@ -155,7 +171,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet03": {
                 "Filepath": "Data/Textures/Planets/planet3.png",
@@ -167,7 +184,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet04": {
                 "Filepath": "Data/Textures/Planets/planet4.png",
@@ -179,7 +197,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet05": {
                 "Filepath": "Data/Textures/Planets/planet5.png",
@@ -191,7 +210,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet06": {
                 "Filepath": "Data/Textures/Planets/planet6.png",
@@ -203,7 +223,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet07": {
                 "Filepath": "Data/Textures/Planets/planet7.png",
@@ -215,7 +236,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet08": {
                 "Filepath": "Data/Textures/Planets/planet8.png",
@@ -227,7 +249,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet09": {
                 "Filepath": "Data/Textures/Planets/planet9.png",
@@ -239,7 +262,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet10": {
                 "Filepath": "Data/Textures/Planets/planet10.png",
@@ -251,7 +275,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet11": {
                 "Filepath": "Data/Textures/Planets/planet11.png",
@@ -263,7 +288,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet12": {
                 "Filepath": "Data/Textures/Planets/planet12.png",
@@ -275,7 +301,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet13": {
                 "Filepath": "Data/Textures/Planets/planet13.png",
@@ -287,7 +314,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet14": {
                 "Filepath": "Data/Textures/Planets/planet14.png",
@@ -299,7 +327,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet15": {
                 "Filepath": "Data/Textures/Planets/planet15.png",
@@ -311,7 +340,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet16": {
                 "Filepath": "Data/Textures/Planets/planet16.png",
@@ -323,7 +353,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet17": {
                 "Filepath": "Data/Textures/Planets/planet17.png",
@@ -335,7 +366,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet18": {
                 "Filepath": "Data/Textures/Planets/planet18.png",
@@ -347,7 +379,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet19": {
                 "Filepath": "Data/Textures/Planets/planet19.png",
@@ -359,7 +392,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet20": {
                 "Filepath": "Data/Textures/Planets/planet20.png",
@@ -371,7 +405,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet21": {
                 "Filepath": "Data/Textures/Planets/planet21.png",
@@ -383,7 +418,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet22": {
                 "Filepath": "Data/Textures/Planets/planet22.png",
@@ -395,7 +431,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet23": {
                 "Filepath": "Data/Textures/Planets/planet23.png",
@@ -407,7 +444,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet24": {
                 "Filepath": "Data/Textures/Planets/planet24.png",
@@ -419,7 +457,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "Planet25": {
                 "Filepath": "Data/Textures/Planets/planet25.png",
@@ -431,7 +470,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "QuitButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -443,7 +483,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             },
             "Rectangle": {
                 "Filepath": "Data/Textures/Debug/Rectangle.png",
@@ -455,7 +496,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
             },
             "SettingsButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -467,7 +509,8 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": true,
+                "RepeatOutOfBounds": false
             }
         },
         "TransformAnimations": null,
@@ -2347,6 +2390,26 @@
                         "RelativeToWidth",
                         "RelativeToHeight"
                     ]
+                }
+            },
+            "Children": null
+        },
+        {
+            "Name": "Music",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "Music"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": -1,
+                    "PlayOnInit": true,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Music"
                 }
             },
             "Children": null

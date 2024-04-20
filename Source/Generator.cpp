@@ -1,7 +1,7 @@
 ///*****************************************************************/
-/// @file	    Generator.cpp
+/// @file       Generator.cpp
 /// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @date	    01/12/2024
+/// @date       01/12/2024
 /// @brief      Generator class implimentation
 /// @copyright  Digipen LLC (c) 2024
 ///*****************************************************************/
@@ -43,7 +43,7 @@
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-    /// @brief	initialize Generator
+    /// @brief  initialize Generator
     void Generator::OnInit()
     {
         Behaviors< Generator >()->AddComponent(this);
@@ -76,7 +76,6 @@
                 m_Emitter->SetContinuous(false);
             }
         } );
-
         m_Interactable.SetOnConnectCallback( [ this ]() {
             m_Interactable->SetEnabled( m_IsActive == false );
             m_Interactable->AddOnInteractCallback( GetId(), [ this ]( Interactor*  interactor )
@@ -109,9 +108,17 @@
         m_Interactable    .Init( GetEntity() );
 
         m_WavePrefab     .SetOwnerName( GetName() );
+
         m_ActivateSound  .SetOwnerName( GetName() );
         m_DeactivateSound.SetOwnerName( GetName() );
         m_DamageSound    .SetOwnerName( GetName() );
+
+
+        for (auto& reward : m_RewardPrefabs)
+        {
+            reward.SetOwnerName( GetName() );
+            reward.Init();
+        }
 
 
         m_WavePrefab     .Init( false );
@@ -122,9 +129,11 @@
 
         m_ChangeActive = m_IsActive;
         m_CanActivate = !m_IsActive;
+
+        m_CurrentTime = m_RewardTimer;
     }
 
-    /// @brief	called on exit, handles loss state
+    /// @brief  called on exit, handles loss state
     void Generator::OnExit()
     {
         Behaviors< Generator >()->RemoveComponent(this);
@@ -213,6 +222,24 @@
             m_Emitter->SetEmitData(data);
             m_Emitter->SetContinuous(true);
         }
+
+        if (m_CanBeRewarded && m_IsActive)
+        {
+            if (Behaviors< EnemyBehavior >()->GetComponents().size() == 0 &&
+                m_CurrentTime <= 0.0f)
+            {
+                for (auto& reward : m_RewardPrefabs)
+                {
+                    reward->Clone()->AddToScene();
+                }
+
+                m_CanBeRewarded = false;
+            }
+            else if (m_CurrentTime > 0.0f)
+            {
+                m_CurrentTime -= dt;
+            }
+        }
     }
 
 //-----------------------------------------------------------------------------
@@ -230,7 +257,10 @@
         m_ActivationCost ( other.m_ActivationCost  ),
         m_ActivateSound  ( other.m_ActivateSound   ),
         m_DeactivateSound( other.m_DeactivateSound ),
-        m_DamageSound    ( other.m_DamageSound     )
+        m_DamageSound    ( other.m_DamageSound     ),
+        m_RewardPrefabs  ( other.m_RewardPrefabs   ),
+        m_CanBeRewarded  ( other.m_CanBeRewarded   ),
+        m_RewardTimer    ( other.m_RewardTimer     )
     {}
 
 
@@ -294,6 +324,8 @@
         m_ChangeActive = true;
         m_ActivateRing = true;
 
+        m_CurrentTime = m_RewardTimer;
+
         if (m_Sprite != nullptr)
         {
             m_Sprite->SetFrameIndex(1);
@@ -324,9 +356,19 @@
         m_DeactivateRing = true;
         m_CanSpawnWave = true;
 
+        if (m_Sprite != nullptr)
+        {
+            m_Sprite->SetFrameIndex(0);
+        }
+
         if ( m_Interactable != nullptr )
         {
             m_Interactable->SetEnabled( true );
+        }
+
+        if (m_Sprite != nullptr)
+        {
+            m_Sprite->SetFrameIndex(1);
         }
     }
 
@@ -379,23 +421,34 @@
 // inspector methods
 //-----------------------------------------------------------------------------
 
-    /// @brief	inspector for generators
+    /// @brief  inspector for generators
     void Generator::Inspector()
     {
         ImGui::DragFloat( "Radius"      , &m_PowerRadius, 0.05f, 0.0f, INFINITY );
         ImGui::DragFloat( "Growth Speed", &m_RadiusSpeed, 0.05f, 0.0f, INFINITY );
+        ImGui::DragFloat( "Reward Timer", &m_RewardTimer, 0.05f, 0.0f, INFINITY );
+        ImGui::Separator();
+
         m_WavePrefab.Inspect( "Wave to Spawn" );
         m_ActivateSound.Inspect( "Activate Sound" );
         m_DeactivateSound.Inspect( "Deactivate Sound" );
         m_DamageSound.Inspect( "Damage Sound" );
 
-
+        ImGui::Separator();
         ImGui::Checkbox( "Is Active", &m_ChangeActive );
 
+        ImGui::Separator();
         Inspection::InspectArray< ItemStack >( "Activation cost", &m_ActivationCost, []( ItemStack* itemStack ) -> bool
         {
             return itemStack->Inspect();
         } );
+
+        ImGui::Separator();
+        Inspection::InspectArray< AssetReference< Entity > >("Rewards",
+         &m_RewardPrefabs, [](AssetReference< Entity >* reward) -> bool
+        {
+            return reward->Inspect("Reward to Spawn");
+        });
     }
 
 //-----------------------------------------------------------------------------
@@ -412,28 +465,31 @@
         { "ActivationCost" , &readActivationCost  },
         { "ActivateSound"  , &readActivateSound   },
         { "DeactivateSound", &readDeactivateSound },
-        { "DamageSound"    , &readDamageSound     }
+        { "DamageSound"    , &readDamageSound     },
+        { "Rewards"        , &readRewardPrefabs   },
+        { "CanBeRewarded"  , &readCanBeRewarded   },
+        { "RewardTimer"    , &readRewardTimer     }
     };
 
-    /// @brief	read the raidus from json
+    /// @brief  read the raidus from json
     void Generator::readRadius(nlohmann::ordered_json const& json)
     {
         m_PowerRadius = Stream::Read<float>(json);
     }
 
-    /// @brief	read if the generator starts active from json
+    /// @brief  read if the generator starts active from json
     void Generator::readActive(nlohmann::ordered_json const& json)
     {
         m_IsActive = Stream::Read<bool>(json);
     }
 
-    /// @brief	read the speed the particle ring changes
+    /// @brief  read the speed the particle ring changes
     void Generator::readSpeed(nlohmann::ordered_json const& json)
     {
         m_RadiusSpeed = Stream::Read<float>(json);
     }
 
-    /// @brief	read the attached wave prefab to spawn
+    /// @brief  read the attached wave prefab to spawn
     void Generator::readWavePrefab(nlohmann::ordered_json const& json)
     {
         Stream::Read(m_WavePrefab, json);
@@ -459,11 +515,26 @@
         Stream::Read< ItemStack >( &m_ActivationCost, json );
     }
 
+    void Generator::readRewardPrefabs(nlohmann::ordered_json const& json)
+    {
+        Stream::Read< AssetReference< Entity > >( &m_RewardPrefabs, json );
+    }
+
+    void Generator::readCanBeRewarded(nlohmann::ordered_json const& json)
+    {
+        Stream::Read(m_CanBeRewarded, json);
+    }
+
+    void Generator::readRewardTimer(nlohmann::ordered_json const& json)
+    {
+       Stream::Read(m_RewardTimer, json);
+    }
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
 
-    /// @brief	write to json
+    /// @brief  write to json
     nlohmann::ordered_json Generator::Write() const
     {
         nlohmann::ordered_json data;
@@ -475,7 +546,12 @@
         data[ "ActivateSound"  ] = Stream::Write( m_ActivateSound );
         data[ "DeactivateSound"] = Stream::Write( m_DeactivateSound );
         data[ "DamageSound"    ] = Stream::Write( m_DamageSound );
+        data[ "CanBeRewarded"  ] = Stream::Write( m_CanBeRewarded );
+
+        data[ "RewardTimer" ] = Stream::Write( m_RewardTimer );
+
         data[ "ActivationCost" ] = Stream::WriteArray( m_ActivationCost );
+        data[ "Rewards" ] = Stream::WriteArray(m_RewardPrefabs);
 
         return data;
     }

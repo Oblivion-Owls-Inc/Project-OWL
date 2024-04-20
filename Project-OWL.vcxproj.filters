@@ -414,6 +414,9 @@
     <Filter Include="Engine\Entity\Component\Sprite\BeamSprite">
       <UniqueIdentifier>{fd9dbf11-0e49-4a97-83f5-a5973a125684}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\DoomsDay">
+      <UniqueIdentifier>{66433d39-fb17-45a3-9dd3-c714039d1306}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -875,6 +878,12 @@
     <ClCompile Include="Source\BeamSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\BeamSprite</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EventEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DoomsDay.cpp">
+      <Filter>Game\Components\Behaviors\DoomsDay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1332,6 +1341,12 @@
     </ClInclude>
     <ClInclude Include="Source\BeamSprite.h">
       <Filter>Engine\Entity\Component\Sprite\BeamSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventEmitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DoomsDay.h">
+      <Filter>Game\Components\Behaviors\DoomsDay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

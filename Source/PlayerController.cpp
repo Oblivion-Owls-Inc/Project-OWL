@@ -22,6 +22,10 @@
 #include "EntitySystem.h"
 #include "Generator.h"
 #include "ItemStack.h"
+#include "HomeBase.h"
+#include "SceneTransition.h"
+#include "EventSystem.h"
+#include "Lifetime.h"
 
 
 #include "ComponentReference.t.h"
@@ -54,7 +58,7 @@
     /// @brief Adds this behavior to the behavior system on init.
     void PlayerController::OnInit()
     {
-	    Behaviors< PlayerController >()->AddComponent( this );
+        Behaviors< PlayerController >()->AddComponent( this );
 
 
         m_Health.SetOnConnectCallback( [ this ]()
@@ -76,18 +80,26 @@
                 std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
             );
 
-            m_Collider->AddOnCollisionCallback( GetId(), [ this ]( Collider* collider, CollisionData const& collisionData )
-            {
-                const glm::vec2 VerticleDirection( 0.0f, 1.0f );
 
-                float dotProduct = glm::dot( collisionData.normal, VerticleDirection );
-
-                if ( dotProduct > m_GroundCollisionThreshold ) // If the player is colliding with the ground
+            m_Collider->AddOnCollisionCallback(GetId(),
+                [this](Collider* collider, CollisionData const& collisionData)
                 {
-                    m_IsJumping = false;
-                    m_CurrentCoyoteTime = 0.0f;
+                    if (collider->GetRigidBody() == nullptr && collider->GetStaticBody() == nullptr)
+                    {
+                        return;
+                    }
+                    const glm::vec2 VerticleDirection(0.0f, 1.0f);
+
+                    float dotProduct = glm::dot(collisionData.normal, VerticleDirection);
+
+                    if (dotProduct > m_GroundCollisionThreshold) // If the player is colliding with the ground
+                    {
+                        m_IsJumping = false;
+
+                        m_CurrentCoyoteTime = 0.0f;
+                    }
                 }
-            } );
+            );
         } );
         m_Collider.SetOnDisconnectCallback( [ this ]()
         {
@@ -110,13 +122,15 @@
             m_Transform->RemoveOnTransformChangedCallback( GetId() );
         } );
 
-        m_RigidBody  .Init( GetEntity() );
-        m_AudioPlayer.Init( GetEntity() );
-        m_Transform  .Init( GetEntity() );
-        m_Health     .Init( GetEntity() );
-        m_Collider   .Init( GetEntity() );
-        m_Inventory  .Init( GetEntity() );
-
+        m_RigidBody     .Init( GetEntity() );
+        m_AudioPlayer   .Init( GetEntity() );
+        m_Transform     .Init( GetEntity() );
+        m_Health        .Init( GetEntity() );
+        m_Collider      .Init( GetEntity() );
+        m_Inventory     .Init( GetEntity() );
+        m_EffectAnimator.Init( GetEntity() );
+        m_Sprite        .Init(GetEntity());
+        
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
 
@@ -132,6 +146,41 @@
         m_AimHorizontal .Init();
         m_AimVertical   .Init();
         m_Interact      .Init();
+
+        /// Set the filter function for the listener
+        m_ListenerBegin.SetFilterFunction([&](std::string const& EventNameBegin) -> bool
+        {
+            if (EventNameBegin == m_EventNameHide)
+            {
+                return true;
+            }
+            if (EventNameBegin == m_EventNameShow)
+            {
+                return true;
+            }
+            return EventNameBegin == m_EventNameBegin;
+        });
+
+        /// Set the Callback function for the listener
+        m_ListenerBegin.SetResponseFunction([&](std::string const& EventNameBegin)
+        {
+            if (EventNameBegin == m_EventNameHide)
+            {
+                m_Sprite->SetOpacity(0.0f);
+                return;
+            }
+            if (EventNameBegin == m_EventNameShow)
+            {
+                m_EffectAnimator->SetIsPlaying(false);
+                return;
+            }
+            // do thing on start
+            m_EffectAnimator->SetIsPlaying(false);
+            m_RigidBody->ApplyVelocity(glm::vec2(1, 10));
+            m_CanMove = true;
+        });
+
+        m_ListenerBegin.Init();
     }
 
 
@@ -140,12 +189,14 @@
     {
         Behaviors< PlayerController >()->RemoveComponent( this );
 
-        m_RigidBody  .Exit();
-        m_AudioPlayer.Exit();
-        m_Transform  .Exit();
-        m_Health     .Exit();
-        m_Collider   .Exit();
-        m_Inventory  .Exit();
+        m_RigidBody     .Exit();
+        m_AudioPlayer   .Exit();
+        m_Transform     .Exit();
+        m_Health        .Exit();
+        m_Collider      .Exit();
+        m_Inventory     .Exit();
+        m_EffectAnimator.Exit();
+        m_Sprite        .Exit();
 
         m_MiningLaserEntity.Exit();
 
@@ -155,6 +206,7 @@
         m_Interact      .Exit();
         m_AimHorizontal .Exit();
         m_AimVertical   .Exit();
+        m_ListenerBegin .Exit();
     }
 
    
@@ -162,7 +214,7 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        if ( m_RigidBody == nullptr || m_Transform == nullptr )
+        if ( m_RigidBody == nullptr || m_Transform == nullptr || !m_CanMove)
         {
             return;
         }
@@ -293,14 +345,26 @@
     /// @param  other   - the collider of the other entity.
     void PlayerController::onCollisionEnter( Collider* other )
     {
+        HomeBase* base = other->GetEntity()->GetComponent<HomeBase>();
+        if (base)
+        {
+            if (base->CanWin())
+            {
+                Events()->BroadcastEvent< std::string >(m_EventNameWin);
+                Debug() << "Event Emitted: " << m_EventNameWin << std::endl;
+                base->GetEntity()->GetComponent<Lifetime>()->GetLifetime()->SetCurrent(1.0);
+                base->PlayWinSound();
+                m_Health->Reset();
+            }
+            return;
+        }
         // Get the enemy behaviour component.
         EnemyBehavior* enemy = other->GetEntity()->GetComponent< EnemyBehavior >();
         if ( enemy == nullptr )
         {
             return;
         }
-
-        if ( m_Health != nullptr )
+        if(m_Health)
         {
             // If the enemy collides with player, damage the player
             m_Health->TakeDamage( enemy->GetDamage() );
@@ -334,6 +398,10 @@
         m_Interact      .Inspect( "Interact Control Action"   );
         m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
         m_AimVertical   .Inspect( "Vertical Aim Action"       );
+        ImGui::InputText("Event Name Begin", &m_EventNameBegin);
+        ImGui::InputText("Event Name Win",   &m_EventNameWin);
+        ImGui::InputText("Event Name Hide", &m_EventNameHide);
+        ImGui::InputText("Event Name Show", &m_EventNameShow);
     }
 
 
@@ -469,6 +537,33 @@
         Stream::Read(m_AimVertical, data);
     }
 
+    /// @brief  reads the EventNameBegin from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameBegin(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameBegin, data);
+    }
+
+    /// @brief  reads the EventNameWin from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameWin(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameWin, data);
+    }
+
+    /// @brief  reads the EventNameHide from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameHide(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameHide, data);
+    }
+
+    /// @brief  reads the EventNameShow from a JSON file
+    /// @param data    the JSON file to read from
+    void PlayerController::readEventNameShow(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventNameShow, data);
+    }
 
 //-----------------------------------------------------------------------------
 // public: reading writing
@@ -494,7 +589,11 @@
             { "FireLaser"               , &PlayerController::readFireLaser                },
             { "Interact"                , &PlayerController::readInteract                 },
             { "AimVertical"             , &PlayerController::readAimVertical              },
-            { "AimHorizontal"           , &PlayerController::readAimHorizontal            }
+            { "AimHorizontal"           , &PlayerController::readAimHorizontal            },
+            { "EventNameBegin"          , &PlayerController::readEventNameBegin           },
+            { "EventNameWin"            , &PlayerController::readEventNameWin             },
+            { "EventNameHide"           , &PlayerController::readEventNameHide            },
+            { "EventNameShow"           , &PlayerController::readEventNameShow            }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -508,21 +607,25 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "VerticalMoveforce"        ] = Stream::Write( m_VerticalMoveforce        );
-        data[ "HorizontalMoveforce"      ] = Stream::Write( m_HorizontalMoveforce      );
-        data[ "RespawnLocation"          ] = Stream::Write( m_PlayerRespawnLocation    );
-        data[ "JumpSpeed"                ] = Stream::Write( m_JumpSpeed                );
-        data[ "IsJumping"                ] = Stream::Write( m_IsJumping                );
-        data[ "GroundCollisionThreshold" ] = Stream::Write( m_GroundCollisionThreshold );
-        data[ "MaxCoyoteTime"            ] = Stream::Write( m_MaxCoyoteTime            );
-        data[ "MiningLaserOffset"        ] = Stream::Write( m_MiningLaserOffset        );
-        data[ "MiningLaserEntity"        ] = Stream::Write( m_MiningLaserEntity        );
-        data[ "MoveVertical"             ] = Stream::Write( m_MoveVertical             );
-        data[ "MoveHorizontal"           ] = Stream::Write( m_MoveHorizontal           );
-        data[ "FireLaser"                ] = Stream::Write( m_FireLaser                );
-        data[ "Interact"                 ] = Stream::Write( m_Interact                 );
-        data[ "AimVertical"              ] = Stream::Write( m_AimVertical              );
-        data[ "AimHorizontal"            ] = Stream::Write( m_AimHorizontal            );
+
+        data[ "MiningLaserEntity"   ]       = Stream::Write( m_MiningLaserEntity     );
+        data[ "RespawnLocation"     ]       = Stream::Write( m_PlayerRespawnLocation );
+        data[ "MoveVertical"        ]       = Stream::Write( m_MoveVertical          );
+        data[ "MoveHorizontal"      ]       = Stream::Write( m_MoveHorizontal        );
+        data[ "FireLaser"           ]       = Stream::Write( m_FireLaser             );
+        data[ "Interact"            ]       = Stream::Write( m_Interact              );
+        data[ "VerticalMoveforce"   ]       = Stream::Write( m_VerticalMoveforce     );
+        data[ "HorizontalMoveforce" ]       = Stream::Write( m_HorizontalMoveforce   );
+        data[ "JumpSpeed"           ]       = Stream::Write( m_JumpSpeed             );
+        data[ "IsJumping"           ]       = Stream::Write( m_IsJumping             );
+        data[ "GroundCollisionThreshold" ]  = Stream::Write( m_GroundCollisionThreshold );
+        data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
+        data[ "AimVertical"         ]       = Stream::Write( m_AimVertical           );
+        data[ "AimHorizontal"       ]       = Stream::Write( m_AimHorizontal         );
+        data[ "EventNameBegin"      ]       = m_EventNameBegin;
+        data[ "EventNameWin"        ]       = m_EventNameWin;
+        data["EventNameHide"        ]       = m_EventNameHide;
+        data["EventNameShow"        ]       = m_EventNameShow;
 
         return data;
     }
@@ -557,6 +660,10 @@
         m_IsJumping               ( other.m_IsJumping                ),
         m_GroundCollisionThreshold( other.m_GroundCollisionThreshold ),
         m_MaxCoyoteTime           ( other.m_MaxCoyoteTime            ),
+        m_EventNameBegin          ( other.m_EventNameBegin           ),
+        m_EventNameWin            ( other.m_EventNameWin             ),
+        m_EventNameHide           ( other.m_EventNameHide            ),
+        m_EventNameShow           ( other.m_EventNameShow            ),
         m_MiningLaserOffset       ( other.m_MiningLaserOffset        ),
         m_MoveVertical            ( other.m_MoveVertical             ),
         m_MoveHorizontal          ( other.m_MoveHorizontal           ),

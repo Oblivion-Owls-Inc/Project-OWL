@@ -87,11 +87,24 @@ void Health::TakeDamage(int damage)
 { 
    m_health -= damage; 
 
-   for (auto callback : m_OnHealthChangedCallbacks)
+   for ( auto& callback : m_OnHealthChangedCallbacks )
    {
        callback.second();
    }
 }
+
+
+/// @brief  resets the health to full
+void Health::Reset()
+{
+    m_health.Reset();
+
+    for ( auto& callback : m_OnHealthChangedCallbacks )
+    {
+        callback.second();
+    }
+}
+
 
 ///--------------------------------------------------------------------------//
 /// @brief Inspector for this component.

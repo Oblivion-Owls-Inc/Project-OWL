@@ -11,6 +11,7 @@
 #include "BehaviorSystem.h"
 #include "JetpackBoost.h"
 #include "ComponentReference.t.h"
+#include "Tilemap.h"
 
 #include "Entity.h"
 #include "Emitter.h"
@@ -74,7 +75,10 @@ void JetpackBoost::OnInit()
     //  parent component(s?)
     Entity* parent = GetEntity()->GetParent();
     if (parent)
+    {
         m_PTransform.Init(parent);
+        m_PController.Init(parent);
+    }
 
     //  input
     m_InputYAxis.SetOwnerName( GetName() );
@@ -93,6 +97,7 @@ void JetpackBoost::OnExit()
     m_Transform.Exit();
     m_Flame.Exit();
     m_PTransform.Exit();
+    m_PController.Exit();
     m_InputXAxis.Exit();
     m_InputYAxis.Exit();
 }
@@ -101,7 +106,7 @@ void JetpackBoost::OnExit()
 /// @brief  
 void JetpackBoost::OnUpdate(float dt)
 {
-    if (!m_Initialized)
+    if (!m_Initialized || !m_PController->GetActive())
         return;
 
     float targetAngle = 0.0f;

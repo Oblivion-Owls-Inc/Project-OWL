@@ -9,6 +9,8 @@
 #include "Behavior.h"
 #include "ComponentReference.h"
 #include "Inventory.h"
+#include "EventSystem.h"
+#include "EventListener.h"
 
 #include "EntityReference.h"
 class SceneTransition;
@@ -73,6 +75,9 @@ public:
     /// @return  Current win scene name 
     __inline std::string GetWinSceneName() const { return m_WinSceneName; }
 
+    /// @brief   Win the game
+    void WinTheGame();
+
 
 
 //-----------------------------------------------------------------------------
@@ -90,6 +95,11 @@ private:
     /// @brief  Name of the scene to switch to upon meeting the requirement
     std::string m_WinSceneName = "GameWin";
 
+    /// @brief Event Listener
+    EventListener<std::string> m_Listener;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventName;
 
     /// @brief  the SceneTransition Component responsible for changing scenes
     ComponentReference< SceneTransition > m_SceneTransition;
@@ -123,6 +133,10 @@ private:
     /// @brief  reads the Entity the SceneTransition Component is attached to
     /// @param  data    the JSON data to read from
     void readSceneTransitionEntity( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the Event name to listen for
+    /// @param  data    the JSON data to read from
+    void readEventName(nlohmann::ordered_json const& data);
 
 public:
 
