@@ -76,7 +76,6 @@
                 m_Emitter->SetContinuous(false);
             }
         } );
-
         m_Interactable.SetOnConnectCallback( [ this ]() {
             m_Interactable->SetEnabled( m_IsActive == false );
             m_Interactable->AddOnInteractCallback( GetId(), [ this ]( Interactor*  interactor )
@@ -109,6 +108,7 @@
         m_Interactable    .Init( GetEntity() );
 
         m_WavePrefab     .SetOwnerName( GetName() );
+
         m_ActivateSound  .SetOwnerName( GetName() );
         m_DeactivateSound.SetOwnerName( GetName() );
         m_DamageSound    .SetOwnerName( GetName() );
@@ -356,9 +356,19 @@
         m_DeactivateRing = true;
         m_CanSpawnWave = true;
 
+        if (m_Sprite != nullptr)
+        {
+            m_Sprite->SetFrameIndex(0);
+        }
+
         if ( m_Interactable != nullptr )
         {
             m_Interactable->SetEnabled( true );
+        }
+
+        if (m_Sprite != nullptr)
+        {
+            m_Sprite->SetFrameIndex(1);
         }
     }
 

@@ -10,6 +10,8 @@
 #include "Behavior.h"
 #include "ComponentReference.h"
 #include "ActionReference.h"
+#include "PlayerController.h"
+
 class Emitter;
 class Transform;
 class RigidBody;
@@ -81,6 +83,8 @@ private:
 
     /// @brief  Player's transsform
     ComponentReference< Transform > m_PTransform;
+
+    ComponentReference< PlayerController > m_PController;
 
     /// @brief  Flame emitter
     ComponentReference< Emitter > m_Flame;

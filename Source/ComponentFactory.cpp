@@ -83,6 +83,9 @@
 #include "WindowFocusEvent.h"
 #include "JetpackBoost.h"
 #include "GeneratorActivationCostUi.h"
+#include "EventEmitter.h"
+#include "DoomsDay.h"
+#include "ScreenShake.h"
 #include "BeamSprite.h"
 
 
@@ -186,8 +189,8 @@
         { "Animation"                , ComponentInfo< Animation                 >() },
         { "Text"                     , ComponentInfo< Text                      >() },
         { "PlayerController"         , ComponentInfo< PlayerController          >() },
-		{ "EnemyBehavior"            , ComponentInfo< EnemyBehavior             >() },
-		{ "Bullet"                   , ComponentInfo< Bullet                    >() },
+        { "EnemyBehavior"            , ComponentInfo< EnemyBehavior             >() },
+        { "Bullet"                   , ComponentInfo< Bullet                    >() },
         { "BulletAoe"                , ComponentInfo< BulletAoe                 >() },
         { "BulletAoePulse"           , ComponentInfo< BulletAoePulse            >() },
         { "TurretBehavior"           , ComponentInfo< TurretBehavior            >() },
@@ -249,6 +252,9 @@
         { "WindowFocusEvent"         , ComponentInfo< WindowFocusEvent          >() },
         { "JetpackBoost"             , ComponentInfo< JetpackBoost              >() },
         { "GeneratorActivationCostUi", ComponentInfo< GeneratorActivationCostUi >() },
+        { "EventEmitter"             , ComponentInfo< EventEmitter              >() },
+        { "DoomsDay"                 , ComponentInfo< DoomsDay                  >() },
+        { "ScreenShake"              , ComponentInfo< ScreenShake               >() },
         { "BeamSprite"               , ComponentInfo< BeamSprite                >() }
     };
 

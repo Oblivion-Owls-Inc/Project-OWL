@@ -26,10 +26,11 @@ WinState::WinState() :
 /// @brief  copy ctor
 WinState::WinState(const WinState& other) :
     Behavior(other),
-    m_Item                 ( m_Item         ),
-    m_WinCount             ( m_WinCount     ),
-    m_WinSceneName         ( m_WinSceneName ),
-    m_SceneTransitionEntity( m_SceneTransitionEntity, { &m_SceneTransition } )
+    m_Item                 ( other.m_Item         ),
+    m_WinCount             ( other.m_WinCount     ),
+    m_WinSceneName         ( other.m_WinSceneName ),
+    m_SceneTransitionEntity( other.m_SceneTransitionEntity, { &m_SceneTransition } ),
+    m_EventName            ( other.m_EventName )
 {}
 
 /// @brief  Return a copy of this component
@@ -51,6 +52,20 @@ void WinState::OnInit()
 
     m_SceneTransitionEntity.SetOwnerName( GetName() );
     m_SceneTransitionEntity.Init();
+
+    /// Set the filter function for the listener
+    m_Listener.SetFilterFunction([&](std::string const& EventNameEnd) -> bool
+    {
+        return EventNameEnd == m_EventName;
+    });
+
+    /// Set the Callback function for the listener
+    m_Listener.SetResponseFunction([&](std::string const& EventNameEnd)
+    {
+        WinTheGame();
+    });
+
+    m_Listener.Init();
 }
 
 /// @brief  Removes itself from behavior system
@@ -61,6 +76,7 @@ void WinState::OnExit()
     m_Inventory.Exit();
 
     m_SceneTransitionEntity.Exit();
+    m_Listener.Exit();
 }
 
 
@@ -84,6 +100,15 @@ void WinState::OnUpdate(float dt)
     }
 }
 
+/// @brief  Win the game
+void WinState::WinTheGame()
+{
+    if (m_SceneTransition != nullptr)
+    {
+        m_SceneTransition->StartTransition(m_WinSceneName);
+    }
+}
+
 
 /// @brief  Tweak properties in debug window
 void WinState::Inspector()
@@ -93,6 +118,8 @@ void WinState::Inspector()
     Scenes()->InspectorSelectScene( "Scene to switch to", &m_WinSceneName );
 
     m_SceneTransitionEntity.Inspect( "Scene Transition Entity" );
+
+    ImGui::InputText("Event Name", &m_EventName);
 }
 
 
@@ -115,7 +142,8 @@ ReadMethodMap<WinState> const WinState::s_ReadMethods =
     { "ItemID"               , &WinState::readItemID                },
     { "ItemCount"            , &WinState::readItemCount             },
     { "WinScene"             , &WinState::readWinScene              },
-    { "SceneTransitionEntity", &WinState::readSceneTransitionEntity }
+    { "SceneTransitionEntity", &WinState::readSceneTransitionEntity },
+    { "EventName"            , &WinState::readEventName             },
 };
 
 /// @brief		 Reads winning item ID
@@ -148,6 +176,13 @@ void WinState::readSceneTransitionEntity( nlohmann::ordered_json const& data )
     Stream::Read( m_SceneTransitionEntity, data );
 }
 
+/// @brief  reads the Event name to listen for
+/// @param  data    the JSON data to read from
+void WinState::readEventName(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_EventName, data);
+}
+
 
 /// @brief	write to json
 nlohmann::ordered_json WinState::Write() const
@@ -158,6 +193,7 @@ nlohmann::ordered_json WinState::Write() const
     data[ "ItemCount"             ] = Stream::Write( m_WinCount              );
     data[ "WinScene"              ] = Stream::Write( m_WinSceneName          );
     data[ "SceneTransitionEntity" ] = Stream::Write( m_SceneTransitionEntity );
+    data[ "EventName"        ] = m_EventName;
 
     return data;
 }

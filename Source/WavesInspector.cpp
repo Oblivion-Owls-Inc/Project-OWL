@@ -463,6 +463,20 @@ void WavesBehavior::guiSpawners()
 	}
 }
 
+/// @brief lists event related info
+void WavesBehavior::guiEvent()
+{
+	// general inspector info
+	if (ImGui::TreeNode("Event: "))
+	{
+		ImGui::InputText("Event Name", &eventName);
+
+		ImGui::Checkbox("Wait For Event", &waitForEvent);
+		
+		ImGui::TreePop();
+	}
+}
+
 /// @brief handles displaying ImGui inspectors
 void WavesBehavior::Inspector()
 {
@@ -479,5 +493,7 @@ void WavesBehavior::Inspector()
 	guiCurrent();
 
 	guiSpawners();
+
+	guiEvent();
 	
 }

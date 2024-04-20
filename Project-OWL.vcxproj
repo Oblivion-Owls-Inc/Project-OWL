@@ -285,6 +285,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\DoomsDay.cpp" />
+    <ClCompile Include="Source\EventEmitter.cpp" />
+    <ClCompile Include="Source\ScreenShake.cpp" />
     <ClCompile Include="Source\ActionReference.cpp" />
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
@@ -545,6 +548,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\DoomsDay.h" />
+    <ClInclude Include="Source\EventEmitter.h" />
+    <ClInclude Include="Source\ScreenShake.h" />
     <ClInclude Include="Source\BeamSprite.h" />
     <ClInclude Include="Source\BuildingSelectionButton.h" />
     <ClInclude Include="Source\ControlPrompt.h" />
