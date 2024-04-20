@@ -166,7 +166,7 @@
         {
             if (EventNameBegin == m_EventNameHide)
             {
-                m_EffectAnimator->SetIsPlaying(true);
+                m_Sprite->SetOpacity(0.0f);
                 return;
             }
             if (EventNameBegin == m_EventNameShow)
@@ -177,6 +177,7 @@
             // do thing on start
             m_EffectAnimator->SetIsPlaying(false);
             m_RigidBody->ApplyVelocity(glm::vec2(1, 10));
+            m_CanMove = true;
         });
 
         m_ListenerBegin.Init();
@@ -213,7 +214,7 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        if ( m_RigidBody == nullptr || m_Transform == nullptr )
+        if ( m_RigidBody == nullptr || m_Transform == nullptr || !m_CanMove)
         {
             return;
         }
@@ -352,6 +353,7 @@
                 Events()->BroadcastEvent< std::string >(m_EventNameWin);
                 Debug() << "Event Emitted: " << m_EventNameWin << std::endl;
                 base->GetEntity()->GetComponent<Lifetime>()->GetLifetime()->SetCurrent(1.0);
+                base->PlayWinSound();
             }
             return;
         }

@@ -68,6 +68,7 @@ public: // accessors
     Transform const* GetTransform() const { return m_Transform; }
 
 
+    bool GetActive() const { return m_CanMove; }
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -185,7 +186,7 @@ private: // member variables
     /// @brief  the name of the event to listen for
     std::string m_EventNameShow;
 
-
+    bool m_CanMove = false;
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------

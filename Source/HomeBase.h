@@ -9,6 +9,7 @@
 #pragma once
 #include "Component.h"
 
+#include "AudioPlayer.h"
 #include "EntityReference.h"
 #include "ComponentReference.h"
 #include "AssetReference.h"
@@ -39,6 +40,9 @@ public: // accessors
     /// @brief  gets the current win state
     /// @return bool if we can win the game
     bool CanWin();
+
+    /// @brief  plays the win sound
+    void PlayWinSound();
 
 //-----------------------------------------------------------------------------
 public: // public method
@@ -114,7 +118,15 @@ private: // members
     /// @brief  the sound to play when the base breaks down 
     AssetReference< Sound > m_DeactivateSound;
 
+    /// @brief  the sound to play when the base breaks down 
+    AssetReference< Sound > m_DamageSound;
+
+    /// @brief  the audio player for this entity
+    ComponentReference< AudioPlayer > m_AudioPlayer;
+
     bool m_CanWin = false;
+
+
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
@@ -167,6 +179,10 @@ private: // reading
     /// @brief reads the break down sound from the JSON data
     /// @param data - the JSON data to read from
     void readDeactivateSound(nlohmann::ordered_json const& data);
+
+    /// @brief reads the damage sound from the JSON data
+    /// @param data - the JSON data to read from
+    void readDamageSound(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

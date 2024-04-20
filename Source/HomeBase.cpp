@@ -48,6 +48,13 @@
     /// @return bool if we can win the game
     bool HomeBase::CanWin() { return m_CanWin; }
 
+    /// @brief  plays the win sound
+    void HomeBase::PlayWinSound() 
+    { 
+        m_AudioPlayer->SetSound(m_ActivateSound);
+        m_AudioPlayer->Play();
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -80,6 +87,8 @@
                 {
                     Events()->BroadcastEvent< std::string >(m_EventNameCutsceneLose);
                     Debug() << "Event Emitted: " << m_EventNameCutsceneLose << std::endl;
+                    m_AudioPlayer->SetSound(m_DeactivateSound);
+                    m_AudioPlayer->Play();
                     //Destroy();
                 }
             } );
@@ -89,6 +98,7 @@
         } );
 
         m_Health.Init( GetEntity() );
+        m_AudioPlayer.Init(GetEntity());
 
         m_SceneTransitionEntity.SetOwnerName( GetName() );
         m_SceneTransitionEntity.Init();
@@ -103,6 +113,9 @@
         m_ListenerBegin.SetResponseFunction([&](std::string const& EventNameBegin)
         {
             // do thing on start
+            m_AudioPlayer->SetSound(m_DeactivateSound);
+            m_AudioPlayer->Play();
+            m_AudioPlayer->SetSound(m_DamageSound);
             GetEntity()->GetComponent<Generator>()->Activate();
         });
 
@@ -165,6 +178,7 @@
         Components< HomeBase >()->RemoveComponent( this );
 
         m_Health.Exit();
+        m_AudioPlayer.Exit();
 
         m_SceneTransitionEntity.Exit();
         m_ListenerBegin.Exit();
@@ -199,6 +213,7 @@
         ImGui::Separator();
         m_ActivateSound.Inspect("Drive Sound");
         m_DeactivateSound.Inspect("Breakdown Sound");
+        m_DamageSound.Inspect("Damage Sound");
         m_CameraPrefab.Inspect("Camera Prefab");
     }
 
@@ -278,6 +293,13 @@
        Stream::Read(m_DeactivateSound, data);
     }
 
+    /// @brief reads the damage sound from the JSON data
+    /// @param data - the JSON data to read from
+    void HomeBase::readDamageSound(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_DamageSound, data);
+    }
+
     
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -298,7 +320,8 @@
             { "EventNameCutsceneLose", &HomeBase::readEventNameCutsceneLose },
             { "CameraPrefab"         , &HomeBase::readCameraPrefab          },
             { "DriveSound"           , &HomeBase::readDriveSound            },
-            { "DeactivateSound"      , &HomeBase::readDeactivateSound       }
+            { "DeactivateSound"      , &HomeBase::readDeactivateSound       },
+            { "DamageSound"          , &HomeBase::readDamageSound           }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -322,6 +345,7 @@
         json[ "CameraPrefab"          ] = Stream::Write(m_CameraPrefab);
         json[ "DriveSound"            ] = Stream::Write(m_ActivateSound);
         json[ "DeactivateSound"       ] = Stream::Write(m_DeactivateSound);
+        json[ "DamageSound"           ] = Stream::Write(m_DamageSound);
 
 
         return json;
@@ -357,7 +381,8 @@
         m_EventNameCutsceneLose(other.m_EventNameCutsceneLose),
         m_CameraPrefab(other.m_CameraPrefab),
         m_ActivateSound(other.m_ActivateSound),
-        m_DeactivateSound(other.m_DeactivateSound)
+        m_DeactivateSound(other.m_DeactivateSound),
+        m_DamageSound(other.m_DamageSound)
     {
         m_CameraPrefab = other.m_CameraPrefab;
     }
