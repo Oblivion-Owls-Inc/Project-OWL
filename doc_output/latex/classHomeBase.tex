@@ -16,10 +16,14 @@ Collaboration diagram for Home\+Base\+:
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classHealth}{Health}} $\ast$ \mbox{\hyperlink{classHomeBase_aaefa8d2509ddb7b2774d61ef30f2276d}{Get\+Health}} ()
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classHealth}{Health}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHomeBase_aca7b4e7702816e6a4e2e987fdabec486}{Can\+Win}} ()
+\begin{DoxyCompactList}\small\item\em gets the current win state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHomeBase_aac8d786744515085fdaac3be34814d85}\label{classHomeBase_aac8d786744515085fdaac3be34814d85}} 
+void \mbox{\hyperlink{classHomeBase_aac8d786744515085fdaac3be34814d85}{Play\+Win\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em plays the win sound \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classHomeBase_aabdb18d40403b8ffb34d675b124b1f7d}\label{classHomeBase_aabdb18d40403b8ffb34d675b124b1f7d}} 
 void \mbox{\hyperlink{classHomeBase_aabdb18d40403b8ffb34d675b124b1f7d}{Destroy}} ()
 \begin{DoxyCompactList}\small\item\em destroy the base \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}\label{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}} 
 virtual void \mbox{\hyperlink{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classHomeBase_a3839bfabdd7c45cb2cb9027239b4a0f1}\label{classHomeBase_a3839bfabdd7c45cb2cb9027239b4a0f1}} 
@@ -38,6 +42,19 @@ virtual \mbox{\hyperlink{classHomeBase}{Home\+Base}} $\ast$ \mbox{\hyperlink{cla
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHomeBase_aca7b4e7702816e6a4e2e987fdabec486}\label{classHomeBase_aca7b4e7702816e6a4e2e987fdabec486}} 
+\index{HomeBase@{HomeBase}!CanWin@{CanWin}}
+\index{CanWin@{CanWin}!HomeBase@{HomeBase}}
+\doxysubsubsection{\texorpdfstring{CanWin()}{CanWin()}}
+{\footnotesize\ttfamily bool Home\+Base\+::\+Can\+Win (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the current win state 
+
+\begin{DoxyReturn}{Returns}
+bool if we can win the game 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classHomeBase_aa6159af121dd5e0eb2e29486214dd10c}\label{classHomeBase_aa6159af121dd5e0eb2e29486214dd10c}} 
 \index{HomeBase@{HomeBase}!Clone@{Clone}}
 \index{Clone@{Clone}!HomeBase@{HomeBase}}
@@ -81,6 +98,34 @@ the map of read methods for this \mbox{\hyperlink{classHomeBase}{Home\+Base}}
 
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}\label{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}} 
+\index{HomeBase@{HomeBase}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!HomeBase@{HomeBase}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Home\+Base\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once when entering the scene 
+
+Set the filter function for the listener
+
+Set the Callback function for the listener
+
+Set the filter function for the listener
+
+Set the Callback function for the listener
+
+Set the filter function for the listener
+
+Set the Callback function for the listener
+
+Set the filter function for the listener
+
+Set the Callback function for the listener
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
 
 \mbox{\Hypertarget{classHomeBase_a8656f2d75ce8cd88bda71c365542276f}\label{classHomeBase_a8656f2d75ce8cd88bda71c365542276f}} 
 \index{HomeBase@{HomeBase}!Write@{Write}}

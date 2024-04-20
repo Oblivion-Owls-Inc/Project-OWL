@@ -27,10 +27,13 @@ digraph "Source/Inventory.h"
   Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 [label="Source/Engine.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Engine_8cpp.html",tooltip="Engine class."];
   Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node12 [label="Source/PlayerController.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8cpp.html",tooltip="PlayerController Behaviour Class."];
-  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node13 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
+  Node12 [label="Source/JetpackBoost.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$JetpackBoost_8h_source.html",tooltip=" "];
+  Node12 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Source/PlayerController.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8cpp.html",tooltip="PlayerController Behaviour Class."];
   Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node14 [label="Source/WinState.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WinState_8h_source.html",tooltip=" "];
-  Node14 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Source/WinState.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WinState_8h_source.html",tooltip=" "];
+  Node15 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

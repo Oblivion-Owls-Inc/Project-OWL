@@ -20,6 +20,11 @@ Collaboration diagram for Player\+Controller\+:
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classHealth}{Health}} \mbox{\hyperlink{classComponent}{Component}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} $\ast$ \mbox{\hyperlink{classPlayerController_a566aced6020932acbc73f6e8f3ce11b6}{Get\+Mining\+Laser}} ()
 \begin{DoxyCompactList}\small\item\em Gets the \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ \mbox{\hyperlink{classPlayerController_add47a6c672cbb742252d1bf9c3cbf349}{Get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Gets the \mbox{\hyperlink{classTransform}{Transform}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPlayerController_a60c1b99a919e5cd5836ea437c326507c}\label{classPlayerController_a60c1b99a919e5cd5836ea437c326507c}} 
+bool {\bfseries Get\+Active} () const
+\item 
 virtual void \mbox{\hyperlink{classPlayerController_ab6709fd05481c13c8845ff9f4c865a84}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classPlayerController_aa9ec38dc404388d57ebabea4b8e6802c}{On\+Exit}} () override
@@ -122,6 +127,19 @@ the map of read methods for this \mbox{\hyperlink{classComponent}{Component}}
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
+\mbox{\Hypertarget{classPlayerController_add47a6c672cbb742252d1bf9c3cbf349}\label{classPlayerController_add47a6c672cbb742252d1bf9c3cbf349}} 
+\index{PlayerController@{PlayerController}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} const$\ast$ Player\+Controller\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the \mbox{\hyperlink{classTransform}{Transform}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. 
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classTransform}{Transform}} component attached to this \mbox{\hyperlink{classEntity}{Entity}}. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classPlayerController_aa9ec38dc404388d57ebabea4b8e6802c}\label{classPlayerController_aa9ec38dc404388d57ebabea4b8e6802c}} 
 \index{PlayerController@{PlayerController}!OnExit@{OnExit}}
 \index{OnExit@{OnExit}!PlayerController@{PlayerController}}
@@ -164,7 +182,9 @@ Adds this behavior to the behavior system on init.
 
 \DoxyHorRuler{0}
  \hypertarget{classPlayerController_autotoc_md11}{}\doxysubsubsection{Public\+: methods}\label{classPlayerController_autotoc_md11}
+Set the filter function for the listener
 
+Set the Callback function for the listener
 
 Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
 

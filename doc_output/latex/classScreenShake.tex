@@ -1,0 +1,136 @@
+\hypertarget{classScreenShake}{}\doxysection{Screen\+Shake Class Reference}
+\label{classScreenShake}\index{ScreenShake@{ScreenShake}}
+
+
+Inheritance diagram for Screen\+Shake\+:
+% FIG 0
+
+
+Collaboration diagram for Screen\+Shake\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreenShake_a79080281f2f37e193460e391d576f26a}\label{classScreenShake_a79080281f2f37e193460e391d576f26a}} 
+\mbox{\hyperlink{classScreenShake_a79080281f2f37e193460e391d576f26a}{Screen\+Shake}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreenShake_adc6642feff0db7b9120ee23e505edf47}\label{classScreenShake_adc6642feff0db7b9120ee23e505edf47}} 
+virtual void \mbox{\hyperlink{classScreenShake_adc6642feff0db7b9120ee23e505edf47}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreenShake_a6237840940d61463943c8e46ec420c6e}\label{classScreenShake_a6237840940d61463943c8e46ec420c6e}} 
+virtual void {\bfseries On\+Update} (float delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{classScreenShake_ac1bdfa8283073cebc6e258e88079dc15}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em Called at a fixed interval. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreenShake_a60914d408249a356f089f56db438229e}\label{classScreenShake_a60914d408249a356f089f56db438229e}} 
+virtual void \mbox{\hyperlink{classScreenShake_a60914d408249a356f089f56db438229e}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classScreenShake_a3577a084e01f35316ec92f6e64afc695}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classScreenShake_a43bb51958512791857698e9362360bf0}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classScreenShake_ab487507314345912fcb8a0dad38955a6}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} $\ast$ \mbox{\hyperlink{classScreenShake_ab495b4b60dba4dd44ef29703b590152d}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classScreenShake_ab495b4b60dba4dd44ef29703b590152d}\label{classScreenShake_ab495b4b60dba4dd44ef29703b590152d}} 
+\index{ScreenShake@{ScreenShake}!Clone@{Clone}}
+\index{Clone@{Clone}!ScreenShake@{ScreenShake}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} $\ast$ Screen\+Shake\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} 
+
+clones this \mbox{\hyperlink{classScreenShake}{Screen\+Shake}}
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}}
+
+the newly created clone of this \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classScreenShake_a43bb51958512791857698e9362360bf0}\label{classScreenShake_a43bb51958512791857698e9362360bf0}} 
+\index{ScreenShake@{ScreenShake}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ScreenShake@{ScreenShake}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Screen\+Shake\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} 
+
+gets the map of read methods for this \mbox{\hyperlink{classScreenShake}{Screen\+Shake}}
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}}
+
+the map of read methods for this \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classScreenShake_a3577a084e01f35316ec92f6e64afc695}\label{classScreenShake_a3577a084e01f35316ec92f6e64afc695}} 
+\index{ScreenShake@{ScreenShake}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!ScreenShake@{ScreenShake}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Screen\+Shake\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+shows the inspector for \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} 
+
+shows the inspector for \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} 
+
+Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
+
+\mbox{\Hypertarget{classScreenShake_ac1bdfa8283073cebc6e258e88079dc15}\label{classScreenShake_ac1bdfa8283073cebc6e258e88079dc15}} 
+\index{ScreenShake@{ScreenShake}!OnFixedUpdate@{OnFixedUpdate}}
+\index{OnFixedUpdate@{OnFixedUpdate}!ScreenShake@{ScreenShake}}
+\doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
+{\footnotesize\ttfamily void Screen\+Shake\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Called at a fixed interval. 
+
+called every fixed frame step 
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classScreenShake_ab487507314345912fcb8a0dad38955a6}\label{classScreenShake_ab487507314345912fcb8a0dad38955a6}} 
+\index{ScreenShake@{ScreenShake}!Write@{Write}}
+\index{Write@{Write}!ScreenShake@{ScreenShake}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Screen\+Shake\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}} to JSON 
+
+writes this \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} to JSON
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classOrbitBehavior}{Orbit\+Behavior}}
+
+the JSON data of this \mbox{\hyperlink{classScreenShake}{Screen\+Shake}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ScreenShake_8h}{Screen\+Shake.\+h}}\item 
+Source/Screen\+Shake.\+cpp\end{DoxyCompactItemize}
