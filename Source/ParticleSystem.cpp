@@ -3,8 +3,10 @@
  * \brief  Updates all particles using compute shader, spawns new ones
  *         in accordance with emitters' timing.
  * 
- * \author Eli Tsereteli
+ * \author Eli Tsereteli (ilya.tsereteli@digipen.edu)
  * \date   October 2023
+ * 
+ * \copyright Copyright (c) 2024 Digipen Institute of Technology
  *********************************************************************/
 
 
