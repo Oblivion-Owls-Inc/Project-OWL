@@ -2,7 +2,7 @@
 /// \file   WavesBehavior.cpp
 /// \brief  Definitions for wave and spawning behavior
 /// 
-/// \author Tyler Birdsall (tyler.birdsall)
+/// \author Tyler Birdsall (tyler.birdsall@digpen.edu)
 /// \date   10/16/23
 ///
 /// \copyright Copyright (c) 2024 Digipen Institute of Technology
