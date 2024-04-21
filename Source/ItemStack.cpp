@@ -4,7 +4,7 @@
 /// @version    0.1
 /// @date       2024-01-17
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" // precompiled header has to be included first
 #include "ItemStack.h"

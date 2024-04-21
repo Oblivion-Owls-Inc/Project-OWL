@@ -3,7 +3,7 @@
 /// @author Jax Clayton (jax.clayton@digipen.edu)
 /// @brief A system that pauses the game when the pause button is pressed.
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
 #pragma once

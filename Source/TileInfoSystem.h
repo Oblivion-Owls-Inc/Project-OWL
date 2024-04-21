@@ -1,10 +1,10 @@
-/// @file       TileInfoSystem.h
-/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      System to get info about given tile indices
-/// @version    0.1
-/// @date       2023-09-05
+/// \file       TileInfoSystem.h
+/// \author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// \brief      System to get info about given tile indices
+/// \version    0.1
+/// \date       2023-09-05
 /// 
-/// @copyright  Copyright (c) 2023
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
 

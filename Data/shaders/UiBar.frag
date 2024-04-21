@@ -3,7 +3,7 @@
 /// @brief      fragment shader for a configurable ui bar
 /// @date       2024-01-22
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 
 #version 430 core
