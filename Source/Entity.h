@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker), Steve Bukowinski (steve.bukowinski)
 /// @date   September 2023
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// @copyright (c) 2024 DigiPen (USA) Corporation.
 //-----------------------------------------------------------------------------
 
 #pragma once

@@ -1,11 +1,11 @@
 ///--------------------------------------------------------------------------//
-/// @file   WavesBehavior.cpp
-/// @brief  Definitions for wave and spawning behavior
+/// \file   WavesBehavior.cpp
+/// \brief  Definitions for wave and spawning behavior
 /// 
-/// @author Tyler Birdsall (tyler.birdsall)
-/// @date   10/16/23
+/// \author Tyler Birdsall (tyler.birdsall)
+/// \date   10/16/23
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 #include "pch.h" // precompiled header has to be included first
 #include "WavesBehavior.h"
