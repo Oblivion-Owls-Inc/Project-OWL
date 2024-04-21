@@ -2,7 +2,7 @@
  * \file       LightingSystem.h
  * \brief      Lighting system interface.
  * 
- * \author     Eli Tsereteli
+ * \author     Eli Tsereteli (ilya.tsereteli@digipen.edu)
  * \date       Jan 2024
  * \copyright  Copyright (c) 2024 Digipen Instutute of Technology
  *********************************************************************/
