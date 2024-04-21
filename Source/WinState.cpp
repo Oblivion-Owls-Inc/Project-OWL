@@ -1,9 +1,10 @@
 /*********************************************************************
-* \file   WinState.cpp
-* \brief  Keeps track of inventory of an entity, switches to a scene
-*		  when specified amount of specified item is reached.
+* \file      WinState.cpp
+* \brief     Keeps track of inventory of an entity, switches to a scene
+*		     when specified amount of specified item is reached.
 *
-* \author Eli Tsereteli
+* \author    Eli Tsereteli
+* \copyright Copyright (c) 2024 Digipen Institute of Technology
 *********************************************************************/
 
 #include "pch.h" // precompiled header has to be included first

@@ -4,6 +4,7 @@
  * 
  * \author Eli Tsereteli
  * \date   October 2023
+ * \copyright Copyright (c) 2024 Digipen Institute of Technology
  *********************************************************************/
 #pragma once
 #include "Sprite.h"
