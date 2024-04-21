@@ -1,8 +1,8 @@
 /*********************************************************************
 * \file         CameraBehavior.cpp
-* \author       Eli Tsereteli
+* \author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
 * \date         April 2024
-* \copyright    Copyright (c) 2023 Digipen Institute of Technology
+* \copyright    Copyright (c) 2024 Digipen Institute of Technology
 *
 * \brief        Makes camera smoothly follow specified entity.
 *********************************************************************/

@@ -4,6 +4,7 @@
 *		  when specified amount of specified item is reached.
 *
 * \author Eli Tsereteli
+* \copyright Copyright (c) 2024 Digipen Institute of Technology
 *********************************************************************/
 #pragma once
 #include "Behavior.h"

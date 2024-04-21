@@ -1,10 +1,10 @@
-/// @file       Tilemap.cpp
-/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Tilemap component
-/// @version    0.1
-/// @date       2023-10-06
+/// \file       Tilemap.cpp
+/// \author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// \brief      Tilemap component
+/// \version    0.1
+/// \date       2023-10-06
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" // precompiled header has to be included first
 #include "Tilemap.h"

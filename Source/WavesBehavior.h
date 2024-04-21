@@ -1,9 +1,11 @@
 ///*****************************************************************/
-/// @file	 WavesBehavior.h
-/// @Author  Tyler Birdsall (tyler.birdsall@digipen.edu
-/// @date	 10/16/2023
-/// @brief   WavesBehavior class header
-/// @details This class is used to create a base wave behavior 
+/// \file	 WavesBehavior.h
+/// \author  Tyler Birdsall (tyler.birdsall@digipen.edu
+/// \date	 10/16/2023
+/// \brief   WavesBehavior class header
+/// \details This class is used to create a base wave behavior 
+/// 
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
 #pragma once

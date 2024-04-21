@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   October 2023
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 ///-----------------------------------------------------------------------------//
 
 #include "pch.h" // precompiled header has to be included first

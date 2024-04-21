@@ -1,7 +1,9 @@
-/// @file     TilemapSprite.h
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// \file     TilemapSprite.h
+/// \author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    A version of Sprite specifically for rendering tiles.
+/// \brief    A version of Sprite specifically for rendering tiles.
+/// 
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 #pragma once
 
 #include "pch.h" 

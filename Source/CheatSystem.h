@@ -2,10 +2,10 @@
 /// @file   CheatSystem.h
 /// @brief  CheatSystem Class Declaration
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   October 2023
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 ///-----------------------------------------------------------------------------//
 
 #pragma once

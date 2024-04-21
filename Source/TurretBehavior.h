@@ -1,9 +1,11 @@
 ///*****************************************************************/
-/// @file	 TurretBehavior.h
-/// @Author  Jax Clayton (jax.clayton@digipen.edu)
-/// @date	 10/1/2023
-/// @brief   TurretBehavior class header
-/// @details This class is used to create a base turret behavior 
+/// \file	 TurretBehavior.h
+/// \author  Jax Clayton (jax.clayton@digipen.edu)
+/// \date	 10/1/2023
+/// \brief   TurretBehavior class header
+/// \details This class is used to create a base turret behavior
+/// 
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology 
 ///*****************************************************************/
 
 #pragma once

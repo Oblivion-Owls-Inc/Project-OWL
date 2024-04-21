@@ -2,10 +2,10 @@
 /// @file   Entity.h
 /// @brief  Entity class which holds Components
 /// 
-/// @author Aidan Straker (aidan.straker), Steve Bukowinski (steve.bukowinski)
+/// @author Aidan Straker (aidan.straker@digipen.edu), Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @date   September 2023
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 //-----------------------------------------------------------------------------
 
 #pragma once

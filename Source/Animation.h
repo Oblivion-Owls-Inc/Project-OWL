@@ -4,6 +4,8 @@
  * 
  * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
  * \date   September 2023
+ * 
+ * \copyright Copyright (c) 2024 Digipen Institute of Technology
  *********************************************************************/
 
 #pragma once

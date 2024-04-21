@@ -2,10 +2,10 @@
 /// @file   Building.h
 /// @brief  Building Component Class
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   March 2024
 ///
-/// @copyright (c) 2024 DigiPen (USA) Corporation.
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 ///--------------------------------------------------------------------------//
 
 #pragma once

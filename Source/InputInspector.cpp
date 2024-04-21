@@ -1,10 +1,10 @@
-/// @file InputInspector.cpp
-/// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @brief Input system addition, holds Action and Debug info
-/// @version 0.1
-/// @date 2024-18-02
+/// \file InputInspector.cpp
+/// \author Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// \brief Input system addition, holds Action and Debug info
+/// \version 0.1
+/// \date 2024-18-02
 /// 
-/// @copyright Copyright (c) 2024
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" // precompiled header has to be included first
 #include "InputSystem.h"

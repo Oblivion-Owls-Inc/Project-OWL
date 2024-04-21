@@ -2,10 +2,10 @@
 /// @file   CheatSystem.cpp
 /// @brief  CheatSystem Class definition.
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   October 2023
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 ///-----------------------------------------------------------------------------//
 
 

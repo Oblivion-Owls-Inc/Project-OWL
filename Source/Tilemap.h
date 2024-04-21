@@ -1,7 +1,9 @@
-/// @file     Tilemap.h
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// \file     Tilemap.h
+/// \author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Tilemap component - loads and manages a tilemap array.
+/// \brief    Tilemap component - loads and manages a tilemap array.
+/// 
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
 

@@ -7,6 +7,7 @@
 /// @details This class provides functionality for debugging in Editor,
 ///			 It will allow you to call commands, and display warnings 
 ///			 while in Editor 
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
 

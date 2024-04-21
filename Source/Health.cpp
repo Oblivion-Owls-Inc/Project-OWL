@@ -2,7 +2,7 @@
 /// @file   EntityHealth.h
 /// @brief  Entity Health cpp file
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   14 January 2024
 ///
 /// @copyright © 2024 DigiPen (USA) Corporation.

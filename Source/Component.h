@@ -4,7 +4,7 @@
 /// @version 0.1
 /// @date 2023-09-05
 /// 
-/// @copyright Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
 

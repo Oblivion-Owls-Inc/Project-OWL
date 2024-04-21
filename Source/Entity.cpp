@@ -2,10 +2,10 @@
 /// @file   Entity.cpp
 /// @brief  Function definitions for the Entity class
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   September 2023
 ///
-/// @copyright © 2023 DigiPen (USA) Corporation.
+/// @copyright © 2024 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
 #include "pch.h" // precompiled header has to be included first
