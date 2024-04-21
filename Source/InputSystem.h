@@ -1,10 +1,10 @@
-/// @file InputSystem.h
-/// @author Tyler Birdsall (tyler.birdsall@digipen.edu
-/// @brief Input system, m_Handles key and mouse inputs
-/// @version 0.1
-/// @date 2023-09-12
+/// \file InputSystem.h
+/// \author Tyler Birdsall (tyler.birdsall@digipen.edu
+/// \brief Input system, m_Handles key and mouse inputs
+/// \version 0.1
+/// \date 2023-09-12
 /// 
-/// @copyright Copyright (c) 2023
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 
 #pragma once
 

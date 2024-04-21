@@ -1,10 +1,10 @@
-/// @file InputCallback.cpp
-/// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @brief Input system manual callback and key display, since glfw and imgui hate each other
-/// @version 0.1
-/// @date 2024-22-02
+/// \file InputCallback.cpp
+/// \author Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// \brief Input system manual callback and key display, since glfw and imgui hate each other
+/// \version 0.1
+/// \date 2024-22-02
 /// 
-/// @copyright Copyright (c) 2023
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 
 
 #include "pch.h" // precompiled header has to be included first
