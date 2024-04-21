@@ -2,7 +2,7 @@
 /// @file   ComponentFactory.cpp
 /// @brief  Definitions for the component factory class.
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   September 2023
 ///
 /// @copyright © 2024 DigiPen (USA) Corporation.
