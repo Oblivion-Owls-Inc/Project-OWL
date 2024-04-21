@@ -1,0 +1,17 @@
+digraph "Source/UiBarSprite.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Source/UiBarSprite.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="sprite that renders a ui bar"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/def/ComponentFactory_8cpp.html",tooltip="Definitions for the component factory class."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Source/HealthBar.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d01/HealthBar_8cpp.html",tooltip="health bar UI that displays offset from an Entity with a Health component"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Source/HealthBar.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/db6/HealthBar_8h.html",tooltip="health bar UI that displays offset from an Entity with a Health component"];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Source/UiSlider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d90/UiSlider_8cpp.html",tooltip="Ui Slider component."];
+}
