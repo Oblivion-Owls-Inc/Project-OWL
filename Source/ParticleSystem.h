@@ -2,8 +2,10 @@
  * \file   ParticleSystem.h
  * \brief  System in charge of managing compute shader and emitters.
  * 
- * \author Eli Tsereteli
+ * \author Eli Tsereteli (ilya.tsereteli@digipen.edu)
  * \date   October 2023
+ * 
+ * \copyright Copyright (c) 2024 Digipen Institute of Technology
  *********************************************************************/
 #pragma once
 #include "pch.h" // precompiled header has to be included first
