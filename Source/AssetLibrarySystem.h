@@ -1,10 +1,10 @@
-/// @file AssetLibrarySystem.h
-/// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @brief Asset System
-/// @version 0.1
-/// @date 2023-09-26
+/// \file AssetLibrarySystem.h
+/// \author Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// \brief Asset System
+/// \version 0.1
+/// \date 2023-09-26
 /// 
-/// @copyright Copyright (c) 2023 Digipen Institute of Technology
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 
 #pragma once
 
