@@ -1,11 +1,11 @@
 ///--------------------------------------------------------------------------//
-/// @file   Transform.cpp
-/// @brief  Function definitions for the Transform class
+/// \file   Transform.cpp
+/// \brief  Function definitions for the Transform class
 /// 
-/// @author Tyler Birdsall (tyler.birdsall)
-/// @date   September 2023
+/// \author Tyler Birdsall (tyler.birdsall)
+/// \date   September 2023
 ///
-/// @copyright (c) 2023 DigiPen (USA) Corporation.
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
 
