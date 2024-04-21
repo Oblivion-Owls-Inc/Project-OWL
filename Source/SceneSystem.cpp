@@ -4,7 +4,7 @@
 /// @version    0.1
 /// @date       2023-09-08
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 
 #include "pch.h" // precompiled header has to be included first

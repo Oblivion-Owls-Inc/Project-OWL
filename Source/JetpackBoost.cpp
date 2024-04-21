@@ -2,7 +2,7 @@
 * \file         JetpackBoost.cpp
 * \author       Eli Tsereteli
 * \date         April 2024
-* \copyright    Copyright (c) 2023 Digipen Institute of Technology
+* \copyright    Copyright (c) 2024 Digipen Institute of Technology
 * 
 * \brief        Controls jetpack visuals: particles + tilt.
 *********************************************************************/

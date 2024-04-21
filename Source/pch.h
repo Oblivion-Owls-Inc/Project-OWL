@@ -5,7 +5,7 @@
 /// @version    0.1
 /// @date       3/6/2024
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ////////////////////////////////////////////////////////////////////////////////
 
 
