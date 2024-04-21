@@ -1,10 +1,10 @@
-/// @file         PlatformSystem.cpp
-/// @author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
-/// @brief        Patform System class: initializes window and graphics (GLFW and GLEW), 
+/// \file         PlatformSystem.cpp
+/// \author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// \brief        Patform System class: initializes window and graphics (GLFW and GLEW), 
 ///               shuts them down on exit.
 ///
-/// @version      0.1
-/// @copyright    Copyright (c) 2023 Digipen Institute of Technology
+/// \version      0.1
+/// \copyright    Copyright (c) 2024 Digipen Institute of Technology
 
 
 

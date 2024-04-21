@@ -3,7 +3,7 @@
 /// 
 /// \brief    Mesh class - holds on to buffer/VAO references, draws their contents.
 /// 
-/// \copyright (c) 2024 DigiPen (USA) Corporation.
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 #pragma once
 
 #include "pch.h" // precompiled header has to be included first

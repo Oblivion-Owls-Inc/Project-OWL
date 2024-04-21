@@ -3,7 +3,7 @@
 /// 
 /// \brief    Implementation of Mesh class.
 /// 
-/// \copyright (c) 2024 DigiPen (USA) Corporation.
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 
 #include "pch.h" // precompiled header has to be included first

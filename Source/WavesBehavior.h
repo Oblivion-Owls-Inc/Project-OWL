@@ -5,7 +5,7 @@
 /// \brief   WavesBehavior class header
 /// \details This class is used to create a base wave behavior 
 /// 
-/// \copyright (c) 2024 DigiPen (USA) Corporation.
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
 #pragma once

@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   March 2024
 ///
-/// @copyright (c) 2024 DigiPen (USA) Corporation.
+/// @copyright Copyright (c) 2024 Digipen Institute of Technology
 ///--------------------------------------------------------------------------//
 
 #include "pch.h"
