@@ -1,4 +1,11 @@
-
+///*****************************************************************/
+/// @file basics.h
+/// @author Jax Clayton (jax.clayton@digipen.edu)
+/// 
+/// @details This class provides functionality for debugging 
+///          
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
+///*****************************************************************/
 
 #pragma once
 
