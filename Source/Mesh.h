@@ -1,7 +1,9 @@
-/// @file     Mesh.h
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// \file     Mesh.h
+/// \author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Mesh class - holds on to buffer/VAO references, draws their contents.
+/// \brief    Mesh class - holds on to buffer/VAO references, draws their contents.
+/// 
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 #pragma once
 
 #include "pch.h" // precompiled header has to be included first

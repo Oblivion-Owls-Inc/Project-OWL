@@ -1,7 +1,9 @@
-/// @file     Mesh.cpp
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// \file     Mesh.cpp
+/// \author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Implementation of Mesh class.
+/// \brief    Implementation of Mesh class.
+/// 
+/// \copyright (c) 2024 DigiPen (USA) Corporation.
 
 
 #include "pch.h" // precompiled header has to be included first
