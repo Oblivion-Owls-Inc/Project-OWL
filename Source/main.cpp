@@ -1,3 +1,10 @@
+/// \file     Main.cpp
+/// \author   Jax Clayton (jax.clayton@digipen.edu)
+/// 
+/// \brief    A version of Sprite specifically for rendering tiles.
+/// 
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
+
 #include "pch.h" // precompiled header has to be included first
 #include "Engine.h"
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup") // hide console window
