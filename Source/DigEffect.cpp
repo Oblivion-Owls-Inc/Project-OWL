@@ -1,6 +1,6 @@
 /***************************************************************************
 * \file       DigEffect.cpp
-* \author     Eli Tsereteli
+* \author     Eli Tsereteli (ilya.tsereteli@digipen.edu)
 *
 * \brief      Controls the temporary entity used for emitting particles
 *             when a tile breaks. If timer is initialized to 0, acts as
