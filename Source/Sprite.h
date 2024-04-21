@@ -2,6 +2,8 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Sprite component - stores mesh and texture that together draw an image on screen. Supports spritesheets.
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
+
 #pragma once
 #include "Component.h"
 #include "Stream.h"

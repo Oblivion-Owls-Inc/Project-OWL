@@ -4,6 +4,7 @@
 /// @date	 9/15/2021
 /// @brief   RigidBody class header
 /// @details This class contains the RigidBody component
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
 #pragma once
