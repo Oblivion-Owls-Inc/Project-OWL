@@ -4,7 +4,7 @@
 /// @version 0.1
 /// @date 2023-09-10
 ///
-/// @copyright  © 2023 DigiPen (USA) Corporation.
+/// @copyright  © 2024 DigiPen (USA) Corporation.
 /// ------------------------------------------------------------------------------
 
 #pragma once
