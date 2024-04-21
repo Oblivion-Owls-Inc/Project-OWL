@@ -4,7 +4,7 @@
 /// \version 0.1
 /// \date 2023-09-12
 /// 
-/// \copyright (c) 2024 DigiPen (USA) Corporation.
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
 

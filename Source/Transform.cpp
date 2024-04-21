@@ -5,7 +5,7 @@
 /// \author Tyler Birdsall (tyler.birdsall)
 /// \date   September 2023
 ///
-/// \copyright (c) 2024 DigiPen (USA) Corporation.
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 ///--------------------------------------------------------------------------//
 
 

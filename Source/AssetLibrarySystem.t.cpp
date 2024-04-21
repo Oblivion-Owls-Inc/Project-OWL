@@ -1,10 +1,10 @@
-/// @file AssetLibrarySystem.t.cpp
-/// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @brief AssetLibrarySystem
-/// @version 0.1
-/// @date 2023-09-26
+/// \file AssetLibrarySystem.t.cpp
+/// \author Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// \brief AssetLibrarySystem
+/// \version 0.1
+/// \date 2023-09-26
 /// 
-/// @copyright Copyright (c) 2023
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" // precompiled header has to be included first
 

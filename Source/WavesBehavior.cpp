@@ -5,7 +5,7 @@
 /// \author Tyler Birdsall (tyler.birdsall)
 /// \date   10/16/23
 ///
-/// \copyright (c) 2024 DigiPen (USA) Corporation.
+/// \copyright Copyright (c) 2024 Digipen Institute of Technology
 ///--------------------------------------------------------------------------//
 #include "pch.h" // precompiled header has to be included first
 #include "WavesBehavior.h"
