@@ -2,7 +2,7 @@
  * \file   Emitter.cpp
  * \brief  Controls timing of particle emissions, and their init data.
  * 
- * \author Eli
+ * \author Eli Tsereteli (ilya.tsereteli@digipen.edu)
  * \date   October 2023
  * \copyright Copyright (c) 2024 Digipen Institute of Technology
  *********************************************************************/

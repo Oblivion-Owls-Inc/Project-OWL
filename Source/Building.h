@@ -2,7 +2,7 @@
 /// @file   Building.h
 /// @brief  Building Component Class
 /// 
-/// @author Aidan Straker (aidan.straker)
+/// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @date   March 2024
 ///
 /// @copyright Copyright (c) 2024 Digipen Institute of Technology

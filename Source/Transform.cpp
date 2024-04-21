@@ -2,7 +2,7 @@
 /// \file   Transform.cpp
 /// \brief  Function definitions for the Transform class
 /// 
-/// \author Tyler Birdsall (tyler.birdsall)
+/// \author Tyler Birdsall (tyler.birdsall@digipen.edu)
 /// \date   September 2023
 ///
 /// \copyright Copyright (c) 2024 Digipen Institute of Technology
