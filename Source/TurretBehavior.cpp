@@ -1,10 +1,10 @@
-/// @file       TurretBehavior.cpp
-/// @author     Jax Clayton (jax.clayton@digipen.edu)
-/// @brief      Behavior Compenent for Basic Turret  
-/// @version    0.1
-/// @date       2023-10-06
+/// \file       TurretBehavior.cpp
+/// \author     Jax Clayton (jax.clayton@digipen.edu)
+/// \brief      Behavior Compenent for Basic Turret  
+/// \version    0.1
+/// \date       2023-10-06
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// \copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 
 #include "pch.h" // precompiled header has to be included first
