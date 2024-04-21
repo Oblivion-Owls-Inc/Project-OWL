@@ -1,11 +1,11 @@
 /**
-* @file Behavior.h
-* @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-* @brief Virtual behavior component header
-* @version 0.1
-* @date 2023-09-12
+* \file Behavior.h
+* \author Tyler Birdsall (tyler.birdsall@digipen.edu)
+* \brief Virtual behavior component header
+* \version 0.1
+* \date 2023-09-12
 *
-* @copyright Copyright (c) 2023
+* \copyright (c) 2024 DigiPen (USA) Corporation.
 *
 */
 
