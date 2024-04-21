@@ -1,6 +1,6 @@
 /*********************************************************************
 * \file         JetpackBoost.cpp
-* \author       Eli Tsereteli
+* \author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
 * \date         April 2024
 * \copyright    Copyright (c) 2024 Digipen Institute of Technology
 * 

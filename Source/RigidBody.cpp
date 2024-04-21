@@ -4,6 +4,7 @@
 /// @date	 9/15/2021
 /// @brief   RigidBody  
 /// @details Contains Basic Physics for the Entities
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 /// 
  

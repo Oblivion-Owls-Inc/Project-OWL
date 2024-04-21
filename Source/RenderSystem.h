@@ -2,6 +2,7 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 ///
 /// @brief    System responsible for drawing sprites and basic shapes.
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 #pragma once
 
 #include "pch.h" 
