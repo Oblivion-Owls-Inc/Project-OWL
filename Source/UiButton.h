@@ -8,13 +8,13 @@
 
 #pragma once
 
-#include "Behavior.h"
 
-#include "ComponentReference.h"
-#include "Sprite.h"
+
+
+
 #include "AudioPlayer.h"
 #include "UiElement.h"
-#include "AssetReference.h"
+
 #include "Sound.h"
 
 /// @brief  Ui Button that sends an event when clicked

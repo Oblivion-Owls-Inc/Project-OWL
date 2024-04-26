@@ -14,13 +14,13 @@
 
 #pragma once
 
-#include "Component.h"
+
 
 #include "ItemStack.h"
 
-#include "AssetReference.h"
-#include "EntityReference.h"
-#include "ComponentReference.h"
+
+
+
 class Inventory;
 class UiElement;
 class Sprite;

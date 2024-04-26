@@ -10,11 +10,11 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "Behavior.h"
 
-#include "ComponentReference.h"
+
+
 #include "Camera.h"
-#include "Transform.h"
+
 
 class CameraBehavior : public Behavior
 {

@@ -9,11 +9,6 @@
 
 #pragma once
 
-#include "Component.h"
-
-#include "ComponentReference.h"
-class Collider;
-
 
 /// @brief   Component that destroys itself and deals damage on contact
 class Bullet : public Component

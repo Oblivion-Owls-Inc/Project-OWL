@@ -17,7 +17,7 @@
 #include "ComponentReference.t.h"
 #include "SceneTransition.h"
 
-#include "Sprite.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor

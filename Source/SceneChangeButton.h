@@ -10,11 +10,11 @@
 
 #pragma once
 
-#include "Component.h"
+
 #include "EventListener.h"
 
-#include "EntityReference.h"
-#include "ComponentReference.h"
+
+
 class SceneTransition;
 
 /// @brief  Component that changes the scene when clicked

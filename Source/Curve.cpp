@@ -16,9 +16,9 @@
 #include "Curve.h"
 #endif
 
-#include "basics.h"
 
-#include "Stream.h"
+
+
 
 //-----------------------------------------------------------------------------
 // Class ControlPoint

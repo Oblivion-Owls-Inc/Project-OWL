@@ -8,9 +8,9 @@
 
 #pragma once
 
-#define ASSETREFERENCE_H
 
-#include "ISerializable.h"
+#ifndef ASSETREFERENCE_H
+#define ASSETREFERENCE_H
 
 
 /// @brief  a reference to an Asset
@@ -153,6 +153,7 @@ public: // reading / writing
 //-----------------------------------------------------------------------------
 };
 
-#ifndef ASSETREFERENCE_T
 #include "AssetReference.t.cpp"
-#endif
+
+
+#endif // ASSETREFERENCE_H

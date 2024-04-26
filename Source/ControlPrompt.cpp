@@ -12,7 +12,7 @@
 #include "ControlPrompt.h"
 
 #include "ComponentReference.t.h"
-#include "Sprite.h"
+
 
 #include "ControlPromptSystem.h"
 

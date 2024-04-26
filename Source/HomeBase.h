@@ -7,12 +7,12 @@
 ///*****************************************************************/
 
 #pragma once
-#include "Component.h"
+
 
 #include "AudioPlayer.h"
-#include "EntityReference.h"
-#include "ComponentReference.h"
-#include "AssetReference.h"
+
+
+
 #include "EventListener.h"
 #include "Sound.h"
 

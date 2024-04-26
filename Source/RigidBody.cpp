@@ -10,15 +10,15 @@
  
 
 #include "pch.h" // precompiled header has to be included first
-#include "RigidBody.h"
+
 #include "BehaviorSystem.h"
 #include "DebugSystem.h"
 #include "Engine.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
-#include "Collider.h"
-#include "StaticBody.h"
+
+
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructors

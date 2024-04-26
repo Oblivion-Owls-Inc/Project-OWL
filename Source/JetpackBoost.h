@@ -7,8 +7,8 @@
 * \brief        Controls jetpack visuals: particles + tilt.
 *********************************************************************/
 #pragma once
-#include "Behavior.h"
-#include "ComponentReference.h"
+
+
 #include "ActionReference.h"
 #include "PlayerController.h"
 

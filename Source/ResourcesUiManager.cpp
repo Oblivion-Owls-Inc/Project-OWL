@@ -16,7 +16,7 @@
 #include "ComponentReference.t.h"
 #include "Inventory.h"
 #include "UiElement.h"
-#include "Sprite.h"
+
 #include "Text.h"
 #include "ResourceCounterUi.h"
 #include "TilemapSprite.h"

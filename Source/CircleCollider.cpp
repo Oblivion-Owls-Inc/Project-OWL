@@ -13,9 +13,9 @@
 #include "CircleCollider.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
-#include "RigidBody.h"
-#include "StaticBody.h"
+
+
+
 
 #include "DebugSystem.h"
 #include "RenderSystem.h"

@@ -14,14 +14,14 @@
 
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
-#include "Transform.h"
+
 #include "Engine.h"
-#include "RigidBody.h"
-#include "basics.h"
+
+
 #include "Pool.h"
-#include "Entity.h"
+
 #include "AudioPlayer.h"
-#include "Health.h"
+
 #include "PathfindSystem.h"
 
 //-----------------------------------------------------------------------------

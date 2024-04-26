@@ -8,17 +8,17 @@
 
 #pragma once
 
-#include "Behavior.h"
 
-#include "ComponentReference.h"
+
+
 class UiButton;
 class Sprite;
 
-#include "EntityReference.h"
+
 class ConstructionBehavior;
 
-#include "AssetReference.h"
-#include "Texture.h"
+
+
 
 
 /// @brief  button that selects which building the ConstructionManager should place

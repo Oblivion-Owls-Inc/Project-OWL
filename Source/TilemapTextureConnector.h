@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "Component.h"
 
-#include "ComponentReference.h"
-#include "Tilemap.h"
+
+
+
 
 
 /// @brief  Component that uses a parent 'source' tilemap to update a child tilemap with connected textures

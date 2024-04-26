@@ -131,7 +131,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -155,7 +155,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -181,12 +181,13 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; GLEW_STATIC;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -194,7 +195,7 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmod_vc.lib;</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;User32.lib;Gdi32.lib;Shell32.lib;fmod_vc.lib;steam_api.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)FMOD\lib\x86\fmod.dll" "$(OutDir)fmod.dll"
@@ -205,7 +206,7 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>DEBUG;GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; DEBUG;GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -218,7 +219,7 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmodL_vc.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib;steam_api64.lib; fmodL_vc.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmodL.dll" "$(OutDir)fmodL.dll"</Command>
@@ -230,7 +231,7 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;NDEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; GLEW_STATIC;NDEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -247,11 +248,11 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmod_vc.lib;</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib;steam_api64.lib; fmod_vc.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"
-xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
+      <Command>copy /Y "$(SolutionDir)libraries\steam_api64.dll" "$(OutDir)steam_api64.dll"
+&lt;different options&gt;</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseEditor|x64'">
@@ -260,7 +261,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RELEASEEDITOR</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; GLEW_STATIC;RELEASEEDITOR</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -270,6 +271,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -277,11 +279,11 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmod_vc.lib;</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib;steam_api64.lib;d_vc.lib;steam_api.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"
-xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
+      <Command>copy /Y "$(SolutionDir)libraries\steam_api64.dll" "$(OutDir)steam_api64.dll"
+&lt;different options&gt;</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -541,13 +543,64 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\UiSlider.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
-    <ClCompile Include="Source\Stream.t.cpp" />
+    <ClCompile Include="Source\Stream.t.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseEditor|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseEditor|x64'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Source\WavesInspector.cpp" />
     <ClCompile Include="Source\TileInfoSystem.cpp" />
     <ClCompile Include="Source\WindowFocusEvent.cpp" />
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamapps.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamappticket.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamclient.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamcontroller.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamdualsense.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamfriends.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamgamecoordinator.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamgameserver.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamgameserverstats.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamhtmlsurface.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamhttp.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteaminput.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteaminventory.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteammatchmaking.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteammusic.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteammusicremote.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworking.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworkingmessages.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworkingsockets.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworkingutils.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamparentalsettings.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamps3overlayrenderer.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamremoteplay.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamremotestorage.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamscreenshots.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamugc.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamuser.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamuserstats.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamutils.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\isteamvideo.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\matchmakingtypes.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamclientpublic.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamencryptedappticket.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamhttpenums.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamnetworkingfakeip.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamnetworkingtypes.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamps3params.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamtypes.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steamuniverse.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api_common.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api_flat.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api_internal.h" />
+    <ClInclude Include="libraries\includes\SteamAPI\steam_gameserver.h" />
     <ClInclude Include="Source\DoomsDay.h" />
     <ClInclude Include="Source\EventEmitter.h" />
     <ClInclude Include="Source\ScreenShake.h" />
@@ -718,6 +771,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\shaders\texture.frag" />
     <None Include="Data\shaders\tile_instancing.vert" />
     <None Include="Data\shaders\vshader.vert" />
+    <None Include="libraries\includes\SteamAPI\steam_api.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="steam_appid.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

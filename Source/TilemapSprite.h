@@ -7,9 +7,9 @@
 #pragma once
 
 #include "pch.h" 
-#include "Sprite.h"
-#include "ComponentReference.h"
-#include "Tilemap.h"
+
+
+
 
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
 class TilemapSprite : public Sprite

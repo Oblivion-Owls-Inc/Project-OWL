@@ -9,13 +9,6 @@
 #pragma once
 
 #include "pch.h" // precompiled header has to be included first
-#include "ISerializable.h"
-
-
-class Entity;
-class Component;
-
-class ComponentReferenceBase;
 
 
 /// @brief  a reference to an Entity in the scene

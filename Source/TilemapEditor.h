@@ -9,13 +9,13 @@
 #pragma once
 
 #include "pch.h" 
-#include "Component.h"
 
-#include "ComponentReference.h"
-#include "Tilemap.h"
 
-#include "AssetReference.h"
-#include "Texture.h"
+
+
+
+
+
 
 
 /// @brief  Component that allows direct editing of a Tilemap

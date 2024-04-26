@@ -9,10 +9,10 @@
 
 #pragma once
 
-#include "Component.h"
 
-#include "ComponentReference.h"
-#include "Tilemap.h"
+
+
+
 
 
 /// @brief  Component that makes use of Tilemap to draw text.

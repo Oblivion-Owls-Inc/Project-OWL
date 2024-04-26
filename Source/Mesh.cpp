@@ -7,7 +7,7 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "Mesh.h"
+
 #include "RenderSystem.h"
 
 /// @brief  Creates mesh as a quad.

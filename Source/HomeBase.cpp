@@ -11,20 +11,20 @@
 #include "HomeBase.h"
 
 #include "ComponentReference.t.h"
-#include "Health.h"
+
 #include "SceneTransition.h"
 #include "ComponentSystem.h"
 #include "Generator.h"
-#include "Tilemap.h"
+
 #include "EntitySystem.h"
 #include "PlayerController.h"
-#include "AssetLibrarySystem.h"
+
 #include "BehaviorSystem.h"
-#include "AssetReference.h"
+
 
 #include "SceneSystem.h"
 
-#include "Sprite.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor

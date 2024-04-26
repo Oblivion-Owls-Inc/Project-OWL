@@ -9,7 +9,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#include "Component.h"
+
 
 /// @brief  Component that emits events on Init and Exit
 class EventEmitter : public Component

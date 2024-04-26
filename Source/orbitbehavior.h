@@ -9,11 +9,11 @@
 /////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "Behavior.h"
-#include "EntityReference.h"
-#include "ComponentReference.h"
-#include "AssetReference.h"
-#include "Texture.h"
+
+
+
+
+
 #include "AnimationAsset.h"
 class Transform;
 class Sprite;

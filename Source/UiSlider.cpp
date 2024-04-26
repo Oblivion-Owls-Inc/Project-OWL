@@ -14,7 +14,7 @@
 
 #include "ComponentReference.t.h"
 #include "UiBarSprite.h"
-#include "Sprite.h"
+
 #include "UiElement.h"
 
 #include "BehaviorSystem.h"

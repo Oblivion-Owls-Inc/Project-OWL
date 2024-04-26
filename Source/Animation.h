@@ -9,16 +9,7 @@
  *********************************************************************/
 
 #pragma once
-
-#include "Behavior.h"
-
 #include "AnimationAsset.h"
-
-#include "ComponentReference.h"
-#include "Sprite.h"
-
-#include "AssetReference.h"
-#include "Sprite.h"
 
 class Animation : public Behavior
 {

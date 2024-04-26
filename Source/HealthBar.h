@@ -8,14 +8,7 @@
 
 #pragma once
 
-#include "Behavior.h"
-
-#include "ComponentReference.h"
-#include "Transform.h"
 #include "UiBarSprite.h"
-
-#include "EntityReference.h"
-#include "Health.h"
 
 
 /// @brief  health bar UI that displays offset from an Entity with a Health component

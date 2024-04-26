@@ -9,7 +9,7 @@
 #pragma once
 
 #include "ComponentSystem.h"
-#include "Behavior.h"
+
 
 /// @brief  System that keeps track of and updates a specific kind of Behavior
 /// @tparam BehaviorType    the type of Behavior this BehaviorSystem keeps track of

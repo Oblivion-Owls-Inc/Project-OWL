@@ -15,9 +15,9 @@
 #include "pch.h" 
 #include "ComponentFactory.h"
 
-#include "Transform.h"
+
 #include "TilemapSprite.h"
-#include "RigidBody.h"
+
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
@@ -30,9 +30,9 @@
 #include "PlayerController.h"
 #include "EffectAnimator.h"
 #include "Text.h"
-#include "Tilemap.h"
+
 #include "TilemapCollider.h"
-#include "StaticBody.h"
+
 #include "ConstructionBehavior.h"
 #include "Camera.h"
 #include "Lifetime.h"
@@ -40,7 +40,7 @@
 #include "EmitterSprite.h"
 #include "Emitter.h"
 #include "HomeBase.h"
-#include "Health.h"
+
 #include "Generator.h"
 #include "UiElement.h"
 #include "MiningLaser.h"

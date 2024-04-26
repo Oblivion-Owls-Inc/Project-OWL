@@ -13,9 +13,9 @@
 #include "TilemapCollider.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
-#include "RigidBody.h"
-#include "StaticBody.h"
+
+
+
 
 #include "CollisionSystem.h"
 

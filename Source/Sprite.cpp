@@ -6,15 +6,15 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "Sprite.h"
+
 #include "RenderSystem.h"
-#include "Mesh.h"
-#include "Texture.h"
-#include "Transform.h"      // matrix
-#include "Entity.h"         // parent
+
+
+      // matrix
+         // parent
 #include "CameraSystem.h"   // projection matrix
 
-#include "AssetLibrarySystem.h"
+
 #include "Inspection.h"
 
 //-----------------------------------------------------------------------------

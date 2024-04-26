@@ -10,9 +10,9 @@
 
 #include "pch.h"
 #include "Building.h"
-#include "Tilemap.h"
-#include "Entity.h"
-#include "Transform.h"
+
+
+
 #include "ComponentReference.t.h"
 
 //-----------------------------------------------------------------------------

@@ -7,15 +7,12 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 #include "pch.h" // precompiled header has to be included first
 
+
+
+#ifndef ASSETREFERENCE_T
 #define ASSETREFERENCE_T
 
-
-#ifndef ASSETREFERENCE_H
-#include "AssetReference.h"
-#endif
-
-#include "AssetLibrarySystem.h"
-
+#include "DebugSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -251,3 +248,4 @@
 
 
 //-----------------------------------------------------------------------------
+#endif // ASSETREFERENCE_T

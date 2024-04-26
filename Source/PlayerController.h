@@ -14,22 +14,22 @@
 //------------------------------------------------------------------------------
 
 #include "pch.h" // precompiled header has to be included first
-#include "Behavior.h"
 
-#include "ComponentReference.h"
-#include "RigidBody.h"
+
+
+
 #include "Animation.h"
 #include "AudioPlayer.h"
 #include "Inventory.h"
-#include "Health.h"
-#include "Transform.h"
+
+
 #include "CircleCollider.h"
 #include "EffectAnimator.h"
 
-#include "EntityReference.h"
+
 #include "MiningLaser.h"
 
-#include "AssetReference.h"
+
 #include "AnimationAsset.h"
 
 #include "ActionReference.h"

@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "basics.h"
-#include "Behavior.h"
+
+
 
 #include "ItemStack.h"
 
 
-#include "EntityReference.h"
-#include "ComponentReference.h"
+
+
 class Transform;
 class Sprite;
 class AudioPlayer;

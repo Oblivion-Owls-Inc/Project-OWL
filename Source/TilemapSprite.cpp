@@ -9,11 +9,11 @@
 #include "pch.h" // precompiled header has to be included first
 #include "TilemapSprite.h"
 #include "RenderSystem.h"
-#include "Tilemap.h"        // callback for when tilemap array updates
+        // callback for when tilemap array updates
 #include "CameraSystem.h"   // projection matrices
-#include "Entity.h"         // parent
-#include "Transform.h"
-#include "Texture.h"
+         // parent
+
+
 
 #ifndef NDEBUG
 #include <iostream>

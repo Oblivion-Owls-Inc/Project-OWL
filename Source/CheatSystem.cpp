@@ -11,16 +11,16 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "CheatSystem.h"
-#include "basics.h"
+
 #include "InputSystem.h"  // GetInstance, GetKeyTriggered
 #include "EntitySystem.h" // Entities, Destroy, GetComponent, GetEntities
-#include "AssetLibrarySystem.h"
-#include "Health.h"       // GetHealth
+
+       // GetHealth
 #include "Pool.h"         // SetCurrent
 #include "ConstructionBehavior.h"
 #include "SceneSystem.h"  // GetInstance
 #include "CircleCollider.h"
-#include "Entity.h"
+
 #include "MiningLaser.h"
 #include "PlayerController.h"
 #include "BehaviorSystem.h"

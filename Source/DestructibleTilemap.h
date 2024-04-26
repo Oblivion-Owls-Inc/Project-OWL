@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "Component.h"
 
-#include "ComponentReference.h"
+
+
 template < typename TileType >
 class Tilemap;
 

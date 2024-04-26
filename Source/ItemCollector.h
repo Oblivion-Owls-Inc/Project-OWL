@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "Behavior.h"
 
-#include "ComponentReference.h"
-#include "Transform.h"
+
+
+
 #include "Inventory.h"
 
 class ItemComponent;

@@ -13,10 +13,10 @@
 #include "BehaviorSystem.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
+
 #include "Interactable.h"
 
-#include "Sprite.h"
+
 
 
 //-----------------------------------------------------------------------------

@@ -8,15 +8,15 @@
 
 #pragma once
 
-#include "basics.h"
-#include "Behavior.h"
 
 
-#include "AssetReference.h"
+
+
+
 #include "TransformAnimation.h"
 
-#include "ComponentReference.h"
-#include "Transform.h"
+
+
 
 /// @brief  Component that can play audio
 class EffectAnimator : public Behavior

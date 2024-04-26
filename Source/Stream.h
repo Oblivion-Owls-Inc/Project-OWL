@@ -12,18 +12,11 @@
 //------------------------------------------------------------------------------
 // Include Files
 //------------------------------------------------------------------------------
+#include "pch.h"
 
+#ifndef STREAM_H
 #define STREAM_H
 
-#include <string>            // std::string
-#include <map>               // std::map
-#include <glm/glm.hpp>       // glm::vec3
-#include <nlohmann/json.hpp> // nlohman::ordered_json
-
-#include <type_traits>
-#include <iostream>
-
-#include "ISerializable.h"
 //------------------------------------------------------------------------------
 // Forward references
 //------------------------------------------------------------------------------
@@ -292,6 +285,6 @@ private: // ISerializable-aware methods
 };
 
 
-#ifndef STREAM_T_CPP
-#include "Stream.t.cpp"
-#endif
+#include "Stream.t.cpp" // template implementation
+
+#endif // !STREAM_H

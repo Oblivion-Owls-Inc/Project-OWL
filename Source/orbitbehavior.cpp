@@ -10,11 +10,11 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "OrbitBehavior.h"
-#include "Transform.h"
-#include "Sprite.h"
+
+
 #include "Engine.h"
 #include "BehaviorSystem.h"
-#include "Texture.h"
+
 #include "AnimationAsset.h"
 
 

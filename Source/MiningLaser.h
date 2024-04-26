@@ -10,13 +10,13 @@
 
 #include "pch.h" // precompiled header has to be included first
 
-#include "basics.h"
-#include "Behavior.h"
+
+
 
 #include "CollisionLayerFlags.h"
 
-#include "EntityReference.h"
-#include "ComponentReference.h"
+
+
 #include "DestructibleTilemap.h"
 #include "AudioPlayer.h"
 #include "BeamSprite.h"

@@ -7,10 +7,10 @@
 /// @copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" 
-#include "basics.h"
-#include "Component.h"
 
-#include "Entity.h"
+
+
+
 
 //-----------------------------------------------------------------------------
 // protected: constructors

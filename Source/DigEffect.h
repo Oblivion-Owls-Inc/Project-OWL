@@ -12,10 +12,10 @@
 * \copyright  Copyright (c) 2024 Digipen Instutute of Technology
 ****************************************************************************/
 #pragma once
-#include "Behavior.h"
-#include "ComponentReference.h"
-#include "AssetReference.h"
-#include "Tilemap.h"
+
+
+
+
 #include "Sound.h"
 
 

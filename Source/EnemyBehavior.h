@@ -8,16 +8,16 @@
 
 #pragma once
 
-#include "Behavior.h"
+
 #include "Pool.h"
 
-#include "ComponentReference.h"
-#include "AssetReference.h"
-#include "Transform.h"
-#include "RigidBody.h"
+
+
+
+
 #include "AudioPlayer.h"
-#include "Health.h"
-#include "Tilemap.h"
+
+
 
 class EnemyBehavior : public Behavior
 {

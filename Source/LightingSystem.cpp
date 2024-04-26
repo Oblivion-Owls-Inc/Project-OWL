@@ -11,10 +11,10 @@
 #include "LightingSystem.h"
 #include "RenderSystem.h"   // sprite implementation
 #include "PlatformSystem.h" // screen size
-#include "Mesh.h"           // rendering
+           // rendering
 #include "CameraSystem.h"   // world-to-screen matrix for frag shader uniforms
-#include "Entity.h"         // parent position
-#include "Transform.h"      // parent position
+         // parent position
+      // parent position
 
 #include "InputSystem.h"
 

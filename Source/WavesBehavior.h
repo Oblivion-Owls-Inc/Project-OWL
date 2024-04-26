@@ -10,11 +10,11 @@
 
 #pragma once
 
-#include "behavior.h"
-#include "Transform.h"
+
+
 #include "EventSystem.h"
 
-#include "AssetReference.h"
+
 #include "EventListener.h"
 
 

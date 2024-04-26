@@ -11,9 +11,9 @@
 #include "Bullet.h"
 
 #include "ComponentReference.t.h"
-#include "Collider.h"
 
-#include "Health.h"
+
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructors

@@ -12,8 +12,8 @@
 #include "RenderSystem.h"
 #include "CameraSystem.h"
 
-#include "Transform.h"
-#include "Texture.h"
+
+
 
 #include "Inspection.h"
 

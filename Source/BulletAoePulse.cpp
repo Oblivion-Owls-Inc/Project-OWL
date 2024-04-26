@@ -11,11 +11,11 @@
 #include "BulletAoePulse.h"
 
 #include "ComponentReference.t.h"
-#include "Collider.h"
+
 #include "EnemyBehavior.h"
 #include "BehaviorSystem.h"
 
-#include "Health.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructors

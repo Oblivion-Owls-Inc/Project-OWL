@@ -19,8 +19,8 @@
 #include "InputSystem.h"    // GetKeyTriggered, GetGamepadButtonDown
 #include "SceneSystem.h"    // GetInstance, SetNextScene
 #include "DebugSystem.h"    // ImGui::DragFloat
-#include "Transform.h"      // SetScale
-#include "Sprite.h"         // SetTexture
+      // SetScale
+         // SetTexture
 #include "ComponentReference.t.h"
 #include "SceneTransition.h"
 

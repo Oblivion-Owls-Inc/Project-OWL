@@ -9,10 +9,10 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#include "Behavior.h"
-#include "ComponentReference.h"
+
+
 #include "EventListener.h"
-#include "Transform.h"
+
 
 class ScreenShake :
     public Behavior

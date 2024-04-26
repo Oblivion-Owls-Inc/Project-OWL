@@ -10,11 +10,11 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "Transform.h"
+
 
 #include "DebugSystem.h"
 #include "RenderSystem.h"
-#include "Texture.h"
+
 #include "InputSystem.h"
 
 //-----------------------------------------------------------------------------

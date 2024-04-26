@@ -14,8 +14,8 @@
 #include "CameraBehavior.h"
 #include "CameraSystem.h"
 #include "EntitySystem.h"
-#include "Entity.h"
-#include "Transform.h"
+
+
 #include "Engine.h"
 
 #include "InputSystem.h"

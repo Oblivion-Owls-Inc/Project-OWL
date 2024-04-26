@@ -14,16 +14,16 @@
 #include "pch.h" // precompiled header has to be included first
 #include "CollisionSystem.h"
 
-#include "Collider.h"
+
 #include "CircleCollider.h"
 #include "TilemapCollider.h"
-#include "Tilemap.h"
+
 
 #include "CollisionData.h"
 
-#include "Entity.h"
-#include "Behavior.h"
-#include "Transform.h"
+
+
+
 
 #include "DebugSystem.h"
 #include "RenderSystem.h"

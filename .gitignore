@@ -11,12 +11,10 @@
 
 # Precompiled Headers
 *.gch
-*.pch
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -46,3 +44,6 @@
 /imgui.ini
 /Project-OWL/x64/Release
 /Data/Scenes/Previous.scene.json
+
+# Always allow libraries folder
+!Libraries/

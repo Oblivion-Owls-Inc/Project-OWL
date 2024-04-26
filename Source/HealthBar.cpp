@@ -13,11 +13,11 @@
 
 #include "ComponentReference.t.h"
 
-#include "Transform.h"
-#include "Health.h"
+
+
 #include "UiBarSprite.h"
 
-#include "Entity.h"
+
 
 #include "EntitySystem.h"
 #include "BehaviorSystem.h"

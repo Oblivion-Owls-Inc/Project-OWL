@@ -8,13 +8,13 @@
 
 #pragma once
 
-#include "Behavior.h"
 
-#include "ComponentReference.h"
+
+
 class Interactor;
 class Inventory;
 
-#include "EntityReference.h"
+
 class ResourcesUiManager;
 
 class Interactable;

@@ -11,12 +11,12 @@
 ///*****************************************************************/
 /// Includes
 ///*****************************************************************/
-#include "Component.h"
-#include "basics.h"
-#include "Entity.h"
+
+
+
 #include "Behavior.h"
 
-#include "ComponentReference.h"
+
 class Transform;
 class Collider;
 class StaticBody;

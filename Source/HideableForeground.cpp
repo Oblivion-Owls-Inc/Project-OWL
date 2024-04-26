@@ -14,8 +14,8 @@
 #include "BehaviorSystem.h"
 
 #include "ComponentReference.t.h"
-#include "Sprite.h"
-#include "Collider.h"
+
+
 
 
 //-----------------------------------------------------------------------------

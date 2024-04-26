@@ -7,12 +7,12 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" 
-#include "EntityReference.h"
 
-#include "Entity.h"
-#include "Component.h"
 
-#include "ComponentReference.h"
+
+
+
+
 
 #include "DebugSystem.h"
 

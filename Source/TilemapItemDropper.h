@@ -8,15 +8,15 @@
 
 #pragma once
 
-#include "Component.h"
+
 
 #include "ItemStack.h"
 
-#include "ComponentReference.h"
+
 template < typename TileType >
 class Tilemap;
 
-#include "AssetReference.h"
+
 
 
 

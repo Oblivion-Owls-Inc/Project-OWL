@@ -16,7 +16,7 @@
 #include "CollisionSystem.h"    // GetInstance, RayCast
 #include "Engine.h"             // GetInstance, GetFixedFrameDuration
 #include "AnimationAsset.h"
-#include "AssetLibrarySystem.h" // GetAsset
+ // GetAsset
 #include "DebugSystem.h"
 #include "EnemyBehavior.h"
 #include "EntitySystem.h"

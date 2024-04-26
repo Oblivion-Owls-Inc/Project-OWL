@@ -9,7 +9,7 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "TransformAnimation.h"
-#include "Stream.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor

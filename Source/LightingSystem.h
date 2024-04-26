@@ -7,9 +7,9 @@
  * \copyright  Copyright (c) 2024 Digipen Instutute of Technology
  *********************************************************************/
 #pragma once
-#include "Entity.h"
+
 #include "ComponentSystem.h"
-#include "Sprite.h"
+
 #include "Light.h"
 
 /// @brief   Let there be light.

@@ -13,10 +13,9 @@
 ///--------------------------------------------------------------------------//
 /// Includes
 ///--------------------------------------------------------------------------//
-#include "Component.h"
+
 #include "Pool.h"
-#include <functional>
-#include <map>
+
 
 /// @brief Entity health component.
 class Health : public Component

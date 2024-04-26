@@ -8,11 +8,11 @@
 
 #pragma once
 
-#include "Behavior.h"
+
 
 #include "ActionReference.h"
 
-#include "ComponentReference.h"
+
 class Sprite;
 
 

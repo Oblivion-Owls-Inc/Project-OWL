@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "Component.h"
 
-#include "EntityReference.h"
-#include "ComponentReference.h"
+
+
+
 class MiningLaser;
 class Interactable;
 

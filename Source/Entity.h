@@ -15,11 +15,8 @@
 // Include Files:
 //-----------------------------------------------------------------------------
 #include "pch.h" 
-#include "Component.h"
-#include "ISerializable.h"
 
 class EntityReference;
-class ComponentReferenceBase;
 
 //-----------------------------------------------------------------------------
 // Class: Entity

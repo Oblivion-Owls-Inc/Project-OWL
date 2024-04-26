@@ -8,8 +8,8 @@
 #pragma once
 
 #include "pch.h" // precompiled header has to be included first
-#include "ComponentReference.h"
-#include "Transform.h"
+
+
 
 /// @brief      
 class PathfinderTarget : public Component

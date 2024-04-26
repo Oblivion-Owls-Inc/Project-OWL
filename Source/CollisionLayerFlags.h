@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "ISerializable.h"
+
 
 class CollisionLayerFlags : public ISerializable
 {

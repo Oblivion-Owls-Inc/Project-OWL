@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "ISerializable.h"
+
 
 /// @brief  a stack of multiple items of the same type
 struct ItemStack : public ISerializable

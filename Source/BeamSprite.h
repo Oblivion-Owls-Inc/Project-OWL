@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Sprite.h"
+
 
 
 /// @brief  Sprite that renders a beam with a scrollable texture

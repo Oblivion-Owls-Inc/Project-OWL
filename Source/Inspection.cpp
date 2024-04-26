@@ -10,7 +10,7 @@
 #include "pch.h" // precompiled header has to be included first
 #include "Inspection.h"
 
-#include "Entity.h"
+
 #include "EntitySystem.h"
 
 #include "CollisionSystem.h"

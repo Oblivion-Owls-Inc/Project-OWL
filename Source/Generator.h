@@ -8,15 +8,15 @@
 
 #pragma once
 
-#include "Component.h"
 
-#include "ComponentReference.h"
-#include "AssetReference.h"
+
+
+
 #include "AudioPlayer.h"
-#include "Transform.h"
-#include "Collider.h"
-#include "Health.h"
-#include "Sprite.h"
+
+
+
+
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "PathfinderTarget.h"

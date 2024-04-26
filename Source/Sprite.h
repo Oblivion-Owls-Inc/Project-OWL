@@ -5,14 +5,9 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
-#include "Component.h"
-#include "Stream.h"
 
-#include "ComponentReference.h"
-#include "Transform.h"
 
-#include "AssetReference.h"
-#include "Texture.h"
+
 
 /// @brief      Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 class Sprite : public Component

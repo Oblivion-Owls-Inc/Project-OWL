@@ -10,11 +10,11 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "EmitterSprite.h"
-#include "Texture.h"
+
 #include "Emitter.h"
 #include "ParticleSystem.h" // SSBO
 #include "RenderSystem.h"   // shader
-#include "Entity.h"         // parent
+         // parent
 
 
 /// @brief          Default constructor

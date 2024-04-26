@@ -16,8 +16,8 @@
 #include "Interactable.h"
 
 // needed indirectly by other included Components
-#include "Tilemap.h"
-#include "Sprite.h"
+
+
 
 
 

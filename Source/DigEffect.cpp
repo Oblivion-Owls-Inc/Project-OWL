@@ -15,14 +15,14 @@
 #include "BehaviorSystem.h"  // add/remove from behaviorsystem
 #include "DigEffect.h"
 #include "Emitter.h"
-#include "Entity.h"			 // destroy/spawn entity
+			 // destroy/spawn entity
 #include "MiningLaser.h"	 // tile break callback
 #include "TilemapSprite.h"   // callback
 #include "EmitterSprite.h"   // emitter texture/frame
 #include "EntitySystem.h"	 // spawn entity
-#include "Transform.h"	     // (and set its position)
+	     // (and set its position)
 #include "AudioPlayer.h"	 // block breaking
-#include "Texture.h"
+
 
 /// @brief  Default constructor
 DigEffect::DigEffect() : Behavior(typeid(DigEffect)) {}

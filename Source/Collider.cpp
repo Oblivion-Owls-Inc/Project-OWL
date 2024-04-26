@@ -7,15 +7,15 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" // precompiled header has to be included first
-#include "Collider.h"
+
 
 #include "DebugSystem.h"
 #include "CollisionSystem.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
-#include "RigidBody.h"
-#include "StaticBody.h"
+
+
+
 
 #include "Engine.h"
 

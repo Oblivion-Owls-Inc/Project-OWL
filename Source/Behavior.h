@@ -10,7 +10,7 @@
 */
 
 #pragma once
-#include "Component.h"
+
 #include "CollisionData.h"
 
 class Behavior : public Component

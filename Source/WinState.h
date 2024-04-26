@@ -7,13 +7,13 @@
 * \copyright Copyright (c) 2024 Digipen Institute of Technology
 *********************************************************************/
 #pragma once
-#include "Behavior.h"
-#include "ComponentReference.h"
+
+
 #include "Inventory.h"
 #include "EventSystem.h"
 #include "EventListener.h"
 
-#include "EntityReference.h"
+
 class SceneTransition;
 
 class WinState : public Behavior

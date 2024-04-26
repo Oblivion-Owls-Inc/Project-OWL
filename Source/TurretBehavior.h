@@ -10,15 +10,15 @@
 
 #pragma once
 
-#include "behavior.h"
 
-#include "ComponentReference.h"
-#include "Transform.h"
+
+
+
 #include "AudioPlayer.h"
 #include "Animation.h"
 
-#include "AssetReference.h"
-#include "Entity.h"
+
+
 
 #include "CollisionLayerFlags.h"
 

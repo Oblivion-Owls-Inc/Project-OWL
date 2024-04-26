@@ -10,7 +10,7 @@
 
 #define CURVE_H
 
-#include "ISerializable.h"
+
 
 #include <glm/glm.hpp>
 #include <vector>

@@ -12,7 +12,7 @@
 #include "BehaviorSystem.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
+
 #include "Camera.h"
 
 #include "DebugSystem.h"

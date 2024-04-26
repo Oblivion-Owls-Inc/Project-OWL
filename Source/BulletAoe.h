@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "Component.h"
+
 #include "Bullet.h"
 
-#include "ComponentReference.h"
-#include "AssetReference.h"
+
+
 class Collider;
 
 

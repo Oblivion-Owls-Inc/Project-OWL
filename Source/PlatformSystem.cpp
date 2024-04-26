@@ -14,7 +14,7 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 #include "Engine.h"
-#include "Entity.h"
+
 
 
 //-----------------------------------------------------------------------------

@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "basics.h"
-#include "Stream.h"
+
+
 
 /// @brief  Base class for all Systems
 class System : public ISerializable

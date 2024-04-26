@@ -7,14 +7,9 @@
 
 #pragma once
 
+
+#ifndef TILEMAP_H
 #define TILEMAP_H
-
-#include "pch.h" 
-#include "Component.h"
-
-#include "ComponentReference.h"
-#include "Transform.h"
-
 
 /// @brief  untemplatized base Tilemap class
 class TilemapBase : public Component
@@ -258,6 +253,7 @@ public:
 template<>
 void Tilemap<int>::Inspector();
 
-#ifndef TILEMAP_C
 #include "Tilemap.t.cpp"
-#endif
+
+#endif // TILEMAP_H
+

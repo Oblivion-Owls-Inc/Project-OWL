@@ -9,20 +9,20 @@
 ///--------------------------------------------------------------------------//
 
 #include "pch.h" // precompiled header has to be included first
-#include "Entity.h"
+
 
 #include "EntitySystem.h"
 
 
-#include "Component.h"		  // Type
+		  // Type
 #include "ComponentFactory.h" // Create.
 #include "InputSystem.h"
-#include "AssetLibrarySystem.h"
-#include "DebugSystem.h"
-#include "basics.h"
 
-#include "EntityReference.h"
-#include "ComponentReference.h"
+#include "DebugSystem.h"
+
+
+
+
 #include "PathfindSystem.h"
 
 

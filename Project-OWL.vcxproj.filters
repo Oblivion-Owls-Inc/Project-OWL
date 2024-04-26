@@ -417,6 +417,9 @@
     <Filter Include="Game\Components\Behaviors\DoomsDay">
       <UniqueIdentifier>{66433d39-fb17-45a3-9dd3-c714039d1306}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Steam">
+      <UniqueIdentifier>{7bb33c9d-af3e-49f9-aac6-a41d630b5159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -884,6 +887,9 @@
     <ClCompile Include="Source\DoomsDay.cpp">
       <Filter>Game\Components\Behaviors\DoomsDay</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ScreenShake.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1348,6 +1354,141 @@
     <ClInclude Include="Source\DoomsDay.h">
       <Filter>Game\Components\Behaviors\DoomsDay</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ScreenShake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamapps.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamappticket.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamclient.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamcontroller.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamdualsense.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamfriends.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamgamecoordinator.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamgameserver.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamgameserverstats.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamhtmlsurface.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamhttp.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteaminput.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteaminventory.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteammatchmaking.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteammusic.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteammusicremote.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworking.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworkingmessages.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworkingsockets.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamnetworkingutils.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamparentalsettings.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamps3overlayrenderer.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamremoteplay.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamremotestorage.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamscreenshots.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamugc.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamuser.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamuserstats.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamutils.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\isteamvideo.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\matchmakingtypes.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api_common.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api_flat.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steam_api_internal.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steam_gameserver.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamclientpublic.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamencryptedappticket.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamhttpenums.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamnetworkingfakeip.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamnetworkingtypes.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamps3params.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamtypes.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\includes\SteamAPI\steamuniverse.h">
+      <Filter>Header Files\Steam</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -1425,7 +1566,6 @@
     <None Include="Data\Scenes\MainMenu.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\Prototype v3.scene.json" />
     <None Include="Data\ButtonPromptMappings\ButtonPrompts.json">
       <Filter>Data</Filter>
     </None>
@@ -1435,9 +1575,20 @@
     <None Include="Data\Scenes\Settings.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\BetaScene.scene.json" />
     <None Include="Data\shaders\beam.vert">
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
+    <None Include="Data\Scenes\BetaScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Prototype v3.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="libraries\includes\SteamAPI\steam_api.json">
+      <Filter>Header Files\Steam</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="steam_appid.txt" />
   </ItemGroup>
 </Project>

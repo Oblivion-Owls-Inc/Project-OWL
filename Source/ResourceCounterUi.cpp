@@ -10,7 +10,7 @@
 #include "ResourceCounterUi.h"
 
 #include "ComponentReference.t.h"
-#include "Sprite.h"
+
 #include "Text.h"
 #include "UiElement.h"
 #include "TilemapSprite.h"

@@ -8,21 +8,21 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "basics.h"
+
 #include "SceneSystem.h"
 
 #include "EntitySystem.h"
-#include "Entity.h"
+
 
 #include "DebugSystem.h"
 
-#include "AssetLibrarySystem.h"
+
 #include "Sound.h"
-#include "Texture.h"
+
 #include "TransformAnimation.h"
 #include "AnimationAsset.h"
 
-#include "Stream.h"
+
 //-----------------------------------------------------------------------------
 // public methods
 //-----------------------------------------------------------------------------

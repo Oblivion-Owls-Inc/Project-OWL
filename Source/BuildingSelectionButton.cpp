@@ -12,11 +12,11 @@
 
 #include "ComponentReference.t.h"
 #include "UiButton.h"
-#include "Sprite.h"
+
 
 #include "ConstructionBehavior.h"
 #include "Inventory.h" // needed to prevent compilation errors from ConstructionBehavior
-#include "Tilemap.h"
+
 #include "ResourcesUiManager.h"
 #include "Popup.h"
 

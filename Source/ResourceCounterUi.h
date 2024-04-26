@@ -8,12 +8,11 @@
 
 #pragma once
 
-#include "Component.h"
+
 
 #include "ItemStack.h"
 
-#include "ComponentReference.h"
-class Sprite;
+
 class Text;
 class UiElement;
 class TilemapSprite;

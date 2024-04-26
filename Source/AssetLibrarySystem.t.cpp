@@ -8,13 +8,11 @@
 
 #include "pch.h" // precompiled header has to be included first
 
+
+
+
+#ifndef ASSETLIBRARYSYSTEM_C
 #define ASSETLIBRARYSYSTEM_C
-
-
-#ifndef ASSETLIBRARYSYSTEM_H
-#include "AssetLibrarySystem.h"
-#endif
-
 #include "DebugSystem.h"
 
 ///----------------------------------------------------------------------------
@@ -296,3 +294,4 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
 
 
 //-----------------------------------------------------------------------------
+#endif //ASSETLIBRARYSYSTEM_C

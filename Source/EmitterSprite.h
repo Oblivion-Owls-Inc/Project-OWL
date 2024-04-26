@@ -7,7 +7,7 @@
  * \copyright Copyright (c) 2024 Digipen Institute of Technology
  *********************************************************************/
 #pragma once
-#include "Sprite.h"
+
 
 class Emitter;  // fwd ref
 

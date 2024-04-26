@@ -6,7 +6,7 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "Texture.h"
+
 #include "RenderSystem.h"   // default mesh
 #include "Inspection.h"
 #define STB_IMAGE_IMPLEMENTATION

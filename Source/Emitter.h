@@ -8,8 +8,8 @@
  *********************************************************************/
 #pragma once
 #include "ParticleSystem.h"
-#include "ComponentReference.h"
-#include "Transform.h"
+
+
 
 /// @brief  Emitter component - controls timing and behavior of particles
 class Emitter : public Component

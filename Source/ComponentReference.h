@@ -9,10 +9,7 @@
 #pragma once
 
 #include "pch.h" 
-
 class Entity;
-class Component;
-
 
 /// @brief  abstract base class for templatized ComponentReferences
 class ComponentReferenceBase

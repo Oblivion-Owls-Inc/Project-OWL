@@ -16,8 +16,8 @@
 #include "EventSystem.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
-#include "Sprite.h"
+
+
 
 
 //-----------------------------------------------------------------------------

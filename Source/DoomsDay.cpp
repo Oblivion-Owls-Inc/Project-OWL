@@ -19,7 +19,7 @@
 
 #include "ComponentReference.t.h"
 
-#include "Health.h"
+
 #include "Emitter.h"
 #include "EmitterSprite.h"
 #include "Interactor.h"

@@ -10,8 +10,8 @@
 #include "pch.h" // precompiled header has to be included first
 #include "Emitter.h"
 #include "RenderSystem.h"   // shader uniform locations
-#include "Entity.h"         // parent transform
-#include "Transform.h"
+         // parent transform
+
 #include "ComponentReference.t.h"
 
 

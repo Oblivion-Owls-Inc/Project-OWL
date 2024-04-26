@@ -10,9 +10,9 @@
 
 
 #include "pch.h" // precompiled header has to be included first
-#include "Behavior.h"
 
-#include "ComponentReference.h"
+
+
 class Sprite;
 class Collider;
 

@@ -6,9 +6,7 @@
 #pragma once
 #include "pch.h" 
 
-#include "ISerializable.h"
 
-#include "Mesh.h"
 
 /// @brief          Stores texture data, and allows to bind it for rendering.
 class Texture : public ISerializable

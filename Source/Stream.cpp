@@ -12,7 +12,7 @@
 //------------------------------------------------------------------------------
 
 #include "pch.h" // precompiled header has to be included first
-#include "Stream.h"
+
 #include "DebugSystem.h"
 
 #include <shlobj_core.h>

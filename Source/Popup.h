@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "Behavior.h"
-#include "AssetReference.h"
+
+
 #include "ActionReference.h"
 #include "EventListener.h"
 

@@ -8,7 +8,7 @@
 #pragma once
 
 #include "pch.h" // precompiled header has to be included first
-#include "Component.h"
+
 
 
 /// @brief       Pathfinder source.

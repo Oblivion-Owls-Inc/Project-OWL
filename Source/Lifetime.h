@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Behavior.h"
+
 #include "Pool.h"
 
 /// @brief  Component that destroys it's Enity after a given length of time

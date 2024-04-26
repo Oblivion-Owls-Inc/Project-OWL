@@ -11,13 +11,11 @@
 // Include Files
 //------------------------------------------------------------------------------
 
-
-#include "pch.h" // precompiled header has to be included first
-#define STREAM_T_CPP
-
-#ifndef STREAM_H
+#include "pch.h"
 #include "Stream.h"
-#endif
+
+#ifndef STREAM_T_CPP
+#define STREAM_T_CPP
 
 //------------------------------------------------------------------------------
 // template clipboard method definitions
@@ -456,3 +454,5 @@
     }
 
 //------------------------------------------------------------------------------
+
+#endif // STREAM_T_CPP

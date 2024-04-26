@@ -7,13 +7,13 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "RenderSystem.h"
-#include "Sprite.h"
+
 #include "PlatformSystem.h"     // screen size
-#include "Entity.h"
-#include "Transform.h"
-#include "Mesh.h"
-#include "AssetLibrarySystem.h"
-#include "Texture.h"
+
+
+
+
+
 
 // for GetMouseOverSprite
 #include "InputSystem.h"

@@ -6,20 +6,13 @@
 /// \copyright Copyright (c) 2024 Digipen Institute of Technology
 
 #include "pch.h" // precompiled header has to be included first
-#define TILEMAP_C
-
 // TODO: callbacks should also get called whenever updating stride mult and row width.
 //       (those setters are currently inlines in .h)
 
-
-#ifndef TILEMAP_H
+  // parent
+#ifndef TILEMAP_C
+#define TILEMAP_C
 #include "Tilemap.h"
-#endif
-
-#include "Entity.h"  // parent
-#include "Transform.h"
-
-
 
 //-----------------------------------------------------------------------------
 // constructors
@@ -338,3 +331,4 @@
 
 
 //-----------------------------------------------------------------------------
+#endif  //< TILEMAP_C

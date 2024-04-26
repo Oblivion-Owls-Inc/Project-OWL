@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "Behavior.h"
 
-#include "AssetReference.h"
+
+
 #include "Sound.h"
 
-#include "ComponentReference.h"
-#include "Transform.h"
-#include "RigidBody.h"
+
+
+
 
 
 /// @brief  Component that can play audio

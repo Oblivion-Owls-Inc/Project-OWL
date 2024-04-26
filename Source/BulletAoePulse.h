@@ -8,12 +8,7 @@
 ///*****************************************************************/
 
 #pragma once
-
-#include "Component.h"
 #include "Bullet.h"
-
-#include "ComponentReference.h"
-class Collider;
 
 
 /// @brief   Component that destroys itself and deals aoe damage on contact

@@ -13,8 +13,8 @@
 #include "BehaviorSystem.h"
 
 #include "ComponentReference.t.h"
-#include "Transform.h"
-#include "Health.h"
+
+
 
 #include "TilemapCollider.h"
 

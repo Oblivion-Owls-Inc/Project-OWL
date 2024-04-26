@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "Component.h"
+
 
 #include "ItemStack.h"
 
-#include "ComponentReference.h"
-#include "Transform.h"
-#include "Sprite.h"
-#include "RigidBody.h"
+
+
+
+
 #include "AudioPlayer.h"
 
 

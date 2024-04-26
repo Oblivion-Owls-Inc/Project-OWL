@@ -12,12 +12,8 @@
 // include files
 //-----------------------------------------------------------------------------
 #include "pch.h" // precompiled header has to be included first
-#include "Component.h"
 
-#include "ComponentReference.h"
-class Transform;
 class RigidBody;
-class StaticBody;
 
 #include "CollisionLayerFlags.h"
 

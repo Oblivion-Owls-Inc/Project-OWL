@@ -16,9 +16,9 @@
 
 // includes required indirectly from other Components
 #include "Inventory.h"
-#include "Tilemap.h"
+
 #include "ResourcesUiManager.h"
-#include "Sprite.h"
+
 #include "AudioPlayer.h"
 #include "Popup.h"
 #include "UiElement.h"

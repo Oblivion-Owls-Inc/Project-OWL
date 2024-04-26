@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "Behavior.h"
 
-#include "ComponentReference.h"
+
+
 class Transform;
 class RigidBody;
 

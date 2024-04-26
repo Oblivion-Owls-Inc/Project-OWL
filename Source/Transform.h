@@ -11,10 +11,6 @@
 #pragma once
 
 #include "pch.h" 
-#include "basics.h"
-#include "Component.h"
-
-
 class Texture;
 
 class Transform : public Component
