@@ -252,7 +252,8 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)libraries\steam_api64.dll" "$(OutDir)steam_api64.dll"
-&lt;different options&gt;</Command>
+xcopy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"
+xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseEditor|x64'">
@@ -283,7 +284,8 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)libraries\steam_api64.dll" "$(OutDir)steam_api64.dll"
-&lt;different options&gt;</Command>
+xcopy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"
+xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
