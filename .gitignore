@@ -1,3 +1,6 @@
+# Always allow libraries folder
+!Libraries/
+
 # Prerequisites
 *.d
 *.vs
@@ -41,9 +44,5 @@
 /Data/Scenes/Autosaved_Scene.scene.json
 /doc_output/html/stream_8h_source.html
 /Data/Config/DebugSystem.json
-/imgui.ini
 /Project-OWL/x64/Release
 /Data/Scenes/Previous.scene.json
-
-# Always allow libraries folder
-!Libraries/

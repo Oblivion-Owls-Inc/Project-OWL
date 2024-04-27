@@ -13,12 +13,8 @@
 
 
 // I don't know why these are needed here, but it complains if we don't have them
-
-
-
 #include "Emitter.h"
 #include "DebugSystem.h"
-
 
 //-----------------------------------------------------------------------------
 // public: constructor

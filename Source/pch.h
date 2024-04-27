@@ -73,12 +73,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Project OWL 
 ////////////////////////////////////////////////////////////////////////////////
+/// These files are included in a specific order to avoid circular dependencies
 
 #include "ISerializable.h"
 #include "Stream.h"
 #include "basics.h"
 
-#include "Component.h"  // These files are included in a specific order to avoid circular dependencies
+#include "Component.h" 
 #include "ComponentReference.h"
 
 #include "Entity.h"
@@ -98,3 +99,4 @@
 #include "RigidBody.h"
 #include "Tilemap.h"
 #include "Health.h"
+
