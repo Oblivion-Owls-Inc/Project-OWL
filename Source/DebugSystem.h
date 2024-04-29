@@ -96,16 +96,16 @@ public: // DebugStream
     template <typename Type>
     void Write(const Type& value)
     {
-		std::ostringstream oss;
-		oss << value;
+        std::ostringstream oss;
+        oss << value;
 
         #ifndef NDEBUG  // only write to the Console in Debug mode
         std::cout << oss.str();
         #endif
 
-		Stream::WriteToTraceLog(oss.str());
+        Stream::WriteToTraceLog(oss.str());
         WritetoConsole(oss.str());
-	}
+    }
 
 //-----------------------------------------------------------------------------
 private: // Members

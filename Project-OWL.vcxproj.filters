@@ -420,6 +420,12 @@
     <Filter Include="Header Files\Steam">
       <UniqueIdentifier>{7bb33c9d-af3e-49f9-aac6-a41d630b5159}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\SteamSystem">
+      <UniqueIdentifier>{25884773-a9d0-459e-a1bf-edc4a6a7161a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\Achievement">
+      <UniqueIdentifier>{88be1a1a-b35c-47ea-b5f4-330579551cb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -889,6 +895,9 @@
     </ClCompile>
     <ClCompile Include="Source\ScreenShake.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SteamSystem.cpp">
+      <Filter>Engine\Systems\SteamSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1488,6 +1497,12 @@
     </ClInclude>
     <ClInclude Include="libraries\includes\SteamAPI\steamuniverse.h">
       <Filter>Header Files\Steam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SteamSystem.h">
+      <Filter>Engine\Systems\SteamSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SteamAchievements.h">
+      <Filter>Engine\Framework\Achievement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

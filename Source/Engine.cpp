@@ -26,6 +26,7 @@
 #include "CameraSystem.h"
 #include "TileInfoSystem.h"
 #include "EventSystem.h"
+#include "SteamSystem.h"
 
 
 #include "Sound.h"
@@ -398,6 +399,7 @@
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem      >                      },
         { "LightingSystem"                        , &addSystem< LightingSystem      >                      },
         { "PathfindSystem"                        , &addSystem< PathfindSystem      >                      },
+        { "SteamSystem"                           , &addSystem< SteamSystem         >                      },
 
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },

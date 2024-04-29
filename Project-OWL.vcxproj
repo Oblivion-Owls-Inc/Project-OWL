@@ -557,6 +557,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
     <ClCompile Include="Source\WindowFocusEvent.cpp" />
     <ClCompile Include="Source\WinState.cpp" />
+    <ClCompile Include="Source\SteamSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libraries\includes\SteamAPI\isteamapps.h" />
@@ -743,6 +744,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\WavesBehavior.h" />
     <ClInclude Include="Source\WindowFocusEvent.h" />
     <ClInclude Include="Source\WinState.h" />
+    <ClInclude Include="Source\SteamSystem.h" />
+    <ClInclude Include="Source\SteamAchievements.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\ButtonPromptMappings\ButtonPrompts.json" />
