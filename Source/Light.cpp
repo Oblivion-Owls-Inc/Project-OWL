@@ -30,7 +30,7 @@ void Light::OnExit() { Lights()->RemoveComponent(this); }
 /// @brief  Tweak properties in debug window
 void Light::Inspector()
 {
-    ImGui::DragFloat("Radius", &m_Radius, 0.01f, 0.0f, 20.0f);
+    ImGui::DragFloat("Radius", &m_Radius, 0.01f, 0.0f, INFINITY);
     ImGui::DragFloat("Strength", &m_Strength, 0.005f, 0.0f, 10.0f);
     ImGui::DragFloat2("Offset", &m_Offset.x, 0.01f);
 }

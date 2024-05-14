@@ -33,7 +33,7 @@ CameraBehavior::CameraBehavior( CameraBehavior const& other) :
     Behavior( other ),
     m_xBounds( other.m_xBounds ),
     m_yBounds( other.m_yBounds ),
-    m_Factor ( other.m_Factor  )
+    m_Snappiness ( other.m_Snappiness  )
 {}
 
 
@@ -50,7 +50,10 @@ void CameraBehavior::OnInit()
 	m_Cam.Init( GetEntity() );
 	m_Transform.Init( GetEntity() );
 
-	m_ParentTransform.Init( GetEntity()->GetParent() );
+	m_TargetTransform.Init( GetEntity()->GetParent() );
+
+	if (m_TargetTransform)
+		m_TargetOldPos = m_TargetTransform->GetTranslation();
 }
 
 
@@ -60,35 +63,35 @@ void CameraBehavior::OnExit()
 	m_Cam      .Exit();
 	m_Transform.Exit();
 
-	m_ParentTransform.Exit();
+	m_TargetTransform.Exit();
 
 	Behaviors< Behavior >()->RemoveComponent(this); 
 }
 
 
 /// @brief  Performs the smooth following
-void CameraBehavior::OnUpdate( float dt )
+void CameraBehavior::OnFixedUpdate()
 {
-	if (!m_Cam || !m_Transform || !m_ParentTransform)
+	if (!m_Cam || !m_Transform || !m_TargetTransform)
 		return;
+
+	float dt = GameEngine()->GetFixedFrameDuration();
             
 	// move
-	glm::vec2 pos = m_Transform->GetTranslation(), prev_pos = pos,
-			  tpos = m_ParentTransform->GetMatrix()[ 3 ];
+	glm::vec2 pos = m_Transform->GetTranslation(),
+			  tpos = m_TargetTransform->GetMatrix()[ 3 ];
+	glm::vec2 vel = tpos - m_TargetOldPos;
+	m_TargetOldPos = tpos;
+	tpos += vel*m_Lead;
 
     // accurate smooth lerp equation
-	pos = lerp( tpos, pos, std::exp2( dt * -m_Factor ) );
+	pos = lerp( tpos, pos, std::exp2( dt * -m_Snappiness ) );
 
 	// clamp to bounds
 	clampOrCenter(pos.y, m_yBounds[0], m_yBounds[1], m_Cam->GetHeight());
 	clampOrCenter(pos.x, m_xBounds[0], m_xBounds[1], m_Cam->GetWidth());
-
-	// // This shouldn't be customizable. It's here to prevent aliasing.
-	// // However, combining it with 'speed' determines how lazy it is
-	// // with following the target. So I call it 'follow factor'.
-	// glm::vec2 change = prev_pos - pos;
-	// if (glm::dot(change, change) > dt*dt)
-	    m_Transform->SetTranslation( pos );
+	
+	m_Transform->SetTranslation( pos );
 }
 
 
@@ -99,7 +102,8 @@ void CameraBehavior::Inspector()
 	ImGui::DragFloat2("left / right", &m_xBounds[0], 0.01f);
 	ImGui::DragFloat2("bottom / top", &m_yBounds[0], 0.01f);
 	ImGui::Spacing();
-	ImGui::DragFloat( "Follow factor", &m_Factor, 0.05f, 0.0f, INFINITY );
+	ImGui::DragFloat( "Snappiness", &m_Snappiness, 0.05f, 0.0f, INFINITY );
+	ImGui::DragFloat( "Lead" , &m_Lead, 0.05f, 0.0f, INFINITY );
 }
 
 
@@ -107,8 +111,8 @@ void CameraBehavior::Inspector()
 void CameraBehavior::OnHierarchyChange(Entity * previousParent)
 {
 	// re-init parent's transform
-	m_ParentTransform.Exit();
-	m_ParentTransform.Init( GetEntity()->GetParent() );
+	m_TargetTransform.Exit();
+	m_TargetTransform.Init( GetEntity()->GetParent() );
 }
 
 
@@ -145,9 +149,10 @@ void CameraBehavior::clampOrCenter(float& val, float lo, float hi, float dist)
 /// @brief read method map
 ReadMethodMap<CameraBehavior> const CameraBehavior::s_ReadMethods =
 {
-	{ "XBounds", &readXBounds },
-	{ "YBounds", &readYBounds },
-    { "Factor" , &readFactor  }
+	{ "XBounds",     &readXBounds },
+	{ "YBounds",     &readYBounds },
+    { "Snappiness",  &readFactor  },
+	{ "Lead",        &readLead    }
 };
 
 /// @brief		 Reads the horizontal bounds
@@ -170,7 +175,14 @@ void CameraBehavior::readYBounds(nlohmann::ordered_json const& data)
 /// @param  data    the JSON data to read from
 void CameraBehavior::readFactor( nlohmann::ordered_json const& data )
 {
-    Stream::Read( m_Factor, data );
+    Stream::Read( m_Snappiness, data );
+}
+
+/// @brief  reads the follow factor
+/// @param  data    the JSON data to read from
+void CameraBehavior::readLead(nlohmann::ordered_json const& data)
+{
+	Stream::Read( m_Lead, data );
 }
 
 
@@ -181,7 +193,8 @@ nlohmann::ordered_json CameraBehavior::Write() const
 
 	data["XBounds"] = m_xBounds;
 	data["YBounds"] = m_yBounds;
-    data[ "Factor" ] = Stream::Write( m_Factor );
+    data["Snappiness"] = Stream::Write( m_Snappiness );
+	data["Lead"] = Stream::Write( m_Lead );
 
 	return data;
 }

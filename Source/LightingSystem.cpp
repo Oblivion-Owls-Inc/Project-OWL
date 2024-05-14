@@ -33,24 +33,15 @@ void LightingSystem::OnInit()
 
     Renderer()->AddShader("lights", new Shader("Data/shaders/vshader.vert", "Data/shaders/lighting.frag"));
     Renderer()->AddShader("spotlight", new Shader("Data/shaders/vshader.vert", "Data/shaders/spotlight.frag"));
-    Platform()->AddOnWindowResizeCallback( GetId(), std::bind(&LightingSystem::reallocTexArray, this) );
-    glGenFramebuffers(1, &m_FBO);
 
-    // uniform blocks
-    //glGenBuffers(1, &m_UBOrad);
-    //glGenBuffers(1, &m_UBOstr);         // TODO: do I need to bind them?
-    //glBindBufferBase(GL_UNIFORM_BUFFER, 1, m_UBOrad);
-    //glBindBufferBase(GL_UNIFORM_BUFFER, 2, m_UBOstr);
-
+    // uniform blocks (it would probably be more proper to bind them each frame,
+    // just to avoid future potential bugs. But there's not much "future" left)
     glGenBuffers(1, &m_UBOpos);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 13, m_UBOpos);
     glGenBuffers(1, &m_UBOrad);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 14, m_UBOrad);
     glGenBuffers(1, &m_UBOstr);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 13, m_UBOpos);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 14, m_UBOrad);
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 15, m_UBOstr);
-
-
-    glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
 
 
@@ -74,9 +65,9 @@ void LightingSystem::OnUpdate(float dt)
 
     // put individual light source stats into vectors
     size_t size = GetComponents().size();
-    m_Positions.clear();
-    m_Radii.clear();
-    m_Strengths.clear();
+    std::vector<glm::vec4> positions;
+    std::vector<float> radii, strengths;
+
     for (Light* thislight : GetComponents())
     {
         // light position
@@ -89,15 +80,31 @@ void LightingSystem::OnUpdate(float dt)
         glm::vec4 scrpos = m_W2S * pos;
         scrpos.y = scrheight - scrpos.y; // TODO: does W2S need fixing, or am I doing something wrong here?
 
-        m_Positions.push_back(scrpos);
-        m_Radii.push_back(thislight->GetRadius() * m_W2S[0][0]);
-        m_Strengths.push_back(thislight->GetStrength());
+        positions.push_back(scrpos);
+        radii.push_back(thislight->GetRadius() * m_W2S[0][0]);
+        strengths.push_back(thislight->GetStrength());
     }
+
+    // send the vectors to GPU
+    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOpos);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(glm::vec4) * (int)positions.size(),
+                 &positions[0], GL_DYNAMIC_DRAW);
+
+    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOrad);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * (int)radii.size(),
+                 &radii[0], GL_DYNAMIC_DRAW);
+
+    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOstr);
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * (int)strengths.size(),
+                 &strengths[0], GL_DYNAMIC_DRAW);
 
     (void)dt;
 }
 
-void LightingSystem::DrawLights()
+
+// Renders the shadows. Called from RenderSystem thru the unique sprite.
+// (the sprite is implemented at the bottom of this file)
+void LightingSystem::DrawLights() const
 {
     if (!GetComponents().size() || !m_Enabled)
         return;
@@ -112,18 +119,6 @@ void LightingSystem::DrawLights()
     //spotShader->GetUniformID("ambient");
     glUniform1i(spotShader->GetUniformID("light_count"), (int)GetComponents().size());
 
-    // send the vectors to GPU
-    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOpos);
-    glBufferData(GL_UNIFORM_BUFFER, sizeof(glm::vec4) * (int)m_Positions.size(),
-        &m_Positions[0], GL_DYNAMIC_DRAW);
-    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOrad);
-    glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * (int)m_Radii.size(),
-        &m_Radii[0], GL_DYNAMIC_DRAW);
-    glBindBuffer(GL_UNIFORM_BUFFER, m_UBOstr);
-    glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * (int)m_Strengths.size(),
-        &m_Strengths[0], GL_DYNAMIC_DRAW);
-    
-
     // draw it all
     glBindVertexArray(Renderer()->GetDefaultMesh()->GetVAO());
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -133,26 +128,23 @@ void LightingSystem::DrawLights()
 }
 
 
-/// @brief  Called when system exits
+/// @brief  Called when system exits: free the buffers and the sprite
 void LightingSystem::OnExit()
 {
+    glDeleteBuffers(1, &m_UBOpos);
+    glDeleteBuffers(1, &m_UBOrad);
+    glDeleteBuffers(1, &m_UBOstr);
+
     delete m_Sprite;
-    glDeleteFramebuffers(1, &m_FBO);
-    glDeleteTextures(1, &m_TextureArrayID);
 }
 
 
 /// @brief  Called when entering a scene
-void LightingSystem::OnSceneInit() 
-{
-    Renderer()->AddSprite(m_Sprite);
-}
+void LightingSystem::OnSceneInit()  { Renderer()->AddSprite(m_Sprite); }
 
 /// @brief  Called when exiting a scene
-void LightingSystem::OnSceneExit() 
-{
-    Renderer()->RemoveSprite(m_Sprite);
-}
+void LightingSystem::OnSceneExit()  { Renderer()->RemoveSprite(m_Sprite); }
+
 
 void LightingSystem::DebugWindow()
 {
@@ -170,34 +162,6 @@ void LightingSystem::DebugWindow()
     ImGui::End();
 
     SetDebugEnable(showWindow);
-}
-
-
-
-/// @brief  Reallocates texture array - for when the amount of lights or the
-///         screen resolution changes. (This is why Ligthing System keeps track of it,
-///         rather than the sprite)
-void LightingSystem::reallocTexArray()
-{
-    if (!GetComponents().size())
-        return;
-
-    // replace old texture array, if present
-    if (m_TextureArrayID)
-        glDeleteTextures(1, &m_TextureArrayID);
-
-    // create new one, match texture resolution to screen size
-    glGenTextures(1, &m_TextureArrayID);
-    glBindTexture(GL_TEXTURE_2D_ARRAY, m_TextureArrayID);
-    glm::ivec2 dims = Platform()->GetWindowDimensions();
-    glTexStorage3D(GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, dims.x, dims.y, (GLsizei)GetComponents().size());
-
-    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-    m_PrevSize = GetComponents().size();
 }
 
 
@@ -244,7 +208,7 @@ LightingSystem::LightingSystem() :
 /// @return   The singleton instance
 LightingSystem * LightingSystem::GetInstance()
 {
-   static std::unique_ptr< LightingSystem > s_Instance = nullptr;
+    static std::unique_ptr< LightingSystem > s_Instance = nullptr;
 
     if ( s_Instance == nullptr )
     {
@@ -257,20 +221,14 @@ LightingSystem * LightingSystem::GetInstance()
 // ========================================================================= //
 //                    Lighting Sprite implementation                         //
 // ========================================================================= //
-// Lighting system just uses 1 sprite to render all lights. (Or rather, shades)
-// It's just a rectangle stretched over the entire screen. The lighting system
-// has already rendered all individual light sources to the texture array.
-// They are combined together by this sprite's shader.
+// Calls the DrawLights() function to draw the shadows with configurable layer.
+// Added to the scene in LightingSystem's OnSceneInit().
 
 /// @brief   Default constructor
-LightingSystem::LightingSprite::LightingSprite() : 
-    Sprite(typeid(LightingSystem::LightingSprite)) {}
+LightingSystem::LightingSprite::LightingSprite() : Sprite(typeid(LightingSystem::LightingSprite)) {}
 
 /// @brief   Called by RenderSystem in accordance with its layer.
-void LightingSystem::LightingSprite::Draw()
-{
-    Lights()->DrawLights();
-}
+void LightingSystem::LightingSprite::Draw()  { Lights()->DrawLights(); }
 
 // ========================================================================== //
 

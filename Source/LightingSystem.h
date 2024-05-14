@@ -35,9 +35,6 @@ public:
 //-----------------------------------------------------------------------------
 public:
 
-    /// @return     OpenGL ID of the texture array
-    __inline unsigned int GetTexArrayID() const { return m_TextureArrayID; }
-
     /// @return     Enabled state of the lighting system
     __inline bool GetLightingEnabled() const { return m_Enabled; }
 
@@ -51,7 +48,7 @@ public:
     /// @brief      Sets current shadow layer to given integer
     __inline void SetShadowLayer(int layer) { m_Sprite->SetLayer(layer); }
 
-    void DrawLights();
+    void DrawLights() const;
 
 
 //-----------------------------------------------------------------------------
@@ -83,26 +80,17 @@ private:
 //-----------------------------------------------------------------------------
 private:
     LightingSprite* m_Sprite = nullptr;   /// @brief   Does the rendering.
-    unsigned int m_TextureArrayID = 0;    /// @brief   Texture array for light sources
-    GLuint m_FBO = -1;                    /// @brief   Framebuffer for rendering lights to texture 
     bool m_Enabled = false;               /// @brief   For debugging. Can disable all lights.
     glm::mat4 m_S2W = {}, m_W2S = {};     /// @brief   Screen-to-world matrix (and inverse)
-    unsigned long long m_PrevSize = 0;    /// @brief   To reallocate only when light count has changed
     unsigned int m_UBOpos = -1, 
                  m_UBOrad = -1, 
                  m_UBOstr = -1;
-    std::vector<glm::vec4> m_Positions;
-    std::vector<float> m_Radii,
-                       m_Strengths;
+    
 
 //-----------------------------------------------------------------------------
 //              Helpers
 //-----------------------------------------------------------------------------
-private:
-    /// @brief  Reallocates texture array - for when the amount of lights 
-    ///         or the screen resolution changes.
-    void reallocTexArray();
-
+//private:
 
 
 //-----------------------------------------------------------------------------

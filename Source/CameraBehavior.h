@@ -15,6 +15,7 @@
 #include "ComponentReference.h"
 #include "Camera.h"
 #include "Transform.h"
+#include <queue>
 
 class CameraBehavior : public Behavior
 {
@@ -42,7 +43,7 @@ private:
     virtual void OnInit() override;
 
     /// @brief  Performs the smooth following
-    virtual void OnUpdate( float dt ) override;
+    virtual void OnFixedUpdate() override;
 
     /// @brief  Removes itself from behavior system
     virtual void OnExit() override;
@@ -60,7 +61,10 @@ private:
 private:
 
     /// @brief   Transform of the entity to follow
-    ComponentReference< Transform > m_ParentTransform;
+    ComponentReference< Transform > m_TargetTransform;
+
+    /// @brief   Target entity's previous translation
+    glm::vec2 m_TargetOldPos = {};
 
     /// @brief   Parent transform
     ComponentReference< Transform > m_Transform;
@@ -76,7 +80,10 @@ private:
 
     /// @brief   Low number - follows target slowly, does not bother centering;
     ///          High number - snaps firmly to target
-    float m_Factor = 1.0f;
+    float m_Snappiness = 1.0f;
+
+    /// @brief   How far ahead does camera lead
+    float m_Lead = 40.0f;
 
 
 //-----------------------------------------------------------------------------
@@ -107,9 +114,13 @@ private:
     /// @param data  json data to read
     void readYBounds(nlohmann::ordered_json const& data);
 
-    /// @brief  reads the follow factor
+    /// @brief  reads the snappiness
     /// @param  data    the JSON data to read from
     void readFactor( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the lead factor
+    /// @param  data    the JSON data to read from
+    void readLead( nlohmann::ordered_json const& data );
 
 
 public:
