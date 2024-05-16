@@ -42,8 +42,11 @@ private:
     /// @brief  Adds itself to behavior system
     virtual void OnInit() override;
 
-    /// @brief  Performs the smooth following
+    /// @brief  Calls update on fixed intervals (when vsync off)
     virtual void OnFixedUpdate() override;
+
+    /// @brief  Calls update every frame (when vsync on)
+    virtual void OnUpdate(float dt) override;
 
     /// @brief  Removes itself from behavior system
     virtual void OnExit() override;
@@ -97,6 +100,11 @@ private:
     /// @param hi	 Upper bound
     /// @param dist  Distance to fit within bounds
     void clampOrCenter(float &val, float lo, float hi, float range);
+
+
+    /// @brief  Performs the smooth following. Executed by either OnUpdate or
+    ///         OnFixedUpdate, depending on VSync status.
+    void update(float dt);
 
 
 //-----------------------------------------------------------------------------

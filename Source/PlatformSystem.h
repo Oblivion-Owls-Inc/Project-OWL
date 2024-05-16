@@ -94,6 +94,10 @@ public: // accessors
     /// @return whether the game window is focused
     bool GetIsFocused() const;
 
+    /// @brief  gets whether vsync is enabled
+    /// @return whether vsync is enabled
+    bool GetVsyncOn() const;
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods

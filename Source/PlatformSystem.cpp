@@ -169,6 +169,12 @@
         return glfwGetWindowAttrib( m_Window, GLFW_FOCUSED );
     }
 
+    /// @brief  gets whether vsync is enabled
+    /// @return whether vsync is enabled
+    bool PlatformSystem::GetVsyncOn() const
+    {
+        return m_VSync;
+    }
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods

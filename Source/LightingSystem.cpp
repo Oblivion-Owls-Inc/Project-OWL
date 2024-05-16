@@ -78,7 +78,7 @@ void LightingSystem::OnUpdate(float dt)
 
         // convert it to screen coords
         glm::vec4 scrpos = m_W2S * pos;
-        scrpos.y = scrheight - scrpos.y; // TODO: does W2S need fixing, or am I doing something wrong here?
+        scrpos.y = scrheight - scrpos.y; // TODO: does W2S need fixing?
 
         positions.push_back(scrpos);
         radii.push_back(thislight->GetRadius() * m_W2S[0][0]);

@@ -19,6 +19,7 @@
 #include "Engine.h"
 
 #include "InputSystem.h"
+#include "PlatformSystem.h"
 
 #include "ComponentReference.t.h"
 
@@ -69,29 +70,43 @@ void CameraBehavior::OnExit()
 }
 
 
-/// @brief  Performs the smooth following
+/// @brief  Calls update on fixed intervals
 void CameraBehavior::OnFixedUpdate()
+{
+	if ( !Platform()->GetVsyncOn() )
+		update( GameEngine()->GetFixedFrameDuration() );
+}
+
+/// @brief  Calls update on fixed intervals
+void CameraBehavior::OnUpdate(float dt)
+{
+	if ( Platform()->GetVsyncOn() )
+		update( dt );
+}
+
+
+/// @brief  Performs the smooth following. Executed by either OnUpdate or
+///         OnFixedUpdate, depending on VSync status.
+void CameraBehavior::update(float dt)
 {
 	if (!m_Cam || !m_Transform || !m_TargetTransform)
 		return;
 
-	float dt = GameEngine()->GetFixedFrameDuration();
-            
 	// move
 	glm::vec2 pos = m_Transform->GetTranslation(),
-			  tpos = m_TargetTransform->GetMatrix()[ 3 ];
+		tpos = m_TargetTransform->GetMatrix()[3];
 	glm::vec2 vel = tpos - m_TargetOldPos;
 	m_TargetOldPos = tpos;
-	tpos += vel*m_Lead;
+	tpos += vel * m_Lead;
 
-    // accurate smooth lerp equation
-	pos = lerp( tpos, pos, std::exp2( dt * -m_Snappiness ) );
+	// accurate smooth lerp equation
+	pos = lerp(tpos, pos, std::exp2(dt * -m_Snappiness));
 
 	// clamp to bounds
 	clampOrCenter(pos.y, m_yBounds[0], m_yBounds[1], m_Cam->GetHeight());
 	clampOrCenter(pos.x, m_xBounds[0], m_xBounds[1], m_Cam->GetWidth());
-	
-	m_Transform->SetTranslation( pos );
+
+	m_Transform->SetTranslation(pos);
 }
 
 
