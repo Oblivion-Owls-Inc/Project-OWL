@@ -13,19 +13,24 @@ uniform int light_count = 0;
 
 void main()
 {
-    pixel_color = vec4(0,0,0,1);
+    // Start with completely dark pixel
+    float total_light_intensity = 1.0;
 
-    for (int i=0; i<light_count; ++i)
+    for (int i = 0; i < light_count; ++i)
     {
-        // light-to-pixel vector
+        // Light-to-pixel vector
         vec2 l2p = gl_FragCoord.xy - positions[i].xy;
 
-        // calculate light strength at this pixel
-        float spot = (radii[i] * radii[i]) 
-                            / ( radii[i] * radii[i] + dot(l2p, l2p));
-        spot *= strengths[i];
+        // Calculate light strength at this pixel
+        float r = radii[i]*strengths[i];
+        float spot = (r * r) / (r * r + dot(l2p, l2p));
 
-        // use it as transparency
-        pixel_color.w = min( 1.0-clamp(spot, 0.0, 1.0), pixel_color.w);
+        // Combine light intensity multiplicatively
+        total_light_intensity *= 1.0 - spot;
     }
+
+    // Use the combined intensity to determine the transparency of the darkness overlay
+    pixel_color = vec4(0, 0, 0, total_light_intensity);
 }
+
+

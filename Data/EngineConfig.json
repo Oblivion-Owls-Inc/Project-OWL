@@ -3,11 +3,11 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1792,
-                1058
+                2560,
+                1459
             ],
             "WindowName": "Dig Deeper",
-            "VSync": false
+            "VSync": true
         },
         "EventSystem": {},
         "InputSystem": {
@@ -353,7 +353,7 @@
             "WinSceneName": "GameWin"
         },
         "DebugSystem": {
-            "ShowFpsWindow": true,
+            "ShowFpsWindow": false,
             "ShowDebugWindow": true,
             "OpenSystemWindows": {
                 "AssetLibrary<AnimationAsset>": false,
