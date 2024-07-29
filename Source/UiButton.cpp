@@ -91,7 +91,7 @@
         m_HoverSound.  SetOwnerName( GetName() );
         m_PressSound  .Init();
         m_ReleaseSound.Init();
-        m_HoverSound.  Init();
+        m_HoverSound.  Init( false );
     }
 
     /// @brief  called once when exiting the scene
@@ -160,7 +160,7 @@
             {
                 m_Sprite->SetFrameIndex( m_HoveredFrame );
             }
-            if ( m_AudioPlayer != nullptr )
+            if ( m_AudioPlayer != nullptr && m_HoverSound != nullptr )
             {
                 m_AudioPlayer->SetSound( m_HoverSound );
                 m_AudioPlayer->Play();
@@ -199,7 +199,7 @@
                 m_Sprite->SetFrameIndex( m_DownFrame );
             }
 
-            if ( m_AudioPlayer != nullptr )
+            if ( m_AudioPlayer != nullptr && m_PressSound != nullptr )
             {
                 m_AudioPlayer->SetSound( m_PressSound );
                 m_AudioPlayer->Play();
@@ -215,7 +215,7 @@
         {
             s_currentlyDownButton = nullptr;
 
-            if ( m_AudioPlayer != nullptr )
+            if ( m_AudioPlayer != nullptr && m_ReleaseSound != nullptr )
             {
                 m_AudioPlayer->SetSound( m_ReleaseSound );
                 m_AudioPlayer->Play();

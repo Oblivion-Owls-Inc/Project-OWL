@@ -499,6 +499,45 @@
                 "UseAspectRatio": false,
                 "RepeatOutOfBounds": false
             },
+            "QuitPopup_Button_No": {
+                "Filepath": "Data/Textures/MenuAssets/no_button.png",
+                "SheetDimensions": [
+                    1,
+                    3
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
+            },
+            "QuitPopup_Button_Yes": {
+                "Filepath": "Data/Textures/MenuAssets/yes_button.png",
+                "SheetDimensions": [
+                    1,
+                    3
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
+            },
+            "QuitPopup_Label": {
+                "Filepath": "Data/Textures/MenuAssets/confirm-quit_label.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false,
+                "RepeatOutOfBounds": false
+            },
             "Rectangle": {
                 "Filepath": "Data/Textures/Debug/Rectangle.png",
                 "SheetDimensions": [
@@ -613,28 +652,28 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "ButtonTexture"
+                            "AssetName": "CRT_menu_background"
                         }
                     },
                     "UiElement": {
                         "Anchor": [
                             0.0,
-                            -0.25
+                            -0.949999988079071
                         ],
                         "Pivot": [
                             0.0,
-                            0.0
+                            -1.0
                         ],
                         "Offset": [
                             0.0,
                             0.0
                         ],
                         "FrameSize": [
-                            0.30000001192092896,
-                            0.30000001192092896
+                            0.5,
+                            0.5
                         ],
                         "SizeTypes": [
-                            "RelativeToWidth",
+                            "RelativeToHeight",
                             "RelativeToHeight"
                         ]
                     }
@@ -643,83 +682,116 @@
                     {
                         "Name": "Text",
                         "Components": {
-                            "Tilemap<int>": {
-                                "Dimensions": [
-                                    16,
-                                    2
-                                ],
-                                "TileScale": [
-                                    0.5,
-                                    1.0
-                                ],
-                                "TileData": [
-                                    33,
-                                    82,
-                                    69,
-                                    0,
-                                    57,
-                                    79,
-                                    85,
-                                    0,
-                                    51,
-                                    85,
-                                    82,
-                                    69,
-                                    0,
-                                    57,
-                                    79,
-                                    85,
-                                    0,
-                                    55,
-                                    65,
-                                    78,
-                                    84,
-                                    0,
-                                    52,
-                                    79,
-                                    0,
-                                    49,
-                                    85,
-                                    73,
-                                    84,
-                                    31,
-                                    0,
-                                    0
-                                ]
-                            },
-                            "Text": {
-                                "Text": "Are You Sure You Want To Quit?"
-                            },
-                            "TilemapSprite": {
-                                "Layer": 34,
+                            "Sprite": {
+                                "Layer": 27,
                                 "Color": [
                                     0.0,
                                     0.0,
-                                    -1.0,
+                                    0.0,
                                     0.0
                                 ],
                                 "Opacity": 1.0,
                                 "FrameIndex": 0,
                                 "Texture": {
-                                    "AssetName": "FontSheet"
+                                    "AssetName": "QuitPopup_Label"
                                 }
                             },
                             "UiElement": {
                                 "Anchor": [
-                                    -0.6499999761581421,
-                                    0.699999988079071
+                                    -0.75,
+                                    0.75
                                 ],
                                 "Pivot": [
-                                    0.0,
-                                    0.0
+                                    -1.0,
+                                    1.0
                                 ],
                                 "Offset": [
                                     0.0,
                                     0.0
                                 ],
                                 "FrameSize": [
-                                    0.09000000357627869,
-                                    0.11999999731779099
+                                    0.5874999761581421,
+                                    0.6000000238418579
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    },
+                    {
+                        "Name": "ConfirmationButton",
+                        "Components": {
+                            "AudioPlayer": {
+                                "Sound": {
+                                    "AssetName": "[non-serialized asset]"
+                                },
+                                "Volume": 1.0,
+                                "Pitch": 1.0,
+                                "VolumeVariance": 0.0,
+                                "PitchVariance": 0.0,
+                                "DefaultLoopCount": 0,
+                                "PlayOnInit": false,
+                                "IsSpatial": false,
+                                "AllowMultipleSounds": true,
+                                "ChannelGroupName": ""
+                            },
+                            "SceneChangeButton": {
+                                "SceneName": "MainMenu",
+                                "EventName": "QuitConfirmation",
+                                "SceneTransitionEntity": {
+                                    "EntityName": "SceneTransitionEntity"
+                                },
+                                "PreviousSceneFlag": false
+                            },
+                            "Sprite": {
+                                "Layer": 27,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "QuitPopup_Button_Yes"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "QuitConfirmation",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": "ButtonPress"
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": "ButtonRelease"
+                                },
+                                "HoverSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    -0.75,
+                                    -0.5
+                                ],
+                                "Pivot": [
+                                    -1.0,
+                                    1.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.25,
+                                    0.13750000298023224
                                 ],
                                 "SizeTypes": [
                                     "RelativeToWidth",
@@ -734,7 +806,7 @@
                         "Components": {
                             "AudioPlayer": {
                                 "Sound": {
-                                    "AssetName": "ButtonRelease"
+                                    "AssetName": "[non-serialized asset]"
                                 },
                                 "Volume": 1.0,
                                 "Pitch": 1.0,
@@ -757,147 +829,7 @@
                                 "Opacity": 1.0,
                                 "FrameIndex": 0,
                                 "Texture": {
-                                    "AssetName": "ButtonTexture"
-                                }
-                            },
-                            "UiButton": {
-                                "ClickEventName": "CloseApplication",
-                                "ShouldActivateOnPress": false,
-                                "IdleFrame": 0,
-                                "HoveredFrame": 1,
-                                "DownFrame": 2,
-                                "PressSound": {
-                                    "AssetName": "ButtonPressedSound"
-                                },
-                                "ReleaseSound": {
-                                    "AssetName": "ButtonReleasedSound"
-                                },
-                                "HoverSound": {
-                                    "AssetName": ""
-                                }
-                            },
-                            "UiElement": {
-                                "Anchor": [
-                                    -0.5,
-                                    -0.5
-                                ],
-                                "Pivot": [
-                                    0.0,
-                                    0.0
-                                ],
-                                "Offset": [
-                                    0.0,
-                                    0.0
-                                ],
-                                "FrameSize": [
-                                    0.4000000059604645,
-                                    0.20000000298023224
-                                ],
-                                "SizeTypes": [
-                                    "RelativeToWidth",
-                                    "RelativeToHeight"
-                                ]
-                            }
-                        },
-                        "Children": [
-                            {
-                                "Name": "Text",
-                                "Components": {
-                                    "Tilemap<int>": {
-                                        "Dimensions": [
-                                            10,
-                                            1
-                                        ],
-                                        "TileScale": [
-                                            0.6000000238418579,
-                                            1.0
-                                        ],
-                                        "TileData": [
-                                            57,
-                                            69,
-                                            83,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0
-                                        ]
-                                    },
-                                    "Text": {
-                                        "Text": "Yes"
-                                    },
-                                    "TilemapSprite": {
-                                        "Layer": 50,
-                                        "Color": [
-                                            0.0,
-                                            0.0,
-                                            -1.0,
-                                            0.0
-                                        ],
-                                        "Opacity": 1.0,
-                                        "FrameIndex": 0,
-                                        "Texture": {
-                                            "AssetName": "FontSheet"
-                                        }
-                                    },
-                                    "UiElement": {
-                                        "Anchor": [
-                                            -0.20000000298023224,
-                                            0.10000000149011612
-                                        ],
-                                        "Pivot": [
-                                            0.0,
-                                            0.20000000298023224
-                                        ],
-                                        "Offset": [
-                                            0.0,
-                                            0.0
-                                        ],
-                                        "FrameSize": [
-                                            0.12999999523162842,
-                                            0.7099999785423279
-                                        ],
-                                        "SizeTypes": [
-                                            "RelativeToWidth",
-                                            "RelativeToHeight"
-                                        ]
-                                    }
-                                },
-                                "Children": null
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "ConfirmationButton",
-                        "Components": {
-                            "AudioPlayer": {
-                                "Sound": {
-                                    "AssetName": "ButtonRelease"
-                                },
-                                "Volume": 1.0,
-                                "Pitch": 1.0,
-                                "VolumeVariance": 0.0,
-                                "PitchVariance": 0.0,
-                                "DefaultLoopCount": 0,
-                                "PlayOnInit": false,
-                                "IsSpatial": false,
-                                "AllowMultipleSounds": true,
-                                "ChannelGroupName": ""
-                            },
-                            "Sprite": {
-                                "Layer": 40,
-                                "Color": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ],
-                                "Opacity": 1.0,
-                                "FrameIndex": 0,
-                                "Texture": {
-                                    "AssetName": "ButtonTexture"
+                                    "AssetName": "QuitPopup_Button_No"
                                 }
                             },
                             "UiButton": {
@@ -907,10 +839,10 @@
                                 "HoveredFrame": 1,
                                 "DownFrame": 2,
                                 "PressSound": {
-                                    "AssetName": "ButtonPressedSound"
+                                    "AssetName": "ButtonPress"
                                 },
                                 "ReleaseSound": {
-                                    "AssetName": "ButtonReleasedSound"
+                                    "AssetName": "ButtonRelease"
                                 },
                                 "HoverSound": {
                                     "AssetName": ""
@@ -918,20 +850,20 @@
                             },
                             "UiElement": {
                                 "Anchor": [
-                                    0.5,
+                                    -0.10000000149011612,
                                     -0.5
                                 ],
                                 "Pivot": [
-                                    0.0,
-                                    0.0
+                                    -1.0,
+                                    1.0
                                 ],
                                 "Offset": [
                                     0.0,
                                     0.0
                                 ],
                                 "FrameSize": [
-                                    0.4000000059604645,
-                                    0.20000000298023224
+                                    0.17499999701976776,
+                                    0.13750000298023224
                                 ],
                                 "SizeTypes": [
                                     "RelativeToWidth",
@@ -939,75 +871,7 @@
                                 ]
                             }
                         },
-                        "Children": [
-                            {
-                                "Name": "Text",
-                                "Components": {
-                                    "Tilemap<int>": {
-                                        "Dimensions": [
-                                            10,
-                                            1
-                                        ],
-                                        "TileScale": [
-                                            0.6000000238418579,
-                                            1.0
-                                        ],
-                                        "TileData": [
-                                            46,
-                                            79,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            0
-                                        ]
-                                    },
-                                    "Text": {
-                                        "Text": "No"
-                                    },
-                                    "TilemapSprite": {
-                                        "Layer": 50,
-                                        "Color": [
-                                            0.0,
-                                            0.0,
-                                            -1.0,
-                                            0.0
-                                        ],
-                                        "Opacity": 1.0,
-                                        "FrameIndex": 0,
-                                        "Texture": {
-                                            "AssetName": "FontSheet"
-                                        }
-                                    },
-                                    "UiElement": {
-                                        "Anchor": [
-                                            -0.10000000149011612,
-                                            0.10000000149011612
-                                        ],
-                                        "Pivot": [
-                                            0.0,
-                                            0.20000000298023224
-                                        ],
-                                        "Offset": [
-                                            0.0,
-                                            0.0
-                                        ],
-                                        "FrameSize": [
-                                            0.12999999523162842,
-                                            0.7099999785423279
-                                        ],
-                                        "SizeTypes": [
-                                            "RelativeToWidth",
-                                            "RelativeToHeight"
-                                        ]
-                                    }
-                                },
-                                "Children": null
-                            }
-                        ]
+                        "Children": null
                     }
                 ]
             },
@@ -1555,7 +1419,7 @@
                                         "AssetName": "QuitConfirmationBase"
                                     },
                                     "PopupButton": {
-                                        "ActionName": ""
+                                        "ActionName": "Pause"
                                     },
                                     "EventName": "Quit"
                                 },
