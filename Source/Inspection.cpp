@@ -28,7 +28,7 @@
     /// @return whether a new file was selected
     bool Inspection::SelectFileFromDirectory( char const* label, std::string* selectedFile, std::string const& directoryPath )
     {
-        if ( ImGui::BeginCombo( label, selectedFile->c_str() + directoryPath.size() + 1) )
+        if ( ImGui::BeginCombo( label, selectedFile->c_str() + directoryPath.size() + 1, ImGuiComboFlags_HeightLarge ) )
         {
             if ( selectFileFromDirectoryHelper( selectedFile, directoryPath ) )
             {
@@ -56,14 +56,14 @@
             std::string filepath = file.path().filename().string();
             if ( file.is_directory() )
             {
-                if ( ImGui::TreeNode( filepath.c_str() ) )
+                if ( ImGui::BeginMenu( filepath.c_str() ) )
                 {
                     if ( selectFileFromDirectoryHelper( selectedFile, directoryPath + "/" + filepath ) )
                     {
                         ImGui::TreePop();
                         return true;
                     }
-                    ImGui::TreePop();
+                    ImGui::EndMenu();
                 }
             }
             else
