@@ -60,7 +60,7 @@
                 {
                     if ( selectFileFromDirectoryHelper( selectedFile, directoryPath + "/" + filepath ) )
                     {
-                        ImGui::TreePop();
+                        ImGui::EndMenu();
                         return true;
                     }
                     ImGui::EndMenu();
