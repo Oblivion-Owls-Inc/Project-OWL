@@ -15,6 +15,8 @@
 #include "ComponentReference.h"
 #include "Camera.h"
 #include "Transform.h"
+#include "AudioListener.h"
+
 
 class CameraBehavior : public Behavior
 {
@@ -59,14 +61,18 @@ private:
 //-----------------------------------------------------------------------------
 private:
 
-    /// @brief   Transform of the entity to follow
+    /// @brief  Transform of the entity to follow
     ComponentReference< Transform > m_ParentTransform;
 
-    /// @brief   Parent transform
+    /// @brief  Parent transform
     ComponentReference< Transform > m_Transform;
 
-    /// @brief   Camera component of parent
+    /// @brief  Camera component of parent
     ComponentReference< Camera > m_Cam;
+
+    /// @brief  the AudioListener Component attached to this Camera
+    ComponentReference< AudioListener, false > m_AudioListener;
+
 
     /// @brief   Map bounds. Stops camera from passing them (as long as its
     ///          dimensions don't exceed it). 

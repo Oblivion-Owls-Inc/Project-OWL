@@ -39,6 +39,15 @@ public: // accessors
     void SetIsActive( bool isActive );
 
 
+    /// @brief  gets the z offset of this AudioListener
+    /// @return the z offset of this AudioListener
+    float GetZOffset() const;
+
+    /// @brief  sets the z offset of this AudioListener
+    /// @param  zOffset the z offset of this AudioListener
+    void SetZOffset( float zOffset );
+
+
 //-----------------------------------------------------------------------------
 public: //  methods
 //-----------------------------------------------------------------------------
@@ -73,6 +82,14 @@ private: // members
     /// @brief  the z-axis offset out of the screen to calculate spatial audio with
     float m_ZOffset = 0;
 
+
+    /// @brief  modifier that adjusts how much sound attenuates at distance
+    float m_RolloffScale = 1.0f;
+
+    /// @brief  the maximum distance after which no more attenuation will occur
+    float m_MaxDistance = 10000.0f;
+
+
     /// @brief  whether this AudioListener is the active listener in the scene
     bool m_IsActive = true;
 
@@ -106,6 +123,12 @@ private: // reading
     /// @brief  reads the z-axis offset out of the screen to calculate spatial audio with
     /// @param  data    the json data to read from
     void readZOffset( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads modifier that adjusts how much sound attenuates at distance
+    /// @param  data    the json data to read from
+    void readRolloffScale( nlohmann::ordered_json const& data );
+
 
     /// @brief  reads whether this AudioListener is the active listener in the scene
     /// @param  data    the json data to read from
