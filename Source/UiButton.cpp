@@ -77,7 +77,7 @@
     {
         Behaviors< UiButton >()->AddComponent( this );
 
-        // don't serialize sound for AudioPlayer
+        // programatically set AudioPlayer's sound to let it know not to serialize it 
         m_AudioPlayer.SetOnConnectCallback( [ this ]() {
             m_AudioPlayer->SetSound( nullptr );
         } );
