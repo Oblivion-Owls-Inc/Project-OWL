@@ -47,8 +47,9 @@ void CameraBehavior::OnInit()
 {
 	Behaviors< Behavior >()->AddComponent(this);
 
-	m_Cam.Init( GetEntity() );
-	m_Transform.Init( GetEntity() );
+	m_Cam          .Init( GetEntity() );
+	m_Transform    .Init( GetEntity() );
+    m_AudioListener.Init( GetEntity() );
 
 	m_ParentTransform.Init( GetEntity()->GetParent() );
 }
@@ -57,8 +58,9 @@ void CameraBehavior::OnInit()
 /// @brief  Removes itself from behavior system
 void CameraBehavior::OnExit() 
 { 
-	m_Cam      .Exit();
-	m_Transform.Exit();
+	m_Cam          .Exit();
+	m_Transform    .Exit();
+    m_AudioListener.Exit();
 
 	m_ParentTransform.Exit();
 
@@ -73,7 +75,8 @@ void CameraBehavior::OnUpdate( float dt )
 		return;
             
 	// move
-	glm::vec2 pos = m_Transform->GetTranslation(), prev_pos = pos,
+	glm::vec2 pos = m_Transform->GetTranslation(),
+              prev_pos = pos,
 			  tpos = m_ParentTransform->GetMatrix()[ 3 ];
 
     // accurate smooth lerp equation
@@ -83,12 +86,14 @@ void CameraBehavior::OnUpdate( float dt )
 	clampOrCenter(pos.y, m_yBounds[0], m_yBounds[1], m_Cam->GetHeight());
 	clampOrCenter(pos.x, m_xBounds[0], m_xBounds[1], m_Cam->GetWidth());
 
-	// // This shouldn't be customizable. It's here to prevent aliasing.
-	// // However, combining it with 'speed' determines how lazy it is
-	// // with following the target. So I call it 'follow factor'.
-	// glm::vec2 change = prev_pos - pos;
-	// if (glm::dot(change, change) > dt*dt)
-	    m_Transform->SetTranslation( pos );
+
+	m_Transform->SetTranslation( pos );
+
+
+    if ( m_AudioListener != nullptr )
+    {
+        m_AudioListener->SetZOffset( std::min( m_Cam->GetWidth(), m_Cam->GetHeight() ) );
+    }
 }
 
 

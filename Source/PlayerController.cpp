@@ -608,24 +608,25 @@
         nlohmann::ordered_json data;
 
 
-        data[ "MiningLaserEntity"   ]       = Stream::Write( m_MiningLaserEntity     );
-        data[ "RespawnLocation"     ]       = Stream::Write( m_PlayerRespawnLocation );
-        data[ "MoveVertical"        ]       = Stream::Write( m_MoveVertical          );
-        data[ "MoveHorizontal"      ]       = Stream::Write( m_MoveHorizontal        );
-        data[ "FireLaser"           ]       = Stream::Write( m_FireLaser             );
-        data[ "Interact"            ]       = Stream::Write( m_Interact              );
-        data[ "VerticalMoveforce"   ]       = Stream::Write( m_VerticalMoveforce     );
-        data[ "HorizontalMoveforce" ]       = Stream::Write( m_HorizontalMoveforce   );
-        data[ "JumpSpeed"           ]       = Stream::Write( m_JumpSpeed             );
-        data[ "IsJumping"           ]       = Stream::Write( m_IsJumping             );
-        data[ "GroundCollisionThreshold" ]  = Stream::Write( m_GroundCollisionThreshold );
-        data[ "CoyoteTime"          ]       = Stream::Write( m_MaxCoyoteTime         );
-        data[ "AimVertical"         ]       = Stream::Write( m_AimVertical           );
-        data[ "AimHorizontal"       ]       = Stream::Write( m_AimHorizontal         );
-        data[ "EventNameBegin"      ]       = m_EventNameBegin;
-        data[ "EventNameWin"        ]       = m_EventNameWin;
-        data["EventNameHide"        ]       = m_EventNameHide;
-        data["EventNameShow"        ]       = m_EventNameShow;
+        data[ "MiningLaserEntity"        ] = Stream::Write( m_MiningLaserEntity        );
+        data[ "RespawnLocation"          ] = Stream::Write( m_PlayerRespawnLocation    );
+        data[ "MoveVertical"             ] = Stream::Write( m_MoveVertical             );
+        data[ "MoveHorizontal"           ] = Stream::Write( m_MoveHorizontal           );
+        data[ "FireLaser"                ] = Stream::Write( m_FireLaser                );
+        data[ "Interact"                 ] = Stream::Write( m_Interact                 );
+        data[ "VerticalMoveforce"        ] = Stream::Write( m_VerticalMoveforce        );
+        data[ "HorizontalMoveforce"      ] = Stream::Write( m_HorizontalMoveforce      );
+        data[ "JumpSpeed"                ] = Stream::Write( m_JumpSpeed                );
+        data[ "IsJumping"                ] = Stream::Write( m_IsJumping                );
+        data[ "GroundCollisionThreshold" ] = Stream::Write( m_GroundCollisionThreshold );
+        data[ "CoyoteTime"               ] = Stream::Write( m_MaxCoyoteTime            );
+        data[ "MiningLaserOffset"        ] = Stream::Write( m_MiningLaserOffset        );
+        data[ "AimVertical"              ] = Stream::Write( m_AimVertical              );
+        data[ "AimHorizontal"            ] = Stream::Write( m_AimHorizontal            );
+        data[ "EventNameBegin"           ] = Stream::Write( m_EventNameBegin           );
+        data[ "EventNameWin"             ] = Stream::Write( m_EventNameWin             );
+        data[ "EventNameHide"            ] = Stream::Write( m_EventNameHide            );
+        data[ "EventNameShow"            ] = Stream::Write( m_EventNameShow            );
 
         return data;
     }

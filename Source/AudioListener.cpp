@@ -43,6 +43,21 @@
     }
 
 
+    /// @brief  gets the z offset of this AudioListener
+    /// @return the z offset of this AudioListener
+    float AudioListener::GetZOffset() const
+    {
+        return m_ZOffset;
+    }
+
+    /// @brief  sets the z offset of this AudioListener
+    /// @param  zOffset the z offset of this AudioListener
+    void AudioListener::SetZOffset( float zOffset )
+    {
+        m_ZOffset = zOffset;
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
@@ -103,6 +118,7 @@
         FMOD_VECTOR up   = { 0.0f, 1.0f, 0.0f };
 
         Audio()->GetFMOD()->set3DListenerAttributes( 0, &pos3, &vel3, &fwd, &up );
+        Audio()->GetFMOD()->set3DSettings( 1.0f, 1.0f, m_RolloffScale );
     }
 
 
@@ -129,6 +145,8 @@
         }
 
         ImGui::DragFloat( "z offset", &m_ZOffset, 0.05f );
+
+        ImGui::DragFloat( "Rolloff Scale", &m_RolloffScale, 0.05f, 0.01f, INFINITY );
 
         if ( ImGui::Checkbox( "is active", &m_IsActive ) )
         {
@@ -159,6 +177,15 @@
         Stream::Read( m_ZOffset, data );
     }
 
+
+    /// @brief  reads modifier that adjusts how much sound attenuates at distance
+    /// @param  data    the json data to read from
+    void AudioListener::readRolloffScale( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_RolloffScale, data );
+    }
+
+
     /// @brief  reads whether this AudioListener is the active listener in the scene
     /// @param  data    the json data to read from
     void AudioListener::readIsActive( nlohmann::ordered_json const& data )
@@ -177,8 +204,9 @@
     ReadMethodMap< ISerializable > const& AudioListener::GetReadMethods() const
     {
         static ReadMethodMap< AudioListener > const readMethods = {
-            { "ZOffset" , &AudioListener::readZOffset  },
-            { "IsActive", &AudioListener::readIsActive }
+            { "ZOffset"     , &AudioListener::readZOffset      },
+            { "RolloffScale", &AudioListener::readRolloffScale },
+            { "IsActive"    , &AudioListener::readIsActive     }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -191,8 +219,9 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "ZOffset"  ] = Stream::Write( m_ZOffset  );
-        json[ "IsActive" ] = Stream::Write( m_IsActive );
+        json[ "ZOffset"      ] = Stream::Write( m_ZOffset      );
+        json[ "RolloffScale" ] = Stream::Write( m_RolloffScale );
+        json[ "IsActive"     ] = Stream::Write( m_IsActive     );
 
         return json;
     }
@@ -231,8 +260,9 @@
     /// @param  other   the other AudioListener to copy
     AudioListener::AudioListener( AudioListener const& other ) :
         Behavior( other ),
-        m_IsActive( other.m_IsActive ),
-        m_ZOffset ( other.m_ZOffset  )
+        m_IsActive    ( other.m_IsActive     ),
+        m_RolloffScale( other.m_RolloffScale ),
+        m_ZOffset     ( other.m_ZOffset      )
     {}
 
 
