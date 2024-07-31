@@ -88,10 +88,10 @@
 
         m_PressSound  .SetOwnerName( GetName() );
         m_ReleaseSound.SetOwnerName( GetName() );
-        m_HoverSound.  SetOwnerName( GetName() );
+        m_HoverSound  .SetOwnerName( GetName() );
         m_PressSound  .Init();
         m_ReleaseSound.Init();
-        m_HoverSound.  Init( false );
+        m_HoverSound  .Init( false );
     }
 
     /// @brief  called once when exiting the scene
