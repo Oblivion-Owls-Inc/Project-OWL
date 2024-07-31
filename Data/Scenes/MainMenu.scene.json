@@ -722,7 +722,7 @@
                         "Children": null
                     },
                     {
-                        "Name": "ConfirmationButton",
+                        "Name": "YesButton",
                         "Components": {
                             "AudioPlayer": {
                                 "Sound": {
@@ -737,14 +737,6 @@
                                 "IsSpatial": false,
                                 "AllowMultipleSounds": true,
                                 "ChannelGroupName": ""
-                            },
-                            "SceneChangeButton": {
-                                "SceneName": "MainMenu",
-                                "EventName": "QuitConfirmation",
-                                "SceneTransitionEntity": {
-                                    "EntityName": "SceneTransitionEntity"
-                                },
-                                "PreviousSceneFlag": false
                             },
                             "Sprite": {
                                 "Layer": 27,
@@ -761,7 +753,7 @@
                                 }
                             },
                             "UiButton": {
-                                "ClickEventName": "QuitConfirmation",
+                                "ClickEventName": "CloseApplication",
                                 "ShouldActivateOnPress": false,
                                 "IdleFrame": 0,
                                 "HoveredFrame": 1,
@@ -802,7 +794,7 @@
                         "Children": null
                     },
                     {
-                        "Name": "ConfirmationButton",
+                        "Name": "NoButton",
                         "Components": {
                             "AudioPlayer": {
                                 "Sound": {
