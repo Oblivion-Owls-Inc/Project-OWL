@@ -553,7 +553,7 @@
             return false;
         }
 
-        for (Generator* generator : Behaviors< Generator >()->GetComponents())
+        /*for (Generator* generator : Behaviors< Generator >()->GetComponents())
         {
             float distance = glm::distance(
                 generator->GetTransform()->GetTranslation(),
@@ -563,9 +563,9 @@
             {
                 return true;
             }
-        }
-
-        return false;
+        }*/
+        // replace below with false and uncomment above to force turrets within generator range
+        return true;
     }
 
     /// @brief  palces the currently selected building
