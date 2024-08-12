@@ -166,15 +166,10 @@
             return entity->IsDestroyed();
         };
 
+
         // get all the entities that need to be removed
         std::vector< Entity* > entitiesToRemove;
         std::copy_if( m_Entities.begin(), m_Entities.end(), std::back_inserter( entitiesToRemove ), isDestroyed );
-
-        // exit the entities
-        for ( Entity* entity : entitiesToRemove )
-        {
-            entity->Exit();
-        }
 
         // remove the entities from the System
         m_Entities.erase(
@@ -185,6 +180,12 @@
             ),
             m_Entities.end()
         );
+
+        // exit the entities
+        for ( Entity* entity : entitiesToRemove )
+        {
+            entity->Exit();
+        }
 
         // delete the entities
         for ( Entity* entity : entitiesToRemove )

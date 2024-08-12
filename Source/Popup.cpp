@@ -107,6 +107,11 @@ void Popup::OnFixedUpdate()
 /// @brief  called once when exiting the scene
 void Popup::OnExit()
 {
+    if ( m_Popup != nullptr )
+    {
+        m_Popup->Destroy();
+    }
+
     m_Listener.Exit();
     BehaviorSystem< Popup >::GetInstance()->RemoveComponent(this);
 }
