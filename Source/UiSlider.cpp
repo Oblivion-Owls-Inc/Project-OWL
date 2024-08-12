@@ -96,6 +96,21 @@
     {
         Behaviors< UiSlider >()->AddComponent( this );
 
+
+        m_UiBarSprite.SetOnConnectCallback(
+            [ this ]() -> void
+            {
+                updateVisuals();
+            }
+        );
+        m_HandleUiElement.SetOnConnectCallback(
+            [ this ]() -> void
+            {
+                updateVisuals();
+            }
+        );
+
+
         m_DragSliderAction.Init();
 
         m_UiBarSprite.Init( GetEntity() );
