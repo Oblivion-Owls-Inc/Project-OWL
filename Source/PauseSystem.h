@@ -53,6 +53,7 @@ private: // Members
         "InputSystem",
         "CheatSystem",
         "BehaviorSystem<UiButton>",
+        "BehaviorSystem<UiSlider>",
         "BehaviorSystem<Popup>",
         "BehaviorSystem<PauseComponent>",
         "BehaviorSystem<SceneTransition>",
