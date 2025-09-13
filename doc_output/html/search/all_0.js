@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_5fcount_0',['_Count',['../db/d09/classAction.html#a96791abd620b59055b9ab819af0545a5add3ff01c06a07a752666c18e1f7efaf8',1,'Action']]],
-  ['_5ffirst_1',['_First',['../db/d09/classAction.html#a96791abd620b59055b9ab819af0545a5a9ccc9093d146f691802b6baefea442a9',1,'Action']]]
+  ['2024_20digipen_20usa_20corporation_0',['2024 digipen usa corporation',['../dd/d8c/Stream_8cpp.html#autotoc_md14',1,'@copyright  © 2024 DigiPen (USA) Corporation.'],['../de/dd1/Stream_8h.html#autotoc_md15',1,'@copyright  © 2024 DigiPen (USA) Corporation.'],['../d5/d73/Stream_8t_8cpp.html#autotoc_md16',1,'@copyright  © 2024 DigiPen (USA) Corporation.']]]
 ];
