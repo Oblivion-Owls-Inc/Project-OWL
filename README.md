@@ -12,7 +12,7 @@ Built in our **custom game engine**.
 ---
 
 ## Gameplay Video
-[![Watch the video](ReadmeAssets/DigDeeperVideoThumbnail.png)](https://cdn.discordapp.com/attachments/905150803415818373/1416243544183537695/GAM250_DigDeeper.mp4?ex=68c62315&is=68c4d195&hm=696d7bffd6dc9ce2f38a4a5d8362fc45033cdeec2ff87d22c2c8b33ad46f87fe&)
+[![Watch the video](ReadmeAssets/DigDeeperVideoThumbnail.png)](https://streamable.com/woi4t3)
 
 
 ---
