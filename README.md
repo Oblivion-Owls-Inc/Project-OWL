@@ -12,7 +12,7 @@ Built in our **custom game engine**.
 ---
 
 ## Gameplay Video
-[![Watch the video](ReadmeAssets/DigDeeperVideoThumbnail.png)](https://streamable.com/woi4t3)
+[![Watch the video](ReadmeAssets/DigDeeperVideoThumbnail.png)](https://github.com/user-attachments/assets/5c4d19aa-f117-49c9-a9a0-a337ba7eac4e)
 
 
 ---
